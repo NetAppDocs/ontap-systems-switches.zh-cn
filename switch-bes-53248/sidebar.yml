@@ -3,7 +3,7 @@ section: switch-bes-53248
 title: BES-53248 交换机
 entries:
 - title: BES-53248 集群交换机概述
-  url: "/switch-bes-53248/bes53248-overview.html"
+  url: "/switch-bes-53248/overview-bes53248.html"
 - title: 设置交换机
   entries:
   - title: 所需文档

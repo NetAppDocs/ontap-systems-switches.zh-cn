@@ -1734,7 +1734,6 @@
   <block id="8b46c589466074f9f6f08c5ac2e65338" category="list-text">验证集群的最终配置：</block>
   <block id="631025451514d4ba07a7a639effbc062" category="paragraph">`ssystem cluster-switch log setup-password system cluster-switch log enable-Collection`</block>
   <block id="62bfe07a06460b74230f835bea8fe1f0" category="paragraph">您可以将 Cisco Nexus 92300YC 交换机（ X190003/R ）安装在 NetApp 系统机柜或第三方机柜中，并使用交换机附带的标准支架。</block>
-  <block id="55bd68cd5e278a4e2d551f7f5ef0fbfd" category="paragraph">下表列出了 923300 YC 交换机，风扇和电源的部件号和问题描述：</block>
   <block id="6d3d64d0595fa61efb235eead26ea906" category="paragraph">190003.</block>
   <block id="f1711ceaec3003f41f01e7c881f4a654" category="paragraph">Cisco 92300YC ， CLSW ， 48Pt10/25GB ， 18Pt100G ， PTSX （ PTSX = 端口侧排气）</block>
   <block id="453accb8cba95299ad04a656fd415d13" category="paragraph">190003R</block>
@@ -1851,4 +1850,5 @@
   <block id="b191593bc602ff910417b3f85bb496ca" category="sidebar">设置</block>
   <block id="7bd0358c3b996edfe19bd3da912bde62" category="sidebar">Cisco Nexus 9336C-x2 共享交换机</block>
   <block id="7f23f37c2e179a209bf0e1a2006c18c5" category="sidebar">Cisco 92300YC 交换机</block>
+  <block id="e6f7afb7cbc9cb091c28d87f1b64c273" category="paragraph">下表列出了 92300YC 交换机，风扇和电源的部件号和问题描述：</block>
 </blocks>
