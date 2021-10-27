@@ -1,0 +1,235 @@
+---
+permalink: switch-cisco-92300/install-nxos-overview.html 
+sidebar: sidebar 
+keywords: install nx-os rcf cisco nx 92300yc cluster switch 
+summary: Cisco Nexus 92300YC 集群交换机上必须安装 Cisco NX-OS 软件和参考配置文件 \ （ RCF\ ）。 
+---
+= 在 Cisco Nexus 92300YC 集群交换机上安装 NX-OS 软件和 RCF
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Cisco Nexus 92300YC 集群交换机上必须安装 Cisco NX-OS 软件和参考配置文件（ RCF ）。
+
+在集群交换机上安装 NX-OS 软件和参考配置文件（ Reference Configuration Files ， RCF ）之前，必须满足以下条件：
+
+* 集群必须完全正常运行（日志中不应有任何错误或类似问题）。
+* 如果您仅安装 NX-OS 并保留当前 RCF 版本，则必须在 RCF 中检查或设置所需的启动配置，以反映所需的启动映像。
+* 如果您需要更改启动配置以反映当前启动映像，则必须在重新应用 RCF 之前进行更改，以便在将来重新启动时实例化正确的版本。
+* 您必须已查看 Cisco 以太网交换机页面上的交换机兼容性表以了解受支持的 ONTAP ， NX-OS 和 RCF 版本。
++
+https://support.netapp.com/NOW/download/software/cm_switches/["Cisco 以太网交换机"]
+
+* RCF 中的命令语法与 NX-OS 版本中的命令语法之间可能存在命令依赖关系。
+* 您必须已参考 Cisco 网站上提供的相应软件和升级指南，以获取有关 _Cisco Nexus 9000 系列交换机 _ 上的 Cisco 交换机升级和降级过程的完整文档。
++
+https://www.cisco.com/c/en/us/support/switches/nexus-3000-series-switches/products-installation-guides-list.html["Cisco Nexus 9000 系列交换机"]
+
+* 您必须具有当前 RCF 。
+
+
+此操作步骤中的示例使用两个节点。这些节点使用两个 10GbE 集群互连端口 `e0a` 和 `e0b` 。
+
+请参见 https://hwu.netapp.com/SWITCH/INDEX["Hardware Universe"] 验证平台上的集群端口是否正确。
+
+
+NOTE: 根据不同版本的 ONTAP ，命令输出可能会有所不同。
+
+此操作步骤中的示例使用以下交换机和节点命名：
+
+* 这两台 Cisco 交换机的名称分别为 `CS1` 和 `CS2` 。
+* 节点名称为 `node1` 和 `node2` 。
+* 集群 LIF 名称是 node1 的 `node1_clus1` 和 `node1_clus2` ， node2 的 `node2_clus1` 和 `node2_clus2` 。
+* `cluster1 ：：： * >` 提示符指示集群的名称。
+
+
+
+NOTE: 操作步骤要求同时使用 ONTAP 命令和 Cisco Nexus 9000 系列交换机命令；除非另有说明，否则使用 ONTAP 命令。
+
+.步骤
+. 将权限级别更改为高级，在系统提示您继续时输入 * y * ：
++
+`set -privilege advanced`
+
++
+此时将显示高级提示符（` * >` ）。
+
+. 如果在此集群上启用了 AutoSupport ，则通过调用 AutoSupport 消息禁止自动创建案例：
++
+`ssystem node AutoSupport invoke -node * -type all -message MAINT=x h`
+
++
+其中 _x_ 是维护时段的持续时间，以小时为单位。
+
++
+
+NOTE: AutoSupport 消息会通知技术支持此维护任务，以便在维护窗口期间禁止自动创建案例。
+
++
+以下命令将禁止自动创建案例 2 小时：
+
++
+[listing]
+----
+cluster1:> system node autosupport invoke -node * -type all -message MAINT=2h
+----
+. 显示在每个集群互连交换机的每个节点上配置了多少个集群互连接口： `network device-discovery show -protocol cdp`
++
+[listing]
+----
+cluster1::*> **network device-discovery show -protocol cdp**
+
+ Node/      Local  Discovered
+Protocol    Port   Device (LLDP: ChassisID)  Interface         Platform
+----------- ------ ------------------------- ----------------  ----------------
+node2      /cdp
+            e0a    cs1                       Eth1/2            N9K-C92300YC
+            e0b    cs2                       Eth1/2            N9K-C92300YC
+node1      /cdp
+            e0a    cs1                       Eth1/1            N9K-C92300YC
+            e0b    cs2                       Eth1/1            N9K-C92300YC
+
+4 entries were displayed.
+----
+. 检查每个集群接口的管理或运行状态。
++
+.. 显示网络端口属性：``network port show – IPSpace Cluster``
++
+[listing]
+----
+cluster1::*> **network port show -ipspace Cluster**
+
+Node: node2
+                                                  Speed(Mbps) Health
+Port      IPspace      Broadcast Domain Link MTU  Admin/Oper  Status
+--------- ------------ ---------------- ---- ---- ----------- --------
+e0a       Cluster      Cluster          up   9000  auto/10000 healthy
+e0b       Cluster      Cluster          up   9000  auto/10000 healthy
+
+Node: node1
+                                                  Speed(Mbps) Health
+Port      IPspace      Broadcast Domain Link MTU  Admin/Oper  Status
+--------- ------------ ---------------- ---- ---- ----------- --------
+e0a       Cluster      Cluster          up   9000  auto/10000 healthy
+e0b       Cluster      Cluster          up   9000  auto/10000 healthy
+
+4 entries were displayed.
+----
+.. 显示有关 LIF 的信息： `network interface show - Vserver Cluster`
++
+[listing]
+----
+cluster1::*> **network interface show -vserver Cluster**
+
+            Logical    Status     Network            Current       Current Is
+Vserver     Interface  Admin/Oper Address/Mask       Node          Port    Home
+----------- ---------- ---------- ------------------ ------------- ------- ----
+Cluster
+            node1_clus1  up/up    169.254.209.69/16  node1         e0a     true
+            node1_clus2  up/up    169.254.49.125/16  node1         e0b     true
+            node2_clus1  up/up    169.254.47.194/16  node2         e0a     true
+            node2_clus2  up/up    169.254.19.183/16  node2         e0b     true
+
+4 entries were displayed.
+----
+
+
+. 对远程集群 LIF 执行 Ping 操作：
++
+`cluster ping-cluster -node node-name`
+
++
+[listing]
+----
+cluster1::*> **cluster ping-cluster -node node2**
+Host is node2
+Getting addresses from network interface table...
+Cluster node1_clus1 169.254.209.69 node1     e0a
+Cluster node1_clus2 169.254.49.125 node1     e0b
+Cluster node2_clus1 169.254.47.194 node2     e0a
+Cluster node2_clus2 169.254.19.183 node2     e0b
+Local = 169.254.47.194 169.254.19.183
+Remote = 169.254.209.69 169.254.49.125
+Cluster Vserver Id = 4294967293
+Ping status:
+
+Basic connectivity succeeds on 4 path(s)
+Basic connectivity fails on 0 path(s)
+
+Detected 9000 byte MTU on 4 path(s):
+    Local 169.254.19.183 to Remote 169.254.209.69
+    Local 169.254.19.183 to Remote 169.254.49.125
+    Local 169.254.47.194 to Remote 169.254.209.69
+    Local 169.254.47.194 to Remote 169.254.49.125
+Larger than PMTU communication succeeds on 4 path(s)
+RPC status:
+2 paths up, 0 paths down (tcp check)
+2 paths up, 0 paths down (udp check)
+----
+. 验证是否已在所有集群 LIF 上启用 auto-revert 命令：
++
+`network interface show - vserver cluster -fields auto-revert`
+
++
+[listing]
+----
+cluster1::*> **network interface show -vserver Cluster -fields auto-revert**
+
+          Logical
+Vserver   Interface     Auto-revert
+--------- ------------- ------------
+Cluster
+          node1_clus1   true
+          node1_clus2   true
+          node2_clus1   true
+          node2_clus2   true
+
+4 entries were displayed.
+----
+. 对于 ONTAP 9.4 及更高版本，启用集群交换机运行状况监控器日志收集功能以收集交换机相关的日志文件：
++
+`ssystem cluster-switch log setup-password system cluster-switch log enable-Collection`
+
++
+[listing]
+----
+cluster1::*> **system cluster-switch log setup-password**
+Enter the switch name: <return>
+The switch name entered is not recognized.
+Choose from the following list:
+NBS-NIC-NXYC-01
+NBS-NIC-NXYC-02
+
+cluster1::*> **system cluster-switch log setup-password**
+
+Enter the switch name: **NBS-NIC-NXYC-01
+**RSA key fingerprint is e5:8b:c6:dc:e2:18:18:09:36:63:d9:63:dd:03:d9:cc
+Do you want to continue? {y|n}::[n] **y**
+
+Enter the password: <enter switch password>
+Enter the password again: <enter switch password>
+
+cluster1::*> **system cluster-switch log setup-password**
+
+Enter the switch name: **NBS-NIC-NXYC-02**
+RSA key fingerprint is 57:49:86:a1:b9:80:6a:61:9a:86:8e:3c:e3:b7:1f:b1
+Do you want to continue? {y|n}:: [n] **y**
+
+Enter the password: <enter switch password>
+Enter the password again: <enter switch password>
+
+cluster1::*> **system cluster-switch log enable-collection**
+
+Do you want to enable cluster log collection for all nodes in the cluster?
+{y|n}: [n] **y**
+
+Enabling cluster switch log collection.
+
+cluster1::*>
+----
++
+
+NOTE: 如果其中任何一个命令返回错误，请联系 NetApp 支持部门。
+
+

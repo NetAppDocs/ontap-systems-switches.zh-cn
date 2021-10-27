@@ -1,0 +1,89 @@
+---
+permalink: switch-bes-53248/replace-prepare-controller.html 
+sidebar: sidebar 
+keywords: BES-53248 switches,preparing for upgrade,upgrade bes-53248 switch 
+summary: 您可以使用此操作步骤为 BES-53248 集群交换机升级准备控制器。 
+---
+= 准备用于集群交换机升级的控制器
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+您可以使用此操作步骤为 BES-53248 集群交换机升级准备控制器。
+
+.步骤
+. 将集群交换机连接到管理网络。
+. 使用 ping 命令验证与托管 EFOS ，许可证和 RCF 的服务器的连接。
++
+如果是问题描述，请使用非路由网络并使用 IP 地址 192.168.8.x 或 172.19.x 配置服务端口您可以稍后将服务端口重新配置为生产管理 IP 地址。
+
++
+此示例验证交换机是否已连接到 IP 地址为 172.19.2.1 的服务器：
+
++
+[listing]
+----
+(cs2) # **ping 172.19.2.1**
+Pinging 172.19.2.1 with 0 bytes of data:
+
+Reply From 172.19.2.1: icmp_seq = 0. time= 5910 usec.
+----
+. 使用命令验证集群端口是否运行正常并具有链路：
++
+`network port show -ipspace cluster`
+
++
+以下示例显示了所有端口的输出类型，其中 `Link` 值为 up ， a `Health Status` 为 healthy ：
+
++
+[listing]
+----
+cluster1::> **network port show -ipspace Cluster**
+
+Node: node1
+                                                                    Ignore
+                                               Speed(Mbps) Health   Health
+Port   IPspace      Broadcast Domain Link MTU  Admin/Oper  Status   Status
+------ ------------ ---------------- ---- ---- ----------- -------- ------
+e0a    Cluster      Cluster          up   9000  auto/10000 healthy  false
+e0b    Cluster      Cluster          up   9000  auto/10000 healthy  false
+
+Node: node2
+                                                                    Ignore
+                                               Speed(Mbps) Health   Health
+Port   IPspace      Broadcast Domain Link MTU  Admin/Oper  Status   Status
+-----  ------------ ---------------- ---- ---- ----------- -------- ------
+e0a    Cluster      Cluster          up   9000  auto/10000 healthy  false
+e0b    Cluster      Cluster          up   9000  auto/10000 healthy  false
+
+	4 entries were displayed.
+----
+. 使用命令验证集群 LIF 是否已在管理和操作上启动并驻留在其主端口上：
++
+`network interface show -vserver cluster`
+
++
+在此示例中， ` -vserver` 参数显示有关与集群端口关联的 LIF 的信息。`s状态管理 /Oper` 必须已启动且 `为主目录` 必须为 true ：
+
++
+[listing]
+----
+cluster1::>**network interface show -vserver Cluster**
+
+          Logical      Status     Network             Current       Current Is
+Vserver   Interface    Admin/Oper Address/Mask        Node          Port    Home
+--------- ----------   ---------- ------------------  ------------- ------- ----
+Cluster
+          node1_clus1
+                       up/up      169.254.217.125/16  node1         e0a     true
+          node1_clus2
+                       up/up      169.254.205.88/16   node1         e0b     true
+          node2_clus1
+                       up/up      169.254.252.125/16  node2         e0a     true
+          node2_clus2
+                       up/up      169.254.110.131/16  node2         e0b     true
+
+	4 entries were displayed.
+----
+

@@ -1,0 +1,49 @@
+---
+permalink: switch-cisco-92300/migrate-to-92300yc-overview.html 
+sidebar: sidebar 
+keywords: migrate to cisco nx 92300yc cluster switch,new cluster switch migration 
+summary: 在将某些旧的 Cisco Nexus 集群交换机更换为 Cisco Nexus 92300YC 集群交换机时，您必须了解某些配置信息，端口连接和布线要求。 
+---
+= 从 Cisco 交换机迁移到 Cisco Nexus 92300YC 交换机
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+在将某些旧的 Cisco Nexus 集群交换机更换为 Cisco Nexus 92300YC 集群交换机时，您必须了解某些配置信息，端口连接和布线要求。
+
+* 支持以下集群交换机：
++
+** Nexus 92300YC
+** Nexus 5596UP
+** Nexus 5020
+** Nexus 5010
+
+
+* 集群交换机使用以下端口连接到节点：
++
+** 端口 E1/1-48 （ 10/25 GbE ）， E1/49-64 （ 40/100 GbE ）： Nexus 92300YC
+** 端口 E1/1-40 （ 10 GbE ）： Nexus 5596UP
+** 端口 E1/1-32 （ 10 GbE ）： Nexus 5020
+** 端口 E1/1-12 ， E2/1-6 （ 10 GbE ）：具有扩展模块的 Nexus 5010
+
+
+* 集群交换机使用以下交换机间链路（ ISL ）端口：
++
+** 端口 E1/6566 （ 100 GbE ）： Nexus 92300YC
+** 端口 E1/41-48 （ 10 GbE ）： Nexus 5596UP
+** 端口 E1/33-40 （ 10 GbE ）： Nexus 5020
+** 端口 E1/13-20 （ 10 GbE ）： Nexus 5010
+
+
+* _cluster_ Hardware Universe 包含有关所有集群交换机支持的布线的信息。
+* 您已将 Nexus 92300YC 交换机上的某些端口配置为以 10 GbE 或 40 GbE 运行。
+* 您已规划，迁移并记录从节点到 Nexus 92300YC 集群交换机的 10 GbE 和 40 GbE 连接。
+* 此操作步骤中支持的 ONTAP 和 NX-OS 版本位于 _Cisco 以太网交换机 _ 页面上。
++
+https://support.netapp.com/NOW/download/software/cm_switches/["Cisco 以太网交换机"]
+
+
+
+
+NOTE: 迁移完成后，您可能需要安装所需的配置文件，以支持 923300 YC 集群交换机的集群交换机运行状况监控器（ Cluster Switch Health Monitor ， CSHM ）。请参见中的 _Installing the Cluster Switch Health Monitor （ CSHM ） configuration file for 923300 YC switchs_ link:../com.netapp.doc.hw-sw-cisco-setup/home.html["设置"] 指南

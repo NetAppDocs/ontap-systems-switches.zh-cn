@@ -1,0 +1,21 @@
+---
+settings:
+  name: ONTAP Systems Switches
+  search: ontap-systems, ontap-systems-upgrade
+  internal:
+    pdf_enabled: true
+  prod:
+    pdf_enabled: true
+    harmony_enabled: true
+    langs: zh-cn,us-en,ja-jp
+sidebar:
+  entries:
+  - title: 主页
+    url: "/index.html"
+  - section: switch-bes-53248
+  - section: switch-cisco-9336
+  - section: switch-cisco-9336c-shared
+  - section: switch-cisco-92300
+  - section: other
+  - title: 法律声明
+    url: "/legal-notices.html"

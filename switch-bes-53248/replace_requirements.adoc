@@ -1,0 +1,13 @@
+---
+permalink: switch-bes-53248/replace-requirements.html 
+sidebar: sidebar 
+keywords: requirements, bes-53428 switches 
+summary: 要配置集群，您需要为集群交换机提供适当数量和类型的缆线和缆线连接器。根据您最初配置的集群交换机类型，您需要使用随附的控制台缆线连接到交换机控制台端口，并且需要特定的网络信息。 
+---
+= BES-53248 集群交换机配置要求
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+要配置集群，您需要为集群交换机提供适当数量和类型的缆线和缆线连接器。根据您最初配置的集群交换机类型，您需要使用随附的控制台缆线连接到交换机控制台端口，并且需要特定的网络信息。

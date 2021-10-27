@@ -1,0 +1,16 @@
+---
+sidebar: sidebar 
+permalink: switch-cisco-9336c-shared/index.html 
+keywords: shared storage cluster switch 
+summary: 从 ONTAP 9.1.1 开始，您可以使用 Cisco Nexus 9336C-f2 交换机将存储和集群功能结合到共享交换机方案中。 
+---
+= Cisco Nexus 9336C-x2 共享交换机概述
+:hardbreaks:
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ./media/
+
+
+[role="lead"]
+从 ONTAP 9.1.1 开始，您可以使用 Cisco Nexus 9336C-f2 交换机将存储和集群功能结合到共享交换机方案中。

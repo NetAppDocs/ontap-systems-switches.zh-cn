@@ -1,0 +1,13 @@
+---
+permalink: switch-bes-53248/replace-set-up.html 
+sidebar: sidebar 
+keywords: setup,install bes-53248,cluster switch 
+summary: 您可以使用设置信息让集群交换机做好根据需要配置和自定义的准备。 
+---
+= 设置 BES-53248 集群交换机
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+您可以使用设置信息让集群交换机做好根据需要配置和自定义的准备。
