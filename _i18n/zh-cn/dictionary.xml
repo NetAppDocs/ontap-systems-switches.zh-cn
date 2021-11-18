@@ -1851,4 +1851,15 @@
   <block id="7bd0358c3b996edfe19bd3da912bde62" category="sidebar">Cisco Nexus 9336C-x2 共享交换机</block>
   <block id="7f23f37c2e179a209bf0e1a2006c18c5" category="sidebar">Cisco 92300YC 交换机</block>
   <block id="e6f7afb7cbc9cb091c28d87f1b64c273" category="paragraph">下表列出了 92300YC 交换机，风扇和电源的部件号和问题描述：</block>
+  <block id="1baa759569d97857893ce0c0944816d1" category="admonition">如果您尝试编辑先前安装的 RCF ，则此过程可能会失败，因为 RCF 中的其他区域已有配置，请参见 <block ref="127778341fc59a243ad992e8e8d679aa" category="inline-xref-macro-rx"></block>。</block>
+  <block id="3a870499c4a2e7f02665b5a0b216fd3d" category="section-title">编辑先前安装的 RCF 文件</block>
+  <block id="4543470be6763690cd66909cad9497a9" category="paragraph">编辑先前安装的 RCF 文件并运行 `sscript apply` 命令后，可能会收到以下错误消息：</block>
+  <block id="5079018518f45af74b3fb1004e3c3dba" category="paragraph">选择 `y` 后，您将收到以下错误消息：</block>
+  <block id="589abf884a159b7d22e58a40efd8e32b" category="paragraph">要避免或解决此问题描述，您可以选择以下选项之一：</block>
+  <block id="6960bd8cb39904f51457d27cec82ec8b" category="list-text">要避免此错误，您可以使用以下操作步骤：</block>
+  <block id="345888a24b8b2c0d2f8829a842ace44f" category="list-text">再创建一个仅包含新端口配置的 RCF 文件。</block>
+  <block id="ca4449720c71cf9af98bba70c8a31992" category="list-text">将第二个 RCF 文件复制到交换机。</block>
+  <block id="b3d2ab282b59bbaad33610c1e37f6f97" category="list-text">将此脚本应用于交换机。</block>
+  <block id="0a65946e5f51263da02110062145f17e" category="inline-link-macro">error在应用新 RCF 时，配置脚本文件的行号为 XX</block>
+  <block id="d849803ea7ac08671ac6cba3fbd7b4ed" category="list-text">要解决此错误，请参见知识库文章： <block ref="780ead0e3e7612ae5ba3c01e4e8d9478" category="inline-link-macro-rx"></block></block>
 </blocks>

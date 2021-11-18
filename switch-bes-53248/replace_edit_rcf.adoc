@@ -12,6 +12,9 @@ summary: 要激活新许可的端口，您需要编辑最新版本的 RCF 并取
 [role="lead"]
 要激活新许可的端口，您需要编辑最新版本的 RCF 并取消注释适用的端口详细信息。默认许可证会激活端口 0/1 到 0/16 以及从 0/55 到 0/56 ，而新许可的端口将位于端口 0/17 到 0/54 之间，具体取决于可用许可证的类型和数量。
 
+
+NOTE: 如果您尝试编辑先前安装的 RCF ，则此过程可能会失败，因为 RCF 中的其他区域已有配置，请参见 <<Edit a previously installed RCF file>>。
+
 有关可在 BES-53248 集群交换机上使用的许可证类型的详细信息，请参见 link:configure-licenses.html["为 BES-53248 集群交换机安装许可证"]。
 
 例如，要激活 SW-BES54241-40-100G-LIC 许可证，必须取消注释 RCF 中的以下部分：
@@ -126,3 +129,41 @@ NOTE: 对于介于 0/49 到 0/54 之间的高速端口，取消对每个端口�
 如示例所示。
 
 对于介于 0/17 到 0/48 之间的低速度端口，激活相应的许可证后，取消对整个 8 端口部分的注释。
+
+
+
+== 编辑先前安装的 RCF 文件
+
+编辑先前安装的 RCF 文件并运行 `sscript apply` 命令后，可能会收到以下错误消息：
+
+[listing]
+----
+(CS1) #script apply BES-53248_RCF_v1.6-Cluster-HA.scr
+ Are you sure you want to apply the configuration script? (y/n)
+----
+选择 `y` 后，您将收到以下错误消息：
+
+[listing]
+----
+config
+ ...
+ match cos 5
+ Unrecognized command : match cos 5
+ Error! in configuration script file at line number 40.
+ CLI Command :: match cos 5.
+ Aborting script.
+----
+要避免或解决此问题描述，您可以选择以下选项之一：
+
+* 要避免此错误，您可以使用以下操作步骤：
++
+.. 再创建一个仅包含新端口配置的 RCF 文件。
+.. 将第二个 RCF 文件复制到交换机。
+.. 将此脚本应用于交换机。
++
+`s记录应用`
+
+
+
+* 要解决此错误，请参见知识库文章： link:++https://kb.netapp.com/?title=Advice_and_Troubleshooting%2FData_Storage_Systems%2FFabric%252C_Interconnect_and_Management_Switches%2FError%2521_in_configuration_script_file_at_line_number_XX_when_applying_a_new_RCF%20%20%20++["error在应用新 RCF 时，配置脚本文件的行号为 XX"^]
+
