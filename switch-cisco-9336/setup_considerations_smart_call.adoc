@@ -26,4 +26,4 @@ summary: 智能自动通报功能可监控网络上的硬件和软件组件，�
 
 Cisco 支持站点包含有关用于配置智能自动通报的命令的信息。
 
-http://www.cisco.com/c/en/us/products/switches/index.html["Cisco 支持站点"]
+http://www.cisco.com/c/en/us/products/switches/index.html["Cisco 支持站点"^]

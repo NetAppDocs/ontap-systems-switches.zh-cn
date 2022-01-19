@@ -26,7 +26,7 @@ summary: 您可以通过完成本章中详细介绍的步骤来配置新的 BES-
 有关 Hardware Universe 您的平台支持的实际集群端口，请参见 _cluster_ 。
 
 +
-https://hwu.netapp.com/Home/Index["NetApp Hardware Universe"]
+https://hwu.netapp.com/Home/Index["NetApp Hardware Universe"^]
 
 * NetApp 交换机支持的交换机间链路（ ISL ）为端口 0/55 和 0/56 。
 * NetApp 交换机支持的节点连接为端口 0/1 到 0/16 ，并具有默认许可。

@@ -18,7 +18,7 @@ summary: 您可以使用此操作步骤安装适用于 BES-53248 集群交换机
 NOTE: 建议启用 SSH ，以便使用 CSHM 中提供的所有功能。
 
 .步骤
-. 根据相应的 ONTAP 版本下载集群交换机运行状况监控器配置 zip 文件。此文件可从页面获得： https://mysupport.netapp.com/NOW/cgi-bin/software/["NetApp 软件下载"]
+. 根据相应的 ONTAP 版本下载集群交换机运行状况监控器配置 zip 文件。此文件可从页面获得： https://mysupport.netapp.com/NOW/cgi-bin/software/["NetApp 软件下载"^]
 +
 .. 在软件下载页面上，选择 * 交换机运行状况监控器配置文件 *
 .. 选择平台 = * ONTAP * ，然后单击 * 执行！ *

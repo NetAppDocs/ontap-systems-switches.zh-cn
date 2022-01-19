@@ -15,12 +15,12 @@ summary: 使用集群交换机运行状况监控器（ CSHM ）和日志收集�
 .步骤
 . 生成 SSH 密钥：
 +
-`加密密钥生成`
+*`加密密钥生成` *
 
 +
 [listing]
 ----
-(switch) #**show ip ssh**
+(switch) # show ip ssh
 
 SSH Configuration
 
@@ -34,35 +34,33 @@ Keys Present: ................................. DSA(1024) RSA(1024) ECDSA(521)
 Key Generation In Progress: ................... None
 SCP server Administrative Mode: ............... Disabled
 
-(switch) #**config**
+(switch) # config
 
-(switch) (Config)#**crypto key generate rsa**
+(switch) (Config)# crypto key generate rsa
 
-Do you want to overwrite the existing RSA keys? (y/n):**y**
-
-
-(switch) (Config)#**crypto key generate dsa**
-
-Do you want to overwrite the existing DSA keys? (y/n):**y**
+Do you want to overwrite the existing RSA keys? (y/n): y
 
 
-(switch) (Config)#**crypto key generate ecdsa 521**
+(switch) (Config)# crypto key generate dsa
 
-Do you want to overwrite the existing ECDSA keys? (y/n):**y**
+Do you want to overwrite the existing DSA keys? (y/n): y
 
 
-(switch) (Config)#**exit**
+(switch) (Config)# crypto key generate ecdsa 521
+
+Do you want to overwrite the existing ECDSA keys? (y/n): y
+
+
+(switch) (Config)# exit
 ----
-. 启用 SSH ：
+. 验证是否已启用 SSH ：
 +
-`IP ssh 服务器 enable`
+* `s如何使用 IP ssh` *
 
 +
 [listing]
 ----
-(switch) #**ip ssh server enable**
-
-(switch) #**show ip ssh**
+(switch) # show ip ssh
 
 SSH Configuration
 

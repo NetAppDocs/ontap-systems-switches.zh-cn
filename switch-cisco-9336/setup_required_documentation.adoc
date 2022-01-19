@@ -16,7 +16,7 @@ summary: 要设置 ONTAP 集群，您需要特定的交换机和控制器文档�
 
 == 集群网络交换机所需的文档
 
-要设置 Cisco Nexus 9336C-x2 和 92300YC 交换机，您需要中的以下文档 https://www.cisco.com/c/en/us/support/switches/nexus-9000-series-switches/series.html["Cisco Nexus 9000 系列交换机支持"] 页面。
+要设置 Cisco Nexus 9336C-x2 和 92300YC 交换机，您需要中的以下文档 https://www.cisco.com/c/en/us/support/switches/nexus-9000-series-switches/series.html["Cisco Nexus 9000 系列交换机支持"^] 页面。
 
 [cols="1,2"]
 |===
@@ -78,7 +78,7 @@ Cisco Nexus 9000 系列的合规性和安全信息
 提供 Nexus 9000 系列交换机的国际机构合规性，安全性和法定信息。
 
 |===
-要设置 Cisco Nexus 3232C 和 3132Q-V 交换机，您需要中的以下文档 https://www.cisco.com/c/en/us/support/switches/nexus-3000-series-switches/series.html["Cisco Nexus 3000 系列交换机支持"] 页面。
+要设置 Cisco Nexus 3232C 和 3132Q-V 交换机，您需要中的以下文档 https://www.cisco.com/c/en/us/support/switches/nexus-3000-series-switches/series.html["Cisco Nexus 3000 系列交换机支持"^] 页面。
 
 [cols="1,2"]
 |===
@@ -140,7 +140,7 @@ Cisco Nexus 6000 ， Cisco Nexus 5000 系列， Cisco Nexus 3000 系列和 Cisco
 提供 Nexus 3000 系列交换机的国际机构合规性，安全性和法定信息。
 
 |===
-要设置 Cisco Nexus 5596 交换机，您需要从获取以下文档 https://www.cisco.com/c/en/us/support/switches/nexus-5000-series-switches/series.html["Cisco Nexus 5000 系列交换机支持"] 页面。
+要设置 Cisco Nexus 5596 交换机，您需要从获取以下文档 https://www.cisco.com/c/en/us/support/switches/nexus-5000-series-switches/series.html["Cisco Nexus 5000 系列交换机支持"^] 页面。
 
 [cols="1,2"]
 |===
@@ -199,7 +199,7 @@ _Cisco Nexus 6000 系列， Cisco Nexus 5000 系列， Cisco Nexus 3000 系列�
 
 == 支持的 ONTAP 系统所需的文档
 
-要设置 ONTAP 系统，您需要在中为您的操作系统版本提供以下文档 https://docs.netapp.com/ontap-9/index.jsp["ONTAP 9 文档中心"]。
+要设置 ONTAP 系统，您需要在中为您的操作系统版本提供以下文档 https://docs.netapp.com/ontap-9/index.jsp["ONTAP 9 文档中心"^]。
 
 [cols="1,2"]
 |===
@@ -221,7 +221,7 @@ ONTAP 文档
 
 
  a| 
-https://hwu.netapp.com["Hardware Universe"]
+https://hwu.netapp.com["Hardware Universe"^]
  a| 
 提供 NetApp 硬件配置和兼容性信息。
 
@@ -238,28 +238,28 @@ https://hwu.netapp.com["Hardware Universe"]
 
 
  a| 
-https://library.netapp.com/ecm/ecm_download_file/ECMM1280394["42U 系统机柜，深度指南"]
+https://library.netapp.com/ecm/ecm_download_file/ECMM1280394["42U 系统机柜，深度指南"^]
  a| 
 介绍与 42U 系统机柜关联的 FRU ，并提供维护和 FRU 更换说明。
 
 
 
  a| 
-https://library.netapp.com/ecm/ecm_get_file/ECMLP2843148["在 NetApp 机柜中安装 Cisco Nexus 3232C 集群交换机和直通面板"]
+https://library.netapp.com/ecm/ecm_get_file/ECMLP2843148["在 NetApp 机柜中安装 Cisco Nexus 3232C 集群交换机和直通面板"^]
  a| 
 介绍如何在四柱 NetApp 机柜中安装 Cisco Nexus 3232C 交换机。
 
 
 
  a| 
-https://library.netapp.com/ecm/ecm_download_file/ECMLP2518305["在 NetApp 机柜中安装 Cisco Nexus 3132Q-V 交换机和直通面板"]
+https://library.netapp.com/ecm/ecm_download_file/ECMLP2518305["在 NetApp 机柜中安装 Cisco Nexus 3132Q-V 交换机和直通面板"^]
  a| 
 介绍如何在四柱 NetApp 机柜中安装 Cisco Nexus 3132Q-V 交换机。
 
 
 
  a| 
-https://library.netapp.com/ecm/ecm_download_file/ECMP1141864["在 NetApp 机柜中安装 Cisco Nexus 5596 交换机和直通面板"]
+https://library.netapp.com/ecm/ecm_download_file/ECMP1141864["在 NetApp 机柜中安装 Cisco Nexus 5596 交换机和直通面板"^]
  a| 
 介绍如何在 NetApp 机柜中安装 Cisco Nexus 5596 交换机。
 

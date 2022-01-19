@@ -52,7 +52,7 @@ NOTE: 以下操作步骤基于以下集群网络拓扑：
 
 [listing]
 ----
-cluster1::> **network port show -ipspace Cluster**
+cluster1::> network port show -ipspace Cluster
 
 Node: node1
                                                                        Ignore
@@ -74,7 +74,7 @@ e0b       Cluster      Cluster          up   9000  auto/10000 healthy  false
 4 entries were displayed.
 
 
-cluster1::> **network interface show -vserver Cluster**
+cluster1::> network interface show -vserver Cluster
             Logical    Status     Network            Current       Current Is
 Vserver     Interface  Admin/Oper Address/Mask       Node          Port    Home
 ----------- ---------- ---------- ------------------ ------------- ------- ----
@@ -88,7 +88,7 @@ Cluster
 
 
 
-cluster1::> **network device-discovery show -protocol cdp**
+cluster1::> network device-discovery show -protocol cdp
 Node/       Local  Discovered
 Protocol    Port   Device (LLDP: ChassisID)  Interface         Platform
 ----------- ------ ------------------------- ----------------  ----------------
@@ -102,7 +102,7 @@ node1      /cdp
 4 entries were displayed.
 
 
-(cs1) # **show isdp neighbors**
+(cs1) # show isdp neighbors
 
 Capability Codes: R - Router, T - Trans Bridge, B - Source Route Bridge,
                   S - Switch, H - Host, I - IGMP, r - Repeater
@@ -115,7 +115,7 @@ cs2                      0/55      179       R          BES-53248        0/55
 cs2                      0/56      179       R          BES-53248        0/56
 
 
-(cs2) # **show isdp neighbors**
+(cs2) # show isdp neighbors
 
 Capability Codes: R - Router, T - Trans Bridge, B - Source Route Bridge,
                   S - Switch, H - Host, I - IGMP, r - Repeater
@@ -133,8 +133,8 @@ cs1                      0/56      179       R          BES-53248        0/56
 如有必要，请验证，下载并安装适用于新交换机的 RCF 和 EFOS 软件的相应版本。如果您已确认新交换机设置正确，并且不需要更新 RCF 和 EFOS 软件，请继续执行步骤 2 。
 
 +
-.. 您可以从下载适用于集群交换机的 Broadcom EFOS 软件 https://www.broadcom.com/support/bes-switch["Broadcom 以太网交换机支持"] 站点按照下载页面上的步骤下载要安装的 ONTAP 软件版本的 EFOS 文件。
-.. 可从获取相应的 RCF https://mysupport.netapp.com/site/products/all/details/broadcom-cluster-switches/downloads-tab["Broadcom 集群交换机"] 页面。按照下载页面上的步骤下载适用于您要安装的 ONTAP 软件版本的正确 RCF 。
+.. 您可以从下载适用于集群交换机的 Broadcom EFOS 软件 https://www.broadcom.com/support/bes-switch["Broadcom 以太网交换机支持"^] 站点按照下载页面上的步骤下载要安装的 ONTAP 软件版本的 EFOS 文件。
+.. 可从获取相应的 RCF https://mysupport.netapp.com/site/products/all/details/broadcom-cluster-switches/downloads-tab["Broadcom 集群交换机"^] 页面。按照下载页面上的步骤下载适用于您要安装的 ONTAP 软件版本的正确 RCF 。
 
 
 . 在新交换机上，以 admin 身份登录并关闭将连接到节点集群接口（端口 1 到 16 ）的所有端口。
@@ -152,12 +152,12 @@ NOTE: 要进入 `enable` 模式，不需要密码。
 +
 [listing]
 ----
-User:**admin**
+User: admin
 Password:
-(newcs2) >**enable**
-(newcs2) #**config**
-(newcs2)(config)#**interface 0/1-0/16**
-(newcs2)(interface 0/1-0/16)#**shutdown**
+(newcs2) >enable
+(newcs2) #config
+(newcs2)(config)#interface 0/1-0/16
+(newcs2)(interface 0/1-0/16)#shutdown
 (newcs2)(interface 0/1-0/16)#exit
 (newcs2)(config)#exit
 ----
@@ -168,8 +168,7 @@ Password:
 +
 [listing]
 ----
-
-cluster1::> **network interface show -vserver Cluster -fields auto-revert**
+cluster1::> network interface show -vserver Cluster -fields auto-revert
 
 Logical
 Vserver   Interface    Auto-revert
@@ -185,9 +184,9 @@ Cluster			node2_clus2		true
 +
 [listing]
 ----
-(cs1) #**config**
-(cs1)(config)#**interface 0/55-0/56**
-(cs1)(interface 0/55-0/56)#**shutdown**
+(cs1) # config
+(cs1)(config)# interface 0/55-0/56
+(cs1)(interface 0/55-0/56)# shutdown
 ----
 . 拔下 BES-53248 CS2 交换机上的所有缆线，然后将其连接到 BES-53248 newcs2 交换机上的相同端口。
 . 启动 CS1 和 newcs2 交换机之间的 ISL 端口 0/55 和 0/56 ，然后验证端口通道操作状态。
@@ -200,10 +199,10 @@ Cluster			node2_clus2		true
 +
 [listing]
 ----
-(cs1) # **config**
-(cs1)(config)# **interface 0/55-0/56**
-(cs1)(interface 0/55-0/56)# **no shutdown**
-(cs1) # **show port-channel 1/1**
+(cs1) # config
+(cs1)(config)# interface 0/55-0/56
+(cs1)(interface 0/55-0/56)# no shutdown
+(cs1) # show port-channel 1/1
 
 
 Local Interface................................ 1/1
@@ -250,7 +249,7 @@ Password:
 +
 [listing]
 ----
-cluster1::> **network port show -ipspace Cluster**
+cluster1::> network port show -ipspace Cluster
 
 Node: node1
                                                                         Ignore
@@ -280,7 +279,7 @@ e0b       Cluster      Cluster          up   9000  auto/auto   -        false
 +
 [listing]
 ----
-cluster::> **network interface show -vserver Cluster**
+cluster::> network interface show -vserver Cluster
 
             Logical      Status     Network            Current    Current Is
 Vserver     Interface    Admin/Oper Address/Mask       Node       Port    Home
@@ -300,7 +299,7 @@ Cluster
 +
 [listing]
 ----
-cluster1::> **cluster show**
+cluster1::> cluster show
 Node                   Health Eligibility    Epsilon
 --------------------   ------- ------------  --------
 node1                   true    true           true
@@ -313,7 +312,7 @@ node2                   true    true           true
 +
 [listing]
 ----
-cluster1::> **network port show -ipspace Cluster**
+cluster1::> network port show -ipspace Cluster
 Node: node1
                                                                        Ignore
                                        Speed(Mbps)            Health   Health
@@ -333,7 +332,7 @@ e0b       Cluster      Cluster          up   9000 auto/10000  healthy  false
 4 entries were displayed.
 
 
-cluster1::> **network interface show -vserver Cluster**
+cluster1::> network interface show -vserver Cluster
 
             Logical    Status     Network            Current       Current Is
 Vserver     Interface  Admin/Oper Address/Mask       Node          Port    Home
@@ -347,7 +346,7 @@ Cluster
 
 
 
-cs1# **show cdp neighbors**
+cs1# show cdp neighbors
 
 Capability Codes: R - Router, T - Trans-Bridge, B - Source-Route-Bridge
                   S - Switch, H - Host, I - IGMP, r - Repeater,
@@ -364,7 +363,7 @@ newcs2(FDO296348FU)  Eth1/66        176    R S I s     N9K-C92300YC  Eth1/66
 Total entries displayed: 4
 
 
-cs2# **show cdp neighbors**
+cs2# show cdp neighbors
 
 Capability Codes: R - Router, T - Trans-Bridge, B - Source-Route-Bridge
                   S - Switch, H - Host, I - IGMP, r - Repeater,
@@ -386,7 +385,7 @@ Total entries displayed: 4
 +
 [listing]
 ----
-(cs1) # show isdp neighbors
+(cs1)# show isdp neighbors
 Capability Codes: R - Router, T - Trans Bridge, B - Source Route Bridge,
 S - Switch, H - Host, I - IGMP, r - Repeater
 Device ID    Intf    Holdtime    Capability    Platform    Port ID
@@ -413,8 +412,8 @@ cs1          0/56    179         R             BES-53248   0/56
 
 * 相关信息 *
 
-https://mysupport.netapp.com/["NetApp 支持站点"]
+https://mysupport.netapp.com/["NetApp 支持站点"^]
 
-https://hwu.netapp.com/["NetApp Hardware Universe"]
+https://hwu.netapp.com/["NetApp Hardware Universe"^]
 
-http://docs.netapp.com/platstor/topic/com.netapp.doc.hw-sw-ix8-setup/home.html["《适用于 Broadcom 支持的 BES-53248 交换机的交换机设置和配置指南》"]
+http://docs.netapp.com/platstor/topic/com.netapp.doc.hw-sw-ix8-setup/home.html["《适用于 Broadcom 支持的 BES-53248 交换机的交换机设置和配置指南》"^]

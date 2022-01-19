@@ -23,7 +23,7 @@ summary: 升级 BES-53248 集群交换机首先需要准备要升级的控制器
 * RCF 和 EFOS 版本中的命令语法之间可能存在命令依赖关系。
 
 
-您必须查看 NetApp BES-53248 交换机页面上的交换机兼容性表，了解支持的 EFOS ， RCF 和 ONTAP 版本，网址为： http://mysupport.netapp.com/site["NetApp IP 交换机"]。
+您必须查看 NetApp BES-53248 交换机页面上的交换机兼容性表，了解支持的 EFOS ， RCF 和 ONTAP 版本，网址为： http://mysupport.netapp.com/site["NetApp IP 交换机"^]。
 
 此操作步骤适用场景是一个正常运行的集群，支持 NDU 和 NDO 。此操作步骤中的示例使用以下交换机和节点命名：
 
@@ -37,7 +37,7 @@ summary: 升级 BES-53248 集群交换机首先需要准备要升级的控制器
 有关您的平台支持的实际集群端口，请参见 _Hardware Universe___.
 
 +
-https://hwu.netapp.com/Home/Index["NetApp Hardware Universe"]
+https://hwu.netapp.com/Home/Index["NetApp Hardware Universe"^]
 
 * NetApp 集群交换机支持的交换机间链路（ ISL ）为端口 0/55 和 0/56 。
 * NetApp 集群交换机支持的节点连接为端口 0/1 到 0/16 ，具有默认许可。

@@ -29,7 +29,7 @@ Cisco Nexus 9336C-x2 交换机配置：
 有关布线的详细信息，请参见 * Hardware Universe * 。
 
 +
-https://hwu.netapp.com/SWITCH/INDEX["Hardware Universe —交换机"]
+https://hwu.netapp.com/SWITCH/INDEX["Hardware Universe —交换机"^]
 
 * 交换机间链路（ ISL ）缆线必须连接到两个 9336C-x2 交换机上的端口 1/35 和 1/36 。
 * 必须完成对这两个 9336C-x2 交换机的初始自定义。这样：
@@ -51,7 +51,7 @@ https://hwu.netapp.com/SWITCH/INDEX["Hardware Universe —交换机"]
 * Hardware Universe * 包含有关平台的实际集群端口的最新信息。
 
 +
-https://hwu.netapp.com["Hardware Universe"]
+https://hwu.netapp.com["Hardware Universe"^]
 
 +
 .. 如果在此集群上启用了 AutoSupport ，请通过调用 AutoSupport 消息来禁止自动创建案例： `ssystem node AutoSupport invoke -node * -type all -message MAINT=xh`
@@ -76,10 +76,10 @@ NOTE: AutoSupport 消息会通知技术支持此维护任务，以便在维护�
 +
 [listing]
 ----
-cs1# **config**
+cs1# config
 Enter configuration commands, one per line. End with CNTL/Z.
-cs1(config)# **interface e/1-34**
-cs1(config-if-range)# **shutdown**
+cs1(config)# interface e/1-34
+cs1(config-if-range)# shutdown
 ----
 .. 验证 ISL 和两个 9336C-x2 交换机 CS1 和 CS2 之间的 ISL 上的物理端口是否已在端口 1/35 和 1/36 上启动： `s如何显示端口通道摘要`
 +
@@ -88,7 +88,7 @@ cs1(config-if-range)# **shutdown**
 +
 [listing]
 ----
-cs1# **show port-channel summary**
+cs1# show port-channel summary
 
 Flags:  D - Down        P - Up in port-channel (members)
         I - Individual  H - Hot-standby (LACP only)
@@ -110,7 +110,7 @@ Group Port-       Type     Protocol  Member Ports
 +
 [listing]
 ----
-(cs2)# **show port-channel summary**
+(cs2)# show port-channel summary
 
 Flags:  D - Down        P - Up in port-channel (members)
         I - Individual  H - Hot-standby (LACP only)
@@ -136,7 +136,7 @@ Group Port-       Type     Protocol  Member Ports
 +
 [listing]
 ----
-cs1# **show cdp neighbors**
+cs1# show cdp neighbors
 
 Capability Codes: R - Router, T - Trans-Bridge, B - Source-Route-Bridge
                   S - Switch, H - Host, I - IGMP, r - Repeater,
@@ -155,7 +155,7 @@ Total entries displayed: 2
 +
 [listing]
 ----
-cs2# **show cdp neighbors**
+cs2# show cdp neighbors
 
 Capability Codes: R - Router, T - Trans-Bridge, B - Source-Route-Bridge
                   S - Switch, H - Host, I - IGMP, r - Repeater,
@@ -175,7 +175,7 @@ Total entries displayed: 2
 +
 [listing]
 ----
-cluster1::*> **network port show -ipspace Cluster**
+cluster1::*> network port show -ipspace Cluster
 
 Node: node1
 
@@ -202,7 +202,7 @@ e0b       Cluster      Cluster          up   9000  auto/10000 healthy
 +
 [listing]
 ----
-cluster1::*> **network interface show -vserver Cluster**
+cluster1::*> network interface show -vserver Cluster
 
             Logical    Status     Network            Current       Current Is
 Vserver     Interface  Admin/Oper Address/Mask       Node          Port    Home
@@ -218,7 +218,7 @@ Cluster
 +
 [listing]
 ----
-cluster1::*> **network interface show -vserver Cluster -fields auto-revert**
+cluster1::*> network interface show -vserver Cluster -fields auto-revert
 
           Logical
 Vserver   Interface     Auto-revert
@@ -236,7 +236,7 @@ Cluster
 有关布线的详细信息，请参见 * Hardware Universe * 。
 
 +
-https://hwu.netapp.com/SWITCH/INDEX["Hardware Universe —交换机"]
+https://hwu.netapp.com/SWITCH/INDEX["Hardware Universe —交换机"^]
 
 .. 断开节点 2 上集群端口 e0a 的缆线连接，然后使用 9336C-x2 交换机支持的相应布线方式将 e0a 连接到集群交换机 CS1 上的端口 2 。
 .. 启用集群交换机 CS1 上面向节点的所有端口。
@@ -246,10 +246,10 @@ https://hwu.netapp.com/SWITCH/INDEX["Hardware Universe —交换机"]
 +
 [listing]
 ----
-cs1# **config**
+cs1# config
 Enter configuration commands, one per line. End with CNTL/Z.
-cs1(config)# **interface e1/1-34**
-cs1(config-if-range)# **no shutdown**
+cs1(config)# interface e1/1-34
+cs1(config-if-range)# no shutdown
 ----
 .. 确认 `Is Home` ： `network interface show -vserver Cluster` 的所有集群 LIF 均已启动，正常运行并显示为 true
 +
@@ -258,7 +258,7 @@ cs1(config-if-range)# **no shutdown**
 +
 [listing]
 ----
-cluster1::*> **network interface show -vserver Cluster**
+cluster1::*> network interface show -vserver Cluster
 
          Logical      Status     Network            Current     Current Is
 Vserver  Interface    Admin/Oper Address/Mask       Node        Port    Home
@@ -278,7 +278,7 @@ Cluster
 +
 [listing]
 ----
-cluster1::*> **cluster show**
+cluster1::*> cluster show
 
 Node                 Health  Eligibility   Epsilon
 -------------------- ------- ------------  ------------
@@ -296,10 +296,10 @@ node2                true    true          false
 +
 [listing]
 ----
-cs2# **config**
+cs2# config
 Enter configuration commands, one per line. End with CNTL/Z.
-cs2(config)# **interface e1/1-34**
-cs2(config-if-range)# **no shutdown**
+cs2(config)# interface e1/1-34
+cs2(config-if-range)# no shutdown
 ----
 .. 验证所有集群端口是否均已启动： `network port show -ipspace cluster`
 +
@@ -308,7 +308,7 @@ cs2(config-if-range)# **no shutdown**
 +
 [listing]
 ----
-cluster1::*> **network port show -ipspace Cluster**
+cluster1::*> network port show -ipspace Cluster
 
 Node: node1
                                                                        Ignore
@@ -339,7 +339,7 @@ NOTE: 完成此操作可能需要几分钟时间。
 +
 [listing]
 ----
-cluster1::*> **network interface show -vserver Cluster**
+cluster1::*> network interface show -vserver Cluster
 
           Logical      Status     Network            Current    Current Is
 Vserver   Interface    Admin/Oper Address/Mask       Node       Port    Home
@@ -359,7 +359,7 @@ Cluster
 +
 [listing]
 ----
-(cs1)# **show cdp neighbors**
+(cs1)# show cdp neighbors
 
 Capability Codes: R - Router, T - Trans-Bridge, B - Source-Route-Bridge
                   S - Switch, H - Host, I - IGMP, r - Repeater,
@@ -374,7 +374,7 @@ cs2                Eth1/36        175    R S I s     N9K-C9336C    Eth1/36
 
 Total entries displayed: 4
 
-(cs2)# **show cdp neighbors**
+(cs2)# show cdp neighbors
 
 Capability Codes: R - Router, T - Trans-Bridge, B - Source-Route-Bridge
                   S - Switch, H - Host, I - IGMP, r - Repeater,
@@ -393,7 +393,7 @@ Total entries displayed: 4
 +
 [listing]
 ----
-cluster1::*> **network device-discovery show -protocol cdp**
+cluster1::*> network device-discovery show -protocol cdp
 Node/       Local  Discovered
 Protocol    Port   Device (LLDP: ChassisID)  Interface         Platform
 ----------- ------ ------------------------- ----------------  ----------------
@@ -417,7 +417,7 @@ NOTE: 完成此命令可能需要几分钟的时间。等待 " 三分钟生命�
 +
 [listing]
 ----
-cluster1::*> **network options switchless-cluster show**
+cluster1::*> network options switchless-cluster show
 Enable Switchless Cluster: false
 ----
 .. 验证集群中节点成员的状态： `cluster show`
@@ -427,7 +427,7 @@ Enable Switchless Cluster: false
 +
 [listing]
 ----
-cluster1::*> **cluster show**
+cluster1::*> cluster show
 
 Node                 Health  Eligibility   Epsilon
 -------------------- ------- ------------  --------
@@ -438,7 +438,7 @@ node2                true    true          false
 +
 [listing]
 ----
-cluster1::*> **cluster ping-cluster -node node2**
+cluster1::*> cluster ping-cluster -node node2
 Host is node2
 Getting addresses from network interface table...
 Cluster node1_clus1 169.254.209.69 node1 e0a
@@ -468,35 +468,35 @@ RPC status:
 +
 [listing]
 ----
-cluster1::*> **system switch ethernet log setup-password**
+cluster1::*> system switch ethernet log setup-password
 Enter the switch name: <return>
 The switch name entered is not recognized.
 Choose from the following list:
 cs1
 cs2
 
-cluster1::*> **system switch ethernet log setup-password**
+cluster1::*> system switch ethernet log setup-password
 
-Enter the switch name: **cs1**
+Enter the switch name: cs1
 RSA key fingerprint is e5:8b:c6:dc:e2:18:18:09:36:63:d9:63:dd:03:d9:cc
-Do you want to continue? {y|n}::[n] **y**
+Do you want to continue? {y|n}::[n] y
 
 Enter the password: <enter switch password>
 Enter the password again: <enter switch password>
 
-cluster1::*> **system switch ethernet log setup-password**
+cluster1::*> system switch ethernet log setup-password
 
-Enter the switch name: **cs2**
+Enter the switch name: cs2
 RSA key fingerprint is 57:49:86:a1:b9:80:6a:61:9a:86:8e:3c:e3:b7:1f:b1
-Do you want to continue? {y|n}:: [n] **y**
+Do you want to continue? {y|n}:: [n] y
 
 Enter the password: <enter switch password>
 Enter the password again: <enter switch password>
 
-cluster1::*> **system  switch ethernet log enable-collection**
+cluster1::*> system  switch ethernet log enable-collection
 
 Do you want to enable cluster log collection for all nodes in the cluster?
-{y|n}: [n] **y**
+{y|n}: [n] y
 
 Enabling cluster switch log collection.
 
@@ -510,35 +510,35 @@ NOTE: 如果其中任何一个命令返回错误，请联系 NetApp 支持部门
 +
 [listing]
 ----
-cluster1::*> **system cluster-switch log setup-password**
+cluster1::*> system cluster-switch log setup-password
 Enter the switch name: <return>
 The switch name entered is not recognized.
 Choose from the following list:
 cs1
 cs2
 
-cluster1::*> **system cluster-switch log setup-password**
+cluster1::*> system cluster-switch log setup-password
 
-Enter the switch name: **cs1**
+Enter the switch name: cs1
 RSA key fingerprint is e5:8b:c6:dc:e2:18:18:09:36:63:d9:63:dd:03:d9:cc
-Do you want to continue? {y|n}::[n] **y**
+Do you want to continue? {y|n}::[n] y
 
 Enter the password: <enter switch password>
 Enter the password again: <enter switch password>
 
-cluster1::*> **system cluster-switch log setup-password**
+cluster1::*> system cluster-switch log setup-password
 
-Enter the switch name: **cs2**
+Enter the switch name: cs2
 RSA key fingerprint is 57:49:86:a1:b9:80:6a:61:9a:86:8e:3c:e3:b7:1f:b1
-Do you want to continue? {y|n}:: [n] **y**
+Do you want to continue? {y|n}:: [n] y
 
 Enter the password: <enter switch password>
 Enter the password again: <enter switch password>
 
-cluster1::*> **system cluster-switch log enable-collection**
+cluster1::*> system cluster-switch log enable-collection
 
 Do you want to enable cluster log collection for all nodes in the cluster?
-{y|n}: [n] **y**
+{y|n}: [n] y
 
 Enabling cluster switch log collection.
 

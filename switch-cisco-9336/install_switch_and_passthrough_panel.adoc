@@ -14,7 +14,7 @@ summary: 您可以将 Cisco Nexus 9336C-FX2 交换机和直通面板安装在 Ne
 
 您必须已查看初始准备要求，套件内容和安全预防措施。
 
-https://www.cisco.com/c/en/us/td/docs/switches/datacenter/nexus9000/hw/aci_9336cfx2_hig/guide/b_n9336cFX2_aci_hardware_installation_guide.html["《 Cisco Nexus 9000 系列硬件安装指南》"]
+https://www.cisco.com/c/en/us/td/docs/switches/datacenter/nexus9000/hw/aci_9336cfx2_hig/guide/b_n9336cFX2_aci_hardware_installation_guide.html["《 Cisco Nexus 9000 系列硬件安装指南》"^]
 
 * 对于每个交换机，您必须提供八个 10-32 或 12-24 螺钉和卡夹螺母，以便将支架和滑轨安装到机柜的前后柱上。
 * 您必须使用 Cisco 标准导轨套件将交换机安装到 NetApp 机柜中。

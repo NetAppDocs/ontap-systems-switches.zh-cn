@@ -26,7 +26,7 @@ summary: 您可以使用此处提供的命令验证升级 BES-53248 集群交换
 +
 [listing]
 ----
-cluster1::> **network port show -ipspace Cluster**
+cluster1::> network port show -ipspace Cluster
 
 Node: node1
                                                                     Ignore
@@ -53,7 +53,7 @@ e0b    Cluster      Cluster          up   9000  auto/10000 healthy  false
 +
 [listing]
 ----
-cluster1::> **network interface show -vserver Cluster**
+cluster1::> network interface show -vserver Cluster
 
             Logical    Status     Network            Current       Current Is
 Vserver     Interface  Admin/Oper Address/Mask       Node          Port    Home
@@ -70,7 +70,7 @@ Cluster
 +
 [listing]
 ----
-cluster1::> **cluster show**
+cluster1::> cluster show
 
 Node                 Health  Eligibility   Epsilon
 -------------------- ------- ------------  ------------

@@ -25,7 +25,7 @@ summary: 要配置集群，您需要为交换机配置适当数量和类型的�
 
 有关最新信息，请参见 _SIL_ Hardware Universe 。
 
-https://hwu.netapp.com["Hardware Universe"]
+https://hwu.netapp.com["Hardware Universe"^]
 
 
 
@@ -123,15 +123,15 @@ NOTE: 如果您在此阶段未保存配置，则下次重新启动交换机时�
 有关交换机初始配置的详细信息，请参见以下指南：
 
 +
-https://www.cisco.com/c/en/us/support/switches/nexus-9336c-fx2-switch/model.html#InstallandUpgradeGuides["《 Cisco Nexus 9336C-x2 安装和升级指南》"]
+https://www.cisco.com/c/en/us/support/switches/nexus-9336c-fx2-switch/model.html#InstallandUpgradeGuides["《 Cisco Nexus 9336C-x2 安装和升级指南》"^]
 
 +
-https://www.cisco.com/c/en/us/support/switches/nexus-92300yc-switch/model.html#InstallandUpgradeGuides["《 Cisco Nexus 92300YC 安装和升级指南》"]
+https://www.cisco.com/c/en/us/support/switches/nexus-92300yc-switch/model.html#InstallandUpgradeGuides["《 Cisco Nexus 92300YC 安装和升级指南》"^]
 
 +
-https://www.cisco.com/c/en/us/support/switches/nexus-5000-series-switches/products-installation-guides-list.html["《 Cisco Nexus 5000 系列硬件安装指南》"]
+https://www.cisco.com/c/en/us/support/switches/nexus-5000-series-switches/products-installation-guides-list.html["《 Cisco Nexus 5000 系列硬件安装指南》"^]
 
 +
-https://www.cisco.com/c/en/us/support/switches/nexus-3000-series-switches/products-installation-guides-list.html["《 Cisco Nexus 3000 系列硬件安装指南》"]
+https://www.cisco.com/c/en/us/support/switches/nexus-3000-series-switches/products-installation-guides-list.html["《 Cisco Nexus 3000 系列硬件安装指南》"^]
 
 

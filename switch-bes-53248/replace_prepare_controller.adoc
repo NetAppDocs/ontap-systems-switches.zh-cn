@@ -24,7 +24,7 @@ summary: 您可以使用此操作步骤为 BES-53248 集群交换机升级准备
 +
 [listing]
 ----
-(cs2) # **ping 172.19.2.1**
+(cs2) # ping 172.19.2.1
 Pinging 172.19.2.1 with 0 bytes of data:
 
 Reply From 172.19.2.1: icmp_seq = 0. time= 5910 usec.
@@ -39,7 +39,7 @@ Reply From 172.19.2.1: icmp_seq = 0. time= 5910 usec.
 +
 [listing]
 ----
-cluster1::> **network port show -ipspace Cluster**
+cluster1::> network port show -ipspace Cluster
 
 Node: node1
                                                                     Ignore
@@ -69,7 +69,7 @@ e0b    Cluster      Cluster          up   9000  auto/10000 healthy  false
 +
 [listing]
 ----
-cluster1::>**network interface show -vserver Cluster**
+cluster1::> network interface show -vserver Cluster
 
           Logical      Status     Network             Current       Current Is
 Vserver   Interface    Admin/Oper Address/Mask        Node          Port    Home

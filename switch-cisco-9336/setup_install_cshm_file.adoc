@@ -1,7 +1,7 @@
 ---
 permalink: switch-cisco-9336/setup-install-cshm-file.html 
 sidebar: sidebar 
-keywords: install, applicable, configuration, file, cluster, switch, health, monitor, nexus, ontap, install the cluster switch health monitor (csm) configuration file for 92300yc switches - cisco nexus 9336c-fx2 
+keywords: 'install, applicable, configuration, file, cluster, switch, health, monitor, nexus, ontap, install the cluster switch health monitor (csm) configuration file for 92300yc switches - cisco nexus 9336c-fx2' 
 summary: 您可以使用此操作步骤安装适用于 Nexus 92300YC 集群交换机的集群交换机运行状况监控的配置文件。在 ONTAP 9.5P7 及更早版本以及 9.6P2 及更早版本中，您必须单独下载集群交换机运行状况监控器配置文件。在 ONTAP 9.5P8 及更高版本， 9.6P3 及更高版本以及 9.7 及更高版本中，集群交换机运行状况监控器配置文件与 ONTAP 捆绑在一起。 
 ---
 = 为 92300YC 交换机安装集群交换机运行状况监控器（ Cluster Switch Health Monitor ， CSHM ）配置文件
@@ -17,7 +17,7 @@ summary: 您可以使用此操作步骤安装适用于 Nexus 92300YC 集群交�
 
 NOTE: 建议启用 SSH ，以便使用 CSHM 中提供的所有功能。
 
-. 根据相应的 ONTAP 版本下载集群交换机运行状况监控器配置 zip 文件。此文件可从获取 https://mysupport.netapp.com/NOW/cgi-bin/software/["NetApp 软件下载"] 页面。
+. 根据相应的 ONTAP 版本下载集群交换机运行状况监控器配置 zip 文件。此文件可从获取 https://mysupport.netapp.com/NOW/cgi-bin/software/["NetApp 软件下载"^] 页面。
 +
 .. 在软件下载页面上，选择 * 交换机运行状况监控器配置文件 *
 .. 选择平台 = * ONTAP * ，然后单击 * 执行！ *

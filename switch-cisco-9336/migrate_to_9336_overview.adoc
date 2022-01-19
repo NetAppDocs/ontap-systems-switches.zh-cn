@@ -66,6 +66,6 @@ summary: 在将某些旧的 Cisco Nexus 集群交换机更换为 Cisco Nexus 933
 * 您已规划，迁移并记录从节点到 Nexus 9336C-FX2 集群交换机的 10 GbE 和 40 GbE 连接。
 * 此操作步骤中支持的 ONTAP 和 NX-OS 版本位于 _Cisco 以太网交换机 _ 页面上。
 +
-https://mysupport.netapp.com/site/info/cisco-ethernet-switch["Cisco 以太网交换机"]
+https://mysupport.netapp.com/site/info/cisco-ethernet-switch["Cisco 以太网交换机"^]
 
 

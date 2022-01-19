@@ -19,7 +19,7 @@ summary: 如果您还没有所需的配置信息和文档，则需要在设置�
 
 * 您必须具有所需的控制器文档和 ONTAP 文档。
 +
-https://netapp.com/us/documenation/index.aspx["NetApp 文档"]
+https://netapp.com/us/documenation/index.aspx["NetApp 文档"^]
 
 * 您必须具有适用的许可证，网络和配置信息以及缆线。
 * 您必须已完成布线工作表。
@@ -32,14 +32,14 @@ NOTE: 由于图示布线层可能会带来复杂性，本指南不提供布线�
 NOTE: 有关详细信息，请参见 _SIL_ Hardware Universe 。
 
 +
-https://hwu.netapp.com["Hardware Universe"]
+https://hwu.netapp.com["Hardware Universe"^]
 
 
 
 所有 Cisco 集群网络和管理网络交换机均采用标准的 Cisco 出厂默认配置。这些交换机还具有最新版本的 NX-OS 软件，但未加载 RCF 。
 
 
-NOTE: 您必须从 NetApp 支持站点下载适用的 NetApp 集群网络和管理网络 RCF ，网址为 http://mysupport.netapp.com/["mysupport.netapp.com"] 用于接收的交换机。
+NOTE: 您必须从 NetApp 支持站点下载适用的 NetApp 集群网络和管理网络 RCF ，网址为 http://mysupport.netapp.com/["mysupport.netapp.com"^] 用于接收的交换机。
 
 此外，您可能需要安装所需的配置文件，以支持 923300 YC 集群交换机的集群交换机运行状况监控器（ Cluster Switch Health Monitor ， CSHM ）。请参见 link:setup_install_cshm_file.md#["为 92300YC 交换机安装集群交换机运行状况监控器（ Cluster Switch Health Monitor ， CSHM ）配置文件"] 了解详细信息。
 
@@ -90,11 +90,11 @@ NetApp 系统机柜中的 Cisco Nexus 5596UP/5596T
 . 验证您在设置结束时显示的屏幕中所做的配置选择，并确保保存此配置。
 . 检查集群网络交换机上的版本，如有必要，请将 NetApp 支持的软件版本下载到这些交换机。
 +
-如果您下载的是 NetApp 支持的软件版本，则还必须下载 _NetApp 集群网络交换机参考配置文件 _ 并将其与步骤 5 中保存的配置合并。您可以从下载文件和说明 https://mysupport.netapp.com/site/info/cisco-ethernet-switch["Cisco 以太网交换机"] 页面。
+如果您下载的是 NetApp 支持的软件版本，则还必须下载 _NetApp 集群网络交换机参考配置文件 _ 并将其与步骤 5 中保存的配置合并。您可以从下载文件和说明 https://mysupport.netapp.com/site/info/cisco-ethernet-switch["Cisco 以太网交换机"^] 页面。
 
-. 检查网络交换机上的软件版本，如有必要，请将 NetApp 支持的软件版本下载到这些交换机。如果您有自己的交换机，请参见 https://cisco.com["Cisco 站点"]。
+. 检查网络交换机上的软件版本，如有必要，请将 NetApp 支持的软件版本下载到这些交换机。如果您有自己的交换机，请参见 https://cisco.com["Cisco 站点"^]。
 +
-如果您下载的是 NetApp 支持的软件版本，则还必须下载 _NetApp 管理网络交换机参考配置文件 _ 并将其与步骤 5 中保存的配置合并。您可以从下载文件和说明 https://mysupport.netapp.com/site/info/cisco-ethernet-switch["Cisco 以太网交换机"] 页面。
+如果您下载的是 NetApp 支持的软件版本，则还必须下载 _NetApp 管理网络交换机参考配置文件 _ 并将其与步骤 5 中保存的配置合并。您可以从下载文件和说明 https://mysupport.netapp.com/site/info/cisco-ethernet-switch["Cisco 以太网交换机"^] 页面。
 
 
 

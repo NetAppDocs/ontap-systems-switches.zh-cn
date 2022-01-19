@@ -12,7 +12,7 @@ summary: 您可以使用此操作步骤执行 BES-53248 集群交换机的初始
 [role="lead"]
 您可以使用此操作步骤执行 BES-53248 集群交换机的初始安装。
 
-您可以从下载适用于集群交换机的 Broadcom EFOS 软件 https://www.broadcom.com/support/bes-switch["Broadcom 以太网交换机支持"] 站点
+您可以从下载适用于集群交换机的 Broadcom EFOS 软件 https://www.broadcom.com/support/bes-switch["Broadcom 以太网交换机支持"^] 站点
 
 EFOS 是一套广泛的软件，其中包含为数据中心应用程序开发各种以太网和 IP 基础架构系统所需的一系列高级网络功能和协议。EFOS 软件是一种架构，适用于使用需要全面数据包检查或隔离的领先应用程序的任何网络组织设备。
 
@@ -34,9 +34,9 @@ EFOS 是一套广泛的软件，其中包含为数据中心应用程序开发各
 +
 [listing]
 ----
-User:**admin**
+User: admin
 Password:
-(Routing)> **enable**
+(Routing)> enable
 Password:
 (Routing) #
 ----
@@ -44,7 +44,7 @@ Password:
 +
 [listing]
 ----
-(Routing) # **hostname cs2**
+(Routing) # hostname cs2
 (cs2) #
 ----
 . 要设置静态 IP 地址，请使用 serviceport protocol ， network protocol 和 serviceport ip 命令，如示例所示。
@@ -54,9 +54,9 @@ Password:
 +
 [listing]
 ----
-(cs2) # **serviceport protocol none**
-(cs2) # **network protocol none**
-(cs2) # **serviceport ip ipaddr netmask gateway**
+(cs2) # serviceport protocol none
+(cs2) # network protocol none
+(cs2) # serviceport ip ipaddr netmask gateway
 ----
 . 使用命令验证结果：
 +
@@ -68,7 +68,7 @@ Password:
 +
 [listing]
 ----
-(cs2) # **show serviceport**
+(cs2) # show serviceport
 Interface Status............................... Up
 IP Address..................................... 172.19.2.2
 Subnet Mask.................................... 255.255.255.0
