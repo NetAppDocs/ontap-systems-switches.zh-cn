@@ -775,6 +775,8 @@
 
 
 
+
+
           
         </li>
       </ul>
@@ -1231,6 +1233,8 @@
         安装参考配置文件（ RCF ）
       </a></li></ul></li><li class=" "><a class="na-navbar-padding" href="/zh-cn/ontap-systems-switches/switch-cisco-9336/replace-9336c.html">
         更换 Cisco Nexus 9336C-x2 集群交换机
+      </a></li><li class=" "><a class="na-navbar-padding" href="/zh-cn/ontap-systems-switches/switch-cisco-9336/replace_9336c_storage_switch.html">
+        更换 Cisco Nexus 9336C-x2 存储交换机
       </a></li><li class=" "><a class="na-navbar-padding" href="/zh-cn/ontap-systems-switches/switch-cisco-9336/install-switch-and-passthrough-panel.html">
         在 NetApp 机柜中安装 Cisco Nexus 9336C-x2 交换机和直通面板
       </a></li></ul></li><li class="subfolders "><a href="/zh-cn/ontap-systems-switches/switch-cisco-9336c-shared/index.html">
@@ -1385,11 +1389,19 @@
 <p class="page-details">
   
     
-    <time datetime="2022-01-17 15:17:49 +0000">01/17/2022</time>
+    <time datetime="2022-01-19 16:54:27 +0000">01/19/2022</time>
     
   
 
 <span>提供者
+  <a target="_blank" href="https://github.com/netapp-yvonneo">
+    <img  class="avatar avatar-small"
+          alt="netapp-yvonneo"
+          width="20" height="20"
+          src="https://avatars.githubusercontent.com/u/75329224?v=4"
+          style="border-radius: 50%;"/>
+  </a>
+  
   <a target="_blank" href="https://github.com/netapp-martyh">
     <img  class="avatar avatar-small"
           alt="netapp-martyh"
@@ -1444,7 +1456,7 @@
 <p>显示连接到集群交换机的每个节点上的集群端口： <code>network device-discovery show</code></p>
 <div class="listingblock">
 <div class="content">
-<pre>cluster1::*&gt; **network device-discovery show**
+<pre>cluster1::*&gt; network device-discovery show
 Node/       Local  Discovered
 Protocol    Port   Device (LLDP: ChassisID)  Interface         Platform
 ----------- ------ ------------------------- ----------------  --------
@@ -1472,7 +1484,7 @@ cluster1::*&gt;</pre>
 <p>确认所有集群端口均已启动且状态正常： <code>network port show – role cluster</code></p>
 <div class="listingblock">
 <div class="content">
-<pre>cluster1::*&gt;** network port show -role cluster**
+<pre>cluster1::*&gt; network port show -role cluster
 
 Node: cluster1-01
                                                                        Ignore
@@ -1515,7 +1527,7 @@ cluster1::*&gt;</pre>
 <p>确认所有集群接口（ LIF ）均位于主端口上： <code>network interface show -role cluster</code></p>
 <div class="listingblock">
 <div class="content">
-<pre>cluster1::*&gt; **network interface show -role cluster**
+<pre>cluster1::*&gt; network interface show -role cluster
             Logical            Status     Network           Current      Current Is
 Vserver     Interface          Admin/Oper Address/Mask      Node         Port    Home
 ----------- ------------------ ---------- ----------------- ------------ ------- ----
@@ -1537,7 +1549,7 @@ cluster1::*&gt;</pre>
 <p>验证集群是否同时显示两个集群交换机的信息： <code>ssystem cluster-switch show -is-monitoring-enableed-Operational true</code></p>
 <div class="listingblock">
 <div class="content">
-<pre>cluster1::*&gt; **system cluster-switch show -is-monitoring-enabled-operational true**
+<pre>cluster1::*&gt; system cluster-switch show -is-monitoring-enabled-operational true
 Switch                      Type               Address          Model
 --------------------------- ------------------ ---------------- -----
 cs1                         cluster-network    10.233.205.90    N9K-C9336C
@@ -1566,8 +1578,7 @@ cluster1::*&gt;</pre>
 <p>在集群 LIF 上禁用自动还原。</p>
 <div class="listingblock">
 <div class="content">
-<pre>cluster1::*&gt; **network interface modify -vserver Cluster -lif \* -auto-revert false
-**</pre>
+<pre>cluster1::*&gt; network interface modify -vserver Cluster -lif \* -auto-revert false</pre>
 </div>
 </div>
 </li>
@@ -1575,8 +1586,8 @@ cluster1::*&gt;</pre>
 <p>在集群交换机 CS2 上，关闭连接到节点集群端口的端口。</p>
 <div class="listingblock">
 <div class="content">
-<pre>cs2(config)# **interface eth1/1/1-2,eth1/7-8**
-cs2(config-if-range)# **shutdown**</pre>
+<pre>cs2(config)# interface eth1/1/1-2,eth1/7-8
+cs2(config-if-range)# shutdown</pre>
 </div>
 </div>
 </li>
@@ -1584,7 +1595,7 @@ cs2(config-if-range)# **shutdown**</pre>
 <p>验证集群端口是否已迁移到集群交换机 CS1 上托管的端口。这可能需要几秒钟时间： <code>network interface show -role cluster</code></p>
 <div class="listingblock">
 <div class="content">
-<pre>cluster1::*&gt; **network interface show -role cluster**
+<pre>cluster1::*&gt; network interface show -role cluster
             Logical           Status     Network            Current       Current Is
 Vserver     Interface         Admin/Oper Address/Mask       Node          Port    Home
 ----------- ----------------- ---------- ------------------ ------------- ------- ----
@@ -1606,7 +1617,7 @@ cluster1::*&gt;</pre>
 <p>验证集群是否运行正常： <code>cluster show</code></p>
 <div class="listingblock">
 <div class="content">
-<pre>cluster1::*&gt; **cluster show**
+<pre>cluster1::*&gt; cluster show
 Node                 Health  Eligibility   Epsilon
 -------------------- ------- ------------  -------
 cluster1-01          true    true          false
@@ -1626,11 +1637,11 @@ cluster1::*&gt;</pre>
 <p>清理配置。此步骤需要与交换机建立控制台连接。</p>
 <div class="listingblock">
 <div class="content">
-<pre>cs2# **write erase
-**Warning: This command will erase the startup-configuration.
-Do you wish to proceed anyway? (y/n)  [n] **y**
-cs2# **reload**
-This command will reboot the system. (y/n)?  [n] **y**
+<pre>cs2# write erase
+Warning: This command will erase the startup-configuration.
+Do you wish to proceed anyway? (y/n)  [n] y
+cs2# reload
+This command will reboot the system. (y/n)?  [n] y
 cs2#</pre>
 </div>
 </div>
@@ -1642,13 +1653,13 @@ cs2#</pre>
 </div>
 </li>
 <li>
-<p>使用以下传输协议之一将 RCF 复制到交换机 CS2 的启动闪存： FTP ， TFTP ， SFTP 或 SCP 。有关 Cisco 命令的详细信息，请参见中的相应指南 <a href="https://www.cisco.com/c/en/us/support/switches/nexus-9336c-fx2-switch/model.html#CommandReferences">"《 Cisco Nexus 9000 系列 NX-OS 命令参考》"</a> 指南。</p>
+<p>使用以下传输协议之一将 RCF 复制到交换机 CS2 的启动闪存： FTP ， TFTP ， SFTP 或 SCP 。有关 Cisco 命令的详细信息，请参见中的相应指南 <a href="https://www.cisco.com/c/en/us/support/switches/nexus-9336c-fx2-switch/model.html#CommandReferences" target="_blank" rel="noopener">"《 Cisco Nexus 9000 系列 NX-OS 命令参考》"</a> 指南。</p>
 <div class="paragraph">
 <p>此示例显示了使用 TFTP 将 RCF 复制到交换机 CS2 上的 bootflash 。</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre>cs2# **copy tftp: bootflash: vrf management**
+<pre>cs2# copy tftp: bootflash: vrf management
 Enter source filename: Nexus_9336C_RCF_v1.6-Cluster-HA-Breakout.txt
 Enter hostname for the tftp server: 172.22.201.50
 Trying to connect to tftp server......Connection to Server Established.
@@ -1660,14 +1671,14 @@ Copy complete, now saving to disk (please wait)...</pre>
 <li>
 <p>将先前下载的 RCF 应用于 bootflash 。</p>
 <div class="paragraph">
-<p>有关 Cisco 命令的详细信息，请参见中的相应指南 <a href="https://www.cisco.com/c/en/us/support/switches/nexus-9336c-fx2-switch/model.html#CommandReferences">"《 Cisco Nexus 9000 系列 NX-OS 命令参考》"</a> 指南。</p>
+<p>有关 Cisco 命令的详细信息，请参见中的相应指南 <a href="https://www.cisco.com/c/en/us/support/switches/nexus-9336c-fx2-switch/model.html#CommandReferences" target="_blank" rel="noopener">"《 Cisco Nexus 9000 系列 NX-OS 命令参考》"</a> 指南。</p>
 </div>
 <div class="paragraph">
 <p>此示例显示了正在交换机 CS2 上安装的 RCF 文件 <code>Nexus 9336C_RCF_v1.6-Cluster-HA-Breakout 。 txt</code> 。</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre>cs2# **copy Nexus_9336C_RCF_v1.6-Cluster-HA-Breakout.txt running-config echo-commands**</pre>
+<pre>cs2# copy Nexus_9336C_RCF_v1.6-Cluster-HA-Breakout.txt running-config echo-commands</pre>
 </div>
 </div>
 </li>
@@ -1675,7 +1686,7 @@ Copy complete, now saving to disk (please wait)...</pre>
 <p>检查 <code>show banner motd</code> 命令的横幅输出。您必须阅读并遵循这些说明，以确保交换机的配置和操作正确。</p>
 <div class="listingblock">
 <div class="content">
-<pre>cs2# **show banner motd**
+<pre>cs2# show banner motd
 
 ******************************************************************************
 * NetApp Reference Configuration File (RCF)
@@ -1733,11 +1744,11 @@ g mode:
 <li>
 <p>验证 RCF 版本和交换机设置是否正确后，将 running-config 文件复制到 startup-config 文件。</p>
 <div class="paragraph">
-<p>有关 Cisco 命令的详细信息，请参见中的相应指南 <a href="https://www.cisco.com/c/en/us/support/switches/nexus-9336c-fx2-switch/model.html#CommandReferences">"《 Cisco Nexus 9000 系列 NX-OS 命令参考》"</a> 指南。</p>
+<p>有关 Cisco 命令的详细信息，请参见中的相应指南 <a href="https://www.cisco.com/c/en/us/support/switches/nexus-9336c-fx2-switch/model.html#CommandReferences" target="_blank" rel="noopener">"《 Cisco Nexus 9000 系列 NX-OS 命令参考》"</a> 指南。</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre>cs2# **copy running-config startup-config \[\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\] 100% Copy complete**</pre>
+<pre>cs2# copy running-config startup-config \[\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\] 100% Copy complete</pre>
 </div>
 </div>
 </li>
@@ -1745,8 +1756,8 @@ g mode:
 <p>重新启动交换机 CS2 。在交换机重新启动时，您可以忽略节点上报告的 "`cluster ports down` " 事件。</p>
 <div class="listingblock">
 <div class="content">
-<pre>cs2# **reload**
-This command will reboot the system. (y/n)?  [n] **y**</pre>
+<pre>cs2# reload
+This command will reboot the system. (y/n)?  [n] y</pre>
 </div>
 </div>
 </li>
@@ -1754,8 +1765,8 @@ This command will reboot the system. (y/n)?  [n] **y**</pre>
 <p>应用相同的 RCF 并再次保存运行配置。</p>
 <div class="listingblock">
 <div class="content">
-<pre>cs2# **copy Nexus_9336C_RCF_v1.6-Cluster-HA-Breakout.txt running-config echo-commands**
-cs2# **copy running-config startup-config** [########################################] 100% Copy complete</pre>
+<pre>cs2# copy Nexus_9336C_RCF_v1.6-Cluster-HA-Breakout.txt running-config echo-commands
+cs2# copy running-config startup-config [########################################] 100% Copy complete</pre>
 </div>
 </div>
 </li>
@@ -1767,7 +1778,7 @@ cs2# **copy running-config startup-config** [###################################
 <p>验证集群中所有节点上的 e0d 端口是否均已启动且运行正常： <code>network port show -role cluster</code></p>
 <div class="listingblock">
 <div class="content">
-<pre>cluster1::*&gt; **network port show -role cluster**
+<pre>cluster1::*&gt; network port show -role cluster
 
 Node: cluster1-01
                                                                        Ignore
@@ -1808,7 +1819,7 @@ e0d       Cluster      Cluster          up   9000  auto/100000 healthy false
 <p>从集群验证交换机运行状况（此操作可能不会显示交换机 CS2 ，因为 LIF 不驻留在 e0d 上）。</p>
 <div class="listingblock">
 <div class="content">
-<pre>cluster1::*&gt; **network device-discovery show -protocol cdp**
+<pre>cluster1::*&gt; network device-discovery show -protocol cdp
 Node/       Local  Discovered
 Protocol    Port   Device (LLDP: ChassisID)  Interface         Platform
 ----------- ------ ------------------------- ----------------- --------
@@ -1825,7 +1836,7 @@ cluster1-04/cdp
             e0a    cs1                       Ethernet1/1/2     N9K-C9336C
             e0b    cs2                       Ethernet1/1/2     N9K-C9336C
 
-cluster1::*&gt; **system cluster-switch show -is-monitoring-enabled-operational true**
+cluster1::*&gt; system cluster-switch show -is-monitoring-enabled-operational true
 Switch                      Type               Address          Model
 --------------------------- ------------------ ---------------- -----
 cs1                         cluster-network    10.233.205.90    NX9-C9336C
@@ -1862,9 +1873,6 @@ cs2                         cluster-network    10.233.205.91    NX9-C9336C
 </li>
 </ol>
 </div>
-</li>
-</ol>
-</div>
 <div class="listingblock">
 <div class="content">
 <pre>2020 Nov 17 16:07:18 cs1 %$ VDC-1 %$ %STP-2-UNBLOCK_CONSIST_PORT: Unblocking port port-channel1 on VLAN0092. Port consistency restored.
@@ -1872,8 +1880,7 @@ cs2                         cluster-network    10.233.205.91    NX9-C9336C
 2020 Nov 17 16:07:23 cs1 %$ VDC-1 %$ %STP-2-BLOCK_PVID_LOCAL: Blocking port-channel1 on VLAN0092. Inconsistent local vlan.</pre>
 </div>
 </div>
-<div class="olist arabic">
-<ol class="arabic">
+</li>
 <li>
 <p>在集群交换机 CS1 上，关闭连接到节点集群端口的端口。</p>
 <div class="paragraph">
@@ -1881,8 +1888,8 @@ cs2                         cluster-network    10.233.205.91    NX9-C9336C
 </div>
 <div class="listingblock">
 <div class="content">
-<pre>cs1(config)# **interface eth1/1/1-2,eth1/7-8**
-cs1(config-if-range)# **shutdown**</pre>
+<pre>cs1(config)# interface eth1/1/1-2,eth1/7-8
+cs1(config-if-range)# shutdown</pre>
 </div>
 </div>
 </li>
@@ -1890,7 +1897,7 @@ cs1(config-if-range)# **shutdown**</pre>
 <p>验证集群 LIF 是否已迁移到交换机 CS2 上托管的端口。这可能需要几秒钟的时间。<code>network interface show -role cluster</code></p>
 <div class="listingblock">
 <div class="content">
-<pre>cluster1::*&gt; **network interface show -role cluster**
+<pre>cluster1::*&gt; network interface show -role cluster
             Logical            Status     Network            Current             Current Is
 Vserver     Interface          Admin/Oper Address/Mask       Node                Port    Home
 ----------- ------------------ ---------- ------------------ ------------------- ------- ----
@@ -1912,7 +1919,7 @@ cluster1::*&gt;</pre>
 <p>验证集群是否运行正常： <code>cluster show</code></p>
 <div class="listingblock">
 <div class="content">
-<pre>cluster1::*&gt; **cluster show**
+<pre>cluster1::*&gt; cluster show
 Node                 Health   Eligibility   Epsilon
 -------------------- -------- ------------- -------
 cluster1-01          true     true          false
@@ -1931,7 +1938,7 @@ cluster1::*&gt;</pre>
 <p>在集群 LIF 上启用自动还原。</p>
 <div class="listingblock">
 <div class="content">
-<pre>cluster1::*&gt; **network interface modify -vserver Cluster -lif \* -auto-revert True**</pre>
+<pre>cluster1::*&gt; network interface modify -vserver Cluster -lif \* -auto-revert True</pre>
 </div>
 </div>
 </li>
@@ -1939,8 +1946,8 @@ cluster1::*&gt;</pre>
 <p>重新启动交换机 CS1 。执行此操作可触发集群 LIF 还原到其主端口。在交换机重新启动时，您可以忽略节点上报告的 "`cluster ports down` " 事件。</p>
 <div class="listingblock">
 <div class="content">
-<pre>cs1# **reload**
-This command will reboot the system. (y/n)?  [n] **y**</pre>
+<pre>cs1# reload
+This command will reboot the system. (y/n)?  [n] y</pre>
 </div>
 </div>
 </li>
@@ -1948,7 +1955,7 @@ This command will reboot the system. (y/n)?  [n] **y**</pre>
 <p>验证连接到集群端口的交换机端口是否已启动。</p>
 <div class="listingblock">
 <div class="content">
-<pre>cs1# **show interface brief \| grep up**
+<pre>cs1# show interface brief \| grep up
 .
 .
 Eth1/1/1      1       eth  access up      none                    10G(D) --
@@ -1964,7 +1971,7 @@ Eth1/8        1       eth  trunk  up      none                   100G(D) --
 <p>验证 CS1 和 CS2 之间的 ISL 是否正常运行：<code>s如何执行端口通道摘要</code></p>
 <div class="listingblock">
 <div class="content">
-<pre>cs1# **show port-channel summary**
+<pre>cs1# show port-channel summary
 Flags:  D - Down        P - Up in port-channel (members)
         I - Individual  H - Hot-standby (LACP only)
         s - Suspended   r - Module-removed
@@ -1985,7 +1992,7 @@ cs1#</pre>
 <p>验证集群 LIF 是否已还原到其主端口： <code>network interface show -role cluster</code></p>
 <div class="listingblock">
 <div class="content">
-<pre>cluster1::*&gt; **network interface show -role cluster**
+<pre>cluster1::*&gt; network interface show -role cluster
             Logical            Status     Network            Current             Current Is
 Vserver     Interface          Admin/Oper Address/Mask       Node                Port    Home
 ----------- ------------------ ---------- ------------------ ------------------- ------- ----
@@ -2007,7 +2014,7 @@ cluster1::*&gt;</pre>
 <p>验证集群是否运行正常： <code>cluster show</code></p>
 <div class="listingblock">
 <div class="content">
-<pre>cluster1::*&gt; **cluster show**
+<pre>cluster1::*&gt; cluster show
 Node                 Health  Eligibility   Epsilon
 -------------------- ------- ------------- -------
 cluster1-01          true    true          false

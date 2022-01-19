@@ -775,6 +775,8 @@
 
 
 
+
+
           
         </li>
       </ul>
@@ -1231,6 +1233,8 @@
         安装参考配置文件（ RCF ）
       </a></li></ul></li><li class=" "><a class="na-navbar-padding" href="/zh-cn/ontap-systems-switches/switch-cisco-9336/replace-9336c.html">
         更换 Cisco Nexus 9336C-x2 集群交换机
+      </a></li><li class=" "><a class="na-navbar-padding" href="/zh-cn/ontap-systems-switches/switch-cisco-9336/replace_9336c_storage_switch.html">
+        更换 Cisco Nexus 9336C-x2 存储交换机
       </a></li><li class=" "><a class="na-navbar-padding" href="/zh-cn/ontap-systems-switches/switch-cisco-9336/install-switch-and-passthrough-panel.html">
         在 NetApp 机柜中安装 Cisco Nexus 9336C-x2 交换机和直通面板
       </a></li></ul></li><li class="subfolders "><a href="/zh-cn/ontap-systems-switches/switch-cisco-9336c-shared/index.html">
@@ -1385,11 +1389,19 @@
 <p class="page-details">
   
     
-    <time datetime="2022-01-17 15:17:49 +0000">01/17/2022</time>
+    <time datetime="2022-01-19 16:54:27 +0000">01/19/2022</time>
     
   
 
 <span>提供者
+  <a target="_blank" href="https://github.com/netapp-yvonneo">
+    <img  class="avatar avatar-small"
+          alt="netapp-yvonneo"
+          width="20" height="20"
+          src="https://avatars.githubusercontent.com/u/75329224?v=4"
+          style="border-radius: 50%;"/>
+  </a>
+  
   <a target="_blank" href="https://github.com/netapp-martyh">
     <img  class="avatar avatar-small"
           alt="netapp-martyh"
@@ -1419,7 +1431,7 @@
 </div>
 <div class="listingblock">
 <div class="content">
-<pre>cs2# **ping 172.19.2.1**
+<pre>cs2# ping 172.19.2.1
 Pinging 172.19.2.1 with 0 bytes of data:
 
 Reply From 172.19.2.1: icmp_seq = 0. time= 5910 usec.</pre>
@@ -1430,10 +1442,10 @@ Reply From 172.19.2.1: icmp_seq = 0. time= 5910 usec.</pre>
 <p>将 NX-OS 软件和 EPLD 映像复制到 Nexus 9336C-x2 交换机。</p>
 <div class="listingblock">
 <div class="content">
-<pre>cs2# **copy sftp: bootflash: vrf management**
-Enter source filename: **/code/nxos.9.3.5.bin**
-Enter hostname for the sftp server: **172.19.2.1**
-Enter username: **user1**
+<pre>cs2# copy sftp: bootflash: vrf management
+Enter source filename: /code/nxos.9.3.5.bin
+Enter hostname for the sftp server: 172.19.2.1
+Enter username: user1
 
 Outbound-ReKey for 172.19.2.1:22
 Inbound-ReKey for 172.19.2.1:22
@@ -1447,10 +1459,10 @@ Copy complete, now saving to disk (please wait)...
 Copy complete.
 
 
-cs2# **copy sftp: bootflash: vrf management**
-Enter source filename: **/code/n9000-epld.9.3.5.img**
-Enter hostname for the sftp server: **172.19.2.1**
-Enter username: **user1**
+cs2# copy sftp: bootflash: vrf management
+Enter source filename: /code/n9000-epld.9.3.5.img
+Enter hostname for the sftp server: 172.19.2.1
+Enter username: user1
 
 Outbound-ReKey for 172.19.2.1:22
 Inbound-ReKey for 172.19.2.1:22
@@ -1469,7 +1481,7 @@ Copy complete.</pre>
 <p>验证正在运行的 NX-OS 软件版本：</p>
 <div class="listingblock">
 <div class="content">
-<pre>cs2# **show version**
+<pre>cs2# show version
 Cisco Nexus Operating System (NX-OS) Software
 TAC support: http://www.cisco.com/tac
 Copyright (C) 2002-2020, Cisco and/or its affiliates.
@@ -1530,7 +1542,7 @@ cs2#</pre>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre>cs2# **install all nxos bootflash:nxos.9.3.5.bin**
+<pre>cs2# install all nxos bootflash:nxos.9.3.5.bin
 
 Installer will perform compatibility check first. Please wait.
 Installer is forced disruptive
@@ -1571,7 +1583,7 @@ Module   Image    Running-Version(pri:alt                  New-Version         U
 
 
 Switch will be reloaded for disruptive upgrade.
-Do you want to continue with the installation (y/n)?  [n] **y**
+Do you want to continue with the installation (y/n)?  [n] y
 
 
 Install is in progress, please wait.
@@ -1597,7 +1609,7 @@ Finishing the upgrade, switch will reboot in 10 seconds.</pre>
 <p>在交换机重新启动后验证 NX-OS 软件的新版本： <code>show version</code></p>
 <div class="listingblock">
 <div class="content">
-<pre>cs2# **show version**
+<pre>cs2# show version
 
 Cisco Nexus Operating System (NX-OS) Software
 TAC support: http://www.cisco.com/tac
@@ -1652,7 +1664,7 @@ Active Package(s):</pre>
 <p>升级 EPLD 映像并重新启动交换机。</p>
 <div class="listingblock">
 <div class="content">
-<pre>cs2# **show version module 1 epld**
+<pre>cs2# show version module 1 epld
 
 EPLD Device                     Version
 ---------------------------------------
@@ -1664,7 +1676,7 @@ GEM  FPGA                        0x2
 GEM  FPGA                        0x2
 GEM  FPGA                        0x2
 
-cs2# **install epld bootflash:n9000-epld.9.3.5.img module 1**
+cs2# install epld bootflash:n9000-epld.9.3.5.img module 1
 Compatibility check:
 Module        Type         Upgradable        Impact   Reason
 ------  ------------------ ----------------- --------- -----
@@ -1679,7 +1691,7 @@ Module  Type   EPLD              Running-Version   New-Version  Upg-Required
      1  SUP    MI FPGA2          0x02              0x02         No
 The above modules require upgrade.
 The switch will be reloaded at the end of the upgrade
-Do you want to continue (y/n) ?  [n] **y**
+Do you want to continue (y/n) ?  [n] y
 
 Proceeding to upgrade Modules.
 
@@ -1701,7 +1713,7 @@ Module 1 EPLD upgrade is successful.</pre>
 <p>交换机重新启动后，重新登录并验证是否已成功加载新版本的 EPLD 。</p>
 <div class="listingblock">
 <div class="content">
-<pre>cs2# **show version module 1 epld**
+<pre>cs2# show version module 1 epld
 
 EPLD Device                     Version
 ---------------------------------------

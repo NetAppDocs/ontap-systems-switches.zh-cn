@@ -775,6 +775,8 @@
 
 
 
+
+
           
         </li>
       </ul>
@@ -1231,6 +1233,8 @@
         安装参考配置文件（ RCF ）
       </a></li></ul></li><li class=" "><a class="na-navbar-padding" href="/zh-cn/ontap-systems-switches/switch-cisco-9336/replace-9336c.html">
         更换 Cisco Nexus 9336C-x2 集群交换机
+      </a></li><li class=" "><a class="na-navbar-padding" href="/zh-cn/ontap-systems-switches/switch-cisco-9336/replace_9336c_storage_switch.html">
+        更换 Cisco Nexus 9336C-x2 存储交换机
       </a></li><li class=" "><a class="na-navbar-padding" href="/zh-cn/ontap-systems-switches/switch-cisco-9336/install-switch-and-passthrough-panel.html">
         在 NetApp 机柜中安装 Cisco Nexus 9336C-x2 交换机和直通面板
       </a></li></ul></li><li class="subfolders "><a href="/zh-cn/ontap-systems-switches/switch-cisco-9336c-shared/index.html">
@@ -1385,7 +1389,7 @@
 <p class="page-details">
   
     
-    <time datetime="2022-01-17 15:17:49 +0000">01/17/2022</time>
+    <time datetime="2022-01-19 16:54:27 +0000">01/19/2022</time>
     
   
 
@@ -1395,6 +1399,14 @@
           alt="netapp-martyh"
           width="20" height="20"
           src="https://avatars.githubusercontent.com/u/66496079?v=4"
+          style="border-radius: 50%;"/>
+  </a>
+  
+  <a target="_blank" href="https://github.com/netapp-yvonneo">
+    <img  class="avatar avatar-small"
+          alt="netapp-yvonneo"
+          width="20" height="20"
+          src="https://avatars.githubusercontent.com/u/75329224?v=4"
           style="border-radius: 50%;"/>
   </a>
   
@@ -1446,7 +1458,7 @@
 <p>_NetApp__Hardware Universe 包含有关 ONTAP 兼容性，支持的 EFOS 固件以及 BES-53248 交换机布线的信息。</p>
 </div>
 <div class="paragraph">
-<p><a href="https://hwu.netapp.com/Switch/Index">"Hardware Universe —交换机"</a></p>
+<p><a href="https://hwu.netapp.com/Switch/Index" target="_blank" rel="noopener">"Hardware Universe —交换机"</a></p>
 </div>
 </li>
 <li>
@@ -1496,7 +1508,7 @@
 <p><em>cluster</em> Hardware Universe 包含有关平台的实际集群端口的最新信息。</p>
 </div>
 <div class="paragraph">
-<p><a href="https://hwu.netapp.com">"Hardware Universe"</a></p>
+<p><a href="https://hwu.netapp.com" target="_blank" rel="noopener">"Hardware Universe"</a></p>
 </div>
 </li>
 </ul>
@@ -1529,7 +1541,7 @@ AutoSupport 消息会通知技术支持此维护任务，以便在维护窗口�
 </div>
 <div class="listingblock">
 <div class="content">
-<pre>cluster1::*&gt; **system node autosupport invoke -node \* -type all -message MAINT=2h**</pre>
+<pre>cluster1::*&gt; system node autosupport invoke -node \* -type all -message MAINT=2h</pre>
 </div>
 </div>
 </li>
@@ -1561,11 +1573,11 @@ AutoSupport 消息会通知技术支持此维护任务，以便在维护窗口�
 </div>
 <div class="listingblock">
 <div class="content">
-<pre>(cs1)# **configure**
-(cs1)(Config)#   **interface 0/1-0/16**
-(cs1)(Interface 0/1-0/16)# **shutdown**
-(cs1)(Interface 0/1-0/16)# **exit**
-(cs1)(Config)# **exit**</pre>
+<pre>(cs1)# configure
+(cs1)(Config)# interface 0/1-0/16
+(cs1)(Interface 0/1-0/16)# shutdown
+(cs1)(Interface 0/1-0/16)# exit
+(cs1)(Config)# exit</pre>
 </div>
 </div>
 </li>
@@ -1579,7 +1591,7 @@ AutoSupport 消息会通知技术支持此维护任务，以便在维护窗口�
 </div>
 <div class="listingblock">
 <div class="content">
-<pre>(cs1)# **show port-channel 1/1**
+<pre>(cs1)# show port-channel 1/1
 Local Interface................................ 1/1
 Channel Name................................... Cluster-ISL
 Link State..................................... Up
@@ -1604,7 +1616,7 @@ Ports  Timeout       Speed      Active
 </div>
 <div class="listingblock">
 <div class="content">
-<pre>(cs2)# **show port-channel 1/1**
+<pre>(cs2)# show port-channel 1/1
 Local Interface................................ 1/1
 Channel Name................................... Cluster-ISL
 Link State..................................... Up
@@ -1638,7 +1650,7 @@ Ports  Timeout       Speed      Active
 </div>
 <div class="listingblock">
 <div class="content">
-<pre>(cs1)# **show isdp neighbors**
+<pre>(cs1)# show isdp neighbors
 
 Capability Codes: R - Router, T - Trans Bridge, B - Source Route Bridge,
                   S - Switch, H - Host, I - IGMP, r - Repeater
@@ -1653,7 +1665,7 @@ cs2            0/56     176       R            BES-53248   0/56</pre>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre>(cs2)# **show isdp neighbors**
+<pre>(cs2)# show isdp neighbors
 
 Capability Codes: R - Router, T - Trans Bridge, B - Source Route Bridge,
                   S - Switch, H - Host, I - IGMP, r - Repeater
@@ -1674,7 +1686,7 @@ cs2            0/56     176       R            BES-53248   0/56</pre>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre>cluster1::*&gt; **network port show -ipspace Cluster**
+<pre>cluster1::*&gt; network port show -ipspace Cluster
 
 Node: node1
 
@@ -1703,7 +1715,7 @@ e0b       Cluster      Cluster          up   9000  auto/10000 healthy
 </div>
 <div class="listingblock">
 <div class="content">
-<pre>cluster1::*&gt; **network interface show -vserver Cluster**
+<pre>cluster1::*&gt; network interface show -vserver Cluster
 
             Logical    Status     Network            Current       Current Is
 Vserver     Interface  Admin/Oper Address/Mask       Node          Port    Home
@@ -1721,7 +1733,7 @@ Cluster
 <p>验证是否已在所有集群 LIF 上启用 <code>auto-revert</code> ： <code>network interface show -vserver cluster -fields auto-revert</code></p>
 <div class="listingblock">
 <div class="content">
-<pre>cluster1::*&gt; **network interface show -vserver Cluster -fields auto-revert**
+<pre>cluster1::*&gt; network interface show -vserver Cluster -fields auto-revert
 
           Logical
 Vserver   Interface     Auto-revert
@@ -1742,7 +1754,7 @@ Cluster
 <p>_NetApp Hardware Universe _ 包含有关布线的详细信息。</p>
 </div>
 <div class="paragraph">
-<p><a href="https://hwu.netapp.com/Switch/Index">"Hardware Universe —交换机"</a></p>
+<p><a href="https://hwu.netapp.com/Switch/Index" target="_blank" rel="noopener">"Hardware Universe —交换机"</a></p>
 </div>
 </li>
 <li>
@@ -1755,11 +1767,11 @@ Cluster
 </div>
 <div class="listingblock">
 <div class="content">
-<pre>(cs1)#  **configure**
-(cs1)(Config)#  **interface 0/1-0/16**
-(cs1)(Interface 0/1-0/16)# **no shutdown**
-(cs1)(Interface 0/1-0/16)# **exit**
-(cs1)(Config)# **exit**</pre>
+<pre>(cs1)# configure
+(cs1)(Config)# interface 0/1-0/16
+(cs1)(Interface 0/1-0/16)# no shutdown
+(cs1)(Interface 0/1-0/16)# exit
+(cs1)(Config)# exit</pre>
 </div>
 </div>
 </li>
@@ -1773,7 +1785,7 @@ Cluster
 </div>
 <div class="listingblock">
 <div class="content">
-<pre>cluster1::*&gt; **network interface show -vserver Cluster**
+<pre>cluster1::*&gt; network interface show -vserver Cluster
 
          Logical      Status     Network            Current     Current Is
 Vserver  Interface    Admin/Oper Address/Mask       Node        Port    Home
@@ -1798,7 +1810,7 @@ Cluster
 </div>
 <div class="listingblock">
 <div class="content">
-<pre>cluster1::*&gt; **cluster show**
+<pre>cluster1::*&gt; cluster show
 
 Node                 Health  Eligibility   Epsilon
 -------------------- ------- ------------  ------------
@@ -1822,11 +1834,11 @@ node2                true    true          false
 </div>
 <div class="listingblock">
 <div class="content">
-<pre>(cs2)# **configure**
-(cs2)(Config)#  **interface 0/1-0/16**
-(cs2)(Interface 0/1-0/16)# **no shutdown**
-(cs2)(Interface 0/1-0/16)# **exit**
-(cs2)(Config)# **exit**</pre>
+<pre>(cs2)# configure
+(cs2)(Config)# interface 0/1-0/16
+(cs2)(Interface 0/1-0/16)# no shutdown
+(cs2)(Interface 0/1-0/16)# exit
+(cs2)(Config)# exit</pre>
 </div>
 </div>
 </li>
@@ -1840,7 +1852,7 @@ node2                true    true          false
 </div>
 <div class="listingblock">
 <div class="content">
-<pre>cluster1::*&gt; **network port show -ipspace Cluster**
+<pre>cluster1::*&gt; network port show -ipspace Cluster
 
 Node: node1
                                                                        Ignore
@@ -1884,7 +1896,7 @@ e0b       Cluster      Cluster          up   9000  auto/10000 healthy  false
 </div>
 <div class="listingblock">
 <div class="content">
-<pre>cluster1::*&gt; **network interface show -vserver Cluster**
+<pre>cluster1::*&gt; network interface show -vserver Cluster
 
           Logical      Status     Network            Current    Current Is
 Vserver   Interface    Admin/Oper Address/Mask       Node       Port    Home
@@ -1909,7 +1921,7 @@ Cluster
 </div>
 <div class="listingblock">
 <div class="content">
-<pre>(cs1)# **show isdp neighbors**
+<pre>(cs1)# show isdp neighbors
 
 Capability Codes: R - Router, T - Trans Bridge, B - Source Route Bridge,
                   S - Switch, H - Host, I - IGMP, r - Repeater
@@ -1921,7 +1933,7 @@ cs2            0/55         178       R            BES-53248   0/55
 cs2            0/56         178       R            BES-53248   0/56
 
 
-(cs2)# **show isdp neighbors**
+(cs2)# show isdp neighbors
 
 Capability Codes: R - Router, T - Trans Bridge, B - Source Route Bridge,
                   S - Switch, H - Host, I - IGMP, r - Repeater
@@ -1941,7 +1953,7 @@ cs1            0/56         175       R            BES-53248   0/56</pre>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre>cluster1::*&gt; **network device-discovery show -protocol cdp**
+<pre>cluster1::*&gt; network device-discovery show -protocol cdp
 Node/       Local  Discovered
 Protocol    Port   Device (LLDP: ChassisID)  Interface         Platform
 ----------- ------ ------------------------- ----------------  ----------------
@@ -1978,7 +1990,7 @@ node1      /cdp
 </div>
 <div class="listingblock">
 <div class="content">
-<pre>cluster1::*&gt; **network options switchless-cluster show**
+<pre>cluster1::*&gt; network options switchless-cluster show
 Enable Switchless Cluster: false</pre>
 </div>
 </div>
@@ -1993,7 +2005,7 @@ Enable Switchless Cluster: false</pre>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre>cluster1::*&gt; **cluster show**
+<pre>cluster1::*&gt; cluster show
 
 Node                 Health  Eligibility   Epsilon
 -------------------- ------- ------------  --------
@@ -2009,7 +2021,7 @@ node2                true    true          false</pre>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre>cluster1::*&gt; **cluster ping-cluster -node local**
+<pre>cluster1::*&gt; cluster ping-cluster -node local
 
 Host is node2
 Getting addresses from network interface table...
@@ -2050,14 +2062,14 @@ RPC status:
 </div>
 <div class="listingblock">
 <div class="content">
-<pre>cluster1::*&gt; **system node autosupport invoke -node \* -type all -message MAINT=END**</pre>
+<pre>cluster1::*&gt; system node autosupport invoke -node \* -type all -message MAINT=END</pre>
 </div>
 </div>
 </li>
 </ol>
 </div>
 <div class="paragraph">
-<p>请参见中的 <em>Configuring the cluster switch log Collection feature</em> <a href="http://docs.netapp.com/platstor/topic/com.netapp.doc.hw-sw-ix8-setup/home.html">"《适用于 Broadcom 支持的 BES-53248 交换机的交换机设置和配置指南》"</a> 用于启用集群运行状况交换机日志收集以收集交换机相关日志文件所需的步骤。</p>
+<p>请参见中的 <em>Configuring the cluster switch log Collection feature</em> <a href="http://docs.netapp.com/platstor/topic/com.netapp.doc.hw-sw-ix8-setup/home.html" target="_blank" rel="noopener">"《适用于 Broadcom 支持的 BES-53248 交换机的交换机设置和配置指南》"</a> 用于启用集群运行状况交换机日志收集以收集交换机相关日志文件所需的步骤。</p>
 </div>
 <div class="ulist">
 <ul>
@@ -2067,13 +2079,13 @@ RPC status:
 </ul>
 </div>
 <div class="paragraph">
-<p><a href="https://hwu.netapp.com">"Hardware Universe"</a></p>
+<p><a href="https://hwu.netapp.com" target="_blank" rel="noopener">"Hardware Universe"</a></p>
 </div>
 <div class="paragraph">
-<p><a href="http://docs.netapp.com/platstor/topic/com.netapp.doc.hw-sw-ix8-setup/home.html">"《适用于 Broadcom 支持的 BES-53248 交换机的交换机设置和配置指南》"</a></p>
+<p><a href="http://docs.netapp.com/platstor/topic/com.netapp.doc.hw-sw-ix8-setup/home.html" target="_blank" rel="noopener">"《适用于 Broadcom 支持的 BES-53248 交换机的交换机设置和配置指南》"</a></p>
 </div>
 <div class="paragraph">
-<p><a href="https://kb.netapp.com/Advice_and_Troubleshooting/Data_Storage_Software/ONTAP_OS/How_to_suppress_automatic_case_creation_during_scheduled_maintenance_windows">"NetApp 知识库文章： How to suppress automatic case creation during scheduled maintenance windows."</a></p>
+<p><a href="https://kb.netapp.com/Advice_and_Troubleshooting/Data_Storage_Software/ONTAP_OS/How_to_suppress_automatic_case_creation_during_scheduled_maintenance_windows" target="_blank" rel="noopener">"NetApp 知识库文章： How to suppress automatic case creation during scheduled maintenance windows."</a></p>
 </div>
 
     </article>

@@ -775,6 +775,8 @@
 
 
 
+
+
           
         </li>
       </ul>
@@ -1231,6 +1233,8 @@
         安装参考配置文件（ RCF ）
       </a></li></ul></li><li class="  active "><a class="na-navbar-padding" href="/zh-cn/ontap-systems-switches/switch-cisco-9336/replace-9336c.html">
         更换 Cisco Nexus 9336C-x2 集群交换机
+      </a></li><li class=" "><a class="na-navbar-padding" href="/zh-cn/ontap-systems-switches/switch-cisco-9336/replace_9336c_storage_switch.html">
+        更换 Cisco Nexus 9336C-x2 存储交换机
       </a></li><li class=" "><a class="na-navbar-padding" href="/zh-cn/ontap-systems-switches/switch-cisco-9336/install-switch-and-passthrough-panel.html">
         在 NetApp 机柜中安装 Cisco Nexus 9336C-x2 交换机和直通面板
       </a></li></ul></li><li class="subfolders "><a href="/zh-cn/ontap-systems-switches/switch-cisco-9336c-shared/index.html">
@@ -1385,11 +1389,19 @@
 <p class="page-details">
   
     
-    <time datetime="2022-01-17 15:17:49 +0000">01/17/2022</time>
+    <time datetime="2022-01-19 16:54:27 +0000">01/19/2022</time>
     
   
 
 <span>提供者
+  <a target="_blank" href="https://github.com/netapp-yvonneo">
+    <img  class="avatar avatar-small"
+          alt="netapp-yvonneo"
+          width="20" height="20"
+          src="https://avatars.githubusercontent.com/u/75329224?v=4"
+          style="border-radius: 50%;"/>
+  </a>
+  
   <a target="_blank" href="https://github.com/netapp-martyh">
     <img  class="avatar avatar-small"
           alt="netapp-martyh"
@@ -1506,7 +1518,7 @@
 </div>
 <div class="listingblock">
 <div class="content">
-<pre>cluster1::*&gt; **network port show -ipspace Cluster**
+<pre>cluster1::*&gt; network port show -ipspace Cluster
 
 Node: node1
                                                                        Ignore
@@ -1540,7 +1552,7 @@ Cluster
 
 
 
-cluster1::*&gt; **network device-discovery show -protocol cdp**
+cluster1::*&gt; network device-discovery show -protocol cdp
 Node/       Local  Discovered
 Protocol    Port   Device (LLDP: ChassisID)  Interface         Platform
 ----------- ------ ------------------------- ----------------  ----------------
@@ -1554,7 +1566,7 @@ node1      /cdp
 
 
 
-cs1# **show cdp neighbors**
+cs1# show cdp neighbors
 
 Capability Codes: R - Router, T - Trans-Bridge, B - Source-Route-Bridge
                   S - Switch, H - Host, I - IGMP, r - Repeater,
@@ -1570,7 +1582,7 @@ cs2(FDO220329V5)   Eth1/36        176    R S I s     N9K-C9336C    Eth1/36
 Total entries displayed: 4
 
 
-cs2# **show cdp neighbors**
+cs2# show cdp neighbors
 
 Capability Codes: R - Router, T - Trans-Bridge, B - Source-Route-Bridge
                   S - Switch, H - Host, I - IGMP, r - Repeater,
@@ -1636,10 +1648,10 @@ AutoSupport 消息会通知技术支持此维护任务，以便在维护窗口�
 </div>
 <div class="listingblock">
 <div class="content">
-<pre>newcs2# **config**
+<pre>newcs2# config
 Enter configuration commands, one per line. End with CNTL/Z.
-newcs2(config)# **interface e1/1-34**
-newcs2(config-if-range)# **shutdown**</pre>
+newcs2(config)# interface e1/1-34
+newcs2(config-if-range)# shutdown</pre>
 </div>
 </div>
 </li>
@@ -1647,7 +1659,7 @@ newcs2(config-if-range)# **shutdown**</pre>
 <p>确认所有集群 LIF 均已启用自动还原： <code>network interface show -vserver cluster -fields auto-revert</code></p>
 <div class="listingblock">
 <div class="content">
-<pre>cluster1::&gt; **network interface show -vserver Cluster -fields auto-revert**
+<pre>cluster1::&gt; network interface show -vserver Cluster -fields auto-revert
 
              Logical
 Vserver      Interface     Auto-revert
@@ -1665,7 +1677,7 @@ Cluster      node2_clus2   true
 <p>验证所有集群 LIF 是否均可通信： <code>cluster ping-cluster</code></p>
 <div class="listingblock">
 <div class="content">
-<pre>cluster1::*&gt; **cluster ping-cluster node1**
+<pre>cluster1::*&gt; cluster ping-cluster node1
 
 Host is node2
 Getting addresses from network interface table...
@@ -1697,10 +1709,10 @@ RPC status:
 <p>关闭 Nexus 9336C-FX2 交换机 CS1 上的 ISL 端口 1/35 和 1/36 ：</p>
 <div class="listingblock">
 <div class="content">
-<pre>cs1# **configure**
+<pre>cs1# configure
 Enter configuration commands, one per line. End with CNTL/Z.
-cs1(config)# **interface e1/35-36**
-cs1(config-if-range)# **shutdown**
+cs1(config)# interface e1/35-36
+cs1(config-if-range)# shutdown
 cs1(config-if-range)#</pre>
 </div>
 </div>
@@ -1718,10 +1730,10 @@ cs1(config-if-range)#</pre>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre>cs1# **configure**
+<pre>cs1# configure
 Enter configuration commands, one per line. End with CNTL/Z.
-cs1(config)# **int e1/35-36**
-cs1(config-if-range)# **no shutdown**
+cs1(config)# int e1/35-36
+cs1(config-if-range)# no shutdown
 
 cs1(config-if-range)# show port-channel summary
 Flags:  D - Down        P - Up in port-channel (members)
@@ -1749,7 +1761,7 @@ cs1(config-if-range)#</pre>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre>cluster1::*&gt; **network port show -ipspace Cluster**
+<pre>cluster1::*&gt; network port show -ipspace Cluster
 
 Node: node1
                                                                         Ignore
@@ -1781,7 +1793,7 @@ e0b       Cluster      Cluster          up   9000  auto/auto   -        false
 </div>
 <div class="listingblock">
 <div class="content">
-<pre>cluster1::*&gt; **network interface show -vserver Cluster**
+<pre>cluster1::*&gt; network interface show -vserver Cluster
 
             Logical      Status     Network            Current    Current Is
 Vserver     Interface    Admin/Oper Address/Mask       Node       Port    Home
@@ -1803,7 +1815,7 @@ Cluster
 </div>
 <div class="listingblock">
 <div class="content">
-<pre>cluster1::*&gt; **cluster show**
+<pre>cluster1::*&gt; cluster show
 
 Node          Health  Eligibility
 ------------- ------- ------------
@@ -1816,7 +1828,7 @@ node2         true    true</pre>
 <p>验证所有物理集群端口是否均已启动： <code>network port show IPSpace Cluster</code></p>
 <div class="listingblock">
 <div class="content">
-<pre>cluster1::*&gt; **network port show -ipspace Cluster**
+<pre>cluster1::*&gt; network port show -ipspace Cluster
 
 Node node1                                                               Ignore
                                                     Speed(Mbps) Health   Health
@@ -1841,7 +1853,7 @@ e0b       Cluster      Cluster          up    9000  auto/10000  healthy  false
 <p>验证所有集群 LIF 是否均可通信： <code>cluster ping-cluster</code></p>
 <div class="listingblock">
 <div class="content">
-<pre>cluster1::*&gt; **cluster ping-cluster -node node2**
+<pre>cluster1::*&gt; cluster ping-cluster -node node2
 Host is node2
 Getting addresses from network interface table...
 Cluster node1_clus1 169.254.209.69 node1 e0a
@@ -1872,7 +1884,7 @@ RPC status:
 <p>确认以下集群网络配置： <code>network port show</code></p>
 <div class="listingblock">
 <div class="content">
-<pre>cluster1::*&gt; **network port show -ipspace Cluster**
+<pre>cluster1::*&gt; network port show -ipspace Cluster
 Node: node1
                                                                        Ignore
                                        Speed(Mbps)            Health   Health
@@ -1892,7 +1904,7 @@ e0b       Cluster      Cluster          up   9000 auto/10000  healthy  false
 4 entries were displayed.
 
 
-cluster1::*&gt; **network interface show -vserver Cluster**
+cluster1::*&gt; network interface show -vserver Cluster
 
             Logical    Status     Network            Current       Current Is
 Vserver     Interface  Admin/Oper Address/Mask       Node          Port    Home
@@ -1905,7 +1917,7 @@ Cluster
 
 4 entries were displayed.
 
-cluster1::&gt; **network device-discovery show -protocol cdp**
+cluster1::&gt; network device-discovery show -protocol cdp
 
 Node/       Local  Discovered
 Protocol    Port   Device (LLDP: ChassisID)  Interface         Platform
@@ -1920,7 +1932,7 @@ node1      /cdp
 4 entries were displayed.
 
 
-cs1# **show cdp neighbors**
+cs1# show cdp neighbors
 
 Capability Codes: R - Router, T - Trans-Bridge, B - Source-Route-Bridge
                   S - Switch, H - Host, I - IGMP, r - Repeater,
@@ -1936,7 +1948,7 @@ newcs2               Eth1/36        176    R S I s     N9K-C9336C    Eth1/36
 Total entries displayed: 4
 
 
-cs2# **show cdp neighbors**
+cs2# show cdp neighbors
 
 Capability Codes: R - Router, T - Trans-Bridge, B - Source-Route-Bridge
                   S - Switch, H - Host, I - IGMP, r - Repeater,
@@ -1957,35 +1969,35 @@ Total entries displayed: 4</pre>
 <p>对于 ONTAP 9.8 及更高版本，请使用以下命令启用以太网交换机运行状况监控器日志收集功能以收集交换机相关的日志文件： <code>ssystem switch Ethernet log setup-password``ssystem switch Ethernet log enable-Collection</code></p>
 <div class="listingblock">
 <div class="content">
-<pre>cluster1::*&gt; **system switch ethernet log setup-password**
+<pre>cluster1::*&gt; system switch ethernet log setup-password
 Enter the switch name: &lt;return&gt;
 The switch name entered is not recognized.
 Choose from the following list:
 cs1
 cs2
 
-cluster1::*&gt; **system switch ethernet log setup-password**
+cluster1::*&gt; system switch ethernet log setup-password
 
-Enter the switch name: **cs1**
+Enter the switch name: cs1
 RSA key fingerprint is e5:8b:c6:dc:e2:18:18:09:36:63:d9:63:dd:03:d9:cc
-Do you want to continue? {y|n}::[n] **y**
+Do you want to continue? {y|n}::[n] y
 
 Enter the password: &lt;enter switch password&gt;
 Enter the password again: &lt;enter switch password&gt;
 
-cluster1::*&gt; **system switch ethernet log setup-password**
+cluster1::*&gt; system switch ethernet log setup-password
 
-Enter the switch name: **cs2**
+Enter the switch name: cs2
 RSA key fingerprint is 57:49:86:a1:b9:80:6a:61:9a:86:8e:3c:e3:b7:1f:b1
-Do you want to continue? {y|n}:: [n] **y**
+Do you want to continue? {y|n}:: [n] y
 
 Enter the password: &lt;enter switch password&gt;
 Enter the password again: &lt;enter switch password&gt;
 
-cluster1::*&gt; **system  switch ethernet log enable-collection**
+cluster1::*&gt; system  switch ethernet log enable-collection
 
 Do you want to enable cluster log collection for all nodes in the cluster?
-{y|n}: [n] **y**
+{y|n}: [n] y
 
 Enabling cluster switch log collection.
 
@@ -2009,35 +2021,35 @@ cluster1::*&gt;</pre>
 <p>对于 ONTAP 9.5P16 ， 9.6P12 和 9.7P10 及更高版本的修补程序，请使用以下命令启用以太网交换机运行状况监控器日志收集功能以收集交换机相关的日志文件： <code>ssystem cluster-switch log setup-password``ssystem cluster-switch log enable-Collection</code></p>
 <div class="listingblock">
 <div class="content">
-<pre>cluster1::*&gt; **system cluster-switch log setup-password**
+<pre>cluster1::*&gt; system cluster-switch log setup-password
 Enter the switch name: &lt;return&gt;
 The switch name entered is not recognized.
 Choose from the following list:
 cs1
 cs2
 
-cluster1::*&gt; **system cluster-switch log setup-password**
+cluster1::*&gt; system cluster-switch log setup-password
 
-Enter the switch name: **cs1**
+Enter the switch name: cs1
 RSA key fingerprint is e5:8b:c6:dc:e2:18:18:09:36:63:d9:63:dd:03:d9:cc
-Do you want to continue? {y|n}::[n] **y**
+Do you want to continue? {y|n}::[n] y
 
 Enter the password: &lt;enter switch password&gt;
 Enter the password again: &lt;enter switch password&gt;
 
-cluster1::*&gt; **system cluster-switch log setup-password**
+cluster1::*&gt; system cluster-switch log setup-password
 
-Enter the switch name: **cs2**
+Enter the switch name: cs2
 RSA key fingerprint is 57:49:86:a1:b9:80:6a:61:9a:86:8e:3c:e3:b7:1f:b1
-Do you want to continue? {y|n}:: [n] **y**
+Do you want to continue? {y|n}:: [n] y
 
 Enter the password: &lt;enter switch password&gt;
 Enter the password again: &lt;enter switch password&gt;
 
-cluster1::*&gt; **system cluster-switch log enable-collection**
+cluster1::*&gt; system cluster-switch log enable-collection
 
 Do you want to enable cluster log collection for all nodes in the cluster?
-{y|n}: [n] **y**
+{y|n}: [n] y
 
 Enabling cluster switch log collection.
 
