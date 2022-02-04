@@ -10,7 +10,254 @@ summary: 首次设置 BES-53248 集群交换机后以及应用新许可证后，
 
 
 [role="lead"]
-首次设置 BES-53248 集群交换机后以及应用新许可证后，您可以安装 RCF 。如果要从旧版本升级 RCF ，这些文件将有效地合并在一起，您将完成此处详细介绍的步骤。
+首次设置 BES-53248 集群交换机后以及应用新许可证后，您可以安装 RCF 。如果要从旧版本升级 RCF ，则必须重置 Broadcom 交换机设置并执行基本配置以重新应用 RCF 。每次要升级或更改 RCF 时，都必须执行此操作。
+
+
+
+== 将 Broadcom IP 交换机重置为出厂默认值
+
+在安装新的交换机软件版本和 RCF 之前，您必须擦除 Broadcom 交换机设置并执行基本配置。
+
+.关于此任务
+* 您必须对每个集群交换机重复这些步骤。
+* 您必须使用串行控制台连接到交换机。
+* 此任务将重置管理网络的配置。
+
+
+.步骤
+. 更改为提升的命令提示符（` #` ）： `enable`
++
+[listing]
+----
+(cs2)> enable
+(cs2) #
+----
+. 擦除启动配置并删除横幅
++
+.. 擦除启动配置：
++
+*`擦除启动配置` *
+
++
+[listing]
+----
+(cs2) #erase startup-config
+Are you sure you want to clear the configuration? (y/n) y
+(cs2) #
+----
++
+此命令不会擦除横幅。
+
+.. 删除横幅：
++
+*`无设置剪贴画` *
+
++
+[listing]
+----
+(cs2) #configure
+(cs2)(Config) # no set clibanner
+(cs2)(Config) #
+----
+
+
+. 重新启动交换机： *` （ CS2 ） #reload *`
++
+[listing]
+----
+Are you sure you would like to reset the system? (y/n) y
+----
++
+
+NOTE: 如果系统在重新加载交换机之前询问是保存未保存的配置还是更改的配置，请选择 * 否 * 。
+
+. 等待交换机重新加载，然后登录到交换机。
++
+默认用户为 "`admin` " ，未设置密码。此时将显示类似于以下内容的提示：
+
++
+[listing]
+----
+(Routing)>
+----
+. 更改为提升后的命令提示符：
++
+`启用`
+
++
+[listing]
+----
+Routing)> enable
+(Routing) #
+----
+. 将服务端口协议设置为 `none` ：
++
+`s服务端口协议无`
+
++
+[listing]
+----
+(Routing) #serviceport protocol none
+Changing protocol mode will reset ip configuration.
+Are you sure you want to continue? (y/n) y
+
+(Routing) #
+----
+. 将 IP 地址分配给服务端口：
++
+`serviceport IP _IP-address_ _netmask_ _gateway_`
+
++
+以下示例显示了一个服务端口分配的 IP 地址 10.10.10.10 ，子网为 255.255.255.0 ，网关为 10.10.10.1 ：
+
++
+[listing]
+----
+(Routing) #serviceport ip 10.10.10.10 255.255.255.0 10.10.10.1
+----
+. 验证服务端口是否配置正确：
++
+`s如何使用 serviceport`
+
++
+以下示例显示端口已启动，并且已分配正确的地址：
+
++
+[listing]
+----
+(Routing) #show serviceport
+
+Interface Status............................... Up
+IP Address..................................... 10.10.10.10
+Subnet Mask.................................... 255.255.255.0
+Default Gateway................................ 10.10.10.1
+IPv6 Administrative Mode....................... Enabled
+IPv6 Prefix is ................................ fe80::dac4:97ff:fe56:87d7/64
+IPv6 Default Router............................ fe80::222:bdff:fef8:19ff
+Configured IPv4 Protocol....................... None
+Configured IPv6 Protocol....................... None
+IPv6 AutoConfig Mode........................... Disabled
+Burned In MAC Address.......................... D8:C4:97:56:87:D7
+
+(Routing) #
+----
+. 如果需要，请配置 SSH 服务器。
++
+
+NOTE: RCF 文件将禁用 Telnet 协议。如果不配置 SSH 服务器，则只能使用串行端口连接访问网桥。
+
++
+.. 生成 RSA 密钥。
++
+[listing]
+----
+(Routing) #configure
+(Routing) (Config)#crypto key generate rsa
+----
+.. 生成 DSA 密钥（可选）
++
+[listing]
+----
+(Routing) #configure
+(Routing) (Config)#crypto key generate dsa
+----
+.. 如果您使用的是符合 FIPS 的 EFOS 版本，请生成 ECDSA 密钥。以下示例将创建长度为 256 的密钥。有效值为 256 ， 384 或 521 。
++
+[listing]
+----
+(Routing) #configure
+(Routing) (Config)#crypto key generate ecdsa 256
+----
+.. 启用 SSH 服务器。
++
+如有必要，退出配置上下文。
+
++
+[listing]
+----
+(Routing) (Config)#end
+(Routing) #ip ssh server enable
+----
++
+
+NOTE: 如果密钥已存在，则可能会要求您覆盖这些密钥。
+
+
+
+. 如果需要，请配置域和名称服务器：
++
+`配置`
+
++
+以下示例显示了 `ip domain` 和 `ip name server` 命令：
+
++
+[listing]
+----
+(Routing) # configure
+(Routing) (Config)#ip domain name lab.netapp.com
+(Routing) (Config)#ip name server 10.99.99.1 10.99.99.2
+(Routing) (Config)#exit
+(Routing) (Config)#
+----
+. 如果需要，请配置时区和时间同步（ SNTP ）。
++
+以下示例显示了 `sntp` 命令，用于指定 SNTP 服务器的 IP 地址和相对时区。
+
++
+[listing]
+----
+(Routing) #
+(Routing) (Config)#sntp client mode unicast
+(Routing) (Config)#sntp server 10.99.99.5
+(Routing) (Config)#clock timezone -7
+(Routing) (Config)#exit
+(Routing) (Config)#
+----
+. 配置交换机名称：
++
+`主机名 CS2`
+
++
+交换机提示符将显示新名称：
+
++
+[listing]
+----
+(Routing) # hostname cs2
+
+(cs2) #
+----
+. 保存配置：
++
+`写入内存`
+
++
+您将收到类似于以下示例的提示和输出：
+
++
+[listing]
+----
+(cs2) #write memory
+
+This operation may take a few minutes.
+Management interfaces will not be available during this time.
+
+Are you sure you want to save? (y/n) y
+
+Config file 'startup-config' created successfully .
+
+
+Configuration Saved!
+
+(cs2) #
+----
+. 对另一个集群交换机重复上述步骤。
+
+
+
+
+== 安装参考配置文件（ RCF ）
 
 .步骤
 . 将集群交换机连接到管理网络。

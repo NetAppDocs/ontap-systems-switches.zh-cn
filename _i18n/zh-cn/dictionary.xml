@@ -1903,4 +1903,48 @@
   <block id="83c41d5b112328c15a2ab46e9b63a009" category="list-text">可从获取相应的 RCF<block ref="b4c2fb45a290e6214474529bd84dd3bc" category="inline-link-rx"></block> 页面。按照下载页面上的步骤下载适用于您要安装的 ONTAP 软件版本的正确 RCF 。</block>
   <block id="df9f9e9d2170bb250eb3337384525b86" category="paragraph"><block ref="df9f9e9d2170bb250eb3337384525b86" category="inline-link-rx"></block></block>
   <block id="4c1c93397a0ad82f0b80502a6c7c0799" category="paragraph"><block ref="4c1c93397a0ad82f0b80502a6c7c0799" category="inline-link-rx"></block></block>
+  <block id="efe89bf343d312a234f5bbce5643025f" category="paragraph">首次设置 BES-53248 集群交换机后以及应用新许可证后，您可以安装 RCF 。如果要从旧版本升级 RCF ，则必须重置 Broadcom 交换机设置并执行基本配置以重新应用 RCF 。每次要升级或更改 RCF 时，都必须执行此操作。</block>
+  <block id="5a3808eade7ae7dfc1128e76ac8a6b87" category="section-title">将 Broadcom IP 交换机重置为出厂默认值</block>
+  <block id="7e1b69484a310996db5f7ad71d667d8d" category="paragraph">在安装新的交换机软件版本和 RCF 之前，您必须擦除 Broadcom 交换机设置并执行基本配置。</block>
+  <block id="7fc6a7ab6d34416c2ea560cd8b6f72ee" category="list-text">您必须对每个集群交换机重复这些步骤。</block>
+  <block id="cf8c4cbc63a2e42b70c4b4beddd2e366" category="list-text">您必须使用串行控制台连接到交换机。</block>
+  <block id="55b0c310e4703cc82f05f8c44c9d0d39" category="list-text">此任务将重置管理网络的配置。</block>
+  <block id="7903ea9f597270ba2cf2405fbc17ebd8" category="list-text">更改为提升的命令提示符（` #` ）： `enable`</block>
+  <block id="4be4d4968b5e919059610e2ee4b965ce" category="list-text">擦除启动配置并删除横幅</block>
+  <block id="56c0e77173118d9438d0428e9dc7a715" category="list-text">擦除启动配置：</block>
+  <block id="4995c150e07b7ecfa34c3c0fbef2e928" category="paragraph">*`擦除启动配置` *</block>
+  <block id="9110bdab8c504a110b30d190f31ab08f" category="paragraph">此命令不会擦除横幅。</block>
+  <block id="2f7236901427b3d791b59473a9846d56" category="list-text">删除横幅：</block>
+  <block id="45fcd6873eadf29e5cd4cc3b0c7d3340" category="paragraph">*`无设置剪贴画` *</block>
+  <block id="15e72b47dbb995b61466370093745e4c" category="list-text">重新启动交换机： *` （ CS2 ） #reload *`</block>
+  <block id="671537f32d06de75a977dc3008daeff5" category="admonition">如果系统在重新加载交换机之前询问是保存未保存的配置还是更改的配置，请选择 * 否 * 。</block>
+  <block id="574f9a8da95ec242c137072cf107f07d" category="list-text">等待交换机重新加载，然后登录到交换机。</block>
+  <block id="abcf8ee1041922b5a789f2316fa6df7b" category="paragraph">默认用户为 "`admin` " ，未设置密码。此时将显示类似于以下内容的提示：</block>
+  <block id="ec5c3bc0d9af5e6eaa0a026335b11755" category="list-text">更改为提升后的命令提示符：</block>
+  <block id="237ceede529524160f9215c07a41b01a" category="paragraph">`启用`</block>
+  <block id="4fee2f5aadc66b5f313f985dffa0efdf" category="list-text">将服务端口协议设置为 `none` ：</block>
+  <block id="e080aeaf0a61fd1dc4cdb4d64b02bc7d" category="paragraph">`s服务端口协议无`</block>
+  <block id="58f78231db30eb9bd647143ab366e4a6" category="list-text">将 IP 地址分配给服务端口：</block>
+  <block id="b3a59792f2fc6fd4ff36da2d078ff315" category="paragraph">`serviceport IP _IP-address_ _netmask_ _gateway_`</block>
+  <block id="6de48d562b4f5fed6e4d8e07b41b7226" category="paragraph">以下示例显示了一个服务端口分配的 IP 地址 10.10.10.10 ，子网为 255.255.255.0 ，网关为 10.10.10.1 ：</block>
+  <block id="1a6a0860d4f85d812a58145da3c63dd2" category="list-text">验证服务端口是否配置正确：</block>
+  <block id="3f0f3a6fe3831ca46e275019ef0c0976" category="paragraph">以下示例显示端口已启动，并且已分配正确的地址：</block>
+  <block id="f279cda33d8658b285d1ba4a42773651" category="list-text">如果需要，请配置 SSH 服务器。</block>
+  <block id="f0630dda98a33b3b99be916ac28603b0" category="admonition">RCF 文件将禁用 Telnet 协议。如果不配置 SSH 服务器，则只能使用串行端口连接访问网桥。</block>
+  <block id="4cbd2061568d423e0fdf461dfa55b473" category="list-text">生成 RSA 密钥。</block>
+  <block id="bb618b144b7c6895aa5a8818fa66c1b2" category="list-text">生成 DSA 密钥（可选）</block>
+  <block id="d034cc5a3446b99507240baca90266a0" category="list-text">如果您使用的是符合 FIPS 的 EFOS 版本，请生成 ECDSA 密钥。以下示例将创建长度为 256 的密钥。有效值为 256 ， 384 或 521 。</block>
+  <block id="2adc88e53d20b1a61cccff951117e58f" category="list-text">启用 SSH 服务器。</block>
+  <block id="a3fec8a700961f2756fa87e70ed3f889" category="paragraph">如有必要，退出配置上下文。</block>
+  <block id="b5a5b3a0219f19569613cb2962fe0ab6" category="admonition">如果密钥已存在，则可能会要求您覆盖这些密钥。</block>
+  <block id="32ab81665d9086e806520c2291eae40b" category="list-text">如果需要，请配置域和名称服务器：</block>
+  <block id="8b21803dd26fcf6e70719722e9f4acbb" category="paragraph">以下示例显示了 `ip domain` 和 `ip name server` 命令：</block>
+  <block id="9aa02a19669e4a71f489b7faca58d1d7" category="list-text">如果需要，请配置时区和时间同步（ SNTP ）。</block>
+  <block id="61921cfd1af201be4eff2b26f7f38fd8" category="paragraph">以下示例显示了 `sntp` 命令，用于指定 SNTP 服务器的 IP 地址和相对时区。</block>
+  <block id="8093e28dbe8feb9bac45f540897d8548" category="list-text">配置交换机名称：</block>
+  <block id="e7f56ab50ea481ba40b8e4f75ab763f1" category="paragraph">`主机名 CS2`</block>
+  <block id="13c6cdda41ef7917c3cb0c05a8aa463c" category="paragraph">交换机提示符将显示新名称：</block>
+  <block id="33779c44170cc34cb1bbefd6d30a5208" category="list-text">保存配置：</block>
+  <block id="f1782a056fe3c67c3b672e085d43d4d7" category="paragraph">您将收到类似于以下示例的提示和输出：</block>
+  <block id="89c1d1cf1e23e598f92306efc57e5831" category="list-text">对另一个集群交换机重复上述步骤。</block>
 </blocks>
