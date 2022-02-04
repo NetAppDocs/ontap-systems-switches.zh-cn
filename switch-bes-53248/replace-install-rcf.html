@@ -1398,7 +1398,7 @@
 <p class="page-details">
   
     
-    <time datetime="2022-01-31 18:42:31 +0000">01/31/2022</time>
+    <time datetime="2022-02-04 13:22:40 +0000">02/04/2022</time>
     
   
 
@@ -1408,6 +1408,14 @@
           alt="netapp-martyh"
           width="20" height="20"
           src="https://avatars.githubusercontent.com/u/66496079?v=4"
+          style="border-radius: 50%;"/>
+  </a>
+  
+  <a target="_blank" href="https://github.com/netapp-aoife">
+    <img  class="avatar avatar-small"
+          alt="netapp-aoife"
+          width="20" height="20"
+          src="https://avatars.githubusercontent.com/u/92876203?v=4"
           style="border-radius: 50%;"/>
   </a>
   
@@ -1425,9 +1433,340 @@
 </p>
 
 
+<div id="preamble">
+<div class="sectionbody">
 <div class="paragraph lead">
-<p>首次设置 BES-53248 集群交换机后以及应用新许可证后，您可以安装 RCF 。如果要从旧版本升级 RCF ，这些文件将有效地合并在一起，您将完成此处详细介绍的步骤。</p>
+<p>首次设置 BES-53248 集群交换机后以及应用新许可证后，您可以安装 RCF 。如果要从旧版本升级 RCF ，则必须重置 Broadcom 交换机设置并执行基本配置以重新应用 RCF 。每次要升级或更改 RCF 时，都必须执行此操作。</p>
 </div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="将-broadcom-ip-交换机重置为出厂默认值">将 Broadcom IP 交换机重置为出厂默认值</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>在安装新的交换机软件版本和 RCF 之前，您必须擦除 Broadcom 交换机设置并执行基本配置。</p>
+</div>
+<div class="ulist">
+<div class="title">关于此任务</div>
+<ul>
+<li>
+<p>您必须对每个集群交换机重复这些步骤。</p>
+</li>
+<li>
+<p>您必须使用串行控制台连接到交换机。</p>
+</li>
+<li>
+<p>此任务将重置管理网络的配置。</p>
+</li>
+</ul>
+</div>
+<div class="olist arabic">
+<div class="title">步骤</div>
+<ol class="arabic">
+<li>
+<p>更改为提升的命令提示符（` #` ）： <code>enable</code></p>
+<div class="listingblock">
+<div class="content">
+<pre>(cs2)&gt; enable
+(cs2) #</pre>
+</div>
+</div>
+</li>
+<li>
+<p>擦除启动配置并删除横幅</p>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>擦除启动配置：</p>
+<div class="paragraph">
+<p>*<code>擦除启动配置</code> *</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>(cs2) #erase startup-config
+Are you sure you want to clear the configuration? (y/n) y
+(cs2) #</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>此命令不会擦除横幅。</p>
+</div>
+</li>
+<li>
+<p>删除横幅：</p>
+<div class="paragraph">
+<p>*<code>无设置剪贴画</code> *</p>
+</div>
+</li>
+</ol>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>(cs2) #configure
+(cs2)(Config) # no set clibanner
+(cs2)(Config) #</pre>
+</div>
+</div>
+</li>
+<li>
+<p>重新启动交换机： *` （ CS2 ） #reload *`</p>
+<div class="listingblock">
+<div class="content">
+<pre>Are you sure you would like to reset the system? (y/n) y</pre>
+</div>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<img src="/us-en/ontap-systems-switches/images/note.svg" alt="注">
+</td>
+<td class="content">
+如果系统在重新加载交换机之前询问是保存未保存的配置还是更改的配置，请选择 * 否 * 。
+</td>
+</tr>
+</table>
+</div>
+</li>
+<li>
+<p>等待交换机重新加载，然后登录到交换机。</p>
+<div class="paragraph">
+<p>默认用户为 "`admin` " ，未设置密码。此时将显示类似于以下内容的提示：</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>(Routing)&gt;</pre>
+</div>
+</div>
+</li>
+<li>
+<p>更改为提升后的命令提示符：</p>
+<div class="paragraph">
+<p><code>启用</code></p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>Routing)&gt; enable
+(Routing) #</pre>
+</div>
+</div>
+</li>
+<li>
+<p>将服务端口协议设置为 <code>none</code> ：</p>
+<div class="paragraph">
+<p><code>s服务端口协议无</code></p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>(Routing) #serviceport protocol none
+Changing protocol mode will reset ip configuration.
+Are you sure you want to continue? (y/n) y
+
+(Routing) #</pre>
+</div>
+</div>
+</li>
+<li>
+<p>将 IP 地址分配给服务端口：</p>
+<div class="paragraph">
+<p><code>serviceport IP <em>IP-address</em> <em>netmask</em> <em>gateway</em></code></p>
+</div>
+<div class="paragraph">
+<p>以下示例显示了一个服务端口分配的 IP 地址 10.10.10.10 ，子网为 255.255.255.0 ，网关为 10.10.10.1 ：</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>(Routing) #serviceport ip 10.10.10.10 255.255.255.0 10.10.10.1</pre>
+</div>
+</div>
+</li>
+<li>
+<p>验证服务端口是否配置正确：</p>
+<div class="paragraph">
+<p><code>s如何使用 serviceport</code></p>
+</div>
+<div class="paragraph">
+<p>以下示例显示端口已启动，并且已分配正确的地址：</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>(Routing) #show serviceport
+
+Interface Status............................... Up
+IP Address..................................... 10.10.10.10
+Subnet Mask.................................... 255.255.255.0
+Default Gateway................................ 10.10.10.1
+IPv6 Administrative Mode....................... Enabled
+IPv6 Prefix is ................................ fe80::dac4:97ff:fe56:87d7/64
+IPv6 Default Router............................ fe80::222:bdff:fef8:19ff
+Configured IPv4 Protocol....................... None
+Configured IPv6 Protocol....................... None
+IPv6 AutoConfig Mode........................... Disabled
+Burned In MAC Address.......................... D8:C4:97:56:87:D7
+
+(Routing) #</pre>
+</div>
+</div>
+</li>
+<li>
+<p>如果需要，请配置 SSH 服务器。</p>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<img src="/us-en/ontap-systems-switches/images/note.svg" alt="注">
+</td>
+<td class="content">
+RCF 文件将禁用 Telnet 协议。如果不配置 SSH 服务器，则只能使用串行端口连接访问网桥。
+</td>
+</tr>
+</table>
+</div>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>生成 RSA 密钥。</p>
+<div class="listingblock">
+<div class="content">
+<pre>(Routing) #configure
+(Routing) (Config)#crypto key generate rsa</pre>
+</div>
+</div>
+</li>
+<li>
+<p>生成 DSA 密钥（可选）</p>
+<div class="listingblock">
+<div class="content">
+<pre>(Routing) #configure
+(Routing) (Config)#crypto key generate dsa</pre>
+</div>
+</div>
+</li>
+<li>
+<p>如果您使用的是符合 FIPS 的 EFOS 版本，请生成 ECDSA 密钥。以下示例将创建长度为 256 的密钥。有效值为 256 ， 384 或 521 。</p>
+<div class="listingblock">
+<div class="content">
+<pre>(Routing) #configure
+(Routing) (Config)#crypto key generate ecdsa 256</pre>
+</div>
+</div>
+</li>
+<li>
+<p>启用 SSH 服务器。</p>
+<div class="paragraph">
+<p>如有必要，退出配置上下文。</p>
+</div>
+</li>
+</ol>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>(Routing) (Config)#end
+(Routing) #ip ssh server enable</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>+</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<img src="/us-en/ontap-systems-switches/images/note.svg" alt="注">
+</td>
+<td class="content">
+如果密钥已存在，则可能会要求您覆盖这些密钥。
+</td>
+</tr>
+</table>
+</div>
+</li>
+<li>
+<p>如果需要，请配置域和名称服务器：</p>
+<div class="paragraph">
+<p><code>配置</code></p>
+</div>
+<div class="paragraph">
+<p>以下示例显示了 <code>ip domain</code> 和 <code>ip name server</code> 命令：</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>(Routing) # configure
+(Routing) (Config)#ip domain name lab.netapp.com
+(Routing) (Config)#ip name server 10.99.99.1 10.99.99.2
+(Routing) (Config)#exit
+(Routing) (Config)#</pre>
+</div>
+</div>
+</li>
+<li>
+<p>如果需要，请配置时区和时间同步（ SNTP ）。</p>
+<div class="paragraph">
+<p>以下示例显示了 <code>sntp</code> 命令，用于指定 SNTP 服务器的 IP 地址和相对时区。</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>(Routing) #
+(Routing) (Config)#sntp client mode unicast
+(Routing) (Config)#sntp server 10.99.99.5
+(Routing) (Config)#clock timezone -7
+(Routing) (Config)#exit
+(Routing) (Config)#</pre>
+</div>
+</div>
+</li>
+<li>
+<p>配置交换机名称：</p>
+<div class="paragraph">
+<p><code>主机名 CS2</code></p>
+</div>
+<div class="paragraph">
+<p>交换机提示符将显示新名称：</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>(Routing) # hostname cs2
+
+(cs2) #</pre>
+</div>
+</div>
+</li>
+<li>
+<p>保存配置：</p>
+<div class="paragraph">
+<p><code>写入内存</code></p>
+</div>
+<div class="paragraph">
+<p>您将收到类似于以下示例的提示和输出：</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>(cs2) #write memory
+
+This operation may take a few minutes.
+Management interfaces will not be available during this time.
+
+Are you sure you want to save? (y/n) y
+
+Config file 'startup-config' created successfully .
+
+
+Configuration Saved!
+
+(cs2) #</pre>
+</div>
+</div>
+</li>
+<li>
+<p>对另一个集群交换机重复上述步骤。</p>
+</li>
+</ol>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="安装参考配置文件-rcf">安装参考配置文件（ RCF ）</h2>
+<div class="sectionbody">
 <div class="olist arabic">
 <div class="title">步骤</div>
 <ol class="arabic">
@@ -1628,6 +1967,8 @@ System will now restart!</pre>
 </div>
 </li>
 </ol>
+</div>
+</div>
 </div>
 
     </article>
