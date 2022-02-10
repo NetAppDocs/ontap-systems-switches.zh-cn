@@ -1,0 +1,40 @@
+---
+section: switch-cisco-3232c
+title: Cisco 3232C 交换机
+entries:
+- title: 将 CN1610 交换机迁移到 Cisco Nexus 3232C 集群交换机
+  url: "/switch-cisco-3232c/concept_migrate_a_cn1610_switch_to_a_cisco_nexus_3232c_cluster_switch.html"
+  entries:
+  - title: 如何将 CN1610 集群交换机迁移到 Cisco Nexus 3232C 集群交换机
+    url: "/switch-cisco-3232c/task_how_to_replace_cn1610_cluster_switches_with_cisco_nexus_3232c_cluster_switches.html"
+- title: 在 NetApp 机柜中安装 Cisco Nexus 3232C 集群交换机和直通面板
+  url: "/switch-cisco-3232c/task_install_a_cisco_nexus_3232c_cluster_switch_and_pass_through_panel_in_a_netapp_cabinet.html"
+- title: 在 Cisco Nexus 3232C 集群交换机上安装 NX-OS 软件和 RCF
+  url: "/switch-cisco-3232c/task_install_nx_os_software_and_rcfs_on_cisco_nexus_3232_cluster_switches_running_ontap_9_4_and_later.html"
+  entries:
+  - title: 安装 NX-OS 软件
+    url: "/switch-cisco-3232c/task_install_the_nx_os_software_3232c_cluster_switch.html"
+  - title: 安装参考配置文件（ RCF ）
+    url: "/switch-cisco-3232c/task_install_the_reference_configuration_file_rcf_3232c_cluster_switch.html"
+- title: 从 Cisco Nexus 5596 交换机迁移到 Cisco Nexus 3232C 交换机
+  url: "/switch-cisco-3232c/concept_migrate_from_a_cisco_5596_switch_to_a_cisco_nexus_3232c.html"
+  entries:
+  - title: 如何从 Cisco Nexus 5596 集群交换机迁移到 Cisco Nexus 3232C 集群交换机
+    url: "/switch-cisco-3232c/task_how_to_migrate_from_a_cisco_nexus_5596_cluster_switch_to_a_cisco_nexus_3232c_cluster_switch.html"
+- title: 从双节点无交换机集群迁移到使用 Cisco Nexus 3232C 集群交换机的集群
+  url: "/switch-cisco-3232c/concept_migrate_from_a_two_node_switchless_cluster_to_a_cluster_with_cisco_nexus_3232c_cluster_switches.html"
+  entries:
+  - title: 如何从双节点无交换机集群迁移到使用 Cisco Nexus 3232C 集群交换机的集群
+    url: "/switch-cisco-3232c/task_how_to_migrate_from_a_two_node_switchless_cluster_to_a_cluster_with_cisco_nexus_3132q_v_cluster_switches.html"
+- title: 更换 Cisco Nexus 3232C 集群交换机
+  url: "/switch-cisco-3232c/concept_replace_a_cisco_nexus_3232c_cluster_switch.html"
+  entries:
+  - title: 如何更换 Cisco Nexus 3232C 集群交换机
+    url: "/switch-cisco-3232c/task_how_to_replace_a_cisco_nexus_3232c_cluster_switch.html"
+- title: 更换 Cisco Nexus 3232C 存储交换机
+  url: "/switch-cisco-3232c/concept_replace_a_cisco_nexus_3232c_storage_switch.html"
+  entries:
+  - title: 更换 Cisco Nexus 3232C 存储交换机的步骤
+    url: "/switch-cisco-3232c/task_steps_to_replace_a_cisco_nexus_3232c_storage_switch.html"
+- title: 升级 Cisco Nexus 3232C 存储交换机
+  url: "/switch-cisco-3232c/task_upgrade_nx_os_software_and_rcfs_on_cisco_nexus_3232c_storage_switches.html"

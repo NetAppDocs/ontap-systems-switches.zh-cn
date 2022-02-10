@@ -37,8 +37,12 @@ summary: 您可以将 ONTAP 集群中较早的 Cisco 集群交换机无中断迁
 ** 然后，节点和 C2 之间的布线将从 C2 断开，并重新连接到 CS2 。
 ** 然后，节点和 C1 之间的布线将从 C1 断开，并重新连接到 CS1 。
 ** 然后删除 C1 和 CS1 之间的临时 ISL 。
-+
-... 如果在此集群上启用了 AutoSupport ，请通过调用 AutoSupport 消息来禁止自动创建案例： `ssystem node AutoSupport invoke -node * -type all -message MAINT=xh`
+
+
+
+
+.步骤
+. 如果在此集群上启用了 AutoSupport ，请通过调用 AutoSupport 消息来禁止自动创建案例： `ssystem node AutoSupport invoke -node * -type all -message MAINT=xh`
 +
 其中 x 是维护时段的持续时间，以小时为单位。
 
@@ -46,11 +50,11 @@ summary: 您可以将 ONTAP 集群中较早的 Cisco 集群交换机无中断迁
 
 NOTE: AutoSupport 消息会通知技术支持此维护任务，以便在维护窗口期间禁止自动创建案例。
 
-... 将权限级别更改为高级，在系统提示您继续时输入 * y* ： `set -privilege advanced`
+. 将权限级别更改为高级，在系统提示您继续时输入 * y* ： `set -privilege advanced`
 +
 此时将显示高级提示符（ * > ）。
 
-... 验证是否已在所有集群 LIF 上启用自动还原： `network interface show -vserver cluster -fields auto-revert`
+. 验证是否已在所有集群 LIF 上启用自动还原： `network interface show -vserver cluster -fields auto-revert`
 +
 [listing]
 ----
@@ -67,12 +71,12 @@ Cluster
 
 4 entries were displayed.
 ----
-... 确定每个集群接口的管理或运行状态：
+. 确定每个集群接口的管理或运行状态：
 +
 对于 `Link` ，每个端口均应显示 up ；对于 `Health Status` ，每个端口均应显示 Healthy 。
 
 +
-.... 显示网络端口属性： `network port show -ipspace cluster`
+.. 显示网络端口属性： `network port show -ipspace cluster`
 +
 [listing]
 ----
@@ -96,7 +100,7 @@ e0b       Cluster      Cluster          up   9000  auto/10000 healthy  false
 
 4 entries were displayed.
 ----
-.... 显示有关逻辑接口及其指定主节点的信息： `network interface show -vserver Cluster`
+.. 显示有关逻辑接口及其指定主节点的信息： `network interface show -vserver Cluster`
 +
 对于 `S状态管理 /Oper` ，每个 LIF 都应显示 up/up ；对于 `，每个 LIF 都应显示 true ，而对于` ，则显示 Home 。
 
@@ -118,7 +122,7 @@ Cluster
 ----
 
 
-... 从节点的角度来看，每个节点上的集群端口均使用以下命令连接到现有集群交换机： `network device-discovery show -protocol cdp`
+. 从节点的角度来看，每个节点上的集群端口均使用以下命令连接到现有集群交换机： `network device-discovery show -protocol cdp`
 +
 [listing]
 ----
@@ -135,7 +139,7 @@ node1      /cdp
 
 4 entries were displayed.
 ----
-... 从交换机角度来看，集群端口和交换机使用以下命令进行连接： `show cdp neighbors`
+. 从交换机角度来看，集群端口和交换机使用以下命令进行连接： `show cdp neighbors`
 +
 [listing]
 ----
@@ -180,13 +184,12 @@ c1                    Eth1/46       175    S I s       N5K-C5596UP      Eth1/46
 c1                    Eth1/47       176    S I s       N5K-C5596UP      Eth1/47
 c1                    Eth1/48       176    S I s       N5K-C5596UP      Eth1/48
 ----
-... 使用命令 `cluster ping-cluster -node node-name` 确保集群网络具有完全连接
+. 使用命令 `cluster ping-cluster -node node-name` 确保集群网络具有完全连接
 +
 [listing]
 ----
-
-
 cluster1::*> cluster ping-cluster -node node2
+
 Host is node2
 Getting addresses from network interface table...
 Cluster node1_clus1 169.254.209.69 node1     e0a
@@ -211,7 +214,7 @@ RPC status:
 2 paths up, 0 paths down (tcp check)
 2 paths up, 0 paths down (udp check)
 ----
-... 在 C1 和 CS1 之间的端口 E1/41-48 上的 cs1上 配置临时 ISL 。
+. 在 C1 和 CS1 之间的端口 E1/41-48 上的 CS1 上配置临时 ISL 。
 +
 以下示例显示了如何在 C1 和 CS1 上配置新 ISL ：
 
@@ -231,11 +234,11 @@ cs1(config-if-range)# exit
 cs1(config)# interface port-channel 101
 cs1(config-if)# switchport mode trunk
 cs1(config-if)# spanning-tree port type network
-cs1(config-if)# exi
+cs1(config-if)# exit
 cs1(config)# exit
 ----
-... 从 C2 的端口 E1/41-48 中拔下 ISL 缆线，并将缆线连接到 CS1 上的端口 E1/41-48 。
-... 验证连接 C1 和 CS1 的 ISL 端口和端口通道是否正常运行： `s如何连接端口通道摘要`
+. 从 C2 的端口 E1/41-48 中拔下 ISL 缆线，并将缆线连接到 CS1 上的端口 E1/41-48 。
+. 验证连接 C1 和 CS1 的 ISL 端口和端口通道是否正常运行： `s如何连接端口通道摘要`
 +
 以下示例显示了用于验证 C1 和 CS1 上 ISL 端口是否正常运行的 Cisco show port-channel summary 命令：
 
@@ -278,9 +281,9 @@ Group Port-       Type     Protocol  Member Ports
                                      Eth1/44(P)   Eth1/45(P)   Eth1/46(P)
                                      Eth1/47(P)   Eth1/48(P)
 ----
-... 对于 node1 ，请断开 C2 上 E1/1 的缆线连接，然后使用 Nexus 9336C-x2 支持的相应布线方式将缆线连接到 CS2 上的 E1/1 。
-... 对于 node2 ，请断开 C2 上 E1/2 的缆线连接，然后使用 Nexus 9336C-x2 支持的相应布线方式将缆线连接到 CS2 上的 E1/2 。
-... 现在，从节点的角度来看，每个节点上的集群端口均以以下方式连接到集群交换机： `network device-discovery show -protocol cdp`
+. 对于 node1 ，请断开 C2 上 E1/1 的缆线连接，然后使用 Nexus 9336C-x2 支持的相应布线方式将缆线连接到 CS2 上的 E1/1 。
+. 对于 node2 ，请断开 C2 上 E1/2 的缆线连接，然后使用 Nexus 9336C-x2 支持的相应布线方式将缆线连接到 CS2 上的 E1/2 。
+. 现在，从节点的角度来看，每个节点上的集群端口均以以下方式连接到集群交换机： `network device-discovery show -protocol cdp`
 +
 [listing]
 ----
@@ -298,9 +301,9 @@ node1      /cdp
 
 4 entries were displayed.
 ----
-... 对于 node1 ，请断开 C1 上 E1/1 的缆线，然后使用 Nexus 9336C-x2 支持的相应布线方式将缆线连接到 CS1 上的 E1/1 。
-... 对于 node2 ，断开 C1 上 E1/2 的缆线连接，然后使用 Nexus 9336C-x2 支持的相应布线方式将缆线连接到 CS1 上的 E1/2 。
-... 现在，从节点的角度来看，每个节点上的集群端口均以以下方式连接到集群交换机： `network device-discovery show -protocol cdp`
+. 对于 node1 ，请断开 C1 上 E1/1 的缆线，然后使用 Nexus 9336C-x2 支持的相应布线方式将缆线连接到 CS1 上的 E1/1 。
+. 对于 node2 ，断开 C1 上 E1/2 的缆线连接，然后使用 Nexus 9336C-x2 支持的相应布线方式将缆线连接到 CS1 上的 E1/2 。
+. 现在，从节点的角度来看，每个节点上的集群端口均以以下方式连接到集群交换机： `network device-discovery show -protocol cdp`
 +
 [listing]
 ----
@@ -316,7 +319,7 @@ node1      /cdp
             e0b    cs2                       0/1               N9K-C9336C
 4 entries were displayed.
 ----
-... 删除 CS1 和 C1 之间的临时 ISL 。
+. 删除 CS1 和 C1 之间的临时 ISL 。
 +
 [listing]
 ----
@@ -331,7 +334,7 @@ cs1(config-if-range)# spanning-tree bpduguard enable
 cs1(config-if-range)# exit
 cs1(config)# exit
 ----
-... 验证集群的最终配置： `network port show -ipspace cluster`
+. 验证集群的最终配置： `network port show -ipspace cluster`
 +
 对于 `Link` ，每个端口均应显示 up ；对于 `Health Status` ，每个端口均应显示 Healthy 。
 
@@ -386,8 +389,14 @@ node1      /cdp
             e0b    cs2                       0/1               N9K-C9336C
 
 4 entries were displayed.
+----
+. 验证两个节点的每个交换机是否都有一个连接： `sHow cdp neighbors`
++
+以下示例显示了这两个交换机的相应结果：
 
-
++
+[listing]
+----
 cs1# show cdp neighbors
 
 Capability Codes: R - Router, T - Trans-Bridge, B - Source-Route-Bridge
@@ -417,7 +426,7 @@ cs1                Eth1/36        179    R S I s     N9K-C9336C    Eth1/36
 
 Total entries displayed: 4
 ----
-... 确保集群网络具有完全连接： `cluster ping-cluster -node node-name`
+. 确保集群网络具有完全连接： `cluster ping-cluster -node node-name`
 +
 [listing]
 ----
@@ -427,7 +436,7 @@ Warning: These advanced commands are potentially dangerous; use them only when
          directed to do so by NetApp personnel.
 Do you want to continue? {y|n}: y
 
-cluster1::*> **cluster ping-cluster -node node2**
+cluster1::*> cluster ping-cluster -node node2
 Host is node2
 Getting addresses from network interface table...
 Cluster node1_clus1 169.254.209.69 node1     e0a
@@ -456,7 +465,7 @@ RPC status:
 cluster1::*> set -privilege admin
 cluster1::*>
 ----
-... 对于 ONTAP 9.8 及更高版本，请使用以下命令启用以太网交换机运行状况监控器日志收集功能以收集交换机相关的日志文件： `ssystem switch Ethernet log setup-password``ssystem switch Ethernet log enable-Collection`
+. 对于 ONTAP 9.8 及更高版本，请使用以下两个命令启用以太网交换机运行状况监控器日志收集功能以收集交换机相关的日志文件： `ssystem switch Ethernet log setup-password` 和 `ssystem switch Ethernet log enable-Collection`
 +
 [listing]
 ----
@@ -498,7 +507,7 @@ cluster1::*>
 
 NOTE: 如果其中任何一个命令返回错误，请联系 NetApp 支持部门。
 
-... 对于 ONTAP 9.5P16 ， 9.6P12 和 9.7P10 及更高版本的修补程序，请使用以下命令启用以太网交换机运行状况监控器日志收集功能以收集交换机相关的日志文件： `ssystem cluster-switch log setup-password system cluster-switch log enable-Collection`
+. 对于 ONTAP 9.5P16 ， 9.6P12 和 9.7P10 及更高版本的修补程序，请使用以下命令启用以太网交换机运行状况监控器日志收集功能以收集交换机相关的日志文件： `ssystem cluster-switch log setup-password` 和 `ssystem cluster-switch log enable-Collection`
 +
 [listing]
 ----
@@ -540,9 +549,5 @@ cluster1::*>
 
 NOTE: 如果其中任何一个命令返回错误，请联系 NetApp 支持部门。
 
-... 如果禁止自动创建案例，请通过调用 AutoSupport 消息重新启用该功能： `ssystem node AutoSupport invoke -node * -type all -message MAINT=end`
-
-
-
-
+. 如果禁止自动创建案例，请通过调用 AutoSupport 消息重新启用该功能： `ssystem node AutoSupport invoke -node * -type all -message MAINT=end`
 

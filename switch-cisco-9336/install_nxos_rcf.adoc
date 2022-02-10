@@ -23,6 +23,7 @@ summary: 您可以在首次设置 Nexus 9336C-fx2 交换机后安装 RCF 。您�
 
 NOTE: 操作步骤要求同时使用 ONTAP 命令和 Cisco Nexus 9000 系列交换机命令；除非另有说明，否则使用 ONTAP 命令。
 
+.步骤
 . 显示连接到集群交换机的每个节点上的集群端口： `network device-discovery show`
 +
 [listing]
@@ -385,6 +386,8 @@ cs2                         cluster-network    10.233.205.91    NX9-C9336C
 
 NOTE: 根据先前加载在 CS1 交换机控制台上的 RCF 版本，您可能会在该交换机控制台上看到以下输出。
 
+
+
 +
 [listing]
 ----
@@ -392,8 +395,6 @@ NOTE: 根据先前加载在 CS1 交换机控制台上的 RCF 版本，您可能�
 2020 Nov 17 16:07:23 cs1 %$ VDC-1 %$ %STP-2-BLOCK_PVID_PEER: Blocking port-channel1 on VLAN0001. Inconsistent peer vlan.
 2020 Nov 17 16:07:23 cs1 %$ VDC-1 %$ %STP-2-BLOCK_PVID_LOCAL: Blocking port-channel1 on VLAN0092. Inconsistent local vlan.
 ----
-
-
 . 在集群交换机 CS1 上，关闭连接到节点集群端口的端口。
 +
 以下示例使用步骤 1 中的接口示例输出：

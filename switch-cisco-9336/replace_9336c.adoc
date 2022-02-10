@@ -78,7 +78,7 @@ e0b       Cluster      Cluster          up   9000  auto/10000 healthy  false
 
 
 
-cluster1::*> **network interface show -vserver Cluster**
+cluster1::*> network interface show -vserver Cluster
             Logical    Status     Network            Current       Current Is
 Vserver     Interface  Admin/Oper Address/Mask       Node          Port    Home
 ----------- ---------- ---------- ------------------ ------------- ------- ----
@@ -456,7 +456,7 @@ cs1                Eth1/36        178    R S I s     N9K-C9336C    Eth1/36
 
 Total entries displayed: 4
 ----
-. 对于 ONTAP 9.8 及更高版本，请使用以下命令启用以太网交换机运行状况监控器日志收集功能以收集交换机相关的日志文件： `ssystem switch Ethernet log setup-password``ssystem switch Ethernet log enable-Collection`
+. 对于 ONTAP 9.8 及更高版本，请使用以下命令启用以太网交换机运行状况监控器日志收集功能以收集交换机相关的日志文件： `ssystem switch Ethernet log setup-password` 和 `ssystem switch Ethernet log enable-Collection`
 +
 [listing]
 ----
@@ -498,7 +498,7 @@ cluster1::*>
 
 NOTE: 如果其中任何一个命令返回错误，请联系 NetApp 支持部门。
 
-. 对于 ONTAP 9.5P16 ， 9.6P12 和 9.7P10 及更高版本的修补程序，请使用以下命令启用以太网交换机运行状况监控器日志收集功能以收集交换机相关的日志文件： `ssystem cluster-switch log setup-password``ssystem cluster-switch log enable-Collection`
+. 对于 ONTAP 9.5P16 ， 9.6P12 和 9.7P10 及更高版本的修补程序，请使用以下命令启用以太网交换机运行状况监控器日志收集功能以收集交换机相关的日志文件： `ssystem cluster-switch log setup-password` 和 `ssystem cluster-switch log enable-Collection`
 +
 [listing]
 ----

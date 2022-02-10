@@ -1,0 +1,196 @@
+---
+permalink: switch-cisco-1610/task_migrate_from_a_switchless_cluster_fas22xx_systems_with_a_single_cluster_network_connection.html 
+sidebar: sidebar 
+keywords: migrate, two-node switched cluster, fas22xx systems, single, network connection 
+summary: 如果您的 FAS22xx 系统位于一个现有双节点无交换机集群中，其中每个控制器模块都有一个背靠背 10 GbE 连接用于集群连接，则可以使用无交换机集群网络选项，并将直接背靠背连接替换为交换机连接。 
+---
+= 使用一个集群网络连接迁移到 FAS22xx 系统中的双节点交换集群
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+如果您的 FAS22xx 系统位于一个现有双节点无交换机集群中，其中每个控制器模块都有一个背靠背 10 GbE 连接用于集群连接，则可以使用无交换机集群网络选项，并将直接背靠背连接替换为交换机连接。
+
+
+
+== 您将需要什么
+
+* 要从无交换机配置迁移到有交换机配置，需要两个集群连接。
+* 集群必须运行状况良好，并且包含两个使用背靠背连接连接的节点。
+* 节点必须运行 ONTAP 8.2 或更高版本。
+* 无交换机集群功能不能用于两个以上的节点。
+* 所有集群端口都必须处于 `up` 状态。
+
+
+
+
+== 关于此任务
+
+此操作步骤 是一种无中断操作步骤 ，它会删除无交换机环境中的直接集群连接，并将与交换机的每个连接替换为与配对节点的连接。
+
+
+
+== 步骤
+
+. 将权限级别更改为高级，在系统提示您继续时输入 `y` ： `set -privilege advanced`
++
+此时将显示高级提示符（` * >` ）。
+
+. 在任一节点的系统控制台上检查节点的集群状态： `cluster show`
++
+以下示例显示了有关集群中节点的运行状况和资格的信息：
+
++
+[listing]
+----
+
+cluster::*> cluster show
+Node                 Health  Eligibility   Epsilon
+-------------------- ------- ------------  ------------
+node1                true    true          false
+node2                true    true          false
+
+2 entries were displayed.
+----
+. 在任一节点的系统控制台上检查 HA 对的状态： `storage failover show`
++
+以下示例显示 node1 和 node2 的状态：
+
++
+[listing]
+----
+
+Node           Partner        Possible State Description
+-------------- -------------- -------- -------------------------------------
+node1          node2          true      Connected to node2
+node2          node1          true      Connected to node1
+
+2 entries were displayed.
+----
+. 如果在此集群上启用了 AutoSupport ，请通过调用 AutoSupport 消息来禁止自动创建案例： `ssystem node AutoSupport invoke -node * -type all -message MAINT=xh`
++
+`x` 是维护时段的持续时间，以小时为单位。
+
++
+[NOTE]
+====
+此消息会通知技术支持此维护任务，以便在维护窗口期间禁止自动创建案例。
+
+====
++
+以下命令将禁止自动创建案例 2 小时：
+
++
+[listing]
+----
+cluster::*> system node autosupport invoke -node * -type all -message MAINT=2h
+----
+. 验证无交换机集群的当前状态是否为 `true` ，然后禁用无交换机集群模式： `network options switchless-cluster modify -enabled false`
+. Take over the target node: `storage failover takeover -ofnode _target_node_name_`
++
+目标节点与哪个节点无关。接管后，目标节点会自动重新启动并显示 `Waiting for giveback...` 消息。
+
++
+活动节点现在正在为被接管的配对（目标）节点提供数据。
+
+. 接管受损节点后，请等待两分钟，以确认接管已成功完成。
+. 当目标节点显示 `waiting for giveback...` 消息时，将其关闭。
++
+关闭节点所使用的方法取决于您是否通过节点服务处理器（ SP ）使用远程管理。
+
++
+|===
+| 如果 SP | 那么 ... 
+
+
+ a| 
+已配置
+ a| 
+登录到受损节点 SP ，然后关闭系统： `ssystem power off`
+
+
+
+ a| 
+未配置
+ a| 
+在受损节点提示符处，按 `Ctrl-C` ，然后回答 `y` 以暂停节点。
+
+|===
+. 在每个控制器模块上，断开将 10 GbE 集群端口连接到无交换机集群的缆线。
+. 将 10 GbE 集群端口连接到两个控制器模块上的交换机。
+. 验证交换机上连接的 10 GbE 集群端口是否已配置为同一 VLAN 的一部分。
++
+如果您计划将每个控制器模块上的集群端口连接到不同的交换机，则必须验证每个交换机上连接集群端口的端口是否配置为使用相同的 VLAN ，以及是否已在两台交换机上正确配置中继。
+
+. 将存储交还给目标节点： `storage failover giveback -ofnode node2`
+. 监控交还操作的进度： `storage failover show-giveback`
+. 交还操作完成后，确认 HA 对运行状况良好且可以接管： `storage failover show`
++
+输出应类似于以下内容：
+
++
+[listing]
+----
+
+Node           Partner        Possible State Description
+-------------- -------------- -------- -------------------------------------
+node1          node2          true      Connected to node2
+node2          node1          true      Connected to node1
+
+2 entries were displayed.
+----
+. 验证集群端口 LIF 是否正常运行： `network interface show -role cluster`
++
+以下示例显示， node1 和 node2 上的 LIF 为 `up` ，并且 "Is Home" 列结果为 `true` ：
+
++
+[listing]
+----
+
+cluster::*> network interface show -role cluster
+            Logical    Status     Network            Current       Current Is
+Vserver     Interface  Admin/Oper Address/Mask       Node          Port    Home
+----------- ---------- ---------- ------------------ ------------- ------- ----
+node1
+            clus1        up/up    192.168.177.121/24  node1        e1a     true
+node2
+            clus1        up/up    192.168.177.123/24  node2        e1a     true
+
+2 entries were displayed.
+----
+. 在任一节点的系统控制台上检查节点的集群状态： `cluster show`
++
+以下示例显示了有关集群中节点的运行状况和资格的信息：
+
++
+[listing]
+----
+
+cluster::*> cluster show
+Node                 Health  Eligibility   Epsilon
+-------------------- ------- ------------  ------------
+node1                true    true          false
+node2                true    true          false
+
+2 entries were displayed.
+----
+. 对集群端口执行 Ping 操作以验证集群连接： `cluster ping-cluster local`
++
+命令输出应显示所有集群端口之间的连接。
+
+. 如果禁止自动创建案例，请通过调用 AutoSupport 消息重新启用它：
++
+`ssystem node AutoSupport invoke -node * -type all -message MAINT=end`
+
++
+[listing]
+----
+cluster::*> system node autosupport invoke -node * -type all -message MAINT=END
+----
+. 将权限级别重新更改为 admin ： `set -privilege admin`
+
+
+* 相关信息 *
+
+https://kb.netapp.com/Advice_and_Troubleshooting/Data_Storage_Software/ONTAP_OS/How_to_suppress_automatic_case_creation_during_scheduled_maintenance_windows["NetApp 知识库文章 1010449 ： How to suppress automatic case creation during scheduled maintenance windows."^]

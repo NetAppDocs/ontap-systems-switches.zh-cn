@@ -1,8 +1,8 @@
 ---
-permalink: switch-cisco-9336/replace-install-rcf.html 
+permalink: switch-cisco-3232c/task_install_the_reference_configuration_file_rcf_3232c_cluster_switch.html 
 sidebar: sidebar 
-keywords: install rcf,replace rcf 
-summary: 您可以在首次设置 Nexus 9336C-fx2 交换机后安装 RCF 。您也可以使用此操作步骤升级 RCF 版本。 
+keywords: install, rcf 
+summary: 您可以在首次设置 Nexus 3232C 交换机后安装 RCF 。您也可以使用此操作步骤 升级 RCF 版本。 
 ---
 = 安装参考配置文件（ RCF ）
 :icons: font
@@ -10,20 +10,29 @@ summary: 您可以在首次设置 Nexus 9336C-fx2 交换机后安装 RCF 。您�
 
 
 [role="lead"]
-首次设置 Nexus 9336C-FX2 交换机后，您可以安装 RCF 。您也可以使用此操作步骤升级 RCF 版本。
+您可以在首次设置 Nexus 3232C 交换机后安装 RCF 。您也可以使用此操作步骤 升级 RCF 版本。
+
+
+
+== 关于此任务
 
 此操作步骤中的示例使用以下交换机和节点命名：
 
-* 两个 Cisco 交换机的名称分别为 CS1 和 CS2 。
-* 节点名称包括 cluster1-01 ， cluster1-02 ， cluster1-03 和 cluster1-04 。
-* 集群 LIF 名称包括 cluster1-01_clus1 ， cluster1-01_clus2 ， cluster1-02_clus1 ， cluster1-02_clus2 ， cluster1-03_clus1 ， cluster1-03_clus2 ， cluster1-04_clus1 和 cluster1-04_clus2 。
+* 这两台 Cisco 交换机的名称分别为 `CS1` 和 `CS2` 。
+* 节点名称包括 `cluster1-01` ， `cluster1-02` ， `cluster1-03` 和 `cluster1-04` 。
+* 集群 LIF 名称为 `cluster1-01_clus1` ， `cluster1-01_clus2` ， `cluster1-02_clus1` ， `cluster1-02_clus2` ， `cluster1-03_clus1` ， `cluster1-03_clus2` ， `cluster1-04_clus1` 和 `cluster1-04_clus2` 。
 * `cluster1 ：：： * >` 提示符指示集群的名称。
 
 
+[NOTE]
+====
+操作步骤 要求同时使用 ONTAP 命令和 Cisco Nexus 3000 系列交换机命令；除非另有说明，否则使用 ONTAP 命令。
 
-NOTE: 操作步骤要求同时使用 ONTAP 命令和 Cisco Nexus 9000 系列交换机命令；除非另有说明，否则使用 ONTAP 命令。
+====
 
-.步骤
+
+== 步骤
+
 . 显示连接到集群交换机的每个节点上的集群端口： `network device-discovery show`
 +
 [listing]
@@ -33,17 +42,17 @@ Node/       Local  Discovered
 Protocol    Port   Device (LLDP: ChassisID)  Interface         Platform
 ----------- ------ ------------------------- ----------------  --------
 cluster1-01/cdp
-            e0a    cs1                       Ethernet1/7       N9K-C9336C
-            e0d    cs2                       Ethernet1/7       N9K-C9336C
+            e0a    cs1                       Ethernet1/7       N3K-C3232C
+            e0d    cs2                       Ethernet1/7       N3K-C3232C
 cluster1-02/cdp
-            e0a    cs1                       Ethernet1/8       N9K-C9336C
-            e0d    cs2                       Ethernet1/8       N9K-C9336C
+            e0a    cs1                       Ethernet1/8       N3K-C3232C
+            e0d    cs2                       Ethernet1/8       N3K-C3232C
 cluster1-03/cdp
-            e0a    cs1                       Ethernet1/1/1     N9K-C9336C
-            e0b    cs2                       Ethernet1/1/1     N9K-C9336C
+            e0a    cs1                       Ethernet1/1/1     N3K-C3232C
+            e0b    cs2                       Ethernet1/1/1     N3K-C3232C
 cluster1-04/cdp
-            e0a    cs1                       Ethernet1/1/2     N9K-C9336C
-            e0b    cs2                       Ethernet1/1/2     N9K-C9336C
+            e0a    cs1                       Ethernet1/1/2     N3K-C3232C
+            e0b    cs2                       Ethernet1/1/2     N3K-C3232C
 cluster1::*>
 ----
 . 检查每个集群端口的管理和运行状态。
@@ -115,23 +124,24 @@ cluster1::*>
 ----
 cluster1::*> system cluster-switch show -is-monitoring-enabled-operational true
 Switch                      Type               Address          Model
---------------------------- ------------------ ---------------- -----
-cs1                         cluster-network    10.233.205.90    N9K-C9336C
-     Serial Number: FOCXXXXXXGD
+--------------------------- ------------------ ---------------- ---------------
+cs1                         cluster-network    10.233.205.92    NX3232C
+     Serial Number: FOXXXXXXXGS
       Is Monitored: true
             Reason: None
   Software Version: Cisco Nexus Operating System (NX-OS) Software, Version
-                    9.3(5)
+                    9.3(4)
     Version Source: CDP
 
-cs2                         cluster-network    10.233.205.91    N9K-C9336C
-     Serial Number: FOCXXXXXXGS
+cs2                         cluster-network    10.233.205.93    NX3232C
+     Serial Number: FOXXXXXXXGD
       Is Monitored: true
             Reason: None
   Software Version: Cisco Nexus Operating System (NX-OS) Software, Version
-                    9.3(5)
+                    9.3(4)
     Version Source: CDP
-cluster1::*>
+
+2 entries were displayed.
 ----
 
 
@@ -139,7 +149,8 @@ cluster1::*>
 +
 [listing]
 ----
-cluster1::*> network interface modify -vserver Cluster -lif * -auto-revert false
+cluster1::*> network interface modify -vserver Cluster -lif \* -auto-revert false
+
 ----
 . 在集群交换机 CS2 上，关闭连接到节点集群端口的端口。
 +
@@ -148,7 +159,7 @@ cluster1::*> network interface modify -vserver Cluster -lif * -auto-revert false
 cs2(config)# interface eth1/1/1-2,eth1/7-8
 cs2(config-if-range)# shutdown
 ----
-. 验证集群端口是否已迁移到集群交换机 CS1 上托管的端口。这可能需要几秒钟时间： `network interface show -role cluster`
+. 验证集群端口是否已迁移到集群交换机 CS1 上托管的端口。这可能需要几秒钟的时间。`network interface show -role cluster`
 +
 [listing]
 ----
@@ -198,7 +209,7 @@ cs2#
 .. 对交换机执行基本设置。
 
 
-. 使用以下传输协议之一将 RCF 复制到交换机 CS2 的启动闪存： FTP ， TFTP ， SFTP 或 SCP 。有关 Cisco 命令的详细信息，请参见中的相应指南 https://www.cisco.com/c/en/us/support/switches/nexus-9336c-fx2-switch/model.html#CommandReferences["《 Cisco Nexus 9000 系列 NX-OS 命令参考》"^] 指南。
+. 使用以下传输协议之一将 RCF 复制到交换机 CS2 的启动闪存： FTP ， TFTP ， SFTP 或 SCP 。有关 Cisco 命令的详细信息，请参见中的相应指南 https://www.cisco.com/c/en/us/support/switches/nexus-3000-series-switches/products-installation-guides-list.html["《 Cisco Nexus 3000 系列 NX-OS 命令参考》"^] 指南。
 +
 此示例显示了使用 TFTP 将 RCF 复制到交换机 CS2 上的 bootflash 。
 
@@ -206,7 +217,7 @@ cs2#
 [listing]
 ----
 cs2# copy tftp: bootflash: vrf management
-Enter source filename: Nexus_9336C_RCF_v1.6-Cluster-HA-Breakout.txt
+Enter source filename: Nexus_3232C_RCF_v1.6-Cluster-HA-Breakout.txt
 Enter hostname for the tftp server: 172.22.201.50
 Trying to connect to tftp server......Connection to Server Established.
 TFTP get operation was successful
@@ -214,17 +225,17 @@ Copy complete, now saving to disk (please wait)...
 ----
 . 将先前下载的 RCF 应用于 bootflash 。
 +
-有关 Cisco 命令的详细信息，请参见中的相应指南 https://www.cisco.com/c/en/us/support/switches/nexus-9336c-fx2-switch/model.html#CommandReferences["《 Cisco Nexus 9000 系列 NX-OS 命令参考》"^] 指南。
+有关 Cisco 命令的详细信息，请参见中的相应指南 https://www.cisco.com/c/en/us/support/switches/nexus-3000-series-switches/products-installation-guides-list.html["《 Cisco Nexus 3000 系列 NX-OS 命令参考》"^] 指南。
 
 +
-此示例显示了正在交换机 CS2 上安装的 RCF 文件 `Nexus 9336C_RCF_v1.6-Cluster-HA-Breakout 。 txt` 。
+此示例显示了正在交换机 CS2 上安装的 RCF 文件 `Nexus 3232C_RCF_v1.6-Cluster-HA-Breakout 。 txt` ：
 
 +
 [listing]
 ----
-cs2# copy Nexus_9336C_RCF_v1.6-Cluster-HA-Breakout.txt running-config echo-commands
+cs2# copy Nexus_3232C_RCF_v1.6-Cluster-HA-Breakout.txt running-config echo-commands
 ----
-. 检查 `show banner motd` 命令的横幅输出。您必须阅读并遵循这些说明，以确保交换机的配置和操作正确。
+. 检查 `show banner motd` 命令的横幅输出。您必须阅读并按照 * 重要说明 * 中的说明进行操作，以确保交换机的配置和操作正确无误。
 +
 [listing]
 ----
@@ -233,33 +244,40 @@ cs2# show banner motd
 ******************************************************************************
 * NetApp Reference Configuration File (RCF)
 *
-* Switch   : Nexus N9K-C9336C-FX2
-* Filename : Nexus_9336C_RCF_v1.6-Cluster-HA-Breakout.txt
-* Date     : 10-23-2020
+* Switch   : Cisco Nexus 3232C
+* Filename : Nexus_3232C_RCF_v1.6-Cluster-HA-Breakout.txt
+* Date     : Oct-20-2020
 * Version  : v1.6
 *
-* Port Usage:
-* Ports  1- 3: Breakout mode (4x10G) Intra-Cluster Ports, int e1/1/1-4, e1/2/1-4
-, e1/3/1-4
-* Ports  4- 6: Breakout mode (4x25G) Intra-Cluster/HA Ports, int e1/4/1-4, e1/5/
-1-4, e1/6/1-4
-* Ports  7-34: 40/100GbE Intra-Cluster/HA Ports, int e1/7-34
-* Ports 35-36: Intra-Cluster ISL Ports, int e1/35-36
+* Port Usage : Breakout configuration
+* Ports  1- 3: Breakout mode (4x10GbE) Intra-Cluster Ports, int e1/1/1-4,
+* e1/2/1-4, e1/3/1-4
+* Ports  4- 6: Breakout mode (4x25GbE) Intra-Cluster/HA Ports, int e1/4/1-4,
+* e1/5/1-4, e1/6/1-4
+* Ports  7-30: 40/100GbE Intra-Cluster/HA Ports, int e1/7-30
+* Ports 31-32: Intra-Cluster ISL Ports, int e1/31-32
+* Ports 33-34: 10GbE Intra-Cluster 10GbE Ports, int e1/33-34
 *
-* Dynamic breakout commands:
-* 10G: interface breakout module 1 port <range> map 10g-4x
-* 25G: interface breakout module 1 port <range> map 25g-4x
+* IMPORTANT NOTES
+* - Load Nexus_3232C_RCF_v1.6-Cluster-HA.txt for non breakout config
 *
-* Undo breakout commands and return interfaces to 40/100G configuration in confi
-g mode:
-* no interface breakout module 1 port <range> map 10g-4x
-* no interface breakout module 1 port <range> map 25g-4x
-* interface Ethernet <interfaces taken out of breakout mode>
-* inherit port-profile 40-100G
-* priority-flow-control mode auto
-* service-policy input HA
-* exit
+* - This RCF utilizes QoS and requires TCAM re-configuration, requiring RCF
+*   to be loaded twice with the Cluster Switch rebooted in between.
 *
+* - Perform the following 4 steps to ensure proper RCF installation:
+*
+*   (1) Apply RCF first time, expect following messages:
+*       - Please save config and reload the system...
+*       - Edge port type (portfast) should only be enabled on ports...
+*       - TCAM region is not configured for feature QoS class IPv4 ingress...
+*
+*   (2) Save running-configuration and reboot Cluster Switch
+*
+*   (3) After reboot, apply same RCF second time and expect following messages:
+*       - % Invalid command at '^' marker
+*       - Syntax error while parsing...
+*
+*   (4) Save running-configuration again
 ******************************************************************************
 ----
 . 验证 RCF 文件是否为正确的更新版本： `show running-config`
@@ -274,25 +292,25 @@ g mode:
 
 . 验证 RCF 版本和交换机设置是否正确后，将 running-config 文件复制到 startup-config 文件。
 +
-有关 Cisco 命令的详细信息，请参见中的相应指南 https://www.cisco.com/c/en/us/support/switches/nexus-9336c-fx2-switch/model.html#CommandReferences["《 Cisco Nexus 9000 系列 NX-OS 命令参考》"^] 指南。
+有关 Cisco 命令的详细信息，请参见中的相应指南 https://www.cisco.com/c/en/us/support/switches/nexus-3000-series-switches/products-installation-guides-list.html["《 Cisco Nexus 3000 系列 NX-OS 命令参考》"^] 指南。
 
 +
 [listing]
 ----
 cs2# copy running-config startup-config \[\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\] 100% Copy complete
 ----
-. 重新启动交换机 CS2 。在交换机重新启动时，您可以忽略节点上报告的 "`cluster ports down` " 事件。
+. 重新启动交换机 CS2 。您可以忽略交换机重新启动时在节点上报告的 " 集群端口关闭 " 事件。
 +
 [listing]
 ----
 cs2# reload
-This command will reboot the system. (y/n)? [n] y
+This command will reboot the system. (y/n)?  [n] y
 ----
 . 应用相同的 RCF 并再次保存运行配置。
 +
 [listing]
 ----
-cs2# copy Nexus_9336C_RCF_v1.6-Cluster-HA-Breakout.txt running-config echo-commands
+cs2# copy Nexus_3232C_RCF_v1.6-Cluster-HA-Breakout.txt running-config echo-commands
 cs2# copy running-config startup-config [########################################] 100% Copy complete
 ----
 . 验证集群上集群端口的运行状况。
@@ -345,52 +363,52 @@ Node/       Local  Discovered
 Protocol    Port   Device (LLDP: ChassisID)  Interface         Platform
 ----------- ------ ------------------------- ----------------- --------
 cluster1-01/cdp
-            e0a    cs1                       Ethernet1/7       N9K-C9336C
-            e0d    cs2                       Ethernet1/7       N9K-C9336C
+            e0a    cs1                       Ethernet1/7       N3K-C3232C
+            e0d    cs2                       Ethernet1/7       N3K-C3232C
 cluster01-2/cdp
-            e0a    cs1                       Ethernet1/8       N9K-C9336C
-            e0d    cs2                       Ethernet1/8       N9K-C9336C
+            e0a    cs1                       Ethernet1/8       N3K-C3232C
+            e0d    cs2                       Ethernet1/8       N3K-C3232C
 cluster01-3/cdp
-            e0a    cs1                       Ethernet1/1/1     N9K-C9336C
-            e0b    cs2                       Ethernet1/1/1     N9K-C9336C
+            e0a    cs1                       Ethernet1/1/1     N3K-C3232C
+            e0b    cs2                       Ethernet1/1/1     N3K-C3232C
 cluster1-04/cdp
-            e0a    cs1                       Ethernet1/1/2     N9K-C9336C
-            e0b    cs2                       Ethernet1/1/2     N9K-C9336C
+            e0a    cs1                       Ethernet1/1/2     N3K-C3232C
+            e0b    cs2                       Ethernet1/1/2     N3K-C3232C
 
 cluster1::*> system cluster-switch show -is-monitoring-enabled-operational true
 Switch                      Type               Address          Model
 --------------------------- ------------------ ---------------- -----
-cs1                         cluster-network    10.233.205.90    NX9-C9336C
-     Serial Number: FOCXXXXXXGD
+cs1                         cluster-network    10.233.205.90    N3K-C3232C
+     Serial Number: FOXXXXXXXGD
       Is Monitored: true
             Reason: None
   Software Version: Cisco Nexus Operating System (NX-OS) Software, Version
-                    9.3(5)
+                    9.3(4)
     Version Source: CDP
 
-cs2                         cluster-network    10.233.205.91    NX9-C9336C
-     Serial Number: FOCXXXXXXGS
+cs2                         cluster-network    10.233.205.91    N3K-C3232C
+     Serial Number: FOXXXXXXXGS
       Is Monitored: true
             Reason: None
   Software Version: Cisco Nexus Operating System (NX-OS) Software, Version
-                    9.3(5)
+                    9.3(4)
     Version Source: CDP
 
 2 entries were displayed.
 ----
-+
-
-NOTE: 根据先前加载在 CS1 交换机控制台上的 RCF 版本，您可能会在该交换机控制台上看到以下输出。
-
 
 
 +
-[listing]
-----
+[NOTE]
+====
+根据先前加载在 CS1 交换机控制台上的 RCF 版本，您可能会在该交换机控制台上看到以下输出
+
+....
 2020 Nov 17 16:07:18 cs1 %$ VDC-1 %$ %STP-2-UNBLOCK_CONSIST_PORT: Unblocking port port-channel1 on VLAN0092. Port consistency restored.
 2020 Nov 17 16:07:23 cs1 %$ VDC-1 %$ %STP-2-BLOCK_PVID_PEER: Blocking port-channel1 on VLAN0001. Inconsistent peer vlan.
 2020 Nov 17 16:07:23 cs1 %$ VDC-1 %$ %STP-2-BLOCK_PVID_LOCAL: Blocking port-channel1 on VLAN0092. Inconsistent local vlan.
-----
+....
+====
 . 在集群交换机 CS1 上，关闭连接到节点集群端口的端口。
 +
 以下示例使用步骤 1 中的接口示例输出：
@@ -440,14 +458,14 @@ cluster1::*>
 +
 [listing]
 ----
-cluster1::*> network interface modify -vserver Cluster -lif * -auto-revert True
+cluster1::*> network interface modify -vserver Cluster -lif \* -auto-revert True
 ----
-. 重新启动交换机 CS1 。执行此操作可触发集群 LIF 还原到其主端口。在交换机重新启动时，您可以忽略节点上报告的 "`cluster ports down` " 事件。
+. 重新启动交换机 CS1 。执行此操作可触发集群 LIF 还原到其主端口。您可以忽略交换机重新启动时在节点上报告的 " 集群端口关闭 " 事件。
 +
 [listing]
 ----
 cs1# reload
-This command will reboot the system. (y/n)? [n] y
+This command will reboot the system. (y/n)?  [n] y
 ----
 . 验证连接到集群端口的交换机端口是否已启动。
 +
@@ -463,7 +481,7 @@ Eth1/8        1       eth  trunk  up      none                   100G(D) --
 .
 .
 ----
-. 验证 CS1 和 CS2 之间的 ISL 是否正常运行：``s如何执行端口通道摘要``
+. 验证 CS1 和 CS2 之间的 ISL 是否正常运行： `s如何执行端口通道摘要`
 +
 [listing]
 ----
@@ -477,16 +495,17 @@ Flags:  D - Down        P - Up in port-channel (members)
         p - Up in delay-lacp mode (member)
         M - Not in use. Min-links not met
 --------------------------------------------------------------------------------
-Group Port-       Type     Protocol  Member Ports      Channel
+Group Port-       Type     Protocol  Member Ports
+      Channel
 --------------------------------------------------------------------------------
-1     Po1(SU)     Eth      LACP      Eth1/35(P)        Eth1/36(P)
+1     Po1(SU)     Eth      LACP      Eth1/31(P)   Eth1/32(P)
 cs1#
 ----
 . 验证集群 LIF 是否已还原到其主端口： `network interface show -role cluster`
 +
 [listing]
 ----
-cluster1::*> network interface show -role cluster
+cluster1::*> **network interface show -role cluster**
             Logical            Status     Network            Current             Current Is
 Vserver     Interface          Admin/Oper Address/Mask       Node                Port    Home
 ----------- ------------------ ---------- ------------------ ------------------- ------- ----

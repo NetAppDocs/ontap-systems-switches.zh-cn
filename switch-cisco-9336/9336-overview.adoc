@@ -110,6 +110,6 @@ Nexus 5596UP 交换机还支持一个或两个 16 端口扩展模块（ X1988-R6
 Nexus 5596T 交换机仅支持用作 FAS2520 的集群互连交换机，用于执行无中断硬件升级。
 
 +
-http://support.netapp.com/info/communications/ECMP12454150.html["终止可用性"] 详细信息
+http://support.netapp.com/info/communications/ECMP12454150.html["终止可用性"^] 详细信息
 
 

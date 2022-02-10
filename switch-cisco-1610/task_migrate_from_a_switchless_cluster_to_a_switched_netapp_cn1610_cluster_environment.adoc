@@ -1,0 +1,796 @@
+---
+permalink: switch-cisco-1610/task_migrate_from_a_switchless_cluster_to_a_switched_netapp_cn1610_cluster_environment.html 
+sidebar: sidebar 
+keywords: migrate, switchless cluster environment, switched netapp cn1610 
+summary: 如果您有一个现有的双节点无交换机集群环境，则可以使用 CN1610 集群网络交换机迁移到双节点有交换机集群环境，从而可以扩展到两个节点以上。 
+---
+= 从无交换机集群环境迁移到有交换机的 NetApp CN1610 集群环境
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+如果您有一个现有的双节点无交换机集群环境，则可以使用 CN1610 集群网络交换机迁移到双节点有交换机集群环境，从而可以扩展到两个节点以上。
+
+
+
+== 您将需要什么
+
+双节点无交换机配置：
+
+* 双节点无交换机配置必须已正确设置并正常运行。
+* 节点必须运行 ONTAP 8.2 或更高版本。
+* 所有集群端口都必须处于 `up` 状态。
+* 所有集群逻辑接口（ LIF ）都必须处于 `up` 状态并位于其主端口上。
+
+
+CN1610 集群交换机配置：
+
+* CN1610 集群交换机基础架构必须在两台交换机上都能正常运行。
+* 两台交换机都必须具有管理网络连接。
+* 必须能够通过控制台访问集群交换机。
+* CN1610 节点到节点交换机和交换机到交换机连接必须使用双轴或光缆。
++
+_NetAppHardware Universe_ 包含有关布线的详细信息。
+
++
+https://hwu.netapp.com/Switch/Index["Hardware Universe —交换机"^]
+
+* 交换机间链路（ ISL ）缆线必须连接到两个 CN1610 交换机上的端口 13 到 16 。
+* 必须完成两个 CN1610 交换机的初始自定义。
++
+以前的任何站点自定义设置（例如 SMTP ， SNMP 和 SSH ）都应复制到新交换机。
+
+
+
+
+
+== 关于此任务
+
+此操作步骤中的示例使用以下集群交换机和节点命名：
+
+* CN1610 交换机的名称是 CS1 和 CS2 。
+* LIF 的名称是 clus1 和 clus2 。
+* 节点的名称是 node1 和 node2 。
+* `cluster ：：： * >` 提示符用于指示集群的名称。
+* 此操作步骤 中使用的集群端口为 e1a 和 e2a 。
++
+_cluster_ Hardware Universe 包含有关平台的实际集群端口的最新信息。
+
+
+
+
+
+== 步骤
+
+. 将权限级别更改为高级，在系统提示您继续时输入 `y` ： `set -privilege advanced`
++
+此时将显示高级提示符（ * > ）。
+
+. 如果在此集群上启用了 AutoSupport ，请通过调用 AutoSupport 消息来禁止自动创建案例： `ssystem node AutoSupport invoke -node * -type all -message MAINT=xh`
++
+_x_ 是维护时段的持续时间，以小时为单位。
+
++
+[NOTE]
+====
+AutoSupport 消息会通知技术支持此维护任务，以便在维护窗口期间禁止自动创建案例。
+
+====
++
+以下命令将禁止自动创建案例 2 小时：
+
++
+[listing]
+----
+cluster::*> system node autosupport invoke -node * -type all -message MAINT=2h
+----
+. 在新集群交换机 CS1 和 CS2 上禁用所有面向节点的端口（而不是 ISL 端口）。
++
+不得禁用 ISL 端口。
+
++
+以下示例显示，交换机 CS1 上的面向节点的端口 1 到 12 已禁用：
+
++
+[listing]
+----
+
+(cs1)> enable
+(cs1)# configure
+(cs1)(Config)# interface 0/1-0/12
+(cs1)(Interface 0/1-0/12)# shutdown
+(cs1)(Interface 0/1-0/12)# exit
+(cs1)(Config)# exit
+----
++
+以下示例显示，交换机 CS2 上的面向节点的端口 1 到 12 已禁用：
+
++
+[listing]
+----
+
+(c2)> enable
+(cs2)# configure
+(cs2)(Config)# interface 0/1-0/12
+(cs2)(Interface 0/1-0/12)# shutdown
+(cs2)(Interface 0/1-0/12)# exit
+(cs2)(Config)# exit
+----
+. 验证两个 CN1610 集群交换机 CS1 和 CS2 之间的 ISL 和 ISL 上的物理端口是否为 `up` ： `show port-channel`
++
+以下示例显示交换机 CS1 上的 ISL 端口为 `up` ：
+
++
+[listing]
+----
+
+(cs1)# show port-channel 3/1
+Local Interface................................ 3/1
+Channel Name................................... ISL-LAG
+Link State..................................... Up
+Admin Mode..................................... Enabled
+Type........................................... Static
+Load Balance Option............................ 7
+(Enhanced hashing mode)
+
+Mbr    Device/       Port      Port
+Ports  Timeout       Speed     Active
+------ ------------- --------- -------
+0/13   actor/long    10G Full  True
+       partner/long
+0/14   actor/long    10G Full  True
+       partner/long
+0/15   actor/long    10G Full  True
+       partner/long
+0/16   actor/long    10G Full  True
+       partner/long
+----
++
+以下示例显示交换机 CS2 上的 ISL 端口为 `up` ：
+
++
+[listing]
+----
+
+(cs2)# show port-channel 3/1
+Local Interface................................ 3/1
+Channel Name................................... ISL-LAG
+Link State..................................... Up
+Admin Mode..................................... Enabled
+Type........................................... Static
+Load Balance Option............................ 7
+(Enhanced hashing mode)
+
+Mbr    Device/       Port      Port
+Ports  Timeout       Speed     Active
+------ ------------- --------- -------
+0/13   actor/long    10G Full  True
+       partner/long
+0/14   actor/long    10G Full  True
+       partner/long
+0/15   actor/long    10G Full  True
+       partner/long
+0/16   actor/long    10G Full  True
+       partner/long
+----
+. 显示相邻设备的列表： `s如何显示 isdp 邻居`
++
+此命令可提供有关连接到系统的设备的信息。
+
++
+以下示例列出了交换机 CS1 上的相邻设备：
+
++
+[listing]
+----
+
+(cs1)# show isdp neighbors
+Capability Codes: R - Router, T - Trans Bridge, B - Source Route Bridge,
+                  S - Switch, H - Host, I - IGMP, r - Repeater
+Device ID              Intf         Holdtime  Capability   Platform  Port ID
+---------------------- ------------ --------- ------------ --------- ------------
+cs2                    0/13         11        S            CN1610    0/13
+cs2                    0/14         11        S            CN1610    0/14
+cs2                    0/15         11        S            CN1610    0/15
+cs2                    0/16         11        S            CN1610    0/16
+----
++
+以下示例列出了交换机 CS2 上的相邻设备：
+
++
+[listing]
+----
+
+(cs2)# show isdp neighbors
+Capability Codes: R - Router, T - Trans Bridge, B - Source Route Bridge,
+                  S - Switch, H - Host, I - IGMP, r - Repeater
+Device ID              Intf         Holdtime  Capability   Platform  Port ID
+---------------------- ------------ --------- ------------ --------- ------------
+cs1                    0/13         11        S            CN1610    0/13
+cs1                    0/14         11        S            CN1610    0/14
+cs1                    0/15         11        S            CN1610    0/15
+cs1                    0/16         11        S            CN1610    0/16
+----
+. 显示集群端口列表： `network port show`
++
+以下示例显示了可用的集群端口：
+
++
+[listing]
+----
+
+cluster::*> network port show -ipspace Cluster
+Node: node1
+                                                                       Ignore
+                                                  Speed(Mbps) Health   Health
+Port      IPspace      Broadcast Domain Link MTU  Admin/Oper  Status   Status
+--------- ------------ ---------------- ---- ---- ----------- -------- ------
+e0a       Cluster      Cluster          up   9000  auto/10000 healthy  false
+e0b       Cluster      Cluster          up   9000  auto/10000 healthy  false
+e0c       Cluster      Cluster          up   9000  auto/10000 healthy  false
+e0d       Cluster      Cluster          up   9000  auto/10000 healthy  false
+e4a       Cluster      Cluster          up   9000  auto/10000 healthy  false
+e4b       Cluster      Cluster          up   9000  auto/10000 healthy  false
+
+Node: node2
+                                                                       Ignore
+                                                  Speed(Mbps) Health   Health
+Port      IPspace      Broadcast Domain Link MTU  Admin/Oper  Status   Status
+--------- ------------ ---------------- ---- ---- ----------- -------- ------
+e0a       Cluster      Cluster          up   9000  auto/10000 healthy  false
+e0b       Cluster      Cluster          up   9000  auto/10000 healthy  false
+e0c       Cluster      Cluster          up   9000  auto/10000 healthy  false
+e0d       Cluster      Cluster          up   9000  auto/10000 healthy  false
+e4a       Cluster      Cluster          up   9000  auto/10000 healthy  false
+e4b       Cluster      Cluster          up   9000  auto/10000 healthy  false
+12 entries were displayed.
+----
+. 验证每个集群端口是否已连接到其配对集群节点上的相应端口： `run * cdpd-show-neighbors`
++
+以下示例显示集群端口 e1a 和 e2a 连接到其集群配对节点上的同一端口：
+
++
+[listing]
+----
+
+cluster::*> run * cdpd show-neighbors
+2 entries were acted on.
+
+Node: node1
+Local  Remote          Remote                 Remote           Hold  Remote
+Port   Device          Interface              Platform         Time  Capability
+------ --------------- ---------------------- ---------------- ----- ----------
+e1a    node2           e1a                    FAS3270           137   H
+e2a    node2           e2a                    FAS3270           137   H
+
+
+Node: node2
+
+Local  Remote          Remote                 Remote           Hold  Remote
+Port   Device          Interface              Platform         Time  Capability
+------ --------------- ---------------------- ---------------- ----- ----------
+e1a    node1           e1a                    FAS3270           161   H
+e2a    node1           e2a                    FAS3270           161   H
+----
+. ` 所有集群 LIF 是否均已 `启动` 且正常运行： `network interface show -vserver Cluster
++
+每个集群 LIF 应在 "`is Home` " 列中显示 `true` 。
+
++
+[listing]
+----
+
+cluster::*> network interface show -vserver Cluster
+            Logical    Status     Network       Current       Current Is
+Vserver     Interface  Admin/Oper Address/Mask  Node          Port    Home
+----------- ---------- ---------- ------------- ------------- ------- ----
+node1
+            clus1      up/up      10.10.10.1/16 node1         e1a     true
+            clus2      up/up      10.10.10.2/16 node1         e2a     true
+node2
+            clus1      up/up      10.10.11.1/16 node2         e1a     true
+            clus2      up/up      10.10.11.2/16 node2         e2a     true
+
+4 entries were displayed.
+----
++
+[NOTE]
+====
+必须从本地节点执行步骤 10 到 13 中的以下修改和迁移命令。
+
+====
+. 验证所有集群端口是否均为 `up` ： `network port show -ipspace Cluster`
++
+[listing]
+----
+cluster::*> network port show -ipspace Cluster
+
+                                       Auto-Negot  Duplex     Speed (Mbps)
+Node   Port   Role         Link  MTU   Admin/Oper  Admin/Oper Admin/Oper
+------ ------ ------------ ----- ----- ----------- ---------- ------------
+node1
+       e1a    clus1        up    9000  true/true  full/full   auto/10000
+       e2a    clus2        up    9000  true/true  full/full   auto/10000
+node2
+       e1a    clus1        up    9000  true/true  full/full   auto/10000
+       e2a    clus2        up    9000  true/true  full/full   auto/10000
+
+4 entries were displayed.
+----
+. 在两个节点上的集群 LIF clus1 和 clus2 上将 ` -auto-revert` 参数设置为 `false` ： `network interface modify`
++
+[listing]
+----
+
+cluster::*> network interface modify -vserver node1 -lif clus1 -auto-revert false
+cluster::*> network interface modify -vserver node1 -lif clus2 -auto-revert false
+cluster::*> network interface modify -vserver node2 -lif clus1 -auto-revert false
+cluster::*> network interface modify -vserver node2 -lif clus2 -auto-revert false
+----
++
+[NOTE]
+====
+对于 8.3 及更高版本，请使用以下命令： `network interface modify -vserver cluster -lif * -auto-revert false`
+
+====
+. 对集群端口执行 Ping 操作以验证集群连接： `cluster ping-cluster local`
++
+命令输出显示了所有集群端口之间的连接。
+
+. 将 clus1 迁移到每个节点控制台上的端口 e2a ： `network interface migrate`
++
+以下示例显示了将 clus1 迁移到 node1 和 node2 上的端口 E2A 的过程：
+
++
+[listing]
+----
+
+cluster::*> network interface migrate -vserver node1 -lif clus1 -source-node node1 -dest-node node1 -dest-port e2a
+cluster::*> network interface migrate -vserver node2 -lif clus1 -source-node node2 -dest-node node2 -dest-port e2a
+----
++
+[NOTE]
+====
+对于 8.3 及更高版本，请使用以下命令： `network interface migrate -vserver cluster -lif clus1 -destination-node node1 -destination-port e2a`
+
+====
+. 验证是否已进行迁移： `network interface show -vserver Cluster`
++
+以下示例验证 clus1 是否已迁移到 node1 和 node2 上的端口 E2A ：
+
++
+[listing]
+----
+
+cluster::*> network interface show -vserver Cluster
+            Logical    Status     Network       Current       Current Is
+Vserver     Interface  Admin/Oper Address/Mask  Node          Port    Home
+----------- ---------- ---------- ------------- ------------- ------- ----
+node1
+            clus1      up/up    10.10.10.1/16   node1         e2a     false
+            clus2      up/up    10.10.10.2/16   node1         e2a     true
+node2
+            clus1      up/up    10.10.11.1/16   node2         e2a     false
+            clus2      up/up    10.10.11.2/16   node2         e2a     true
+
+4 entries were displayed.
+----
+. 关闭两个节点上的集群端口 e1a ： `network port modify`
++
+以下示例显示了如何关闭 node1 和 node2 上的端口 e1a ：
+
++
+[listing]
+----
+
+cluster::*> network port modify -node node1 -port e1a -up-admin false
+cluster::*> network port modify -node node2 -port e1a -up-admin false
+----
+. 验证端口状态： `network port show`
++
+以下示例显示 node1 和 node2 上的端口 e1a 为 `down` ：
+
++
+[listing]
+----
+
+cluster::*> network port show -role cluster
+                                      Auto-Negot  Duplex     Speed (Mbps)
+Node   Port   Role         Link   MTU Admin/Oper  Admin/Oper Admin/Oper
+------ ------ ------------ ---- ----- ----------- ---------- ------------
+node1
+       e1a    clus1        down  9000  true/true  full/full   auto/10000
+       e2a    clus2        up    9000  true/true  full/full   auto/10000
+node2
+       e1a    clus1        down  9000  true/true  full/full   auto/10000
+       e2a    clus2        up    9000  true/true  full/full   auto/10000
+
+4 entries were displayed.
+----
+. 断开缆线与 node1 上的集群端口 e1a 的连接，然后使用 CN1610 交换机支持的相应布线方式将 e1a 连接到集群交换机 CS1 上的端口 1 。
++
+_NetApp Hardware Universe _ 包含有关布线的详细信息。
+
++
+https://hwu.netapp.com/Switch/Index["Hardware Universe —交换机"^]
+
+. 断开缆线与 node2 上的集群端口 e1a 的连接，然后使用 CN1610 交换机支持的相应布线方式将 e1a 连接到集群交换机 CS1 上的端口 2 。
+. 启用集群交换机 CS1 上的所有面向节点的端口。
++
+以下示例显示交换机 CS1 上的端口 1 到 12 已启用：
+
++
+[listing]
+----
+
+(cs1)# configure
+(cs1)(Config)# interface 0/1-0/12
+(cs1)(Interface 0/1-0/12)# no shutdown
+(cs1)(Interface 0/1-0/12)# exit
+(cs1)(Config)# exit
+----
+. 在每个节点上启用第一个集群端口 e1a ： `network port modify`
++
+以下示例显示了如何在 node1 和 node2 上启用端口 e1a ：
+
++
+[listing]
+----
+
+cluster::*> network port modify -node node1 -port e1a -up-admin true
+cluster::*> network port modify -node node2 -port e1a -up-admin true
+----
+. 验证所有集群端口是否均为 `up` ： `network port show -ipspace Cluster`
++
+以下示例显示 node1 和 node2 上的所有集群端口均为 `up` ：
+
++
+[listing]
+----
+
+cluster::*> network port show -ipspace Cluster
+                                      Auto-Negot  Duplex     Speed (Mbps)
+Node   Port   Role         Link   MTU Admin/Oper  Admin/Oper Admin/Oper
+------ ------ ------------ ---- ----- ----------- ---------- ------------
+node1
+       e1a    clus1        up    9000  true/true  full/full   auto/10000
+       e2a    clus2        up    9000  true/true  full/full   auto/10000
+node2
+       e1a    clus1        up    9000  true/true  full/full   auto/10000
+       e2a    clus2        up    9000  true/true  full/full   auto/10000
+
+4 entries were displayed.
+----
+. 将之前迁移的 clus1 还原到两个节点上的 e1a ： `network interface revert`
++
+以下示例显示了如何将 clus1 还原到 node1 和 node2 上的端口 e1a ：
+
++
+[listing]
+----
+
+cluster::*> network interface revert -vserver node1 -lif clus1
+cluster::*> network interface revert -vserver node2 -lif clus1
+----
++
+[NOTE]
+====
+对于 8.3 及更高版本，请使用以下命令： `network interface revert -vserver cluster -lif <nodename_clus<N>>`
+
+====
+. 确认所有集群 LIF 均为 `up` ，正常运行，并在 "Is Home" 列中显示为 `true` ： `network interface show -vserver Cluster`
++
+以下示例显示 node1 和 node2 上的所有 LIF 均为 `up` ，并且 "Is Home" 列结果为 `true` ：
+
++
+[listing]
+----
+
+cluster::*> network interface show -vserver Cluster
+            Logical    Status     Network       Current       Current Is
+Vserver     Interface  Admin/Oper Address/Mask  Node          Port    Home
+----------- ---------- ---------- ------------- ------------- ------- ----
+node1
+            clus1      up/up    10.10.10.1/16   node1         e1a     true
+            clus2      up/up    10.10.10.2/16   node1         e2a     true
+node2
+            clus1      up/up    10.10.11.1/16   node2         e1a     true
+            clus2      up/up    10.10.11.2/16   node2         e2a     true
+
+4 entries were displayed.
+----
+. 显示有关集群中节点状态的信息： `cluster show`
++
+以下示例显示了有关集群中节点的运行状况和资格的信息：
+
++
+[listing]
+----
+
+cluster::*> cluster show
+Node                 Health  Eligibility   Epsilon
+-------------------- ------- ------------  ------------
+node1                true    true          false
+node2                true    true          false
+----
+. 将 clus2 迁移到每个节点控制台上的端口 e1a ： `network interface migrate`
++
+以下示例显示了将 clus2 迁移到 node1 和 node2 上的端口 e1a 的过程：
+
++
+[listing]
+----
+
+cluster::*> network interface migrate -vserver node1 -lif clus2 -source-node node1 -dest-node node1 -dest-port e1a
+cluster::*> network interface migrate -vserver node2 -lif clus2 -source-node node2 -dest-node node2 -dest-port e1a
+----
++
+[NOTE]
+====
+对于 8.3 及更高版本，请使用以下命令： `network interface migrate -vserver cluster -lif node1_clus2 -dest-node node1 -dest-port e1a`
+
+====
+. 验证是否已进行迁移： `network interface show -vserver Cluster`
++
+以下示例验证 clus2 是否已迁移到 node1 和 node2 上的端口 e1a ：
+
++
+[listing]
+----
+
+cluster::*> network interface show -vserver Cluster
+            Logical    Status     Network       Current       Current Is
+Vserver     Interface  Admin/Oper Address/Mask  Node          Port    Home
+----------- ---------- ---------- ------------- ------------- ------- ----
+node1
+            clus1      up/up    10.10.10.1/16   node1         e1a     true
+            clus2      up/up    10.10.10.2/16   node1         e1a     false
+node2
+            clus1      up/up    10.10.11.1/16   node2         e1a     true
+            clus2      up/up    10.10.11.2/16   node2         e1a     false
+
+4 entries were displayed.
+----
+. 关闭两个节点上的集群端口 E2A ： `network port modify`
++
+以下示例显示了如何关闭 node1 和 node2 上的端口 E2A ：
+
++
+[listing]
+----
+
+cluster::*> network port modify -node node1 -port e2a -up-admin false
+cluster::*> network port modify -node node2 -port e2a -up-admin false
+----
+. 验证端口状态： `network port show`
++
+以下示例显示 node1 和 node2 上的端口 e2a 为 `down` ：
+
++
+[listing]
+----
+
+cluster::*> network port show -role cluster
+                                      Auto-Negot  Duplex     Speed (Mbps)
+Node   Port   Role         Link   MTU Admin/Oper  Admin/Oper Admin/Oper
+------ ------ ------------ ---- ----- ----------- ---------- ------------
+node1
+       e1a    clus1        up    9000  true/true  full/full   auto/10000
+       e2a    clus2        down  9000  true/true  full/full   auto/10000
+node2
+       e1a    clus1        up    9000  true/true  full/full   auto/10000
+       e2a    clus2        down  9000  true/true  full/full   auto/10000
+
+4 entries were displayed.
+----
+. 从节点 1 上的集群端口 E2A 断开缆线连接，然后使用 CN1610 交换机支持的相应布线方式将 E2A 连接到集群交换机 CS2 上的端口 1 。
+. 断开缆线与节点 2 上的集群端口 E2A 的连接，然后使用 CN1610 交换机支持的相应布线方式将 E2A 连接到集群交换机 CS2 上的端口 2 。
+. 启用集群交换机 CS2 上的所有面向节点的端口。
++
+以下示例显示交换机 CS2 上的端口 1 到 12 已启用：
+
++
+[listing]
+----
+
+(cs2)# configure
+(cs2)(Config)# interface 0/1-0/12
+(cs2)(Interface 0/1-0/12)# no shutdown
+(cs2)(Interface 0/1-0/12)# exit
+(cs2)(Config)# exit
+----
+. 在每个节点上启用第二个集群端口 E2A ：
++
+以下示例显示了如何在 node1 和 node2 上启用端口 E2A ：
+
++
+[listing]
+----
+
+cluster::*> network port modify -node node1 -port e2a -up-admin true
+cluster::*> network port modify -node node2 -port e2a -up-admin true
+----
+. 验证所有集群端口是否均为 `up` ： `network port show -ipspace Cluster`
++
+以下示例显示 node1 和 node2 上的所有集群端口均为 `up` ：
+
++
+[listing]
+----
+
+cluster::*> network port show -ipspace Cluster
+                                      Auto-Negot  Duplex     Speed (Mbps)
+Node   Port   Role         Link   MTU Admin/Oper  Admin/Oper Admin/Oper
+------ ------ ------------ ---- ----- ----------- ---------- ------------
+node1
+       e1a    clus1        up    9000  true/true  full/full   auto/10000
+       e2a    clus2        up    9000  true/true  full/full   auto/10000
+node2
+       e1a    clus1        up    9000  true/true  full/full   auto/10000
+       e2a    clus2        up    9000  true/true  full/full   auto/10000
+
+4 entries were displayed.
+----
+. 在两个节点上将 clus2 （以前已迁移）还原到 E2A ： `network interface revert`
++
+以下示例显示了如何将 clus2 还原到 node1 和 node2 上的端口 E2A ：
+
++
+[listing]
+----
+
+cluster::*> network interface revert -vserver node1 -lif clus2
+cluster::*> network interface revert -vserver node2 -lif clus2
+----
++
+[NOTE]
+====
+对于 8.3 及更高版本，命令如下：
+
+....
+cluster::*> network interface revert -vserver Cluster -lif node1_clus2
+cluster::*> network interface revert -vserver Cluster -lif node2_clus2
+....
+====
+. 确认所有接口在 "Is Home" 列中均显示 `true` ： `network interface show -vserver Cluster`
++
+以下示例显示 node1 和 node2 上的所有 LIF 均为 `up` ，并且 "Is Home" 列结果为 `true` ：
+
++
+[listing]
+----
+
+cluster::*> network interface show -vserver Cluster
+
+             Logical    Status     Network            Current     Current Is
+Vserver      Interface  Admin/Oper Address/Mask       Node        Port    Home
+-----------  ---------- ---------- ------------------ ----------- ------- ----
+node1
+             clus1      up/up      10.10.10.1/16      node1       e1a     true
+             clus2      up/up      10.10.10.2/16      node1       e2a     true
+node2
+             clus1      up/up      10.10.11.1/16      node2       e1a     true
+             clus2      up/up      10.10.11.2/16      node2       e2a     true
+----
+. 对集群端口执行 Ping 操作以验证集群连接： `cluster ping-cluster local`
++
+命令输出显示了所有集群端口之间的连接。
+
+. 验证两个节点与每个交换机之间是否有两个连接： `sHow isdp neighbors`
++
+以下示例显示了这两个交换机的相应结果：
+
++
+[listing]
+----
+
+(cs1)# show isdp neighbors
+Capability Codes: R - Router, T - Trans Bridge, B - Source Route Bridge,
+                  S - Switch, H - Host, I - IGMP, r - Repeater
+Device ID              Intf         Holdtime  Capability   Platform  Port ID
+---------------------- ------------ --------- ------------ --------- ------------
+node1                  0/1          132       H            FAS3270   e1a
+node2                  0/2          163       H            FAS3270   e1a
+cs2                    0/13         11        S            CN1610    0/13
+cs2                    0/14         11        S            CN1610    0/14
+cs2                    0/15         11        S            CN1610    0/15
+cs2                    0/16         11        S            CN1610    0/16
+
+(cs2)# show isdp neighbors
+Capability Codes: R - Router, T - Trans Bridge, B - Source Route Bridge,
+                  S - Switch, H - Host, I - IGMP, r - Repeater
+Device ID              Intf         Holdtime  Capability   Platform  Port ID
+---------------------- ------------ --------- ------------ --------- ------------
+node1                  0/1          132       H            FAS3270   e2a
+node2                  0/2          163       H            FAS3270   e2a
+cs1                    0/13         11        S            CN1610    0/13
+cs1                    0/14         11        S            CN1610    0/14
+cs1                    0/15         11        S            CN1610    0/15
+cs1                    0/16         11        S            CN1610    0/16
+----
+. 显示有关配置中设备的信息： `network device discovery show`
+. 使用高级权限命令禁用两个节点上的双节点无交换机配置设置： `network options detect-switchless modify`
++
+以下示例显示了如何禁用无交换机配置设置：
+
++
+[listing]
+----
+
+cluster::*> network options detect-switchless modify -enabled false
+----
++
+[NOTE]
+====
+对于 9.2 及更高版本，请跳过此步骤，因为配置会自动转换。
+
+====
+. 验证这些设置是否已禁用： `network options detect-switchless-cluster show`
++
+以下示例中的 `false` 输出显示配置设置已禁用：
+
++
+[listing]
+----
+
+cluster::*> network options detect-switchless-cluster show
+Enable Switchless Cluster Detection: false
+----
++
+[NOTE]
+====
+对于 9.2 及更高版本，请等待 " 启用无交换机集群 " 设置为 false 。这可能需要长达三分钟的时间。
+
+====
+. 将集群 clus1 和 clus2 配置为在每个节点上自动还原，然后确认：
++
+[listing]
+----
+
+cluster::*> network interface modify -vserver node1 -lif clus1 -auto-revert true
+cluster::*> network interface modify -vserver node1 -lif clus2 -auto-revert true
+cluster::*> network interface modify -vserver node2 -lif clus1 -auto-revert true
+cluster::*> network interface modify -vserver node2 -lif clus2 -auto-revert true
+----
++
+[NOTE]
+====
+对于 8.3 及更高版本，请使用以下命令： `network interface modify -vserver cluster -lif * -auto-revert true` 在集群中的所有节点上启用自动还原。
+
+====
+. 验证集群中节点成员的状态： `cluster show`
++
+以下示例显示了有关集群中节点的运行状况和资格的信息：
+
++
+[listing]
+----
+
+cluster::*> cluster show
+Node                 Health  Eligibility   Epsilon
+-------------------- ------- ------------  ------------
+node1                true    true          false
+node2                true    true          false
+----
+. 如果禁止自动创建案例，请通过调用 AutoSupport 消息重新启用它：
++
+`ssystem node AutoSupport invoke -node * -type all -message MAINT=end`
+
++
+[listing]
+----
+cluster::*> system node autosupport invoke -node * -type all -message MAINT=END
+----
+. 将权限级别重新更改为 admin ： `set -privilege admin`
+
+
+* 相关信息 *
+
+http://hwu.netapp.com["Hardware Universe"^]
+
+http://support.netapp.com/NOW/download/software/cm_switches_ntap/["NetApp CN1601 和 CN1610 问题描述 页面"^]
+
+https://library.netapp.com/ecm/ecm_download_file/ECMP1118645["《 CN1601 和 CN1610 交换机设置和配置指南》"^]
+
+https://kb.netapp.com/Advice_and_Troubleshooting/Data_Storage_Software/ONTAP_OS/How_to_suppress_automatic_case_creation_during_scheduled_maintenance_windows["NetApp 知识库文章 1010449 ： How to suppress automatic case creation during scheduled maintenance windows."^]

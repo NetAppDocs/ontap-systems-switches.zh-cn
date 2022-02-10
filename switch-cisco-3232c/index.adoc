@@ -1,0 +1,11 @@
+---
+permalink: switch-cisco-3232c/index.html 
+sidebar: sidebar 
+keywords: migrate, cn1610, switch, cisco nexus, 3232c 
+summary: 从 CN1610 交换机迁移到 Cisco Nexus 3232C 交换机 
+---
+= 从 CN1610 交换机迁移到 Cisco Nexus 3232C 交换机
+:icons: font
+:imagesdir: ../media/
+
+

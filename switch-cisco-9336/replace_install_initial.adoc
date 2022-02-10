@@ -12,12 +12,13 @@ summary: 您可以使用此操作步骤执行 Cisco Nexus 9336C-x2 交换机的�
 [role="lead"]
 您可以使用此操作步骤执行 Cisco Nexus 9336C-x2 交换机的初始安装。
 
-您可以从 NetApp 支持站点下载适用于您的交换机的 NetApp Cisco NX-OS 软件，网址为 http://mysupport.netapp.com/["mysupport.netapp.com"^]
+您可以从 NetApp 支持站点下载适用于您的交换机的 NetApp Cisco NX-OS 软件，网址为 http://mysupport.netapp.com/["mysupport.netapp.com"^]。
 
 NX-OS 是 Cisco Systems 提供的 Nexus 系列以太网交换机和 MDS 系列光纤通道（ FC ）存储区域网络交换机的网络操作系统。
 
-此操作步骤简要介绍了安装交换机并使其运行的过程：
+此操作步骤 简要介绍了安装交换机并使其运行的过程。
 
+.步骤
 . 将串行端口连接到所选的主机或串行端口。
 . 将管理端口（位于交换机的非端口端）连接到您的 SFTP 服务器所在的同一网络。
 . 在控制台中，设置主机端串行设置：
@@ -31,16 +32,14 @@ NX-OS 是 Cisco Systems 提供的 Nexus 系列以太网交换机和 MDS 系列�
 
 . Nexus 9336C-x2 交换机在首次启动或擦除正在运行的配置后重新启动时会在启动周期中循环。键入 * 是 * 以中止启动自动配置，从而中断此周期。然后，系统将显示 System Admin Account 设置：
 +
-....
-$ VDC-1 %$ %POAP-2-POAP_INFO:   - Abort Power On Auto Provisioning [yes - continue with normal setup, skip - bypass password and basic configuration, no - continue with Power On Auto Provisioning] (yes/skip/no)[no]:
-**yes**
+[listing]
+----
+$ VDC-1 %$ %POAP-2-POAP_INFO:   - Abort Power On Auto Provisioning [yes - continue with normal setup, skip - bypass password and basic configuration, no - continue with Power On Auto Provisioning] (yes/skip/no)[no]: yes
 Disabling POAP.......Disabling POAP
 2019 Apr 10 00:36:17 switch %$ VDC-1 %$ poap: Rolling back, please wait... (This may take 5-15 minutes)
-....
-+
- ---- System Admin Account Setup ----
-+
- Do you want to enforce secure password standard (yes/no) [y]:
+
+---- System Admin Account Setup ----
+----
 . 键入 * y* 以强制实施安全密码标准：
 +
 [listing]
@@ -125,9 +124,9 @@ Enable the telnet service? (yes/no) [n]: n
 ----
 Enable the ssh service? (yes/no) [y]: y
 
-       Type of ssh key you would like to generate (dsa/rsa) [rsa]: rsa
+Type of ssh key you would like to generate (dsa/rsa) [rsa]: rsa
 
-       Number of rsa key bits <1024-2048> [1024]: 2048
+Number of rsa key bits <1024-2048> [1024]: 2048
 ----
 . 配置其他设置：
 +
@@ -153,7 +152,7 @@ Use this configuration and save it? (yes/no) [y]: y
 Copy complete, now saving to disk (please wait)...
 Copy complete.
 ----
-. 对于 ONTAP 9.8 及更高版本，请使用以下命令启用以太网交换机运行状况监控器日志收集功能以收集交换机相关的日志文件： `ssystem switch Ethernet log setup-password``ssystem switch Ethernet log enable-Collection`
+. 对于 ONTAP 9.8 及更高版本，请使用以下命令启用以太网交换机运行状况监控器日志收集功能以收集交换机相关的日志文件： `ssystem switch Ethernet log setup-password` 和 `ssystem switch Ethernet log enable-Collection`
 +
 [listing]
 ----
@@ -195,7 +194,7 @@ cluster1::*>
 
 NOTE: 如果其中任何一个命令返回错误，请联系 NetApp 支持部门。
 
-. 对于 ONTAP 9.5P16 ， 9.6P12 和 9.7P10 及更高版本的修补程序，请使用以下命令启用以太网交换机运行状况监控器日志收集功能以收集交换机相关的日志文件： `ssystem cluster-switch log setup-password``ssystem cluster-switch log enable-Collection`
+. 对于 ONTAP 9.5P16 ， 9.6P12 和 9.7P10 及更高版本的修补程序，请使用以下命令启用以太网交换机运行状况监控器日志收集功能以收集交换机相关的日志文件： `ssystem cluster-switch log setup-password` 和 `ssystem cluster-switch log enable-Collection`
 +
 [listing]
 ----

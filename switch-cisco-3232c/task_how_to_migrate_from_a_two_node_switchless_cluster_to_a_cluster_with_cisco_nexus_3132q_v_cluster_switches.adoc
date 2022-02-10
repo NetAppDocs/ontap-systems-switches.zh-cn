@@ -1,0 +1,719 @@
+---
+permalink: switch-cisco-3232c/task_how_to_migrate_from_a_two_node_switchless_cluster_to_a_cluster_with_cisco_nexus_3132q_v_cluster_switches.html 
+sidebar: sidebar 
+keywords: migrate, two-node cluster, switchless, cisco nexus 3232c 
+summary: 如果您使用双节点无交换机集群，则可以无中断地迁移到包含 Cisco Nexus 3232C 集群网络交换机的双节点交换集群。 
+---
+= 如何从双节点无交换机集群迁移到使用 Cisco Nexus 3232C 集群交换机的集群
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+如果您使用双节点无交换机集群，则可以无中断地迁移到包含 Cisco Nexus 3232C 集群网络交换机的双节点交换集群。
+
+
+
+== 您将需要什么
+
+* 这些配置必须设置正确且正常运行。
++
+这两个节点必须在双节点无交换机集群设置下连接并正常运行。
+
+* 所有集群端口都必须处于 `up` 状态。
+* 必须支持 Cisco Nexus 3232C 集群交换机。
+* 现有集群网络配置必须满足以下要求：
++
+** 两台交换机上的一个冗余且功能完备的 Nexus 3232C 集群基础架构
+** 交换机上的最新 RCF 和 NX-OS 版本
+** 两台交换机上的管理连接
+** 对两个交换机的控制台访问
+** 未迁移处于 `up` 状态的所有集群逻辑接口（ LIF ）
+** 交换机的初始自定义
+** 所有 ISL 端口均已启用并已布线
+
+
+
+
+
+
+== 关于此任务
+
+* 操作步骤 摘要 *
+
+* * 一显示和迁移物理和逻辑端口（步骤 1-10 ） *
+* * 二关闭重新分配的 LIF 并断开缆线连接（步骤 11-14 ） *
+* * 三启用集群端口（步骤 15 至 20 ） *
+* 四启用重新分配的 LIF （步骤 21-33 ） *
+
+
+此操作步骤中的示例使用以下交换机和节点命名：
+
+* Nexus 3232C 集群交换机， C1 和 C2 。
+* 节点为 n1 和 n2 。
+
+
+[NOTE]
+====
+此操作步骤 中的示例使用两个节点，每个节点使用两个 40 GbE 集群互连端口 E4A 和 e4e 。_cluster_ Hardware Universe 提供了有关平台上集群端口的详细信息。
+
+====
+* N1_clus1 是第一个连接到节点 n1 的集群交换机 C1 的集群逻辑接口（ LIF ）。
+* n1_clus2 是第一个连接到节点 n1 的集群交换机 C2 的集群 LIF 。
+* n2_clus1 是连接到节点 n2 的集群交换机 C1 的第一个集群 LIF 。
+* n2_clus2 是要连接到节点 n2 的集群交换机 C2 的第二个集群 LIF 。
+* 10 GbE 和 40/100 GbE 端口的数量在上提供的参考配置文件（ RCF ）中定义 https://mysupport.netapp.com/NOW/download/software/sanswitch/fcp/Cisco/netapp_cnmn/download.shtml["Cisco ® 集群网络交换机参考配置文件下载"^] 页面。
+
+
+[NOTE]
+====
+操作步骤 要求同时使用 ONTAP 命令和 Cisco Nexus 3000 系列交换机命令；除非另有说明，否则使用 ONTAP 命令。
+
+====
+
+
+== 步骤
+
+. 如果在此集群上启用了 AutoSupport ，则通过调用 AutoSupport 消息禁止自动创建案例：
++
+`ssystem node AutoSupport invoke -node * -type all - 消息 MAINT=xh`
+
++
+_x_ 是维护时段的持续时间，以小时为单位。
+
++
+[NOTE]
+====
+AutoSupport 消息会通知技术支持此维护任务，以便在维护窗口期间禁止自动创建案例。
+
+====
+. 确定每个集群接口的管理或运行状态：
++
+.. 显示网络端口属性：
++
+`network port show -role cluster`
+
++
+[listing]
+----
+cluster::*> network port show –role cluster
+  (network port show)
+Node: n1
+                                                                       Ignore
+                                                  Speed(Mbps) Health   Health
+Port      IPspace      Broadcast Domain Link MTU  Admin/Oper  Status   Status
+--------- ------------ ---------------- ---- ---- ----------- -------- -----
+e4a       Cluster      Cluster          up   9000 auto/40000  -
+e4e       Cluster      Cluster          up   9000 auto/40000  -        -
+Node: n2
+                                                                       Ignore
+                                                  Speed(Mbps) Health   Health
+Port      IPspace      Broadcast Domain Link MTU  Admin/Oper  Status   Status
+--------- ------------ ---------------- ---- ---- ----------- -------- -----
+e4a       Cluster      Cluster          up   9000 auto/40000  -
+e4e       Cluster      Cluster          up   9000 auto/40000  -
+4 entries were displayed.
+----
+.. 显示有关逻辑接口及其指定主节点的信息：
++
+`network interface show -role cluster`
+
++
+[listing]
+----
+cluster::*> network interface show -role cluster
+ (network interface show)
+            Logical    Status     Network            Current       Current Is
+Vserver     Interface  Admin/Oper Address/Mask       Node          Port    Home
+----------- ---------- ---------- ------------------ ------------- ------- ---
+Cluster
+            n1_clus1   up/up      10.10.0.1/24       n1            e4a     true
+            n1_clus2   up/up      10.10.0.2/24       n1            e4e     true
+            n2_clus1   up/up      10.10.0.3/24       n2            e4a     true
+            n2_clus2   up/up      10.10.0.4/24       n2            e4e     true
+
+4 entries were displayed.
+----
+.. 使用高级权限命令验证是否已启用无交换机集群检测：
++
+`network options detect-switchless-cluster show``
+
++
+以下示例中的输出显示已启用无交换机集群检测：
+
++
+[listing]
+----
+cluster::*> network options detect-switchless-cluster show
+Enable Switchless Cluster Detection: true
+----
+
+
+. 验证新的 3232C 交换机上是否安装了适当的 RCF 和映像，并进行任何必要的站点自定义，例如添加用户，密码和网络地址。
++
+此时必须准备两个交换机。如果您需要升级 RCF 和映像软件，必须按照以下步骤进行操作：
+
++
+.. 转到 NetApp 支持站点上的 _Cisco 以太网交换机 _ 页面。
++
+http://support.netapp.com/NOW/download/software/cm_switches/["Cisco 以太网交换机"^]
+
+.. 请记下该页面上的表中的交换机和所需的软件版本。
+.. 下载适当版本的 RCF 。
+.. 单击 * RCF* 页面上的 * 继续 * ，接受许可协议，然后按照 * 下载 * 页面上的说明下载问题描述 。
+.. 下载相应版本的映像软件。
++
+https://mysupport.netapp.com/NOW/download/software/sanswitch/fcp/Cisco/netapp_cnmn/download.shtml["Cisco 集群和管理网络交换机参考配置文件下载页面"^]
+
+
+
+. 单击 * RCF* 页面上的 * 继续 * ，接受许可协议，然后按照 * 下载 * 页面上的说明下载问题描述 。
+. 在 Nexus 3232C 交换机 C1 和 C2 上，禁用所有面向节点的端口 C1 和 C2 ，但不要禁用 ISL 端口 E1/31 - 32 。
++
+有关 Cisco 命令的详细信息，请参见中列出的指南 https://www.cisco.com/c/en/us/support/switches/nexus-3000-series-switches/products-command-reference-list.html["Cisco Nexus 3000 系列 NX-OS 命令参考"^]。
+
++
+以下示例显示了在 Nexus 3232C 集群交换机 C1 和 C2 上使用 RCF `NX3232_RCF_v1.0_24p10g_24p100g.txt` 中支持的配置禁用端口 1 到 30 ：
+
++
+[listing]
+----
+C1# copy running-config startup-config
+[########################################] 100% Copy complete.
+C1# configure
+C1(config)# int e1/1/1-4,e1/2/1-4,e1/3/1-4,e1/4/1-4,e1/5/1-4,e1/6/1-4,e1/7-30
+C1(config-if-range)# shutdown
+C1(config-if-range)# exit
+C1(config)# exit
+C2# copy running-config startup-config
+[########################################] 100% Copy complete.
+C2# configure
+C2(config)# int e1/1/1-4,e1/2/1-4,e1/3/1-4,e1/4/1-4,e1/5/1-4,e1/6/1-4,e1/7-30
+C2(config-if-range)# shutdown
+C2(config-if-range)# exit
+C2(config)# exit
+----
+. 使用支持的布线将 C1 上的端口 1/31 和 1/32 连接到 C2 上的相同端口。
+. 验证 C1 和 C2 上的 ISL 端口是否正常运行：
++
+`s如何执行端口通道摘要`
+
++
+有关 Cisco 命令的详细信息，请参见中列出的指南 https://www.cisco.com/c/en/us/support/switches/nexus-3000-series-switches/products-command-reference-list.html["Cisco Nexus 3000 系列 NX-OS 命令参考"^]。
+
++
+以下示例显示了 Cisco `s如何使用 port-channel summary` 命令来验证 C1 和 C2 上的 ISL 端口是否正常运行：
+
++
+[listing]
+----
+C1# show port-channel summary
+Flags: D - Down         P - Up in port-channel (members)
+       I - Individual   H - Hot-standby (LACP only)        s - Suspended    r - Module-removed
+       S - Switched     R - Routed
+       U - Up (port-channel)
+       M - Not in use. Min-links not met
+--------------------------------------------------------------------------------
+      Port-
+Group Channel      Type   Protocol  Member Ports
+-------------------------------------------------------------------------------
+1     Po1(SU)      Eth    LACP      Eth1/31(P)   Eth1/32(P)
+
+C2# show port-channel summary
+Flags: D - Down         P - Up in port-channel (members)
+       I - Individual   H - Hot-standby (LACP only)        s - Suspended    r - Module-removed
+       S - Switched     R - Routed
+       U - Up (port-channel)
+       M - Not in use. Min-links not met
+--------------------------------------------------------------------------------
+
+Group Port-        Type   Protocol  Member Ports
+      Channel
+--------------------------------------------------------------------------------
+1     Po1(SU)      Eth    LACP      Eth1/31(P)   Eth1/32(P)
+----
+. 显示交换机上相邻设备的列表。
++
+有关 Cisco 命令的详细信息，请参见中列出的指南 https://www.cisco.com/c/en/us/support/switches/nexus-3000-series-switches/products-command-reference-list.html["Cisco Nexus 3000 系列 NX-OS 命令参考"^]。
+
++
+以下示例显示了 Cisco 命令 `s如何使用 cdp neighbors` 显示交换机上的相邻设备：
+
++
+[listing]
+----
+C1# show cdp neighbors
+Capability Codes: R - Router, T - Trans-Bridge, B - Source-Route-Bridge
+                  S - Switch, H - Host, I - IGMP, r - Repeater,
+                  V - VoIP-Phone, D - Remotely-Managed-Device,                   s - Supports-STP-Dispute
+Device-ID          Local Intrfce  Hldtme Capability  Platform      Port ID
+C2                 Eth1/31        174    R S I s     N3K-C3232C  Eth1/31
+C2                 Eth1/32        174    R S I s     N3K-C3232C  Eth1/32
+Total entries displayed: 2
+C2# show cdp neighbors
+Capability Codes: R - Router, T - Trans-Bridge, B - Source-Route-Bridge
+                  S - Switch, H - Host, I - IGMP, r - Repeater,
+                  V - VoIP-Phone, D - Remotely-Managed-Device,                   s - Supports-STP-Dispute
+Device-ID          Local Intrfce  Hldtme Capability  Platform      Port ID
+C1                 Eth1/31        178    R S I s     N3K-C3232C  Eth1/31
+C1                 Eth1/32        178    R S I s     N3K-C3232C  Eth1/32
+Total entries displayed: 2
+----
+. 显示每个节点上的集群端口连接：
++
+`network device-discovery show`
+
++
+以下示例显示了为双节点无交换机集群配置显示的集群端口连接：
+
++
+[listing]
+----
+cluster::*> network device-discovery show
+            Local  Discovered
+Node        Port   Device              Interface        Platform
+----------- ------ ------------------- ---------------- ----------------
+n1         /cdp
+            e4a    n2                  e4a              FAS9000
+            e4e    n2                  e4e              FAS9000
+n2         /cdp
+            e4a    n1                  e4a              FAS9000
+            e4e    n1                  e4e              FAS9000
+----
+. 将 n1_clus1 和 n2_clus1 LIF 迁移到其目标节点的物理端口：
++
+`network interface migrate -vserver cluster -lif _lif-name_ source-node _source-node-name_ -destination-port _destination-port-name_`
+
++
+您必须对每个本地节点执行命令，如以下示例所示：
+
++
+[listing]
+----
+cluster::*> network interface migrate -vserver cluster -lif n1_clus1 -source-node n1
+–destination-node n1 -destination-port e4e
+cluster::*> network interface migrate -vserver cluster -lif n2_clus1 -source-node n2
+–destination-node n2 -destination-port e4e
+----
+. 验证集群接口是否已成功迁移：
++
+`network interface show -role cluster`
+
++
+以下示例显示了 n1_clus1 的 "Is Home" 状态，而 n2_clus1 LIF 在迁移完成后变为 "false" ：
+
++
+[listing]
+----
+cluster::*> network interface show -role cluster
+ (network interface show)
+            Logical    Status     Network            Current       Current Is
+Vserver     Interface  Admin/Oper Address/Mask       Node          Port    Home
+----------- ---------- ---------- ------------------ ------------- ------- ----
+Cluster
+            n1_clus1   up/up      10.10.0.1/24       n1            e4e     false
+            n1_clus2   up/up      10.10.0.2/24       n1            e4e     true
+            n2_clus1   up/up      10.10.0.3/24       n2            e4e     false
+            n2_clus2   up/up      10.10.0.4/24       n2            e4e     true
+ 4 entries were displayed.
+----
+. 关闭在步骤 9 中迁移的 n1_clus1 和 n2_clus1 LIF 的集群端口：
++
+`network port modify -node _node-name_ -port _port-name_ -up-admin false`
+
++
+您必须对每个端口执行命令，如以下示例所示：
+
++
+[listing]
+----
+cluster::*> network port modify -node n1 -port e4a -up-admin false
+cluster::*> network port modify -node n2 -port e4a -up-admin false
+----
+. 对远程集群接口执行 Ping 操作并执行 RPC 服务器检查：
++
+`cluster ping-cluster -node _node-name_`
+
++
+以下示例显示了正在对节点 n1 执行 Ping 操作，之后会指示 RPC 状态：
+
++
+[listing]
+----
+cluster::*> cluster ping-cluster -node n1
+
+Host is n1 Getting addresses from network interface table...
+Cluster n1_clus1 n1        e4a    10.10.0.1
+Cluster n1_clus2 n1        e4e    10.10.0.2
+Cluster n2_clus1 n2        e4a    10.10.0.3
+Cluster n2_clus2 n2        e4e    10.10.0.4
+Local = 10.10.0.1 10.10.0.2
+Remote = 10.10.0.3 10.10.0.4
+Cluster Vserver Id = 4294967293 Ping status:
+....
+Basic connectivity succeeds on 4 path(s)
+Basic connectivity fails on 0 path(s) ................
+Detected 9000 byte MTU on 32 path(s):
+    Local 10.10.0.1 to Remote 10.10.0.3
+    Local 10.10.0.1 to Remote 10.10.0.4
+    Local 10.10.0.2 to Remote 10.10.0.3
+    Local 10.10.0.2 to Remote 10.10.0.4
+Larger than PMTU communication succeeds on 4 path(s) RPC status:
+1 paths up, 0 paths down (tcp check)
+1 paths up, 0 paths down (ucp check)
+----
+. 断开节点 n1 上 E4A 的缆线。
++
+您可以参考正在运行的配置，并使用 Nexus 3232C 交换机支持的布线方式将交换机 C1 上的第一个 40 GbE 端口（本示例中的端口 1/7 ）连接到 n1 上的 E4A 。
+
+. 断开节点 n2 上 E4A 的缆线。
++
+您可以参考运行配置，并使用支持的布线方式将 E4A 连接到 C1 端口 1/8 上的下一个可用 40 GbE 端口。
+
+. 启用 C1 上面向节点的所有端口。
++
+有关 Cisco 命令的详细信息，请参见中列出的指南 https://www.cisco.com/c/en/us/support/switches/nexus-3000-series-switches/products-command-reference-list.html["Cisco Nexus 3000 系列 NX-OS 命令参考"^]。
+
++
+以下示例显示了使用 RCF `NX3232_RCF_v1.0_24p10g_26p100g.txt` 中支持的配置在 Nexus 3232C 集群交换机 C1 和 C2 上启用端口 1 到 30 ：
+
++
+[listing]
+----
+C1# configure
+C1(config)# int e1/1/1-4,e1/2/1-4,e1/3/1-4,e1/4/1-4,e1/5/1-4,e1/6/1-4,e1/7-30
+C1(config-if-range)# no shutdown
+C1(config-if-range)# exit
+C1(config)# exit
+----
+. 在每个节点上启用第一个集群端口 E4A ：
++
+`network port modify -node _node-name_ -port _port-name_ -up-admin true`
+
++
+[listing]
+----
+cluster::*> network port modify -node n1 -port e4a -up-admin true
+cluster::*> network port modify -node n2 -port e4a -up-admin true
+----
+. 验证两个节点上的集群是否均已启动：
++
+`network port show -role cluster`
+
++
+[listing]
+----
+cluster::*> network port show –role cluster
+  (network port show)
+Node: n1
+                                                                       Ignore
+                                                  Speed(Mbps) Health   Health
+Port      IPspace      Broadcast Domain Link MTU  Admin/Oper  Status   Status
+--------- ------------ ---------------- ---- ---- ----------- -------- -----
+e4a       Cluster      Cluster          up   9000 auto/40000  -
+e4e       Cluster      Cluster          up   9000 auto/40000  -        -
+
+Node: n2
+                                                                       Ignore
+                                                  Speed(Mbps) Health   Health
+Port      IPspace      Broadcast Domain Link MTU  Admin/Oper  Status   Status
+--------- ------------ ---------------- ---- ---- ----------- -------- -----
+e4a       Cluster      Cluster          up   9000 auto/40000  -
+e4e       Cluster      Cluster          up   9000 auto/40000  -
+
+4 entries were displayed.
+----
+. 对于每个节点，还原所有迁移的集群互连 LIF ：
++
+`network interface revert -vserver cluster -lif _lif-name_`
+
++
+您必须分别将每个 LIF 还原到其主端口，如以下示例所示：
+
++
+[listing]
+----
+cluster::*> network interface revert -vserver cluster -lif n1_clus1
+cluster::*> network interface revert -vserver cluster -lif n2_clus1
+----
+. 验证所有 LIF 现在是否均已还原到其主端口：
++
+`network interface show -role cluster`
+
++
+对于 `Current Port` 列中列出的所有端口， `Is Home` 列应显示值 `true` 。如果显示的值为 `false` ，则表示端口尚未还原。
+
++
+[listing]
+----
+cluster::*> network interface show -role cluster
+ (network interface show)
+            Logical    Status     Network            Current       Current Is
+Vserver     Interface  Admin/Oper Address/Mask       Node          Port    Home
+----------- ---------- ---------- ------------------ ------------- ------- ----
+Cluster
+            n1_clus1   up/up      10.10.0.1/24       n1            e4a     true
+            n1_clus2   up/up      10.10.0.2/24       n1            e4e     true
+            n2_clus1   up/up      10.10.0.3/24       n2            e4a     true
+            n2_clus2   up/up      10.10.0.4/24       n2            e4e     true
+4 entries were displayed.
+----
+. 显示每个节点上的集群端口连接：
++
+`network device-discovery show`
+
++
+[listing]
+----
+cluster::*> network device-discovery show
+            Local  Discovered
+Node        Port   Device              Interface        Platform
+----------- ------ ------------------- ---------------- ----------------
+n1         /cdp
+            e4a    C1                  Ethernet1/7      N3K-C3232C
+            e4e    n2                  e4e              FAS9000
+n2         /cdp
+            e4a    C1                  Ethernet1/8      N3K-C3232C
+            e4e    n1                  e4e              FAS9000
+----
+. 将 clus2 迁移到每个节点控制台上的端口 E4A ：
++
+`network interface migrate cluster -lif _lif-name_ -source-node _source-node-name_ -destination-node _destination-node-name_ -destination-port _destination-port-name_`
+
++
+您必须将每个 LIF 单独迁移到其主端口，如以下示例所示：
+
++
+[listing]
+----
+cluster::*> network interface migrate -vserver cluster -lif n1_clus2 -source-node n1
+–destination-node n1 -destination-port e4a
+cluster::*> network interface migrate -vserver cluster -lif n2_clus2 -source-node n2 –destination-node n2 -destination-port e4a
+----
+. 关闭两个节点上的集群端口 clus2 LIF ：
++
+`network port modify`
+
++
+以下示例显示了将指定端口设置为 `false` 将关闭两个节点上的端口：
+
++
+[listing]
+----
+cluster::*> network port modify -node n1 -port e4e -up-admin false
+cluster::*> network port modify -node n2 -port e4e -up-admin false
+----
+. 验证集群 LIF 状态：
++
+`network interface show`
+
++
+[listing]
+----
+cluster::*> network interface show -role cluster
+ (network interface show)
+            Logical    Status     Network            Current       Current Is
+Vserver     Interface  Admin/Oper Address/Mask       Node          Port    Home
+----------- ---------- ---------- ------------------ ------------- ------- ----
+Cluster
+            n1_clus1   up/up      10.10.0.1/24       n1            e4a     true
+            n1_clus2   up/up      10.10.0.2/24       n1            e4a     false
+            n2_clus1   up/up      10.10.0.3/24       n2            e4a     true
+            n2_clus2   up/up      10.10.0.4/24       n2            e4a     false
+4 entries were displayed.
+----
+. 断开节点 n1 上 e4e 的缆线。
++
+您可以参考正在运行的配置，并使用适用于 Nexus 3232C 交换机型号的相应布线方式将交换机 C2 上的第一个 40 GbE 端口（本示例中的端口 1/7 ）连接到节点 n1 上的 e4e 。
+
+. 断开节点 n2 上 e4e 的缆线。
++
+您可以参考正在运行的配置，并使用适合 Nexus 3232C 交换机型号的相应布线方式将 e4e 连接到 C2 上的下一个可用 40 GbE 端口端口端口端口端口，即端口 1/8 。
+
+. 在 C2 上启用所有面向节点的端口。
++
+以下示例显示了在 Nexus 3132Q-V 集群交换机 C1 和 C2 上使用 RCF `NX32C_RCF_v1.0_24p10g_26p100g.txt` 中支持的配置启用端口 1 到 30 ：
+
++
+[listing]
+----
+C2# configure
+C2(config)# int e1/1/1-4,e1/2/1-4,e1/3/1-4,e1/4/1-4,e1/5/1-4,e1/6/1-4,e1/7-30
+C2(config-if-range)# no shutdown
+C2(config-if-range)# exit
+C2(config)# exit
+----
+. 在每个节点上启用第二个集群端口 e4e ：
++
+`network port modify`
+
++
+以下示例显示了每个节点上启动的第二个集群端口 e4e ：
+
++
+[listing]
+----
+cluster::*> network port modify -node n1 -port e4e -up-admin true
+cluster::*> network port modify -node n2 -port e4e -up-admin true
+----
+. 对于每个节点，还原所有迁移的集群互连 LIF ： `network interface revert`
++
+以下示例显示了要还原到其主端口的已迁移 LIF 。
+
++
+[listing]
+----
+cluster::*> network interface revert -vserver Cluster -lif n1_clus2
+cluster::*> network interface revert -vserver Cluster -lif n2_clus2
+----
+. 验证所有集群互连端口现在是否均已还原到其主端口：
++
+`network interface show -role cluster`
+
++
+对于 `Current Port` 列中列出的所有端口， `Is Home` 列应显示值 `true` 。如果显示的值为 `false` ，则表示端口尚未还原。
+
++
+[listing]
+----
+cluster::*> network interface show -role cluster
+ (network interface show)
+            Logical    Status     Network            Current       Current Is
+Vserver     Interface  Admin/Oper Address/Mask       Node          Port    Home
+----------- ---------- ---------- ------------------ ------------- ------- ----
+Cluster
+            n1_clus1   up/up      10.10.0.1/24       n1            e4a     true
+            n1_clus2   up/up      10.10.0.2/24       n1            e4e     true
+            n2_clus1   up/up      10.10.0.3/24       n2            e4a     true
+            n2_clus2   up/up      10.10.0.4/24       n2            e4e     true
+4 entries were displayed.
+----
+. 验证所有集群互连端口是否均处于 `up` 状态：
++
+`network port show -role cluster`
+
+. 显示每个集群端口连接到每个节点的集群交换机端口号： `network device-discovery show`
++
+[listing]
+----
+cluster::*> network device-discovery show
+            Local  Discovered
+Node        Port   Device              Interface        Platform
+----------- ------ ------------------- ---------------- ----------------
+n1          /cdp
+            e4a    C1                  Ethernet1/7      N3K-C3232C
+            e4e    C2                  Ethernet1/7      N3K-C3232C
+n2          /cdp
+            e4a    C1                  Ethernet1/8      N3K-C3232C
+            e4e    C2                  Ethernet1/8      N3K-C3232C
+----
+. 显示已发现和受监控的集群交换机：
++
+`ssystem cluster-switch show`
+
++
+[listing]
+----
+cluster::*> system cluster-switch show
+
+Switch                      Type               Address          Model
+--------------------------- ------------------ ---------------- ---------------
+C1                          cluster-network    10.10.1.101      NX3232CV
+Serial Number: FOX000001
+Is Monitored: true
+Reason:
+Software Version: Cisco Nexus Operating System (NX-OS) Software, Version 7.0(3)I6(1)
+Version Source: CDP
+
+C2                          cluster-network     10.10.1.102      NX3232CV
+Serial Number: FOX000002
+Is Monitored: true
+Reason:
+Software Version: Cisco Nexus Operating System (NX-OS) Software, Version 7.0(3)I6(1)
+Version Source: CDP 2 entries were displayed.
+----
+. 验证无交换机集群检测是否已将无交换机集群选项更改为已禁用：
++
+`network options switchless-cluster show``
+
+. 对远程集群接口执行 Ping 操作并执行 RPC 服务器检查：
++
+`cluster ping-cluster -node _node-name_`
+
++
+[listing]
+----
+cluster::*> cluster ping-cluster -node n1
+Host is n1 Getting addresses from network interface table...
+Cluster n1_clus1 n1        e4a    10.10.0.1
+Cluster n1_clus2 n1        e4e    10.10.0.2
+Cluster n2_clus1 n2        e4a    10.10.0.3
+Cluster n2_clus2 n2        e4e    10.10.0.4
+Local = 10.10.0.1 10.10.0.2
+Remote = 10.10.0.3 10.10.0.4
+Cluster Vserver Id = 4294967293
+Ping status:
+....
+Basic connectivity succeeds on 4 path(s)
+Basic connectivity fails on 0 path(s) ................
+Detected 9000 byte MTU on 32 path(s):
+    Local 10.10.0.1 to Remote 10.10.0.3
+    Local 10.10.0.1 to Remote 10.10.0.4
+    Local 10.10.0.2 to Remote 10.10.0.3
+    Local 10.10.0.2 to Remote 10.10.0.4
+Larger than PMTU communication succeeds on 4 path(s) RPC status:
+1 paths up, 0 paths down (tcp check)
+1 paths up, 0 paths down (ucp check)
+----
+. 启用集群交换机运行状况监控器日志收集功能以收集交换机相关的日志文件： `ssystem cluster-switch log setup-password`
++
+`ssystem cluster-switch log enable-Collection`
+
++
+[listing]
+----
+cluster::*> system cluster-switch log setup-password
+Enter the switch name: <return>
+The switch name entered is not recognized.
+Choose from the following list:
+C1
+C2
+
+cluster::*> system cluster-switch log setup-password
+
+Enter the switch name: C1
+RSA key fingerprint is e5:8b:c6:dc:e2:18:18:09:36:63:d9:63:dd:03:d9:cc
+Do you want to continue? {y|n}::[n] y
+
+Enter the password: <enter switch password>
+Enter the password again: <enter switch password>
+
+cluster::*> system cluster-switch log setup-password
+
+Enter the switch name: C2
+RSA key fingerprint is 57:49:86:a1:b9:80:6a:61:9a:86:8e:3c:e3:b7:1f:b1
+Do you want to continue? {y|n}:: [n] y
+
+Enter the password: <enter switch password>
+Enter the password again: <enter switch password>
+
+cluster::*> system cluster-switch log enable-collection
+
+Do you want to enable cluster log collection for all nodes in the cluster?
+{y|n}: [n] y
+
+Enabling cluster switch log collection.
+
+cluster::*>
+----
++
+[NOTE]
+====
+如果其中任何一个命令返回错误，请联系 NetApp 支持部门。
+
+====
+. 如果禁止自动创建案例，请通过调用 AutoSupport 消息重新启用它：
++
+`ssystem node AutoSupport invoke -node * -type all -message MAINT=end`
+
+
