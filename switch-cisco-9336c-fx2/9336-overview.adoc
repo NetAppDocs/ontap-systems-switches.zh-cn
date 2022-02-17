@@ -1,0 +1,115 @@
+---
+permalink: switch-cisco-9336c-fx2/9336-overview.html 
+sidebar: sidebar 
+keywords: cisco nexus 9336c-fx2 
+summary: 如果要使用两个以上的节点构建 ONTAP 集群，则需要两个受支持的集群网络交换机。您可以使用其他管理交换机，这些交换机是可选的。 
+---
+= Cisco 9336C-x2 交换机概述
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+如果要使用两个以上的节点构建 ONTAP 集群，则需要两个受支持的集群网络交换机。您可以使用其他管理交换机，这些交换机是可选的。
+
+您可以将 Cisco Nexus 9336C-x2 交换机（ X190200/X190210 ）安装在 NetApp 系统机柜或第三方机柜中，并使用交换机附带的标准支架。
+
+下表列出了 9336C-fx2 交换机，风扇和电源的部件号和问题描述：
+
+[cols="1,2"]
+|===
+| 部件号 | Description 
+
+
+ a| 
+X190200-CS-PE
+ a| 
+N9K-9336C-f2 ， CS ， PTSX ， 36PT10/25/40/100GQSFP28
+
+
+
+ a| 
+X190200-CS-PI
+ a| 
+N9K-9336C-f2 ， CS ， PSIN ， 36PT10/25/40/100GQSFP28
+
+
+
+ a| 
+X190210-FE-PE
+ a| 
+N9K-9336C ， FTE ， PTSX ， 36PT10/25/40/100GQSFP28
+
+
+
+ a| 
+X190210-FE-PI
+ a| 
+N9K-9336C ， FTE ， PSIN ， 36PT10/25/40/100GQSFP28
+
+
+
+ a| 
+X190002
+ a| 
+附件套件 X190001/X190003
+
+
+
+ a| 
+X-NXA-PA-11000W-PE2
+ a| 
+N9K-9336C 交流 1100 W PSU —端口侧排气
+
+
+
+ a| 
+X-NXA-PC-11000W-PI2
+ a| 
+N9K-9336C 交流 1100 W PSU —端口侧进气气流
+
+
+
+ a| 
+X-NXA-Fan-65CFM-PE
+ a| 
+N9K-9336C 65CFM ，端口侧排气
+
+
+
+ a| 
+X-NXA-Fan-65CFM-PI
+ a| 
+N9K-9336C 65CFM ，端口侧进气气流
+
+|===
+
+
+== 其他受支持的交换机
+
+* Nexus 3232C
++
+您可以使用随交换机提供的自定义支架安装 Cisco Nexus 3232C 交换机（ X190100 ） NetApp 系统机柜，也可以将其安装在具有随交换机提供的标准支架的机架中。
+
+* Nexus 3132Q-V
++
+您可以将 Cisco Nexus 3132Q-V 交换机（ X190001 ）安装在 NetApp 系统机柜或第三方机柜中，并使用交换机附带的标准支架。
+
+
+
+NetApp 不再提供以下集群交换机，但 Cisco 在有限时间内将支持这些交换机：
+
+* Nexus 5596UP 或 5596T
++
+您可以将 Cisco Nexus 5596UP 交换机（ X1967-R6 ）或 5596T （ X1989-R6 ）安装在 NetApp 系统机柜中，并使用交换机随附的自定义支架；也可以将其安装在具有标准支架的机架中，该交换机也附带标准支架。
+
++
+Nexus 5596UP 交换机还支持一个或两个 16 端口扩展模块（ X1988-R6 ）。
+
++
+Nexus 5596T 交换机仅支持用作 FAS2520 的集群互连交换机，用于执行无中断硬件升级。
+
++
+http://support.netapp.com/info/communications/ECMP12454150.html["终止可用性"^] 详细信息
+
+

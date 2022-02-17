@@ -1,0 +1,317 @@
+---
+permalink: switch-netapp-cn1610/task-install-an-rcf-on-a-cn1610-switch.html 
+sidebar: sidebar 
+keywords: reference configuration, file ,install, cn1610, switch 
+summary: 在安装参考配置文件（ RCF ）时，必须先将集群 LIF 从交换机 CS2 迁移出。安装并验证 RCF 后，可以将 LIF 迁移回。 
+---
+= 在 CN1610 交换机上安装参考配置文件
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+在安装参考配置文件（ RCF ）时，必须先将集群 LIF 从交换机 CS2 迁移出。安装并验证 RCF 后，可以将 LIF 迁移回。
+
+
+
+== 您将需要什么
+
+您必须已保存交换机上当前正在运行的配置。
+
+
+
+== 步骤
+
+. 保存当前交换机配置信息： `write memory`
++
+以下示例显示了要保存到交换机 CS2 上的启动配置（ `starstartup-config` ）文件中的当前交换机配置：
+
++
+[listing]
+----
+(cs2) # write memory
+This operation may take a few minutes.
+Management interfaces will not be available during this time.
+
+Are you sure you want to save? (y/n) y
+
+Config file 'startup-config' created successfully.
+
+Configuration Saved!
+----
+. 在每个节点的控制台上，将 clus2 迁移到端口 e1a ： `network interface migrate`
++
+[listing]
+----
+cluster::*> network interface migrate -vserver vs1 -lif clus2 -source-node node1 -destnode node1 -dest-port e1a
+
+cluster::*> network interface migrate -vserver vs2 -lif clus2 -source-node node2 -destnode node2 -dest-port e1a
+----
+. 在每个节点的控制台上，验证是否已进行迁移： `network interface show -role cluster`
++
+以下示例显示 clus2 已迁移到两个节点上的端口 e1a ：
+
++
+[listing]
+----
+cluster::*> network port show -role cluster
+         clus1      up/up      10.10.10.1/16   node2    e1a     true
+         clus2      up/up      10.10.10.2/16   node2    e1a     false
+----
+. 关闭两个节点上的端口 e2a ： `network port modify`
++
+以下示例显示了两个节点上的端口 E2A 均已关闭：
+
++
+[listing]
+----
+cluster::*> network port modify -node node1 -port e2a -up-admin false
+cluster::*> network port modify -node node2 -port e2a -up-admin false
+----
+. 验证两个节点上的端口 E2A 是否已关闭： `network port show`
++
+[listing]
+----
+cluster::*> network port show -role cluster
+
+                                  Auto-Negot  Duplex      Speed (Mbps)
+Node   Port   Role     Link MTU   Admin/Oper  Admin/Oper  Admin/Oper
+------ ------ -------- ---- ----- ----------- ----------  -----------
+node1
+       e1a    cluster  up   9000  true/true   full/full   auto/10000
+       e2a    cluster  down 9000  true/true   full/full   auto/10000
+node2
+       e1a    cluster  up   9000  true/true   full/full   auto/10000
+       e2a    cluster  down 9000  true/true   full/full   auto/10000
+----
+. 关闭活动 NetApp 交换机 CS1 上的 ISL 端口。
++
+[listing]
+----
+(cs1) # configure
+(cs1) (config) # interface 0/13-0/16
+(cs1) (interface 0/13-0/16) # shutdown
+(cs1) (interface 0/13-0/16) # exit
+(cs1) (config) # exit
+----
+. 将 RCF 复制到交换机。
++
+[NOTE]
+====
+在调用脚本之前，必须将 ` .scr` 扩展名设置为文件名的一部分。此扩展是 FastPath 操作系统的扩展。
+
+====
++
+将脚本下载到交换机后，交换机将自动验证该脚本，输出将转到控制台。
+
++
+[listing]
+----
+(cs2) # copy tftp://10.10.0.1/CN1610_CS_RCF_v1.1.txt nvram:script CN1610_CS_RCF_v1.1.scr
+
+[the script is now displayed line by line]
+Configuration script validated.
+File transfer operation completed successfully.
+----
+. 验证脚本是否已使用您为其提供的文件名下载并保存。
++
+[listing]
+----
+(cs2) # script list
+Configuration Script Name        Size(Bytes)
+-------------------------------- -----------
+running-config.scr               6960
+CN1610_CS_RCF_v1.1.scr           2199
+
+2 configuration script(s) found.
+6038 Kbytes free.
+----
+. 验证脚本。
++
+[NOTE]
+====
+此脚本会在下载期间进行验证，以验证每行是否为有效的交换机命令行。
+
+====
++
+[listing]
+----
+(cs2) # script validate CN1610_CS_RCF_v1.1.scr
+[the script is now displayed line by line]
+Configuration script 'CN1610_CS_RCF_v1.1.scr' validated.
+----
+. 将此脚本应用于交换机。
++
+[listing]
+----
+(cs2) #script apply CN1610_CS_RCF_v1.1.scr
+
+Are you sure you want to apply the configuration script? (y/n) y
+[the script is now displayed line by line]...
+
+Configuration script 'CN1610_CS_RCF_v1.1.scr' applied.
+----
+. 验证您的更改是否已在交换机上实施。
++
+[listing]
+----
+(cs2) # show running-config
+----
++
+此示例显示了交换机上的 `running-config` 文件。您必须将文件与 RCF 进行比较，以验证设置的参数是否符合预期。
+
+. 保存更改。
+. 将 `running-config` 文件设置为标准文件。
++
+[listing]
+----
+(cs2) # write memory
+This operation may take a few minutes.
+Management interfaces will not be available during this time.
+
+Are you sure you want to save? (y/n) y
+
+Config file 'startup-config' created successfully.
+----
+. 重新启动交换机并验证 `running-config` 文件是否正确。
++
+重新启动完成后，您必须登录并查看 `running-config` 文件，然后在接口 3/64 上查找问题描述 ，该接口是 RCF 的版本标签。
+
++
+[listing]
+----
+(cs2) # reload
+
+The system has unsaved changes.
+Would you like to save them now? (y/n) y
+
+
+Config file 'startup-config' created successfully.
+Configuration Saved!
+System will now restart!
+----
+. 启动活动交换机 CS1 上的 ISL 端口。
++
+[listing]
+----
+(cs1) # configure
+(cs1) (config)# interface 0/13-0/16
+(cs1) (Interface 0/13-0/16)# no shutdown
+(cs1) (Interface 0/13-0/16)# exit
+(cs1) (config)# exit
+----
+. 验证 ISL 是否正常运行： `sHow port-channel 3/1`
++
+链路状态字段应指示 `up` 。
+
++
+[listing]
+----
+
+(cs2) # show port-channel 3/1
+
+Local Interface................................ 3/1
+Channel Name................................... ISL-LAG
+Link State..................................... Up
+Admin Mode..................................... Enabled
+Type........................................... Static
+Load Balance Option............................ 7
+(Enhanced hashing mode)
+
+Mbr    Device/       Port      Port
+Ports  Timeout       Speed     Active
+------ ------------- --------- -------
+0/13   actor/long    10G Full  True
+       partner/long
+0/14   actor/long    10G Full  True
+       partner/long
+0/15   actor/long    10G Full  True
+       partner/long
+0/16   actor/long    10G Full  True
+       partner/long
+----
+. 在两个节点上启动集群端口 E2A ： `network port modify`
++
+以下示例显示了 node1 和 node2 上正在启动的端口 E2A ：
+
++
+[listing]
+----
+cluster::*> network port modify -node node1 -port e2a -up-admin true
+cluster::*> network port modify -node node2 -port e2a -up-admin true
+----
+. 确认两个节点上的端口 E2A 均已启动： `network port show -_role cluster_`
++
+[listing]
+----
+cluster::*> network port show -role cluster
+
+                                Auto-Negot  Duplex      Speed (Mbps)
+Node   Port Role     Link MTU   Admin/Oper  Admin/Oper  Admin/Oper
+------ ---- -------- ---- ----  ----------- ----------  ------------
+node1
+       e1a  cluster  up   9000  true/true   full/full   auto/10000
+       e2a  cluster  up   9000  true/true   full/full   auto/10000
+node2
+       e1a  cluster  up   9000  true/true   full/full   auto/10000
+       e2a  cluster  up   9000  true/true   full/full   auto/10000
+----
+. 在两个节点上，还原与端口 E2A 关联的 clus2 ： `network interface revert`
++
+根据您的 ONTAP 版本， LIF 可能会自动还原。
+
++
+[listing]
+----
+cluster::*> network interface revert -vserver node1 -lif clus2
+cluster::*> network interface revert -vserver node2 -lif clus2
+----
+. 确认 LIF 现在位于两个节点上的主位置（`true` ）： `network interface show -_role cluster_`
++
+[listing]
+----
+cluster::*> network interface show -role cluster
+
+        Logical    Status     Network        Current  Current Is
+Vserver Interface  Admin/Oper Address/Mask   Node     Port    Home
+------- ---------- ---------- -------------- -------- ------- ----
+vs1
+        clus1      up/up      10.10.10.1/24  node1    e1a     true
+        clus2      up/up      10.10.10.2/24  node1    e2a     true
+vs2
+        clus1      up/up      10.10.10.1/24  node2    e1a     true
+        clus2      up/up      10.10.10.2/24  node2    e2a     true
+----
+. 查看节点成员的状态： `cluster show`
++
+[listing]
+----
+cluster::> cluster show
+
+Node           Health  Eligibility
+-------------- ------- ------------
+node1
+               true    true
+node2
+               true    true
+----
+. 如果对软件版本和交换机设置满意，请将 `running-config` 文件复制到 `starstartup-config` 文件。
++
+[listing]
+----
+(cs2) # write memory
+This operation may take a few minutes.
+Management interfaces will not be available during this time.
+
+Are you sure you want to save? (y/n) y
+
+Config file 'startup-config' created successfully.
+
+Configuration Saved!
+----
+. 重复步骤 1 到步骤 22 ，升级另一台交换机 CS1 上的 RCF 。
+
+
+* 相关信息 *
+
+https://support.netapp.com/["NetApp 支持"^]

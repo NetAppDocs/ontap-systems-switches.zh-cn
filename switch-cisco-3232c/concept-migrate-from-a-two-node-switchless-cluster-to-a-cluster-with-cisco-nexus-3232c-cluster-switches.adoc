@@ -1,0 +1,38 @@
+---
+permalink: switch-cisco-3232c/concept-migrate-from-a-two-node-switchless-cluster-to-a-cluster-with-cisco-nexus-3232c-cluster-switches.html 
+sidebar: sidebar 
+keywords: migrate, two-node cluster, switchless, cisco nexus 3232c 
+summary: 在将双节点无交换机集群迁移到使用 Cisco Nexus 3232C 集群交换机的集群时，您必须了解某些配置信息，端口连接和布线要求。 
+---
+= 从双节点无交换机集群迁移到使用 Cisco Nexus 3232C 集群交换机的集群
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+在将双节点无交换机集群迁移到使用 Cisco Nexus 3232C 集群交换机的集群时，您必须了解某些配置信息，端口连接和布线要求。
+
+"_Cisco 以太网交换机 _ " 页面提供了有关此操作步骤 支持的 ONTAP 和 NX-OS 版本的信息。
+
+http://mysupport.netapp.com/NOW/download/software/cm_switches/["Cisco 以太网交换机"^]
+
+在开始迁移过程之前，您必须满足以下条件：
+
+* 节点连接的可用端口
++
+集群交换机使用交换机间链路（ ISL ）端口 E1/31 至 32 。-
+
+* 适用于集群连接的缆线：
++
+** 具有 10 GbE 集群连接的节点需要使用分支光缆的 QSFP 光纤模块或 QSFP 到 SFP+ 铜缆分支。
+** 具有 40/100 GbE 集群连接的节点需要使用光缆或 QSFP28 铜缆支持的 QSFP/QSFP28 光纤模块。
+** 集群交换机需要适当的 ISL 布线： 2 根 QSFP28 光纤或铜缆直连缆线。
+
+
++
+[NOTE]
+====
+有关使用 Hardware Universe 3232C 交换机为系统布线的详细信息，请参见 _Nexus _ 。
+
+====
+

@@ -1,0 +1,39 @@
+---
+section: switch-netapp-cn1610
+title: NetApp CN1610 交换机
+entries:
+- title: 概述
+  url: "/switch-netapp-cn1610/index.html"
+- title: 在 NetApp 集群交换机上安装 FastPath 软件和 RCF
+  url: "/switch-netapp-cn1610/task-install-fastpath-software-and-rcfs-on-netapp-cluster-switch.html"
+  entries:
+  - title: 安装 FastPath 软件
+    url: "/switch-netapp-cn1610/task-install-fastpath-software.html"
+  - title: 在 CN1610 交换机上安装参考配置文件
+    url: "/switch-netapp-cn1610/task-install-an-rcf-on-a-cn1610-switch.html"
+- title: 在运行 ONTAP 8.3.1 及更高版本的 NetApp 集群交换机上安装 FastPath 软件和 RCF
+  url: "/switch-netapp-cn1610/task-install-fastpath-software-and-rcf-files-on-netapp-cluster-switches.html"
+- title: 迁移到使用 NetApp CN1610 集群交换机的双节点交换集群
+  url: "/switch-netapp-cn1610/task-migrate-to-a-two-node-switched-cluster-with-netapp-cn1610-cluster-switches.html"
+- title: 从无交换机集群环境迁移到有交换机的 NetApp CN1610 集群环境
+  url: "/switch-netapp-cn1610/task-migrate-from-a-switchless-cluster-to-a-switched-netapp-cn1610-cluster-environment.html"
+- title: 使用一个集群网络连接迁移到 FAS22xx 系统中的双节点交换集群
+  url: "/switch-netapp-cn1610/task-migrate-from-a-switchless-cluster-fas22xx-systems-with-a-single-cluster-network-connection.html"
+- title: "《 CN1601 和 CN1610 交换机设置和配置指南》"
+  url: "/switch-netapp-cn1610/switch-setup-configuration-guide-linkout.html"
+- title: CN1610 网络交换机命令行界面命令参考— 1.1.x.x 版
+  url: "/switch-netapp-cn1610/switch-cli-command-reference-version-11xx-linkout.html"
+- title: CN1610 网络交换机命令行界面命令参考—版本 1.2.x.x
+  url: "/switch-netapp-cn1610/switch-cli-command-reference-version-12xx-linkout.html"
+- title: "《 NetApp 10G 集群模式交换机安装指南》"
+  url: "/switch-netapp-cn1610/netapp-10g-cluster-mode-switch-installation-guide.html"
+- title: NetApp CN1610 交换机管理员指南— 1.1.x.x 版
+  url: "/switch-netapp-cn1610/switch-administrator-guide-version-11xx-linkout.html"
+- title: NetApp CN1610 交换机管理员指南— 1.2.x.x 版
+  url: "/switch-netapp-cn1610/switch-administrator-guide-version-12xx-linkout.html"
+- title: "《 CN1601 网络交换机命令行界面命令参考》"
+  url: "/switch-netapp-cn1610/switch-cli-command-reference-linkout.html"
+- title: "《 CN1601 交换机管理员指南》"
+  url: "/switch-netapp-cn1610/switch-administrator-guide-linkout.html"
+- title: "《 NetApp 1G 集群模式交换机安装指南》"
+  url: "/switch-netapp-cn1610/netapp-1g-cluster-mode-switch-installation-guide-linkout.html"

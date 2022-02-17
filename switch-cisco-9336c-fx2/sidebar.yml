@@ -1,0 +1,68 @@
+---
+section: switch-cisco-9336c-fx2
+title: Cisco 9336C-x2 交换机
+entries:
+- title: 概述
+  url: "/switch-cisco-9336c-fx2/9336-overview.html"
+- title: 设置
+  entries:
+  - title: 设置交换机
+    url: "/switch-cisco-9336c-fx2/setup-switches.html"
+  - title: 所需的集群配置信息
+    url: "/switch-cisco-9336c-fx2/setup-required-information.html"
+    entries:
+    - title: 为 92300YC 交换机安装集群交换机运行状况监控器（ Cluster Switch Health Monitor ， CSHM ）配置文件
+      url: "/switch-cisco-9336c-fx2/setup-install-cshm-file.html"
+  - title: 所需文档
+    url: "/switch-cisco-9336c-fx2/setup-required-documentation.html"
+  - title: 使用智能自动通报的注意事项
+    url: "/switch-cisco-9336c-fx2/setup-considerations-smart-call.html"
+  - title: 示例和空白布线工作表
+    url: "/switch-cisco-9336c-fx2/setup-worksheets-sample-cabling.html"
+    entries:
+    - title: Cisco Nexus 9336C-x2 布线工作表
+      url: "/switch-cisco-9336c-fx2/setup-worksheet-9336c.html"
+    - title: Cisco Nexus 92300YC 布线工作表
+      url: "/switch-cisco-9336c-fx2/setup-worksheet-92300yc.html"
+    - title: Cisco Nexus 3232C 布线工作表
+      url: "/switch-cisco-9336c-fx2/setup-worksheet-3232c.html"
+    - title: Cisco Nexus 3132Q-V 布线工作表
+      url: "/switch-cisco-9336c-fx2/setup-worksheet-3132q.html"
+    - title: Cisco Nexus 5596UP 和 5596T 布线工作表
+      url: "/switch-cisco-9336c-fx2/setup-worksheet-5596.html"
+- title: 在 Cisco Nexus 9336C-FX2 集群交换机上安装 NX-OS 软件和 RCF
+  entries:
+  - title: 概述
+    url: "/switch-cisco-9336c-fx2/install-nxos-overview.html"
+  - title: 安装 NX-OS 软件
+    url: "/switch-cisco-9336c-fx2/install-nxos-software.html"
+  - title: 安装参考配置文件（ RCF ）
+    url: "/switch-cisco-9336c-fx2/install-nxos-rcf.html"
+- title: 从 Cisco 交换机迁移到 Cisco Nexus 9336C-x2 集群交换机
+  entries:
+  - title: 概述
+    url: "/switch-cisco-9336c-fx2/migrate-to-9336-overview.html"
+  - title: 如何从 Cisco 交换机迁移到 Cisco Nexus 9336C-x2 集群交换机
+    url: "/switch-cisco-9336c-fx2/migrate-to-9336.html"
+- title: 迁移到使用 Cisco Nexus 9336C-x2 集群交换机的双节点交换集群
+  entries:
+  - title: 概述
+    url: "/switch-cisco-9336c-fx2/migrate-to-2n-switched-overview.html"
+  - title: 如何使用 Cisco Nexus 9336C-x2 集群交换机迁移到交换式 NetApp 集群环境
+    url: "/switch-cisco-9336c-fx2/migrate-to-2n-switched.html"
+- title: 配置 Cisco Nexus 9336C-x2 集群交换机
+  entries:
+  - title: 概述
+    url: "/switch-cisco-9336c-fx2/replace-configure-new-switch.html"
+  - title: 首次安装 Nexus 9336C-x2 集群交换机
+    url: "/switch-cisco-9336c-fx2/replace-install-initial.html"
+  - title: 安装 NX-OS 软件
+    url: "/switch-cisco-9336c-fx2/replace-install-nxos.html"
+  - title: 安装参考配置文件（ RCF ）
+    url: "/switch-cisco-9336c-fx2/replace-install-rcf.html"
+- title: 更换 Cisco Nexus 9336C-x2 集群交换机
+  url: "/switch-cisco-9336c-fx2/replace-9336c.html"
+- title: 更换 Cisco Nexus 9336C-x2 存储交换机
+  url: "/switch-cisco-9336c-fx2/replace_9336c_storage_switch.html"
+- title: 在 NetApp 机柜中安装 Cisco Nexus 9336C-x2 交换机和直通面板
+  url: "/switch-cisco-9336c-fx2/install-switch-and-passthrough-panel.html"

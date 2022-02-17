@@ -1,0 +1,15 @@
+---
+permalink: switch-netapp-cn1610/switch-cli-command-reference-version-12xx-linkout.html 
+sidebar: sidebar 
+keywords: cn1610 network, switch cli, command reference, version 1.2.x.x 
+summary: 本手册介绍了用于配置 CN1610 软件的命令行界面（ CLI ）命令。 
+---
+= CN1610 网络交换机命令行界面命令参考—版本 1.2.x.x
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+本手册介绍了用于配置 CN1610 软件的命令行界面（ CLI ）命令。
+
+https://library.netapp.com/ecm/ecm_download_file/ECMP1117863["命令参考"^]

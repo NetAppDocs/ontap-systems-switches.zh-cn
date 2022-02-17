@@ -1,0 +1,239 @@
+---
+permalink: switch-cisco-9336c-fx2/replace-install-initial.html 
+sidebar: sidebar 
+keywords: initial setup steps, cisco cluster switch install 
+summary: 您可以使用此操作步骤执行 Cisco Nexus 9336C-x2 交换机的初始安装。 
+---
+= 首次安装 Nexus 9336C-x2 集群交换机
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+您可以使用此操作步骤执行 Cisco Nexus 9336C-x2 交换机的初始安装。
+
+您可以从 NetApp 支持站点下载适用于您的交换机的 NetApp Cisco NX-OS 软件，网址为 http://mysupport.netapp.com/["mysupport.netapp.com"^]。
+
+NX-OS 是 Cisco Systems 提供的 Nexus 系列以太网交换机和 MDS 系列光纤通道（ FC ）存储区域网络交换机的网络操作系统。
+
+此操作步骤 简要介绍了安装交换机并使其运行的过程。
+
+.步骤
+. 将串行端口连接到所选的主机或串行端口。
+. 将管理端口（位于交换机的非端口端）连接到您的 SFTP 服务器所在的同一网络。
+. 在控制台中，设置主机端串行设置：
++
+** 9600 波特
+** 8 个数据位
+** 1 个停止位
+** 奇偶校验：无
+** 流量控制：无
+
+
+. Nexus 9336C-x2 交换机在首次启动或擦除正在运行的配置后重新启动时会在启动周期中循环。键入 * 是 * 以中止启动自动配置，从而中断此周期。然后，系统将显示 System Admin Account 设置：
++
+[listing]
+----
+$ VDC-1 %$ %POAP-2-POAP_INFO:   - Abort Power On Auto Provisioning [yes - continue with normal setup, skip - bypass password and basic configuration, no - continue with Power On Auto Provisioning] (yes/skip/no)[no]: yes
+Disabling POAP.......Disabling POAP
+2019 Apr 10 00:36:17 switch %$ VDC-1 %$ poap: Rolling back, please wait... (This may take 5-15 minutes)
+
+---- System Admin Account Setup ----
+----
+. 键入 * y* 以强制实施安全密码标准：
++
+[listing]
+----
+Do you want to enforce secure password standard (yes/no) [y]: y
+----
+. 输入并确认用户 admin 的密码：
++
+[listing]
+----
+Enter the password for "admin":
+Confirm the password for "admin":
+----
+. 进入基本系统配置对话框：
++
+[listing]
+----
+This setup utility will guide you through the basic configuration of
+the system. Setup configures only enough connectivity for management
+of the system.
+
+Please register Cisco Nexus9000 Family devices promptly with your
+supplier. Failure to register may affect response times for initial
+service calls. Nexus9000 devices must be registered to receive
+entitled support services.
+
+Press Enter at anytime to skip a dialog. Use ctrl-c at anytime
+to skip the remaining dialogs.
+
+Would you like to enter the basic configuration dialog (yes/no):
+----
+. 是否创建其他登录帐户？
++
+[listing]
+----
+Create another login account (yes/no) [n]:
+----
+. 配置只读和读写 SNMP 社区字符串：
++
+[listing]
+----
+Configure read-only SNMP community string (yes/no) [n]:
+
+Configure read-write SNMP community string (yes/no) [n]:
+----
+. 配置集群交换机名称：
++
+[listing]
+----
+Enter the switch name : cs2
+----
+. 配置带外管理接口：
++
+[listing]
+----
+
+Continue with Out-of-band (mgmt0) management configuration? (yes/no) [y]: y
+
+Mgmt0 IPv4 address : 172.22.133.216
+
+Mgmt0 IPv4 netmask : 255.255.224.0
+
+Configure the default gateway? (yes/no) [y]: y
+
+IPv4 address of the default gateway : 172.22.128.1
+----
+. 是否配置高级 IP 选项？
++
+[listing]
+----
+Configure advanced IP options? (yes/no) [n]: n
+----
+. 配置 Telnet 服务：
++
+[listing]
+----
+Enable the telnet service? (yes/no) [n]: n
+----
+. 配置 SSH 服务和 SSH 密钥：
++
+[listing]
+----
+Enable the ssh service? (yes/no) [y]: y
+
+Type of ssh key you would like to generate (dsa/rsa) [rsa]: rsa
+
+Number of rsa key bits <1024-2048> [1024]: 2048
+----
+. 配置其他设置：
++
+[listing]
+----
+Configure the ntp server? (yes/no) [n]: n
+
+  Configure default interface layer (L3/L2) [L2]: L2
+
+  Configure default switchport interface state (shut/noshut) [noshut]: noshut
+
+  Configure CoPP system profile (strict/moderate/lenient/dense) [strict]: strict
+----
+. 确认交换机信息并保存配置：
++
+[listing]
+----
+Would you like to edit the configuration? (yes/no) [n]: n
+
+Use this configuration and save it? (yes/no) [y]: y
+
+[########################################] 100%
+Copy complete, now saving to disk (please wait)...
+Copy complete.
+----
+. 对于 ONTAP 9.8 及更高版本，请使用以下命令启用以太网交换机运行状况监控器日志收集功能以收集交换机相关的日志文件： `ssystem switch Ethernet log setup-password` 和 `ssystem switch Ethernet log enable-Collection`
++
+[listing]
+----
+cluster1::*> system switch ethernet log setup-password
+Enter the switch name: <return>
+The switch name entered is not recognized.
+Choose from the following list:
+cs1
+cs2
+
+cluster1::*> system switch ethernet log setup-password
+
+Enter the switch name: cs1
+RSA key fingerprint is e5:8b:c6:dc:e2:18:18:09:36:63:d9:63:dd:03:d9:cc
+Do you want to continue? {y|n}::[n] y
+
+Enter the password: <enter switch password>
+Enter the password again: <enter switch password>
+
+cluster1::*> system switch ethernet log setup-password
+
+Enter the switch name: cs2
+RSA key fingerprint is 57:49:86:a1:b9:80:6a:61:9a:86:8e:3c:e3:b7:1f:b1
+Do you want to continue? {y|n}:: [n] y
+
+Enter the password: <enter switch password>
+Enter the password again: <enter switch password>
+
+cluster1::*> system  switch ethernet log enable-collection
+
+Do you want to enable cluster log collection for all nodes in the cluster?
+{y|n}: [n] y
+
+Enabling cluster switch log collection.
+
+cluster1::*>
+----
++
+
+NOTE: 如果其中任何一个命令返回错误，请联系 NetApp 支持部门。
+
+. 对于 ONTAP 9.5P16 ， 9.6P12 和 9.7P10 及更高版本的修补程序，请使用以下命令启用以太网交换机运行状况监控器日志收集功能以收集交换机相关的日志文件： `ssystem cluster-switch log setup-password` 和 `ssystem cluster-switch log enable-Collection`
++
+[listing]
+----
+cluster1::*> system cluster-switch log setup-password
+Enter the switch name: <return>
+The switch name entered is not recognized.
+Choose from the following list:
+cs1
+cs2
+
+cluster1::*> system cluster-switch log setup-password
+
+Enter the switch name: cs1
+RSA key fingerprint is e5:8b:c6:dc:e2:18:18:09:36:63:d9:63:dd:03:d9:cc
+Do you want to continue? {y|n}::[n] y
+
+Enter the password: <enter switch password>
+Enter the password again: <enter switch password>
+
+cluster1::*> system cluster-switch log setup-password
+
+Enter the switch name: cs2
+RSA key fingerprint is 57:49:86:a1:b9:80:6a:61:9a:86:8e:3c:e3:b7:1f:b1
+Do you want to continue? {y|n}:: [n] y
+
+Enter the password: <enter switch password>
+Enter the password again: <enter switch password>
+
+cluster1::*> system cluster-switch log enable-collection
+
+Do you want to enable cluster log collection for all nodes in the cluster?
+{y|n}: [n] y
+
+Enabling cluster switch log collection.
+
+cluster1::*>
+----
++
+
+NOTE: 如果其中任何一个命令返回错误，请联系 NetApp 支持部门。
+
+

@@ -1,0 +1,27 @@
+---
+permalink: switch-cisco-3232c/concept-replace-a-cisco-nexus-3232c-storage-switch.html 
+sidebar: sidebar 
+keywords: replace, cisco nexus 3232c, storage switches 
+summary: 更换 Cisco Nexus 3232C 存储交换机时，您必须了解某些配置信息，端口连接和布线要求。 
+---
+= 更换 Cisco Nexus 3232C 存储交换机
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+更换 Cisco Nexus 3232C 存储交换机时，您必须了解某些配置信息，端口连接和布线要求。
+
+在 Cisco Nexus 存储交换机上安装 NX-OS 软件和 RCF 之前，必须验证是否存在以下条件：
+
+* 您的系统可以支持 Cisco Nexus 3232C 存储交换机。
+* 您必须已查看 Cisco 以太网交换机页面上的交换机兼容性表以了解受支持的 ONTAP ， NX-OS 和 RCF 版本。
++
+[NOTE]
+====
+您应了解 RCF 和 NX-OS 版本中的命令语法之间可能存在依赖关系。
+
+====
+* 您必须已参考 Cisco 网站上提供的相应软件和升级指南，以获取有关 Cisco 交换机升级和降级过程的完整文档。 http://www.cisco.com/en/US/products/ps9670/prod_installation_guides_list.html["Cisco Nexus 3000 系列交换机"^]
+* 您必须已下载适用的 RCF 。
+

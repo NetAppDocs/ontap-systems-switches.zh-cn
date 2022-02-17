@@ -1,0 +1,553 @@
+---
+permalink: switch-cisco-9336c-fx2/migrate-to-9336.html 
+sidebar: sidebar 
+keywords: migrating to a cluster with Cisco Nexus 9336C-FX2 cluster switches, how to migrate 
+summary: 您可以将 ONTAP 集群中较早的 Cisco 集群交换机无中断迁移到 Cisco Nexus 9336C-x2 集群网络交换机。 
+---
+= 如何从 Cisco 交换机迁移到 Cisco Nexus 9336C-x2 集群交换机
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+您可以将 ONTAP 集群中较早的 Cisco 集群交换机无中断迁移到 Cisco Nexus 9336C-x2 集群网络交换机。
+
+* 现有集群必须已正确设置并正常运行。
+* 所有集群端口都必须处于 up 状态，以确保无中断运行。
+* Nexus 9336C-FX2 集群交换机必须在安装的正确版本的 NX-OS 下进行配置并运行，并应用参考配置文件（ Reference Configuration File ， RCF ）。
+* 现有集群网络配置必须满足以下要求：
++
+** 使用两个旧版 Cisco 交换机的冗余且功能完备的 NetApp 集群。
+** 管理连接以及对旧 Cisco 交换机和新交换机的控制台访问。
+** 所有与集群 LIF 处于 up 状态的集群 LIF 均位于其主端口上。
+** ISL 端口已启用，并已在旧的 Cisco 交换机之间以及新交换机之间进行布线。
+
+
+
+
+此操作步骤中的示例使用以下交换机和节点命名：
+
+* 现有的 Cisco Nexus 5596UP 集群交换机为 C1 和 C2 。
+* 新的 Nexus 9336C-x2 集群交换机为 CS1 和 CS2 。
+* 节点为 node1 和 node2 。
+* 集群 LIF 分别是节点 1 上的 node1_clus1 和 node1_clus2 以及节点 2 上的 node2_clus1 和 node2_clus2 。
+* 交换机 C2 首先由交换机 CS2 取代，然后交换机 C1 由交换机 CS1 取代。
++
+** 临时 ISL 基于将 C1 连接到 CS1 的 CS1 构建。
+** 然后，节点和 C2 之间的布线将从 C2 断开，并重新连接到 CS2 。
+** 然后，节点和 C1 之间的布线将从 C1 断开，并重新连接到 CS1 。
+** 然后删除 C1 和 CS1 之间的临时 ISL 。
+
+
+
+
+.步骤
+. 如果在此集群上启用了 AutoSupport ，请通过调用 AutoSupport 消息来禁止自动创建案例： `ssystem node AutoSupport invoke -node * -type all -message MAINT=xh`
++
+其中 x 是维护时段的持续时间，以小时为单位。
+
++
+
+NOTE: AutoSupport 消息会通知技术支持此维护任务，以便在维护窗口期间禁止自动创建案例。
+
+. 将权限级别更改为高级，在系统提示您继续时输入 * y* ： `set -privilege advanced`
++
+此时将显示高级提示符（ * > ）。
+
+. 验证是否已在所有集群 LIF 上启用自动还原： `network interface show -vserver cluster -fields auto-revert`
++
+[listing]
+----
+cluster1::*> network interface show -vserver Cluster -fields auto-revert
+
+          Logical
+Vserver   Interface     Auto-revert
+--------- ------------- ------------
+Cluster
+          node1_clus1   true
+          node1_clus2   true
+          node2_clus1   true
+          node2_clus2   true
+
+4 entries were displayed.
+----
+. 确定每个集群接口的管理或运行状态：
++
+对于 `Link` ，每个端口均应显示 up ；对于 `Health Status` ，每个端口均应显示 Healthy 。
+
++
+.. 显示网络端口属性： `network port show -ipspace cluster`
++
+[listing]
+----
+cluster1::*> network port show -ipspace Cluster
+
+Node: node1
+                                                                       Ignore
+                                                  Speed(Mbps) Health   Health
+Port      IPspace      Broadcast Domain Link MTU  Admin/Oper  Status   Status
+--------- ------------ ---------------- ---- ---- ----------- -------- ------
+e0a       Cluster      Cluster          up   9000  auto/10000 healthy  false
+e0b       Cluster      Cluster          up   9000  auto/10000 healthy  false
+
+Node: node2
+                                                                       Ignore
+                                                  Speed(Mbps) Health   Health
+Port      IPspace      Broadcast Domain Link MTU  Admin/Oper  Status   Status
+--------- ------------ ---------------- ---- ---- ----------- -------- ------
+e0a       Cluster      Cluster          up   9000  auto/10000 healthy  false
+e0b       Cluster      Cluster          up   9000  auto/10000 healthy  false
+
+4 entries were displayed.
+----
+.. 显示有关逻辑接口及其指定主节点的信息： `network interface show -vserver Cluster`
++
+对于 `S状态管理 /Oper` ，每个 LIF 都应显示 up/up ；对于 `，每个 LIF 都应显示 true ，而对于` ，则显示 Home 。
+
++
+[listing]
+----
+cluster1::*> network interface show -vserver Cluster
+
+            Logical      Status     Network            Current       Current Is
+Vserver     Interface    Admin/Oper Address/Mask       Node          Port    Home
+----------- -----------  ---------- ------------------ ------------- ------- ----
+Cluster
+            node1_clus1  up/up      169.254.209.69/16  node1         e0a     true
+            node1_clus2  up/up      169.254.49.125/16  node1         e0b     true
+            node2_clus1  up/up      169.254.47.194/16  node2         e0a     true
+            node2_clus2  up/up      169.254.19.183/16  node2         e0b     true
+
+4 entries were displayed.
+----
+
+
+. 从节点的角度来看，每个节点上的集群端口均使用以下命令连接到现有集群交换机： `network device-discovery show -protocol cdp`
++
+[listing]
+----
+cluster1::*> network device-discovery show -protocol cdp
+Node/       Local  Discovered
+Protocol    Port   Device (LLDP: ChassisID)  Interface         Platform
+----------- ------ ------------------------- ----------------  ----------------
+node2      /cdp
+            e0a    c1                        0/2               N5K-C5596UP
+            e0b    c2                        0/2               N5K-C5596UP
+node1      /cdp
+            e0a    c1                        0/1               N5K-C5596UP
+            e0b    c2                        0/1               N5K-C5596UP
+
+4 entries were displayed.
+----
+. 从交换机角度来看，集群端口和交换机使用以下命令进行连接： `show cdp neighbors`
++
+[listing]
+----
+c1# show cdp neighbors
+
+Capability Codes: R - Router, T - Trans-Bridge, B - Source-Route-Bridge
+                  S - Switch, H - Host, I - IGMP, r - Repeater,
+                  V - VoIP-Phone, D - Remotely-Managed-Device,
+                  s - Supports-STP-Dispute
+
+
+Device-ID             Local Intrfce Hldtme Capability  Platform         Port ID
+node1                 Eth1/1         124   H           FAS2750          e0a
+node2                 Eth1/2         124   H           FAS2750          e0a
+c2                    Eth1/41        179   S I s       N5K-C5596UP      Eth1/41
+c2                    Eth1/42        175   S I s       N5K-C5596UP      Eth1/42
+c2                    Eth1/43        179   S I s       N5K-C5596UP      Eth1/43
+c2                    Eth1/44        175   S I s       N5K-C5596UP      Eth1/44
+c2                    Eth1/45        179   S I s       N5K-C5596UP      Eth1/45
+c2                    Eth1/46        179   S I s       N5K-C5596UP      Eth1/46
+c2                    Eth1/47        175   S I s       N5K-C5596UP      Eth1/47
+c2                    Eth1/48        179   S I s       N5K-C5596UP      Eth1/48
+Total entries displayed: 10
+
+c2# show cdp neighbors
+
+Capability Codes: R - Router, T - Trans-Bridge, B - Source-Route-Bridge
+                  S - Switch, H - Host, I - IGMP, r - Repeater,
+                  V - VoIP-Phone, D - Remotely-Managed-Device,
+                  s - Supports-STP-Dispute
+
+
+Device-ID             Local Intrfce Hldtme Capability  Platform         Port ID
+node1                 Eth1/1        124    H           FAS2750          e0b
+node2                 Eth1/2        124    H           FAS2750          e0b
+c1                    Eth1/41       175    S I s       N5K-C5596UP      Eth1/41
+c1                    Eth1/42       175    S I s       N5K-C5596UP      Eth1/42
+c1                    Eth1/43       175    S I s       N5K-C5596UP      Eth1/43
+c1                    Eth1/44       175    S I s       N5K-C5596UP      Eth1/44
+c1                    Eth1/45       175    S I s       N5K-C5596UP      Eth1/45
+c1                    Eth1/46       175    S I s       N5K-C5596UP      Eth1/46
+c1                    Eth1/47       176    S I s       N5K-C5596UP      Eth1/47
+c1                    Eth1/48       176    S I s       N5K-C5596UP      Eth1/48
+----
+. 使用命令 `cluster ping-cluster -node node-name` 确保集群网络具有完全连接
++
+[listing]
+----
+cluster1::*> cluster ping-cluster -node node2
+
+Host is node2
+Getting addresses from network interface table...
+Cluster node1_clus1 169.254.209.69 node1     e0a
+Cluster node1_clus2 169.254.49.125 node1     e0b
+Cluster node2_clus1 169.254.47.194 node2     e0a
+Cluster node2_clus2 169.254.19.183 node2     e0b
+Local = 169.254.47.194 169.254.19.183
+Remote = 169.254.209.69 169.254.49.125
+Cluster Vserver Id = 4294967293
+Ping status:
+....
+Basic connectivity succeeds on 4 path(s)
+Basic connectivity fails on 0 path(s)
+................
+Detected 9000 byte MTU on 4 path(s):
+    Local 169.254.19.183 to Remote 169.254.209.69
+    Local 169.254.19.183 to Remote 169.254.49.125
+    Local 169.254.47.194 to Remote 169.254.209.69
+    Local 169.254.47.194 to Remote 169.254.49.125
+Larger than PMTU communication succeeds on 4 path(s)
+RPC status:
+2 paths up, 0 paths down (tcp check)
+2 paths up, 0 paths down (udp check)
+----
+. 在 C1 和 CS1 之间的端口 E1/41-48 上的 CS1 上配置临时 ISL 。
++
+以下示例显示了如何在 C1 和 CS1 上配置新 ISL ：
+
++
+[listing]
+----
+cs1# configure
+Enter configuration commands, one per line. End with CNTL/Z.
+cs1(config)# interface e1/41-48
+cs1(config-if-range)# description temporary ISL between Nexus 5596UP and Nexus 9336C
+cs1(config-if-range)# no lldp transmit
+cs1(config-if-range)# no lldp receive
+cs1(config-if-range)# switchport mode trunk
+cs1(config-if-range)# no spanning-tree bpduguard enable
+cs1(config-if-range)# channel-group 101 mode active
+cs1(config-if-range)# exit
+cs1(config)# interface port-channel 101
+cs1(config-if)# switchport mode trunk
+cs1(config-if)# spanning-tree port type network
+cs1(config-if)# exit
+cs1(config)# exit
+----
+. 从 C2 的端口 E1/41-48 中拔下 ISL 缆线，并将缆线连接到 CS1 上的端口 E1/41-48 。
+. 验证连接 C1 和 CS1 的 ISL 端口和端口通道是否正常运行： `s如何连接端口通道摘要`
++
+以下示例显示了用于验证 C1 和 CS1 上 ISL 端口是否正常运行的 Cisco show port-channel summary 命令：
+
++
+[listing]
+----
+c1# show port-channel summary
+Flags:  D - Down        P - Up in port-channel (members)
+        I - Individual  H - Hot-standby (LACP only)
+        s - Suspended   r - Module-removed
+        b - BFD Session Wait
+        S - Switched    R - Routed
+        U - Up (port-channel)
+        p - Up in delay-lacp mode (member)
+        M - Not in use. Min-links not met
+--------------------------------------------------------------------------------
+Group Port-       Type     Protocol  Member Ports
+      Channel
+--------------------------------------------------------------------------------
+1     Po1(SU)     Eth      LACP      Eth1/41(P)   Eth1/42(P)   Eth1/43(P)
+                                     Eth1/44(P)   Eth1/45(P)   Eth1/46(P)
+                                     Eth1/47(P)   Eth1/48(P)
+
+
+cs1# show port-channel summary
+Flags:  D - Down        P - Up in port-channel (members)
+        I - Individual  H - Hot-standby (LACP only)
+        s - Suspended   r - Module-removed
+        b - BFD Session Wait
+        S - Switched    R - Routed
+        U - Up (port-channel)
+        p - Up in delay-lacp mode (member)
+        M - Not in use. Min-links not met
+--------------------------------------------------------------------------------
+Group Port-       Type     Protocol  Member Ports
+      Channel
+--------------------------------------------------------------------------------
+1     Po1(SU)     Eth      LACP      Eth1/35(P)   Eth1/36(P)
+101   Po101(SU)   Eth      LACP      Eth1/41(P)   Eth1/42(P)   Eth1/43(P)
+                                     Eth1/44(P)   Eth1/45(P)   Eth1/46(P)
+                                     Eth1/47(P)   Eth1/48(P)
+----
+. 对于 node1 ，请断开 C2 上 E1/1 的缆线连接，然后使用 Nexus 9336C-x2 支持的相应布线方式将缆线连接到 CS2 上的 E1/1 。
+. 对于 node2 ，请断开 C2 上 E1/2 的缆线连接，然后使用 Nexus 9336C-x2 支持的相应布线方式将缆线连接到 CS2 上的 E1/2 。
+. 现在，从节点的角度来看，每个节点上的集群端口均以以下方式连接到集群交换机： `network device-discovery show -protocol cdp`
++
+[listing]
+----
+cluster1::*> network device-discovery show -protocol cdp
+
+Node/       Local  Discovered
+Protocol    Port   Device (LLDP: ChassisID)  Interface         Platform
+----------- ------ ------------------------- ----------------  ----------------
+node2      /cdp
+            e0a    c1                        0/2               N5K-C5596UP
+            e0b    cs2                       0/2               N9K-C9336C
+node1      /cdp
+            e0a    c1                        0/1               N5K-C5596UP
+            e0b    cs2                       0/1               N9K-C9336C
+
+4 entries were displayed.
+----
+. 对于 node1 ，请断开 C1 上 E1/1 的缆线，然后使用 Nexus 9336C-x2 支持的相应布线方式将缆线连接到 CS1 上的 E1/1 。
+. 对于 node2 ，断开 C1 上 E1/2 的缆线连接，然后使用 Nexus 9336C-x2 支持的相应布线方式将缆线连接到 CS1 上的 E1/2 。
+. 现在，从节点的角度来看，每个节点上的集群端口均以以下方式连接到集群交换机： `network device-discovery show -protocol cdp`
++
+[listing]
+----
+cluster1::*> network device-discovery show -protocol cdp
+Node/       Local  Discovered
+Protocol    Port   Device (LLDP: ChassisID)  Interface         Platform
+----------- ------ ------------------------- ----------------  ----------------
+node2      /cdp
+            e0a    cs1                       0/2               N9K-C9336C
+            e0b    cs2                       0/2               N9K-C9336C
+node1      /cdp
+            e0a    cs1                       0/1               N9K-C9336C
+            e0b    cs2                       0/1               N9K-C9336C
+4 entries were displayed.
+----
+. 删除 CS1 和 C1 之间的临时 ISL 。
++
+[listing]
+----
+cs1(config)# no interface port-channel 10
+cs1(config)# interface e1/41-48
+cs1(config-if-range)# lldp transmit
+cs1(config-if-range)# lldp receive
+cs1(config-if-range)# no switchport mode trunk
+cs1(config-if-range)# no channel-group
+cs1(config-if-range)# description 10GbE Node Port
+cs1(config-if-range)# spanning-tree bpduguard enable
+cs1(config-if-range)# exit
+cs1(config)# exit
+----
+. 验证集群的最终配置： `network port show -ipspace cluster`
++
+对于 `Link` ，每个端口均应显示 up ；对于 `Health Status` ，每个端口均应显示 Healthy 。
+
++
+[listing]
+----
+cluster1::*> network port show -ipspace Cluster
+
+Node: node1
+                                                                       Ignore
+                                                  Speed(Mbps) Health   Health
+Port      IPspace      Broadcast Domain Link MTU  Admin/Oper  Status   Status
+--------- ------------ ---------------- ---- ---- ----------- -------- ------
+e0a       Cluster      Cluster          up   9000  auto/10000 healthy  false
+e0b       Cluster      Cluster          up   9000  auto/10000 healthy  false
+
+Node: node2
+                                                                       Ignore
+                                                  Speed(Mbps) Health   Health
+Port      IPspace      Broadcast Domain Link MTU  Admin/Oper  Status   Status
+--------- ------------ ---------------- ---- ---- ----------- -------- ------
+e0a       Cluster      Cluster          up   9000  auto/10000 healthy  false
+e0b       Cluster      Cluster          up   9000  auto/10000 healthy  false
+
+4 entries were displayed.
+
+
+cluster1::*> network interface show -vserver Cluster
+
+            Logical    Status     Network            Current       Current Is
+Vserver     Interface  Admin/Oper Address/Mask       Node          Port    Home
+----------- ---------- ---------- ------------------ ------------- ------- ----
+Cluster
+            node1_clus1  up/up    169.254.209.69/16  node1         e0a     true
+            node1_clus2  up/up    169.254.49.125/16  node1         e0b     true
+            node2_clus1  up/up    169.254.47.194/16  node2         e0a     true
+            node2_clus2  up/up    169.254.19.183/16  node2         e0b     true
+
+4 entries were displayed.
+
+
+cluster1::*> network device-discovery show -protocol cdp
+
+Node/       Local  Discovered
+Protocol    Port   Device (LLDP: ChassisID)  Interface         Platform
+----------- ------ ------------------------- ----------------  ----------------
+node2      /cdp
+            e0a    cs1                       0/2               N9K-C9336C
+            e0b    cs2                       0/2               N9K-C9336C
+node1      /cdp
+            e0a    cs1                       0/1               N9K-C9336C
+            e0b    cs2                       0/1               N9K-C9336C
+
+4 entries were displayed.
+----
+. 验证两个节点的每个交换机是否都有一个连接： `sHow cdp neighbors`
++
+以下示例显示了这两个交换机的相应结果：
+
++
+[listing]
+----
+cs1# show cdp neighbors
+
+Capability Codes: R - Router, T - Trans-Bridge, B - Source-Route-Bridge
+                  S - Switch, H - Host, I - IGMP, r - Repeater,
+                  V - VoIP-Phone, D - Remotely-Managed-Device,
+                  s - Supports-STP-Dispute
+
+Device-ID          Local Intrfce  Hldtme Capability  Platform      Port ID
+node1              Eth1/1         124    H           FAS2750       e0a
+node2              Eth1/2         124    H           FAS2750       e0a
+cs2                Eth1/35        179    R S I s     N9K-C9336C    Eth1/35
+cs2                Eth1/36        179    R S I s     N9K-C9336C    Eth1/36
+
+
+cs2# show cdp neighbors
+
+Capability Codes: R - Router, T - Trans-Bridge, B - Source-Route-Bridge
+                  S - Switch, H - Host, I - IGMP, r - Repeater,
+                  V - VoIP-Phone, D - Remotely-Managed-Device,
+                  s - Supports-STP-Dispute
+
+Device-ID          Local Intrfce  Hldtme Capability  Platform      Port ID
+node1              Eth1/1         124    H           FAS2750       e0b
+node2              Eth1/2         124    H           FAS2750       e0b
+cs1                Eth1/35        179    R S I s     N9K-C9336C    Eth1/35
+cs1                Eth1/36        179    R S I s     N9K-C9336C    Eth1/36
+
+Total entries displayed: 4
+----
+. 确保集群网络具有完全连接： `cluster ping-cluster -node node-name`
++
+[listing]
+----
+cluster1::*> set -priv advanced
+
+Warning: These advanced commands are potentially dangerous; use them only when
+         directed to do so by NetApp personnel.
+Do you want to continue? {y|n}: y
+
+cluster1::*> cluster ping-cluster -node node2
+Host is node2
+Getting addresses from network interface table...
+Cluster node1_clus1 169.254.209.69 node1     e0a
+Cluster node1_clus2 169.254.49.125 node1     e0b
+Cluster node2_clus1 169.254.47.194 node2     e0a
+Cluster node2_clus2 169.254.19.183 node2     e0b
+Local = 169.254.47.194 169.254.19.183
+Remote = 169.254.209.69 169.254.49.125
+Cluster Vserver Id = 4294967293
+Ping status:
+....
+Basic connectivity succeeds on 4 path(s)
+Basic connectivity fails on 0 path(s)
+................
+Detected 9000 byte MTU on 4 path(s):
+    Local 169.254.19.183 to Remote 169.254.209.69
+    Local 169.254.19.183 to Remote 169.254.49.125
+    Local 169.254.47.194 to Remote 169.254.209.69
+    Local 169.254.47.194 to Remote 169.254.49.125
+Larger than PMTU communication succeeds on 4 path(s)
+RPC status:
+2 paths up, 0 paths down (tcp check)
+2 paths up, 0 paths down (udp check)
+
+
+cluster1::*> set -privilege admin
+cluster1::*>
+----
+. 对于 ONTAP 9.8 及更高版本，请使用以下两个命令启用以太网交换机运行状况监控器日志收集功能以收集交换机相关的日志文件： `ssystem switch Ethernet log setup-password` 和 `ssystem switch Ethernet log enable-Collection`
++
+[listing]
+----
+cluster1::*> system switch ethernet log setup-password
+Enter the switch name: <return>
+The switch name entered is not recognized.
+Choose from the following list:
+cs1
+cs2
+
+cluster1::*> system switch ethernet log setup-password
+
+Enter the switch name: cs1
+RSA key fingerprint is e5:8b:c6:dc:e2:18:18:09:36:63:d9:63:dd:03:d9:cc
+Do you want to continue? {y|n}::[n] y
+
+Enter the password: <enter switch password>
+Enter the password again: <enter switch password>
+
+cluster1::*> system switch ethernet log setup-password
+
+Enter the switch name: cs2
+RSA key fingerprint is 57:49:86:a1:b9:80:6a:61:9a:86:8e:3c:e3:b7:1f:b1
+Do you want to continue? {y|n}:: [n] y
+
+Enter the password: <enter switch password>
+Enter the password again: <enter switch password>
+
+cluster1::*> system  switch ethernet log enable-collection
+
+Do you want to enable cluster log collection for all nodes in the cluster?
+{y|n}: [n] y
+
+Enabling cluster switch log collection.
+
+cluster1::*>
+----
++
+
+NOTE: 如果其中任何一个命令返回错误，请联系 NetApp 支持部门。
+
+. 对于 ONTAP 9.5P16 ， 9.6P12 和 9.7P10 及更高版本的修补程序，请使用以下命令启用以太网交换机运行状况监控器日志收集功能以收集交换机相关的日志文件： `ssystem cluster-switch log setup-password` 和 `ssystem cluster-switch log enable-Collection`
++
+[listing]
+----
+cluster1::*> system cluster-switch log setup-password
+Enter the switch name: <return>
+The switch name entered is not recognized.
+Choose from the following list:
+cs1
+cs2
+
+cluster1::*> system cluster-switch log setup-password
+
+Enter the switch name: cs1
+RSA key fingerprint is e5:8b:c6:dc:e2:18:18:09:36:63:d9:63:dd:03:d9:cc
+Do you want to continue? {y|n}::[n] y
+
+Enter the password: <enter switch password>
+Enter the password again: <enter switch password>
+
+cluster1::*> system cluster-switch log setup-password
+
+Enter the switch name: cs2
+RSA key fingerprint is 57:49:86:a1:b9:80:6a:61:9a:86:8e:3c:e3:b7:1f:b1
+Do you want to continue? {y|n}:: [n] y
+
+Enter the password: <enter switch password>
+Enter the password again: <enter switch password>
+
+cluster1::*> system cluster-switch log enable-collection
+
+Do you want to enable cluster log collection for all nodes in the cluster?
+{y|n}: [n] y
+
+Enabling cluster switch log collection.
+
+cluster1::*>
+----
++
+
+NOTE: 如果其中任何一个命令返回错误，请联系 NetApp 支持部门。
+
+. 如果禁止自动创建案例，请通过调用 AutoSupport 消息重新启用该功能： `ssystem node AutoSupport invoke -node * -type all -message MAINT=end`
+

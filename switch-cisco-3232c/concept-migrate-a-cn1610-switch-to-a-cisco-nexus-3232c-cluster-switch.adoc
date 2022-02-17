@@ -1,0 +1,72 @@
+---
+permalink: switch-cisco-3232c/concept-migrate-a-cn1610-switch-to-a-cisco-nexus-3232c-cluster-switch.html 
+sidebar: sidebar 
+keywords: migrate, cn1610 switch, cisco nexus 3232c cluster 
+summary: 将 CN1610 集群交换机更换为 Cisco Nexus 3232C 集群交换机时，您必须了解某些配置信息，端口连接和布线要求。 
+---
+= 将 CN1610 交换机迁移到 Cisco Nexus 3232C 集群交换机
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+将 CN1610 集群交换机更换为 Cisco Nexus 3232C 集群交换机时，您必须了解某些配置信息，端口连接和布线要求。
+
+集群交换机支持以下节点连接：
+
+* NetApp CN1610 ：端口 0/1 到 0/12 （ 10 GbE ）
+* Cisco Nexus 3232C ：端口 E1/1-30 （ 40 或 100 或 4x10GbE ）
+
+
+集群交换机使用以下交换机间链路（ ISL ）端口。
+
+* NetApp CN1610 ：端口 0/13 至 0/16 （ 10 GbE ）
+* Cisco Nexus 3232C ：端口 1/31 至 32 （ 100GbE ）
+
+
+[NOTE]
+====
+您必须在 Cisco Nexus 3232C 集群交换机上使用 4 根 10G 分支缆线。
+
+====
+下表显示了从 NetApp CN1610 交换机过渡到 Cisco Nexus 3232C 集群交换机时每个阶段所需的布线连接：
+
+|===
+| 阶段 | Description | 所需的缆线 
+
+
+ a| 
+初始
+ a| 
+CN1610 到 CN1610 （ SFP+ 到 SFP+ ）
+ a| 
+4 根 SFP+ 光纤或铜缆直连缆线
+
+
+
+ a| 
+过渡
+ a| 
+CN1610 到 3232C （ QSFP 到 SFP+ ）
+ a| 
+1 根 QSFP 和 4 根 SFP+ 光纤或铜缆分支缆线
+
+
+
+ a| 
+最终
+ a| 
+3232C 到 3232C （ QSFP 到 QSFP ）
+ a| 
+2 根 QSFP 光纤或铜缆直连缆线
+
+|===
+您必须已下载适用的参考配置文件（ Reference Configuration Files ， RCF ）。10 GbE 和 40/100 GbE 端口的数量在上提供的 RCF 中定义 https://mysupport.netapp.com/NOW/download/software/sanswitch/fcp/Cisco/netapp_cnmn/download.shtml["Cisco ® 集群网络交换机参考配置文件下载"^] 页面。
+
+此操作步骤 中支持的 ONTAP 和 NX-OS 版本会列在 Cisco 以太网交换机页面上。
+
+https://mysupport.netapp.com/NOW/download/software/cm_switches/["Cisco 以太网交换机"^]
+
+此操作步骤 中支持的 ONTAP 和 FastPath 版本列在 NetApp CN1601 和 CN1610 交换机页面上。
+
+http://support.netapp.com/NOW/download/software/cm_switches_ntap/["NetApp CN1601 和 CN1610 交换机"^]

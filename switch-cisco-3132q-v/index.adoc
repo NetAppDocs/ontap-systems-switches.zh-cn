@@ -1,0 +1,13 @@
+---
+permalink: switch-cisco-3132q-v/index.html 
+sidebar: sidebar 
+keywords: Cisco, 3132Q-V 
+summary: 迁移到双节点交换集群 
+---
+= Cisco 3132Q-V 交换机
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+您可以将 Cisco 3132Q-V 交换机用作 AFF 或 FAS 集群中的集群交换机。您可以使用以下过程安装交换机，从现有交换机迁移，更换交换机以及更新交换机上的 RCF 文件。
