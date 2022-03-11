@@ -12,10 +12,6 @@ summary: 您可以通过执行一系列特定任务无中断地更换集群中�
 [role="lead"]
 您可以通过执行一系列特定任务无中断地更换集群中有故障的 Cisco Nexus 3232C 交换机。
 
-
-
-== 您将需要什么
-
 现有集群和网络配置必须具有以下特征：
 
 * Nexus 3232C 集群基础架构必须在两台交换机上都是冗余的，并且完全正常运行。
@@ -35,16 +31,12 @@ Cisco 以太网交换机页面会为您的交换机提供最新的 RCF 和 NX-OS
 * 必须完成交换机的初始自定义。
 
 
-
-
-== 关于此任务
-
 * 操作步骤 摘要 *
 
-* * 显示集群端口并将其迁移到交换机 C2 （步骤 1-7 ） *
-* * 将 ISL 缆线从交换机 CL2 重新连接到交换机 C2 ，然后将 ISL 迁移到交换机 CL1 和 C2 （步骤 8-14 ） *
-* * 将所有 LIF 还原到最初分配的端口（步骤 15-18 ） *
-* * 验证所有端口和 LIF 是否均已正确迁移（步骤 19-21 ） *
+* * 显示集群端口并将其迁移到交换机 C2 （步骤 <<one,1.>>-<<seven,7 ）>>*
+* * 将 ISL 缆线从交换机 CL2 重新连接到交换机 C2 ，然后将 ISL 迁移到交换机 CL1 和 C2 （步骤 <<eight,8.>>-<<fourteen,14 ）>>*
+* * 将所有 LIF 还原到最初分配的端口（步骤 <<fifteen,15>>-<<eighteen,18 ）>>*
+* * 验证所有端口和 LIF 是否均已正确迁移（步骤 <<nineteen,19>>-<<twentyone,21>>*
 
 
 此操作步骤 将第二个 Nexus 3232C 集群交换机 CL2 替换为新的 3232C 交换机 C2 。此操作步骤中的示例使用以下交换机和节点命名：
@@ -58,9 +50,7 @@ Cisco 以太网交换机页面会为您的交换机提供最新的 RCF 和 NX-OS
 
 10 GbE 和 40/100 GbE 端口的数量在上提供的参考配置文件（ RCF ）中定义 https://mysupport.netapp.com/NOW/download/software/sanswitch/fcp/Cisco/netapp_cnmn/download.shtml["Cisco ® 集群网络交换机参考配置文件下载"^] 页面。
 
-此操作步骤 中的示例使用四个节点。其中两个节点使用四个 10 Gb 集群互连端口： e0a ， e0b ， e0c 和 e0d 。其他两个节点使用两个 40 Gb 集群互连端口： E4A 和 e4e 。请参见 Hardware Universe 以验证适用于您的平台的集群端口是否正确。
-
-https://hwu.netapp.com/SWITCH/INDEX["Hardware Universe"^]
+此操作步骤 中的示例使用四个节点。其中两个节点使用四个 10 Gb 集群互连端口： e0a ， e0b ， e0c 和 e0d 。其他两个节点使用两个 40 Gb 集群互连端口： E4A 和 e4e 。请参见 link:https://hwu.netapp.com/SWITCH/INDEX.html["Hardware Universe"^] 验证适用于您的平台的集群端口是否正确。
 
 此操作步骤 介绍了以下情形：
 
@@ -74,18 +64,14 @@ https://hwu.netapp.com/SWITCH/INDEX["Hardware Universe"^]
 
 
 
+.步骤
+. 【一个】如果在此集群上启用了 AutoSupport ，则通过调用 AutoSupport 消息禁止自动创建案例：
 
 
-== 步骤
-
-. 如果在此集群上启用了 AutoSupport ，则通过调用 AutoSupport 消息禁止自动创建案例：
-+
 `ssystem node AutoSupport invoke -node * -type all - 消息 MAINT=xh`
 
-+
-_x_ 是维护时段的持续时间，以小时为单位。
++_x_ 是维护时段的持续时间，以小时为单位。
 
-+
 [NOTE]
 ====
 AutoSupport 消息会通知技术支持此维护任务，以便在维护窗口期间禁止自动创建案例。
@@ -315,7 +301,7 @@ cluster::*> network port modify -node n2 -port e0c -up-admin false
 cluster::*> network port modify -node n3 -port e4e -up-admin false
 cluster::*> network port modify -node n4 -port e4e -up-admin false
 ----
-. 对远程集群接口执行 Ping 操作并执行 RPC 服务器检查：
+. 【七】对远程集群接口执行 Ping 操作并执行 RPC 服务器检查：
 +
 `cluster ping-cluster -node _node-name_`
 
@@ -382,7 +368,7 @@ Larger than PMTU communication succeeds on 32 path(s) RPC status:
 8 paths up, 0 paths down (tcp check)
 8	paths up, 0 paths down (udp check)
 ----
-. 关闭集群交换机 CL1 上的端口 1/31 和 1/32 。
+. 【八个】关闭集群交换机 CL1 上的端口 1/31 和 1/32 。
 +
 有关 Cisco 命令的详细信息，请参见中列出的指南 https://www.cisco.com/c/en/us/support/switches/nexus-3000-series-switches/products-command-reference-list.html["Cisco Nexus 3000 系列 NX-OS 命令参考"^]。
 
@@ -466,7 +452,7 @@ cluster::*> network port modify -node n2 -port e0c -up-admin true
 cluster::*> network port modify -node n3 -port e4e -up-admin true
 cluster::*> network port modify -node n4 -port e4e -up-admin true
 ----
-. 还原所有节点上所有迁移的集群互连 LIF ：
+. 【十五】还原所有节点上所有已迁移的集群互连 LIF ：
 +
 `network interface revert -vserver cluster -lif _lif-name_`
 
@@ -557,7 +543,7 @@ e4a       Cluster      Cluster          up   9000 auto/40000  -
 e4e       Cluster      Cluster          up   9000 auto/40000  -
         12 entries were displayed.
 ----
-. 对远程集群接口执行 Ping 操作并执行 RPC 服务器检查：
+. 【十八】对远程集群接口执行 Ping 操作并执行 RPC 服务器检查：
 +
 `cluster ping-cluster -node _node-name_`
 
@@ -624,7 +610,7 @@ Larger than PMTU communication succeeds on 32 path(s) RPC status:
 8 paths up, 0 paths down (tcp check)
 8	paths up, 0 paths down (udp check)
 ----
-. 输入以下命令以显示有关配置中设备的信息：
+. 【 19 个】输入以下命令，显示有关配置中设备的信息：
 +
 您可以按任意顺序执行以下命令：
 
@@ -757,7 +743,7 @@ Software Version: Cisco Nexus Operating System (NX-OS) Software, Version
 +
 `ssystem cluster-switch delete -device cluster-switch-name`
 
-. 验证是否监控了正确的集群交换机： `ssystem cluster-switch show`
+. ` 是否监控了正确的集群交换机： `ssystem cluster-switch show
 +
 以下示例显示了集群交换机受到监控，因为 `受监控` 状态为 `true` 。
 

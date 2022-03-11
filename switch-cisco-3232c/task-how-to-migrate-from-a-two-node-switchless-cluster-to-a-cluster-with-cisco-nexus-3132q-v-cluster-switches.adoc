@@ -12,10 +12,7 @@ summary: 如果您使用双节点无交换机集群，则可以无中断地迁�
 [role="lead"]
 如果您使用双节点无交换机集群，则可以无中断地迁移到包含 Cisco Nexus 3232C 集群网络交换机的双节点交换集群。
 
-
-
-== 您将需要什么
-
+.开始之前
 * 这些配置必须设置正确且正常运行。
 +
 这两个节点必须在双节点无交换机集群设置下连接并正常运行。
@@ -35,16 +32,12 @@ summary: 如果您使用双节点无交换机集群，则可以无中断地迁�
 
 
 
-
-
-== 关于此任务
-
 * 操作步骤 摘要 *
 
-* * 一显示和迁移物理和逻辑端口（步骤 1-10 ） *
-* * 二关闭重新分配的 LIF 并断开缆线连接（步骤 11-14 ） *
-* * 三启用集群端口（步骤 15 至 20 ） *
-* 四启用重新分配的 LIF （步骤 21-33 ） *
+* * 一显示和迁移物理和逻辑端口（步骤 <<joyce,1.>>-<<beckett,10>>*
+* * 二关闭重新分配的 LIF 并断开缆线（步骤 <<casey,11.>>-<<heaney,14 ）>>*
+* * 三启用集群端口（步骤 <<yeats,15>>-<<friel,20>>*
+* 四启用重新分配的 LIF （步骤 <<wilde,21>>-<<swift,33>>*
 
 
 此操作步骤中的示例使用以下交换机和节点命名：
@@ -70,11 +63,8 @@ summary: 如果您使用双节点无交换机集群，则可以无中断地迁�
 操作步骤 要求同时使用 ONTAP 命令和 Cisco Nexus 3000 系列交换机命令；除非另有说明，否则使用 ONTAP 命令。
 
 ====
-
-
-== 步骤
-
-. 如果在此集群上启用了 AutoSupport ，则通过调用 AutoSupport 消息禁止自动创建案例：
+.步骤
+. 【 Joyc]] 如果此集群上启用了 AutoSupport ，则通过调用 AutoSupport 消息禁止自动创建案例：
 +
 `ssystem node AutoSupport invoke -node * -type all - 消息 MAINT=xh`
 
@@ -280,7 +270,7 @@ n2         /cdp
             e4a    n1                  e4a              FAS9000
             e4e    n1                  e4e              FAS9000
 ----
-. 将 n1_clus1 和 n2_clus1 LIF 迁移到其目标节点的物理端口：
+. 【 ｛ Beckett]] 将 n1_clus1 和 n2_clus1 LIF 迁移到其目标节点的物理端口：
 +
 `network interface migrate -vserver cluster -lif _lif-name_ source-node _source-node-name_ -destination-port _destination-port-name_`
 
@@ -295,7 +285,7 @@ cluster::*> network interface migrate -vserver cluster -lif n1_clus1 -source-nod
 cluster::*> network interface migrate -vserver cluster -lif n2_clus1 -source-node n2
 –destination-node n2 -destination-port e4e
 ----
-. 验证集群接口是否已成功迁移：
+. 【 Casey 】验证集群接口是否已成功迁移：
 +
 `network interface show -role cluster`
 
@@ -362,11 +352,11 @@ Larger than PMTU communication succeeds on 4 path(s) RPC status:
 1 paths up, 0 paths down (tcp check)
 1 paths up, 0 paths down (ucp check)
 ----
-. 断开节点 n1 上 E4A 的缆线。
+. 【 Heaney 】从节点 n1 上的 E4A 断开缆线。
 +
 您可以参考正在运行的配置，并使用 Nexus 3232C 交换机支持的布线方式将交换机 C1 上的第一个 40 GbE 端口（本示例中的端口 1/7 ）连接到 n1 上的 E4A 。
 
-. 断开节点 n2 上 E4A 的缆线。
+. 【叶】从节点 n2 上的 E4A 断开缆线。
 +
 您可以参考运行配置，并使用支持的布线方式将 E4A 连接到 C1 端口 1/8 上的下一个可用 40 GbE 端口。
 
@@ -396,7 +386,7 @@ C1(config)# exit
 cluster::*> network port modify -node n1 -port e4a -up-admin true
 cluster::*> network port modify -node n2 -port e4a -up-admin true
 ----
-. 验证两个节点上的集群是否均已启动：
+. 【叶】验证两个节点上的集群是否均已启动：
 +
 `network port show -role cluster`
 
@@ -436,7 +426,7 @@ e4e       Cluster      Cluster          up   9000 auto/40000  -
 cluster::*> network interface revert -vserver cluster -lif n1_clus1
 cluster::*> network interface revert -vserver cluster -lif n2_clus1
 ----
-. 验证所有 LIF 现在是否均已还原到其主端口：
+. [[[fricel]] 验证所有 LIF 现在是否已还原到其主端口：
 +
 `network interface show -role cluster`
 
@@ -458,7 +448,7 @@ Cluster
             n2_clus2   up/up      10.10.0.4/24       n2            e4e     true
 4 entries were displayed.
 ----
-. 显示每个节点上的集群端口连接：
+. 【 ｛ Wilde]] 显示每个节点上的集群端口连接：
 +
 `network device-discovery show`
 
@@ -607,7 +597,7 @@ n2          /cdp
             e4a    C1                  Ethernet1/8      N3K-C3232C
             e4e    C2                  Ethernet1/8      N3K-C3232C
 ----
-. 显示已发现和受监控的集群交换机：
+. 【 Swift 】显示发现和监控的集群交换机：
 +
 `ssystem cluster-switch show`
 

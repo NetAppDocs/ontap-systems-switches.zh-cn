@@ -12,10 +12,7 @@ summary: 在 NetApp 交换机上安装 FastPath 软件时，必须从第二个�
 [role="lead"]
 在 NetApp 交换机上安装 FastPath 软件时，必须从第二个交换机 _CS2_ 开始升级。
 
-
-
-== 步骤
-
+.步骤
 . 如果在此集群上启用了 AutoSupport ，则通过调用 AutoSupport 消息禁止自动创建案例：
 +
 `ssystem node AutoSupport invoke -node * -type all - 消息 MAINT=xh`
@@ -24,11 +21,9 @@ summary: 在 NetApp 交换机上安装 FastPath 软件时，必须从第二个�
 _x_ 是维护时段的持续时间，以小时为单位。
 
 +
-[NOTE]
-====
-AutoSupport 消息会通知技术支持此维护任务，以便在维护窗口期间禁止自动创建案例。
 
-====
+NOTE: AutoSupport 消息会通知技术支持此维护任务，以便在维护窗口期间禁止自动创建案例。
+
 . 以管理员身份登录到交换机。默认情况下没有密码。在 ` （ CS2 ） #` 提示符处，输入 `enable` 命令。同样，默认情况下不存在密码。这样，您就可以访问特权执行模式，从而可以配置网络接口。
 +
 [listing]

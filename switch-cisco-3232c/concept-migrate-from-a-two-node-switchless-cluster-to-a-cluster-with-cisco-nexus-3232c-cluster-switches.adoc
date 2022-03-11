@@ -12,9 +12,7 @@ summary: 在将双节点无交换机集群迁移到使用 Cisco Nexus 3232C 集�
 [role="lead"]
 在将双节点无交换机集群迁移到使用 Cisco Nexus 3232C 集群交换机的集群时，您必须了解某些配置信息，端口连接和布线要求。
 
-"_Cisco 以太网交换机 _ " 页面提供了有关此操作步骤 支持的 ONTAP 和 NX-OS 版本的信息。
-
-http://mysupport.netapp.com/NOW/download/software/cm_switches/["Cisco 以太网交换机"^]
+。 link:http://mysupport.netapp.com/NOW/download/software/cm_switches/.html["Cisco 以太网交换机页面"^] 提供了有关此操作步骤 支持的 ONTAP 和 NX-OS 版本的信息。
 
 在开始迁移过程之前，您必须满足以下条件：
 

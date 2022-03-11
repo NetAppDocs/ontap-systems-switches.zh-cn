@@ -12,15 +12,12 @@ summary: 更换集群网络中有故障的 Cisco Nexus 3132Q-V 交换机是一�
 [role="lead"]
 更换集群网络中有故障的 Cisco Nexus 3132Q-V 交换机是一种无中断操作步骤 （ NDO ），您必须执行一系列特定的任务。
 
-
-
-== 您将需要什么
-
+.开始之前
 * 现有集群和网络配置必须具有：
 +
 ** Nexus 3132Q-V 集群基础架构必须在两台交换机上都是冗余的，并且完全正常运行。
 +
-Cisco 以太网交换机 _ 页面提供了交换机上最新的 RCF 和 NX-OS 版本。
+。 link:http://support.netapp.com/NOW/download/software/cm_switches/["Cisco 以太网交换机"^] 页面提供了交换机上最新的 RCF 和 NX-OS 版本。
 
 ** 所有集群端口都必须处于 `up` 状态。
 ** 两台交换机上必须存在管理连接。
@@ -37,24 +34,20 @@ Cisco 以太网交换机 _ 页面提供了交换机上最新的 RCF 和 NX-OS �
 
 
 
-
-
-== 关于此任务
-
 此操作步骤 将第二个 Nexus 3132Q-V 集群交换机 CL2 替换为新的 3132Q-V 交换机 C2 。此操作步骤中的示例使用以下交换机和节点命名：
 
 * N1_clus1 是连接到节点 n1 的集群交换机 C1 的第一个集群逻辑接口（ LIF ）。
 * N1_clus2 是连接到节点 n1 的集群交换机 CL2 或 C2 的第一个集群 LIF 。
 * n1_clus3 是连接到节点 n1 的集群交换机 C2 的第二个 LIF 。
 * n1_clus4 是连接到节点 n1 的集群交换机 CL1 的第二个 LIF 。
-* 10 GbE 和 40/100 GbE 端口的数量在上提供的参考配置文件（ RCF ）中定义 https://mysupport.netapp.com/NOW/download/software/sanswitch/fcp/Cisco/netapp_cnmn/download.shtml["Cisco ® 集群网络交换机参考配置文件下载"^] 页面。
-* 节点为 n1 ， n2 ， n3 和 n4 。—此操作步骤 中的示例使用四个节点：两个节点使用四个 10 GB 集群互连端口： e0a ， e0b ， e0c 和 e0d 。其他两个节点使用两个 40 Gb 集群互连端口： E4A 和 e4e 。有关 Hardware Universe 平台上的实际集群端口，请参见 _cluster_ 。
+* 10 GbE 和 40/100 GbE 端口的数量在上提供的参考配置文件（ RCF ）中定义 link:https://mysupport.netapp.com/NOW/download/software/sanswitch/fcp/Cisco/netapp_cnmn/download.shtml["Cisco ® 集群网络交换机参考配置文件下载"^] 页面。
+* 节点为 n1 ， n2 ， n3 和 n4 。—此操作步骤 中的示例使用四个节点：两个节点使用四个 10 GB 集群互连端口： e0a ， e0b ， e0c 和 e0d 。其他两个节点使用两个 40 Gb 集群互连端口： E4A 和 e4e 。请参见 link:https://hwu.netapp.com/["Hardware Universe"^] 用于您平台上的实际集群端口。
 
 
 此操作步骤包括以下情形：
 
 * 集群开始时，四个节点连接到两个 Nexus 3132Q-V 集群交换机 CL1 和 CL2 。
-* 集群交换机 CL2 将替换为 C2 （步骤 1 至 21 ）：
+* 集群交换机 CL2 将替换为 C2 （<<step1_replace3132q,步骤 1.>> -<<step21_replace3132q,21>>）
 +
 ** 在每个节点上，连接到 CL2 的集群 LIF 会迁移到连接到 CL1 的集群端口。
 ** 断开 CL2 上所有端口的布线，然后重新连接到替代交换机 C2 上的相同端口。
@@ -63,11 +56,8 @@ Cisco 以太网交换机 _ 页面提供了交换机上最新的 RCF 和 NX-OS �
 
 
 
-
-
-== 步骤
-
-. 如果在此集群上启用了 AutoSupport ，则通过调用 AutoSupport 消息禁止自动创建案例：
+.步骤
+. 【 ｛ step1_replace3132q]] 如果在此集群上启用了 AutoSupport ，则通过调用 AutoSupport 消息禁止自动创建案例：
 +
 `ssystem node AutoSupport invoke -node * -type all - 消息 MAINT=xh`
 
@@ -224,7 +214,7 @@ CL2                          cluster-network   10.10.1.102      NX3132V
 此时，您必须准备更换交换机。如果需要升级 RCF 和映像，必须执行以下步骤：
 
 +
-.. 在 NetApp 支持站点上，转到以下位置： http://support.netapp.com/NOW/download/software/cm_switches/["Cisco 以太网交换机"^]
+.. 在 NetApp 支持站点上，转至 link:http://support.netapp.com/NOW/download/software/cm_switches/["Cisco 以太网交换机"^] 页面。
 .. 请记下该页面上的表中的交换机和所需的软件版本。
 .. 下载适当版本的 RCF 。
 .. 单击 * RCF* 页面上的 * 继续 * ，接受许可协议，然后按照 * 下载 * 页面上的说明下载问题描述 。
@@ -746,7 +736,7 @@ C2                          cluster-network    10.10.1.103      NX3132V
 
 3 entries were displayed.
 ----
-. 如果尚未自动删除更换的 Nexus 3132Q-V 交换机，请将其卸下：
+. 【第 21 步 _replace3132q]] 如果尚未自动删除更换的 Nexus 3132Q-V 交换机，请将其卸下：
 +
 `ssystem cluster-switch delete`
 
@@ -830,11 +820,9 @@ Enabling cluster switch log collection.
 cluster::*>
 ----
 +
-[NOTE]
-====
-如果其中任何一个命令返回错误，请联系 NetApp 支持部门。
 
-====
+NOTE: 如果其中任何一个命令返回错误，请联系 NetApp 支持部门。
+
 . 如果禁止自动创建案例，请通过调用 AutoSupport 消息重新启用它：
 +
 `ssystem node AutoSupport invoke -node * -type all -message MAINT=end`

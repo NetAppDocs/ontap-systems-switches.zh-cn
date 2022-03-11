@@ -1,9 +1,9 @@
 ---
 section: switch-cisco-3132q-v
-title: Cisco 3132Q-V 交换机
+title: Cisco Nexus 3132Q-V 交换机
 entries:
 - title: 概述
-  url: switch-cisco-3132q-v/index.html
+  url: "/switch-cisco-3132q-v/index.html"
 - title: 迁移到使用 Cisco Nexus 3132Q-V 集群交换机的双节点交换集群
   url: "/switch-cisco-3132q-v/concept-migrate-from-a-two-node-switchless-cluster-to-a-cluster-with-cisco-nexus-3232c-cluster-switches.html"
   entries:

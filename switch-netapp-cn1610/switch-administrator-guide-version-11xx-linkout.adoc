@@ -10,6 +10,6 @@ summary: 本指南举例说明如何在典型网络中使用 CN1610 交换机。
 
 
 [role="lead"]
-本指南举例说明如何在典型网络中使用 CN1610 交换机。
+如何在典型网络中使用 CN1610 交换机的示例。
 
 https://library.netapp.com/ecm/ecm_download_file/ECMLP2811865["管理员指南"^]

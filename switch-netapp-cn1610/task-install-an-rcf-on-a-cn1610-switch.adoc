@@ -1,7 +1,7 @@
 ---
 permalink: switch-netapp-cn1610/task-install-an-rcf-on-a-cn1610-switch.html 
 sidebar: sidebar 
-keywords: reference configuration, file ,install, cn1610, switch 
+keywords: reference configuration, file ,install, cn1610, switch, install rcf 
 summary: 在安装参考配置文件（ RCF ）时，必须先将集群 LIF 从交换机 CS2 迁移出。安装并验证 RCF 后，可以将 LIF 迁移回。 
 ---
 = 在 CN1610 交换机上安装参考配置文件
@@ -12,16 +12,9 @@ summary: 在安装参考配置文件（ RCF ）时，必须先将集群 LIF 从�
 [role="lead"]
 在安装参考配置文件（ RCF ）时，必须先将集群 LIF 从交换机 CS2 迁移出。安装并验证 RCF 后，可以将 LIF 迁移回。
 
-
-
-== 您将需要什么
-
 您必须已保存交换机上当前正在运行的配置。
 
-
-
-== 步骤
-
+.步骤
 . 保存当前交换机配置信息： `write memory`
 +
 以下示例显示了要保存到交换机 CS2 上的启动配置（ `starstartup-config` ）文件中的当前交换机配置：
@@ -96,11 +89,9 @@ node2
 ----
 . 将 RCF 复制到交换机。
 +
-[NOTE]
-====
-在调用脚本之前，必须将 ` .scr` 扩展名设置为文件名的一部分。此扩展是 FastPath 操作系统的扩展。
 
-====
+NOTE: 在调用脚本之前，必须将 ` .scr` 扩展名设置为文件名的一部分。此扩展是 FastPath 操作系统的扩展。
+
 +
 将脚本下载到交换机后，交换机将自动验证该脚本，输出将转到控制台。
 
@@ -128,11 +119,9 @@ CN1610_CS_RCF_v1.1.scr           2199
 ----
 . 验证脚本。
 +
-[NOTE]
-====
-此脚本会在下载期间进行验证，以验证每行是否为有效的交换机命令行。
 
-====
+NOTE: 此脚本会在下载期间进行验证，以验证每行是否为有效的交换机命令行。
+
 +
 [listing]
 ----

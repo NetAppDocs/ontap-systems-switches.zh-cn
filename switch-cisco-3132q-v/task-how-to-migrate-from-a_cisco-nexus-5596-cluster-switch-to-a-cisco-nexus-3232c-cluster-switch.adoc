@@ -12,11 +12,7 @@ summary: 要将现有 Nexus 5596 集群交换机更换为 Nexus 3132Q-V 集群�
 [role="lead"]
 要将现有 Nexus 5596 集群交换机更换为 Nexus 3132Q-V 集群交换机，您必须执行一系列特定的任务。
 
-
-
-== 关于此任务
-
-—本操作步骤 中的示例介绍了如何将 Nexus 5596 交换机更换为 Nexus 3132Q-V 交换机。您可以使用这些步骤（以及修改）来更换其他较早的 Cisco 交换机。操作步骤 使用以下交换机和节点命名：
+本操作步骤 中的示例介绍了如何将 Nexus 5596 交换机更换为 Nexus 3132Q-V 交换机。您可以使用这些步骤（以及修改）来更换其他较早的 Cisco 交换机。操作步骤 使用以下交换机和节点命名：
 
 * 根据不同版本的 ONTAP ，命令输出可能会有所不同。
 * 要更换的 Nexus 5596 交换机为 CL1 和 CL2 。
@@ -26,24 +22,18 @@ summary: 要将现有 Nexus 5596 集群交换机更换为 Nexus 3132Q-V 集群�
 * n1_clus3 是连接到节点 n1 的集群交换机 2 （ CL2 或 C2 ）的第二个 LIF 。
 * N1_clus4 是连接到节点 n1 的集群交换机 1 （ CL1 或 C1 ）的第二个 LIF 。
 * 节点为 n1 ， n2 ， n3 和 n4 。
+* 此操作步骤 中的示例使用四个节点：两个节点使用四个 10 GbE 集群互连端口： e0a ， e0b ， e0c 和 e0d 。其他两个节点使用两个 40/100 GbE 集群互连端口： E4A ， e4e 。。 link:https://hwu.netapp.com/["Hardware Universe"^] 列出了平台上的实际集群端口。
 * 10 GbE 和 40/100 GbE 端口的数量在上提供的参考配置文件（ RCF ）中定义 https://mysupport.netapp.com/NOW/download/software/sanswitch/fcp/Cisco/netapp_cnmn/download.shtml["Cisco ® 集群网络交换机参考配置文件下载"^] 页面。
 +
-[NOTE]
-====
-操作步骤 要求同时使用 ONTAP 命令和 Cisco Nexus 3000 系列交换机命令；除非另有说明，否则使用 ONTAP 命令。
 
-====
+NOTE: 操作步骤 要求同时使用 ONTAP 命令和 Cisco Nexus 3000 系列交换机命令；除非另有说明，否则使用 ONTAP 命令。
 
 
-[NOTE]
-====
-此操作步骤 中的示例使用四个节点：两个节点使用四个 10 GbE 集群互连端口： e0a ， e0b ， e0c 和 e0d 。其他两个节点使用两个 40/100 GbE 集群互连端口： E4A ， e4e 。_cluster_ Hardware Universe 列出了平台上的实际集群端口。
 
-====
 此操作步骤 包括以下情形：
 
 * 集群首先连接两个节点，并在 2 个 Nexus 5596 集群交换机中正常运行。
-* 要替换为 C2 的集群交换机 CL2 （步骤 1 至 19 ）：
+* 要替换为 C2 （<<step1_replace5596_3232q,步骤 1.>> - <<step19_replace5596_3232q,19>>）
 +
 ** 连接到 CL2 的所有节点上的所有集群端口和 LIF 上的流量都会迁移到连接到 CL1 的第一个集群端口和 LIF 上。
 ** 从连接到 CL2 的所有节点上的所有集群端口断开布线，然后使用支持的断开布线将端口重新连接到新的集群交换机 C2 。
@@ -51,7 +41,7 @@ summary: 要将现有 Nexus 5596 集群交换机更换为 Nexus 3132Q-V 集群�
 ** 还原所有节点上连接到 C2 的所有集群端口和 LIF 上的流量。
 
 
-* 将由 C2 取代的集群交换机 CL2 （步骤 20 至 33 ）
+* 要替换为 C2 （<<step20_replace5596_3232q,步骤 20>> - <<step33_replace5596_3232q,33>>）
 +
 ** 连接到 CL1 的所有节点上的所有集群端口或 LIF 上的流量都会迁移到连接到 C2 的第二个集群端口或 LIF 上。
 ** 断开与 CL1 连接的所有节点上所有集群端口的布线，并使用支持的断开布线方式重新连接到新的集群交换机 C1 。
@@ -59,23 +49,18 @@ summary: 要将现有 Nexus 5596 集群交换机更换为 Nexus 3132Q-V 集群�
 ** 系统将还原所有节点上连接到 C1 的所有集群端口或 LIF 上的流量。
 
 
-* 集群中添加了两个 FAS9000 节点，其中的示例显示了集群详细信息（步骤 34 到 37 ）。
+* 已将两个 FAS9000 节点添加到集群中，其中的示例显示了集群详细信息（<<step34_replace5596_3232q,步骤 34>> - <<step37_replace5596_3232q,37>>）。
 
 
-
-
-== 步骤
-
-. 如果在此集群上启用了 AutoSupport ，请通过调用 AutoSupport 消息来禁止自动创建案例： `ssystem node AutoSupport invoke -node * -type all -message MAINT=xh`
+.步骤
+. ` 步骤 1_replace5596_3232q]] 如果在此集群上启用了 AutoSupport ，请通过调用 AutoSupport 消息禁止自动创建案例： `ssystem node AutoSupport invoke -node * -type all -message MAINT=xh
 +
 _x_ 是维护时段的持续时间，以小时为单位。
 
 +
-[NOTE]
-====
-此消息会通知技术支持此维护任务，以便在维护窗口期间禁止自动创建案例。
 
-====
+NOTE: 此消息会通知技术支持此维护任务，以便在维护窗口期间禁止自动创建案例。
+
 . 显示有关配置中设备的信息：
 +
 `network device-discovery show`
@@ -208,10 +193,7 @@ cluster::*> network interface modify -vserver node2 -lif clus2 -auto-revert fals
 此时必须准备两个交换机。如果需要升级 RCF 和映像，请按照以下步骤操作：
 
 +
-.. 转到 NetApp 支持站点上的 _Cisco 以太网交换机 _ 页面。
-+
-http://support.netapp.com/NOW/download/software/cm_switches/["Cisco 以太网交换机"^]
-
+.. 转至 link:http://support.netapp.com/NOW/download/software/cm_switches/["Cisco 以太网交换机"^] 页面。
 .. 请记下该页面上的表中的交换机和所需的软件版本。
 .. 下载适当版本的 RCF 。
 .. 单击 * RCF* 页面上的 * 继续 * ，接受许可协议，然后按照 * 下载 * 页面上的说明下载问题描述 。
@@ -360,7 +342,7 @@ RPC status:
 以下示例显示了在 CL1 和 C2 之间设置的临时 ISL ：
 
 +
-[source, nolinebreak]
+[listing]
 ----
 
 C2# configure
@@ -467,7 +449,7 @@ cluster::*> network port modify -node n1 -port e0c -up-admin true
 cluster::*> network port modify -node n2 -port e0b -up-admin true
 cluster::*> network port modify -node n2 -port e0c -up-admin true
 ----
-. 在所有节点上，还原连接到 C2 的所有已迁移集群互连 LIF ：
+. 【第 19 步 _replace5596_3232q]] 在所有节点上，还原连接到 C2 的所有已迁移集群互连 LIF ：
 +
 `网络接口还原`
 
@@ -484,7 +466,7 @@ cluster::*> network interface revert -vserver Cluster -lif n1_clus3
 cluster::*> network interface revert -vserver Cluster -lif n2_clus2
 cluster::*> network interface revert -vserver Cluster -lif n2_clus3
 ----
-. 验证所有集群互连端口现在是否均已还原到其主端口：
+. 【第 20 步 _replace5596_3232q]] 验证所有集群互连端口现在是否已还原到其主端口：
 +
 `network interface show`
 
@@ -663,7 +645,7 @@ cluster::*> network port modify -node n2 -port e0d -up-admin false
 以下示例显示了如何关闭 ISL 24 ， 31 和 32 ：
 
 +
-[source, noline]
+[listing]
 ----
 
 C2# configure
@@ -686,7 +668,7 @@ C2#
 
 . 还原端口 24 上的配置并删除 C2 上的临时端口通道 2 。
 +
-[source, nolinebreak]
+[listing]
 ----
 
 C2# configure
@@ -758,7 +740,7 @@ cluster::*> network port modify -node n1 -port e0d -up-admin true
 cluster::*> network port modify -node n2 -port e0a -up-admin true
 cluster::*> network port modify -node n2 -port e0d -up-admin true
 ----
-. 验证集群节点端口的状态： `network port show`
+. 【第 33 步 _replace5596_3232q]] 验证集群节点端口的状态： `network port show`
 +
 以下示例验证新 3132Q-V 交换机 C1 上所有节点上的所有集群互连端口是否均为 `up` ：
 
@@ -788,7 +770,7 @@ e0c       Cluster      Cluster          up   9000  auto/10000 -        -
 e0d       Cluster      Cluster          up   9000  auto/10000 -        -
 8 entries were displayed.
 ----
-. 在所有节点上，将特定集群 LIF 还原到其主端口：
+. 【第 34 步 _replace5596_3232q]] 在所有节点上，将特定集群 LIF 还原到其主端口：
 +
 `网络接口还原`
 
@@ -882,7 +864,7 @@ RPC status:
 4 paths up, 0 paths down (tcp check)
 4 paths up, 0 paths down (udp check)
 ----
-. 通过向 Nexus 3132Q-V 集群交换机添加节点来扩展集群。
+. 【第 37 步 _replace5596_3232q]] 通过向 Nexus 3132Q-V 集群交换机添加节点来扩展集群。
 . 显示有关配置中的设备的信息：
 +
 ** `network device-discovery show`
@@ -1114,11 +1096,9 @@ Enabling cluster switch log collection.
 cluster::*>
 ----
 +
-[NOTE]
-====
-如果其中任何一个命令返回错误，请联系 NetApp 支持部门。
 
-====
+NOTE: 如果其中任何一个命令返回错误，请联系 NetApp 支持部门。
+
 . 如果禁止自动创建案例，请通过调用 AutoSupport 消息重新启用它：
 +
 `ssystem node AutoSupport invoke -node * -type all -message MAINT=end`

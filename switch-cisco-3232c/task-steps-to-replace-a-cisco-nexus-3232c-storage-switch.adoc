@@ -12,20 +12,18 @@ summary: 您可以通过执行一系列特定任务无中断地更换有故障�
 [role="lead"]
 您可以通过执行一系列特定任务无中断地更换有故障的 Cisco Nexus 3232C 存储交换机。
 
-
-
-== 您将需要什么
-
 现有网络配置必须具有以下特征：
 
 * Cisco 以太网交换机页面会为您的交换机提供最新的 RCF 和 NX-OS 版本。
-* 两台交换机上必须存在管理连接。-
-
-
+* 两台交换机上必须存在管理连接。
++
+[NOTE]
 ====
 确保已完成所有故障排除步骤，以确认您的交换机需要更换。
 
 ====
+
+
 更换用的 Cisco Nexus 3232C 交换机必须具有以下特征：
 
 * 管理网络连接必须正常工作。
@@ -36,19 +34,16 @@ summary: 您可以通过执行一系列特定任务无中断地更换有故障�
 
 * 操作步骤 摘要： *
 
-* * 确认要更换的交换机为 S2 （步骤 1-5 ） *
-* * 断开交换机 S2 的缆线（步骤 6 ） *
-* * 将缆线重新连接到交换机 NS2 （步骤 7 ） *
-* * 验证交换机 NS2 上的所有设备配置（步骤 8 至 10 ） *
-* 此操作步骤 将第二个 Nexus 3232C 存储交换机 S2 替换为新的 3232C 交换机 NS2
+* * 确认要更换的交换机为 S2 （步骤 <<one,1.>>-<<five,5.>>*
+* * 断开交换机 S2 的缆线 <<six,（第 6 步）>>*
+* * 将缆线重新连接到交换机 NS2 （步骤 <<seven,7.>>*
+* * 验证交换机 NS2 上的所有设备配置（步骤 <<eight,8.>>-<<ten,10>>*
+* 此操作步骤 将第二个 Nexus 3232C 存储交换机 S2 替换为新的 3232C 交换机 NS2 。
 * 这两个节点分别为 node1 和 node2 。
 
 
-
-
-== 步骤
-
-. 如果在此集群上启用了 AutoSupport ，请通过调用 AutoSupport 消息来禁止自动创建案例： `ssystem node AutoSupport invoke -node * -type all - message MAINT=xh`
+.步骤
+. 【一个】如果此集群上启用了 AutoSupport ，则通过调用 AutoSupport 消息禁止自动创建案例： `ssystem node AutoSupport invoke -node * -type all - message MAIN=xh`
 +
 _x_ 是维护时段的持续时间，以小时为单位。
 
@@ -118,7 +113,7 @@ SHFGD2008000011         Eth1/6          120        S           e0a
 SHFGD2008000022         Eth1/7          120        S           e0a
 SHFGD2008000022         Eth1/8          120        S           e0a
 ----
-. 验证存储系统中的磁盘架端口： `storage shelf port show -fields remote-device ， remote-port`
+. 【五】验证存储系统中的磁盘架端口： `storage shelf port show -fields remote-device ， remote-port`
 +
 [listing]
 ----
@@ -135,9 +130,9 @@ shelf  id  remote-port  remote-device
 3.30   2   Ethernet1/8  S1
 3.20   3   -            -
 ----
-. 拔下连接到存储交换机 S2 的所有缆线。
-. 将所有缆线重新连接到更换用的交换机 NS2 。
-. 重新检查存储节点端口的运行状况： `storage port show -port-type ENET`
+. 【六个】拔下连接到存储交换机 S2 的所有缆线。
+. 【七条】将所有缆线重新连接到更换用的交换机 NS2 。
+. 【八个】重新检查存储节点端口的运行状况： `storage port show -port-type ENET`
 +
 [listing]
 ----
@@ -185,7 +180,7 @@ node2/lldp
             e4e    node1                     e4e               -
             e7b    NS2                       Ethernet1/2       -
 ----
-. 验证存储系统中的磁盘架端口： `storage shelf port show -fields remote-device ， remote-port`
+. 【十】验证存储系统中的磁盘架端口： `storage shelf port show -fields remote-device ， remote-port`
 +
 [listing]
 ----

@@ -4,10 +4,17 @@ sidebar: sidebar
 keywords: Cisco, 3132Q-V 
 summary: 迁移到双节点交换集群 
 ---
-= Cisco 3132Q-V 交换机
+= Cisco Nexus 3132Q-V 交换机
 :icons: font
 :imagesdir: ../media/
 
 
 [role="lead"]
-您可以将 Cisco 3132Q-V 交换机用作 AFF 或 FAS 集群中的集群交换机。您可以使用以下过程安装交换机，从现有交换机迁移，更换交换机以及更新交换机上的 RCF 文件。
+您可以将 Cisco Nexus 3132Q-V 交换机用作 AFF 或 FAS 集群中的集群交换机。
+
+* 您可以在 Cisco Nexus 3132Q-V 集群交换机上安装 NX-OS 和参考配置文件（ RCF ）。
+* 您可以使用 Cisco Nexus 3132Q-V 集群交换机从双节点无交换机集群环境迁移到双节点有交换机环境。
+* 您可以更换集群中存在故障的 Cisco Nexus 3132Q-V 交换机，并下载交换机操作系统和参考配置文件。
+* 您可以将 Cisco Nexus 5596 ， Nexus 5020 或 Nexus 5010 集群交换机更换为 Cisco Nexus 3132Q-V 交换机。
+* 您可以将 NetApp CN1610 交换机更换为 Cisco Nexus 3132Q-V 集群交换机。
+

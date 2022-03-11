@@ -1,6 +1,6 @@
 ---
 section: switch-cisco-3232c
-title: Cisco 3232C 交换机
+title: Cisco Nexus 3232C 交换机
 entries:
 - title: 概述
   url: "/switch-cisco-3232c/index.html"
@@ -8,9 +8,9 @@ entries:
   url: "/switch-cisco-3232c/concept-migrate-a-cn1610-switch-to-a-cisco-nexus-3232c-cluster-switch.html"
   entries:
   - title: 如何将 CN1610 集群交换机迁移到 Cisco Nexus 3232C 集群交换机
-    url: "/switch-cisco-3232c/task-how-to-replace-cn1610-cluster-switches-with-cisco-nexus-3232c-cluster-switches.html"
+    url: "/switch-cisco-3232c/task_how_to_replace_cn1610_cluster_switches_with_cisco_nexus_3232c_cluster_switches.html"
 - title: 在 NetApp 机柜中安装 Cisco Nexus 3232C 集群交换机和直通面板
-  url: "/switch-cisco-3232c/task-install-a-cisco-nexus-3232c-cluster-switch-and-pass-through-panel-in-a-netapp-cabinet.html"
+  url: "/switch-cisco-3232c/task_install_a_cisco_nexus_3232c_cluster_switch_and_pass_through_panel_in_a_netapp_cabinet.html"
 - title: 在 Cisco Nexus 3232C 集群交换机上安装 NX-OS 软件和 RCF
   url: "/switch-cisco-3232c/task-install-nx-os-software-and-rcfs-on-cisco-nexus-3232-cluster-switches-running-ontap-9-4-and-later.html"
   entries:
@@ -22,12 +22,12 @@ entries:
   url: "/switch-cisco-3232c/concept-migrate-from-a-cisco-5596-switch-to-a-cisco-nexus-3232c.html"
   entries:
   - title: 如何从 Cisco Nexus 5596 集群交换机迁移到 Cisco Nexus 3232C 集群交换机
-    url: "/switch-cisco-3232c/task-how-to-migrate-from-a-cisco-nexus-5596-cluster-switch-to-a-cisco-nexus-3232c-cluster-switch.html"
+    url: "/switch-cisco-3232c/task_how_to_migrate_from_a_cisco_nexus_5596_cluster_switch_to_a_cisco_nexus_3232c_cluster_switch.html"
 - title: 从双节点无交换机集群迁移到使用 Cisco Nexus 3232C 集群交换机的集群
-  url: "/switch-cisco-3232c/concept-migrate-from-a-two-node-switchless-cluster-to-a-cluster-with-cisco-nexus-3232c-cluster-switches.html"
+  url: "/switch-cisco-3232c/concept_migrate_from_a_two_node_switchless_cluster_to_a_cluster_with_cisco_nexus_3232c_cluster_switches.html"
   entries:
   - title: 如何从双节点无交换机集群迁移到使用 Cisco Nexus 3232C 集群交换机的集群
-    url: "/switch-cisco-3232c/task-how-to-migrate-from-a-two-node-switchless-cluster-to-a-cluster-with-cisco-nexus-3132q-v-cluster-switches.html"
+    url: "/switch-cisco-3232c/task_how_to_migrate_from_a_two_node_switchless_cluster_to_a_cluster_with_cisco_nexus_3132q_v_cluster_switches.html"
 - title: 更换 Cisco Nexus 3232C 集群交换机
   url: "/switch-cisco-3232c/concept-replace-a-cisco-nexus-3232c-cluster-switch.html"
   entries:

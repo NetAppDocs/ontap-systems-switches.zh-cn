@@ -12,10 +12,6 @@ summary: 要将集群中的现有 Cisco Nexus 5596 集群交换机更换为 Nexu
 [role="lead"]
 要将集群中的现有 Cisco Nexus 5596 集群交换机更换为 Nexus 3232C 集群交换机，您必须执行一系列特定的任务。
 
-
-
-== 关于此任务
-
 本操作步骤 中的示例介绍了如何将 Cisco Nexus 5596 交换机更换为 Cisco Nexus 3232C 交换机。您可以对其他较早的 Cisco 交换机（例如 3132Q-V ）使用这些步骤（并进行修改）。操作步骤 还使用以下交换机和节点命名：
 
 * 根据不同版本的 ONTAP ，命令输出可能会有所不同。
@@ -61,10 +57,7 @@ summary: 要将集群中的现有 Cisco Nexus 5596 集群交换机更换为 Nexu
 操作步骤 要求同时使用 ONTAP 命令和 Cisco Nexus 3000 系列交换机命令；除非另有说明，否则使用 ONTAP 命令。
 
 ====
-
-
-== 步骤
-
+.步骤
 . 如果在此集群上启用了 AutoSupport ，则通过调用 AutoSupport 消息禁止自动创建案例：
 +
 `ssystem node AutoSupport invoke -node * -type all - 消息 MAINT=xh`
@@ -218,7 +211,7 @@ http://support.netapp.com/NOW/download/software/cm_switches/["Cisco 以太网交
 .. 单击 * RCF* 页面上的 * 继续 * ，接受许可协议，然后按照 * 下载 * 页面上的说明下载问题描述 。
 .. 下载相应版本的映像软件。
 +
-请参见 _Cluster 8.x 或更高版本的 ONTAP 和管理网络交换机参考配置文件 __Download 页面，然后单击相应的版本。
+请参见 _Cluster 8.x 或更高版本的 ONTAP 和管理网络交换机参考配置文件 _ 下载页面，然后单击相应的版本。
 
 +
 要查找正确的版本，请参见 _Cluster ONTAP 8.x 或更高版本的集群网络交换机下载页面 _ 。

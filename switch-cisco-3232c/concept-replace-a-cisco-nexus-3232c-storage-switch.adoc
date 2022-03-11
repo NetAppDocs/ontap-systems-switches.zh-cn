@@ -22,6 +22,6 @@ summary: 更换 Cisco Nexus 3232C 存储交换机时，您必须了解某些配�
 您应了解 RCF 和 NX-OS 版本中的命令语法之间可能存在依赖关系。
 
 ====
-* 您必须已参考 Cisco 网站上提供的相应软件和升级指南，以获取有关 Cisco 交换机升级和降级过程的完整文档。 http://www.cisco.com/en/US/products/ps9670/prod_installation_guides_list.html["Cisco Nexus 3000 系列交换机"^]
+* 您必须已参考 Cisco 网站上提供的相应软件和升级指南，以获取有关 Cisco 交换机升级和降级过程的完整文档 link:http://www.cisco.com/en/US/products/ps9670/prod_installation_guides_list.html["Cisco Nexus 3000 系列交换机"^]。
 * 您必须已下载适用的 RCF 。
 

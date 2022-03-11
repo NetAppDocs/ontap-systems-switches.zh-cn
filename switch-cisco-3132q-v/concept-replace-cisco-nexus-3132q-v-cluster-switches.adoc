@@ -13,9 +13,9 @@ summary: 更换 Cisco Nexus 3132Q-V 集群交换机时，您必须了解某些�
 更换 Cisco Nexus 3132Q-V 集群交换机时，您必须了解某些配置信息，端口连接和布线要求。
 
 * 支持 Cisco Nexus 3132Q-V 集群交换机。
-* 10 GbE 和 40/100 GbE 端口的数量在上提供的参考配置文件（ RCF ）中定义 https://mysupport.netapp.com/NOW/download/software/sanswitch/fcp/Cisco/netapp_cnmn/download.shtml["Cisco ® 集群网络交换机参考配置文件下载"^] 页面。
+* 10 GbE 和 40/100 GbE 端口的数量在上提供的参考配置文件（ RCF ）中定义 link:https://mysupport.netapp.com/NOW/download/software/sanswitch/fcp/Cisco/netapp_cnmn/download.shtml["Cisco ® 集群网络交换机参考配置文件下载"^] 页面。
 * 集群交换机使用交换机间链路（ ISL ）端口 E1/31 至 32 。
-* 。 https://hwu.netapp.com["Hardware Universe"] 包含有关支持的 Nexus 3132Q-V 交换机布线的信息：
+* 。 link:https://hwu.netapp.com["Hardware Universe"^] 包含有关支持的 Nexus 3132Q-V 交换机布线的信息：
 +
 ** 具有 10 GbE 集群连接的节点需要使用分支光缆的 QSFP 光纤模块或 QSFP 到 SFP+ 铜缆的分支。
 ** 具有 40/100 GbE 集群连接的节点需要支持的 QSFP/QSFP28 光纤模块以及光缆或 QSFP28 铜缆。
@@ -39,9 +39,6 @@ summary: 更换 Cisco Nexus 3132Q-V 集群交换机时，您必须了解某些�
 
 * 您必须已完成有关从节点到 Nexus 3132Q-V 集群交换机的 10 GbE 和 40/100 GbE 连接的规划，迁移和阅读所需文档。
 +
-"_Cisco 以太网交换机 _ " 页面提供了有关此操作步骤 支持的 ONTAP 和 NX-OS 版本的信息。
-
-+
-http://mysupport.netapp.com/NOW/download/software/cm_switches/["Cisco 以太网交换机"^]
+。 link:http://mysupport.netapp.com/NOW/download/software/cm_switches/["Cisco 以太网交换机"^] 页面提供了有关此操作步骤 支持的 ONTAP 和 NX-OS 版本的信息。
 
 

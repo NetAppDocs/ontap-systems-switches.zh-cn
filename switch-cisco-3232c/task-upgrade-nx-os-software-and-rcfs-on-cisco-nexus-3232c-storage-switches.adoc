@@ -12,10 +12,6 @@ summary: 可以在 Cisco Nexus 3232C 存储交换机上升级 Cisco NX-OS 软件
 [role="lead"]
 可以在 Cisco Nexus 3232C 存储交换机上升级 Cisco NX-OS 软件和参考配置文件（ Reference Configuration Files ， RCF ）。
 
-
-
-== 您将需要什么
-
 在升级存储交换机上的 NX-OS 软件和 RCF 之前，必须满足以下条件：
 
 * 交换机必须完全正常运行（日志中不应有任何错误或类似问题）。
@@ -23,52 +19,42 @@ summary: 可以在 Cisco Nexus 3232C 存储交换机上升级 Cisco NX-OS 软件
 +
 如果您需要更改启动变量以反映当前启动映像，则必须在重新应用 RCF 之前进行更改，以便在未来重新启动时实例化正确的版本。
 
-* 您必须已参考 Cisco 网站上提供的相应软件和升级指南，以获取有关 Cisco 存储升级和降级过程的完整文档。
-+
-http://www.cisco.com/en/US/products/ps9670/prod_installation_guides_list.html["Cisco Nexus 3000 系列交换机"^]
-
-* 10 GbE 和 40/100 GbE 端口的数量在上提供的参考配置文件（ RCF ）中定义 https://mysupport.netapp.com/site/info/cisco-ethernet-switch["Cisco ® 以太网交换机"^]页面。
+* 您必须已参考上提供的相应软件和升级指南 http://www.cisco.com/en/US/products/ps9670/prod_installation_guides_list.html["Cisco Nexus 3000 系列交换机"^] 第页，了解有关 Cisco 存储升级和降级过程的完整文档。
+* 10 GbE 和 40/100 GbE 端口的数量在上提供的参考配置文件（ RCF ）中定义 https://mysupport.netapp.com/site/info/cisco-ethernet-switch["Cisco ® 以太网交换机"^] 页面。
 
 
 * 操作步骤 摘要： *
 
-* * 一检查交换机和端口的运行状况（，步骤 1-4 ） *
-* * 二将 RCF 复制到 Cisco 交换机 S2 （步骤 5-8 ） *
-* * 三将 NX-OS 映像下载到 Cisco 交换机 S2 并重新启动（步骤 9-12 ） *
-* 四重新检查交换机和端口的运行状况（步骤 13-15 ） *
-* * 五对 Cisco 交换机 S1* 重复步骤 1-17
+* *检查交换机和端口（<<step1_upgrade_3232c,步骤 1.>>- <<step4_upgrade_3232c,4.>>） *
+* *将 RCF 复制到 Cisco 交换机 S2 （<<step5_upgrade_3232c,步骤 5.>> - <<step8_upgrade_3232c,8.>>） *
+* 三将 NX-OS 映像下载到 Cisco 交换机 S2 并重新启动（<<step9_upgrade_3232c,第 9 步>> - <<step12_upgrade_3232c,12>>） *
+* 四重新检查交换机和端口的运行状况（<<step13_upgrade_3232c,第 13 步>> - <<step15_upgrade_3232c,15>>） *
+* *重复 <<step1_upgrade_3232c,步骤 1.>>- <<step17_upgrade_3232c,17>> 用于 Cisco 交换机 S1**
 
 
-此操作步骤 中的示例使用两个节点：节点 1 具有两个存储端口，节点 2 具有两个存储端口。请参见 Hardware Universe 以验证您平台上的正确存储端口。
-
-https://hwu.netapp.com/SWITCH/INDEX["Hardware Universe"^]
-
-[NOTE]
-====
-根据不同版本的 ONTAP ，命令输出可能会有所不同。
-
-====
-此操作步骤 中的示例使用以下交换机和节点命名： - * 两个存储交换机的名称分别为 S1 和 S2 。* 节点为 node1 和 node2 。
-
-[NOTE]
-====
-操作步骤 要求同时使用 ONTAP 命令和 Cisco Nexus 3000 系列交换机命令；除非另有说明，否则使用 ONTAP 命令。
-
-====
+此操作步骤 中的示例使用两个节点：节点 1 具有两个存储端口，节点 2 具有两个存储端口。请参见 link:https://hwu.netapp.com/SWITCH/INDEX["Hardware Universe"^] 验证平台上的存储端口是否正确。
 
 
-== 步骤
+NOTE: 根据不同版本的 ONTAP ，命令输出可能会有所不同。
 
-. 如果在此集群上启用了 AutoSupport ，请通过调用 AutoSupport 消息来禁止自动创建案例： `ssystem node AutoSupport invoke -node * -type all - message MAINT=xh`
+此操作步骤中的示例使用以下交换机和节点命名：
+
+* 两个存储交换机的名称分别为 S1 和 S2 。
+* 节点为 node1 和 node2 。
+
+
+
+NOTE: 操作步骤 要求同时使用 ONTAP 命令和 Cisco Nexus 3000 系列交换机命令；除非另有说明，否则使用 ONTAP 命令。
+
+.步骤
+. ` 步骤 1_upgrade_3232c]] 如果在此集群上启用了 AutoSupport ，请通过调用 AutoSupport 消息禁止自动创建案例： `ssystem node AutoSupport invoke -node * -type all - message MAIN=xh
 +
 _x_ 是维护时段的持续时间，以小时为单位。
 
 +
-[NOTE]
-====
-AutoSupport 消息会通知技术支持此维护任务，以便在维护窗口期间禁止自动创建案例。
 
-====
+NOTE: AutoSupport 消息会通知技术支持此维护任务，以便在维护窗口期间禁止自动创建案例。
+
 . 检查存储交换机是否可用： `ssystem switch Ethernet show`
 +
 [listing]
@@ -116,14 +102,14 @@ node2
                    e7a  ENET  storage      0 enabled  offline       30
                    e7b  ENET  storage    100 enabled  online        30
 ----
-. 检查集群是否没有存储交换机或布线问题： `ssystem health alert show -instance`
+. 【第 4 步 _upgrade_3232c]] 检查集群是否没有存储交换机或布线问题： `ssystem health alert show -instance`
 +
 [listing]
 ----
 storage::*> system health alert show -instance
 There are no entries matching your query.
 ----
-. 使用以下传输协议之一将交换机 S2 上的 RCF 复制到交换机 bootflash ： FTP ， HTTP ， TFTP ， SFTP 或 SCP 。
+. 【第 5 步 _upgrade_3232c]] 使用以下传输协议之一将交换机 S2 上的 RCF 复制到交换机 bootflash ： FTP ， HTTP ， TFTP ， SFTP 或 SCP 。
 +
 有关 Cisco 命令的详细信息，请参见中的相应指南 https://www.cisco.com/c/en/us/support/switches/nexus-3000-series-switches/products-command-reference-list.html["Cisco Nexus 3000 系列 NX-OS 命令参考"^]。
 
@@ -166,8 +152,7 @@ S2# copy Nexus_3232C_RCF_v1.6-Storage.txt running-config echo-commands
 在 `show banner motd` 命令的横幅输出中，您必须阅读并遵循 * 重要说明 * 一节中的说明，以确保交换机的配置和操作正确。
 
 ====
-
-
++
 [listing]
 ----
 S2# show banner motd
@@ -205,7 +190,7 @@ S2# show banner motd
 ******************************************************************************
 S2#
 ----
-. 验证软件版本和交换机设置是否正确后，将 `running-config` 文件复制到交换机 S2 上的 `starstartup-config` 文件中。
+. ` step8_upgrade_3232c]] 确认软件版本和交换机设置正确后，将 `running-config` 文件复制到交换机 S2 上的 `sstartup-config 文件。
 +
 有关 Cisco 命令的详细信息，请参见中的相应指南 https://www.cisco.com/c/en/us/support/switches/nexus-3000-series-switches/products-command-reference-list.html["Cisco Nexus 3000 系列 NX-OS 命令参考"^]。
 
@@ -218,7 +203,7 @@ S2#
 S2# copy running-config startup-config
 [########################################] 100% Copy complete.
 ----
-. 将 NX-OS 映像下载到交换机 S2 。
+. 【第 9 步 _upgrade_3232c]] 将 NX-OS 映像下载到交换机 S2 。
 . 安装系统映像，以便在下次重新启动交换机 S2 时加载新版本。
 +
 交换机将在 10 秒后重新启动，并显示新映像，如以下输出所示：
@@ -301,7 +286,7 @@ S2# copy running-config startup-config
 S2# reload
 This command will reboot the system. (y/n)?  [n] y
 ----
-. 确认交换机上已有新的 NX-OS 版本号：
+. 【第 12 步 _upgrade_3232c]] 确认交换机上具有新的 NX-OS 版本号：
 +
 [listing]
 ----
@@ -355,7 +340,7 @@ Active Package(s):
 
 S2#
 ----
-. 重新启动后，重新检查存储交换机是否可用： `ssystem switch Ethernet show`
+. 【第 13 步升级 _3232c]] 重新启动后，重新检查存储交换机是否可用： `ssystem switch Ethernet show`
 +
 [listing]
 ----
@@ -402,7 +387,7 @@ node2
                    e7a  ENET  storage      0 enabled  offline       30
                    e7b  ENET  storage    100 enabled  online        30
 ----
-. 重新检查集群是否没有存储交换机或布线问题： `ssystem health alert show -instance`
+. 【第 15 步 _upgrade_3232c]] 重新检查集群是否存在存储交换机或布线问题： `ssystem health alert show -instance`
 +
 [listing]
 ----
@@ -410,5 +395,5 @@ storage::*> system health alert show -instance
 There are no entries matching your query.
 ----
 . 重复执行操作步骤 以升级交换机 S1 上的 NX-OS 软件和 RCF 。
-. 如果禁止自动创建案例，请通过调用 AutoSupport 消息重新启用此功能： `ssystem node AutoSupport invoke -node * -type all -message MAINT=end`
+. ` 步骤 17_upgrade_3232c]] 如果禁止自动创建案例，请通过调用 AutoSupport 消息重新启用此功能： `ssystem node AutoSupport invoke -node * -type all -message MAIN=end
 

@@ -30,7 +30,7 @@ summary: 将 CN1610 集群交换机更换为 Cisco Nexus 3132Q-V 集群交换机
 ** Cisco Nexus 3132Q-V ：端口 E1/31 至 32 （ 40/100 GbE ）
 
 
-* _Nexus _ 包含有关支持的 Hardware Universe 3132Q-V 交换机布线的信息：
+* 。 link:https://hwu.netapp.com/["Hardware Universe"^] 包含有关支持的 Nexus 3132Q-V 交换机布线的信息：
 +
 ** 具有 10 GbE 集群连接的节点需要使用 QSFP 到 SFP+ 光纤分支电缆或 QSFP 到 SFP+ 铜分支电缆
 ** 具有 40/100 GbE 集群连接的节点需要支持的 QSFP/QSFP28 光纤模块以及光缆或 QSFP28 铜缆
@@ -59,22 +59,14 @@ summary: 将 CN1610 集群交换机更换为 Cisco Nexus 3132Q-V 集群交换机
 对于 Nexus 3132Q-V 交换机，您可以使用 `hardware profile Front portmode SFP+` 命令将四个 SFP+ 端口设为活动状态，而不是 QSFP 端口。同样，您也可以使用 `hardware profile Front portmode QSFP` 命令将 Nexus 3132Q-V 交换机重置为使用 QSFP 端口，而不是四个 SFP+ 端口。
 
 +
-[NOTE]
-====
-使用前四个 SFP+ 端口时，它将禁用第一个 40GbE QSFP 端口。
 
-====
+NOTE: 使用前四个 SFP+ 端口时，它将禁用第一个 40GbE QSFP 端口。
+
 * 您必须已将 Nexus 3132Q-V 交换机上的某些端口配置为以 10 GbE 或 40/100 GbE 运行。
 +
 您可以使用 `interface breakout module 1 port 1-6 map 10g-4x` 命令将前六个端口细分为 4 个 10 GbE 模式。同样，您也可以使用 `no interface breakout module 1 port 1-6 map 10g-4x` 命令从 _break_ 配置对前六个 QSFP + 端口进行重新分组。
 
 * 您必须已完成有关从节点到 Nexus 3132Q-V 集群交换机的 10 GbE 和 40/100 GbE 连接的规划，迁移和阅读所需文档。
-* 此操作步骤 支持的 ONTAP 和 NX-OS 版本列在 "Cisco 以太网交换机 " 页面上。
-+
-http://support.netapp.com/NOW/download/software/cm_switches/["Cisco 以太网交换机"^]
-
-* 此操作步骤 支持的 ONTAP 和 FastPath 版本列在 "NetApp CN1601 和 CN1610 交换机 " 页面上。
-+
-http://support.netapp.com/NOW/download/software/cm_switches_ntap/["NetApp CN1601 和 CN1610 交换机"^]
-
+* 上列出了此操作步骤 支持的 ONTAP 和 NX-OS 版本 link:http://support.netapp.com/NOW/download/software/cm_switches/["Cisco 以太网交换机"^] 页面。
+* 上列出了此操作步骤 支持的 ONTAP 和快速路径版本 link:http://support.netapp.com/NOW/download/software/cm_switches_ntap/["NetApp CN1601 和 CN1610 交换机"^] 页面。
 

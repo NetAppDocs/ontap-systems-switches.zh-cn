@@ -68,8 +68,5 @@ summary: 在将 Cisco Nexus 5596 集群交换机更换为 Cisco Nexus 3232C 集�
 
 ====
 * 您已完成从节点到 Nexus 3232C 集群交换机的 10 GbE 和 40/100 GbE 连接的规划，迁移并阅读了相关文档。
-* 此操作步骤中支持的 ONTAP 和 NX-OS 版本位于 _Cisco 以太网交换机 _ 页面上。
-+
-http://support.netapp.com/NOW/download/software/cm_switches/["Cisco 以太网交换机"^]-
-
+* 此操作步骤 支持的 ONTAP 和 NX-OS 版本位于上 link:http://support.netapp.com/NOW/download/software/cm_switches/.html["Cisco 以太网交换机页面"^]。
 

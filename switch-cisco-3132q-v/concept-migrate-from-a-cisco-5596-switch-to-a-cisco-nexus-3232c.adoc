@@ -31,7 +31,7 @@ summary: 在将 Cisco Nexus 5596 集群交换机更换为 Cisco Nexus 3132Q-V �
 ** 端口 E1/31 至 32 （ 40/100 GbE ）： Nexus 3132Q-V
 
 
-* _Nexus _ 包含有关支持的 Hardware Universe 3132Q-V 交换机布线的信息：
+* 。 link:https://hwu.netapp.com/["Hardware Universe"^] 包含有关支持的 Nexus 3132Q-V 交换机布线的信息：
 +
 ** 具有 10 GbE 集群连接的节点需要使用 QSFP 到 SFP+ 光纤分支电缆或 QSFP 到 SFP+ 铜分支电缆。
 ** 具有 40/100 GbE 集群连接的节点需要使用光缆或 QSFP28 铜缆支持的 QSFP/QSFP28 光纤模块。
@@ -65,21 +65,14 @@ summary: 在将 Cisco Nexus 5596 集群交换机更换为 Cisco Nexus 3132Q-V �
 默认情况下， RCF 的结构使用 QSFP28 端口。
 
 +
-[NOTE]
-====
-您可以使用 `hardware profile FRONT portmode sfp-plus` 命令使 Nexus 3132Q-V 交换机的 4 个 SFP+ 端口处于活动状态，而不是 QSFP 端口。同样，您也可以使用 `hardware profile Front portmode QSFP` 命令将 Nexus 3132Q-V 交换机重置为使用 QSFP 端口，而不是 4 个 SFP+ 端口。
 
-====
+NOTE: 您可以使用 `hardware profile FRONT portmode sfp-plus` 命令使 Nexus 3132Q-V 交换机的 4 个 SFP+ 端口处于活动状态，而不是 QSFP 端口。同样，您也可以使用 `hardware profile Front portmode QSFP` 命令将 Nexus 3132Q-V 交换机重置为使用 QSFP 端口，而不是 4 个 SFP+ 端口。
+
 * 您已将 Nexus 3132Q-V 交换机上的某些端口配置为以 10 GbE 或 40/100 GbE 运行。
 +
-[NOTE]
-====
-您可以使用 `interface breakout module 1 port 1-6 map 10g-4x` 命令将前六个端口细分为 4x10 GbE 模式。同样，您也可以使用 `no interface breakout module 1 port 1-6 map 10g-4x` 命令对分支配置中的前六个 QSFP + 端口进行重新分组。
 
-====
+NOTE: 您可以使用 `interface breakout module 1 port 1-6 map 10g-4x` 命令将前六个端口细分为 4x10 GbE 模式。同样，您也可以使用 `no interface breakout module 1 port 1-6 map 10g-4x` 命令对分支配置中的前六个 QSFP + 端口进行重新分组。
+
 * 您已经完成了从节点到 Nexus 3132Q-V 集群交换机的 10 GbE 和 40/100 GbE 连接的规划，迁移并阅读了相关文档。
-* 此操作步骤中支持的 ONTAP 和 NX-OS 版本位于 _Cisco 以太网交换机 _ 页面上。
-+
-http://support.netapp.com/NOW/download/software/cm_switches/["Cisco 以太网交换机"^]
-
+* 此操作步骤 支持的 ONTAP 和 NX-OS 版本位于上 link:http://support.netapp.com/NOW/download/software/cm_switches/["Cisco 以太网交换机"^] 页面。
 

@@ -10,11 +10,7 @@ summary: 您可以在首次设置 Nexus 3232C 交换机后安装 RCF 。您也�
 
 
 [role="lead"]
-您可以在首次设置 Nexus 3232C 交换机后安装 RCF 。您也可以使用此操作步骤 升级 RCF 版本。
-
-
-
-== 关于此任务
+首次设置 Nexus 3232C 交换机后，您可以安装 RCF 。您也可以使用此操作步骤升级 RCF 版本。
 
 此操作步骤中的示例使用以下交换机和节点命名：
 
@@ -29,10 +25,7 @@ summary: 您可以在首次设置 Nexus 3232C 交换机后安装 RCF 。您也�
 操作步骤 需要 ONTAP 使用 -se 命令和 Cisco Nexus 3000 系列交换机命令；除非另有说明，否则会使用 ONTAP 命令。
 
 ====
-
-
-== 步骤
-
+.步骤
 . 显示连接到集群交换机的每个节点上的集群端口： `network device-discovery show`
 +
 [listing]

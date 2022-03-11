@@ -12,10 +12,6 @@ summary: 如果您有一个现有的双节点无交换机集群环境，则可�
 [role="lead"]
 如果您有一个现有的双节点无交换机集群环境，则可以使用 CN1610 集群网络交换机迁移到双节点有交换机集群环境，从而可以扩展到两个节点以上。
 
-
-
-== 您将需要什么
-
 双节点无交换机配置：
 
 * 双节点无交换机配置必须已正确设置并正常运行。
@@ -31,10 +27,7 @@ CN1610 集群交换机配置：
 * 必须能够通过控制台访问集群交换机。
 * CN1610 节点到节点交换机和交换机到交换机连接必须使用双轴或光缆。
 +
-_NetAppHardware Universe_ 包含有关布线的详细信息。
-
-+
-https://hwu.netapp.com/Switch/Index["Hardware Universe —交换机"^]
+。 https://hwu.netapp.com/["Hardware Universe"^] 包含有关布线的详细信息。
 
 * 交换机间链路（ ISL ）缆线必须连接到两个 CN1610 交换机上的端口 13 到 16 。
 * 必须完成两个 CN1610 交换机的初始自定义。
@@ -42,10 +35,6 @@ https://hwu.netapp.com/Switch/Index["Hardware Universe —交换机"^]
 以前的任何站点自定义设置（例如 SMTP ， SNMP 和 SSH ）都应复制到新交换机。
 
 
-
-
-
-== 关于此任务
 
 此操作步骤中的示例使用以下集群交换机和节点命名：
 
@@ -55,14 +44,11 @@ https://hwu.netapp.com/Switch/Index["Hardware Universe —交换机"^]
 * `cluster ：：： * >` 提示符用于指示集群的名称。
 * 此操作步骤 中使用的集群端口为 e1a 和 e2a 。
 +
-_cluster_ Hardware Universe 包含有关平台的实际集群端口的最新信息。
+。 https://hwu.netapp.com/["Hardware Universe"^] 包含有关平台的实际集群端口的最新信息。
 
 
 
-
-
-== 步骤
-
+.步骤
 . 将权限级别更改为高级，在系统提示您继续时输入 `y` ： `set -privilege advanced`
 +
 此时将显示高级提示符（ * > ）。
@@ -72,11 +58,9 @@ _cluster_ Hardware Universe 包含有关平台的实际集群端口的最新信�
 _x_ 是维护时段的持续时间，以小时为单位。
 
 +
-[NOTE]
-====
-AutoSupport 消息会通知技术支持此维护任务，以便在维护窗口期间禁止自动创建案例。
 
-====
+NOTE: AutoSupport 消息会通知技术支持此维护任务，以便在维护窗口期间禁止自动创建案例。
+
 +
 以下命令将禁止自动创建案例 2 小时：
 
@@ -295,11 +279,9 @@ node2
 4 entries were displayed.
 ----
 +
-[NOTE]
-====
-必须从本地节点执行步骤 10 到 13 中的以下修改和迁移命令。
 
-====
+NOTE: 必须从本地节点执行步骤 10 到 13 中的以下修改和迁移命令。
+
 . 验证所有集群端口是否均为 `up` ： `network port show -ipspace Cluster`
 +
 [listing]
@@ -329,11 +311,9 @@ cluster::*> network interface modify -vserver node2 -lif clus1 -auto-revert fals
 cluster::*> network interface modify -vserver node2 -lif clus2 -auto-revert false
 ----
 +
-[NOTE]
-====
-对于 8.3 及更高版本，请使用以下命令： `network interface modify -vserver cluster -lif * -auto-revert false`
 
-====
+NOTE: 对于 8.3 及更高版本，请使用以下命令： `network interface modify -vserver cluster -lif * -auto-revert false`
+
 . 对集群端口执行 Ping 操作以验证集群连接： `cluster ping-cluster local`
 +
 命令输出显示了所有集群端口之间的连接。
@@ -350,11 +330,9 @@ cluster::*> network interface migrate -vserver node1 -lif clus1 -source-node nod
 cluster::*> network interface migrate -vserver node2 -lif clus1 -source-node node2 -dest-node node2 -dest-port e2a
 ----
 +
-[NOTE]
-====
-对于 8.3 及更高版本，请使用以下命令： `network interface migrate -vserver cluster -lif clus1 -destination-node node1 -destination-port e2a`
 
-====
+NOTE: 对于 8.3 及更高版本，请使用以下命令： `network interface migrate -vserver cluster -lif clus1 -destination-node node1 -destination-port e2a`
+
 . 验证是否已进行迁移： `network interface show -vserver Cluster`
 +
 以下示例验证 clus1 是否已迁移到 node1 和 node2 上的端口 E2A ：
@@ -410,10 +388,7 @@ node2
 ----
 . 断开缆线与 node1 上的集群端口 e1a 的连接，然后使用 CN1610 交换机支持的相应布线方式将 e1a 连接到集群交换机 CS1 上的端口 1 。
 +
-_NetApp Hardware Universe _ 包含有关布线的详细信息。
-
-+
-https://hwu.netapp.com/Switch/Index["Hardware Universe —交换机"^]
+。 link:https://hwu.netapp.com/Switch/Index["Hardware Universe"^] 包含有关布线的详细信息。
 
 . 断开缆线与 node2 上的集群端口 e1a 的连接，然后使用 CN1610 交换机支持的相应布线方式将 e1a 连接到集群交换机 CS1 上的端口 2 。
 . 启用集群交换机 CS1 上的所有面向节点的端口。
@@ -474,11 +449,9 @@ cluster::*> network interface revert -vserver node1 -lif clus1
 cluster::*> network interface revert -vserver node2 -lif clus1
 ----
 +
-[NOTE]
-====
-对于 8.3 及更高版本，请使用以下命令： `network interface revert -vserver cluster -lif <nodename_clus<N>>`
 
-====
+NOTE: 对于 8.3 及更高版本，请使用以下命令： `network interface revert -vserver cluster -lif <nodename_clus<N>>`
+
 . 确认所有集群 LIF 均为 `up` ，正常运行，并在 "Is Home" 列中显示为 `true` ： `network interface show -vserver Cluster`
 +
 以下示例显示 node1 和 node2 上的所有 LIF 均为 `up` ，并且 "Is Home" 列结果为 `true` ：
@@ -526,11 +499,9 @@ cluster::*> network interface migrate -vserver node1 -lif clus2 -source-node nod
 cluster::*> network interface migrate -vserver node2 -lif clus2 -source-node node2 -dest-node node2 -dest-port e1a
 ----
 +
-[NOTE]
-====
-对于 8.3 及更高版本，请使用以下命令： `network interface migrate -vserver cluster -lif node1_clus2 -dest-node node1 -dest-port e1a`
 
-====
+NOTE: 对于 8.3 及更高版本，请使用以下命令： `network interface migrate -vserver cluster -lif node1_clus2 -dest-node node1 -dest-port e1a`
+
 . 验证是否已进行迁移： `network interface show -vserver Cluster`
 +
 以下示例验证 clus2 是否已迁移到 node1 和 node2 上的端口 e1a ：
@@ -644,15 +615,9 @@ cluster::*> network interface revert -vserver node1 -lif clus2
 cluster::*> network interface revert -vserver node2 -lif clus2
 ----
 +
-[NOTE]
-====
-对于 8.3 及更高版本，命令如下：
 
-....
-cluster::*> network interface revert -vserver Cluster -lif node1_clus2
-cluster::*> network interface revert -vserver Cluster -lif node2_clus2
-....
-====
+NOTE: 对于 8.3 及更高版本，命令包括： `cluster ：：： * > network interface revert -vserver cluster -lif node1_clus2` 和 `cluster ：： * > network interface revert -vserver cluster -lif node2_clus2`
+
 . 确认所有接口在 "Is Home" 列中均显示 `true` ： `network interface show -vserver Cluster`
 +
 以下示例显示 node1 和 node2 上的所有 LIF 均为 `up` ，并且 "Is Home" 列结果为 `true` ：
@@ -721,11 +686,9 @@ cs1                    0/16         11        S            CN1610    0/16
 cluster::*> network options detect-switchless modify -enabled false
 ----
 +
-[NOTE]
-====
-对于 9.2 及更高版本，请跳过此步骤，因为配置会自动转换。
 
-====
+NOTE: 对于 9.2 及更高版本，请跳过此步骤，因为配置会自动转换。
+
 . 验证这些设置是否已禁用： `network options detect-switchless-cluster show`
 +
 以下示例中的 `false` 输出显示配置设置已禁用：
@@ -738,11 +701,9 @@ cluster::*> network options detect-switchless-cluster show
 Enable Switchless Cluster Detection: false
 ----
 +
-[NOTE]
-====
-对于 9.2 及更高版本，请等待 " 启用无交换机集群 " 设置为 false 。这可能需要长达三分钟的时间。
 
-====
+NOTE: 对于 9.2 及更高版本，请等待 `Enable Switchless Cluster` 设置为 false 。这可能需要长达三分钟的时间。
+
 . 将集群 clus1 和 clus2 配置为在每个节点上自动还原，然后确认：
 +
 [listing]
@@ -754,11 +715,9 @@ cluster::*> network interface modify -vserver node2 -lif clus1 -auto-revert true
 cluster::*> network interface modify -vserver node2 -lif clus2 -auto-revert true
 ----
 +
-[NOTE]
-====
-对于 8.3 及更高版本，请使用以下命令： `network interface modify -vserver cluster -lif * -auto-revert true` 在集群中的所有节点上启用自动还原。
 
-====
+NOTE: 对于 8.3 及更高版本，请使用以下命令： `network interface modify -vserver cluster -lif * -auto-revert true` 在集群中的所有节点上启用自动还原。
+
 . 验证集群中节点成员的状态： `cluster show`
 +
 以下示例显示了有关集群中节点的运行状况和资格的信息：

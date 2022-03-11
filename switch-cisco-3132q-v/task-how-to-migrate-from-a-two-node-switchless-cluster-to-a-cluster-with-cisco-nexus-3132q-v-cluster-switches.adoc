@@ -12,17 +12,14 @@ summary: 如果您使用双节点无交换机集群，则可以无中断地迁�
 [role="lead"]
 如果您使用双节点无交换机集群，则可以无中断地迁移到包含 Cisco Nexus 3132Q-V 集群网络交换机的双节点交换集群。
 
-
-
-== 您将需要什么
-
+.开始之前
 * 这些配置必须设置正确且正常运行。
 * 节点必须运行 ONTAP 9.4 或更高版本。
 * 所有集群端口都必须处于 `up` 状态。
 * 必须支持 Cisco Nexus 3132Q-V 集群交换机。
 * 现有集群网络配置必须具有：
 +
-** Nexus 3132 集群基础架构是冗余的，可在两台交换机上完全正常运行。
+** Nexus 3132 集群基础架构在两台交换机上均为冗余且功能完备。
 +
 交换机上的最新 RCF 和 NX-OS 版本。
 
@@ -35,10 +32,6 @@ summary: 如果您使用双节点无交换机集群，则可以无中断地迁�
 
 
 
-
-
-== 关于此任务
-
 此操作步骤中的示例使用以下交换机和节点命名：
 
 * Nexus 3132Q-V 集群交换机， C1 和 C2 。
@@ -47,7 +40,7 @@ summary: 如果您使用双节点无交换机集群，则可以无中断地迁�
 
 [NOTE]
 ====
-此操作步骤 中的示例使用两个节点，每个节点使用两个 40/100 GbE 集群互连端口 E4A 和 e4e 。_cluster_ Hardware Universe 提供了有关平台上集群端口的详细信息。
+此操作步骤 中的示例使用两个节点，每个节点使用两个 40/100 GbE 集群互连端口 E4A 和 e4e 。。 link:https://hwu.netapp.com/["Hardware Universe"^] 提供有关平台上集群端口的详细信息。
 
 ====
 * N1_clus1 是第一个连接到节点 n1 的集群交换机 C1 的集群逻辑接口（ LIF ）。
@@ -63,16 +56,13 @@ summary: 如果您使用双节点无交换机集群，则可以无中断地迁�
 
 ====
 * 集群首先连接两个节点，并在双节点无交换机集群设置下运行。
-* 第一个集群端口已移至 C1 （步骤 1 至 20 ）。
-* 第二个集群端口已移至 C2 （步骤 21 至 32 ）。
-* 禁用双节点无交换机集群选项（步骤 33 至 35 ）。
+* 第一个集群端口已移至 C1 （<<step1_migrate_2node3132q,步骤 1.>>- <<step20_migrate_2node3132q,20>>）
+* 第二个集群端口已移至 C2 （<<step21_migrate_2node3132q,步骤 21>>- <<step32_migrate_2node3132q,32>>）。
+* 禁用双节点无交换机集群选项（<<step33_migrate_2node3132q,步骤 33>>- <<step35_migrate_2node3132q,35>>）
 
 
-
-
-== 步骤
-
-. 如果在此集群上启用了 AutoSupport ，则通过调用 AutoSupport 消息禁止自动创建案例：
+.步骤
+. 【 ｛ step1_migrate_2node3132q]] 如果在此集群上启用了 AutoSupport ，则通过调用 AutoSupport 消息禁止自动创建案例：
 +
 `ssystem node AutoSupport invoke -node * -type all - 消息 MAINT=xh`
 
@@ -139,10 +129,7 @@ Cluster
 此时必须准备两个交换机。如果您需要升级 RCF 和映像软件，必须按照以下步骤进行操作：
 
 +
-.. 转到 NetApp 支持站点上的 _Cisco 以太网交换机 _ 页面。
-+
-http://support.netapp.com/NOW/download/software/cm_switches/["Cisco 以太网交换机"^]
-
+.. 转至 link:http://support.netapp.com/NOW/download/software/cm_switches/["Cisco 以太网交换机"^] 页面。
 .. 请记下该页面上的表中的交换机和所需的软件版本。
 .. 下载适当版本的 RCF 。
 .. 单击 * RCF* 页面上的 * 继续 * ，接受许可协议，然后按照 * 下载 * 页面上的说明下载问题描述 。
@@ -347,11 +334,9 @@ RPC status:
 您可以参考正在运行的配置，并使用 Nexus 3132Q-V 上支持的布线方式将交换机 C1 上的第一个 40 GbE 端口（本示例中的端口 1/7 ）连接到 n1 上的 E4A
 
 +
-[NOTE]
-====
-将任何缆线重新连接到新的 Cisco 集群交换机时，使用的缆线必须为光纤或 Cisco 支持的缆线。
 
-====
+NOTE: 将任何缆线重新连接到新的 Cisco 集群交换机时，使用的缆线必须为光纤或 Cisco 支持的缆线。
+
 . 断开节点 n2 上 E4A 的缆线。
 +
 您可以参考运行配置，并使用支持的布线方式将 E4A 连接到 C1 端口 1/8 上的下一个可用 40 GbE 端口。
@@ -421,7 +406,7 @@ e4e       Cluster      Cluster          up   9000 auto/40000  -        -
 cluster::*> network interface revert -vserver Cluster -lif n1_clus1
 cluster::*> network interface revert -vserver Cluster -lif n2_clus1
 ----
-. 验证所有集群互连端口现在是否均已还原到其主端口：
+. 【第 20 步 _migrate_2node3132q]] 验证所有集群互连端口现在是否均已还原到其主端口：
 +
 `network interface show`
 
@@ -443,7 +428,7 @@ Cluster
             n2_clus2   up/up      10.10.0.4/24       n2            e4e     true
 4 entries were displayed.
 ----
-. 显示每个节点上的集群端口连接：
+. 【第 21 步 _migrate_2node3132q]] 显示每个节点上的集群端口连接：
 +
 `network device-discovery show`
 
@@ -600,7 +585,7 @@ e4a       Cluster      Cluster          up   9000 auto/40000  -        -
 e4e       Cluster      Cluster          up   9000 auto/40000  -        -
 4 entries were displayed.
 ----
-. 显示每个节点上每个集群端口所连接的集群交换机端口号：
+. 【第 32 步 _migrate_2node3132q]] 显示每个节点上每个集群端口连接到的集群交换机端口号：
 +
 `network device-discovery show`
 
@@ -618,7 +603,7 @@ n2         /cdp
             e4a    C1                  Ethernet1/8      N3K-C3132Q-V
             e4e    C2                  Ethernet1/8      N3K-C3132Q-V
 ----
-. 显示已发现和受监控的集群交换机：
+. 【第 33 步 _migrate_2node3132q]] 显示发现和监控的集群交换机：
 +
 `ssystem cluster-switch show`
 
@@ -656,7 +641,7 @@ C2                          cluster-network     10.10.1.102      NX3132V
 ----
 network options switchless-cluster modify -enabled false
 ----
-. 验证是否已禁用 `sswitchless-cluster` 选项。
+. `s步骤 35_migrate_2node3132q]] 验证是否已禁用 " 无交换机集群` " 选项。
 +
 [listing]
 ----
@@ -740,11 +725,9 @@ Enabling cluster switch log collection.
 cluster::*>
 ----
 +
-[NOTE]
-====
-如果其中任何一个命令返回错误，请联系 NetApp 支持部门。
 
-====
+NOTE: 如果其中任何一个命令返回错误，请联系 NetApp 支持部门。
+
 . 如果禁止自动创建案例，请通过调用 AutoSupport 消息重新启用它：
 +
 `ssystem node AutoSupport invoke -node * -type all -message MAINT=end`

@@ -12,18 +12,24 @@ summary: 要将集群中的现有 CN1610 集群交换机更换为 Cisco Nexus 31
 [role="lead"]
 要将集群中的现有 CN1610 集群交换机更换为 Cisco Nexus 3132Q-V 集群交换机，您必须执行一系列特定的任务。
 
+此操作步骤 中的示例使用四个节点：两个节点使用四个 10 GbE 集群互连端口： e0a ， e0b ， e0c 和 e0d 。其他两个节点使用两根 40/100 GbE 集群互连光缆： E4A 和 e4e 。。 link:https://hwu.netapp.com/["Hardware Universe"^] 提供有关平台上的集群光纤缆线的信息。
 
+此操作步骤中的示例使用以下交换机和节点命名：
 
-== 关于此任务
+* 根据不同版本的 ONTAP 软件，命令输出可能会有所不同。
+* 要更换的 CN1610 交换机为 CL1 和 CL2 。
+* 用于更换 CN1610 交换机的 Nexus 3132Q-V 交换机为 C1 和 C2 。
+* N1_clus1 是连接到节点 n1 的集群交换机 1 （ CL1 或 C1 ）的第一个集群逻辑接口（ LIF ）。
+* N1_clus2 是连接到节点 n1 的集群交换机 2 （ CL2 或 C2 ）的第一个集群 LIF 。
+* N1_clus3 是连接到节点 n1 的集群交换机 2 （ CL2 或 C2 ）的第二个 LIF 。
+* N1_clus4 是连接到节点 n1 的集群交换机 1 （ CL1 或 C1 ）的第二个 LIF 。节点为 n1 ， n2 ， n3 和 n4 。
+* 10 GbE 和 40/100 GbE 端口的数量在上提供的参考配置文件（ RCF ）中定义 https://mysupport.netapp.com/NOW/download/software/sanswitch/fcp/Cisco/netapp_cnmn/download.shtml["Cisco ® 集群网络交换机参考配置文件下载"^] 页面。
 
-此操作步骤 中的示例使用四个节点：两个节点使用四个 10 GbE 集群互连端口： e0a ， e0b ， e0c 和 e0d 。其他两个节点使用两根 40/100 GbE 集群互连光缆： E4A 和 e4e 。_cluster_ Hardware Universe 提供了有关平台上的集群光纤缆线的信息。
-
-此操作步骤 中的示例使用以下交换机和节点命名： - * 根据 ONTAP 软件的不同版本，命令输出可能会有所不同。* 要更换的 CN1610 交换机为 CL1 和 CL2 。* 用于更换 CN1610 交换机的 Nexus 3132Q-V 交换机为 C1 和 C2 。* n1_clus1 是连接到节点 n1 的集群交换机 1 （ CL1 或 C1 ）的第一个集群逻辑接口（ LIF ）。* n1_clus2 是连接到节点 n1 的集群交换机 2 （ CL2 或 C2 ）的第一个集群 LIF 。* n1_clus3 是连接到节点 n1 的集群交换机 2 （ CL2 或 C2 ）的第二个 LIF 。* n1_clus4 是连接到节点 n1 的集群交换机 1 （ CL1 或 C1 ）的第二个 LIF 。节点为 n1 ， n2 ， n3 和 n4 。* 10 GbE 和 40/100 GbE 端口的数量在上提供的参考配置文件（ RCF ）中定义 https://mysupport.netapp.com/NOW/download/software/sanswitch/fcp/Cisco/netapp_cnmn/download.shtml["Cisco ® 集群网络交换机参考配置文件下载"^] 页面。
 
 此操作步骤包括以下情形：
 
 * 集群从两个节点连接到两个 CN1610 集群交换机开始。
-* 集群交换机 CL2 将替换为 C2 （步骤 2 至 22 ）：
+* 集群交换机 CL2 将替换为 C2 （<<step2_replacecn1610,步骤 2.>> - <<step22_replacecn1610,22.>>）
 +
 ** 连接到 CL2 的所有节点上的所有集群端口和 LIF 上的流量都会迁移到连接到 CL1 的第一个集群端口和 LIF 上。
 ** 从连接到 CL2 的所有节点上的所有集群端口断开布线，然后使用支持的分支布线将端口重新连接到新的集群交换机 C2 。
@@ -31,7 +37,7 @@ summary: 要将集群中的现有 CN1610 集群交换机更换为 Cisco Nexus 31
 ** 还原所有节点上连接到 C2 的所有集群端口和 LIF 上的流量。
 
 
-* 将集群交换机 CL1 替换为 C1 （步骤 23 至 43 ）
+* 集群交换机 CL1 将替换为 C1 （<<step23_replacecn1610,步骤 23>> - <<step43_replacecn1610,43>>）
 +
 ** 连接到 CL1 的所有节点上的所有集群端口和 LIF 上的流量都会迁移到连接到 C2 的第二个集群端口和 LIF 上。
 ** 从连接到 CL1 的所有节点上的所有集群端口断开布线，然后使用支持的分支布线将端口重新连接到新的集群交换机 C1 。
@@ -41,15 +47,10 @@ summary: 要将集群中的现有 CN1610 集群交换机更换为 Cisco Nexus 31
 
 
 
-[NOTE]
-====
-操作步骤 要求同时使用 ONTAP 命令和 Cisco Nexus 3000 系列交换机命令；除非另有说明，否则使用 ONTAP 命令。
 
-====
+NOTE: 操作步骤 要求同时使用 ONTAP 命令和 Cisco Nexus 3000 系列交换机命令；除非另有说明，否则使用 ONTAP 命令。
 
-
-== 步骤
-
+.步骤
 . 如果在此集群上启用了 AutoSupport ，则通过调用 AutoSupport 消息禁止自动创建案例：
 +
 `ssystem node AutoSupport invoke -node * -type all - 消息 MAINT=xh`
@@ -58,12 +59,10 @@ summary: 要将集群中的现有 CN1610 集群交换机更换为 Cisco Nexus 31
 _x_ 是维护时段的持续时间，以小时为单位。
 
 +
-[NOTE]
-====
-AutoSupport 消息会通知技术支持此维护任务，以便在维护窗口期间禁止自动创建案例。
 
-====
-. 显示有关配置中设备的信息： `network device-discovery show`
+NOTE: AutoSupport 消息会通知技术支持此维护任务，以便在维护窗口期间禁止自动创建案例。
+
+. 【第 2 步 _replacecn1610]] 显示有关您配置中的设备的信息： `network device-discovery show`
 +
 以下示例显示了在每个节点中为每个集群互连交换机配置了多少个集群互连接口：
 
@@ -189,10 +188,7 @@ cluster::*> network interface modify -vserver node2 -lif clus4 -auto-revert fals
 此时必须准备两个交换机。如果需要升级 RCF 和映像，请按照以下步骤操作：
 
 +
-.. 请参见 NetApp 支持站点上的 _Cisco 以太网交换机 _ 页面。
-+
-http://support.netapp.com/NOW/download/software/cm_switches/["Cisco 以太网交换机"^]
-
+.. 请参见 link:http://support.netapp.com/NOW/download/software/cm_switches/["Cisco 以太网交换机"^] 页面。
 .. 请记下该页面上的表中的交换机和所需的软件版本。
 .. 下载适当版本的 RCF 。
 .. 单击 * RCF* 页面上的 * 继续 * ，接受许可协议，然后按照 * 下载 * 页面上的说明下载问题描述 。
@@ -353,11 +349,9 @@ C2(config-if)# exit
 您必须使用适当的 Cisco QSFP 到 SFP+ 分支缆线将新 Cisco 3132Q-V 交换机 C2 上的端口 1/24 连接到现有 CN1610 交换机 CL1 上的端口 13 到 16 。
 
 +
-[NOTE]
-====
-在将任何缆线重新连接到新的 Cisco 3132Q-V 交换机时，您必须使用光缆或 Cisco 双轴电缆。
 
-====
+NOTE: 在将任何缆线重新连接到新的 Cisco 3132Q-V 交换机时，您必须使用光缆或 Cisco 双轴电缆。
+
 . 要使 ISL 成为动态交换机，请在活动 CN1610 交换机上配置 ISL 接口 3/1 以禁用静态模式： `no port-channel static`
 +
 当步骤 11 中启动两个交换机上的 ISL 时，此配置与 3132Q-V 交换机 C2 上的 ISL 配置匹配
@@ -520,7 +514,7 @@ e0d   cluster   cluster     up    9000  auto/10000     -        -
 
 8 entries were displayed.
 ----
-. 对远程集群接口执行 Ping 操作，然后执行远程操作步骤 调用服务器检查： `cluster ping-cluster`
+. 【第 22 步 _replacecn1610]] 对远程集群接口执行 Ping 操作，然后执行远程操作步骤 调用服务器检查： `cluster ping-cluster`
 +
 以下示例显示了如何对远程集群接口执行 ping 操作：
 
@@ -570,7 +564,7 @@ RPC status:
 4 paths up, 0 paths down (tcp check)
 4 paths up, 0 paths down (udp check)
 ----
-. 在集群中的每个节点上，迁移与要替换的第一个 CN1610 交换机 CL1 关联的接口： `network interface migrate`
+. 【第 23 步 _replacecn1610]] 在集群中的每个节点上，迁移与第一个 CN1610 交换机 CL1 关联的接口，以进行替换： `network interface migrate`
 +
 以下示例显示了节点 n1 和 n2 上要迁移的端口或 LIF ：
 
@@ -1076,12 +1070,10 @@ Enabling cluster switch log collection.
 cluster::*>
 ----
 +
-[NOTE]
-====
-如果其中任何一个命令返回错误，请联系 NetApp 支持部门。
 
-====
-. 如果禁止自动创建案例，请通过调用 AutoSupport 消息重新启用该功能： `ssystem node AutoSupport invoke -node * -type all -message MAINT=end`
+NOTE: 如果其中任何一个命令返回错误，请联系 NetApp 支持部门。
+
+. ` 步骤 43_replacecn1610]] 如果禁止自动创建案例，请通过调用 AutoSupport 消息重新启用此功能： `ssystem node AutoSupport invoke -node * -type all -message MAIN=end
 
 
 * 相关信息 *

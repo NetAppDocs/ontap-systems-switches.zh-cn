@@ -63,10 +63,6 @@ CN1610 到 3232C （ QSFP 到 SFP+ ）
 |===
 您必须已下载适用的参考配置文件（ Reference Configuration Files ， RCF ）。10 GbE 和 40/100 GbE 端口的数量在上提供的 RCF 中定义 https://mysupport.netapp.com/NOW/download/software/sanswitch/fcp/Cisco/netapp_cnmn/download.shtml["Cisco ® 集群网络交换机参考配置文件下载"^] 页面。
 
-此操作步骤 中支持的 ONTAP 和 NX-OS 版本会列在 Cisco 以太网交换机页面上。
+上列出了此操作步骤 支持的 ONTAP 和 NX-OS 版本 link:https://mysupport.netapp.com/NOW/download/software/cm_switches/.html["Cisco 以太网交换机页面"^]。
 
-https://mysupport.netapp.com/NOW/download/software/cm_switches/["Cisco 以太网交换机"^]
-
-此操作步骤 中支持的 ONTAP 和 FastPath 版本列在 NetApp CN1601 和 CN1610 交换机页面上。
-
-http://support.netapp.com/NOW/download/software/cm_switches_ntap/["NetApp CN1601 和 CN1610 交换机"^]
+上列出了此操作步骤 支持的 ONTAP 和快速路径版本 link:http://support.netapp.com/NOW/download/software/cm_switches_ntap/.html["NetApp CN1601 和 CN1610 交换机页面"^]。

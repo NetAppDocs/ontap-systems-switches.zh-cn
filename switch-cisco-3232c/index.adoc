@@ -4,8 +4,17 @@ sidebar: sidebar
 keywords: cisco 3232c 
 summary: Cisco 3232C 交换机 
 ---
-= Cisco 3232C 交换机
+= Cisco Nexus 3232C 交换机
+:icons: font
+:imagesdir: ../media/
 
 
 [role="lead"]
-您可以将 Cisco 3232C 交换机用作 AFF 或 FAS 集群中的集群交换机。您可以使用以下过程安装交换机，从现有交换机迁移，更换交换机以及更新交换机上的 RCF 文件。
+您可以将 Cisco Nexus 3232C 交换机用作 AFF 或 FAS 集群中的集群交换机。
+
+* 您可以安装交换机，从现有交换机迁移，更换交换机以及更新交换机上的 RCF 文件。
+* 您可以在 Cisco Nexus 3232C 集群交换机上安装 NX-OS 和参考配置文件（ RCF ）。
+* 您可以从双节点无交换机集群迁移到使用 Cisco Nexus 3232C 集群交换机的集群。
+* 您可以更换 Cisco Nexus 3232C 集群或存储交换机。
+* 您可以使用随交换机提供的自定义支架安装 Cisco Nexus 3232C 交换机（ X190100 ） NetApp 系统机柜，也可以将其安装在具有随交换机提供的标准支架的机架中。
+

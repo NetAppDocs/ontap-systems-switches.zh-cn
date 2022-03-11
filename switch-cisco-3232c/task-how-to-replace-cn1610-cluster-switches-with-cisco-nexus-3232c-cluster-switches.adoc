@@ -12,10 +12,6 @@ summary: 要将集群中的现有 CN1610 集群交换机更换为 Cisco Nexus 32
 [role="lead"]
 要将集群中的现有 CN1610 集群交换机更换为 Cisco Nexus 3232C 集群交换机，您必须执行一系列特定的任务。
 
-
-
-== 关于此任务
-
 此操作步骤中的示例使用以下交换机和节点命名：
 
 * 节点为 n1 ， n2 ， n3 和 n4 。
@@ -33,8 +29,8 @@ summary: 要将集群中的现有 CN1610 集群交换机更换为 Cisco Nexus 32
 
 以下列表介绍了更改集群交换机时必须完成的阶段：
 
-* 一将集群交换机 CL2 更换为 C2 （步骤 1-22 ）
-* 二将集群交换机 CL1 更换为 C1 （步骤 23 至 40 ）
+* 一将集群交换机 CL2 更换为 C2 （步骤 <<one,1.>>-<<twentytwo,22.>>）
+* 二将集群交换机 CL1 更换为 C1 （步骤 <<twentythree,23>>-<<forty,40>>）
 
 
 此操作步骤 中的示例使用四个节点：两个节点使用四个 10 GbE 集群互连端口： e0a ， e0b ， e0c 和 e0d 。其他两个节点使用两根 40 GbE 集群互连光缆： E4A 和 e4e 。_cluster_ Hardware Universe 提供了有关平台上的集群光纤缆线的信息。
@@ -44,11 +40,11 @@ summary: 要将集群中的现有 CN1610 集群交换机更换为 Cisco Nexus 32
 操作步骤 要求同时使用 ONTAP 命令和 Cisco Nexus 3000 系列交换机命令；除非另有说明，否则使用 ONTAP 命令。
 
 ====
+.步骤
+. 【一个】如果在此集群上启用了 AutoSupport ，则通过调用 AutoSupport 消息禁止自动创建案例：
++
+`ssystem node AutoSupport invoke -node * -type all -message MAINT=xh`
 
-
-== 步骤
-
-. 如果在此集群上启用了 AutoSupport ，请通过调用 AutoSupport 消息来禁止自动创建案例： ++ `ssystem node AutoSupport invoke -node * -type all -message MAINT=xh`
 +
 _x_ 是维护时段的持续时间，以小时为单位。
 
@@ -164,17 +160,11 @@ CL2                           cluster-network  10.10.1.102   CN1610
 此时应准备好两个交换机。如果需要升级 RCF 和映像，必须完成以下操作步骤 ：
 
 +
-.. 请参见 NetApp 支持站点上的 _Cisco 以太网交换机 _ 页面。
-+
-http://support.netapp.com/NOW/download/software/cm_switches/["Cisco 以太网交换机"^]
-
+.. 请参见 link:http://support.netapp.com/NOW/download/software/cm_switches/.html["Cisco 以太网交换机"^] 页面。
 .. 请记下该页面上的表中的交换机和所需的软件版本。
 .. 下载适当版本的 RCF 。
 .. 单击 * RCF* 页面上的 * 继续 * ，接受许可协议，然后按照 * 下载 * 页面上的说明下载问题描述 。
-.. 下载相应版本的映像软件。
-+
-http://mysupport.netapp.com/NOW/download/software/sanswitch/fcp/Cisco/netapp_cnmn/download.shtml["Cisco ® 集群和管理网络交换机参考配置文件下载"^]
-
+.. 从下载相应版本的映像软件 link:http://mysupport.netapp.com/NOW/download/software/sanswitch/fcp/Cisco/netapp_cnmn/download.html["Cisco ® 集群和管理网络交换机参考配置文件下载"^]。
 
 
 . 迁移与计划替换的第二个 CN1610 交换机关联的 LIF ： `network interface migrate -verser cluster -lif _lif-name_ -source-node _source-node-name_ destination-node _destination-node-name_ -destination-port _destination-port-name_`
@@ -553,7 +543,7 @@ RPC status:
 4 paths up, 0 paths down (tcp check)
 4 paths up, 0 paths down (udp check)
 ----
-. 迁移与第一个 CN1610 交换机 CL1 关联的 LIF ： `network interface migrate -vserver cluster -lif _lif-name_ -source-node _node-name_`
+. 【 22 个】迁移与第一个 CN1610 交换机 CL1 关联的 LIF ： `network interface migrate -vserver cluster -lif _lif-name_ -source-node _node-name_`
 +
 您必须分别将每个集群 LIF 迁移到集群交换机 C2 上托管的相应集群端口，如以下示例所示：
 
@@ -569,7 +559,7 @@ cluster::*> network interface migrate -vserver cluster -lif n2_clus1 -source-nod
 cluster::*> network interface migrate -vserver cluster -lif n2_clus4 -source-node n2
 -destination-node n2 -destination-port e0c
 ----
-. 验证集群的状态： `network interface show -role cluster`
+. 【第二十三】验证集群状态： `network interface show -role cluster`
 +
 以下示例显示所需的集群 LIF 已迁移到集群交换机 C2 上托管的相应集群端口：
 
@@ -1018,7 +1008,7 @@ C2                          cluster-network    10.10.1.104      NX3232C
 
 2 entries were displayed.
 ----
-. 启用集群交换机运行状况监控器日志收集功能以收集交换机相关的日志文件： `ssystem cluster-switch log setup-password`
+. 【四十】启用集群交换机运行状况监控器日志收集功能以收集交换机相关的日志文件： `ssystem cluster-switch log setup-password`
 +
 `ssystem cluster-switch log enable-Collection`
 

@@ -12,37 +12,21 @@ summary: Cisco Nexus 3232C 集群交换机上必须安装 Cisco NX-OS 软件和�
 [role="lead"]
 Cisco Nexus 3232C 集群交换机上必须安装 Cisco NX-OS 软件和参考配置文件（ Reference Configuration Files ， RCF ）。
 
-
-
-== 您将需要什么
-
 在集群交换机上安装 NX-OS 软件和参考配置文件（ Reference Configuration Files ， RCF ）之前，必须满足以下条件：
 
 * 集群必须完全正常运行（日志或类似的 -ssues 中不应出现错误）。
 * 如果您仅安装 NX-OS 并保留当前 RCF 版本，则必须在 RCF 中检查或设置所需的启动配置，以反映所需的启动映像。
 * 如果您需要更改启动配置以反映当前启动映像，则必须在重新应用 RCF 之前进行更改，以便在将来重新启动时实例化正确的版本。
 * 您必须与交换机建立控制台连接，这是安装 RCF 时所必需的。
-* 您必须已查看 Cisco 以太网交换机页面上的交换机兼容性表以了解受支持的 ONTAP ， NX-OS 和 RCF 版本。
-+
-https://mysupport.netapp.com/site/info/cisco-ethernet-switch["Cisco 以太网交换机"^]
-
+* 您必须已查看上的交换机兼容性表 link:https://mysupport.netapp.com/site/info/cisco-ethernet-switch["Cisco 以太网交换机页面"^] 支持的 ONTAP ， NX-OS 和 RCF 版本。
 * RCF 中的命令语法与 NX-OS 版本中的命令语法之间可能存在命令依赖关系。
-* 您必须已参考 Cisco 网站上提供的相应软件和升级指南，以获取有关 _Cisco Nexus 3000 系列交换机上的 Cisco 交换机升级和降级过程的完整文档。
-+
-https://www.cisco.com/c/en/us/support/switches/nexus-3000-series-switches/products-installation-guides-list.html["Cisco Nexus 3000 系列交换机"^]
-
+* 您必须已参考 Cisco 网站上提供的相应软件和升级指南，以获取有关 Cisco 交换机升级和降级过程的完整文档 link:https://www.cisco.com/c/en/us/support/switches/nexus-3000-series-switches/products-installation-guides-list.html["Cisco Nexus 3000 系列交换机"^]。
 * 您必须具有当前 RCF 。
 
 
-
-
-== 关于此任务
-
 此操作步骤中的示例使用两个节点。这些节点使用两个 10GbE 集群互连端口 `e0a` 和 `e0b` 。
 
-请参见 _cluster_ Hardware Universe 以验证平台上的集群端口是否正确。
-
-https://hwu.netapp.com/SWITCH/INDEX["Hardware Universe"^]
+请参见 link:https://hwu.netapp.com/SWITCH/INDEX["Hardware Universe"^] 验证平台上的集群端口是否正确。
 
 [NOTE]
 ====
@@ -62,10 +46,7 @@ https://hwu.netapp.com/SWITCH/INDEX["Hardware Universe"^]
 操作步骤 要求同时使用 ONTAP 命令和 Cisco Nexus 3000 系列交换机命令；除非另有说明，否则使用 ONTAP 命令。
 
 ====
-
-
-== 步骤
-
+.步骤
 . 如果在此集群上启用了 AutoSupport ，请通过调用 AutoSupport 消息来禁止自动创建案例： `ssystem node AutoSupport invoke -node * -type all -message MAINT=x h`
 +
 其中 _x_ 是维护时段的持续时间，以小时为单位。
