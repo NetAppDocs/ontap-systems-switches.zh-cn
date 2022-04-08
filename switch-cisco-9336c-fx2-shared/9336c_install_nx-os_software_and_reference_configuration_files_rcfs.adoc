@@ -4,7 +4,7 @@ permalink: switch-cisco-9336c-fx2-shared/9336c_install_nx-os_software_and_refere
 keywords: rcfs, nx-os, install 
 summary:  
 ---
-= 安装 NX-OS 软件和参考配置文件（ Reference Configuration Files ， RCF ）
+= 安装 NX-OS 软件和 RCF
 :hardbreaks:
 :nofooter: 
 :icons: font
@@ -14,13 +14,9 @@ summary:
 
 
 
-== 在 Cisco Nexus 9336C-FX2 集群交换机上安装 NX-OS 软件和 RCF
+== 在 Cisco Nexus 9336C-FX2 交换机上安装 NX-OS 软件和 RCF
 
 Cisco Nexus 9336C-x2 集群交换机上必须安装 Cisco NX-OS 软件和参考配置文件（ RCF ）。
-
-
-
-=== 开始之前
 
 在集群交换机上安装 NX-OS 软件和 RCF 之前，必须满足以下条件：
 
@@ -33,10 +29,6 @@ Cisco Nexus 9336C-x2 集群交换机上必须安装 Cisco NX-OS 软件和参考�
 * 您必须已参考 Cisco 网站上提供的相应软件和升级指南，以获取有关 Cisco Nexus 9000 系列交换机上的 Cisco 交换机升级和降级过程的完整文档。请参见 https://www.cisco.com/c/en/us/support/switches/nexus-9336c-fx2-switch/model.html["Cisco Nexus 9000 系列交换机"] 有关详细信息 ...
 * 您必须具有当前 RCF 。
 
-
-
-
-=== 初始设置
 
 此操作步骤中的示例使用两个节点。根据 A400 控制器，这些节点使用两个 100GbE 集群互连端口 E3A 和 e3b 。请参见 https://hwu.netapp.com["Hardware Universe"] 验证平台上的集群端口是否正确。
 

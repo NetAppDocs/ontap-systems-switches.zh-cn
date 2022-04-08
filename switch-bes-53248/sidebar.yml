@@ -32,6 +32,18 @@ entries:
     url: "/switch-bes-53248/configure-log-collection.html"
   - title: 安装集群交换机运行状况监控器（ CSHM ）配置文件
     url: "/switch-bes-53248/configure-health-monitor.html"
+- title: 从 CN1610 交换机迁移到 BES-53248 交换机
+  entries:
+  - title: 开始之前
+    url: "/switch-bes-53248/migrate-cn1610-overview.html"
+  - title: 如何迁移
+    url: "/switch-bes-53248/migrate-cn1610.html"
+- title: 迁移到双节点交换集群
+  entries:
+  - title: 准备迁移
+    url: "/switch-bes-53248/migrate-to-2n-switched.html"
+  - title: 迁移到交换式 NetApp 集群环境
+    url: "/switch-bes-53248/migrate-to-2n-switched-overview.html"
 - title: 升级 NDS/NDU 环境中的交换机
   entries:
   - title: 概述
@@ -57,15 +69,3 @@ entries:
     url: "/switch-bes-53248/replace-verify.html"
 - title: 更换 BES-53248 交换机
   url: "/switch-bes-53248/replace-switch.html"
-- title: 从 CN1610 交换机迁移到 BES-53248 交换机
-  entries:
-  - title: 开始之前
-    url: "/switch-bes-53248/migrate-cn1610-overview.html"
-  - title: 如何迁移
-    url: "/switch-bes-53248/migrate-cn1610.html"
-- title: 迁移到双节点交换集群
-  entries:
-  - title: 准备迁移
-    url: "/switch-bes-53248/migrate-to-2n-switched.html"
-  - title: 迁移到交换式 NetApp 集群环境
-    url: "/switch-bes-53248/migrate-to-2n-switched-overview.html"

@@ -23,10 +23,7 @@ summary: 您可以通过完成本章中详细介绍的步骤来配置新的 Nexu
 * `cluster1 ：：： * >` 提示符指示集群的名称。
 * 每个节点上的集群端口分别命名为 `e0a` 和 `e0b` 。
 +
-有关 Hardware Universe 您的平台支持的实际集群端口，请参见 _cluster_ 。
-
-+
-https://hwu.netapp.com/Home/Index["NetApp Hardware Universe"]
+请参见 link:https://hwu.netapp.com/Home/Index["Hardware Universe^ _"] 您的平台支持的实际集群端口。
 
 * Nexus 92300YC 交换机支持的交换机间链路（ ISL ）为端口 1/65 和 1/66 。
 * Nexus 92300YC 交换机支持的节点连接为端口 1/1 到 1/66 。

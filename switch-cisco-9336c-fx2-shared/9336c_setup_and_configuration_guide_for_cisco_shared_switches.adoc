@@ -83,7 +83,8 @@ NOTE: 除了布线图之外，本指南还提供了一些示例工作表，其�
 
 所有 Cisco 共享交换机都附带标准的 Cisco 出厂默认配置。这些交换机还具有最新版本的 NX-OS 软件，但未加载 RCF 。
 
-* 注意： * 您必须从下载适用的 NetApp RCF https://mysupport.netapp.com["NetApp 支持站点"] 用于接收的交换机。
+
+IMPORTANT: 您必须从下载适用的 NetApp RCF https://mysupport.netapp.com["NetApp 支持站点"] 用于接收的交换机。
 
 
 
@@ -95,7 +96,7 @@ NOTE: 除了布线图之外，本指南还提供了一些示例工作表，其�
 . 验证您在设置结束时显示的屏幕中所做的配置选择，并确保保存此配置。
 . 检查交换机上的软件版本，如有必要，请将 NetApp 支持的软件版本下载到这些交换机。
 +
-如果您下载的是 NetApp 支持的软件版本，则还必须下载 NetApp 网络交换机参考配置文件并将其与保存在中的配置合并 <<step3,第 3 步>>。您可以从下载文件和说明 https://mysupport.netapp.com/site/info/cisco-ethernet-switch["Cisco 以太网交换机"] 页面。如果您有自己的交换机，请参见 站点
+如果您下载的是 NetApp 支持的软件版本，则还必须下载 NetApp 网络交换机参考配置文件并将其与保存在中的配置合并 <<step3,第 3 步>>。您可以从下载文件和说明 https://mysupport.netapp.com/site/info/cisco-ethernet-switch["Cisco 以太网交换机"] 页面。如果您有自己的交换机，请参见 http://www.cisco.com["Cisco"] 站点
 
 
 
@@ -211,10 +212,11 @@ NOTE: 使用集群交换机运行状况监控器（ CSHM ）收集日志功能�
 +
 输入 * 是 * 以保存配置。此操作将自动更新 kickstart 和系统映像。
 
-
-
++
 
 NOTE: 如果您在此阶段未保存配置，则下次重新启动交换机时，所有更改都不会生效。
+
+
 
 有关交换机初始配置的详细信息，请参见以下指南： https://www.cisco.com/c/en/us/td/docs/dcn/hw/nx-os/nexus9000/9336c-fx2-e/cisco-nexus-9336c-fx2-e-nx-os-mode-switch-hardware-installation-guide.html["《 Cisco Nexus 9336C-x2 安装和升级指南》"]。
 
@@ -259,9 +261,11 @@ NOTE: 如果您在此阶段未保存配置，则下次重新启动交换机时�
 
 您可以使用以下布线映像完成控制器和交换机之间的布线。
 
-* 交换机连接 *image:9336c_image1.jpg["交换机连接"]
+image:9336c_image1.jpg["交换机连接"]
 
-如果要将存储作为直连存储进行布线，而不是使用共享交换机存储端口，请按照直连图进行操作： * 直连 *image:9336c_image2.jpg["直连"]
+如果要将存储作为直连存储进行布线，而不是使用共享交换机存储端口，请按照直连图进行操作：
+
+image:9336c_image2.jpg["直连"]
 
 
 

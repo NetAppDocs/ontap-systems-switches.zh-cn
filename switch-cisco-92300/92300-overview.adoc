@@ -4,7 +4,7 @@ sidebar: sidebar
 keywords: cisco nexus 92300YC 
 summary: 如果要使用两个以上的节点构建 ONTAP 集群，则需要两个受支持的集群网络交换机。您可以使用其他管理交换机，这些交换机是可选的。 
 ---
-= ONTAP 支持的交换机
+= Cisco Nexus 92300YC 交换机概述
 :icons: font
 :imagesdir: ../media/
 
@@ -68,10 +68,7 @@ Cisco Nexus 92300YC 交换机气流详细信息：
 * 端口侧进气气流（反向空气）—冷空气通过冷通道的端口端进入机箱，并通过热通道中的风扇和电源模块进行排气。端口侧进气气流，具有红色。
 
 
-
-
-== 其他受支持的交换机
-
+.其他受支持的交换机
 * Nexus 3232C
 +
 您可以使用随交换机提供的自定义支架安装 Cisco Nexus 3232C 交换机（ X190100 ） NetApp 系统机柜，也可以将其安装在具有随交换机提供的标准支架的机架中。
@@ -98,3 +95,53 @@ Nexus 5596T 交换机仅支持用作 FAS2520 的集群互连交换机，用于�
 http://support.netapp.com/info/communications/ECMP12454150.html["终止可用性"] 详细信息
 
 
+
+下表列出了可用于 Cisco Nexus 92300YC 交换机的文档。
+
+|===
+
+
+| 标题 | Description 
+
+
+ a| 
+https://docs.netapp.com/us-en/ontap-systems-switches/switch-cisco-9336c-fx2/setup-switches.html["设置 Cisco ® Nexus 92300YC 集群交换机 _"^]
+ a| 
+介绍如何设置和配置 Cisco Nexus 92300YC 集群交换机。
+
+
+
+ a| 
+https://docs.netapp.com/us-en/ontap-systems-switches/switch-cisco-92300/install-nxos-overview.html["安装 NX-OS 和参考配置文件（ RCF ） _"^]
+ a| 
+介绍如何在 Nexus 92300YC 集群交换机上安装 NX-OS 和参考配置文件（ RCF ）。
+
+
+
+ a| 
+https://docs.netapp.com/us-en/ontap-systems-switches/switch-cisco-92300/configure-overview.html["配置新的 Cisco Nexus 92300YC 交换机 _"^]
+ a| 
+介绍如何从使用旧版 Cisco 交换机的环境迁移到使用 Cisco 92300YC 交换机的环境。
+
+
+
+ a| 
+https://docs.netapp.com/us-en/ontap-systems-switches/switch-cisco-92300/migrate-to-92300yc-overview.html["_ 从旧版 Cisco 交换机迁移到 Cisco Nexus 92300YC 交换机 _"^]
+ a| 
+介绍将旧版 Cisco 交换机更换为 Cisco Nexus 92300YC 集群交换机的操作步骤 。
+
+
+
+ a| 
+https://docs.netapp.com/us-en/ontap-systems-switches/switch-cisco-92300/migrate-to-2n-switched.html["_ 从双节点无交换机集群迁移 _"^]
+ a| 
+介绍如何使用 Cisco Nexus 92300YC 集群交换机从双节点无交换机集群环境迁移到双节点有交换机环境。
+
+
+
+ a| 
+https://docs.netapp.com/us-en/ontap-systems-switches/switch-cisco-92300/replace-92300yc.html["更换 Cisco Nexus 92300YC 集群交换机 _"^]
+ a| 
+介绍用于更换集群中有故障的 Cisco Nexus 92300YC 交换机以及下载交换机操作系统和参考配置文件的操作步骤 。
+
+|===

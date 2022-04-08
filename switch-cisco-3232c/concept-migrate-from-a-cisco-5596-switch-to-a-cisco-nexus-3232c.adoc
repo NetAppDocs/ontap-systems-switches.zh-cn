@@ -30,7 +30,7 @@ summary: 在将 Cisco Nexus 5596 集群交换机更换为 Cisco Nexus 3232C 集�
 ** 端口 E1/31 至 32 （ 40/100 GbE ）： Nexus 3232C
 
 
-* _Nexus _ 包含有关支持的 Hardware Universe 3232C 交换机布线的信息：
+* 。 link:https://hwu.netapp.com/["_SIL_ Hardware Universe"^] 包含有关支持的连接到 Nexus 3232C 交换机的信息：
 +
 ** 具有 10 GbE 集群连接的节点需要使用 QSFP 到 SFP+ 光纤分支电缆或 QSFP 到 SFP+ 铜分支电缆。
 ** 具有 40/100 GbE 集群连接的节点需要使用光缆或 QSFP28 铜缆支持的 QSFP/QSFP28 光纤模块。

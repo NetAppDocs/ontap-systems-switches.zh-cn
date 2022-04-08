@@ -440,6 +440,9 @@ RPC status:
 ----
 (cs2) # configure
 (cs2) (Config)# deleteport 1/2 all
+(cs2) (Config)# interface 0/13-0/16
+(cs2) (Interface 0/13-0/16)# spanning-tree edgeport
+​​​​​(cs2) (Interface 0/13-0/16)# exit
 (cs2) (Config)# exit
 (cs2) # write memory
 

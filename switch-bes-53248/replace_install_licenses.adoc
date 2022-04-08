@@ -123,25 +123,28 @@ License Index  License Type     Status
 
 No license file found.
 ----
-. 安装许可证文件。以下示例使用 HTTP 将许可证文件复制到密钥索引 1 。
+. 安装许可证文件。以下示例使用 SFTP 将许可证文件复制到密钥索引 1 。
 +
 重复此步骤可加载更多许可证并使用不同的密钥索引编号。
 
 +
 [listing]
 ----
-(cs2) # copy http://172.19.2.1/tmp/efos/license1.dat nvram:license-key 1
+(cs2) #copy sftp://root@172.19.2.1/var/lib/tftpboot/license.dat nvram:license-key 1
+Remote Password:********
 
-Mode........................................... HTTP
+Mode........................................... SFTP
 Set Server IP.................................. 172.19.2.1
-Path........................................... tmp/efos/
-Filename....................................... license1.dat
+Path........................................... /var/lib/tftpboot/
+Filename....................................... license.dat
 Data Type...................................... license
+
 
 Management access will be blocked for the duration of the transfer
 Are you sure you want to start? (y/n) y
 
 File transfer in progress. Management access will be blocked for the duration of the transfer. Please wait...
+
 
 License Key transfer operation completed successfully. System reboot is required.
 ----

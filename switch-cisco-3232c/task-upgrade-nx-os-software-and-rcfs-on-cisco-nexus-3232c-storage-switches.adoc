@@ -190,6 +190,10 @@ S2# show banner motd
 ******************************************************************************
 S2#
 ----
++
+
+NOTE: 首次应用 RCF 时，系统会显示 * 错误：无法写入 VSH 命令 * 消息，可以忽略该消息。
+
 . ` step8_upgrade_3232c]] 确认软件版本和交换机设置正确后，将 `running-config` 文件复制到交换机 S2 上的 `sstartup-config 文件。
 +
 有关 Cisco 命令的详细信息，请参见中的相应指南 https://www.cisco.com/c/en/us/support/switches/nexus-3000-series-switches/products-command-reference-list.html["Cisco Nexus 3000 系列 NX-OS 命令参考"^]。

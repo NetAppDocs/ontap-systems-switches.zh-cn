@@ -292,13 +292,6 @@ cs2# copy running-config startup-config \[\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#
 cs2# reload
 This command will reboot the system. (y/n)?  [n] y
 ----
-. 应用相同的 RCF 并再次保存运行配置。
-+
-[listing]
-----
-cs2# copy Nexus_9336C_RCF_v1.6-Cluster-HA-Breakout.txt running-config echo-commands
-cs2# copy running-config startup-config [########################################] 100% Copy complete
-----
 . 验证集群上集群端口的运行状况。
 +
 .. 验证集群中所有节点上的 e0d 端口是否均已启动且运行正常： `network port show -role cluster`

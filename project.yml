@@ -7,6 +7,9 @@ settings:
   prod:
     pdf_enabled: true
     harmony_enabled: false
+  pdf:
+    zip-level: 1
+    zip-filename: ontap-systems-switches-pdfs.zip
   langs: zh-cn,us-en,ja-jp,ko-kr
 sidebar:
   entries:
@@ -19,6 +22,7 @@ sidebar:
   - section: switch-cisco-9336c-fx2-shared
   - section: switch-cisco-92300
   - section: switch-netapp-cn1610
+  - section: switch-nvidia-msn2100
   - section: other
   - title: 法律声明
     url: "/legal-notices.html"

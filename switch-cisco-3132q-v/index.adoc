@@ -18,3 +18,60 @@ summary: 迁移到双节点交换集群
 * 您可以将 Cisco Nexus 5596 ， Nexus 5020 或 Nexus 5010 集群交换机更换为 Cisco Nexus 3132Q-V 交换机。
 * 您可以将 NetApp CN1610 交换机更换为 Cisco Nexus 3132Q-V 集群交换机。
 
+
+下表列出了可用于 Cisco Nexus 3132Q-V 交换机的文档。
+
+|===
+
+
+| 标题 | Description 
+
+
+ a| 
+https://docs.netapp.com/us-en/ontap-systems-switches/switch-cisco-3132q-v/task-install-a-cisco-nexus-3232c-cluster-switch-and-pass-through-panel-in-a-netapp-cabinet.html["在 NetApp ® 机柜中安装 Cisco ® Nexus 3132Q-V 集群交换机和直通面板 _"^]
+ a| 
+介绍如何将直通面板安装在系统机柜中，其中电源连接器位于机箱正面，配电单元位于机箱背面。
+
+
+
+ a| 
+https://docs.netapp.com/us-en/ontap-systems-switches/switch-cisco-9336c-fx2/setup-switches.html["设置 Cisco ® Nexus 3132Q-V 集群交换机 _"^]
+ a| 
+介绍如何设置和配置 Cisco Nexus 3132Q-V 集群交换机。
+
+
+
+ a| 
+https://docs.netapp.com/us-en/ontap-systems-switches/switch-cisco-3132q-v/task-install-nx-os-software-and-rcfs-on-cisco-nexus-3132q-v-cluster-switches.html["安装 NX-OS 和参考配置文件（ RCF ） _"^]
+ a| 
+介绍如何在 Nexus 3132Q-V 集群交换机上安装 NX-OS 和参考配置文件（ RCF ）。
+
+
+
+ a| 
+https://docs.netapp.com/us-en/ontap-systems-switches/switch-cisco-3132q-v/concept-migrate-from-a-cisco-5596-switch-to-a-cisco-nexus-3232c.html["_ 将 Cisco Nexus 5596 集群交换机更换为 Cisco Nexus 3132Q-V 集群交换机 _"^]
+ a| 
+介绍如何从使用旧版 Cisco 交换机的环境迁移到使用 Cisco 3132Q-V 交换机的环境。
+
+
+
+ a| 
+https://docs.netapp.com/us-en/ontap-systems-switches/switch-cisco-3132q-v/concept-migrate-a-cn1610-switch-to-a-cisco-nexus-3232c-cluster-switch.html["_ 将 CN1610 集群交换机更换为 Cisco Nexus 3132Q-V 集群交换机 _"^]
+ a| 
+介绍了将 CN1610 交换机更换为 Cisco Nexus 3132Q-V 集群交换机的操作步骤 。
+
+
+
+ a| 
+https://docs.netapp.com/us-en/ontap-systems-switches/switch-cisco-3132q-v/concept-migrate-from-a-two-node-switchless-cluster-to-a-cluster-with-cisco-nexus-3232c-cluster-switches.html["_ 从双节点无交换机集群迁移 _"^]
+ a| 
+介绍如何使用 Cisco Nexus 3132Q-V 集群交换机从双节点无交换机集群环境迁移到双节点有交换机环境。
+
+
+
+ a| 
+https://docs.netapp.com/us-en/ontap-systems-switches/switch-cisco-3132q-v/concept-replace-cisco-nexus-3132q-v-cluster-switches.html["更换 Cisco Nexus 3132Q-V 集群交换机 _"^]
+ a| 
+介绍用于更换集群中有故障的 Cisco Nexus 3132Q-V 交换机以及下载交换机操作系统和参考配置文件的操作步骤 。
+
+|===

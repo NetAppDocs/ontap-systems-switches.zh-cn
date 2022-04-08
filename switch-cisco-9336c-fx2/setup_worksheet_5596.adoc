@@ -1,5 +1,5 @@
 ---
-permalink: switch-cisco-9336/setup-worksheet-5596.html 
+permalink: switch-cisco-9336c-fx2/setup-worksheet-5596.html 
 sidebar: sidebar 
 keywords: cable worksheet, Cisco NX 5596T 
 summary: 如果要记录受支持的平台，则必须参考填写好的示例布线工作表来完成空白布线工作表。 

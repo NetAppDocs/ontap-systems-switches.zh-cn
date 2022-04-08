@@ -10,7 +10,7 @@ summary: 首次设置 BES-53248 集群交换机后以及应用新许可证后，
 
 
 [role="lead"]
-首次设置 BES-53248 集群交换机后以及应用新许可证后，您可以安装 RCF 。如果要从旧版本升级 RCF ，这些文件将有效地合并在一起，您将完成此处详细介绍的步骤。
+首次设置 BES-53248 集群交换机后以及应用新许可证后，您可以安装 RCF 。如果要从旧版本升级 RCF ，则必须重置 Broadcom 交换机设置并执行基本配置以重新应用 RCF 。每次要升级或更改 RCF 时，都必须执行此操作。请参见以下内容 https://kb.netapp.com/Advice_and_Troubleshooting/Data_Storage_Systems/Fabric%2C_Interconnect_and_Management_Switches/Error!_in_configuration_script_file_at_line_number_XX_when_applying_a_new_RCF["知识库文章"^] 了解详细信息。
 
 .步骤
 . 将集群交换机连接到管理网络。

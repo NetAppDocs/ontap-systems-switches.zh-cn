@@ -4,7 +4,7 @@ permalink: switch-cisco-9336c-fx2-shared/9336c_migrate_from_a_switched_configura
 keywords:  
 summary:  
 ---
-= 通过添加两个新的共享交换机，从具有数据存储的交换配置进行迁移
+= 通过添加两个新的共享交换机，从具有直连存储的交换配置进行迁移
 :hardbreaks:
 :nofooter: 
 :icons: font
@@ -14,7 +14,7 @@ summary:
 
 
 
-== 从使用数据存储的交换配置进行迁移
+== 从具有直连存储的交换式配置进行迁移
 
 在将某些旧的 Cisco Nexus 集群交换机更换为 Cisco Nexus 9336C-x2 共享交换机时，您必须了解某些配置信息，端口连接和布线要求。
 

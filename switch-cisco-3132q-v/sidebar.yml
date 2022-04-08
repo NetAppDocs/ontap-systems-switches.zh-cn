@@ -4,13 +4,34 @@ title: Cisco Nexus 3132Q-V 交换机
 entries:
 - title: 概述
   url: "/switch-cisco-3132q-v/index.html"
-- title: 迁移到使用 Cisco Nexus 3132Q-V 集群交换机的双节点交换集群
-  url: "/switch-cisco-3132q-v/concept-migrate-from-a-two-node-switchless-cluster-to-a-cluster-with-cisco-nexus-3232c-cluster-switches.html"
-  entries:
-  - title: 如何迁移使用 Cisco Nexus 3132Q-V 集群交换机的双节点交换集群
-    url: "/switch-cisco-3132q-v/task-how-to-migrate-from-a-two-node-switchless-cluster-to-a-cluster-with-cisco-nexus-3132q-v-cluster-switches.html"
 - title: 在 NetApp 机柜中安装 Cisco Nexus 3132Q-V 集群交换机和直通面板
   url: "/switch-cisco-3132q-v/task-install-a-cisco-nexus-3232c-cluster-switch-and-pass-through-panel-in-a-netapp-cabinet.html"
+- title: 设置
+  entries:
+  - title: 设置交换机
+    url: "/switch-cisco-9336c-fx2/setup-switches.html"
+  - title: 所需的集群配置信息
+    url: "/switch-cisco-9336c-fx2/setup-required-information.html"
+    entries:
+    - title: 为 92300YC 交换机安装集群交换机运行状况监控器（ Cluster Switch Health Monitor ， CSHM ）配置文件
+      url: "/switch-cisco-9336c-fx2/setup-install-cshm-file.html"
+  - title: 所需文档
+    url: "/switch-cisco-9336c-fx2/setup-required-documentation.html"
+  - title: 使用智能自动通报的注意事项
+    url: "/switch-cisco-9336c-fx2/setup-considerations-smart-call.html"
+  - title: 示例和空白布线工作表
+    url: "/switch-cisco-9336c-fx2/setup-worksheets-sample-cabling.html"
+    entries:
+    - title: Cisco Nexus 9336C-x2 布线工作表
+      url: "/switch-cisco-9336c-fx2/setup-worksheet-9336c.html"
+    - title: Cisco Nexus 92300YC 布线工作表
+      url: "/switch-cisco-9336c-fx2/setup-worksheet-92300yc.html"
+    - title: Cisco Nexus 3232C 布线工作表
+      url: "/switch-cisco-9336c-fx2/setup-worksheet-3232c.html"
+    - title: Cisco Nexus 3132Q-V 布线工作表
+      url: "/switch-cisco-9336c-fx2/setup-worksheet-3132q.html"
+    - title: Cisco Nexus 5596UP 和 5596T 布线工作表
+      url: "/switch-cisco-9336c-fx2/setup-worksheet-5596.html"
 - title: 在 Cisco Nexus 3132Q-V 集群交换机上安装 NX-OS 软件和 RCF
   url: "/switch-cisco-3132q-v/task-install-nx-os-software-and-rcfs-on-cisco-nexus-3132q-v-cluster-switches.html"
   entries:
@@ -18,6 +39,11 @@ entries:
     url: "/switch-cisco-3132q-v/task-install-the-nx-os-software-3132q-v.html"
   - title: 安装参考配置文件（ RCF ）
     url: "/switch-cisco-3132q-v/task-install-the-reference-configuration-file-rcf-3132q-v.html"
+- title: 迁移到使用 Cisco Nexus 3132Q-V 集群交换机的双节点交换集群
+  url: "/switch-cisco-3132q-v/concept-migrate-from-a-two-node-switchless-cluster-to-a-cluster-with-cisco-nexus-3232c-cluster-switches.html"
+  entries:
+  - title: 如何迁移使用 Cisco Nexus 3132Q-V 集群交换机的双节点交换集群
+    url: "/switch-cisco-3132q-v/task-how-to-migrate-from-a-two-node-switchless-cluster-to-a-cluster-with-cisco-nexus-3132q-v-cluster-switches.html"
 - title: 更换 Cisco Nexus 3132Q-V 集群交换机
   url: "/switch-cisco-3132q-v/concept-replace-cisco-nexus-3132q-v-cluster-switches.html"
   entries:

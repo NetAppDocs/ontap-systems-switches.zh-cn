@@ -96,8 +96,6 @@ NetApp 系统机柜中的 Cisco Nexus 5596UP/5596T
 
 
 
-* 相关信息 *
-
 xref:setup-required-information.adoc[所需的集群配置信息]
 
 xref:setup-required-documentation.adoc[所需文档]

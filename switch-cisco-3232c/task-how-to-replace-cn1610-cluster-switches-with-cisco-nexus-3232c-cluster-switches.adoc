@@ -33,7 +33,7 @@ summary: 要将集群中的现有 CN1610 集群交换机更换为 Cisco Nexus 32
 * 二将集群交换机 CL1 更换为 C1 （步骤 <<twentythree,23>>-<<forty,40>>）
 
 
-此操作步骤 中的示例使用四个节点：两个节点使用四个 10 GbE 集群互连端口： e0a ， e0b ， e0c 和 e0d 。其他两个节点使用两根 40 GbE 集群互连光缆： E4A 和 e4e 。_cluster_ Hardware Universe 提供了有关平台上的集群光纤缆线的信息。
+此操作步骤 中的示例使用四个节点：两个节点使用四个 10 GbE 集群互连端口： e0a ， e0b ， e0c 和 e0d 。其他两个节点使用两根 40 GbE 集群互连光缆： E4A 和 e4e 。。 link:https://hwu.netapp.com/["_SIL_ Hardware Universe"^] 提供有关平台上的集群光纤缆线的信息。
 
 [NOTE]
 ====

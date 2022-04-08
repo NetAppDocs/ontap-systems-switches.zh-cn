@@ -26,10 +26,7 @@ Cisco Nexus 92300YC 交换机配置：
 * 必须能够通过控制台访问集群交换机。
 * Nexus 92300YC 节点到节点交换机和交换机到交换机连接必须使用双轴或光缆。
 +
-有关布线的详细信息，请参见 * Hardware Universe * 。
-
-+
-https://hwu.netapp.com/SWITCH/INDEX["Hardware Universe —交换机"]
+。 https://hwu.netapp.com/SWITCH/INDEX["Hardware Universe - 交换机 _"^] 包含有关布线的详细信息。
 
 * 交换机间链路（ ISL ）缆线必须连接到两个 92300YC 交换机上的端口 1/65 和 1/66 。
 * 必须完成这两个 92300YC 交换机的初始自定义。这样：
@@ -48,10 +45,7 @@ https://hwu.netapp.com/SWITCH/INDEX["Hardware Universe —交换机"]
 * `cluster1 ：：： * >` 提示符指示集群的名称。
 * 此操作步骤中使用的集群端口为 e0a 和 e0b 。
 +
-* Hardware Universe * 包含有关平台的实际集群端口的最新信息。
-
-+
-https://hwu.netapp.com["Hardware Universe"]
+。 https://hwu.netapp.com["_SIL_ Hardware Universe"^] 包含有关平台的实际集群端口的最新信息。
 
 
 
@@ -78,9 +72,9 @@ NOTE: AutoSupport 消息会通知技术支持此维护任务，以便在维护�
 以下命令将禁止自动创建案例 2 小时：
 
 +
-[listing]
+[listing, subs="+quotes"]
 ----
-cluster1::*> **system node autosupport invoke -node * -type all -message MAINT=2h**
+cluster1::*> *system node autosupport invoke -node * -type all -message MAINT=2h*
 ----
 . 在新集群交换机 CS1 和 CS2 上禁用所有面向节点的端口（而不是 ISL 端口）。
 +
@@ -90,12 +84,12 @@ cluster1::*> **system node autosupport invoke -node * -type all -message MAINT=2
 以下示例显示了交换机 CS1 上面向节点的端口 1 到 64 已禁用：
 
 +
-[listing]
+[listing, subs="+quotes"]
 ----
-cs1# **config**
+cs1# *config*
 Enter configuration commands, one per line. End with CNTL/Z.
-cs1(config)# **interface e/1-64**
-cs1(config-if-range)# **shutdown**
+cs1(config)# *interface e/1-64*
+cs1(config-if-range)# *shutdown*
 ----
 . 验证 ISL 和两个 923300 YC 交换机 CS1 和 CS2 之间的 ISL 上的物理端口是否已在端口 1/65 和 1/66 上启动：
 +
@@ -105,9 +99,9 @@ cs1(config-if-range)# **shutdown**
 以下示例显示交换机 CS1 上的 ISL 端口已启动：
 
 +
-[listing]
+[listing, subs="+quotes"]
 ----
-cs1# **show port-channel summary**
+cs1# *show port-channel summary*
 
 Flags:  D - Down        P - Up in port-channel (members)
         I - Individual  H - Hot-standby (LACP only)
@@ -127,9 +121,9 @@ Group Port-       Type     Protocol  Member Ports
 以下示例显示交换机 CS2 上的 ISL 端口已启动：
 
 +
-[listing]
+[listing, subs="+quotes"]
 ----
-(cs2)# **show port-channel summary**
+(cs2)# *show port-channel summary*
 
 Flags:  D - Down        P - Up in port-channel (members)
         I - Individual  H - Hot-standby (LACP only)
@@ -156,9 +150,9 @@ Group Port-       Type     Protocol  Member Ports
 以下示例列出了交换机 CS1 上的相邻设备：
 
 +
-[listing]
+[listing, subs="+quotes"]
 ----
-cs1# **show cdp neighbors**
+cs1# *show cdp neighbors*
 
 Capability Codes: R - Router, T - Trans-Bridge, B - Source-Route-Bridge
                   S - Switch, H - Host, I - IGMP, r - Repeater,
@@ -175,9 +169,9 @@ Total entries displayed: 2
 以下示例列出了交换机 CS2 上的相邻设备：
 
 +
-[listing]
+[listing, subs="+quotes"]
 ----
-cs2# **show cdp neighbors**
+cs2# *show cdp neighbors*
 
 Capability Codes: R - Router, T - Trans-Bridge, B - Source-Route-Bridge
                   S - Switch, H - Host, I - IGMP, r - Repeater,
@@ -198,9 +192,9 @@ Total entries displayed: 2
 对于 `Link` ，每个端口均应显示 up ；对于 `Health Status` ，每个端口均应显示 Healthy 。
 
 +
-[listing]
+[listing, subs="+quotes"]
 ----
-cluster1::*> **network port show -ipspace Cluster**
+cluster1::*> *network port show -ipspace Cluster*
 
 Node: node1
 
@@ -228,9 +222,9 @@ e0b       Cluster      Cluster          up   9000  auto/10000 healthy
 对于 `，每个集群 LIF 均应显示 true ，表示为 Home` ，并将 `S状态管理 /Oper` 设置为 up/up
 
 +
-[listing]
+[listing, subs="+quotes"]
 ----
-cluster1::*> **network interface show -vserver Cluster**
+cluster1::*> *network interface show -vserver Cluster*
 
             Logical    Status     Network            Current       Current Is
 Vserver     Interface  Admin/Oper Address/Mask       Node          Port    Home
@@ -247,9 +241,9 @@ Cluster
 `network interface show - vserver cluster -fields auto-revert`
 
 +
-[listing]
+[listing, subs="+quotes"]
 ----
-cluster1::*> **network interface show -vserver Cluster -fields auto-revert**
+cluster1::*> *network interface show -vserver Cluster -fields auto-revert*
 
           Logical
 Vserver   Interface     Auto-revert
@@ -264,10 +258,7 @@ Cluster
 ----
 . 从 node1 上的集群端口 e0a 断开缆线连接，然后使用 923300 YC 交换机支持的相应布线方式将 e0a 连接到集群交换机 CS1 上的端口 1 。
 +
-有关布线的详细信息，请参见 * Hardware Universe * 。
-
-+
-https://hwu.netapp.com/SWITCH/INDEX["Hardware Universe —交换机"]
+。 https://hwu.netapp.com/SWITCH/INDEX["Hardware Universe - 交换机 _"^] 包含有关布线的详细信息。
 
 . 从节点 2 上的集群端口 e0a 断开缆线连接，然后使用 923300 YC 交换机支持的相应布线方式将 e0a 连接到集群交换机 CS1 上的端口 2 。
 . 启用集群交换机 CS1 上面向节点的所有端口。
@@ -275,12 +266,12 @@ https://hwu.netapp.com/SWITCH/INDEX["Hardware Universe —交换机"]
 以下示例显示交换机 CS1 上的端口 1/1 到 1/64 已启用：
 
 +
-[listing]
+[listing, subs="+quotes"]
 ----
-cs1# **config**
+cs1# *config*
 Enter configuration commands, one per line. End with CNTL/Z.
-cs1(config)# **interface e1/1-64**
-cs1(config-if-range)# **no shutdown**
+cs1(config)# *interface e1/1-64*
+cs1(config-if-range)# *no shutdown*
 ----
 . 验证所有集群 LIF 是否均已启动且正常运行，并在 `Is Home` 中显示为 true ：
 +
@@ -290,9 +281,9 @@ cs1(config-if-range)# **no shutdown**
 以下示例显示 node1 和 node2 上的所有 LIF 均已启动，并且 `为 Home` 结果为 true ：
 
 +
-[listing]
+[listing, subs="+quotes"]
 ----
-cluster1::*> **network interface show -vserver Cluster**
+cluster1::*> *network interface show -vserver Cluster*
 
          Logical      Status     Network            Current     Current Is
 Vserver  Interface    Admin/Oper Address/Mask       Node        Port    Home
@@ -313,9 +304,9 @@ Cluster
 以下示例显示了有关集群中节点的运行状况和资格的信息：
 
 +
-[listing]
+[listing, subs="+quotes"]
 ----
-cluster1::*> **cluster show**
+cluster1::*> *cluster show*
 
 Node                 Health  Eligibility   Epsilon
 -------------------- ------- ------------  ------------
@@ -331,12 +322,12 @@ node2                true    true          false
 以下示例显示交换机 CS2 上的端口 1/1 到 1/64 已启用：
 
 +
-[listing]
+[listing, subs="+quotes"]
 ----
-cs2# **config**
+cs2# *config*
 Enter configuration commands, one per line. End with CNTL/Z.
-cs2(config)# **interface e1/1-64**
-cs2(config-if-range)# **no shutdown**
+cs2(config)# *interface e1/1-64*
+cs2(config-if-range)# *no shutdown*
 ----
 . 验证所有集群端口是否均已启动：
 +
@@ -346,9 +337,9 @@ cs2(config-if-range)# **no shutdown**
 以下示例显示 node1 和 node2 上的所有集群端口均已启动：
 
 +
-[listing]
+[listing, subs="+quotes"]
 ----
-cluster1::*> **network port show -ipspace Cluster**
+cluster1::*> *network port show -ipspace Cluster*
 
 Node: node1
                                                                        Ignore
@@ -380,9 +371,9 @@ NOTE: 完成此操作可能需要几分钟时间。
 以下示例显示 node1 和 node2 上的所有 LIF 均已启动，并且 `为 Home` 结果为 true ：
 
 +
-[listing]
+[listing, subs="+quotes"]
 ----
-cluster1::*> **network interface show -vserver Cluster**
+cluster1::*> *network interface show -vserver Cluster*
 
           Logical      Status     Network            Current    Current Is
 Vserver   Interface    Admin/Oper Address/Mask       Node       Port    Home
@@ -403,10 +394,9 @@ Cluster
 以下示例显示了这两个交换机的相应结果：
 
 +
-[listing]
+[listing, subs="+quotes"]
 ----
-
-(cs1)# **show cdp neighbors**
+(cs1)# *show cdp neighbors*
 
 Capability Codes: R - Router, T - Trans-Bridge, B - Source-Route-Bridge
                   S - Switch, H - Host, I - IGMP, r - Repeater,
@@ -422,7 +412,7 @@ cs2(FDO220329V5)    Eth1/66        175    R S I s   N9K-C92300YC  Eth1/66
 Total entries displayed: 4
 
 
-(cs2)# **show cdp neighbors**
+(cs2)# *show cdp neighbors*
 
 Capability Codes: R - Router, T - Trans-Bridge, B - Source-Route-Bridge
                   S - Switch, H - Host, I - IGMP, r - Repeater,
@@ -444,9 +434,9 @@ Total entries displayed: 4
 `network device-discovery show -protocol cdp`
 
 +
-[listing]
+[listing, subs="+quotes"]
 ----
-cluster1::*> **network device-discovery show -protocol cdp**
+cluster1::*> *network device-discovery show -protocol cdp*
 Node/       Local  Discovered
 Protocol    Port   Device (LLDP: ChassisID)  Interface         Platform
 ----------- ------ ------------------------- ----------------  ----------------
@@ -471,9 +461,9 @@ NOTE: 完成此命令可能需要几分钟的时间。等待 " 三分钟生命�
 以下示例中的 false 输出显示配置设置已禁用：
 
 +
-[listing]
+[listing, subs="+quotes"]
 ----
-cluster1::*> **network options switchless-cluster show**
+cluster1::*> *network options switchless-cluster show*
 Enable Switchless Cluster: false
 ----
 . 验证集群中节点成员的状态：
@@ -484,9 +474,9 @@ Enable Switchless Cluster: false
 以下示例显示了有关集群中节点的运行状况和资格的信息：
 
 +
-[listing]
+[listing, subs="+quotes"]
 ----
-cluster1::*> **cluster show**
+cluster1::*> *cluster show*
 
 Node                 Health  Eligibility   Epsilon
 -------------------- ------- ------------  --------
@@ -498,9 +488,9 @@ node2                true    true          false
 `cluster ping-cluster -node node-name`
 
 +
-[listing]
+[listing, subs="+quotes"]
 ----
-cluster1::> cluster ping-cluster -node node2
+cluster1::> *cluster ping-cluster -node node2*
 Host is node2
 Getting addresses from network interface table...
 Cluster node1_clus1 169.254.209.69 node1 e0a
@@ -530,50 +520,50 @@ RPC status:
 `ssystem node AutoSupport invoke -node * -type all -message MAINT=end`
 
 +
-[listing]
+[listing, subs="+quotes"]
 ----
-cluster1::*> **system node autosupport invoke -node * -type all -message MAINT=END**
+cluster1::*> *system node autosupport invoke -node * -type all -message MAINT=END*
 ----
 . 将权限级别重新更改为 admin ：
 +
 `set -privilege admin`
 
-. 对于 ONTAP 9.4 及更高版本，启用集群交换机运行状况监控器日志收集功能以收集交换机相关的日志文件：
+. 对于 ONTAP 9.4 及更高版本，使用以下命令启用集群交换机运行状况监控器日志收集功能以收集交换机相关的日志文件：
 +
-`ssystem cluster-switch log setup-password``ssystem cluster-switch log enable-Collection`
+`ssystem cluster-switch log setup-password` 和 `ssystem cluster-switch log enable-Collection`
 
 +
-[listing]
+[listing, subs="+quotes"]
 ----
-cluster1::*> **system cluster-switch log setup-password**
+cluster1::*> *system cluster-switch log setup-password*
 Enter the switch name: <return>
 The switch name entered is not recognized.
 Choose from the following list:
-NBS-NIC-NXYC-01
-NBS-NIC-NXYC-02
+cs1
+cs2
 
-cluster1::*> **system cluster-switch log setup-password**
+cluster1::*> *system cluster-switch log setup-password*
 
-Enter the switch name: **NBS-NIC-NXYC-01
-**RSA key fingerprint is e5:8b:c6:dc:e2:18:18:09:36:63:d9:63:dd:03:d9:cc
-Do you want to continue? {y|n}::[n] **y**
+Enter the switch name: *cs1*
+RSA key fingerprint is e5:8b:c6:dc:e2:18:18:09:36:63:d9:63:dd:03:d9:cc
+Do you want to continue? {y|n}::[n] *y*
 
 Enter the password: <enter switch password>
 Enter the password again: <enter switch password>
 
-cluster1::*> **system cluster-switch log setup-password**
+cluster1::*> *system cluster-switch log setup-password*
 
-Enter the switch name: **NBS-NIC-NXYC-02**
+Enter the switch name: *cs2*
 RSA key fingerprint is 57:49:86:a1:b9:80:6a:61:9a:86:8e:3c:e3:b7:1f:b1
-Do you want to continue? {y|n}:: [n] **y**
+Do you want to continue? {y|n}:: [n] *y*
 
 Enter the password: <enter switch password>
 Enter the password again: <enter switch password>
 
-cluster1::*> **system cluster-switch log enable-collection**
+cluster1::*> *system cluster-switch log enable-collection*
 
 Do you want to enable cluster log collection for all nodes in the cluster?
-{y|n}: [n] **y**
+{y|n}: [n] *y*
 
 Enabling cluster switch log collection.
 

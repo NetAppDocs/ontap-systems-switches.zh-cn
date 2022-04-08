@@ -4,6 +4,8 @@ title: Cisco Nexus 9336C-x2 交换机
 entries:
 - title: 概述
   url: "/switch-cisco-9336c-fx2/9336-overview.html"
+- title: 在 NetApp 机柜中安装 Cisco Nexus 9336C-x2 交换机和直通面板
+  url: "/switch-cisco-9336c-fx2/install-switch-and-passthrough-panel.html"
 - title: 设置
   entries:
   - title: 设置交换机
@@ -64,5 +66,3 @@ entries:
   url: "/switch-cisco-9336c-fx2/replace-9336c.html"
 - title: 更换 Cisco Nexus 9336C-x2 存储交换机
   url: "/switch-cisco-9336c-fx2/replace_9336c_storage_switch.html"
-- title: 在 NetApp 机柜中安装 Cisco Nexus 9336C-x2 交换机和直通面板
-  url: "/switch-cisco-9336c-fx2/install-switch-and-passthrough-panel.html"

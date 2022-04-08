@@ -4,7 +4,7 @@ permalink: switch-cisco-9336c-fx2-shared/9336c_migrate_from_a_switchless_configu
 keywords:  
 summary:  
 ---
-= 通过重复使用存储交换机从具有 SAT 存储的无交换机配置进行迁移
+= 通过重复使用存储交换机，从具有交换机连接存储的无交换机配置进行迁移
 :hardbreaks:
 :nofooter: 
 :icons: font

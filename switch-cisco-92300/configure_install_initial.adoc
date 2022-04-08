@@ -31,22 +31,23 @@ NX-OS 是 Cisco Systems 提供的 Nexus 系列以太网交换机和 MDS 系列�
 
 
 . Nexus 92300YC 交换机在首次启动或擦除正在运行的配置后重新启动时会在启动周期中循环。键入 * 是 * 以中止启动自动配置，从而中断此周期。然后，系统将显示 System Admin Account 设置：
-+
-....
-$ VDC-1 %$ %POAP-2-POAP_INFO:   - Abort Power On Auto Provisioning [yes - continue with normal setup, skip - bypass password and basic configuration, no - continue with Power On Auto Provisioning] (yes/skip/no)[no]:
-**yes**
-Disabling POAP.......Disabling POAP
-2019 Apr 10 00:36:17 switch %$ VDC-1 %$ poap: Rolling back, please wait... (This may take 5-15 minutes)
-....
-+
- ---- System Admin Account Setup ----
-+
- Do you want to enforce secure password standard (yes/no) [y]:
-. 键入 * y* 以强制实施安全密码标准：
-+
+
+
 [listing]
 ----
-Do you want to enforce secure password standard (yes/no) [y]: **y**
+$ VDC-1 %$ %POAP-2-POAP_INFO:   - Abort Power On Auto Provisioning [yes - continue with normal setup, skip - bypass password and basic configuration, no - continue with Power On Auto Provisioning] (yes/skip/no)[no]: *y*
+Disabling POAP.......Disabling POAP
+2019 Apr 10 00:36:17 switch %$ VDC-1 %$ poap: Rolling back, please wait... (This may take 5-15 minutes)
+
+          ---- System Admin Account Setup ----
+
+Do you want to enforce secure password standard (yes/no) [y]:
+----
+. 键入 * y* 以强制实施安全密码标准：
++
+[listing, subs="+quotes"]
+----
+Do you want to enforce secure password standard (yes/no) [y]: *y*
 ----
 . 输入并确认用户 admin 的密码：
 +
@@ -89,66 +90,65 @@ Configure read-write SNMP community string (yes/no) [n]:
 ----
 . 配置集群交换机名称：
 +
-[listing]
+[listing, subs="+quotes"]
 ----
-Enter the switch name : **cs2**
+Enter the switch name : *cs2*
 ----
 . 配置带外管理接口：
 +
-[listing]
+[listing, subs="+quotes"]
 ----
-
-Continue with Out-of-band (mgmt0) management configuration? (yes/no) [y]: **y**
+Continue with Out-of-band (mgmt0) management configuration? (yes/no) [y]: *y*
 
 Mgmt0 IPv4 address : 172.22.133.216
 
 Mgmt0 IPv4 netmask : 255.255.224.0
 
-Configure the default gateway? (yes/no) [y]: **y**
+Configure the default gateway? (yes/no) [y]: *y*
 
 IPv4 address of the default gateway : 172.22.128.1
 ----
 . 是否配置高级 IP 选项？
 +
-[listing]
+[listing, subs="+quotes"]
 ----
-Configure advanced IP options? (yes/no) [n]: **n**
+Configure advanced IP options? (yes/no) [n]: *n*
 ----
 . 配置 Telnet 服务：
 +
-[listing]
+[listing, subs="+quotes"]
 ----
-Enable the telnet service? (yes/no) [n]: **n**
+Enable the telnet service? (yes/no) [n]: *n*
 ----
 . 配置 SSH 服务和 SSH 密钥：
 +
-[listing]
+[listing, subs="+quotes"]
 ----
-Enable the ssh service? (yes/no) [y]: **y**
+Enable the ssh service? (yes/no) [y]: *y*
 
-       Type of ssh key you would like to generate (dsa/rsa) [rsa]: **rsa**
+       Type of ssh key you would like to generate (dsa/rsa) [rsa]: *rsa*
 
-       Number of rsa key bits <1024-2048> [1024]: **2048**
+       Number of rsa key bits <1024-2048> [1024]: *2048*
 ----
 . 配置其他设置：
 +
-[listing]
+[listing, subs="+quotes"]
 ----
-Configure the ntp server? (yes/no) [n]: **n**
+Configure the ntp server? (yes/no) [n]: *n*
 
-  Configure default interface layer (L3/L2) [L2]: **L2**
+  Configure default interface layer (L3/L2) [L2]: *L2*
 
-  Configure default switchport interface state (shut/noshut) [noshut]: **noshut**
+  Configure default switchport interface state (shut/noshut) [noshut]: *noshut*
 
-  Configure CoPP system profile (strict/moderate/lenient/dense) [strict]: **strict**
+  Configure CoPP system profile (strict/moderate/lenient/dense) [strict]: *strict*
 ----
 . 确认交换机信息并保存配置：
 +
-[listing]
+[listing, subs="+quotes"]
 ----
-Would you like to edit the configuration? (yes/no) [n]: **n**
+Would you like to edit the configuration? (yes/no) [n]: *n*
 
-Use this configuration and save it? (yes/no) [y]: **y**
+Use this configuration and save it? (yes/no) [y]: *y*
 
 [########################################] 100%
 Copy complete, now saving to disk (please wait)...
