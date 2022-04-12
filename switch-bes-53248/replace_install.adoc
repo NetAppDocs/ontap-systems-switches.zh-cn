@@ -5,6 +5,7 @@ keywords: procedure, perform, initial, installation, bes, cluster, switch, initi
 summary: 您可以使用此操作步骤执行 BES-53248 集群交换机的初始安装。 
 ---
 = 首次安装 BES-53248 集群交换机
+:allow-uri-read: 
 :icons: font
 :imagesdir: ../media/
 

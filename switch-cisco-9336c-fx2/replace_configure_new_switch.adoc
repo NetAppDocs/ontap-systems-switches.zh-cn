@@ -5,6 +5,7 @@ keywords: Nexus 9336C-FX2 switches initial installation, configure cisco cluster
 summary: 您可以通过完成本章中详细介绍的步骤来配置新的 Nexus 9336C-FX2 交换机。 
 ---
 = 配置 Cisco Nexus 9336C-x2 集群交换机
+:allow-uri-read: 
 :icons: font
 :imagesdir: ../media/
 

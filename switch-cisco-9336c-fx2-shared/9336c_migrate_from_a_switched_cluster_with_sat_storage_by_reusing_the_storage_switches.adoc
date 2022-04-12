@@ -6,6 +6,7 @@ summary:
 ---
 = 重复使用存储交换机，从具有交换机连接存储的交换集群进行迁移
 :hardbreaks:
+:allow-uri-read: 
 :nofooter: 
 :icons: font
 :linkattrs: 

@@ -5,6 +5,7 @@ keywords: cn1601, cn1610 switch setup, configuration guide
 summary: 本指南介绍如何为集群环境配置交换机硬件和软件。 
 ---
 = CN1601 和 CN1610 交换机设置和配置
+:allow-uri-read: 
 :icons: font
 :imagesdir: ../media/
 

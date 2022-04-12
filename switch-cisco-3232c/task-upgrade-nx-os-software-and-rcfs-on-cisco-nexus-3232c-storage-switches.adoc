@@ -5,6 +5,7 @@ keywords: upgrade, cisco nexus, 3232c storage switch
 summary: 可以在 Cisco Nexus 3232C 存储交换机上升级 Cisco NX-OS 软件和参考配置文件（ Reference Configuration Files ， RCF ）。 
 ---
 = 升级 Cisco Nexus 3232C 存储交换机
+:allow-uri-read: 
 :icons: font
 :imagesdir: ../media/
 

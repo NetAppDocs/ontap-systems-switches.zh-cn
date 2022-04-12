@@ -5,6 +5,7 @@ keywords: two-node switchless cluster environments,migrating to a two-node switc
 summary: 如果您有一个现有的双节点无交换机集群环境，则可以使用支持 Broadcom 的 BES-53248 集群交换机迁移到双节点有交换机集群环境，以便可以扩展到集群中的两个节点以上。 
 ---
 = 使用支持 Broadcom 的 BES-53248 集群交换机迁移到交换式 NetApp 集群环境
+:allow-uri-read: 
 :icons: font
 :imagesdir: ../media/
 

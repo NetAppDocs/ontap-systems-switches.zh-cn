@@ -5,6 +5,7 @@ keywords: cisco, nx-os, software, reference, configuration, file, rcf, install, 
 summary: Cisco Nexus 9336C-x2 集群交换机上必须安装 Cisco NX-OS 软件和参考配置文件 \ （ RCF\ ）。 
 ---
 = 在 Cisco Nexus 9336C-FX2 集群交换机上安装 NX-OS 软件和 RCF
+:allow-uri-read: 
 
 
 [role="lead"]

@@ -5,6 +5,7 @@ keywords: migrate, two-node switched cluster, cisco nexus 3132q-v
 summary: 如果您使用双节点无交换机集群，则可以无中断地迁移到包含 Cisco Nexus 3132Q-V 集群网络交换机的双节点交换集群。 
 ---
 = 如何迁移使用 Cisco Nexus 3132Q-V 集群交换机的双节点交换集群
+:allow-uri-read: 
 :icons: font
 :imagesdir: ../media/
 

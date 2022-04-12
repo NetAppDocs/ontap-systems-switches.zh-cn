@@ -5,6 +5,7 @@ keywords: migrate to cisco nx 92300yc cluster switch,new cluster switch migratio
 summary: 在将某些旧的 Cisco Nexus 集群交换机更换为 Cisco Nexus 92300YC 集群交换机时，您必须了解某些配置信息，端口连接和布线要求。 
 ---
 = 从 Cisco 交换机迁移到 Cisco Nexus 92300YC 交换机
+:allow-uri-read: 
 :icons: font
 :imagesdir: ../media/
 

@@ -5,6 +5,7 @@ keywords: migrating to a cluster with Cisco Nexus 9336C-FX2 cluster switches, ho
 summary: 您可以将 ONTAP 集群中较早的 Cisco 集群交换机无中断迁移到 Cisco Nexus 9336C-x2 集群网络交换机。 
 ---
 = 如何从 Cisco 交换机迁移到 Cisco Nexus 9336C-x2 集群交换机
+:allow-uri-read: 
 :icons: font
 :imagesdir: ../media/
 

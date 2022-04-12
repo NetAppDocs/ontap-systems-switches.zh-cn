@@ -5,6 +5,7 @@ keywords: CSHM,initial setup,switch health monitor
 summary: 您可以使用此操作步骤安装适用于 BES-53248 集群交换机的集群交换机运行状况监控的配置文件。在 ONTAP 9.5P7 及更早版本以及 9.6P2 及更早版本中，您必须单独下载集群交换机运行状况监控器配置文件。在 ONTAP 9.5P8 及更高版本， 9.6P3 及更高版本以及 9.7 及更高版本中，集群交换机运行状况监控器配置文件与 ONTAP 捆绑在一起。 
 ---
 = 安装集群交换机运行状况监控器（ CSHM ）配置文件
+:allow-uri-read: 
 :icons: font
 :imagesdir: ../media/
 

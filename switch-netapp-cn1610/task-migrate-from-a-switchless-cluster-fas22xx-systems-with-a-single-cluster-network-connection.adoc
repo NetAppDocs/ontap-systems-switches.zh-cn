@@ -5,6 +5,7 @@ keywords: migrate, two-node switched cluster, fas22xx systems, single, network c
 summary: 如果您的 FAS22xx 系统位于一个现有双节点无交换机集群中，其中每个控制器模块都有一个背靠背 10 GbE 连接用于集群连接，则可以使用无交换机集群网络选项，并将直接背靠背连接替换为交换机连接。 
 ---
 = 使用一个集群网络连接迁移到 FAS22xx 系统中的双节点交换集群
+:allow-uri-read: 
 :icons: font
 :imagesdir: ../media/
 

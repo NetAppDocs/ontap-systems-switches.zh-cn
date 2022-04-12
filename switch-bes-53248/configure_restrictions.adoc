@@ -5,6 +5,7 @@ keywords: problem, arise, install, license, debug, command, copy, restriction, l
 summary: 如果在安装许可证时出现问题，应在再次运行 copy 命令安装许可证之前运行以下调试命令。 
 ---
 = 限制和限制— BES-53248 交换机
+:allow-uri-read: 
 :icons: font
 :imagesdir: ../media/
 

@@ -5,6 +5,7 @@ keywords: replace, cisco nexus, 3232c storage switch
 summary: 您可以通过执行一系列特定任务无中断地更换有故障的 Cisco Nexus 3232C 存储交换机。 
 ---
 = 更换 Cisco Nexus 3232C 存储交换机的步骤
+:allow-uri-read: 
 :icons: font
 :imagesdir: ../media/
 

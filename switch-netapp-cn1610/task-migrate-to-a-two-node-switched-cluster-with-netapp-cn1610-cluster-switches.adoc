@@ -5,6 +5,7 @@ keywords: migrate, two-node switched cluster, netapp cn1610
 summary: 如果您使用双节点无交换机集群，则可以无中断地迁移到包含 NetApp CN1610 集群网络交换机的双节点有交换机集群。您使用的操作步骤取决于每个控制器上是有两个专用集群网络端口，还是每个控制器上有一个集群端口。 
 ---
 = 迁移到使用 NetApp CN1610 集群交换机的双节点交换集群
+:allow-uri-read: 
 :icons: font
 :imagesdir: ../media/
 

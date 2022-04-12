@@ -5,6 +5,7 @@ keywords: install, nx-os software
 summary: 您可以使用此操作步骤 在 Nexus 3132Q-V 集群交换机上安装 NX-OS 软件。 
 ---
 = 安装 NX-OS 软件
+:allow-uri-read: 
 :icons: font
 :imagesdir: ../media/
 

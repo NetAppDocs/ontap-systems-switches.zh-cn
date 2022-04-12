@@ -5,6 +5,7 @@ keywords: document, support, platform, complete, blank, cabling, worksheet, guid
 summary: 如果要记录受支持的平台，则必须参考填写好的示例布线工作表来完成空白布线工作表。 
 ---
 = Cisco Nexus 9336C-x2 布线工作表
+:allow-uri-read: 
 :icons: font
 :imagesdir: ../media/
 

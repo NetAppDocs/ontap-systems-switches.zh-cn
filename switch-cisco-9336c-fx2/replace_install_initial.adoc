@@ -5,6 +5,7 @@ keywords: initial setup steps, cisco cluster switch install
 summary: 您可以使用此操作步骤执行 Cisco Nexus 9336C-x2 交换机的初始安装。 
 ---
 = 首次安装 Nexus 9336C-x2 集群交换机
+:allow-uri-read: 
 :icons: font
 :imagesdir: ../media/
 

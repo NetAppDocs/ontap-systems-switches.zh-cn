@@ -5,6 +5,7 @@ keywords: BES-53248 cluster switches,installing EFOS software
 summary: 您可以使用此操作步骤在 BES-53248 集群交换机上安装 EFOS 软件。您可以从 Broadcom 以太网交换机支持站点下载适用于集群交换机的 Broadcom EFOS 软件。 
 ---
 = 安装 EFOS 软件
+:allow-uri-read: 
 :icons: font
 :imagesdir: ../media/
 

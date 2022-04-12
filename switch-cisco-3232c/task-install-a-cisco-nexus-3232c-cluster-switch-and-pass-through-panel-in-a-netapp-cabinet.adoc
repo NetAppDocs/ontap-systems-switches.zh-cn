@@ -5,6 +5,7 @@ keywords: install, cisco nexus, 3232c cluster switch, pass-through panel, netapp
 summary: 您可以将 Cisco Nexus 3232C 交换机和直通面板安装在 NetApp 机柜中，并使用交换机附带的标准支架。 
 ---
 = 在 NetApp 机柜中安装 Cisco Nexus 3232C 集群交换机和直通面板
+:allow-uri-read: 
 :icons: font
 :imagesdir: ../media/
 

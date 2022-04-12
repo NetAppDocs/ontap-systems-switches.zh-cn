@@ -5,6 +5,7 @@ keywords: install nx-os, nx-os install
 summary: 您可以使用此操作步骤在 Nexus 92300YC 交换机上安装 NX-OS 软件。 
 ---
 = 安装 NX-OS 软件
+:allow-uri-read: 
 :icons: font
 :imagesdir: ../media/
 

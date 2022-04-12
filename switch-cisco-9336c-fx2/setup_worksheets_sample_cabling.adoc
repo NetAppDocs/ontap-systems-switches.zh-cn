@@ -5,6 +5,7 @@ keywords: worksheet,cabling sample,blank worksheet
 summary: 示例布线工作表提供了从交换机到控制器的建议端口分配示例。空白工作表提供了一个模板，可用于设置集群。 
 ---
 = 示例和空白布线工作表
+:allow-uri-read: 
 :icons: font
 :imagesdir: ../media/
 

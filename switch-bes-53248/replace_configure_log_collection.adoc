@@ -5,6 +5,7 @@ keywords: log collection feature,collect switch-related log files,ssh,crypto key
 summary: 集群交换机运行状况监控器日志收集功能用于在 ONTAP 中收集交换机相关的日志文件。您必须确保已使用 BES-53248 集群交换机 CLI 设置环境，如下所述。 
 ---
 = 配置集群交换机日志收集功能
+:allow-uri-read: 
 :icons: font
 :imagesdir: ../media/
 

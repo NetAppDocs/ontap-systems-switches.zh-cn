@@ -5,6 +5,7 @@ keywords: install, fastpath, software, rcfs
 summary: cn1610 ，交换机， NetApp 
 ---
 = NetApp CN1610 交换机
+:allow-uri-read: 
 :icons: font
 :imagesdir: ../media/
 

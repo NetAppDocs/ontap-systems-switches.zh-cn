@@ -5,6 +5,7 @@ keywords: cn1610 network, switch cli, command reference, version 1.1.x.x
 summary: 本手册介绍了用于配置 CN1610 软件的命令行界面（ CLI ）命令。 
 ---
 = CN1610 网络交换机命令行界面命令参考—版本 1.2.x.x
+:allow-uri-read: 
 :icons: font
 :imagesdir: ../media/
 

@@ -5,6 +5,7 @@ keywords: ssh, requirement, cluster, switch, health, monitor, chsm, log, collect
 summary: 使用集群交换机运行状况监控器（ CSHM ）和日志收集功能时需要使用 SSH 。要在 BES-53248 集群交换机上启用 SSH ，请先生成 SSH 密钥，然后再启用 SSH 。 
 ---
 = 在 BES-53248 集群交换机上启用 SSH — BES-53248 交换机
+:allow-uri-read: 
 :icons: font
 :imagesdir: ../media/
 

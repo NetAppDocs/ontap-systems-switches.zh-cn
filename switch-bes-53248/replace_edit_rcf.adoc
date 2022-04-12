@@ -5,6 +5,7 @@ keywords: activating licenses,additional licenses,licenses in the RCF,edit rcf
 summary: 要激活新许可的端口，您需要编辑最新版本的 RCF 并取消注释适用的端口详细信息。默认许可证会激活端口 0/1 到 0/16 以及从 0/55 到 0/56 ，而新许可的端口将位于端口 0/17 到 0/54 之间，具体取决于可用许可证的类型和数量。 
 ---
 = 编辑参考配置文件（ RCF ）
+:allow-uri-read: 
 :icons: font
 :imagesdir: ../media/
 

@@ -5,6 +5,7 @@ keywords: nx-os software, install, cisco nexus cluster switches, 3232c, rcfs
 summary: Cisco Nexus 3232C 集群交换机上必须安装 Cisco NX-OS 软件和参考配置文件（ Reference Configuration Files ， RCF ）。 
 ---
 = 在 Cisco Nexus 3232C 集群交换机上安装 NX-OS 软件和 RCF
+:allow-uri-read: 
 :icons: font
 :imagesdir: ../media/
 

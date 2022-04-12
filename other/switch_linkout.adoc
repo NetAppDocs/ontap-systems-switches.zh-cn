@@ -5,6 +5,7 @@ keywords: cisco, Nexus 5596, CN1601
 summary: 您可以将这些链接用于其他交换机型号。 
 ---
 = 其他 Cisco 集群，存储和管理交换机
+:allow-uri-read: 
 :icons: font
 :imagesdir: ../media/
 

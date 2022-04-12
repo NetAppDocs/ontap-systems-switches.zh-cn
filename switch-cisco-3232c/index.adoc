@@ -5,6 +5,7 @@ keywords: cisco 3232c, cluster switches
 summary: 您可以将 Cisco Nexus 3232C 交换机用作 AFF 或 FAS 集群中的集群交换机。 
 ---
 = Cisco Nexus 3232C 交换机
+:allow-uri-read: 
 :icons: font
 :imagesdir: ../media/
 

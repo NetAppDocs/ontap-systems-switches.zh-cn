@@ -5,6 +5,7 @@ keywords: netapp 1g, cluster-mode switch, installation guide
 summary: 本指南概述了 CN1601 交换机的硬件和软件功能以及安装过程。 
 ---
 = 安装 NetApp 1G 集群模式交换机
+:allow-uri-read: 
 :icons: font
 :imagesdir: ../media/
 

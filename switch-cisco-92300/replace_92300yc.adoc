@@ -5,6 +5,7 @@ keywords: replace,upgrade cisco nexus 92300yc cluster switch
 summary: 更换集群网络中存在故障的 Nexus 92300YC 交换机是无中断操作步骤 \ （ NDU\ ）。 
 ---
 = 更换 Cisco Nexus 92300YC 交换机
+:allow-uri-read: 
 :icons: font
 :imagesdir: ../media/
 

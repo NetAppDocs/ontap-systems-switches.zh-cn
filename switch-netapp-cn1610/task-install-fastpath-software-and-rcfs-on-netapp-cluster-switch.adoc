@@ -5,6 +5,7 @@ keywords: install, fastpath, software, rcfs, netapp cluster switch
 summary: 您必须在 NetApp CN1610 集群交换机上安装 FastPath 软件和参考配置文件（ Reference Configuration Files ， RCF ）。 
 ---
 = 在 NetApp 集群交换机上安装 FastPath 软件和 RCF
+:allow-uri-read: 
 :icons: font
 :imagesdir: ../media/
 

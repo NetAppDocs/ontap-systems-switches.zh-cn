@@ -5,6 +5,7 @@ keywords: BES-53248 switches,upgrading,BES-53248 switches
 summary: 升级 BES-53248 集群交换机首先需要准备要升级的控制器，安装 EFOS 软件，许可证和参考配置文件 \ （ RCF\ ）。安装后，您可以在无中断升级 \ （ NDU\ ）和无中断操作 \ （ ND\ ）环境中还原控制器配置。 
 ---
 = 升级 NDS/NDU 环境中的 BES-53248 集群交换机
+:allow-uri-read: 
 :icons: font
 :imagesdir: ../media/
 

@@ -5,6 +5,7 @@ keywords: BES-53248 switches,initial installation,new install
 summary: 您可以通过完成本章中详细介绍的步骤来配置新的 BES-53248 集群交换机。 
 ---
 = 配置新的 BES-53248 集群交换机
+:allow-uri-read: 
 :icons: font
 :imagesdir: ../media/
 

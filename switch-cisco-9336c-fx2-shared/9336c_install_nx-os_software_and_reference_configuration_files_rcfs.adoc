@@ -6,6 +6,7 @@ summary:
 ---
 = 安装 NX-OS 软件和 RCF
 :hardbreaks:
+:allow-uri-read: 
 :nofooter: 
 :icons: font
 :linkattrs: 

@@ -5,6 +5,7 @@ keywords: replace, cisco nexus 3232c, cluster switch
 summary: 您可以通过执行一系列特定任务无中断地更换集群中有故障的 Cisco Nexus 3232C 交换机。 
 ---
 = 如何更换 Cisco Nexus 3232C 集群交换机
+:allow-uri-read: 
 :icons: font
 :imagesdir: ../media/
 

@@ -5,6 +5,7 @@ keywords: BES-53248 switches,replacing with BES-53248 switches, migrate cluster 
 summary: 在将 CN1610 集群交换机迁移到支持 Broadcom 的 BES-53248 集群交换机时，您必须了解某些配置信息，端口连接和布线要求。 
 ---
 = 将 CN1610 集群交换机迁移到支持 Broadcom 的 BES-53248 集群交换机
+:allow-uri-read: 
 :icons: font
 :imagesdir: ../media/
 

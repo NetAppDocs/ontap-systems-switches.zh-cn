@@ -5,6 +5,7 @@ keywords: migrate, cisco nexus 5596 switch, 3232c
 summary: 要将集群中的现有 Cisco Nexus 5596 集群交换机更换为 Nexus 3232C 集群交换机，您必须执行一系列特定的任务。 
 ---
 = 如何从 Cisco Nexus 5596 集群交换机迁移到 Cisco Nexus 3232C 集群交换机
+:allow-uri-read: 
 :icons: font
 :imagesdir: ../media/
 

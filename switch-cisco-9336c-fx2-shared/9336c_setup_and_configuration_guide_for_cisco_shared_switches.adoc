@@ -6,6 +6,7 @@ summary:
 ---
 = Cisco 共享交换机的设置和配置指南
 :hardbreaks:
+:allow-uri-read: 
 :nofooter: 
 :icons: font
 :linkattrs: 

@@ -6,6 +6,7 @@ summary:
 ---
 = 通过添加两个新的共享交换机，从具有数据存储的无交换机集群进行迁移
 :hardbreaks:
+:allow-uri-read: 
 :nofooter: 
 :icons: font
 :linkattrs: 

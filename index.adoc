@@ -8,6 +8,7 @@ summary: 使用此站点上的文档安装，升级和维护集群，共享存�
 ---
 = AFF 和 FAS 交换机文档
 :hardbreaks:
+:allow-uri-read: 
 :nofooter: 
 :icons: font
 :linkattrs: 

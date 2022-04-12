@@ -5,6 +5,7 @@ keywords: install rcf, cisco switches
 summary: 您可以在首次设置 Nexus 9336C-fx2 交换机后安装 RCF 。您也可以使用此操作步骤升级 RCF 版本。 
 ---
 = 安装参考配置文件（ RCF ）
+:allow-uri-read: 
 :icons: font
 :imagesdir: ../media/
 

@@ -5,6 +5,7 @@ keywords: install rcf,rcf configure
 summary: 首次设置 Nexus 92300YC 交换机后，您可以安装 RCF 。 
 ---
 = 安装参考配置文件（ RCF ）
+:allow-uri-read: 
 :icons: font
 :imagesdir: ../media/
 

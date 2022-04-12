@@ -5,6 +5,7 @@ keywords: netapp cn1610, switch administrator guide, version 1.1.x.x
 summary: 本指南举例说明如何在典型网络中使用 CN1610 交换机。 
 ---
 = NetApp CN1610 交换机管理员指南— 1.1.x.x 版
+:allow-uri-read: 
 :icons: font
 :imagesdir: ../media/
 

@@ -5,6 +5,7 @@ keywords: cable worksheet, Cisco NX 92300YC
 summary: 如果要记录受支持的平台，则必须参考填写好的示例布线工作表来完成空白布线工作表。 
 ---
 = Cisco Nexus 92300YC 布线工作表
+:allow-uri-read: 
 :icons: font
 :imagesdir: ../media/
 

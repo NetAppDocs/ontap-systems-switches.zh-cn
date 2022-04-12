@@ -6,6 +6,7 @@ summary:
 ---
 = 更换 Cisco Nexus 9336C-x2 共享交换机
 :hardbreaks:
+:allow-uri-read: 
 :nofooter: 
 :icons: font
 :linkattrs: 

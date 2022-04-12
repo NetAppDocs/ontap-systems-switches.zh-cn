@@ -5,6 +5,7 @@ keywords: bes, cluster, switch, base, model, license, 10gbe, 25gbe, 100gbe, port
 summary: BES-53248 集群交换机基本型号已获得 16 个 10GbE 或 25GbE 端口和 2 个 100GbE 端口的许可。可以通过购买更多许可证来添加新端口。 
 ---
 = 为 BES-53248 集群交换机— BES-53248 交换机安装许可证
+:allow-uri-read: 
 :icons: font
 :imagesdir: ../media/
 

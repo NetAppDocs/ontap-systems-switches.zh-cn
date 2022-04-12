@@ -5,6 +5,7 @@ keywords: replace, cisco nexus 3132q-v cluster switches
 summary: 更换集群网络中有故障的 Cisco Nexus 3132Q-V 交换机是一种无中断操作步骤 （ NDO ），您必须执行一系列特定的任务。 
 ---
 = 如何更换 Cisco Nexus 3132Q-V 集群交换机
+:allow-uri-read: 
 :icons: font
 :imagesdir: ../media/
 

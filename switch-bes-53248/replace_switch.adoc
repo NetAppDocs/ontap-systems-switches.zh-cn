@@ -5,6 +5,7 @@ keywords: replace, replacing, defective, broadcom-supported, bes, cluster, switc
 summary: 在集群网络中更换 Broadcom 支持的故障 BES-53248 集群交换机是无中断操作步骤 \ （ NDU\ ）。 
 ---
 = 更换 Broadcom 支持的 BES-53248 集群交换机 - BES-53248 交换机
+:allow-uri-read: 
 :icons: font
 :imagesdir: ../media/
 

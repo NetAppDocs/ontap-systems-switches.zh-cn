@@ -5,6 +5,7 @@ keywords: confiure 92300yc cluster switch, cisco 92300yc
 summary: 您可以通过完成本章中详细介绍的步骤来配置新的 Nexus 92300YC 交换机。 
 ---
 = 配置新的 Cisco Nexus 92300YC 交换机
+:allow-uri-read: 
 :icons: font
 :imagesdir: ../media/
 

@@ -2,8 +2,6 @@
 <blocks>
   <block id="d41d8cd98f00b204e9800998ecf8427e" category="summary"></block>
   <block id="30d965eef5ba25c6b9998ae38270b43e" category="doc">法律声明</block>
-  <block id="c59ae8d7beeb519a23478ab048af482c" category="paragraph"><block ref="c59ae8d7beeb519a23478ab048af482c" category="inline-link-macro-rx"></block></block>
-  <block id="6f2ac1cf1da8ec34232c651d4bba0149" category="paragraph"><block ref="6f2ac1cf1da8ec34232c651d4bba0149" category="inline-link-macro-rx"></block></block>
   <block id="27e4f654e31a54c18c3f94846eb8fcc2" category="inline-link">磁盘架注意事项</block>
   <block id="0c8d7a4e0e5ab5d34b549a9af84add17" category="paragraph"><block ref="0c8d7a4e0e5ab5d34b549a9af84add17" category="inline-link-rx"></block></block>
   <block id="68efadf789b6df34a4650ac3b889f341" category="summary">BES-53248 集群交换机基本型号已获得 16 个 10GbE 或 25GbE 端口和 2 个 100GbE 端口的许可。可以通过购买更多许可证来添加新端口。</block>
@@ -3261,4 +3259,17 @@
   <block id="42129f3fe0d8a21bc1cebadaaaa93763" category="list-text">大多数存储系统控制器通过 e0M 接口连接到以太网服务端口（扳手图标）进行管理。在 AFF A800 和 AFF A700s 系统上， e0M 接口使用专用以太网端口。</block>
   <block id="59a2ddcfdc456f577bc1f4ec1b24677c" category="paragraph">您可以使用以下布线映像完成控制器和交换机之间的布线。如果要使用缆线将 NS224 存储作为交换机连接，请按照交换机连接图进行操作：</block>
   <block id="3dda7fcad085dc5c2976b2c7124be51b" category="paragraph">如果要将 NS224 存储连接为直连存储，而不是使用共享交换机存储端口，请按照直连图进行操作：</block>
+  <block id="e9c44bbfd795a5d63d74c6a77afee70d" category="paragraph">法律声明提供对版权声明、商标、专利等的访问。</block>
+  <block id="6016a2b341113bf496b719905398ecd2" category="section-title">版权</block>
+  <block id="09e95b77ffe81fe465a83ba99efad5c8" category="paragraph"><block ref="09e95b77ffe81fe465a83ba99efad5c8" category="inline-link-rx"></block></block>
+  <block id="126a02652da6de02962cf1b654fd6376" category="section-title">商标</block>
+  <block id="c4ce4761e466527d26b3e3d5ed1006fd" category="paragraph">NetApp 、 NetApp 徽标和 NetApp 商标页面上列出的标记是 NetApp 、 Inc. 的商标。其他公司和产品名称可能是其各自所有者的商标。</block>
+  <block id="7aa531e9acfe2b98e34d2c92fe9846ff" category="paragraph"><block ref="7aa531e9acfe2b98e34d2c92fe9846ff" category="inline-link-rx"></block></block>
+  <block id="be89498d2f8a22ce47c02ba9795fe2af" category="section-title">专利</block>
+  <block id="d0b19d36be2c5f16e9aef46c8a452d3d" category="paragraph">有关 NetApp 拥有的专利的最新列表，请访问：</block>
+  <block id="d7f1fbcf9ce4e42f705add574d262b2c" category="paragraph"><block ref="d7f1fbcf9ce4e42f705add574d262b2c" category="inline-link-rx"></block></block>
+  <block id="56c34c6410dd45c5cec44149ad0ce037" category="section-title">隐私政策</block>
+  <block id="fc248f74f5e36542f7f5627b8610e9a3" category="paragraph"><block ref="fc248f74f5e36542f7f5627b8610e9a3" category="inline-link-rx"></block></block>
+  <block id="c0227cef6f07a8cd2ac72f2945b031aa" category="section-title">开放源代码</block>
+  <block id="9b73989307c1975dfa4d5e1581e4afe8" category="paragraph">通知文件提供有关 NetApp 软件中使用的第三方版权和许可证的信息。</block>
 </blocks>

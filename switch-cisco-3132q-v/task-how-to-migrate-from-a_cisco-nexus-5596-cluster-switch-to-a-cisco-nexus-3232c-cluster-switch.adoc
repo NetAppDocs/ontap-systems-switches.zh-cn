@@ -5,6 +5,7 @@ keywords: replace, cisco nexus 5596 cluster switch, 3132q-v
 summary: 要将现有 Nexus 5596 集群交换机更换为 Nexus 3132Q-V 集群交换机，您必须执行一系列特定的任务。 
 ---
 = 如何将 Cisco Nexus 5596 集群交换机更换为 Cisco Nexus 3132Q-V 集群交换机
+:allow-uri-read: 
 :icons: font
 :imagesdir: ../media/
 

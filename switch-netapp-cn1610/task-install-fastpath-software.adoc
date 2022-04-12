@@ -5,6 +5,7 @@ keywords: install, fastpath, software
 summary: 在 NetApp 交换机上安装 FastPath 软件时，必须从第二个交换机 CS2 开始升级。 
 ---
 = 安装 FastPath 软件
+:allow-uri-read: 
 :icons: font
 :imagesdir: ../media/
 

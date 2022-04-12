@@ -6,6 +6,7 @@ summary:
 ---
 = 通过添加两个新的共享交换机，从具有直连存储的交换配置进行迁移
 :hardbreaks:
+:allow-uri-read: 
 :nofooter: 
 :icons: font
 :linkattrs: 

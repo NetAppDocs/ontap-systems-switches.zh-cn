@@ -5,6 +5,7 @@ keywords: install cisco 92300YC cluster switch, cisco nx 92300yc
 summary: 您可以使用此操作步骤执行 Cisco Nexus 92300YC 交换机的初始安装。 
 ---
 = 首次安装 Cisco Nexus 92300YC 交换机
+:allow-uri-read: 
 :icons: font
 :imagesdir: ../media/
 

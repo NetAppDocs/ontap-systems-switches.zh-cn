@@ -5,6 +5,7 @@ keywords: cisco nexus 9336c-fx2
 summary: 如果要使用两个以上的节点构建 ONTAP 集群，则需要两个受支持的集群网络交换机。您可以使用其他管理交换机，这些交换机是可选的。 
 ---
 = Cisco 9336C-x2 交换机概述
+:allow-uri-read: 
 :icons: font
 :imagesdir: ../media/
 

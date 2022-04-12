@@ -5,6 +5,7 @@ keywords: cisco, switch, cisco 9336 switch
 summary: 'Cisco 936-x2` 交换机' 
 ---
 = Cisco 9336C-x2 交换机
+:allow-uri-read: 
 :icons: font
 :imagesdir: ../media/
 

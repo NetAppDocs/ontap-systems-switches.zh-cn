@@ -5,6 +5,7 @@ keywords: installing Cisco cluster switches,installing NX-OS software,install nx
 summary: 您可以使用此操作步骤在 Nexus 9336C-x2 集群交换机上安装 NX-OS 软件。 
 ---
 = 安装 NX-OS 软件
+:allow-uri-read: 
 :icons: font
 :imagesdir: ../media/
 

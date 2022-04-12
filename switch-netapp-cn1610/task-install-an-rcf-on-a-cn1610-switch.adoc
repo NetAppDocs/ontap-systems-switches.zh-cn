@@ -5,6 +5,7 @@ keywords: reference configuration, file ,install, cn1610, switch, install rcf
 summary: 在安装参考配置文件（ RCF ）时，必须先将集群 LIF 从交换机 CS2 迁移出。安装并验证 RCF 后，可以将 LIF 迁移回。 
 ---
 = 在 CN1610 交换机上安装参考配置文件
+:allow-uri-read: 
 :icons: font
 :imagesdir: ../media/
 

@@ -5,6 +5,7 @@ keywords: migrate, switchless cluster environment, switched netapp cn1610
 summary: 如果您有一个现有的双节点无交换机集群环境，则可以使用 CN1610 集群网络交换机迁移到双节点有交换机集群环境，从而可以扩展到两个节点以上。 
 ---
 = 从无交换机集群环境迁移到有交换机的 NetApp CN1610 集群环境
+:allow-uri-read: 
 :icons: font
 :imagesdir: ../media/
 

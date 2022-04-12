@@ -5,6 +5,7 @@ keywords: Cisco, 3132Q-V
 summary: 迁移到双节点交换集群 
 ---
 = Cisco Nexus 3132Q-V 交换机
+:allow-uri-read: 
 :icons: font
 :imagesdir: ../media/
 
