@@ -16,7 +16,7 @@ summary:
 
 == ONTAP 支持的交换机
 
-从 ONTAP 9.1.1 开始，您可以使用 Cisco Nexus 9336C-f2 交换机将存储和集群功能结合到共享交换机方案中。如果要使用两个以上的节点构建 ONTAP 网络，则需要两个受支持的网络交换机。
+从 ONTAP 9.1.1 开始，您可以使用 Cisco Nexus 9336C-f2 交换机将存储和集群功能组合到共享交换机配置中。如果要使用两个以上的节点构建 ONTAP 集群，则需要两个受支持的网络交换机。
 
 支持以下 Cisco 共享网络交换机。
 
@@ -36,12 +36,6 @@ summary:
 
 
 | X190200-CS-PI | N9K-9336C-f2 ， CS ， PSIN ， 36PT10/25/40/100GQSFP28 
-
-
-| X190210-FE-PE | N9K-9336C ， FTE ， PTSX ， 36PT10/25/40/100GQSFP28 
-
-
-| X190210-FE-PI | N9K-9336C ， FTE ， PSIN ， 36PT10/25/40/100GQSFP28 
 
 
 | X190002 | 附件套件 X190001/X190003 
@@ -90,8 +84,8 @@ IMPORTANT: 您必须从下载适用的 NetApp RCF https://mysupport.netapp.com["
 
 === 操作步骤
 
-. 将交换机和控制器装入机架。请参见https://docs.netapp.com/platstor/topic/com.netapp.doc.hw-sw-9336c-install-cabinet/GUID-92287262-E7A6-4A62-B159-7F148097B33B.html["在 NetApp 机柜中安装 Cisco Nexus 9336C-x2 集群交换机和直通面板"] 有关在 NetApp 机柜中安装交换机的说明的指南。
-. 打开交换机和控制器的电源。
+. 将交换机，控制器和 NS224 NVMe 存储架装入机架。请参见https://docs.netapp.com/platstor/topic/com.netapp.doc.hw-sw-9336c-install-cabinet/GUID-92287262-E7A6-4A62-B159-7F148097B33B.html["在 NetApp 机柜中安装 Cisco Nexus 9336C-x2 集群交换机和直通面板"] 有关在 NetApp 机柜中安装交换机的说明的指南。
+. 打开交换机，控制器和 NS224 NVMe 存储架的电源。
 . 【第 3 步】根据中提供的信息对交换机执行初始配置 <<Required configuration information>>。
 . 验证您在设置结束时显示的屏幕中所做的配置选择，并确保保存此配置。
 . 检查交换机上的软件版本，如有必要，请将 NetApp 支持的软件版本下载到这些交换机。
@@ -114,7 +108,7 @@ IMPORTANT: 您必须从下载适用的 NetApp RCF https://mysupport.netapp.com["
 +
 ** 用于管理网络流量的 IP 子网
 ** 每个存储系统控制器和所有适用交换机的主机名和 IP 地址
-** 大多数存储系统控制器通过 e0M 接口连接到以太网服务端口（扳手图标）进行管理。在 AFF A800 和 AFF A700 系统上， e0M 接口使用专用以太网端口。
+** 大多数存储系统控制器通过 e0M 接口连接到以太网服务端口（扳手图标）进行管理。在 AFF A800 和 AFF A700s 系统上， e0M 接口使用专用以太网端口。
 
 
 * 请参见 https://hwu.netapp.com["Hardware Universe"] 以获取最新信息。
@@ -259,11 +253,11 @@ NOTE: 如果您在此阶段未保存配置，则下次重新启动交换机时�
 
 == Cisco Nexus 9336C-x2 布线详细信息
 
-您可以使用以下布线映像完成控制器和交换机之间的布线。
+您可以使用以下布线映像完成控制器和交换机之间的布线。如果要使用缆线将 NS224 存储作为交换机连接，请按照交换机连接图进行操作：
 
 image:9336c_image1.jpg["交换机连接"]
 
-如果要将存储作为直连存储进行布线，而不是使用共享交换机存储端口，请按照直连图进行操作：
+如果要将 NS224 存储连接为直连存储，而不是使用共享交换机存储端口，请按照直连图进行操作：
 
 image:9336c_image2.jpg["直连"]
 

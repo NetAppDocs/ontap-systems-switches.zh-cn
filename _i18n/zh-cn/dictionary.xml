@@ -1507,7 +1507,6 @@
   <block id="00f1aa07463199047fef449f663dd76d" category="list-text">【第 14 步】如果您禁止自动创建案例，请通过调用 AutoSupport 消息重新启用此功能： `ssystem node AutoSupport invoke -node * -type all -message MAINT=end`</block>
   <block id="eac9e7086f92a026c0dbe06001206204" category="doc">Cisco 共享交换机的设置和配置指南</block>
   <block id="949a9350bf341b8fa64977aa3c2584c5" category="section-title">ONTAP 支持的交换机</block>
-  <block id="641d7ad5c2ec29d01cc93211bd6393b9" category="paragraph">从 ONTAP 9.1.1 开始，您可以使用 Cisco Nexus 9336C-f2 交换机将存储和集群功能结合到共享交换机方案中。如果要使用两个以上的节点构建 ONTAP 网络，则需要两个受支持的网络交换机。</block>
   <block id="8a5fdb7aa013af2f886a0745ecad55fa" category="paragraph">支持以下 Cisco 共享网络交换机。</block>
   <block id="f1375f4dce82b7173addf1ef166c2ebc" category="section-title">设置交换机</block>
   <block id="7b6ae48e36dd3d7cf6fae83bada46583" category="paragraph">如果您还没有所需的配置信息和文档，则需要在设置共享交换机之前收集这些信息。</block>
@@ -1519,8 +1518,6 @@
   <block id="1771b579c10634da9a764a221c18f7e1" category="paragraph">所有 Cisco 共享交换机都附带标准的 Cisco 出厂默认配置。这些交换机还具有最新版本的 NX-OS 软件，但未加载 RCF 。</block>
   <block id="8c4271e6faf2cea4cfc8e5b7108d8ee9" category="section-title">操作步骤</block>
   <block id="b01c82f53d899ee81ba67bfac6270f54" category="inline-link">在 NetApp 机柜中安装 Cisco Nexus 9336C-x2 集群交换机和直通面板</block>
-  <block id="d3e18e6cda55c62cb1229ed70a876467" category="list-text">将交换机和控制器装入机架。请参见<block ref="90faa892a4d50a53b0a7930f42b5c315" category="inline-link-rx"></block> 有关在 NetApp 机柜中安装交换机的说明的指南。</block>
-  <block id="78e6dfddb13e04b530aa5e137fbcffcb" category="list-text">打开交换机和控制器的电源。</block>
   <block id="6ee5954a9939ee0324616b71255a1ea7" category="list-text">【第 3 步】根据中提供的信息对交换机执行初始配置 <block ref="4e098ee0fc4ed6ae0122d7d616100d24" category="inline-xref-macro-rx"></block>。</block>
   <block id="39ea6d6c5412ec7e0e17dd391cd35f3a" category="list-text">检查交换机上的软件版本，如有必要，请将 NetApp 支持的软件版本下载到这些交换机。</block>
   <block id="7b1d1185b835814de783483f686e9825" category="inline-link">Cisco</block>
@@ -1568,7 +1565,6 @@
   <block id="b3c830c1f46c78e5e5bfa160bf68597f" category="cell"><block ref="2ac6309dec20e42c583f3092a07361f2" category="inline-link-macro-rx"></block> （选择交换机上安装的 NX-OS 版本的注释）</block>
   <block id="83a1f0b32ba6ed26d00737e3faf8fc2e" category="cell"><block ref="83a1f0b32ba6ed26d00737e3faf8fc2e" category="inline-link-macro-rx"></block></block>
   <block id="fd063930033e8c3d34fa893faa14f4ee" category="section-title">Cisco Nexus 9336C-x2 布线详细信息</block>
-  <block id="5a5c48f7dd282373e89a35f202529de4" category="paragraph">您可以使用以下布线映像完成控制器和交换机之间的布线。</block>
   <block id="4e4e9a3c74ffafdd7400bec54125834f" category="inline-image-macro">直连</block>
   <block id="d2aa2982691bcb6b044696b6691d5677" category="paragraph">如果要记录受支持的平台，则必须参考填写好的布线工作表示例，填写空布线工作表。</block>
   <block id="3d7fd5afdd3e2a9008c8eb6e9d19e41c" category="inline-image-macro">布线工作表</block>
@@ -3111,7 +3107,6 @@
   <block id="3ebdfe501befb632f105d0771d49b2ed" category="section-title">从具有直连存储的无交换机集群迁移</block>
   <block id="a4d6f36c2fec3f157bf2efa75150d45d" category="admonition">您必须从下载适用的 NetApp RCF<block ref="1ccfcc282c22bbf629043880b6e3d7b2" category="inline-link-rx"></block> 用于接收的交换机。</block>
   <block id="6a2cf54f6a37518ec42d92fd7fd3e59c" category="paragraph"><block ref="6a2cf54f6a37518ec42d92fd7fd3e59c" category="inline-image-macro-rx" type="image"></block></block>
-  <block id="0b33aa659f82969dceca5746d61c3616" category="paragraph">如果要将存储作为直连存储进行布线，而不是使用共享交换机存储端口，请按照直连图进行操作：</block>
   <block id="6c2050d09711322397bf2564af018947" category="paragraph"><block ref="6c2050d09711322397bf2564af018947" category="inline-image-macro-rx" type="image"></block></block>
   <block id="979ffb8500894419af56930a4367f4cf" category="list-text">安装许可证文件。以下示例使用 SFTP 将许可证文件复制到密钥索引 1 。</block>
   <block id="dd76252ea7a50def2a98f218cb1505b4" category="inline-link">知识库文章</block>
@@ -3260,5 +3255,10 @@
   <block id="403284bd44beda112195a484c8a76421" category="sidebar">存储交换机</block>
   <block id="bc8a2cd252a5beb1dbf4f209baea67eb" category="sidebar">共享交换机</block>
   <block id="7bd0358c3b996edfe19bd3da912bde62" category="sidebar">Cisco Nexus 9336C-x2 共享交换机</block>
-  <block id="e4c1ca77c9404c4e475b957c8cc99c46" category="sidebar">NVIDIA MSN2100 交换机</block>
+  <block id="c362338c56e3a8923a48d3ee53e0fe46" category="paragraph">从 ONTAP 9.1.1 开始，您可以使用 Cisco Nexus 9336C-f2 交换机将存储和集群功能组合到共享交换机配置中。如果要使用两个以上的节点构建 ONTAP 集群，则需要两个受支持的网络交换机。</block>
+  <block id="a4e916c58a0625a75d1a7d3a587de12d" category="list-text">将交换机，控制器和 NS224 NVMe 存储架装入机架。请参见<block ref="90faa892a4d50a53b0a7930f42b5c315" category="inline-link-rx"></block> 有关在 NetApp 机柜中安装交换机的说明的指南。</block>
+  <block id="33b51f739542d105d7c5028b7244b26e" category="list-text">打开交换机，控制器和 NS224 NVMe 存储架的电源。</block>
+  <block id="42129f3fe0d8a21bc1cebadaaaa93763" category="list-text">大多数存储系统控制器通过 e0M 接口连接到以太网服务端口（扳手图标）进行管理。在 AFF A800 和 AFF A700s 系统上， e0M 接口使用专用以太网端口。</block>
+  <block id="59a2ddcfdc456f577bc1f4ec1b24677c" category="paragraph">您可以使用以下布线映像完成控制器和交换机之间的布线。如果要使用缆线将 NS224 存储作为交换机连接，请按照交换机连接图进行操作：</block>
+  <block id="3dda7fcad085dc5c2976b2c7124be51b" category="paragraph">如果要将 NS224 存储连接为直连存储，而不是使用共享交换机存储端口，请按照直连图进行操作：</block>
 </blocks>
