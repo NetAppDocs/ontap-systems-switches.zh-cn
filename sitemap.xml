@@ -181,14 +181,14 @@
     </url>
   
     <url>
-      <loc>https://docs.netapp.com/zh-cn/ontap-systems-switches/switch-bes-53248/configure-install-initial.html</loc>
+      <loc>https://docs.netapp.com/zh-cn/ontap-systems-switches/switch-cisco-92300/configure-install-initial.html</loc>
       
       <lastmod>2022-04-18T07:09:46+00:00</lastmod>
       
     </url>
   
     <url>
-      <loc>https://docs.netapp.com/zh-cn/ontap-systems-switches/switch-cisco-92300/configure-install-initial.html</loc>
+      <loc>https://docs.netapp.com/zh-cn/ontap-systems-switches/switch-bes-53248/configure-install-initial.html</loc>
       
       <lastmod>2022-04-18T07:09:46+00:00</lastmod>
       
@@ -202,14 +202,14 @@
     </url>
   
     <url>
-      <loc>https://docs.netapp.com/zh-cn/ontap-systems-switches/switch-bes-53248/configure-install-rcf.html</loc>
+      <loc>https://docs.netapp.com/zh-cn/ontap-systems-switches/switch-cisco-92300/configure-install-rcf.html</loc>
       
       <lastmod>2022-04-18T07:09:46+00:00</lastmod>
       
     </url>
   
     <url>
-      <loc>https://docs.netapp.com/zh-cn/ontap-systems-switches/switch-cisco-92300/configure-install-rcf.html</loc>
+      <loc>https://docs.netapp.com/zh-cn/ontap-systems-switches/switch-bes-53248/configure-install-rcf.html</loc>
       
       <lastmod>2022-04-18T07:09:46+00:00</lastmod>
       
@@ -258,6 +258,20 @@
     </url>
   
     <url>
+      <loc>https://docs.netapp.com/zh-cn/ontap-systems-switches/switch-cisco-3232c/</loc>
+      
+      <lastmod>2022-04-18T07:09:46+00:00</lastmod>
+      
+    </url>
+  
+    <url>
+      <loc>https://docs.netapp.com/zh-cn/ontap-systems-switches/switch-cisco-3132q-v/</loc>
+      
+      <lastmod>2022-04-18T07:09:46+00:00</lastmod>
+      
+    </url>
+  
+    <url>
       <loc>https://docs.netapp.com/zh-cn/ontap-systems-switches/switch-cisco-9336c-fx2-shared/</loc>
       
       <lastmod>2022-04-18T07:09:46+00:00</lastmod>
@@ -272,7 +286,7 @@
     </url>
   
     <url>
-      <loc>https://docs.netapp.com/zh-cn/ontap-systems-switches/switch-cisco-3232c/</loc>
+      <loc>https://docs.netapp.com/zh-cn/ontap-systems-switches/switch-cisco-9336c-fx2/</loc>
       
       <lastmod>2022-04-18T07:09:46+00:00</lastmod>
       
@@ -286,28 +300,7 @@
     </url>
   
     <url>
-      <loc>https://docs.netapp.com/zh-cn/ontap-systems-switches/switch-cisco-9336c-fx2/</loc>
-      
-      <lastmod>2022-04-18T07:09:46+00:00</lastmod>
-      
-    </url>
-  
-    <url>
-      <loc>https://docs.netapp.com/zh-cn/ontap-systems-switches/switch-cisco-3132q-v/</loc>
-      
-      <lastmod>2022-04-18T07:09:46+00:00</lastmod>
-      
-    </url>
-  
-    <url>
       <loc>https://docs.netapp.com/zh-cn/ontap-systems-switches/</loc>
-      
-      <lastmod>2022-04-18T07:09:46+00:00</lastmod>
-      
-    </url>
-  
-    <url>
-      <loc>https://docs.netapp.com/zh-cn/ontap-systems-switches/switch-cisco-9336c-fx2/install-nxos-overview.html</loc>
       
       <lastmod>2022-04-18T07:09:46+00:00</lastmod>
       
@@ -321,7 +314,7 @@
     </url>
   
     <url>
-      <loc>https://docs.netapp.com/zh-cn/ontap-systems-switches/switch-cisco-9336c-fx2/install-nxos-rcf.html</loc>
+      <loc>https://docs.netapp.com/zh-cn/ontap-systems-switches/switch-cisco-9336c-fx2/install-nxos-overview.html</loc>
       
       <lastmod>2022-04-18T07:09:46+00:00</lastmod>
       
@@ -335,7 +328,7 @@
     </url>
   
     <url>
-      <loc>https://docs.netapp.com/zh-cn/ontap-systems-switches/switch-cisco-9336c-fx2/install-nxos-software.html</loc>
+      <loc>https://docs.netapp.com/zh-cn/ontap-systems-switches/switch-cisco-9336c-fx2/install-nxos-rcf.html</loc>
       
       <lastmod>2022-04-18T07:09:46+00:00</lastmod>
       
@@ -343,6 +336,13 @@
   
     <url>
       <loc>https://docs.netapp.com/zh-cn/ontap-systems-switches/switch-cisco-92300/install-nxos-software.html</loc>
+      
+      <lastmod>2022-04-18T07:09:46+00:00</lastmod>
+      
+    </url>
+  
+    <url>
+      <loc>https://docs.netapp.com/zh-cn/ontap-systems-switches/switch-cisco-9336c-fx2/install-nxos-software.html</loc>
       
       <lastmod>2022-04-18T07:09:46+00:00</lastmod>
       
@@ -377,6 +377,13 @@
     </url>
   
     <url>
+      <loc>https://docs.netapp.com/zh-cn/ontap-systems-switches/switch-cisco-92300/migrate-to-2n-switched.html</loc>
+      
+      <lastmod>2022-04-18T07:09:46+00:00</lastmod>
+      
+    </url>
+  
+    <url>
       <loc>https://docs.netapp.com/zh-cn/ontap-systems-switches/switch-bes-53248/migrate-to-2n-switched.html</loc>
       
       <lastmod>2022-04-18T07:09:46+00:00</lastmod>
@@ -391,7 +398,7 @@
     </url>
   
     <url>
-      <loc>https://docs.netapp.com/zh-cn/ontap-systems-switches/switch-cisco-92300/migrate-to-2n-switched.html</loc>
+      <loc>https://docs.netapp.com/zh-cn/ontap-systems-switches/switch-cisco-92300/migrate-to-2n-switched-overview.html</loc>
       
       <lastmod>2022-04-18T07:09:46+00:00</lastmod>
       
@@ -406,13 +413,6 @@
   
     <url>
       <loc>https://docs.netapp.com/zh-cn/ontap-systems-switches/switch-cisco-9336c-fx2/migrate-to-2n-switched-overview.html</loc>
-      
-      <lastmod>2022-04-18T07:09:46+00:00</lastmod>
-      
-    </url>
-  
-    <url>
-      <loc>https://docs.netapp.com/zh-cn/ontap-systems-switches/switch-cisco-92300/migrate-to-2n-switched-overview.html</loc>
       
       <lastmod>2022-04-18T07:09:46+00:00</lastmod>
       
@@ -645,7 +645,7 @@
     <url>
       <loc>https://docs.netapp.com/zh-cn/ontap-systems-switches//search.html</loc>
       
-      <lastmod>2022-04-18T07:10:10+00:00</lastmod>
+      <lastmod>2022-05-03T10:31:19+00:00</lastmod>
       
     </url>
   
