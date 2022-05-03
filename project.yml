@@ -10,7 +10,7 @@ settings:
   pdf:
     zip-level: 1
     zip-filename: ontap-systems-switches-pdfs.zip
-  langs: zh-cn,us-en,ja-jp,ko-kr
+  langs: zh-cn,us-en,ja-jp,zh-tw,ko-kr
 sidebar:
   entries:
   - title: AFF 和 FAS 交换机文档
