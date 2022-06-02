@@ -34,29 +34,29 @@ NOTE: 建议启用 SSH ，以便使用 CSHM 中提供的所有功能。
 对于内部 Web 服务器 IP 地址 192.168.2.2 并假设存在 /usr/download 目录，您可以使用 scp 将 zip 文件上传到 Web 服务器：
 
 +
-[listing]
+[listing, subs="+quotes"]
 ----
-% scp Broadcom_BES-53248.zip admin@192.168.2.20:/usr/download/Broadcom_BES-53248.zip
+% *scp Broadcom_BES-53248.zip admin@192.168.2.20:/usr/download/Broadcom_BES-53248.zip*
 ----
 . 使用命令 `set -privilege advanced` 从集群中的一个 ONTAP 系统访问高级模式设置：
 +
-[listing]
+[listing, subs="+quotes"]
 ----
-cluster1::> set -privilege advanced
+cluster1::> *set -privilege advanced*
 ----
 . 运行 switch health monitor configure 命令 `ssystem cluster-switch configure-health-monitor -node * -package-url \http://server/file-location`:
 +
-[listing]
+[listing, subs="+quotes"]
 ----
-cluster1::> system cluster-switch configure-health-monitor -node * -package-url
-http://192.168.2.20/usr/download/Broadcom_BES-53248.zip
+cluster1::> *system cluster-switch configure-health-monitor -node * -package-url
+http://192.168.2.20/usr/download/Broadcom_BES-53248.zip*
 ----
 . 验证命令输出是否包含文本字符串 "downloaded package processed successfully" 。如果发生错误，请联系 NetApp 支持部门。
 . 在 ONTAP 系统上运行命令 `ssystem cluster-switch show` ，并确保在发现集群交换机时已将受监控字段设置为 "True" 。
 +
-[listing]
+[listing, subs="+quotes"]
 ----
-cluster1::> system cluster-switch show
+cluster1::> *system cluster-switch show*
 ----
 +
 

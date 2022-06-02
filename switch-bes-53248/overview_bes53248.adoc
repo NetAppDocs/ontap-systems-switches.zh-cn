@@ -4,7 +4,7 @@ sidebar: sidebar
 keywords: cluster-mode,supported versions,switches supported,cluster network,efos 
 summary: 在 ONTAP 9.5P8 及更高版本中，支持 Broadcom 的 BES-53248 集群交换机可在 2 到 24 个节点的大小范围内工作。从 EFOS 固件版本 3.4.4.6 及更高版本开始，支持 40/100 GbE 集群端口。 
 ---
-= Broadcom 支持的 BES-53248 集群交换机概述
+= Broadcom支持的BES-53248集群交换机概述
 :allow-uri-read: 
 :icons: font
 :imagesdir: ../media/

@@ -4,7 +4,7 @@ sidebar: sidebar
 keywords: bes, cluster, switch, port, assignment, table, configure, bes-53428 cluster switch port assignments - bes-53428 switches 
 summary: 您可以参考 BES-53248 集群交换机端口分配表来配置集群。 
 ---
-= BES-53248 集群交换机端口分配— BES-53248 交换机
+= BES-53248集群交换机端口分配
 :allow-uri-read: 
 :icons: font
 :imagesdir: ../media/
@@ -12,10 +12,6 @@ summary: 您可以参考 BES-53248 集群交换机端口分配表来配置集群
 
 [role="lead"]
 您可以参考 BES-53248 集群交换机端口分配表来配置集群。
-
-
-
-== BES-53248 集群交换机端口分配表
 
 [cols="1,2"]
 |===
@@ -49,10 +45,6 @@ summary: 您可以参考 BES-53248 集群交换机端口分配表来配置集群
 100GbE 集群交换机间链路（ ISL ）端口，基本配置
 
 |===
-
-
-== 端口组速度限制
-
 在 BES-53248 集群交换机上， 48 个 10/25GbE （ SFP28/SFP+ ）端口组合为 12 个 4 端口组，如下所示：
 
 * 端口 1-4 ， 5-8 ， 9-12 ， 13-16 ， 17-20 ， 21-24 ， 25-28 ， 29-32 ， 33-36 ， 37-40 ， 41-44 和 45-48 。

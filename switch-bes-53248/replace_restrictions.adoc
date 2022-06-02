@@ -4,7 +4,7 @@ sidebar: sidebar
 keywords: problem, install, license, debug, command, restriction, limitation, switch, restrictions and limitations - bes-53428 switches 
 summary: 如果在安装许可证时出现问题，应在再次运行 copy 命令安装许可证之前运行以下调试命令。 
 ---
-= 限制和限制— BES-53248 交换机
+= 限制和限制
 :allow-uri-read: 
 :icons: font
 :imagesdir: ../media/
@@ -13,15 +13,13 @@ summary: 如果在安装许可证时出现问题，应在再次运行 copy 命�
 [role="lead"]
 如果在安装许可证时出现问题，应先运行以下调试命令，然后再运行 `copy` 命令来安装许可证。
 
-要使用的调试命令：
+要使用的调试命令包括：`debug transfer`和`debug license`
 
-`debug transferdebug license`
-
-[listing]
+[listing, subs="+quotes"]
 ----
-(cs2) # debug transfer
+(cs2)# *debug transfer*
 Debug transfer output is enabled.
-(cs2) # debug license
+(cs2)# *debug license*
 Enabled capability licensing debugging.
 ----
 在启用 `debug transfer` 和 `debug license` 选项的情况下运行 `copy` 命令时，将返回以下日志输出：
@@ -60,9 +58,9 @@ CAPABILITY LICENSING : Fri Sep 11 13:41:32 2020: Applying license file 1.
 
 使用 `copy` 命令将端口许可证备份到服务器：
 
-[listing]
+[listing, subs="+quotes"]
 ----
-(cs2) # copy nvram:license-key 1 scp://<UserName>@<IP_address>/saved_license_1.dat
+(cs2)# *copy nvram:license-key 1 scp://<UserName>@<IP_address>/saved_license_1.dat*
 ----
 请参见 link:configure-licenses.html["为 BES-53248 集群交换机安装许可证"] 有关可用许可证支持的固件版本的详细信息。
 

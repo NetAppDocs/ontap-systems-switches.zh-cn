@@ -33,31 +33,31 @@ EFOS 是一套广泛的软件，其中包含为数据中心应用程序开发各
 
 . 以 admin 身份登录到交换机，并在系统提示输入密码时按 Enter 键。默认交换机名称为路由。在提示符处， `enable` 。这样，您就可以访问交换机配置的特权执行模式。
 +
-[listing]
+[listing, subs="+quotes"]
 ----
 User: admin
 Password:
-(Routing)> enable
+(Routing)> *enable*
 Password:
 (Routing) #
 ----
 . 将交换机名称更改为 CS2 ：
 +
-[listing]
+[listing, subs="+quotes"]
 ----
-(Routing) # hostname cs2
-(cs2) #
+(Routing)# *hostname cs2*
+(cs2)#
 ----
 . 要设置静态 IP 地址，请使用 serviceport protocol ， network protocol 和 serviceport ip 命令，如示例所示。
 +
 默认情况下， serviceport 设置为使用 DHCP 。系统会自动分配 IP 地址，子网掩码和默认网关地址。
 
 +
-[listing]
+[listing, subs="+quotes"]
 ----
-(cs2) # serviceport protocol none
-(cs2) # network protocol none
-(cs2) # serviceport ip ipaddr netmask gateway
+(cs2)# *serviceport protocol none*
+(cs2)# *network protocol none*
+(cs2)# *serviceport ip ipaddr netmask gateway*
 ----
 . 使用命令验证结果：
 +
@@ -67,9 +67,9 @@ Password:
 以下示例显示了 DHCP 服务器提供的 IP 信息。
 
 +
-[listing]
+[listing, subs="+quotes"]
 ----
-(cs2) # show serviceport
+(cs2)# *show serviceport*
 Interface Status............................... Up
 IP Address..................................... 172.19.2.2
 Subnet Mask.................................... 255.255.255.0
@@ -87,13 +87,13 @@ Burned In MAC Address.......................... D8:C4:97:71:12:3C
 `配置`
 
 +
-[listing]
+[listing, subs="+quotes"]
 ----
-(cs2) # configure
-(cs2) (Config)#ip domain name company.com
-(cs2) (Config)#ip name server 10.10.99.1 10.10.99.2
-(cs2) (Config)#exit
-(cs2) (Config)#
+(cs2)# *configure*
+(cs2) (Config)# *ip domain name company.com*
+(cs2) (Config)# *ip name server 10.10.99.1 10.10.99.2*
+(cs2) (Config)# *exit*
+(cs2)#
 ----
 . 是否配置 NTP 服务器？
 +
@@ -102,42 +102,42 @@ Burned In MAC Address.......................... D8:C4:97:71:12:3C
 `sNTP`
 
 +
-[listing]
+[listing, subs="+quotes"]
 ----
-(cs2) #
-(cs2) (Config)#sntp client mode unicast
-(cs2) (Config)#sntp server 10.99.99.5
-(cs2) (Config)#clock timezone -7
-(cs2) (Config)#exit
-(cs2) (Config)#
+(cs2)# *configure*
+(cs2) (Config)# *sntp client mode unicast*
+(cs2) (Config)# *sntp server 10.99.99.5*
+(cs2) (Config)# *clock timezone -7*
+(cs2) (Config)# *exit*
+(cs2)#
 ----
 .. 手动配置时间：
 +
 `时钟`
 
 +
-[listing]
+[listing, subs="+quotes"]
 ----
-(cs2) #config
-(cs2) (Config)#no sntp client mode
-(cs2) (Config)#clock summer-time recurring 1 sun mar 02:00 1 sun nov 02:00 offset 60 zone EST
-(cs2) (Config)#clock timezone -5 zone EST
-(cs2) (Config)#clock set 07:00:00
-(cs2) (Config)#clock set 10/20/2020
+(cs2) # *configure*
+(cs2) (Config)# *no sntp client mode*
+(cs2) (Config)# *clock summer-time recurring 1 sun mar 02:00 1 sun nov 02:00 offset 60* zone EST
+(cs2) (Config)# *clock timezone -5 zone EST*
+(cs2) (Config)# *clock set 07:00:00*
+(cs2) (Config)# *clock set 10/20/2020*
 
-(cs2) (Config)#show clock
+(cs2) (Config)# *show clock*
 
 07:00:11 EST(UTC-5:00) Oct 20 2020
 No time source
 
-(cs2) (Config)#exit
+(cs2) (Config)# *exit*
 
-(cs2) #write memory
+(cs2)# *write memory*
 
 This operation may take a few minutes.
 Management interfaces will not be available during this time.
 
-Are you sure you want to save? (y/n) **y**
+Are you sure you want to save? (y/n) *y*
 
 Config file 'startup-config' created successfully .
 

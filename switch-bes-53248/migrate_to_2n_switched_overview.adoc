@@ -28,10 +28,7 @@ Broadcom 支持的 BES-53248 集群交换机配置：
 * 必须能够通过控制台访问集群交换机。
 * BES-53248 节点到节点交换机和交换机到交换机连接必须使用双轴电缆或光缆。
 +
-_NetApp__Hardware Universe 包含有关 ONTAP 兼容性，支持的 EFOS 固件以及 BES-53248 交换机布线的信息。
-
-+
-https://hwu.netapp.com/Switch/Index["Hardware Universe —交换机"^]
+。 https://hwu.netapp.com/Home/Index["_NetApp Hardware Universe"^] 包含有关ONTAP 兼容性、支持的EFOS固件以及连接到BES-53248交换机的布线的信息。
 
 * 交换机间链路（ ISL ）缆线必须连接到两个 BES-53248 交换机上的端口 0/55 和 0/56 。
 * 必须完成对两个 BES-53248 交换机的初始自定义。这样：
@@ -54,10 +51,7 @@ https://hwu.netapp.com/Switch/Index["Hardware Universe —交换机"^]
 * `cluster1 ：：： * >` 提示符指示集群的名称。
 * 此操作步骤中使用的集群端口为 `e0a` 和 `e0b` 。
 +
-_cluster_ Hardware Universe 包含有关平台的实际集群端口的最新信息。
-
-+
-https://hwu.netapp.com["Hardware Universe"^]
+。 https://hwu.netapp.com/Home/Index["_NetApp Hardware Universe"^] 包含有关平台的实际集群端口的最新信息。
 
 
 
@@ -97,13 +91,13 @@ NOTE: 不得禁用 ISL 端口。
 以下示例显示了交换机 CS1 上面向节点的端口 1 到 16 已禁用：
 
 +
-[listing]
+[listing, subs="+quotes"]
 ----
-(cs1)# configure
-(cs1)(Config)# interface 0/1-0/16
-(cs1)(Interface 0/1-0/16)# shutdown
-(cs1)(Interface 0/1-0/16)# exit
-(cs1)(Config)# exit
+(cs1)# *configure*
+(cs1)(Config)# *interface 0/1-0/16*
+(cs1)(Interface 0/1-0/16)# *shutdown*
+(cs1)(Interface 0/1-0/16)# *exit*
+(cs1)(Config)# *exit*
 ----
 . 验证两个 BES-53248 交换机 CS1 和 CS2 之间的 ISL 和 ISL 上的物理端口是否为 `up` ：
 +
@@ -113,9 +107,9 @@ NOTE: 不得禁用 ISL 端口。
 以下示例显示交换机 CS1 上的 ISL 端口已启动：
 
 +
-[listing]
+[listing, subs="+quotes"]
 ----
-(cs1)# show port-channel 1/1
+(cs1)# *show port-channel 1/1*
 Local Interface................................ 1/1
 Channel Name................................... Cluster-ISL
 Link State..................................... Up
@@ -138,9 +132,9 @@ Ports  Timeout       Speed      Active
 以下示例显示交换机 CS2 上的 ISL 端口已启动：
 
 +
-[listing]
+[listing, subs="+quotes"]
 ----
-(cs2)# show port-channel 1/1
+(cs2)# *show port-channel 1/1*
 Local Interface................................ 1/1
 Channel Name................................... Cluster-ISL
 Link State..................................... Up
@@ -157,7 +151,6 @@ Ports  Timeout       Speed      Active
        partner/long
 0/56   actor/long    100G Full  True
        partner/long
-(cs2) #
 ----
 . 显示相邻设备的列表：
 +
@@ -170,9 +163,9 @@ Ports  Timeout       Speed      Active
 以下示例列出了交换机 CS1 上的相邻设备：
 
 +
-[listing]
+[listing, subs="+quotes"]
 ----
-(cs1)# show isdp neighbors
+(cs1)# *show isdp neighbors*
 
 Capability Codes: R - Router, T - Trans Bridge, B - Source Route Bridge,
                   S - Switch, H - Host, I - IGMP, r - Repeater
@@ -185,10 +178,9 @@ cs2            0/56     176       R            BES-53248   0/56
 以下示例列出了交换机 CS2 上的相邻设备：
 
 +
-[listing]
+[listing, subs="+quotes"]
 ----
-
-(cs2)# show isdp neighbors
+(cs2)# *show isdp neighbors*
 
 Capability Codes: R - Router, T - Trans Bridge, B - Source Route Bridge,
                   S - Switch, H - Host, I - IGMP, r - Repeater
@@ -205,9 +197,9 @@ cs2            0/56     176       R            BES-53248   0/56
 对于 `Link` 和 `Healthy` ，每个端口均应显示 up for `Health Status` 。
 
 +
-[listing]
+[listing, subs="+quotes"]
 ----
-cluster1::*> network port show -ipspace Cluster
+cluster1::*> *network port show -ipspace Cluster*
 
 Node: node1
 
@@ -224,18 +216,15 @@ Port      IPspace      Broadcast Domain Link MTU  Admin/Oper  Status
 --------- ------------ ---------------- ---- ---- ----------- --------
 e0a       Cluster      Cluster          up   9000  auto/10000 healthy
 e0b       Cluster      Cluster          up   9000  auto/10000 healthy
-
-4 entries were displayed.
 ----
 . `所有集群 LIF 是否均已` 启动 `且正常运行：` network interface show -vserver Cluster
 +
 每个集群 LIF 应显示 `true` for `is Home` and have a `StStatus Admin/Oper` of `up/up`
 
 +
-[listing]
+[listing, subs="+quotes"]
 ----
-
-cluster1::*> network interface show -vserver Cluster
+cluster1::*> *network interface show -vserver Cluster*
 
             Logical    Status     Network            Current       Current Is
 Vserver     Interface  Admin/Oper Address/Mask       Node          Port    Home
@@ -245,13 +234,12 @@ Cluster
             node1_clus2  up/up    169.254.49.125/16  node1         e0b     true
             node2_clus1  up/up    169.254.47.194/16  node2         e0a     true
             node2_clus2  up/up    169.254.19.183/16  node2         e0b     true
-4 entries were displayed.
 ----
 . 验证是否已在所有集群 LIF 上启用 `auto-revert` ： `network interface show -vserver cluster -fields auto-revert`
 +
-[listing]
+[listing, subs="+quotes"]
 ----
-cluster1::*> network interface show -vserver Cluster -fields auto-revert
+cluster1::*> *network interface show -vserver Cluster -fields auto-revert*
 
           Logical
 Vserver   Interface     Auto-revert
@@ -261,15 +249,10 @@ Cluster
           node1_clus2   true
           node2_clus1   true
           node2_clus2   true
-
-4 entries were displayed.
 ----
 . 从 node1 上的集群端口 e0a 断开缆线连接，然后使用 BES-53248 交换机支持的相应布线方式将 e0a 连接到集群交换机 CS1 上的端口 1 。
 +
-_NetApp Hardware Universe _ 包含有关布线的详细信息。
-
-+
-https://hwu.netapp.com/Switch/Index["Hardware Universe —交换机"^]
+。 https://hwu.netapp.com/Home/Index["_NetApp Hardware Universe"^] 包含有关布线的详细信息。
 
 . 从节点 2 上的集群端口 e0a 断开缆线连接，然后使用 BES-53248 交换机支持的相应布线方式将 e0a 连接到集群交换机 CS1 上的端口 2 。
 . 启用集群交换机 CS1 上面向节点的所有端口。
@@ -277,13 +260,13 @@ https://hwu.netapp.com/Switch/Index["Hardware Universe —交换机"^]
 以下示例显示交换机 CS1 上的端口 1 到 16 已启用：
 
 +
-[listing]
+[listing, subs="+quotes"]
 ----
-(cs1)# configure
-(cs1)(Config)# interface 0/1-0/16
-(cs1)(Interface 0/1-0/16)# no shutdown
-(cs1)(Interface 0/1-0/16)# exit
-(cs1)(Config)# exit
+(cs1)# *configure*
+(cs1)(Config)# *interface 0/1-0/16*
+(cs1)(Interface 0/1-0/16)# *no shutdown*
+(cs1)(Interface 0/1-0/16)# *exit*
+(cs1)(Config)# *exit*
 ----
 . 验证所有集群 LIF 是否均已启动，正常运行并显示为 `true` for `is Home` ：
 +
@@ -293,9 +276,9 @@ https://hwu.netapp.com/Switch/Index["Hardware Universe —交换机"^]
 以下示例显示 node1 和 node2 上的所有 LIF 均已启动，并且 `为 Home` Results 为 `true` ：
 
 +
-[listing]
+[listing, subs="+quotes"]
 ----
-cluster1::*> network interface show -vserver Cluster
+cluster1::*> *network interface show -vserver Cluster*
 
          Logical      Status     Network            Current     Current Is
 Vserver  Interface    Admin/Oper Address/Mask       Node        Port    Home
@@ -305,8 +288,6 @@ Cluster
          node1_clus2  up/up      169.254.49.125/16  node1       e0b     true
          node2_clus1  up/up      169.254.47.194/16  node2       e0a     true
          node2_clus2  up/up      169.254.19.183/16  node2       e0b     true
-
-4 entries were displayed.
 ----
 . 显示有关集群中节点状态的信息：
 +
@@ -316,16 +297,14 @@ Cluster
 以下示例显示了有关集群中节点的运行状况和资格的信息：
 
 +
-[listing]
+[listing, subs="+quotes"]
 ----
-cluster1::*> cluster show
+cluster1::*> *cluster show*
 
 Node                 Health  Eligibility   Epsilon
 -------------------- ------- ------------  ------------
 node1                true    true          false
 node2                true    true          false
-
-2 entries were displayed.
 ----
 . 从 node1 上的集群端口 e0b 断开缆线连接，然后使用 BES-53248 交换机支持的相应布线方式将 e0b 连接到集群交换机 CS2 上的端口 1 。
 . 从节点 2 上的集群端口 e0b 断开缆线连接，然后使用 BES-53248 交换机支持的相应布线方式将 e0b 连接到集群交换机 CS2 上的端口 2 。
@@ -334,13 +313,13 @@ node2                true    true          false
 以下示例显示交换机 CS2 上的端口 1 到 16 已启用：
 
 +
-[listing]
+[listing, subs="+quotes"]
 ----
-(cs2)# configure
-(cs2)(Config)# interface 0/1-0/16
-(cs2)(Interface 0/1-0/16)# no shutdown
-(cs2)(Interface 0/1-0/16)# exit
-(cs2)(Config)# exit
+(cs2)# *configure*
+(cs2)(Config)# *interface 0/1-0/16*
+(cs2)(Interface 0/1-0/16)# *no shutdown*
+(cs2)(Interface 0/1-0/16)# *exit*
+(cs2)(Config)# *exit*
 ----
 . 验证所有集群端口是否均为 `up` ：
 +
@@ -350,9 +329,9 @@ node2                true    true          false
 以下示例显示 node1 和 node2 上的所有集群端口均已启动：
 
 +
-[listing]
+[listing, subs="+quotes"]
 ----
-cluster1::*> network port show -ipspace Cluster
+cluster1::*> *network port show -ipspace Cluster*
 
 Node: node1
                                                                        Ignore
@@ -369,8 +348,6 @@ Port      IPspace      Broadcast Domain Link MTU  Admin/Oper  Status   Status
 --------- ------------ ---------------- ---- ---- ----------- -------- ------
 e0a       Cluster      Cluster          up   9000  auto/10000 healthy  false
 e0b       Cluster      Cluster          up   9000  auto/10000 healthy  false
-
-4 entries were displayed.
 ----
 . 验证所有接口是否显示 `true` for `is Home` ：
 +
@@ -384,9 +361,9 @@ NOTE: 完成此操作可能需要几分钟时间。
 以下示例显示 node1 和 node2 上的所有 LIF 均已启动，并且 `为 Home` Results 为 `true` ：
 
 +
-[listing]
+[listing, subs="+quotes"]
 ----
-cluster1::*> network interface show -vserver Cluster
+cluster1::*> *network interface show -vserver Cluster*
 
           Logical      Status     Network            Current    Current Is
 Vserver   Interface    Admin/Oper Address/Mask       Node       Port    Home
@@ -396,8 +373,6 @@ Cluster
           node1_clus2  up/up      169.254.49.125/16  node1      e0b     true
           node2_clus1  up/up      169.254.47.194/16  node2      e0a     true
           node2_clus2  up/up      169.254.19.183/16  node2      e0b     true
-
-4 entries were displayed.
 ----
 . 验证两个节点与每个交换机之间是否有一个连接：
 +
@@ -407,9 +382,9 @@ Cluster
 以下示例显示了这两个交换机的相应结果：
 
 +
-[listing]
+[listing, subs="+quotes"]
 ----
-(cs1)# show isdp neighbors
+(cs1)# *show isdp neighbors*
 
 Capability Codes: R - Router, T - Trans Bridge, B - Source Route Bridge,
                   S - Switch, H - Host, I - IGMP, r - Repeater
@@ -421,7 +396,7 @@ cs2            0/55         178       R            BES-53248   0/55
 cs2            0/56         178       R            BES-53248   0/56
 
 
-(cs2)# show isdp neighbors
+(cs2)# *show isdp neighbors*
 
 Capability Codes: R - Router, T - Trans Bridge, B - Source Route Bridge,
                   S - Switch, H - Host, I - IGMP, r - Repeater
@@ -437,9 +412,9 @@ cs1            0/56         175       R            BES-53248   0/56
 `network device-discovery show -protocol cdp`
 
 +
-[listing]
+[listing, subs="+quotes"]
 ----
-cluster1::*> network device-discovery show -protocol cdp
+cluster1::*> *network device-discovery show -protocol cdp*
 Node/       Local  Discovered
 Protocol    Port   Device (LLDP: ChassisID)  Interface         Platform
 ----------- ------ ------------------------- ----------------  ----------------
@@ -449,8 +424,6 @@ node2      /cdp
 node1      /cdp
             e0a    cs1                       0/1               BES-53248
             e0b    cs2                       0/1               BES-53248
-
-4 entries were displayed.
 ----
 . 验证这些设置是否已禁用：
 +
@@ -464,9 +437,9 @@ NOTE: 完成此命令可能需要几分钟的时间。等待 " 三分钟生命�
 以下示例中的 `false` 输出显示配置设置已禁用：
 
 +
-[listing]
+[listing, subs="+quotes"]
 ----
-cluster1::*> network options switchless-cluster show
+cluster1::*> *network options switchless-cluster show*
 Enable Switchless Cluster: false
 ----
 . 验证集群中节点成员的状态：
@@ -477,9 +450,9 @@ Enable Switchless Cluster: false
 以下示例显示了有关集群中节点的运行状况和资格的信息：
 
 +
-[listing]
+[listing, subs="+quotes"]
 ----
-cluster1::*> cluster show
+cluster1::*> *cluster show*
 
 Node                 Health  Eligibility   Epsilon
 -------------------- ------- ------------  --------
@@ -491,9 +464,9 @@ node2                true    true          false
 `cluster ping-cluster -node _node-name_`
 
 +
-[listing]
+[listing, subs="+quotes"]
 ----
-cluster1::*> cluster ping-cluster -node local
+cluster1::*> *cluster ping-cluster -node local*
 
 Host is node2
 Getting addresses from network interface table...
@@ -534,12 +507,12 @@ cluster1::*> system node autosupport invoke -node \* -type all -message MAINT=EN
 ----
 
 
-请参见中的 _Configuring the cluster switch log Collection feature_ http://docs.netapp.com/platstor/topic/com.netapp.doc.hw-sw-ix8-setup/home.html["《适用于 Broadcom 支持的 BES-53248 交换机的交换机设置和配置指南》"^] 用于启用集群运行状况交换机日志收集以收集交换机相关日志文件所需的步骤。
+请参见 link:configure-health-monitor.html["安装集群交换机运行状况监控器（ CSHM ）配置文件"] 和 link:configure-log-collection["配置集群交换机日志收集功能"] 用于启用集群运行状况交换机日志收集以收集交换机相关日志文件所需的步骤。
 
 * 相关信息 *
 
-https://hwu.netapp.com["Hardware Universe"^]
+https://hwu.netapp.com/Home/Index["NetApp Hardware Universe"^]
 
-http://docs.netapp.com/platstor/topic/com.netapp.doc.hw-sw-ix8-setup/home.html["《适用于 Broadcom 支持的 BES-53248 交换机的交换机设置和配置指南》"^]
+link:replace-requirements.html["Broadcom支持的BES-53248交换机设置和配置"^]
 
 https://kb.netapp.com/Advice_and_Troubleshooting/Data_Storage_Software/ONTAP_OS/How_to_suppress_automatic_case_creation_during_scheduled_maintenance_windows["NetApp 知识库文章： How to suppress automatic case creation during scheduled maintenance windows."^]

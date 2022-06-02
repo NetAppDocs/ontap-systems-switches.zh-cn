@@ -137,12 +137,12 @@ NOTE: 对于介于 0/49 到 0/54 之间的高速端口，取消对每个端口�
 
 编辑先前安装的 RCF 文件并运行 `sscript apply` 命令后，可能会收到以下错误消息：
 
-[listing]
+[listing, subs="+quotes"]
 ----
-(CS1) #script apply BES-53248_RCF_v1.6-Cluster-HA.scr
- Are you sure you want to apply the configuration script? (y/n)
+(CS1)# *script apply BES-53248_RCF_v1.6-Cluster-HA.scr*
+Are you sure you want to apply the configuration script? (y/n) *y*
 ----
-选择 `y` 后，您将收到以下错误消息：
+选择* y *后、您将收到以下错误消息：
 
 [listing]
 ----
@@ -154,16 +154,13 @@ config
  CLI Command :: match cos 5.
  Aborting script.
 ----
-要避免或解决此问题描述，您可以选择以下选项之一：
+要避免或解决此问题描述 、您可以选择以下选项之一：
 
 * 要避免此错误，您可以使用以下操作步骤：
 +
-.. 再创建一个仅包含新端口配置的 RCF 文件。
-.. 将第二个 RCF 文件复制到交换机。
-.. 将此脚本应用于交换机。
-+
-`s记录应用`
-
+.. 创建另一个仅包含新端口配置的RCF。
+.. 将第二个RCF复制到交换机。
+.. 使用命令`sscript apply`将此脚本应用于交换机。
 
 
 * 要解决此错误，请参见知识库文章： link:++https://kb.netapp.com/?title=Advice_and_Troubleshooting%2FData_Storage_Systems%2FFabric%252C_Interconnect_and_Management_Switches%2FError%2521_in_configuration_script_file_at_line_number_XX_when_applying_a_new_RCF%20%20%20++["error在应用新 RCF 时，配置脚本文件的行号为 XX"^]

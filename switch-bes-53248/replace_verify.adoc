@@ -4,7 +4,7 @@ sidebar: sidebar
 keywords: command, verify, operational, bes, cluster, switch, upgrade, verify the configuration after a cluster switch upgrade - bes-53428 switches 
 summary: 您可以使用此处提供的命令验证升级 BES-53248 集群交换机后所有交换机是否均正常运行。 
 ---
-= 升级集群交换机后验证配置— BES-53248 交换机
+= 升级BES-53248集群交换机后验证配置
 :allow-uri-read: 
 :icons: font
 :imagesdir: ../media/
@@ -25,9 +25,9 @@ summary: 您可以使用此处提供的命令验证升级 BES-53248 集群交换
 以下示例显示了命令的输出：
 
 +
-[listing]
+[listing, subs="+quotes"]
 ----
-cluster1::> network port show -ipspace Cluster
+cluster1::> *network port show -ipspace Cluster*
 
 Node: node1
                                                                     Ignore
@@ -44,17 +44,15 @@ Port   IPspace      Broadcast Domain Link MTU  Admin/Oper  Status   Status
 -----  ------------ ---------------- ---- ---- ----------- -------- ------
 e0a    Cluster      Cluster          up   9000  auto/10000 healthy  false
 e0b    Cluster      Cluster          up   9000  auto/10000 healthy  false
-
-	4 entries were displayed.
 ----
 . 使用以下命令验证每个 LIF 的 `均为 Home` is `true` and `StatStatus Admin/Oper` is `up` on both nodes ：
 +
 `network interface show -vserver cluster`
 
 +
-[listing]
+[listing, subs="+quotes"]
 ----
-cluster1::> network interface show -vserver Cluster
+cluster1::> *network interface show -vserver Cluster*
 
             Logical    Status     Network            Current       Current Is
 Vserver     Interface  Admin/Oper Address/Mask       Node          Port    Home
@@ -64,20 +62,16 @@ Cluster
             node1_clus2  up/up    169.254.205.88/16  node1         e0b     true
             node2_clus1  up/up    169.254.252.125/16 node2         e0a     true
             node2_clus2  up/up    169.254.110.131/16 node2         e0b     true
-
-4 entries were displayed.
 ----
 . 使用命令 `cluster show` 验证每个节点的 `运行状况` 是否为 `true`
 +
-[listing]
+[listing, subs="+quotes"]
 ----
-cluster1::> cluster show
+cluster1::> *cluster show*
 
 Node                 Health  Eligibility   Epsilon
 -------------------- ------- ------------  ------------
 node1                true    true          false
 node2                true    true          false
-
-2 entries were displayed.
 ----
 

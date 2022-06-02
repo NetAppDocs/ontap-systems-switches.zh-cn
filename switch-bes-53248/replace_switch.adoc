@@ -4,7 +4,7 @@ sidebar: sidebar
 keywords: replace, replacing, defective, broadcom-supported, bes, cluster, switch, network, nondisruptive, procedure, ndu, replace a broadcom-supported bes-53428 cluster switch - bes-53428 switches 
 summary: 在集群网络中更换 Broadcom 支持的故障 BES-53248 集群交换机是无中断操作步骤 \ （ NDU\ ）。 
 ---
-= 更换 Broadcom 支持的 BES-53248 集群交换机 - BES-53248 交换机
+= 更换Broadcom支持的BES-53248集群交换机
 :allow-uri-read: 
 :icons: font
 :imagesdir: ../media/
@@ -29,7 +29,7 @@ summary: 在集群网络中更换 Broadcom 支持的故障 BES-53248 集群交�
 ** 必须能够通过控制台访问更换用的交换机。
 ** 节点连接为端口 0/1 到 0/16 ，并具有默认许可。
 ** 必须在端口 0/55 和 0/56. 上禁用所有交换机间链路（ ISL ）端口。
-** 必须将所需的参考配置文件（`RCF` ）和 `EFOS` 操作系统交换机映像加载到交换机上。
+** 必须将所需的参考配置文件(RCF)和EFOS操作系统交换机映像加载到交换机上。
 ** 必须完成交换机的初始自定义，如中所述 xref:configure-new-switch.adoc[配置支持 Broadcom 的新 BES-53248 交换机]。
 +
 之前的任何站点自定义设置，例如 STP ， SNMP 和 SSH ，都应复制到新交换机。
@@ -51,9 +51,9 @@ summary: 在集群网络中更换 Broadcom 支持的故障 BES-53248 集群交�
 
 NOTE: 以下操作步骤基于以下集群网络拓扑：
 
-[listing]
+[listing, subs="+quotes"]
 ----
-cluster1::> network port show -ipspace Cluster
+cluster1::> *network port show -ipspace Cluster*
 
 Node: node1
                                                                        Ignore
@@ -72,10 +72,8 @@ Port      IPspace      Broadcast Domain Link MTU  Admin/Oper  Status   Status
 e0a       Cluster      Cluster          up   9000  auto/10000 healthy  false
 e0b       Cluster      Cluster          up   9000  auto/10000 healthy  false
 
-4 entries were displayed.
 
-
-cluster1::> network interface show -vserver Cluster
+cluster1::> *network interface show -vserver Cluster*
             Logical    Status     Network            Current       Current Is
 Vserver     Interface  Admin/Oper Address/Mask       Node          Port    Home
 ----------- ---------- ---------- ------------------ ------------- ------- ----
@@ -85,11 +83,8 @@ Cluster
             node2_clus1  up/up    169.254.47.194/16  node2         e0a     true
             node2_clus2  up/up    169.254.19.183/16  node2         e0b     true
 
-4 entries were displayed.
 
-
-
-cluster1::> network device-discovery show -protocol cdp
+cluster1::> *network device-discovery show -protocol cdp*
 Node/       Local  Discovered
 Protocol    Port   Device (LLDP: ChassisID)  Interface         Platform
 ----------- ------ ------------------------- ----------------  ----------------
@@ -99,11 +94,10 @@ node2      /cdp
 node1      /cdp
             e0a    cs1                       0/1               BES-53248
             e0b    cs2                       0/1               BES-53248
-
-4 entries were displayed.
-
-
-(cs1) # show isdp neighbors
+----
+[listing, subs="+quotes"]
+----
+(cs1)# *show isdp neighbors*
 
 Capability Codes: R - Router, T - Trans Bridge, B - Source Route Bridge,
                   S - Switch, H - Host, I - IGMP, r - Repeater
@@ -116,7 +110,7 @@ cs2                      0/55      179       R          BES-53248        0/55
 cs2                      0/56      179       R          BES-53248        0/56
 
 
-(cs2) # show isdp neighbors
+(cs2)# show isdp neighbors
 
 Capability Codes: R - Router, T - Trans Bridge, B - Source Route Bridge,
                   S - Switch, H - Host, I - IGMP, r - Repeater
@@ -151,25 +145,26 @@ NOTE: 如果您为其他端口购买了额外的许可证，请同时关闭这�
 NOTE: 要进入 `enable` 模式，不需要密码。
 
 +
-[listing]
+[listing, subs="+quotes"]
 ----
-User: admin
+User: *admin*
 Password:
-(newcs2) >enable
-(newcs2) #config
-(newcs2)(config)#interface 0/1-0/16
-(newcs2)(interface 0/1-0/16)#shutdown
-(newcs2)(interface 0/1-0/16)#exit
-(newcs2)(config)#exit
+(newcs2)> *enable*
+(newcs2)# *config*
+(newcs2)(config)# *interface 0/1-0/16*
+(newcs2)(interface 0/1-0/16)# *shutdown*
+(newcs2)(interface 0/1-0/16)# *exit*
+(newcs2)(config)# *exit*
+(newcs2)#
 ----
 . 验证所有集群 LIF 是否已启用 `auto-revert` ：
 +
 `network interface show - vserver cluster -fields auto-revert`
 
 +
-[listing]
+[listing, subs="+quotes"]
 ----
-cluster1::> network interface show -vserver Cluster -fields auto-revert
+cluster1::> *network interface show -vserver Cluster -fields auto-revert*
 
 Logical
 Vserver   Interface    Auto-revert
@@ -177,17 +172,16 @@ Vserver   Interface    Auto-revert
 Cluster   node1_clus1  true
 Cluster   node1_clus2  true
 Cluster   node2_clus1  true
-Cluster			node2_clus2		true
+Cluster   node2_clus2  true
 
-4 entries were displayed.
 ----
 . 关闭 BES-53248 交换机 CS1 上的 ISL 端口 0/55 和 0/56 ：
 +
-[listing]
+[listing, subs="+quotes"]
 ----
-(cs1) # config
-(cs1)(config)# interface 0/55-0/56
-(cs1)(interface 0/55-0/56)# shutdown
+(cs1)# *config*
+(cs1)(config)# *interface 0/55-0/56*
+(cs1)(interface 0/55-0/56)# *shutdown*
 ----
 . 拔下 BES-53248 CS2 交换机上的所有缆线，然后将其连接到 BES-53248 newcs2 交换机上的相同端口。
 . 启动 CS1 和 newcs2 交换机之间的 ISL 端口 0/55 和 0/56 ，然后验证端口通道操作状态。
@@ -198,13 +192,13 @@ Cluster			node2_clus2		true
 此示例将启用 ISL 端口 0/55 和 0/56 ，并显示交换机 CS1 上端口通道 1/1 的链路状态：
 
 +
-[listing]
+[listing, subs="+quotes"]
 ----
-(cs1) # config
-(cs1)(config)# interface 0/55-0/56
-(cs1)(interface 0/55-0/56)# no shutdown
-(cs1) # show port-channel 1/1
-
+(cs1)# *config*
+(cs1)(config)# *interface 0/55-0/56*
+(cs1)(interface 0/55-0/56)# *no shutdown*
+(cs1)(interface 0/55-0/56)# *exit*
+(cs1)# *show port-channel 1/1*
 
 Local Interface................................ 1/1
 Channel Name................................... Cluster-ISL
@@ -229,16 +223,16 @@ Ports  Timeout       Speed      Active
 NOTE: 如果您为其他端口购买了额外的许可证，请同时关闭这些端口。
 
 +
-[listing]
+[listing, subs="+quotes"]
 ----
 User:admin
 Password:
-(newcs2) >enable
-(newcs2) #config
-(newcs2)(config)#interface 0/1-0/16
-(newcs2)(interface 0/1-0/16)#no shutdown
-(newcs2)(interface 0/1-0/16)#exit
-(newcs2)(config)#exit
+(newcs2)> *enable*
+(newcs2)# *config*
+(newcs2)(config)# *interface 0/1-0/16*
+(newcs2)(interface 0/1-0/16)# *no shutdown*
+(newcs2)(interface 0/1-0/16)# *exit*
+(newcs2)(config)# *exit*
 ----
 . 验证端口 e0b 是否为 `up` ：
 +
@@ -248,9 +242,9 @@ Password:
 输出应类似于以下内容：
 
 +
-[listing]
+[listing, subs="+quotes"]
 ----
-cluster1::> network port show -ipspace Cluster
+cluster1::> *network port show -ipspace Cluster*
 
 Node: node1
                                                                         Ignore
@@ -267,8 +261,6 @@ Port      IPspace      Broadcast Domain Link MTU   Admin/Oper  Status   Status
 --------- ------------ ---------------- ---- ----- ----------- -------- -------
 e0a       Cluster      Cluster          up   9000  auto/10000  healthy  false
 e0b       Cluster      Cluster          up   9000  auto/auto   -        false
-
-4 entries were displayed.
 ----
 . 在上一步使用的同一节点上，等待 node1 上的集群 LIF node1_clus2 自动还原。
 +
@@ -278,9 +270,9 @@ e0b       Cluster      Cluster          up   9000  auto/auto   -        false
 以下命令显示两个节点上的 LIF 的相关信息。如果两个集群接口的 `为 Home` 为 `true` 且显示正确的端口分配，则会成功启动第一个节点，此示例中为 node1 上的 `e0a` 和 `e0b` 。
 
 +
-[listing]
+[listing, subs="+quotes"]
 ----
-cluster::> network interface show -vserver Cluster
+cluster::> *network interface show -vserver Cluster*
 
             Logical      Status     Network            Current    Current Is
 Vserver     Interface    Admin/Oper Address/Mask       Node       Port    Home
@@ -290,30 +282,28 @@ Cluster
             node1_clus2  up/up      169.254.49.125/16  node1      e0b     true
             node2_clus1  up/up      169.254.47.194/16  node2      e0a     true
             node2_clus2  up/up      169.254.19.183/16  node2      e0a     false
-
-4 entries were displayed.
 ----
 . 显示有关集群中节点的信息： `cluster show`
 +
 此示例显示此集群中 `node1` 和 `node2` 的节点运行状况为 `true` ：
 
 +
-[listing]
+[listing, subs="+quotes"]
 ----
-cluster1::> cluster show
-Node                   Health Eligibility    Epsilon
---------------------   ------- ------------  --------
-node1                   true    true           true
-node2                   true    true           true
+cluster1::> *cluster show*
+Node   Health   Eligibility   Epsilon
+------ -------- ------------  --------
+node1  true     true          true
+node2  true     true          true
 ----
 . 确认以下集群网络配置：
 +
 `network port show`
 
 +
-[listing]
+[listing, subs="+quotes"]
 ----
-cluster1::> network port show -ipspace Cluster
+cluster1::> *network port show -ipspace Cluster*
 Node: node1
                                                                        Ignore
                                        Speed(Mbps)            Health   Health
@@ -330,10 +320,8 @@ Port      IPspace      Broadcast Domain Link MTU  Admin/Oper  Status   Status
 e0a       Cluster      Cluster          up   9000 auto/10000  healthy  false
 e0b       Cluster      Cluster          up   9000 auto/10000  healthy  false
 
-4 entries were displayed.
 
-
-cluster1::> network interface show -vserver Cluster
+cluster1::> *network interface show -vserver Cluster*
 
             Logical    Status     Network            Current       Current Is
 Vserver     Interface  Admin/Oper Address/Mask       Node          Port    Home
@@ -344,10 +332,11 @@ Cluster
             node2_clus1  up/up    169.254.47.194/16  node2         e0a     true
             node2_clus2  up/up    169.254.19.183/16  node2         e0b     true
 4 entries were displayed.
-
-
-
-cs1# show cdp neighbors
+----
++
+[listing, subs="+quotes"]
+----
+cs1# *show cdp neighbors*
 
 Capability Codes: R - Router, T - Trans-Bridge, B - Source-Route-Bridge
                   S - Switch, H - Host, I - IGMP, r - Repeater,
@@ -361,10 +350,7 @@ newcs2(FDO296348FU)  Eth1/65        176    R S I s     N9K-C92300YC  Eth1/65
 newcs2(FDO296348FU)  Eth1/66        176    R S I s     N9K-C92300YC  Eth1/66
 
 
-Total entries displayed: 4
-
-
-cs2# show cdp neighbors
+cs2# *show cdp neighbors*
 
 Capability Codes: R - Router, T - Trans-Bridge, B - Source-Route-Bridge
                   S - Switch, H - Host, I - IGMP, r - Repeater,
@@ -376,17 +362,15 @@ node1              Eth1/1         139    H           FAS2980       e0b
 node2              Eth1/2         124    H           FAS2980       e0b
 cs1(FDO220329KU)   Eth1/65        178    R S I s     N9K-C92300YC  Eth1/65
 cs1(FDO220329KU)   Eth1/66        178    R S I s     N9K-C92300YC  Eth1/66
-
-Total entries displayed: 4
 ----
 . 验证集群网络是否运行正常：
 +
 `s如何使用 isdp 邻居`
 
 +
-[listing]
+[listing, subs="+quotes"]
 ----
-(cs1)# show isdp neighbors
+(cs1)# *show isdp neighbors*
 Capability Codes: R - Router, T - Trans Bridge, B - Source Route Bridge,
 S - Switch, H - Host, I - IGMP, r - Repeater
 Device ID    Intf    Holdtime    Capability    Platform    Port ID
@@ -396,7 +380,7 @@ node2        0/2     152         H             FAS2750     e0a
 newcs2       0/55    179         R             BES-53248   0/55
 newcs2       0/56    179         R             BES-53248   0/56
 
-(newcs2) # show isdp neighbors
+(newcs2)# *show isdp neighbors*
 Capability Codes: R - Router, T - Trans Bridge, B - Source Route Bridge,
 S - Switch, H - Host, I - IGMP, r - Repeater
 
@@ -417,4 +401,4 @@ https://mysupport.netapp.com/["NetApp 支持站点"^]
 
 https://hwu.netapp.com/["NetApp Hardware Universe"^]
 
-http://docs.netapp.com/platstor/topic/com.netapp.doc.hw-sw-ix8-setup/home.html["《适用于 Broadcom 支持的 BES-53248 交换机的交换机设置和配置指南》"^]
+link:replace-requirements.html["Broadcom支持的BES-53248交换机设置和配置"^]

@@ -35,10 +35,7 @@ summary: 升级 BES-53248 集群交换机首先需要准备要升级的控制器
 * `cluster1 ：： >` 提示符指示集群的名称。
 * 每个节点上的集群端口分别命名为 `e0a` 和 `e0b` 。
 +
-有关您的平台支持的实际集群端口，请参见 _Hardware Universe___.
-
-+
-https://hwu.netapp.com/Home/Index["NetApp Hardware Universe"^]
+请参见 https://hwu.netapp.com/Home/Index["_NetApp Hardware Universe"^] 您的平台支持的实际集群端口。
 
 * NetApp 集群交换机支持的交换机间链路（ ISL ）为端口 0/55 和 0/56 。
 * NetApp 集群交换机支持的节点连接为端口 0/1 到 0/16 ，具有默认许可。

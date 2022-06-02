@@ -101,9 +101,9 @@ EFOS 3.4.4.6 及更高版本
 此示例验证交换机是否已连接到 IP 地址为 172.19.2.1 的服务器：
 
 +
-[listing]
+[listing, subs="+quotes"]
 ----
-(cs2) # ping 172.19.2.1
+(cs2)# *ping 172.19.2.1*
 Pinging 172.19.2.1 with 0 bytes of data:
 
 Reply From 172.19.2.1: icmp_seq = 0. time= 5910 usec.
@@ -113,9 +113,9 @@ Reply From 172.19.2.1: icmp_seq = 0. time= 5910 usec.
 `s如何许可`
 
 +
-[listing]
+[listing, subs="+quotes"]
 ----
-(cs2) # show license
+(cs2)# *show license*
 Reboot needed.................................. No
 Number of active licenses...................... 0
 
@@ -129,9 +129,9 @@ No license file found.
 重复此步骤可加载更多许可证并使用不同的密钥索引编号。
 
 +
-[listing]
+[listing, subs="+quotes"]
 ----
-(cs2) #copy sftp://root@172.19.2.1/var/lib/tftpboot/license.dat nvram:license-key 1
+(cs2)# *copy sftp://root@172.19.2.1/var/lib/tftpboot/license.dat nvram:license-key 1*
 Remote Password:********
 
 Mode........................................... SFTP
@@ -142,10 +142,9 @@ Data Type...................................... license
 
 
 Management access will be blocked for the duration of the transfer
-Are you sure you want to start? (y/n) y
+Are you sure you want to start? (y/n) *y*
 
 File transfer in progress. Management access will be blocked for the duration of the transfer. Please wait...
-
 
 License Key transfer operation completed successfully. System reboot is required.
 ----
@@ -154,9 +153,9 @@ License Key transfer operation completed successfully. System reboot is required
 `s如何许可`
 
 +
-[listing]
+[listing, subs="+quotes"]
 ----
-(cs2) # show license
+(cs2)# *show license*
 
 Reboot needed.................................. Yes
 Number of active licenses...................... 0
@@ -174,9 +173,9 @@ License Index  License Type      Status
 只有在重新启动交换机后，才会显示其他许可证文件中的端口。
 
 +
-[listing]
+[listing, subs="+quotes"]
 ----
-(cs2) # show port all \| exclude Detach
+(cs2)# *show port all \| exclude Detach*
 
                  Admin     Physical   Physical   Link   Link    LACP   Actor
 Intf      Type   Mode      Mode       Status     Status Trap    Mode   Timeout
@@ -205,26 +204,26 @@ Intf      Type   Mode      Mode       Status     Status Trap    Mode   Timeout
 `re负载`
 
 +
-[listing]
+[listing, subs="+quotes"]
 ----
-(cs2) # reload
+(cs2)# *reload*
 
 The system has unsaved changes.
-Would you like to save them now? (y/n) y
+Would you like to save them now? (y/n) *y*
 
 Config file 'startup-config' created successfully .
 
 Configuration Saved!
-Are you sure you would like to reset the system? (y/n) y
+Are you sure you would like to reset the system? (y/n) *y*
 ----
 . 检查新许可证是否处于活动状态，并注意此许可证是否已应用：
 +
 `s如何许可`
 
 +
-[listing]
+[listing, subs="+quotes"]
 ----
-(cs2) # show license
+(cs2)# *show license*
 
 Reboot needed.................................. No
 Number of installed licenses................... 1
@@ -234,16 +233,15 @@ Total Uplink Ports enabled..................... 8
 License Index  License Type              Status
 -------------- ------------------------- -----------------------------------
 1              Port                      License applied
-(cs2) #
 ----
 . 检查所有新端口是否可用：
 +
 `s如何全部端口 | 排除断开`
 
 +
-[listing]
+[listing, subs="+quotes"]
 ----
-(cs2) # show port all \| exclude Detach
+(cs2)# *show port all \| exclude Detach*
 
                  Admin     Physical   Physical   Link   Link    LACP   Actor
 Intf      Type   Mode      Mode       Status     Status Trap    Mode   Timeout
@@ -272,7 +270,8 @@ Intf      Type   Mode      Mode       Status     Status Trap    Mode   Timeout
 0/54             Disable   100G Full             Down   Enable  Enable long
 0/55             Disable   100G Full             Down   Enable  Enable long
 0/56             Disable   100G Full             Down   Enable  Enable long
-
-(cs2) #
 ----
 
+
+
+CAUTION: 安装其他许可证时、必须手动配置新接口。建议不要将RCF重新应用于现有正常运行的生产交换机。

@@ -28,10 +28,10 @@ summary: 首次设置 BES-53248 集群交换机后以及应用新许可证后，
 .步骤
 . 更改为提升的命令提示符（` #` ）： `enable`
 +
-[listing]
+[listing, subs="+quotes"]
 ----
-(cs2)> enable
-(cs2) #
+(cs2)> *enable*
+(cs2)#
 ----
 . 擦除启动配置并删除横幅
 +
@@ -40,11 +40,11 @@ summary: 首次设置 BES-53248 集群交换机后以及应用新许可证后，
 *`擦除启动配置` *
 
 +
-[listing]
+[listing, subs="+quotes"]
 ----
-(cs2) #erase startup-config
-Are you sure you want to clear the configuration? (y/n) y
-(cs2) #
+(cs2)# *erase startup-config*
+Are you sure you want to clear the configuration? (y/n) *y*
+(cs2)#
 ----
 +
 此命令不会擦除横幅。
@@ -54,19 +54,19 @@ Are you sure you want to clear the configuration? (y/n) y
 *`无设置剪贴画` *
 
 +
-[listing]
+[listing, subs="+quotes"]
 ----
-(cs2) #configure
-(cs2)(Config) # no set clibanner
-(cs2)(Config) #
+(cs2)# *configure*
+(cs2)(Config)# *no set clibanner*
+(cs2)(Config)#
 ----
 
 
 . 重新启动交换机： *` （ CS2 ） #reload *`
 +
-[listing]
+[listing, subs="+quotes"]
 ----
-Are you sure you would like to reset the system? (y/n) y
+Are you sure you would like to reset the system? (y/n) *y*
 ----
 +
 
@@ -86,22 +86,21 @@ NOTE: 如果系统在重新加载交换机之前询问是保存未保存的配�
 `启用`
 
 +
-[listing]
+[listing, subs="+quotes"]
 ----
-Routing)> enable
-(Routing) #
+Routing)> *enable*
+(Routing)#
 ----
 . 将服务端口协议设置为 `none` ：
 +
 `s服务端口协议无`
 
 +
-[listing]
+[listing, subs="+quotes"]
 ----
-(Routing) #serviceport protocol none
+(Routing)# *serviceport protocol none*
 Changing protocol mode will reset ip configuration.
-Are you sure you want to continue? (y/n) y
-
+Are you sure you want to continue? (y/n) *y*
 (Routing) #
 ----
 . 将 IP 地址分配给服务端口：
@@ -112,9 +111,9 @@ Are you sure you want to continue? (y/n) y
 以下示例显示了一个服务端口分配的 IP 地址 10.10.10.10 ，子网为 255.255.255.0 ，网关为 10.10.10.1 ：
 
 +
-[listing]
+[listing, subs="+quotes"]
 ----
-(Routing) #serviceport ip 10.10.10.10 255.255.255.0 10.10.10.1
+(Routing)# *serviceport ip 10.10.10.10 255.255.255.0 10.10.10.1*
 ----
 . 验证服务端口是否配置正确：
 +
@@ -124,10 +123,9 @@ Are you sure you want to continue? (y/n) y
 以下示例显示端口已启动，并且已分配正确的地址：
 
 +
-[listing]
+[listing, subs="+quotes"]
 ----
-(Routing) #show serviceport
-
+(Routing)# *show serviceport*
 Interface Status............................... Up
 IP Address..................................... 10.10.10.10
 Subnet Mask.................................... 255.255.255.0
@@ -139,7 +137,6 @@ Configured IPv4 Protocol....................... None
 Configured IPv6 Protocol....................... None
 IPv6 AutoConfig Mode........................... Disabled
 Burned In MAC Address.......................... D8:C4:97:56:87:D7
-
 (Routing) #
 ----
 . 如果需要，请配置 SSH 服务器。
@@ -150,34 +147,34 @@ NOTE: RCF 文件将禁用 Telnet 协议。如果不配置 SSH 服务器，则只
 +
 .. 生成 RSA 密钥。
 +
-[listing]
+[listing, subs="+quotes"]
 ----
-(Routing) #configure
-(Routing) (Config)#crypto key generate rsa
+(Routing)# *configure*
+(Routing) (Config)# *crypto key generate rsa*
 ----
 .. 生成 DSA 密钥（可选）
 +
-[listing]
+[listing, subs="+quotes"]
 ----
-(Routing) #configure
-(Routing) (Config)#crypto key generate dsa
+(Routing)# *configure*
+(Routing) (Config)# *crypto key generate dsa*
 ----
 .. 如果您使用的是符合 FIPS 的 EFOS 版本，请生成 ECDSA 密钥。以下示例将创建长度为 256 的密钥。有效值为 256 ， 384 或 521 。
 +
-[listing]
+[listing, subs="+quotes"]
 ----
-(Routing) #configure
-(Routing) (Config)#crypto key generate ecdsa 256
+(Routing)# *configure*
+(Routing) (Config)# *crypto key generate ecdsa 256*
 ----
 .. 启用 SSH 服务器。
 +
 如有必要，退出配置上下文。
 
 +
-[listing]
+[listing, subs="+quotes"]
 ----
-(Routing) (Config)#end
-(Routing) #ip ssh server enable
+(Routing) (Config)# *end*
+(Routing)# *ip ssh server enable*
 ----
 +
 
@@ -193,27 +190,25 @@ NOTE: 如果密钥已存在，则可能会要求您覆盖这些密钥。
 以下示例显示了 `ip domain` 和 `ip name server` 命令：
 
 +
-[listing]
+[listing, subs="+quotes"]
 ----
-(Routing) # configure
-(Routing) (Config)#ip domain name lab.netapp.com
-(Routing) (Config)#ip name server 10.99.99.1 10.99.99.2
-(Routing) (Config)#exit
-(Routing) (Config)#
+(Routing)# *configure*
+(Routing) (Config)# *ip domain name lab.netapp.com*
+(Routing) (Config)# *ip name server 10.99.99.1 10.99.99.2*
+(Routing) (Config)# *exit*
 ----
 . 如果需要，请配置时区和时间同步（ SNTP ）。
 +
 以下示例显示了 `sntp` 命令，用于指定 SNTP 服务器的 IP 地址和相对时区。
 
 +
-[listing]
+[listing, subs="+quotes"]
 ----
-(Routing) #
-(Routing) (Config)#sntp client mode unicast
-(Routing) (Config)#sntp server 10.99.99.5
-(Routing) (Config)#clock timezone -7
-(Routing) (Config)#exit
-(Routing) (Config)#
+(Routing)# *configure*
+(Routing) (Config)# *sntp client mode unicast*
+(Routing) (Config)# *sntp server 10.99.99.5*
+(Routing) (Config)# *clock timezone -7*
+(Routing) (Config)# *exit*
 ----
 . 配置交换机名称：
 +
@@ -223,11 +218,9 @@ NOTE: 如果密钥已存在，则可能会要求您覆盖这些密钥。
 交换机提示符将显示新名称：
 
 +
-[listing]
+[listing, subs="+quotes"]
 ----
-(Routing) # hostname cs2
-
-(cs2) #
+(Routing)# *hostname cs2*
 ----
 . 保存配置：
 +
@@ -237,23 +230,19 @@ NOTE: 如果密钥已存在，则可能会要求您覆盖这些密钥。
 您将收到类似于以下示例的提示和输出：
 
 +
-[listing]
+[listing, subs="+quotes"]
 ----
-(cs2) #write memory
+(cs2)# *write memory*
 
 This operation may take a few minutes.
 Management interfaces will not be available during this time.
 
-Are you sure you want to save? (y/n) y
+Are you sure you want to save? (y/n) *y*
 
-Config file 'startup-config' created successfully .
-
+Config file 'startup-config' created successfully.
 
 Configuration Saved!
-
-(cs2) #
 ----
-. 对另一个集群交换机重复上述步骤。
 
 
 
@@ -270,62 +259,58 @@ Configuration Saved!
 此示例验证交换机是否已连接到 IP 地址为 172.19.2.1 的服务器：
 
 +
-[listing]
+[listing, subs="+quotes"]
 ----
-(cs2) # ping 172.19.2.1
+(cs2)# *ping 172.19.2.1*
 Pinging 172.19.2.1 with 0 bytes of data:
 
 Reply From 172.19.2.1: icmp_seq = 0. time= 5910 usec.
 ----
 . 使用 copy 命令在 BES-53248 集群交换机上安装 RCF 。
 +
-[listing]
+[listing, subs="+quotes"]
 ----
-(cs2) # copy http://172.19.2.1/tmp/BES-53248_RCF_v1.6-Cluster-HA.txt nvram:script BES-53248_RCF_v1.6-Cluster-HA.scr
+(cs2)# *copy sftp://172.19.2.1/tmp/BES-53248_RCF_v1.6-Cluster-HA.txt nvram:script BES-53248_RCF_v1.6-Cluster-HA.scr*
 
-Remote Password ********
+Remote Password:********
 
-Mode........................................... HTTP
+Mode........................................... SFTP
 Set Server IP.................................. 172.19.2.1
 Path........................................... //tmp/
 Filename....................................... BES-53248_RCF_v1.6-Cluster-HA.txt
 Data Type...................................... Config Script
 Destination Filename........................... BES-53248_RCF_v1.6-Cluster-HA.scr
 
-File with same name already exists.
-WARNING:Continuing with this command will overwrite the existing file.
-
 Management access will be blocked for the duration of the transfer
-Are you sure you want to start? (y/n) y
+Are you sure you want to start? (y/n) *y*
+SFTP Code transfer starting...
 
-File transfer in progress. Management access will be blocked for the duration of the transfer. Please wait...
-
-Validating configuration script...
-[the script is now displayed line by line]
-
-Configuration script validated.
 File transfer operation completed successfully.
 ----
 +
 
-NOTE: 根据您的环境，您可能需要在 copy 命令中使用双斜杠，例如： ` +copy http://172.19.2.1//tmp/BES-53248_RCF_v1.6-Cluster-HA.txt[] NVRAM ：脚本 BES-53248_RCF_v1.6-Cluser-HA.SCR+` 。
+NOTE: 根据您的环境、您可能需要在copy命令中使用双斜杠、例如：`+copy sftp：//172.19.2.1//tmp/BES-53248_RCF_v1.6-Cluster-HA.txt nvram：script BES-53248_RCF_v1.6-Cluser-HA.SCR+`。
 
 +
 
-NOTE: 在调用脚本之前，必须将 ` .scr` 扩展名设置为文件名的一部分。此扩展是 EFOS 操作系统的扩展。将脚本下载到交换机后，交换机会自动验证该脚本，并将输出传输到控制台。此外，您还可以更改 ` .scr` 的名称以适应控制台屏幕，以便于阅读，例如： ` + copy http://172.19.2.1/tmp/BES-53248_RCF_v1.6-Cluster-HA.txt[] NVRAM ：脚本 RCF_v1.6-Cluster-HA.SCR+` 。
+NOTE: 在调用脚本之前，必须将 ` .scr` 扩展名设置为文件名的一部分。此扩展是 EFOS 操作系统的扩展。将脚本下载到交换机后，交换机会自动验证该脚本，并将输出传输到控制台。此外、您还可以更改`.scr`的名称以适应控制台屏幕、以便于阅读、例如：`+copy sftp：//172.19.2.1/tmp/BES-53248_RCF_v1.6-Cluster-HA.txt nvram：script RCF_v1.6-Cluster-HA.SCR+`。
+
++
+
+NOTE: 文件名不能包含符号`\：*？"<>>`、允许的最大长度为32个字符。
 
 . 验证脚本是否已下载并保存到您为其指定的文件名中：
 +
 `s记录列表`
 
 +
-[listing]
+[listing, subs="+quotes"]
 ----
-(cs2) # script list
+(cs2)# *script list*
 
 Configuration Script Name                  Size(Bytes)  Date of Modification
 -----------------------------------------  -----------  --------------------
-BES-53248_RCF_v1.6-Cluster-HA.scr        2241         2020 09 30 05:41:00
+BES-53248_RCF_v1.6-Cluster-HA.scr          2241         2020 09 30 05:41:00
 
 1 configuration script(s) found.
 ----
@@ -334,15 +319,15 @@ BES-53248_RCF_v1.6-Cluster-HA.scr        2241         2020 09 30 05:41:00
 `s记录应用`
 
 +
-[listing]
+[listing, subs="+quotes"]
 ----
-(cs2) # script apply BES-53248_RCF_v1.6-Cluster-HA.scr
+(cs2)# *script apply BES-53248_RCF_v1.6-Cluster-HA.scr*
 
-Are you sure you want to apply the configuration script? (y/n) y
+Are you sure you want to apply the configuration script? (y/n) *y*
 
 The system has unsaved changes.
-Would you like to save them now? (y/n) y
-Config file 'startup-config' created successfully .
+Would you like to save them now? (y/n) *y*
+Config file 'startup-config' created successfully.
 Configuration Saved!
 
 Configuration script 'BES-53248_RCF_v1.6-Cluster-HA.scr' applied.
@@ -352,13 +337,13 @@ Configuration script 'BES-53248_RCF_v1.6-Cluster-HA.scr' applied.
 `s如何全部端口 | 排除断开`
 
 +
-[listing]
+[listing, subs="+quotes"]
 ----
-(cs2) # show port all \| exclude Detach
+(cs2)# *show port all \| exclude Detach*
 
                  Admin     Physical     Physical   Link   Link    LACP   Actor
 Intf      Type   Mode      Mode         Status     Status Trap    Mode   Timeout
---------- ------ --------- ---------- ---------- ------ ------- ------ --------
+--------- ------ --------- ------------ ---------- ------ ------- ------ -------
 0/1              Enable    Auto                    Down   Enable  Enable long
 0/2              Enable    Auto                    Down   Enable  Enable long
 0/3              Enable    Auto                    Down   Enable  Enable long
@@ -389,22 +374,22 @@ Intf      Type   Mode      Mode         Status     Status Trap    Mode   Timeout
 `s如何运行配置`
 
 +
-[listing]
+[listing, subs="+quotes"]
 ----
-(cs2) # show running-config
+(cs2)# *show running-config*
 ----
 . 保存正在运行的配置，使其在重新启动交换机时成为启动配置：
 +
 `写入内存`
 
 +
-[listing]
+[listing, subs="+quotes"]
 ----
-(cs2) # write memory
+(cs2)# *write memory*
 This operation may take a few minutes.
 Management interfaces will not be available during this time.
 
-Are you sure you want to save? (y/n) y
+Are you sure you want to save? (y/n) *y*
 
 Config file 'startup-config' created successfully.
 
@@ -415,12 +400,18 @@ Configuration Saved!
 `re负载`
 
 +
-[listing]
+[listing, subs="+quotes"]
 ----
-(cs2) # reload
+(cs2)# *reload*
 
-Are you sure you would like to reset the system? (y/n) y
+Are you sure you would like to reset the system? (y/n) *y*
 
 System will now restart!
 ----
 
+
+
+NOTE: 在第一台交换机上安装RCF后、重复这些步骤、在第二台集群交换机上安装RCF。
+
+
+CAUTION: 请参见此内容 link:https://kb.netapp.com/Advice_and_Troubleshooting/Data_Protection_and_Security/MetroCluster/BES-53248_communication_issue_after_firmware%2F%2FRCF_upgrade["知识库"^] 有关安装适用于MetroCluster 的RCF的详细信息、请参见。

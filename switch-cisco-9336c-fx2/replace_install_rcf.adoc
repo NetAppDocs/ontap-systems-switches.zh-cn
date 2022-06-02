@@ -280,7 +280,7 @@ g mode:
 +
 [listing]
 ----
-cs2# copy running-config startup-config \[\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\] 100% Copy complete
+cs2# copy running-config startup-config [########################################] 100% Copy complete
 ----
 . 重新启动交换机 CS2 。在交换机重新启动时，您可以忽略节点上报告的 "`cluster ports down` " 事件。
 +
