@@ -21,9 +21,13 @@ summary: 您可以在首次设置 Nexus 9336C-fx2 交换机后安装 RCF 。您�
 * `cluster1 ：：： * >` 提示符指示集群的名称。
 
 
+[NOTE]
+====
+* 操作步骤要求同时使用 ONTAP 命令和 Cisco Nexus 9000 系列交换机命令；除非另有说明，否则使用 ONTAP 命令。
+* 在执行此操作步骤 之前、请确保已为交换机配置创建备份。
 
-NOTE: 操作步骤要求同时使用 ONTAP 命令和 Cisco Nexus 9000 系列交换机命令；除非另有说明，否则使用 ONTAP 命令。
 
+====
 .步骤
 . 显示连接到集群交换机的每个节点上的集群端口： `network device-discovery show`
 +
@@ -182,6 +186,12 @@ cluster1-03          true    true          true
 cluster1-04          true    true          false
 4 entries were displayed.
 cluster1::*>
+----
+. 如果您尚未保存当前交换机配置、请将以下命令的输出复制到日志文件中以保存此配置：
++
+[listing]
+----
+show running-config
 ----
 . 清理交换机 CS2 上的配置并执行基本设置。
 +

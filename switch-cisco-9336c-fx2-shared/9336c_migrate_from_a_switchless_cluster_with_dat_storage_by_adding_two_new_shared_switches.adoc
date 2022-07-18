@@ -77,24 +77,22 @@ NOTE: AutoSupport 消息会通知技术支持此维护任务，以便在维护�
 +
 以下示例显示了交换机 CS1 上面向节点的端口 1 到 34 已禁用：
 
-
-
-[listing]
++
+[listing, subs="+quotes"]
 ----
-cs1# config
+cs1# *config*
 Enter configuration commands, one per line. End with CNTL/Z.
-cs1(config)# interface e/1-34
-cs1(config-if-range)# shutdown
+cs1(config)# *interface e/1-34*
+cs1(config-if-range)# *shutdown*
 ----
 . 【第 4 步】验证 ISL 和两个 9336C-x2 交换机 CS1 和 CS2 之间的 ISL 物理端口在端口 1/35 和 1/36 上是否正常运行： `s如何处理端口通道摘要`
 +
 以下示例显示交换机 CS1 上的 ISL 端口已启动：
 
-
-
-[listing]
++
+[listing, subs="+quotes"]
 ----
-cs1# show port-channel summary
+cs1# *show port-channel summary*
 Flags:  D - Down        P - Up in port-channel (members)
         I - Individual  H - Hot-standby (LACP only)
         s - Suspended   r - Module-removed
@@ -109,11 +107,13 @@ Group Port-       Type     Protocol  Member Ports
 --------------------------------------------------------------------------------
 1     Po1(SU)     Eth      LACP      Eth1/35(P)   Eth1/36(P)
 ----
++
 以下示例显示交换机 CS2 上的 ISL 端口已启动：
 
-[listing]
++
+[listing, subs="+quotes"]
 ----
-       cs2# show port-channel summary
+       cs2# *show port-channel summary*
         Flags:  D - Down        P - Up in port-channel (members)
         I - Individual  H - Hot-standby (LACP only)
         s - Suspended   r - Module-removed
@@ -128,15 +128,14 @@ Group Port-       Type     Protocol  Member Ports
 --------------------------------------------------------------------------------
 1     Po1(SU)     Eth      LACP      Eth1/35(P)   Eth1/36(P)
 ----
-. 【第 5 步】显示相邻设备的列表： `s如何显示 cdp 邻居` 。
+. 【第5步】显示相邻设备的列表：`s如何显示cdp邻居`
 +
 此命令可提供有关连接到系统的设备的信息。以下示例列出了交换机 CS1 上的相邻设备：
 
-
-
-[listing]
++
+[listing, subs="+quotes"]
 ----
-cs1# show cdp neighbors
+cs1# *show cdp neighbors*
 Capability Codes: R - Router, T - Trans-Bridge, B - Source-Route-Bridge
                   S - Switch, H - Host, I - IGMP, r - Repeater,
                   V - VoIP-Phone, D - Remotely-Managed-Device,
@@ -146,11 +145,13 @@ cs2                Eth1/35        175    R S I s     N9K-C9336C    Eth1/35
 cs2                Eth1/36        175    R S I s     N9K-C9336C    Eth1/36
 Total entries displayed: 2
 ----
++
 以下示例列出了交换机 CS2 上的相邻设备：
 
-[listing]
++
+[listing, subs="+quotes"]
 ----
-cs2# show cdp neighbors
+cs2# *show cdp neighbors*
 Capability Codes: R - Router, T - Trans-Bridge, B - Source-Route-Bridge
                   S - Switch, H - Host, I - IGMP, r - Repeater,
                   V - VoIP-Phone, D - Remotely-Managed-Device,
@@ -165,11 +166,10 @@ Total entries displayed: 2
 +
 每个端口都应显示 "Link" 和 "Health" ：
 
-
-
-[listing]
++
+[listing, subs="+quotes"]
 ----
-cluster1::*> network port show -ipspace Cluster
+cluster1::*> *network port show -ipspace Cluster*
 
 Node: node1
                                                   Speed(Mbps)  Health
@@ -190,11 +190,10 @@ e3b       Cluster      Cluster          up   9000  auto/100000 healthy
 +
 对于 `为 Home` ，每个集群 LIF 均应显示 true ，并且状态为 Admin/Oper 为 up/up 。
 
-
-
-[listing]
++
+[listing, subs="+quotes"]
 ----
-cluster1::*> network interface show -vserver Cluster
+cluster1::*> *network interface show -vserver Cluster*
             Logical     Status     Network            Current       Current Is
 Vserver     Interface   Admin/Oper Address/Mask       Node          Port    Home
 ----------- ---------- ---------- ------------------ ------------- ------- -----
@@ -206,11 +205,10 @@ Cluster
 4 entries were displayed.
 ----
 . 【第 8 步】验证是否已在所有集群 LIF 上启用自动还原： `network interface show - vserver cluster -fields auto-revert`
-
-
-[listing]
++
+[listing, subs="+quotes"]
 ----
-cluster1::*> network interface show -vserver Cluster -fields auto-revert
+cluster1::*> *network interface show -vserver Cluster -fields auto-revert*
        Logical
 Vserver   Interface     Auto-revert
 --------- ------------- ------------
@@ -230,24 +228,22 @@ NetApp https://hwu.netapp.com["Hardware Universe"] 包含有关布线的详细�
 +
 以下示例显示交换机 CS1 上的端口 1/1 到 1/34 已启用：
 
-
-
-[listing]
++
+[listing, subs="+quotes"]
 ----
-cs1# config
+cs1# *config*
 Enter configuration commands, one per line. End with CNTL/Z.
-cs1(config)# interface e1/1-34
-cs1(config-if-range)# no shutdown
+cs1(config)# *interface e1/1-34*
+cs1(config-if-range)# *no shutdown*
 ----
 . 【第 12 步 ]] 确认 `Is Home` ： `network interface show - Vserver Cluster` 的所有集群 LIF 均为 * 已启动 * 且正常运行且显示为 true
 +
 以下示例显示 node1 和 node2 上的所有 LIF 均为 * 上 * ，并且 `为主目录` 结果为 * 上 * ：
 
-
-
-[listing]
++
+[listing, subs="+quotes"]
 ----
-cluster1::*> network interface show -vserver Cluster
+cluster1::*> *network interface show -vserver Cluster*
           Logical      Status     Network            Current     Current Is
 Vserver   Interface    Admin/Oper Address/Mask       Node        Port    Home
 --------- ------------ ---------- ------------------ ----------- ------- ----
@@ -262,11 +258,10 @@ Cluster
 +
 以下示例显示了有关集群中节点的运行状况和资格的信息：
 
-
-
-[listing]
++
+[listing, subs="+quotes"]
 ----
-cluster1::*> cluster show
+cluster1::*> *cluster show*
 Node                 Health  Eligibility   Epsilon
 -------------------- ------- ------------  ------------
 node1                true    true          false
@@ -279,24 +274,22 @@ node2                true    true          false
 +
 以下示例显示交换机 CS2 上的端口 1/1 到 1/34 已启用：
 
-
-
-[listing]
++
+[listing, subs="+quotes"]
 ----
-cs2# config
+cs2# *config*
 Enter configuration commands, one per line. End with CNTL/Z.
-cs2(config)# interface e1/1-34
-cs2(config-if-range)# no shutdown
+cs2(config)# *interface e1/1-34*
+cs2(config-if-range)# *no shutdown*
 ----
 . 【第 17 步】验证所有集群端口是否均已启动： `network port show - IP 空间集群`
 +
 以下示例显示 node1 和 node2 上的所有集群端口均已启动：
 
-
-
-[listing]
++
+[listing, subs="+quotes"]
 ----
-cluster1::*> network port show -ipspace Cluster
+cluster1::*> *network port show -ipspace Cluster*
 
 Node: node1
                                                                         Ignore
@@ -316,16 +309,17 @@ e3b       Cluster      Cluster          up   9000  auto/100000 healthy  false
 4 entries were displayed.
 ----
 . 【第 18 步】验证 `为主页` 的所有接口是否均显示 true ： `network interface show - Vserver Cluster`
-
-
++
 
 NOTE: 完成此操作可能需要几分钟时间。
 
++
 以下示例显示 node1 和 node2 上的所有 LIF 均为 * 上 * ，并且 `为主目录` 结果为 true ：
 
-[listing]
++
+[listing, subs="+quotes"]
 ----
-cluster1::*> network interface show -vserver Cluster
+cluster1::*> *network interface show -vserver Cluster*
           Logical      Status     Network            Current    Current Is
 Vserver   Interface    Admin/Oper Address/Mask       Node       Port    Home
 --------- ------------ ---------- ------------------ ---------- ------- ----
@@ -340,11 +334,10 @@ Cluster
 +
 以下示例显示了这两个交换机的相应结果：
 
-
-
-[listing]
++
+[listing, subs="+quotes"]
 ----
-cs1# show cdp neighbors
+cs1# *show cdp neighbors*
 Capability Codes: R - Router, T - Trans-Bridge, B - Source-Route-Bridge
                   S - Switch, H - Host, I - IGMP, r - Repeater,
                   V - VoIP-Phone, D - Remotely-Managed-Device,
@@ -368,11 +361,10 @@ cs1                Eth1/36        175    R S I s     N9K-C9336C    Eth1/36
 Total entries displayed: 4
 ----
 . 【第 20 步】显示有关集群中发现的网络设备的信息： `network device-discovery show -protocol cdp`
-
-
-[listing]
++
+[listing, subs="+quotes"]
 ----
-cluster1::*> network device-discovery show -protocol cdp
+cluster1::*> *network device-discovery show -protocol cdp*
 Node/       Local  Discovered
 Protocol    Port   Device (LLDP: ChassisID)  Interface         Platform
 ----------- ------ ------------------------- ----------------  ----------------
@@ -386,11 +378,10 @@ node1       /cdp
 4 entries were displayed.
 ----
 . `sHA 对 1 （和 HA 对 2 ）的存储配置是否正确且无错误：` system switch Ethernet show
-
-
-[listing]
++
+[listing, subs="+quotes"]
 ----
-storage::*> system switch ethernet show
+storage::*> *system switch ethernet show*
 Switch                    Type                   Address         Model
 ------------------------- ---------------------- --------------- ----------
 sh1
@@ -414,38 +405,37 @@ sh2
 storage::*>
 ----
 . 【第 22 步】验证设置是否已禁用： `network options switchless-cluster show`
-
-
++
 
 NOTE: 完成此命令可能需要几分钟的时间。等待 " 三分钟生命周期到期 " 公告。
 
++
 以下示例中的 `false` 输出显示配置设置已禁用：
 
-[listing]
++
+[listing, subs="+quotes"]
 ----
-cluster1::*> network options switchless-cluster show
+cluster1::*> *network options switchless-cluster show*
 Enable Switchless Cluster: false
 ----
 . 【第 23 步】验证集群中节点成员的状态： `cluster show`
 +
 以下示例显示了有关集群中节点的运行状况和资格的信息：
 
-
-
-[listing]
++
+[listing, subs="+quotes"]
 ----
-cluster1::*> cluster show
+cluster1::*> *cluster show*
 Node                 Health  Eligibility   Epsilon
 -------------------- ------- ------------  --------
 node1                true    true          false
 node2                true    true          false
 ----
 . 【第 24 步】确保集群网络具有完全连接： `cluster ping-cluster -node node-name`
-
-
-[listing]
++
+[listing, subs="+quotes"]
 ----
-cluster1::*> cluster ping-cluster -node node2
+cluster1::*> *cluster ping-cluster -node node2*
 Host is node2
 Getting addresses from network interface table...
 Cluster node1_clus1 169.254.209.69 node1 e3a
@@ -475,36 +465,37 @@ RPC status:
 +
 ** `s系统交换机以太网日志设置密码`
 ** `s系统交换机以太网日志 enable-Collection`
-
-
-
-
-[listing]
++
+[listing, subs="+quotes"]
 ----
-cluster1::*> system switch ethernet log setup-password
+cluster1::*> *system switch ethernet log setup-password*
 Enter the switch name: <return>
 The switch name entered is not recognized.
 
 Choose from the following list:
-cs1
-cs2
-cluster1::*> system switch ethernet log setup-password
-Enter the switch name: cs1
+*cs1*
+*cs2*
+cluster1::*> *system switch ethernet log setup-password*
+Enter the switch name: *cs1*
 RSA key fingerprint is e5:8b:c6:dc:e2:18:18:09:36:63:d9:63:dd:03:d9:cc
-Do you want to continue? {y|n}::[n] y
+Do you want to continue? {y|n}::[n] *y*
 Enter the password: <enter switch password>
 Enter the password again: <enter switch password>
-cluster1::*> system switch ethernet log setup-password
-Enter the switch name: cs2
+cluster1::*> *system switch ethernet log setup-password*
+Enter the switch name: *cs2*
 RSA key fingerprint is 57:49:86:a1:b9:80:6a:61:9a:86:8e:3c:e3:b7:1f:b1
-Do you want to continue? {y|n}:: [n] y
+Do you want to continue? {y|n}:: [n] *y*
 Enter the password: <enter switch password>
 Enter the password again: <enter switch password>
-cluster1::*> system  switch ethernet log enable-collection
-Do you want to enable cluster log collection for all nodes in the cluster? {y|n}: [n] y
+cluster1::*> *system  switch ethernet log enable-collection*
+Do you want to enable cluster log collection for all nodes in the cluster? {y|n}: [n] *y*
 Enabling cluster switch log collection.
 cluster1::*>
 ----
+
+
+
+
 
 
 ==== 设置共享交换机
@@ -520,11 +511,10 @@ NOTE: 操作步骤要求同时使用 ONTAP 命令和 Cisco Nexus 9000 系列交�
 
 .步骤
 . 验证 HA 对 1 （和 HA 对 2 ）的存储配置是否正确且无错误： `ssystem switch Ethernet show`
-
-
-[listing]
++
+[listing, subs="+quotes"]
 ----
-storage::*> system switch ethernet show
+storage::*> *system switch ethernet show*
 Switch                    Type                   Address         Model
 ------------------------- ---------------------  --------------- -------
 sh1
@@ -548,11 +538,10 @@ sh2
 storage::*>
 ----
 . `s存储节点端口运行状况良好且正常运行：` torage port show -port-type ENET
-
-
-[listing]
++
+[listing, subs="+quotes"]
 ----
-storage::*> storage port show -port-type ENET
+storage::*> *storage port show -port-type ENET*
                                    Speed                             VLAN
 Node    Port    Type    Mode       (Gb/s)      State      Status       ID
 ------- ------- ------- ---------- ----------- ---------- ---------- -----
@@ -572,11 +561,10 @@ node2
 . 安装从 HA 对 1 节点 1 路径 A 到 SH1 端口范围 11-22 的缆线。例如， AFF A400 上的存储端口路径为 e0c 。
 . 安装从 HA 对 1 节点 2 路径 A 到 SH1 端口范围 11-22 的缆线。
 . 验证节点端口是否运行正常： `storage port show -port-type ENET`
-
-
-[listing]
++
+[listing, subs="+quotes"]
 ----
-storage::*> storage port show -port-type ENET
+storage::*> *storage port show -port-type ENET*
                                    Speed                             VLAN
 Node    Port    Type    Mode       (Gb/s)      State      Status       ID
 ------- ------- ------- ---------- ----------- ---------- ---------- -----
@@ -593,22 +581,20 @@ node2
         e5b     ENET  storage           100      enabled  online        30
 ----
 . 【第 7 步】检查集群是否没有存储交换机或布线问题： `ssystem health alert show -instance`
-
-
-[listing]
++
+[listing, subs="+quotes"]
 ----
-storage::*> system health alert show -instance
+storage::*> *system health alert show -instance*
 There are no entries matching your query.
 ----
 . 【第 8 步】将 HA 对 1 的 NSM224 路径 B 端口移至 SH2 端口范围 11-22 。
 . 安装从 HA 对 1 节点 1 路径 B 到 SH2 端口范围 11-22 的缆线。例如， AFF A400 上的路径 B 存储端口为 e5b 。
 . 安装从 HA 对 1 节点 2 路径 B 到 SH2 端口范围 11-22 的缆线。
 . 验证节点端口是否运行正常： `storage port show -port-type ENET`
-
-
-[listing]
++
+[listing, subs="+quotes"]
 ----
-storage::*> storage port show -port-type ENET
+storage::*> *storage port show -port-type ENET*
                                    Speed                             VLAN
 Node    Port    Type    Mode       (Gb/s)      State      Status       ID
 ------- ------- ------- ---------- ----------- ---------- ---------- -----
@@ -625,11 +611,10 @@ node2
         e5b     ENET  storage           100      enabled  online        30
 ----
 . `sHA 对 1 的存储配置是否正确且无错误：` system switch Ethernet show
-
-
-[listing]
++
+[listing, subs="+quotes"]
 ----
-storage::*> system switch ethernet show
+storage::*> *system switch ethernet show*
 Switch                    Type                   Address          Model
 ------------------------- ---------------------- ---------------- ----------
 sh1
@@ -653,16 +638,19 @@ sh2
 storage::*>
 ----
 . 【第 13 步】将 HA 对 1 上未使用的（控制器）二级存储端口从存储重新配置到网络。如果直接连接了多个 NS224 ，则应重新配置一些端口。
-
-
-[listing]
++
+[listing, subs="+quotes"]
 ----
 storage port modify –node [node name] –port [port name] –mode network
 ----
++
 将存储端口置于广播域中：
 
-* `network port broadcast-domain create` （根据需要创建新域）
-* `network port broadcast-domain add-ports` （用于向现有域添加端口）
++
+** `network port broadcast-domain create` （根据需要创建新域）
+** `network port broadcast-domain add-ports` （用于向现有域添加端口）
+
+
 
 
 . 【第 14 步】如果您禁止自动创建案例，请通过调用 AutoSupport 消息重新启用此功能： `ssystem node AutoSupport invoke -node * -type all -message MAINT=end`

@@ -84,11 +84,10 @@ summary:
 
 . 检查每个集群端口的管理和运行状态。
 . 确认所有集群端口均已启动且状态正常： `network port show – role cluster`
-
-
-[listing]
++
+[listing, subs="+quotes"]
 ----
-cluster1::*> network port show -role cluster
+cluster1::*> *network port show -role cluster*
 Node: node1
                                                                    Ignore
                                              Speed(Mbps)  Health   Health
@@ -108,11 +107,10 @@ e3b     Cluster   Cluster          up   9000  auto/100000 healthy  false
 cluster1::*>
 ----
 . 【第 4 步】确认所有集群接口（ LIF ）都位于主端口上： `network interface show -role cluster`
-
-
-[listing]
++
+[listing, subs="+quotes"]
 ----
-cluster1::*> network interface show -role cluster
+cluster1::*> *network interface show -role cluster*
          Logical     Status     Network           Current     Current Is
 Vserver  Interface   Admin/Oper Address/Mask      Node        Port    Home
 -------  ----------- ---------- ----------------- ----------- ------- ----
@@ -125,11 +123,10 @@ Cluster
 cluster1::*>
 ----
 . `s确认集群显示两个集群交换机的信息：` system cluster-switch show -is-monitoring-enableed-Operational true
-
-
-[listing]
++
+[listing, subs="+quotes"]
 ----
-cluster1::*> system cluster-switch show -is-monitoring-enabled-operational true
+cluster1::*> *system cluster-switch show -is-monitoring-enabled-operational true*
 Switch                    Type               Address          Model
 ------------------------- ------------------ ---------------- ------
 sh1                       cluster-network    10.233.205.90    N9K-C9336C
@@ -149,28 +146,25 @@ sh2                       cluster-network    10.233.205.91    N9K-C9336C
 cluster1::*>
 ----
 . 【第 6 步】在集群 LIF 上禁用自动还原。
-
-
-[listing]
++
+[listing, subs="+quotes"]
 ----
-cluster1::*> network interface modify -vserver Cluster -lif * -auto-revert false
+cluster1::*> *network interface modify -vserver Cluster -lif * -auto-revert false*
 ----
 . 【第 7 步】关闭 C2 交换机：
-
-
-[listing]
++
+[listing, subs="+quotes"]
 ----
-c2# configure terminal
+c2# *configure terminal*
 Enter configuration commands, one per line. End with CNTL/Z.
-c2(config)# interface ethernet <int range>
-c2(config)#shutdown
+c2(config)# *interface ethernet <int range>*
+c2(config)# *shutdown*
 ----
 . 【第 8 步】验证集群 LIF 是否已迁移到集群交换机 SH1 上托管的端口： `network interface show -role cluster` 这可能需要几秒钟的时间。
-
-
-[listing]
++
+[listing, subs="+quotes"]
 ----
-cluster1::*> network interface show -role cluster
+cluster1::*> *network interface show -role cluster*
           Logical     Status     Network         Current      Current  Is
 Vserver   Interface   Admin/Oper Address/Mask    Node         Port     Home
 --------- ----------- ---------- --------------- ------------ -------- -----
@@ -185,21 +179,19 @@ cluster1::*>
 . 【第 9 步】将交换机 C2 更换为新交换机 SH2 并重新连接新交换机。
 . 验证 SH2 上的端口是否已备份。* 注意 * LIF 仍位于交换机 C1 上。
 . 关闭 C1 交换机：
-
-
-[listing]
++
+[listing, subs="+quotes"]
 ----
-c1# configure terminal
+c1# *configure terminal*
 Enter configuration commands, one per line. End with CNTL/Z.
-c1(config)# interface ethernet <int range>
-c1(config)#shutdown
+c1(config)# *interface ethernet <int range>*
+c1(config)# *shutdown*
 ----
 . 【第 12 步】验证集群 LIF 是否已迁移到集群交换机 SH2 上托管的端口。这可能需要几秒钟的时间。
-
-
-[listing]
++
+[listing, subs="+quotes"]
 ----
-cluster1::*> network interface show -role cluster
+cluster1::*> *network interface show -role cluster*
          Logical        Status     Network         Current   Current Is
 Vserver  Interface      Admin/Oper Address/Mask    Node      Port    Home
 -------- -------------- ---------- --------------- --------- ------- ----
@@ -214,18 +206,16 @@ cluster1::*>
 . 【第 13 步】将交换机 C1 更换为新交换机 SH1 ，然后重新为新交换机布线。
 . 验证 SH1 上的端口是否已备份。* 注意 * LIF 仍位于交换机 C2 上。
 . 在集群 LIF 上启用自动还原：
-
-
-[listing]
++
+[listing, subs="+quotes"]
 ----
-cluster1::*> network interface modify -vserver Cluster -lif * -auto-revert True
+cluster1::*> *network interface modify -vserver Cluster -lif * -auto-revert True*
 ----
 . 【第 16 步】验证集群是否运行正常： `cluster show`
-
-
-[listing]
++
+[listing, subs="+quotes"]
 ----
-cluster1::*> cluster show
+cluster1::*> *cluster show*
 Node                 Health  Eligibility   Epsilon
 -------------------- ------- ------------- -------
 node1                true    true          false
@@ -233,3 +223,4 @@ node2                true    true          false
 2 entries were displayed.
 cluster1::*>
 ----
+

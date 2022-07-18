@@ -21,11 +21,10 @@ summary:
 
 .步骤
 . 验证 HA 对 1 （和 HA 对 2 ）的存储配置是否正确且无错误： `ssystem switch Ethernet show`
-
-
-[listing]
++
+[listing, subs="+quotes"]
 ----
-storage::*> system switch ethernet show
+storage::*> *system switch ethernet show*
 Switch                    Type                  Address          Model
 ------------------------- --------------------- ---------------- ----------
 sh1
@@ -49,11 +48,10 @@ sh2
 storage::*>
 ----
 . 【第 2 步】验证节点端口是否运行正常： `storage port show -port-type ENET`
-
-
-[listing]
++
+[listing, subs="+quotes"]
 ----
-storage::*> storage port show -port-type ENET
+storage::*> *storage port show -port-type ENET*
                                    Speed                          VLAN
 Node    Port    Type    Mode       (Gb/s)    State     Status       ID
 ------- ------- ------- ---------- --------- --------- --------- -----
@@ -73,61 +71,56 @@ node2
 . 将缆线从 HA 对 1 节点 A 的路径 A 移至存储交换机 A 上 HA 对 1 节点 A 的共享存储端口
 . 将缆线从 HA 对 1 节点 B 的路径 A 移至存储交换机 A 上 HA 对 1 节点 B 的共享存储端口
 . 确认连接到 HA 对 1 存储交换机 A 的存储运行状况良好： `ssystem health alert show -instance`
-
-
-[listing]
++
+[listing, subs="+quotes"]
 ----
-storage::*> system health alert show -instance
+storage::*> *system health alert show -instance*
 There are no entries matching your query.
 ----
 . 【第 7 步】将共享交换机 A 上的存储 RCF 替换为共享 RCF 文件。请参见 link:9336c_install_nx-os_software_and_reference_configuration_files_rcfs.html#install-the-rcf-on-a-cisco-nexus-9336c-fx2-shared-switch["在 Cisco Nexus 9336C-x2 共享交换机上安装 RCF"] 了解更多详细信息。
 . 确认连接到 HA 对 1 存储交换机 B 的存储运行状况良好： `ssystem health alert show -instance`
-
-
-[listing]
++
+[listing, subs="+quotes"]
 ----
-storage::*> system health alert show -instance
+storage::*> *system health alert show -instance*
 There are no entries matching your query.
 ----
 . 【第 9 步】将 HA 对 1 的 NSM224 路径 B 缆线从存储交换机 B 移至 HA 对 1 的共享 NS224 存储端口，路径 B 移至存储交换机 B
 . 将缆线从 HA 对 1 的节点 A 路径 B 移至存储交换机 B 上 HA 对 1 的共享存储端口，节点 A 的路径 B
 . 将缆线从 HA 对 1 的节点 B 路径 B 移至存储交换机 B 上 HA 对 1 的共享存储端口，节点 B 的路径 B
 . 确认连接到 HA 对 1 存储交换机 B 的存储运行状况良好： `ssystem health alert show -instance`
-
-
-[listing]
++
+[listing, subs="+quotes"]
 ----
-storage::*> system health alert show -instance
+storage::*> *system health alert show -instance*
 There are no entries matching your query.
 ----
 . 【第 13 步】将共享交换机 B 上的存储 RCF 文件替换为共享 RCF 文件。请参见 link:9336c_install_nx-os_software_and_reference_configuration_files_rcfs.html#install-the-rcf-on-a-cisco-nexus-9336c-fx2-shared-switch["在 Cisco Nexus 9336C-x2 共享交换机上安装 RCF"] 了解更多详细信息。
 . 确认连接到 HA 对 1 存储交换机 B 的存储运行状况良好： `ssystem health alert show -instance`
-
-
-[listing]
++
+[listing, subs="+quotes"]
 ----
-storage::*> system health alert show -instance
+storage::*> *system health alert show -instance*
 There are no entries matching your query.
 ----
 . 【第 15 步】在共享交换机 A 和共享交换机 B 之间安装 ISL ：
-
-
-[listing]
++
+[listing, subs="+quotes"]
 ----
-sh1# configure
+sh1# *configure*
 Enter configuration commands, one per line. End with CNTL/Z.
-sh1 (config)# interface e1/35-36
-sh1 (config-if-range)# no lldp transmit
-sh1 (config-if-range)# no lldp receive
-sh1 (config-if-range)# switchport mode trunk
-sh1 (config-if-range)# no spanning-tree bpduguard enable
-sh1 (config-if-range)# channel-group 101 mode active
-sh1 (config-if-range)# exit
-sh1 (config)# interface port-channel 101
-sh1 (config-if)# switchport mode trunk
-sh1 (config-if)# spanning-tree port type network
-sh1 (config-if)# exit
-sh1 (config)# exit
+sh1 (config)# *interface e1/35-36*
+sh1 (config-if-range)# *no lldp transmit*
+sh1 (config-if-range)# *no lldp receive*
+sh1 (config-if-range)# *switchport mode trunk*
+sh1 (config-if-range)# *no spanning-tree bpduguard enable*
+sh1 (config-if-range)# *channel-group 101 mode active*
+sh1 (config-if-range)# *exit*
+sh1 (config)# *interface port-channel 101*
+sh1 (config-if)# *switchport mode trunk*
+sh1 (config-if)# *spanning-tree port type network*
+sh1 (config-if)# *exit*
+sh1 (config)# *exit*
 ----
 . 【第 16 步】将 HA 对 1 从无交换机集群转换为有交换机集群。使用共享 RCF 定义的集群端口分配。请参见 link:9336c_install_nx-os_software_and_reference_configuration_files_rcfs.html["安装 NX-OS 软件和参考配置文件（ Reference Configuration Files ， RCF ）"]了解更多详细信息。
 . 验证交换网络配置是否有效： `network port show`
