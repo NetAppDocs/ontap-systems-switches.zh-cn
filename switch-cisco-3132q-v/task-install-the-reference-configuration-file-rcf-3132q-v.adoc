@@ -34,9 +34,9 @@ summary: 您可以在首次设置 Nexus 3132Q-V 交换机后安装 RCF 。您也
 `network device-discovery show`
 
 +
-[listing]
+[listing, subs="+quotes"]
 ----
-cluster1::*> network device-discovery show
+cluster1::*> *network device-discovery show*
 Node/       Local  Discovered
 Protocol    Port   Device (LLDP: ChassisID)  Interface         Platform
 ----------- ------ ------------------------- ----------------  ------------
@@ -58,12 +58,12 @@ cluster1::*>
 +
 .. 验证所有集群端口是否均已启动且状态正常：
 +
-`network port show – role cluster`
+`network port show -ipspace cluster`
 
 +
-[listing]
+[listing, subs="+quotes"]
 ----
-cluster1::*> network port show -role cluster
+cluster1::*> *network port show -ipspace Cluster*
 
 Node: cluster1-01
                                                                        Ignore
@@ -102,12 +102,12 @@ cluster1::*>
 ----
 .. 验证所有集群接口（ LIF ）是否均位于主端口上：
 +
-`network interface show -role cluster`
+`network interface show -vserver cluster`
 
 +
-[listing]
+[listing, subs="+quotes"]
 ----
-cluster1::*> network interface show -role cluster
+cluster1::*> *network interface show -vserver Cluster*
             Logical            Status     Network           Current      Current Is
 Vserver     Interface          Admin/Oper Address/Mask      Node         Port    Home
 ----------- ------------------ ---------- ----------------- ------------ ------- ----
@@ -120,7 +120,6 @@ Cluster
             cluster1-03_clus2  up/up     169.254.1.1/23     cluster1-03  e0b     true
             cluster1-04_clus1  up/up     169.254.1.6/23     cluster1-04  e0a     true
             cluster1-04_clus2  up/up     169.254.1.7/23     cluster1-04  e0b     true
-8 entries were displayed.
 cluster1::*>
 ----
 .. 验证集群是否同时显示两个集群交换机的信息：
@@ -128,9 +127,9 @@ cluster1::*>
 `ssystem cluster-switch show -is-monitoring-enableed-Operational true`
 
 +
-[listing]
+[listing, subs="+quotes"]
 ----
-cluster1::*> system cluster-switch show -is-monitoring-enabled-operational true
+cluster1::*> *system cluster-switch show -is-monitoring-enabled-operational true*
 Switch                      Type               Address          Model
 --------------------------- ------------------ ---------------- ---------------
 cs1                         cluster-network    10.0.0.1         NX3132QV
@@ -151,30 +150,36 @@ cs2                         cluster-network    10.0.0.2         NX3132QV
 
 2 entries were displayed.
 ----
++
+
+NOTE: 对于ONTAP 9.8及更高版本、请使用命令`ssystem Ethernet switch show -is-monitoring-enableed-Operational true`。
+
 
 
 . 在集群 LIF 上禁用自动还原。
 +
-[listing]
+[listing, subs="+quotes"]
 ----
-cluster1::*> network interface modify -vserver Cluster -lif \* -auto-revert false
+cluster1::*> *network interface modify -vserver Cluster -lif * -auto-revert false*
+----
++
+确保在运行此命令后已禁用自动还原。
 
-----
 . 在集群交换机 CS2 上，关闭连接到节点集群端口的端口。
 +
-[listing]
+[listing, subs="+quotes"]
 ----
-cs2(config)# interface eth1/1/1-2,eth1/7-8
-cs2(config-if-range)# shutdown
+cs2(config)# *interface eth1/1/1-2,eth1/7-8*
+cs2(config-if-range)# *shutdown*
 ----
 . 验证集群端口是否已迁移到集群交换机 CS1 上托管的端口。这可能需要几秒钟的时间。
 +
-`network interface show -role cluster`
+`network interface show -vserver cluster`
 
 +
-[listing]
+[listing, subs="+quotes"]
 ----
-cluster1::*> network interface show -role cluster
+cluster1::*> *network interface show -vserver Cluster*
             Logical           Status     Network            Current       Current Is
 Vserver     Interface         Admin/Oper Address/Mask       Node          Port    Home
 ----------- ----------------- ---------- ------------------ ------------- ------- ----
@@ -187,7 +192,6 @@ Cluster
             cluster1-03_clus2 up/up      169.254.1.1/23     cluster1-03   e0a     false
             cluster1-04_clus1 up/up      169.254.1.6/23     cluster1-04   e0a     true
             cluster1-04_clus2 up/up      169.254.1.7/23     cluster1-04   e0a     false
-8 entries were displayed.
 cluster1::*>
 ----
 . 验证集群是否运行正常：
@@ -195,16 +199,15 @@ cluster1::*>
 `cluster show`
 
 +
-[listing]
+[listing, subs="+quotes"]
 ----
-cluster1::*> cluster show
+cluster1::*> *cluster show*
 Node                 Health  Eligibility   Epsilon
 -------------------- ------- ------------  -------
 cluster1-01          true    true          false
 cluster1-02          true    true          false
 cluster1-03          true    true          true
 cluster1-04          true    true          false
-4 entries were displayed.
 cluster1::*>
 ----
 . 如果您还没有交换机的当前备份、则可以通过将以下命令的输出复制到日志文件来保存当前交换机配置：
@@ -219,13 +222,13 @@ cluster1::*>
 NOTE: 此步骤需要与交换机建立控制台连接。
 
 +
-[listing]
+[listing, subs="+quotes"]
 ----
-cs2# write erase
+cs2# *write erase*
 Warning: This command will erase the startup-configuration.
-Do you wish to proceed anyway? (y/n)  [n] y
-cs2# reload
-This command will reboot the system. (y/n)?  [n] y
+Do you wish to proceed anyway? (y/n)  [n] *y*
+cs2# *reload*
+This command will reboot the system. (y/n)?  [n] *y*
 cs2#
 ----
 .. 对交换机执行基本设置。
@@ -236,10 +239,10 @@ cs2#
 此示例显示了使用 TFTP 将 RCF 复制到交换机 CS2 上的 bootflash 。
 
 +
-[listing]
+[listing, subs="+quotes"]
 ----
-cs2# copy tftp: bootflash: vrf management
-Enter source filename: Nexus_3132QV_RCF_v1.6-Cluster-HA-Breakout.txt
+cs2# *copy tftp: bootflash: vrf management*
+Enter source filename: *Nexus_3132QV_RCF_v1.6-Cluster-HA-Breakout.txt*
 Enter hostname for the tftp server: 172.22.201.50
 Trying to connect to tftp server......Connection to Server Established.
 TFTP get operation was successful
@@ -253,16 +256,15 @@ Copy complete, now saving to disk (please wait)...
 此示例显示了 RCF 文件 `Nexus 3132QV_RCF_v1.6-Cluster-HA-Breakout 。 txt` 正在交换机 CS2 上安装：
 
 +
-[listing]
+[listing, subs="+quotes"]
 ----
-cs2# copy Nexus_3132QV_RCF_v1.6-Cluster-HA-Breakout.txt running-config echo-commands
+cs2# *copy Nexus_3132QV_RCF_v1.6-Cluster-HA-Breakout.txt running-config echo-commands*
 ----
 . 检查 `show banner motd` 命令的横幅输出。您必须阅读并按照 * 重要说明 * 中的说明进行操作，以确保交换机的配置和操作正确无误。
 +
 [listing]
 ----
 cs2# show banner motd
-
 
 ******************************************************************************
 * NetApp Reference Configuration File (RCF)
@@ -319,10 +321,10 @@ cs2# copy running-config startup-config [#######################################
 ----
 . 重新启动交换机 CS2 。您可以忽略交换机重新启动时在节点上报告的 " 集群端口关闭 " 事件。
 +
-[listing]
+[listing, subs="+quotes"]
 ----
-cs2# reload
-This command will reboot the system. (y/n)?  [n] y
+cs2# *reload*
+This command will reboot the system. (y/n)?  [n] *y*
 ----
 . 应用相同的 RCF 并再次保存运行配置。
 +
@@ -333,14 +335,14 @@ cs2# copy running-config startup-config [#######################################
 ----
 . 验证集群上集群端口的运行状况。
 +
-.. 验证集群中所有节点上的 e0d 端口是否均已启动且运行正常：
+.. 验证集群中所有节点上的集群端口是否均已启动且运行正常：
 +
-`network port show -role cluster`
+`network port show -ipspace cluster`
 
 +
-[listing]
+[listing, subs="+quotes"]
 ----
-cluster1::*> network port show -role cluster
+cluster1::*> *network port show -ipspace Cluster*
 
 Node: cluster1-01
                                                                        Ignore
@@ -373,13 +375,12 @@ Port      IPspace      Broadcast Domain Link MTU  Admin/Oper  Status   Status
 --------- ------------ ---------------- ---- ---- ----------- -------- ------
 e0a       Cluster      Cluster          up   9000  auto/100000 healthy false
 e0d       Cluster      Cluster          up   9000  auto/100000 healthy false
-8 entries were displayed.
 ----
-.. 从集群验证交换机运行状况（此操作可能不会显示交换机 CS2 ，因为 LIF 不驻留在 e0d 上）。
+.. 从集群验证交换机运行状况。
 +
-[listing]
+[listing, subs="+quotes"]
 ----
-cluster1::*> network device-discovery show -protocol cdp
+cluster1::*> *network device-discovery show -protocol cdp*
 Node/       Local  Discovered
 Protocol    Port   Device (LLDP: ChassisID)  Interface         Platform
 ----------- ------ ------------------------- ----------------- --------
@@ -396,7 +397,7 @@ cluster1-04/cdp
             e0a    cs1                       Ethernet1/1/2     N3K-C3132Q-V
             e0b    cs2                       Ethernet1/1/2     N3K-C3132Q-V
 
-cluster1::*> system cluster-switch show -is-monitoring-enabled-operational true
+cluster1::*> *system cluster-switch show -is-monitoring-enabled-operational true*
 Switch                      Type               Address          Model
 --------------------------- ------------------ ---------------- -----
 cs1                         cluster-network    10.233.205.90    N3K-C3132Q-V
@@ -417,7 +418,9 @@ cs2                         cluster-network    10.233.205.91    N3K-C3132Q-V
 
 2 entries were displayed.
 ----
++
 
+NOTE: 对于ONTAP 9.8及更高版本、请使用命令`ssystem Ethernet switch show -is-monitoring-enableed-Operational true`。
 
 +
 [NOTE]
@@ -431,24 +434,26 @@ cs2                         cluster-network    10.233.205.91    N3K-C3132Q-V
 2020 Nov 17 16:07:23 cs1 %$ VDC-1 %$ %STP-2-BLOCK_PVID_LOCAL: Blocking port-channel1 on VLAN0092. Inconsistent local vlan.
 ----
 ====
+
+
 . 在集群交换机 CS1 上，关闭连接到节点集群端口的端口。
 +
 以下示例使用步骤 1 中的接口示例输出：
 
 +
-[listing]
+[listing, subs="+quotes"]
 ----
-cs1(config)# interface eth1/1/1-2,eth1/7-8
-cs1(config-if-range)# shutdown
+cs1(config)# *interface eth1/1/1-2,eth1/7-8*
+cs1(config-if-range)# *shutdown*
 ----
 . 验证集群 LIF 是否已迁移到交换机 CS2 上托管的端口。这可能需要几秒钟的时间。
 +
-`network interface show -role cluster`
+`network interface show -vserver cluster`
 
 +
-[listing]
+[listing, subs="+quotes"]
 ----
-cluster1::*> network interface show -role cluster
+cluster1::*> *network interface show -vserver Cluster*
             Logical            Status     Network            Current             Current Is
 Vserver     Interface          Admin/Oper Address/Mask       Node                Port    Home
 ----------- ------------------ ---------- ------------------ ------------------- ------- ----
@@ -461,7 +466,6 @@ Cluster
             cluster1-03_clus2  up/up      169.254.1.1/23     cluster1-03         e0b     true
             cluster1-04_clus1  up/up      169.254.1.6/23     cluster1-04         e0b     false
             cluster1-04_clus2  up/up      169.254.1.7/23     cluster1-04         e0b     true
-8 entries were displayed.
 cluster1::*>
 ----
 . 验证集群是否运行正常：
@@ -469,9 +473,9 @@ cluster1::*>
 `cluster show`
 
 +
-[listing]
+[listing, subs="+quotes"]
 ----
-cluster1::*> cluster show
+cluster1::*> *cluster show*
 Node                 Health   Eligibility   Epsilon
 -------------------- -------- ------------- -------
 cluster1-01          true     true          false
@@ -481,25 +485,25 @@ cluster1-04          true     true          false
 4 entries were displayed.
 cluster1::*>
 ----
-. 对交换机 CS1 重复步骤 7 至 14 。
+. 对交换机CS1重复步骤7至16。
 . 在集群 LIF 上启用自动还原。
 +
 [listing]
 ----
-cluster1::*> network interface modify -vserver Cluster -lif \* -auto-revert True
+cluster1::*> network interface modify -vserver Cluster -lif * -auto-revert True
 ----
 . 重新启动交换机 CS1 。执行此操作可触发集群 LIF 还原到其主端口。您可以忽略交换机重新启动时在节点上报告的 " 集群端口关闭 " 事件。
 +
-[listing]
+[listing, subs="+quotes"]
 ----
-cs1# reload
-This command will reboot the system. (y/n)?  [n] y
+cs1# *reload*
+This command will reboot the system. (y/n)?  [n] *y*
 ----
 . 验证连接到集群端口的交换机端口是否已启动。
 +
-[listing]
+[listing, subs="+quotes"]
 ----
-cs1# show interface brief \| grep up
+cs1# *show interface brief | grep up*
 .
 .
 Eth1/1/1      1       eth  access up      none                    10G(D) --
@@ -514,9 +518,9 @@ Eth1/8        1       eth  trunk  up      none                   100G(D) --
 `s如何执行端口通道摘要`
 
 +
-[listing]
+[listing, subs="+quotes"]
 ----
-cs1# show port-channel summary
+cs1# *show port-channel summary*
 Flags:  D - Down        P - Up in port-channel (members)
         I - Individual  H - Hot-standby (LACP only)
         s - Suspended   r - Module-removed
@@ -534,12 +538,12 @@ cs1#
 ----
 . 验证集群 LIF 是否已还原到其主端口：
 +
-`network interface show -role cluster`
+`network interface show -vserver cluster`
 
 +
-[listing]
+[listing, subs="+quotes"]
 ----
-cluster1::*> network interface show -role cluster
+cluster1::*> *network interface show -vserver Cluster*
             Logical            Status     Network            Current             Current Is
 Vserver     Interface          Admin/Oper Address/Mask       Node                Port    Home
 ----------- ------------------ ---------- ------------------ ------------------- ------- ----
@@ -552,7 +556,6 @@ Cluster
             cluster1-03_clus2  up/up      169.254.1.1/23     cluster1-03         e0b     true
             cluster1-04_clus1  up/up      169.254.1.6/23     cluster1-04         e0b     true
             cluster1-04_clus2  up/up      169.254.1.7/23     cluster1-04         e0b     true
-8 entries were displayed.
 cluster1::*>
 ----
 . 验证集群是否运行正常：
@@ -560,16 +563,15 @@ cluster1::*>
 `cluster show`
 
 +
-[listing]
+[listing, subs="+quotes"]
 ----
-cluster1::*> cluster show
+cluster1::*> *cluster show*
 Node                 Health  Eligibility   Epsilon
 -------------------- ------- ------------- -------
 cluster1-01          true    true          false
 cluster1-02          true    true          false
 cluster1-03          true    true          true
 cluster1-04          true    true          false
-4 entries were displayed.
 cluster1::*>
 ----
 . 对远程集群接口执行 Ping 操作以验证连接：
@@ -577,9 +579,9 @@ cluster1::*>
 `cluster ping-cluster -node local`
 
 +
-[listing]
+[listing, subs="+quotes"]
 ----
-cluster1::*> cluster ping-cluster -node local
+cluster1::*> *cluster ping-cluster -node local*
 Host is cluster1-03
 Getting addresses from network interface table...
 Cluster cluster1-03_clus1 169.254.1.3 cluster1-03 e0a
@@ -616,4 +618,118 @@ RPC status:
 6 paths up, 0 paths down (tcp check)
 6 paths up, 0 paths down (udp check)
 ----
+. 对于 ONTAP 9.8 及更高版本，请使用以下命令启用以太网交换机运行状况监控器日志收集功能以收集交换机相关的日志文件：
++
+`ssystem switch Ethernet log setup-password`和
+
++
+`s系统交换机以太网日志 enable-Collection`
+
++
+输入： `ssystem switch Ethernet log setup-password`
+
++
+[listing, subs="+quotes"]
+----
+cluster1::*> *system switch ethernet log setup-password*
+Enter the switch name: *<return>*
+The switch name entered is not recognized.
+Choose from the following list:
+*cs1*
+*cs2*
+
+cluster1::*> *system switch ethernet log setup-password*
+
+Enter the switch name: *cs1*
+RSA key fingerprint is e5:8b:c6:dc:e2:18:18:09:36:63:d9:63:dd:03:d9:cc
+Do you want to continue? {y|n}::[n] *y*
+
+Enter the password: *<enter switch password>*
+Enter the password again: *<enter switch password>*
+
+cluster1::*> *system switch ethernet log setup-password*
+
+Enter the switch name: *cs2*
+RSA key fingerprint is 57:49:86:a1:b9:80:6a:61:9a:86:8e:3c:e3:b7:1f:b1
+Do you want to continue? {y|n}:: [n] *y*
+
+Enter the password: *<enter switch password>*
+Enter the password again: *<enter switch password>*
+----
++
+后跟： `ssystem switch Ethernet log enable-Collection`
+
++
+[listing, subs="+quotes"]
+----
+cluster1::*> *system  switch ethernet log enable-collection*
+
+Do you want to enable cluster log collection for all nodes in the cluster?
+{y|n}: [n] *y*
+
+Enabling cluster switch log collection.
+
+cluster1::*>
+----
++
+
+NOTE: 如果其中任何一个命令返回错误，请联系 NetApp 支持部门。
+
+. 对于 ONTAP 9.5P16 ， 9.6P12 和 9.7P10 及更高版本的修补程序，请使用以下命令启用以太网交换机运行状况监控器日志收集功能，以便收集交换机相关的日志文件：
++
+`ssystem cluster-switch log setup-password`和
+
++
+`ssystem cluster-switch log enable-Collection`
+
++
+输入： `ssystem cluster-switch log setup-password`
+
++
+[listing, subs="+quotes"]
+----
+cluster1::*> *system cluster-switch log setup-password*
+Enter the switch name: *<return>*
+The switch name entered is not recognized.
+Choose from the following list:
+*cs1*
+*cs2*
+
+cluster1::*> *system cluster-switch log setup-password*
+
+Enter the switch name: *cs1*
+RSA key fingerprint is e5:8b:c6:dc:e2:18:18:09:36:63:d9:63:dd:03:d9:cc
+Do you want to continue? {y|n}::[n] *y*
+
+Enter the password: *<enter switch password>*
+Enter the password again: *<enter switch password>*
+
+cluster1::*> *system cluster-switch log setup-password*
+
+Enter the switch name: *cs2*
+RSA key fingerprint is 57:49:86:a1:b9:80:6a:61:9a:86:8e:3c:e3:b7:1f:b1
+Do you want to continue? {y|n}:: [n] *y*
+
+Enter the password: *<enter switch password>*
+Enter the password again: *<enter switch password>*
+----
++
+后跟： `ssystem cluster-switch log enable-Collection`
+
++
+[listing, subs="+quotes"]
+----
+cluster1::*> *system cluster-switch log enable-collection*
+
+Do you want to enable cluster log collection for all nodes in the cluster?
+{y|n}: [n] *y*
+
+Enabling cluster switch log collection.
+
+cluster1::*>
+----
++
+
+NOTE: 如果其中任何一个命令返回错误，请联系 NetApp 支持部门。
+
 

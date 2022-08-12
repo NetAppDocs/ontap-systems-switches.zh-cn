@@ -46,7 +46,7 @@ NOTE: 操作步骤 要求同时使用 ONTAP 命令和 Cisco Nexus 3000 系列交
 .步骤
 . 如果在此集群上启用了 AutoSupport ，则通过调用 AutoSupport 消息禁止自动创建案例：
 +
-`ssystem node AutoSupport invoke -node * -type all -message MAINT=x h`
+`ssystem node AutoSupport invoke -node * -type all -message MAINT=xh`
 
 +
 其中 _x_ 是维护时段的持续时间，以小时为单位。
@@ -80,8 +80,6 @@ cluster1-02/cdp
 cluster1-01/cdp
             e0a    cs1                       Eth1/1            N3K-C3132Q-V
             e0b    cs2                       Eth1/1            N3K-C3132Q-V
-
-4 entries were displayed.
 ----
 . 检查每个集群接口的管理或运行状态。
 +
@@ -107,8 +105,6 @@ Port      IPspace      Broadcast Domain Link MTU  Admin/Oper  Status
 --------- ------------ ---------------- ---- ---- ----------- ------
 e0a       Cluster      Cluster          up   9000  auto/10000 healthy
 e0b       Cluster      Cluster          up   9000  auto/10000 healthy
-
-4 entries were displayed.
 ----
 .. 显示有关 LIF 的信息：
 +
@@ -127,19 +123,17 @@ Cluster
             cluster1-01_clus2  up/up      169.254.49.125/16  cluster1-01   e0b     true
             cluster1-02_clus1  up/up      169.254.47.194/16  cluster1-02   e0a     true
             cluster1-02_clus2  up/up      169.254.19.183/16  cluster1-02   e0b     true
-
-4 entries were displayed.
 ----
 
 
 . 对远程集群 LIF 执行 Ping 操作：
 +
-`cluster ping-cluster -node _node-name_`
+`cluster ping-cluster -node local`
 
 +
 [listing, subs="+quotes"]
 ----
-cluster1::*> *cluster ping-cluster -node cluster1-02*
+cluster1::*> *cluster ping-cluster -node local*
 Host is cluster1-02
 Getting addresses from network interface table...
 Cluster cluster1-01_clus1 169.254.209.69 cluster1-01     e0a
@@ -181,102 +175,5 @@ Cluster
           cluster1-01_clus2   true
           cluster1-02_clus1   true
           cluster1-02_clus2   true
-4 entries were displayed.
 ----
-. 对于 ONTAP 9.8 及更高版本，请使用以下命令启用以太网交换机运行状况监控器日志收集功能以收集交换机相关的日志文件：
-+
-`s系统交换机以太网日志设置密码`
-
-+
-`s系统交换机以太网日志 enable-Collection`
-
-+
-[listing, subs="+quotes"]
-----
-cluster1::*> *system switch ethernet log setup-password*
-Enter the switch name: *<return>*
-The switch name entered is not recognized.
-Choose from the following list:
-cs1
-cs2
-
-cluster1::*> *system switch ethernet log setup-password*
-
-Enter the switch name: *cs1*
-RSA key fingerprint is e5:8b:c6:dc:e2:18:18:09:36:63:d9:63:dd:03:d9:cc
-Do you want to continue? {y|n}::[n] *y*
-
-Enter the password: *<enter switch password>*
-Enter the password again: *<enter switch password>*
-
-cluster1::*> *system switch ethernet log setup-password*
-
-Enter the switch name: *cs2*
-RSA key fingerprint is 57:49:86:a1:b9:80:6a:61:9a:86:8e:3c:e3:b7:1f:b1
-Do you want to continue? {y|n}:: [n] *y*
-
-Enter the password: *<enter switch password>*
-Enter the password again: *<enter switch password>*
-
-cluster1::*> *system  switch ethernet log enable-collection*
-
-Do you want to enable cluster log collection for all nodes in the cluster?
-{y|n}: [n] *y*
-
-Enabling cluster switch log collection.
-
-cluster1::*>
-----
-+
-
-NOTE: 如果其中任何一个命令返回错误，请联系 NetApp 支持部门。
-
-. 对于 ONTAP 9.5P16 ， 9.6P12 和 9.7P10 及更高版本的修补程序，请使用以下命令启用以太网交换机运行状况监控器日志收集功能，以便收集交换机相关的日志文件：
-+
-`ssystem cluster-switch log setup-password`
-
-+
-`ssystem cluster-switch log enable-Collection`
-
-+
-[listing, subs="+quotes"]
-----
-cluster1::*> *system cluster-switch log setup-password*
-Enter the switch name: *<return>*
-The switch name entered is not recognized.
-Choose from the following list:
-cs1
-cs2
-
-cluster1::*> *system cluster-switch log setup-password*
-
-Enter the switch name: *cs1*
-RSA key fingerprint is e5:8b:c6:dc:e2:18:18:09:36:63:d9:63:dd:03:d9:cc
-Do you want to continue? {y|n}::[n] *y*
-
-Enter the password: *<enter switch password>*
-Enter the password again: *<enter switch password>*
-
-cluster1::*> *system cluster-switch log setup-password*
-
-Enter the switch name: cs2
-RSA key fingerprint is 57:49:86:a1:b9:80:6a:61:9a:86:8e:3c:e3:b7:1f:b1
-Do you want to continue? {y|n}:: [n] *y*
-
-Enter the password: *<enter switch password>*
-Enter the password again: *<enter switch password>*
-
-cluster1::*> *system cluster-switch log enable-collection*
-
-Do you want to enable cluster log collection for all nodes in the cluster?
-{y|n}: [n] *y*
-
-Enabling cluster switch log collection.
-
-cluster1::*>
-----
-+
-
-NOTE: 如果其中任何一个命令返回错误，请联系 NetApp 支持部门。
-
 
