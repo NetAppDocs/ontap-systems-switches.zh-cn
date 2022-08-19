@@ -1,0 +1,10 @@
+---
+section: other-procedures
+title: 其他交换机过程
+entries:
+- title: 过渡到双节点无交换机集群
+  entries:
+  - title: 概述
+    url: "/other-procedures/transition-to-two-node-switchless-cluster-index.html"
+  - title: 将交换机更换为直接连接
+    url: "/other-procedures/replace-switches-with-direct-connections.html"

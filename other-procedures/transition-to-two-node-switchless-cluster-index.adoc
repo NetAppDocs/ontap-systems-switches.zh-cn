@@ -1,0 +1,19 @@
+---
+permalink: other-procedures/transition-to-two-node-switchless-cluster-index.html 
+sidebar: sidebar 
+keywords: transition, two-node, switchless, cluster, two, node 
+summary: 您可以过渡到使用集群互连交换机的双节点集群、并将其过渡到两个节点直接连接的集群。 
+---
+= 概述
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+如果您的现有双节点集群使用集群互连交换机、并且运行的是ONTAP 9.3或更高版本、则可以将这些交换机替换为节点之间的直接背对背连接。
+
+不能对两个以上的节点使用无交换机集群互连功能。
+
+过渡到双节点无交换机集群配置是一项无中断操作。大多数系统在每个节点上都有两个专用集群互连端口、但对于每个节点上具有更多专用集群互连端口的系统、例如四个、六个或八个、您也可以使用此操作步骤。
+
+此操作步骤 介绍了如何将具有交换集群网络的集群过渡到两个节点直接连接到ONTAP 9.3及更高版本的集群。

@@ -3307,4 +3307,80 @@
   <block id="91cd808758081ea75f478b14ac3c3471" category="paragraph">`ssystem cluster-switch log setup-password`和</block>
   <block id="e01441503925272a0ebbfb7fba0455f0" category="list-text">使用以下传输协议之一将NX-OS软件复制到Nexus 3132Q-V交换机：FTP、TFTP、SFTP或SCP。有关 Cisco 命令的详细信息，请参见中的相应指南<block ref="f93981dab484b88c422e924c27565997" category="inline-link-rx"></block> 指南。</block>
   <block id="8722c59bf526716ce1e70019843b09a5" category="paragraph">此示例显示了用于将NX-OS软件复制到Nexus 3132Q-V交换机的SFTP：</block>
+  <block id="9f5be684442d922984d48ddc3b7aa93f" category="summary">您可以过渡到使用集群互连交换机的双节点集群、并将其过渡到两个节点直接连接的集群。</block>
+  <block id="ff5ad6d56644222030f6f4bc94bd5506" category="paragraph">如果您的现有双节点集群使用集群互连交换机、并且运行的是ONTAP 9.3或更高版本、则可以将这些交换机替换为节点之间的直接背对背连接。</block>
+  <block id="759516932a18c0379d0054bce4b2e64e" category="paragraph">不能对两个以上的节点使用无交换机集群互连功能。</block>
+  <block id="a2c17c2ce71b362b920e8850ba8c4dbc" category="paragraph">过渡到双节点无交换机集群配置是一项无中断操作。大多数系统在每个节点上都有两个专用集群互连端口、但对于每个节点上具有更多专用集群互连端口的系统、例如四个、六个或八个、您也可以使用此操作步骤。</block>
+  <block id="4d60464781e02c960e35d4e4cea119aa" category="paragraph">此操作步骤 介绍了如何将具有交换集群网络的集群过渡到两个节点直接连接到ONTAP 9.3及更高版本的集群。</block>
+  <block id="e92a37c58dda9b6ad3b2129262043d6a" category="summary">您可以将双节点集群中的交换机更换为节点之间的直接背对背连接。</block>
+  <block id="42831c80a579ed060615d4e90f0500cf" category="doc">将交换机更换为直接连接</block>
+  <block id="f9ca0dca2bbe2bca99b0ad5e676f7bb6" category="paragraph">如果您的双节点集群使用集群互连交换机、请将交换机更换为节点之间的直接背对背连接。这是一项无中断操作。</block>
+  <block id="085c76ece7f19b4de00a80d42051e8df" category="list-text">集群必须运行状况良好、并且包含两个节点、这些节点由集群交换机连接、并且必须运行相同的ONTAP 版本。</block>
+  <block id="aadaf9415e70bd5bc3b6c11d549fbe14" category="list-text">每个节点都必须具有所需数量的专用集群端口、这些端口可提供冗余集群互连连接以支持您的系统配置、例如、对于每个节点上具有两个专用集群互连端口的系统、需要两个冗余端口。</block>
+  <block id="2f5c59a7e0a2102f6d7508bee5ccb15b" category="paragraph">以下操作步骤 将删除双节点集群中的集群交换机、并将与交换机的每个连接替换为直接连接到配对节点。</block>
+  <block id="8a2504e6dbf1489f594645cb7c55753d" category="image-alt">集群交换机已替换为直接连接</block>
+  <block id="2a2f19f24bfba5cc72f797777f88530a" category="paragraph">以下操作步骤 中的示例显示了使用"e0a"和"e0b"作为集群端口的节点。您的节点可能使用不同的集群端口、因为它们因系统而异。</block>
+  <block id="e5dabd8c96e3431757aa87e41f4bedd6" category="paragraph">此时将显示高级提示符`*&gt;`。</block>
+  <block id="469c7d60dd90f1a2bb1658da470e8143" category="list-text">ONTAP 9.3及更高版本支持自动检测无交换机集群、默认情况下处于启用状态。</block>
+  <block id="e127f1d4385ec7a8d3e94aacf34721de" category="paragraph">您可以通过运行高级权限命令来验证是否已启用无交换机集群检测：</block>
+  <block id="8b70a23bbedce91a74790296a731d7bb" category="paragraph">`network options detect-switchless-cluster show`</block>
+  <block id="47b756a48fc6435a553f74738cb41468" category="paragraph">以下示例输出显示了是否已启用此选项。</block>
+  <block id="9c4d948f63c8c6f48823d7e858286716" category="paragraph">如果"启用无交换机集群检测"为`false`、请联系支持部门。</block>
+  <block id="790ec52cbe66e86d508c608424b62c2d" category="paragraph">`s系统节点AutoSupport 调用-node *-type all -message MAINT=&lt;number_of_hours&gt;h`</block>
+  <block id="de1ef371a5c4d9b1200b8a294381f2c8" category="paragraph">其中`h`是维护时段的持续时间、以小时为单位。此消息会通知技术支持此维护任务、以便他们可以禁止在维护窗口期间自动创建案例。</block>
+  <block id="31aa5da225dda6126c6cbf160562d03b" category="paragraph">在以下示例中、命令会禁止自动创建案例两小时：</block>
+  <block id="2e5f20d09e0222d9ff8e734356b6da06" category="list-text">将每个交换机上的集群端口组织成组、以便组1中的集群端口转到集群交换机1、而组2中的集群端口转到集群交换机2。这些组稍后在操作步骤 中是必需的。</block>
+  <block id="57c684517aec25172f7d07c58ad05de8" category="list-text">确定集群端口并验证链路状态和运行状况：</block>
+  <block id="b4cb3437a4bd287cc325f112caa8be67" category="paragraph">在以下示例中、对于集群端口为"e0a"和"e0b"的节点、一个组标识为"node1：e0a"和"node2：e0a"、另一个组标识为"node1：e0b"和"node2：e0b"。您的节点可能使用不同的集群端口、因为它们因系统而异。</block>
+  <block id="af10d52efe2cd47b065f90fdd28575f5" category="image-alt">node1和node2之间的集群交换机连接</block>
+  <block id="1742cd0ed0e3d9a5d0c757426e551f53" category="paragraph">验证端口的"Link"列值是否为`up`、而"Health Status"列值是否为`healthy`、如以下示例所示：</block>
+  <block id="ff66496bf4e9ec1deed0dc59b97eb6cb" category="list-text">确认所有集群LIF均位于其主端口上。</block>
+  <block id="455e2d37ef416448b13da810b3bf798a" category="paragraph">验证每个集群LIF的"is-home"列是否为`true`：</block>
+  <block id="4db0b2597279fa6c63908e8a06d54f68" category="paragraph">`network interface show -vserver cluster -fields is-home`</block>
+  <block id="fd894a783c8c8400a3021bd2ad147cba" category="paragraph">系统将显示类似于以下示例的输出：</block>
+  <block id="12769ddb40f8063f816fcbdca9a00d5d" category="paragraph">如果集群LIF不在其主端口上、请将这些LIF还原到其主端口：</block>
+  <block id="268d66b259b50e25cbef3d39885d450f" category="paragraph">`network interface revert -vserver cluster -lif *`</block>
+  <block id="fc7b1f226781bbe058721d0dcebf5133" category="list-text">为集群LIF禁用自动还原：</block>
+  <block id="b1046cdb57cd97fe9c20f711ba08bed8" category="paragraph">`network interface modify -vserver cluster -lif *-auto-revert false`</block>
+  <block id="5509fa38d3415bf6dfbd28918cf766f3" category="list-text">验证上一步中列出的所有端口是否均已连接到网络交换机：</block>
+  <block id="101ead84905a0da72281347a2d3e5846" category="paragraph">`network device-discovery show -port _cluster_port_`</block>
+  <block id="fe02c7580400b9e0117d9abf6c4cbde1" category="paragraph">"Discovered Device"列应是端口所连接的集群交换机的名称。以下示例显示集群端口"e0a"和"e0b"已正确连接到集群交换机"CS1"和"CS2"。</block>
+  <block id="fad8bc8bd6f8c2ecbc098cd96431ebde" category="list-text">验证集群连接：</block>
+  <block id="e477c0774c6014b5173ffa6810d512ab" category="paragraph">`集群环显示`</block>
+  <block id="c992f99b79e71a5eb5127e5f190fab4e" category="paragraph">所有单元都必须为主单元或二级单元。</block>
+  <block id="048592cc00af171e1fa6348b090a6c78" category="list-text">为组1中的端口设置无交换机配置。</block>
+  <block id="12bc07b1c4101cd8e151510c4571a54d" category="admonition">为了避免潜在的网络连接问题、您必须断开端口与组1的连接、并尽快地将其重新连接起来、例如、*不到20秒*。</block>
+  <block id="dd1a07ba1c68088dd4d2dfd921793a63" category="list-text">同时断开与组1中端口的所有缆线。</block>
+  <block id="da4df375887ff4e2473f47d4c2698b52" category="paragraph">在以下示例中、缆线与每个节点上的端口"e0a"断开连接、集群流量继续通过交换机和每个节点上的端口"e0b"进行传输：</block>
+  <block id="7e406f2debaed4ad453c52ae7b59f3e5" category="image-alt">ClusterSwitch1已断开连接</block>
+  <block id="0859a2eee1a4fdcb7d3c0c3f5453a911" category="list-text">使用缆线将组1中的端口背靠背连接在一起。</block>
+  <block id="843716887cbd88ba04652283a40bf49d" category="paragraph">在以下示例中、node1上的"e0a"连接到node2上的"e0a"：</block>
+  <block id="cad47f7ffe7579e68a294494fa25af17" category="image-alt">端口"e0a"之间的直接连接</block>
+  <block id="e9ec4835d23694aed9844bcf9e7e87ea" category="list-text">无交换机集群网络选项从`false`过渡到`true`。这可能需要长达45秒。确认无交换机选项设置为`true`：</block>
+  <block id="c412aebcb1566f8e5e0323f2afe60d0e" category="paragraph">以下示例显示无交换机集群已启用：</block>
+  <block id="6d1b5eebdb14196ce07c51c623533431" category="list-text">验证集群网络是否未中断：</block>
+  <block id="f643d26da1df28bcffc5c5067726246b" category="list-text">为组2中的端口设置无交换机配置。</block>
+  <block id="863e48e1ab590a3004febd635c0c772c" category="admonition">为了避免潜在的网络连接问题、您必须断开端口与组2的连接、并尽快地将其重新连接起来、例如、*不到20秒*。</block>
+  <block id="29f9df63556e07a416ddabb7ae9e6ad1" category="list-text">同时断开与组2中端口的所有缆线。</block>
+  <block id="f7107cbf076f0517cc09ef7864ab4721" category="paragraph">在以下示例中、缆线与每个节点上的端口"e0b"断开连接、集群流量继续通过"e0a"端口之间的直接连接进行：</block>
+  <block id="7f811e877a123112a56cd337a96a946a" category="image-alt">ClusterSwitch2已断开连接</block>
+  <block id="29035200b1c604db07130926a477b161" category="list-text">使用缆线将group2中的端口背靠背连接在一起。</block>
+  <block id="0883e07187c2d888880312f0fa00ed04" category="paragraph">在以下示例中、node1上的"e0a"连接到node2上的"e0a"、node2上的"e0b"连接到node2上的"e0b"：</block>
+  <block id="fdd6dd4aa052ef34512800aa4ec60d74" category="image-alt">在node1和node2上的端口之间直接连接</block>
+  <block id="fbbe76d16326b63ad1d4f272c5493136" category="list-text">验证两个节点上的端口是否已正确连接：</block>
+  <block id="65abe70d5b91b27886fd257d6422593d" category="paragraph">以下示例显示集群端口"e0a"和"e0b"已正确连接到集群配对节点上的相应端口：</block>
+  <block id="7d828f71c40144b012224932607715ca" category="list-text">为集群LIF重新启用自动还原：</block>
+  <block id="2c70d9b6ebd85a5ee2fff0f363a115ac" category="paragraph">`network interface modify -vserver cluster -lif *-auto-revert true`</block>
+  <block id="5fa7d5204d3d489974fd1ec321213563" category="list-text">验证所有LIF是否均已归位。这可能需要几秒钟的时间：</block>
+  <block id="e602723d0e5f9bdd1222eae8ea457289" category="paragraph">`network interface show -vserver cluster -lif _lif_name_`</block>
+  <block id="038dfaef435585ad7a241ece49eb90ca" category="paragraph">如果"Is Home"列为`true`、则已还原LIF、如以下示例中的`node1_clus2`和`node2_clus2`所示：</block>
+  <block id="ca781b2f6ba431222707604fe0989dc1" category="paragraph">如果任何集群LIF未返回到其主端口、请手动还原它们：</block>
+  <block id="31d2e20cefb76721dace23dfd9a35896" category="paragraph">`network interface revert -vserver cluster -lif _lif_name_`</block>
+  <block id="aeb90980ffc18e4c949766c382d409d4" category="list-text">从任一节点的系统控制台检查节点的集群状态：</block>
+  <block id="90d334e25f499d80506823cb341c39d7" category="paragraph">以下示例显示了两个节点上的epsilon均为`false`：</block>
+  <block id="26ba805ccb9566fb36369f48374b79c8" category="list-text">确认集群端口之间的连接：</block>
+  <block id="a76aa36cc43767185eb24bf3e6381bdb" category="paragraph">`cluster ping-cluster local`</block>
+  <block id="fb49a7219fb53efa33b80ec1a40ab7ce" category="paragraph"><block ref="fb49a7219fb53efa33b80ec1a40ab7ce" category="inline-link-macro-rx"></block></block>
+  <block id="e55e97993d59e593f9db82748c7205cd" category="sidebar">其他交换机过程</block>
+  <block id="66a1a209b630861db25c9013c19efe3b" category="sidebar">过渡到双节点无交换机集群</block>
 </blocks>
