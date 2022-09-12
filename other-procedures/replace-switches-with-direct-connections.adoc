@@ -222,7 +222,7 @@ image::../media/tnsc_clusterswitch2_disconnected.PNG[ClusterSwitch2已断开连�
 
 .. 使用缆线将group2中的端口背靠背连接在一起。
 +
-在以下示例中、node1上的"e0a"连接到node2上的"e0a"、node2上的"e0b"连接到node2上的"e0b"：
+在以下示例中、node1上的"e0a"连接到node2上的"e0a"、node1上的"e0b"连接到node2上的"e0b"：
 
 +
 image::../media/tnsc_node1_and_node2_direct_connection.PNG[在node1和node2上的端口之间直接连接]
