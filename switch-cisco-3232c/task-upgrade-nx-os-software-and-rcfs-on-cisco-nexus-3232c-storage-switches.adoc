@@ -26,11 +26,11 @@ summary: 可以在 Cisco Nexus 3232C 存储交换机上升级 Cisco NX-OS 软件
 
 * 操作步骤 摘要： *
 
-* *检查交换机和端口（<<step1_upgrade_3232c,步骤 1.>>- <<step4_upgrade_3232c,4.>>） *
-* *将 RCF 复制到 Cisco 交换机 S2 （<<step5_upgrade_3232c,步骤 5.>> - <<step8_upgrade_3232c,8.>>） *
-* 三将 NX-OS 映像下载到 Cisco 交换机 S2 并重新启动（<<step9_upgrade_3232c,第 9 步>> - <<step12_upgrade_3232c,12>>） *
-* 四重新检查交换机和端口的运行状况（<<step13_upgrade_3232c,第 13 步>> - <<step15_upgrade_3232c,15>>） *
-* *重复 <<step1_upgrade_3232c,步骤 1.>>- <<step17_upgrade_3232c,17>> 用于 Cisco 交换机 S1**
+* *检查交换机和端口（,步骤 1.- ,4.） *
+* *将 RCF 复制到 Cisco 交换机 S2 （,步骤 5. - ,8.） *
+* 三将 NX-OS 映像下载到 Cisco 交换机 S2 并重新启动（,第 9 步 - ,12） *
+* 四重新检查交换机和端口的运行状况（,第 13 步 - ,15） *
+* *重复 ,步骤 1.- ,17 用于 Cisco 交换机 S1**
 
 
 此操作步骤 中的示例使用两个节点：节点 1 具有两个存储端口，节点 2 具有两个存储端口。请参见 link:https://hwu.netapp.com/SWITCH/INDEX["Hardware Universe"^] 验证平台上的存储端口是否正确。

@@ -4,7 +4,7 @@ sidebar: sidebar
 keywords: Cisco Nexus cluster switches,replacing older Cisco switches,9336C-FX2 cluster switches,migrate to newer cisco cluster switch 
 summary: 在将某些旧的 Cisco Nexus 集群交换机更换为 Cisco Nexus 9336C-FX2 集群交换机时，您必须了解某些配置信息，端口连接和布线要求。 
 ---
-= 从 Cisco 交换机迁移到 Cisco Nexus 9336C-x2 集群交换机
+= 从旧版Cisco交换机迁移到Cisco Nexus 9336C-x2集群交换机
 :allow-uri-read: 
 :icons: font
 :imagesdir: ../media/
@@ -16,7 +16,6 @@ summary: 在将某些旧的 Cisco Nexus 集群交换机更换为 Cisco Nexus 933
 * 支持以下集群交换机：
 +
 ** Nexus 9336C-x2
-** Nexus 92300YC
 ** Nexus 5596UP
 ** Nexus 3232C
 ** Nexus 3132Q-V

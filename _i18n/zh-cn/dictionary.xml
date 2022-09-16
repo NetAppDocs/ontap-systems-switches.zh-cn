@@ -797,14 +797,11 @@
   <block id="49dff5e24eb6716bbdb118f5060c6ee9" category="doc">如何从 Cisco 交换机迁移到 Cisco Nexus 9336C-x2 集群交换机</block>
   <block id="de1935bd4389d754399850801a81c6d4" category="list-text">现有集群必须已正确设置并正常运行。</block>
   <block id="327751f77b91681c4efa7bd01dd923d1" category="list-text">所有集群端口都必须处于 up 状态，以确保无中断运行。</block>
-  <block id="4cbca3ab562ce0be7780eefe4a43adad" category="list-text">Nexus 9336C-FX2 集群交换机必须在安装的正确版本的 NX-OS 下进行配置并运行，并应用参考配置文件（ Reference Configuration File ， RCF ）。</block>
   <block id="3d060124021a6680e2c5665dffef8fba" category="list-text">现有集群网络配置必须满足以下要求：</block>
   <block id="4911fe5a5a61a43546dd84d203eacf1c" category="list-text">使用两个旧版 Cisco 交换机的冗余且功能完备的 NetApp 集群。</block>
   <block id="c3f3714ca8555fda13d1cbc127147867" category="list-text">管理连接以及对旧 Cisco 交换机和新交换机的控制台访问。</block>
-  <block id="22cd64d0bcf2bc77bfb32f0318d14d3c" category="list-text">所有与集群 LIF 处于 up 状态的集群 LIF 均位于其主端口上。</block>
   <block id="e1c4ebdf7c0ad72137d57dc5fd646845" category="list-text">ISL 端口已启用，并已在旧的 Cisco 交换机之间以及新交换机之间进行布线。</block>
   <block id="861442a3532c3e685a51468723598110" category="list-text">现有的 Cisco Nexus 5596UP 集群交换机为 C1 和 C2 。</block>
-  <block id="5b0559292b43e5022821fd64e9e153d2" category="list-text">新的 Nexus 9336C-x2 集群交换机为 CS1 和 CS2 。</block>
   <block id="79779dc1801a58ad11dd3078fff93f81" category="list-text">节点为 node1 和 node2 。</block>
   <block id="3d1c2ff675fe732df9f817f3321c6054" category="list-text">集群 LIF 分别是节点 1 上的 node1_clus1 和 node1_clus2 以及节点 2 上的 node2_clus1 和 node2_clus2 。</block>
   <block id="cd4062096153c60d3a0b62dd4dfe8687" category="list-text">交换机 C2 首先由交换机 CS2 取代，然后交换机 C1 由交换机 CS1 取代。</block>
@@ -814,23 +811,12 @@
   <block id="30cb07dc2fdb252aa5173019f18e0ce7" category="list-text">然后删除 C1 和 CS1 之间的临时 ISL 。</block>
   <block id="9466a05ff7d84aeea31f27e9129682c8" category="list-text">将权限级别更改为高级，在系统提示您继续时输入 * y* ： `set -privilege advanced`</block>
   <block id="ab3c28f964de5085a4ea20a8c2a1c6b0" category="list-text">确定每个集群接口的管理或运行状态：</block>
-  <block id="d204eae202d3382d49076db0a6957154" category="list-text">显示网络端口属性： `network port show -ipspace cluster`</block>
-  <block id="3c23423d82deff2c49b1f5a675affe46" category="list-text">显示有关逻辑接口及其指定主节点的信息： `network interface show -vserver Cluster`</block>
   <block id="300c4a8af362f43878948de70117255e" category="paragraph">对于 `S状态管理 /Oper` ，每个 LIF 都应显示 up/up ；对于 `，每个 LIF 都应显示 true ，而对于` ，则显示 Home 。</block>
-  <block id="eac3e7f3f587be64af9579266f4bb66e" category="list-text">从节点的角度来看，每个节点上的集群端口均使用以下命令连接到现有集群交换机： `network device-discovery show -protocol cdp`</block>
-  <block id="866e9195c3f1e53c818cc1513b132bbc" category="list-text">从交换机角度来看，集群端口和交换机使用以下命令进行连接： `show cdp neighbors`</block>
-  <block id="ac121473c5c5a24690b1a30d179ab677" category="list-text">使用命令 `cluster ping-cluster -node node-name` 确保集群网络具有完全连接</block>
   <block id="990838b9b76e69aee53a16fbaf6802e0" category="list-text">在 C1 和 CS1 之间的端口 E1/41-48 上的 cs1上 配置临时 ISL 。</block>
   <block id="48df2fb4a9556ac37edec166e7e858f9" category="paragraph">以下示例显示了如何在 C1 和 CS1 上配置新 ISL ：</block>
   <block id="2aa6bce99f388363decd09b81d00eb7d" category="list-text">从 C2 的端口 E1/41-48 中拔下 ISL 缆线，并将缆线连接到 CS1 上的端口 E1/41-48 。</block>
   <block id="f428750661677ee18c87e664c0eced86" category="paragraph">以下示例显示了用于验证 C1 和 CS1 上 ISL 端口是否正常运行的 Cisco show port-channel summary 命令：</block>
-  <block id="14179f633557b53498f01d3e5c4e5bb8" category="list-text">对于 node1 ，请断开 C2 上 E1/1 的缆线连接，然后使用 Nexus 9336C-x2 支持的相应布线方式将缆线连接到 CS2 上的 E1/1 。</block>
-  <block id="316197794ac20ca2b2b11cb67a072e0f" category="list-text">对于 node2 ，请断开 C2 上 E1/2 的缆线连接，然后使用 Nexus 9336C-x2 支持的相应布线方式将缆线连接到 CS2 上的 E1/2 。</block>
-  <block id="37ef6f0e7348f33c4de46c37e4fd2e10" category="list-text">现在，从节点的角度来看，每个节点上的集群端口均以以下方式连接到集群交换机： `network device-discovery show -protocol cdp`</block>
-  <block id="50cb1cc2d2bb848fa2b74fbbdb5ac123" category="list-text">对于 node1 ，请断开 C1 上 E1/1 的缆线，然后使用 Nexus 9336C-x2 支持的相应布线方式将缆线连接到 CS1 上的 E1/1 。</block>
-  <block id="2a727a2314a8100587055604ff3e9802" category="list-text">对于 node2 ，断开 C1 上 E1/2 的缆线连接，然后使用 Nexus 9336C-x2 支持的相应布线方式将缆线连接到 CS1 上的 E1/2 。</block>
   <block id="27781c87d25f863e4d8141fb97e91e1d" category="list-text">删除 CS1 和 C1 之间的临时 ISL 。</block>
-  <block id="b1bf5b4949e8f0e4eed60de397513799" category="list-text">验证集群的最终配置： `network port show -ipspace cluster`</block>
   <block id="bdaa0ac1a14f06640cc063a63e6b48d5" category="summary">智能自动通报功能可监控网络上的硬件和软件组件，以生成基于电子邮件的关键系统情况通知。当设备上发生事件时，智能自动通报会向目标配置文件中配置的所有收件人发出警报。</block>
   <block id="42fe054038a03eee5855134bdc50a7a2" category="doc">使用智能自动通报的注意事项</block>
   <block id="869c1820533f03424b7373120a0eed8f" category="paragraph">您必须将集群网络交换机配置为使用电子邮件与智能自动通报系统进行通信。您可以选择设置集群网络交换机，以利用 Cisco 的嵌入式智能自动通报支持功能。</block>
@@ -1665,7 +1651,6 @@
   <block id="6aef3c9d78e359133480e2e90a1c3182" category="summary">在无中断地将双节点无交换机集群迁移到使用 Cisco Nexus 92300YC 集群交换机的集群时，您必须了解某些配置信息，端口连接和布线要求。您使用的操作步骤取决于每个控制器上是有两个专用集群网络端口，还是每个控制器上有一个集群端口。记录的过程适用于使用光纤或双轴端口的所有节点，但如果节点将板载 10 Gb BASE-T RJ45 端口用于集群网络端口，则此交换机不支持此过程。</block>
   <block id="a10b4806eeb3d2769c64b74810fd2730" category="doc">迁移到使用 Cisco Nexus 92300YC 交换机的双节点交换集群</block>
   <block id="a48132af1a7dae29d069cd55f7d7356c" category="sidebar">使用此站点上的文档安装，升级和维护集群和存储交换机。</block>
-  <block id="ec01d482cf394f212f073921cfd9d5bd" category="sidebar">《 ONTAP 发行说明》</block>
   <block id="a393cd4f170aafc6db54b17ca62ffb74" category="sidebar">Broadcom 支持的 BES-53248</block>
   <block id="2b2815ca4a9fd5973ee66317adb580e4" category="sidebar">其他交换机型号</block>
   <block id="dfcc398099d6a64026e51ab282e16253" category="sidebar">更多资源</block>
@@ -3130,15 +3115,7 @@
   <block id="50de81aaedfa30f3f897982b9385177e" category="paragraph">介绍用于更换有故障的 Cisco Nexus 3232C 存储交换机以及下载交换机操作系统和参考配置文件的操作步骤 。</block>
   <block id="83e93935173fd08d31ece6da1321250e" category="inline-link">_Cisco 以太网交换机 _</block>
   <block id="a38feefa1e0fea9f496938eeb3998bb7" category="list-text">您必须已查看上的交换机兼容性表<block ref="74ad0e8ac749618b09c1515e91099015" category="inline-link-rx"></block> 页面上显示了受支持的 ONTAP ， NX-OS 和 RCF 版本。</block>
-  <block id="173dae780449dce4bb4a30b4f7977279" category="list-text">临时 ISL 基于将 C2 连接到 CS2 的 CS2 构建。</block>
-  <block id="91d4e443decf449762f863fd540cc820" category="list-text">然后删除 C2 和 CS2 之间的临时 ISL 。</block>
-  <block id="a75638c0d1f443fdf3c4471108036c0e" category="list-text">在 C1 和 CS1 之间的端口 E1/33-34 的 CS1 上配置临时 ISL 。</block>
-  <block id="7c144395dc06b2e330a55935a8f036c4" category="list-text">从 C2 的端口 E1/33-34 拔下 ISL 缆线，并将缆线连接到 CS2 的端口 E1/33-34 。</block>
-  <block id="57dbb300401ac1a70f8eee6f777ba384" category="list-text">验证连接 C2 和 CS2 的 ISL 端口和端口通道是否正常运行： `s如何连接端口通道摘要`</block>
-  <block id="49257dae1517ce0a266604611f40fe19" category="paragraph">以下示例显示了用于验证 C2 和 CS2 上 ISL 端口是否正常运行的 Cisco show port-channel summary 命令：</block>
-  <block id="bb1651f45817be29229f70593583bcd6" category="list-text">对于 ONTAP 9.8 及更高版本，请使用以下两个命令启用以太网交换机运行状况监控器日志收集功能以收集交换机相关的日志文件： `ssystem switch Ethernet log setup-password` 和 `ssystem switch Ethernet log enable-Collection`</block>
   <block id="45e50cd7644af8bcb7582afbaff1fd3a" category="paragraph">输入： `ssystem switch Ethernet log setup-password`</block>
-  <block id="02365d5fe51965645365010c75105f41" category="paragraph">后跟： `ssystem switch Ethernet log enable-Collection`</block>
   <block id="f596e32c8f97761d44eedfe73defefd2" category="paragraph">输入： `ssystem cluster-switch log setup-password`</block>
   <block id="87bd9bfab267dc2d9909cf27c375995d" category="paragraph">后跟： `ssystem cluster-switch log enable-Collection`</block>
   <block id="c3cad725709ffee7a5c8b59156b3f365" category="paragraph">下表列出了可用于 Cisco Nexus 3132Q-V 交换机的文档。</block>
@@ -3296,7 +3273,6 @@
   <block id="c1149c08490444b20498c10e50c2a14b" category="list-text">【第29步】验证集群是否运行正常：`cluster show`</block>
   <block id="e5b11cf3c23c3508c3b896786ad6720a" category="list-text">【第30步】对远程集群接口执行Ping操作以验证连接：`cluster ping-cluster -node local`</block>
   <block id="77a2f8547fffecb69f2d5527dcc4cb77" category="list-text">【第5步】显示相邻设备的列表：`s如何显示cdp邻居`</block>
-  <block id="104f202730dfa230b37a1822877fcba1" category="sidebar">共享配置中的Cisco Nexus 9336C-x2</block>
   <block id="d4d708e45e34a1416e859c8024a9e7c1" category="admonition">对于ONTAP 9.8及更高版本、请使用命令`ssystem Ethernet switch show -is-monitoring-enableed-Operational true`。</block>
   <block id="5de00a014ac301d274873568153e5b2e" category="paragraph">确保在运行此命令后已禁用自动还原。</block>
   <block id="8fdae5a227344a83423005f83a057331" category="list-text">验证集群中所有节点上的集群端口是否均已启动且运行正常：</block>
@@ -3383,4 +3359,59 @@
   <block id="e55e97993d59e593f9db82748c7205cd" category="sidebar">其他交换机过程</block>
   <block id="66a1a209b630861db25c9013c19efe3b" category="sidebar">过渡到双节点无交换机集群</block>
   <block id="749e4fff30fa6550a6b7216922e76856" category="paragraph">在以下示例中、node1上的"e0a"连接到node2上的"e0a"、node1上的"e0b"连接到node2上的"e0b"：</block>
+  <block id="f9c5b146fb6da165b4c98f09374af2ac" category="doc">从旧版Cisco交换机迁移到Cisco Nexus 9336C-x2集群交换机</block>
+  <block id="1b8eaf3e7617b6a44d79a24bae0cd120" category="doc">如何从旧版Cisco交换机迁移到Cisco Nexus 9336C-x2集群交换机</block>
+  <block id="1cb5aa8f44865f51a2c94321dd8b41db" category="paragraph">在将旧版Cisco Nexus集群交换机更换为Cisco Nexus 9336C-FX2集群交换机之前、必须满足以下条件：</block>
+  <block id="39ab2dde5b8a156f8283ad9532823433" category="list-text">必须完成Cisco Nexus 9336C-x2交换机的初始自定义。这样：</block>
+  <block id="15ceb34ee806ca103db662b65be6a105" category="list-text">9336C-FX2交换机正在运行建议的最新软件版本</block>
+  <block id="898acfce731a270505031c1f99d814b6" category="list-text">参考配置文件（ Reference Configuration Files ， RCF ）已应用于交换机</block>
+  <block id="efe23bf358b9145750927cc0f07ea121" category="list-text">任何站点自定义、例如DNS、NTP、SMTP、SNMP、 必须在新交换机上配置和SSH。</block>
+  <block id="ec8b4a794ba1d9a3b4e29049a5c80f5a" category="list-text">您必须已查看上的交换机兼容性表<block ref="91aaf2f14ce017094691ed108f35b756" category="inline-link-rx"></block> 页面上显示了受支持的 ONTAP ， NX-OS 和 RCF 版本。</block>
+  <block id="82aa1ff47d80bf012e412296f6a53469" category="inline-link">Nexus 9000系列交换机</block>
+  <block id="7951817a7bdebe9bf78d64818e47713a" category="list-text">您必须已参考 Cisco 网站上提供的相应软件和升级指南，以获取有关 Cisco 交换机升级和降级过程的完整文档<block ref="fe4ad365e2858c06eb4fc7c343be69c7" category="inline-link-rx"></block>。</block>
+  <block id="0db1e0bcdfd24db323c5c37def104aff" category="paragraph">此操作步骤中的示例使用两个节点。这些节点使用两个 10GbE 集群互连端口 e0a 和 e0b 。请参见<block ref="a9613e1dbacf145285c45df4264fe797" category="inline-link-rx"></block> 验证平台上的集群端口是否正确。</block>
+  <block id="4ad14943532a190c518f634a57c3dbc8" category="admonition">根据不同版本的ONTAP 、命令输出可能会有所不同。</block>
+  <block id="ff3339197a97612c0ebbaf2641bdfcfa" category="list-text">现有两个Cisco交换机的名称分别为*CS1*和*CS2*</block>
+  <block id="0152c4d08b7616e344d95f6017c7732e" category="list-text">新的Nexus 9336C-x2集群交换机为* CS1-new*和* CS2-new*。</block>
+  <block id="fb8e914ec6dde0cf237e25c77cef2ef2" category="list-text">节点名称为*节点1 *和*节点2 *。</block>
+  <block id="280a3fe80d664dbb11b34f620eaef991" category="list-text">节点1的集群LIF名称分别为*节点1_clus1*和*节点1_clus2*、节点2的集群LIF名称分别为*节点2_clus1*和*节点2_clus2*。</block>
+  <block id="c2bb2ae34a9db0e318c25b32c07dd6d5" category="list-text">cluster1：：：*)*提示符用于指示集群的名称。</block>
+  <block id="f8f21999828992a0d0f5a8789c02dece" category="admonition">操作步骤 需要同时使用ONTAP 命令和<block ref="fe4ad365e2858c06eb4fc7c343be69c7" category="inline-link-rx"></block> 命令；除非另有说明、否则使用ONTAP 命令。</block>
+  <block id="8b393c1cf533ebbb42a0655588c59f16" category="list-text">在新交换机上、确认交换机CS1-new和CS2-new之间的ISL已布线且运行状况良好：`show port-channel summary`</block>
+  <block id="79a4f6b2d175ee3474f28b12d058e767" category="list-text">显示连接到现有集群交换机的每个节点上的集群端口：`network device-discovery show`</block>
+  <block id="1a0894513362fda649e11ba9de926b82" category="list-text">确定每个集群端口的管理或运行状态。</block>
+  <block id="84ccc24125cdd2f4d989498223bde79d" category="list-text">验证所有集群端口是否均已启动且状态正常：`network port show -ipspace cluster`</block>
+  <block id="639eee6825849ecae25422187ed117e1" category="list-text">验证所有集群接口(LIF)是否位于其主端口上：`network interface show -vserver cluster`</block>
+  <block id="819ff57f464e039de1c480b406150b87" category="list-text">在集群交换机CS2上、关闭连接到节点集群端口的端口：</block>
+  <block id="78ecf74476ba071060eac27e2d411dbb" category="list-text">验证集群 LIF 是否已迁移到集群交换机 CS1 上托管的端口。这可能需要几秒钟时间：`network interface show -vserver Cluster`</block>
+  <block id="c0aae69da186a464bb2e5ce0a8b32451" category="list-text">将所有集群节点连接从旧CS2交换机移至新CS2-new交换机。</block>
+  <block id="4d317606ee3937aed888fec43374c887" category="list-text">确认已移至CS2-new的网络连接的运行状况：`network port show -ipspace cluster`</block>
+  <block id="be6163ad0c362d632b28f98dea1fdaaa" category="paragraph">移动的所有集群端口都应已启动。</block>
+  <block id="961e9e68bb33d8ff83286d506c60ca4e" category="list-text">检查集群端口上的邻居信息：`network device-discovery show -protocol cdp`</block>
+  <block id="d0141bcaf704f75f043a7384708a3131" category="paragraph">验证移动的集群端口是否将CS2-new交换机视为邻居。</block>
+  <block id="f53f913adacde30730136e7153afce35" category="list-text">从交换机CS2-new的角度确认交换机端口连接：</block>
+  <block id="c4fb5fab435d358d1b3a68ec74352416" category="list-text">在集群交换机 CS1 上，关闭连接到节点集群端口的端口。以下示例使用步骤7中的接口示例输出。</block>
+  <block id="8c61118abc6e9e30fd4469d362e96e00" category="paragraph">所有集群LIF都将移至CS2-NEW交换机。</block>
+  <block id="bf44f0d62fa291c101c06f24a71b2def" category="list-text">验证集群LIF是否已迁移到交换机CS2-new上托管的端口。这可能需要几秒钟时间：`network interface show -vserver Cluster`</block>
+  <block id="494ad00c3b01ee37729fae8f4d4c52c0" category="list-text">将连接从CS1移动到新的CS1-new交换机。</block>
+  <block id="8883da283484d4130e3cbb72ad1ac23a" category="list-text">确认已移至CS1-new的网络连接的运行状况：`network port show -ipspace cluster`</block>
+  <block id="77d74198b21a299e05d32144302f0f9a" category="list-text">检查集群端口上的邻居信息：`network device-discovery show`</block>
+  <block id="2a5fc0afbcb2299e24c73a909b297e93" category="paragraph">验证移动的集群端口是否将CS1-new交换机视为邻居。</block>
+  <block id="35d736ae56a7e094d4d2c2786669f8ca" category="list-text">从交换机CS1-new的角度确认交换机端口连接：</block>
+  <block id="d4180b23620c4c07998ad2c44ba6239d" category="list-text">验证CS1-new和CS2-new之间的ISL是否仍正常运行：`s如何执行端口通道摘要`</block>
+  <block id="0b602f3edded4e9ea468fe0dd0aed4e3" category="list-text">验证集群LIF是否已还原到其主端口(这可能需要一分钟时间)：`network interface show -vserver Cluster`</block>
+  <block id="a1ef9f2bd020f62a6d3b932a75ea6b79" category="paragraph">如果集群LIF尚未还原到其主端口、请手动还原它们：`network interface revert -vserver Cluster -lif *`</block>
+  <block id="6e17c5b16e74fa9487ffd1971cf1ffb9" category="list-text">对远程集群接口执行Ping操作以验证连接：`cluster ping-cluster -node &lt;name&gt;`</block>
+  <block id="2a42351fd3a2f7fd74a9510816b9125f" category="list-text">启用以太网交换机运行状况监控器日志收集功能以收集交换机相关的日志文件。</block>
+  <block id="9e25219bfef39dc2d94805b599244f8d" category="open-title">ONTAP 9.8 及更高版本</block>
+  <block id="c341f6ea60d7e8508c7d6cd8d529fd71" category="paragraph">使用以下两个命令启用以太网交换机运行状况监控器日志收集功能以收集交换机相关的日志文件：`ssystem switch Ethernet log setup-password`和`ssystem switch Ethernet log enable-Collection`</block>
+  <block id="372aff3164b35ebb97a99a633d4262a4" category="paragraph">*注：*您需要交换机上*管理员*用户的密码。</block>
+  <block id="29da462071497c41049a1b6586d7faad" category="paragraph">*注：*如果其中任何一个命令返回错误、请联系NetApp支持部门。</block>
+  <block id="265709bb11a2395ee04486f312f63d67" category="open-title">ONTAP 9.5P16、9.6P12和9.7P10及更高版本的修补程序版本</block>
+  <block id="97bf148f014d7e2cb04d1c101e0683ee" category="paragraph">使用以下命令启用以太网交换机运行状况监控器日志收集功能以收集交换机相关的日志文件：`ssystem cluster-switch log setup-password`和`ssystem cluster-switch log enable-Collection`</block>
+  <block id="09c6def1f4b49f6f04b28d41fd5d1662" category="list-text">`您禁止自动创建案例、请通过调用AutoSupport 消息重新启用此功能：`ssystem node AutoSupport invoke -node *-type all -message MAIN=end</block>
+  <block id="bc8a2cd252a5beb1dbf4f209baea67eb" category="sidebar">共享交换机</block>
+  <block id="626a7cbe056796bcb1c158b143866230" category="sidebar">《 ONTAP 发行说明》</block>
+  <block id="c09b5be4c2da04f4040eef1878f258aa" category="sidebar">ONTAP 9 文档</block>
+  <block id="4ec6a95192d18718a540794417c8fa63" category="sidebar">NetApp Active IQ Digital Advisor</block>
 </blocks>
