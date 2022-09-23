@@ -44,6 +44,10 @@ NOTE: 根据不同版本的ONTAP 、命令输出可能会有所不同。
 
 NOTE: 操作步骤 需要同时使用ONTAP 命令和 https://www.cisco.com/c/en/us/support/switches/nexus-9000-series-switches/series.htmlCisco["Nexus 9000系列交换机"^] 命令；除非另有说明、否则使用ONTAP 命令。
 
+*初始交换机设置*
+
+image::../media/Initial_setup.png[初始交换机设置]
+
 .步骤
 . 如果在此集群上启用了 AutoSupport ，请通过调用 AutoSupport 消息来禁止自动创建案例： `ssystem node AutoSupport invoke -node * -type all -message MAINT=xh`
 +
@@ -187,7 +191,7 @@ cs2(config-if-range)# *shutdown*
 +
 [listing, subs="+quotes"]
 ----
-cluster1::*> *network interface show -vserver cluster*
+cluster1::*> *network interface show -vserver Cluster*
             Logical       Status     Network            Current    Current Is
 Vserver     Interface     Admin/Oper Address/Mask       Node       Port    Home
 ----------- ------------- ---------- ------------------ ---------- ------- ----
@@ -208,6 +212,12 @@ node1      true    true          false
 node2      true    true          false
 ----
 . 将所有集群节点连接从旧CS2交换机移至新CS2-new交换机。
++
+*集群节点连接已移至CS2-new交换机*
+
++
+image::../media/new_switch_cs1.png[集群节点连接已移至CS2-new交换机]
+
 . 确认已移至CS2-new的网络连接的运行状况：`network port show -ipspace cluster`
 +
 [listing, subs="+quotes"]
@@ -274,7 +284,7 @@ cs1(config-if-range)# *shutdown*
 +
 [listing, subs="+quotes"]
 ----
-cluster1::*> *network interface show -vserver cluster*
+cluster1::*> *network interface show -vserver Cluster*
             Logical      Status     Network            Current     Current Is
 Vserver     Interfac     Admin/Oper Address/Mask       Node        Port    Home
 ----------- ------------ ---------- ------------------ ----------- ------- ----
@@ -295,6 +305,12 @@ node1      true    true          false
 node2      true    true          false
 ----
 . 将连接从CS1移动到新的CS1-new交换机。
++
+*集群节点连接已移至CS1-new交换机*
+
++
+image::../media/new_switch_cs2.png[集群节点连接已移至CS1-new交换机]
+
 . 确认已移至CS1-new的网络连接的运行状况：`network port show -ipspace cluster`
 +
 [listing, subs="+quotes"]
