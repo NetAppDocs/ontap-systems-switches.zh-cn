@@ -1743,7 +1743,6 @@
   <block id="d7de59d570551ce510d04111914f9ad7" category="paragraph">如果您下载的是 NetApp 支持的软件版本，则还必须下载 _NetApp 集群网络交换机参考配置文件 _ 并将其与步骤 5 中保存的配置合并。您可以从下载文件和说明<block ref="91aaf2f14ce017094691ed108f35b756" category="inline-link-rx"></block> 页面。</block>
   <block id="771335554e309a1fffe48143bbab90a9" category="list-text">检查网络交换机上的软件版本，如有必要，请将 NetApp 支持的软件版本下载到这些交换机。如果您有自己的交换机，请参见<block ref="c602ce64cde2f26d0f98979dc6b3aef5" category="inline-link-rx"></block>。</block>
   <block id="b2cb13c509425b76d525187f976cf094" category="paragraph">如果您下载的是 NetApp 支持的软件版本，则还必须下载 _NetApp 管理网络交换机参考配置文件 _ 并将其与步骤 5 中保存的配置合并。您可以从下载文件和说明<block ref="91aaf2f14ce017094691ed108f35b756" category="inline-link-rx"></block> 页面。</block>
-  <block id="da89029df4f4f3d5cb89934f58459d5d" category="paragraph">请参见<block ref="452267e26d0f038af434d2b1530dbe66" category="inline-link-rx"></block> 在《适用于 Broadcom 支持的 BES-53248 交换机的 _Switch 设置和配置指南》中。</block>
   <block id="a0cf70ca38e1fd0262591cf56e31f46f" category="paragraph">有关可在 BES-53248 集群交换机上使用的许可证类型的详细信息，请参见 <block ref="fa313c84214758de3e89db1ed227f8b1" category="inline-link-macro-rx"></block>。</block>
   <block id="34d5959f829dd84d53199b6f1474e69b" category="paragraph">*`加密密钥生成` *</block>
   <block id="83a0e3bf9dd48caad05146cc29f81e6b" category="list-text">验证是否已启用 SSH ：</block>
@@ -3217,7 +3216,6 @@
   <block id="c538bd274909af8b508e01f0ef04034d" category="doc">如何将CN1610集群交换机迁移到BES-53248集群交换机</block>
   <block id="aca231809cb1cd80c1435dd9914b66dd" category="paragraph">然后，您必须将所有节点上已断开连接的端口重新连接到新的 BES-53248 交换机 CS2 。请参见<block ref="141c10db18cf1753fa5fc05f553c33ff" category="inline-link-rx"></block> 用于获得批准的布线选项。</block>
   <block id="cbd2e2da439fbaf2fd95743ddedbb09e" category="paragraph">然后，您必须将所有节点上已断开连接的端口重新连接到新的 BES-53248 交换机 CS1 。请参见<block ref="141c10db18cf1753fa5fc05f553c33ff" category="inline-link-rx"></block> 用于获得批准的布线选项。</block>
-  <block id="2fdf2d2e9946eb8adc48fbf536fd79b1" category="paragraph">请参见 <block ref="22274518ab78de16bd162dd23a69479d" category="inline-link-macro-rx"></block> 和 <block ref="ad7a44206ec014fec7df9283bb056461" category="inline-link-macro-rx"></block> 用于启用集群运行状况交换机日志收集以收集交换机相关日志文件所需的步骤。</block>
   <block id="1ba5b0ffd5b0d90e8b5fbf1938e87f52" category="section-title">BES-53248集群交换机端口分配</block>
   <block id="16c3e502f28be460a987ad28ccd36874" category="paragraph">您可以参考Broadcom支持的BES-53248集群交换机端口分配表来配置集群。</block>
   <block id="fa4755458f8910a0033438b214e14730" category="paragraph">01-16</block>
@@ -3238,7 +3236,6 @@
   <block id="762a244fe152a19f04047b412d16e8df" category="paragraph">在运行 ONTAP 的系统上安装 BES-53248 集群交换机时，首先需要设置 IP 地址和配置，以使交换机能够通过管理接口进行通信。然后，您可以根据需要安装以太网阵列操作系统（ EFOS ）软件，参考配置文件（ RCF ）和其他许可证。此操作步骤用于在添加控制器之前准备 BES-53248 交换机。此外，您可能需要安装所需的配置文件，以支持 BES-53248 集群交换机的集群交换机运行状况监控器（ Cluster Switch Health Monitor ， CSHM ）。请参见 <block ref="22274518ab78de16bd162dd23a69479d" category="inline-link-macro-rx"></block> 有关详细信息：</block>
   <block id="23e7cf6793dbbe3c59640d6ebb6cf4fc" category="list-text">。<block ref="141c10db18cf1753fa5fc05f553c33ff" category="inline-link-rx"></block> 包含有关ONTAP 兼容性、支持的EFOS固件以及BES-53248集群交换机布线的信息。</block>
   <block id="d1e4ca1900305cb93087d6668cebf0f9" category="paragraph">确保按照中所述设置BES-53248集群交换机 <block ref="29f190705d64b052fe2941415d5984d8" category="inline-link-macro-rx"></block> 开始此迁移过程之前。</block>
-  <block id="d7d3a566381272c7d9d5ad6a790a9a99" category="paragraph">另请参见 <block ref="22274518ab78de16bd162dd23a69479d" category="inline-link-macro-rx"></block> 和 <block ref="ad7a44206ec014fec7df9283bb056461" category="inline-link-macro-rx"></block> 用于启用集群运行状况交换机日志收集以收集交换机相关日志文件所需的步骤。</block>
   <block id="98b6bf2585261f62aff01449faad7684" category="paragraph">要使用的调试命令包括：`debug transfer`和`debug license`</block>
   <block id="c0be2d74ddb0ea6b8972b9da2fc2c223" category="paragraph">。<block ref="141c10db18cf1753fa5fc05f553c33ff" category="inline-link-rx"></block> 包含有关ONTAP 兼容性、支持的EFOS固件以及连接到BES-53248交换机的布线的信息。</block>
   <block id="91950abebf25a4752db5969582aa4bb7" category="paragraph">。<block ref="141c10db18cf1753fa5fc05f553c33ff" category="inline-link-rx"></block> 包含有关平台的实际集群端口的最新信息。</block>
@@ -3420,4 +3417,5 @@
   <block id="1f5e0ea57e0f194957353e2db3df4e2d" category="image-alt">集群节点连接已移至CS2-new交换机</block>
   <block id="3fb38d5aab534a043c30d7f1a3b0a9dd" category="paragraph">*集群节点连接已移至CS1-new交换机*</block>
   <block id="84532259a7d4acf54c61408e0d42d0ce" category="image-alt">集群节点连接已移至CS1-new交换机</block>
+  <block id="51c9a924c6ea752a49b8df35531a26e7" category="paragraph">请参见 <block ref="22274518ab78de16bd162dd23a69479d" category="inline-link-macro-rx"></block> 和 <block ref="a2f030b123da393c4875ac0d059237dd" category="inline-link-macro-rx"></block> 用于启用集群运行状况交换机日志收集以收集交换机相关日志文件所需的步骤。</block>
 </blocks>

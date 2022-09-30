@@ -572,7 +572,7 @@ cluster::*> *system node autosupport invoke -node \* -type all -message MAINT=EN
 ----
 
 
-请参见 link:configure-health-monitor.html["安装集群交换机运行状况监控器（ CSHM ）配置文件"] 和 link:configure-log-collection["配置集群交换机日志收集功能"] 用于启用集群运行状况交换机日志收集以收集交换机相关日志文件所需的步骤。
+请参见 link:configure-health-monitor.html["安装集群交换机运行状况监控器（ CSHM ）配置文件"] 和 link:configure-log-collection.html["配置集群交换机日志收集功能"] 用于启用集群运行状况交换机日志收集以收集交换机相关日志文件所需的步骤。
 
 * 相关信息 *
 

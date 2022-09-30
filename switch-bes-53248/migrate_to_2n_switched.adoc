@@ -20,6 +20,4 @@ summary: 如果您使用双节点无交换机集群，则可以无中断地迁�
 
 NOTE: 迁移完成后，您可能需要安装所需的配置文件，以支持 BES-53248 集群交换机的集群交换机运行状况监控器（ Cluster Switch Health Monitor ， CSHM ）。
 
-请参见 http://docs.netapp.com/platstor/topic/com.netapp.doc.hw-sw-ix8-setup/GUID-211616A4-C962-464A-A70E-5E057D7B13E1.html["安装集群交换机运行状况监控器（ CSHM ）配置文件"^] 在《适用于 Broadcom 支持的 BES-53248 交换机的 _Switch 设置和配置指南》中。
-
-另请参见 link:configure-health-monitor.html["安装集群交换机运行状况监控器（ CSHM ）配置文件"] 和 link:configure-log-collection["配置集群交换机日志收集功能"] 用于启用集群运行状况交换机日志收集以收集交换机相关日志文件所需的步骤。
+请参见 link:configure-health-monitor.html["安装集群交换机运行状况监控器（ CSHM ）配置文件"] 和 link:configure-log-collection.html["配置集群交换机日志收集功能"] 用于启用集群运行状况交换机日志收集以收集交换机相关日志文件所需的步骤。
