@@ -1,0 +1,118 @@
+---
+permalink: switch-nvidia-sn2100/sn2100-overview.html 
+sidebar: sidebar 
+keywords: nvidia SN2100 switches 
+summary: 如果要使用两个以上的节点构建 ONTAP 集群，则需要两个受支持的集群网络交换机。您可以使用其他管理交换机，这些交换机是可选的。 
+---
+= NVIDIA SN2100交换机
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+从ONTAP 9.10.1P3开始、您可以使用NVIDIA SN2100交换机将存储和集群功能组合到共享交换机配置中。
+
+如果要使用两个以上的节点构建 ONTAP 集群，则需要两个受支持的集群网络交换机。您可以使用其他管理交换机，这些交换机是可选的。
+
+您可以在NVIDIA双/单交换机机柜中使用随交换机提供的标准支架安装NVIDIA SN2100交换机(X190006/X190106)。
+
+下表列出了MSN2100交换机和导轨套件的部件号和问题描述 ：
+
+[cols="1,2"]
+|===
+| 部件号 | Description 
+
+
+ a| 
+X190006-PE
+ a| 
+集群交换机、NVIDIA SN2100、16磅100G、PTSX
+
+
+
+ a| 
+X190006-PI
+ a| 
+集群交换机、NVIDIA SN2100、16磅100G、PSIN
+
+
+
+ a| 
+X190106-FE-PE
+ a| 
+交换机、NVIDIA SN2100、16磅100G、PTSX、前端
+
+
+
+ a| 
+X190106-FE-PI
+ a| 
+交换机、NVIDIA SN2100、16磅100G、PSIN、前端
+
+
+
+ a| 
+X-MTEF套件D
+ a| 
+导轨套件、NVIDIA并排双交换机
+
+
+
+ a| 
+X-MTEF-KIT-E
+ a| 
+导轨套件、NVIDIA单交换机、短深度
+
+|===
+
+IMPORTANT: 有关详细信息、请参见NVIDIA文档 https://docs.nvidia.com/networking/display/sn2000pub/Installation["安装SN2100交换机和导轨套件"^]。
+
+下表列出了适用于NVIDIA SN2100交换机的文档。
+
+[cols="1,2"]
+|===
+| 标题 | Description 
+
+
+ a| 
+link:install_setup_sn2100_switches_overview.html["设置和配置NVIDIA SN2100交换机_"^]
+ a| 
+介绍如何设置和配置NVIDIA SN2100交换机、包括安装Cumulus Linux和适用的RCF。
+
+
+
+ a| 
+link:migrate_cisco_sn2100_cluster_switch.html["_从Cisco集群交换机迁移到NVIDIA SN2100集群交换机_"^]
+ a| 
+介绍如何从使用Cisco集群交换机的环境迁移到使用NVIDIA SN2100集群交换机的环境。
+
+
+
+ a| 
+link:migrate_cisco_sn2100_storage_switch.html["_从Cisco存储交换机迁移到NVIDIA存储交换机_"^]
+ a| 
+介绍如何从使用Cisco存储交换机的环境迁移到使用NVIDIA SN2100存储交换机的环境。
+
+
+
+ a| 
+link:migrate_2n_switched_sn2100_switches.html["_迁移到使用NVIDIA SN2100集群交换机的双节点交换集群_"^]
+ a| 
+介绍如何使用NVIDIA SN2100集群交换机迁移到双节点交换环境。
+
+
+
+ a| 
+link:replace_sn2100_switch_cluster.html["_更换NVIDIA SN2100集群交换机_"^]
+ a| 
+介绍用于更换集群中有缺陷的NVIDIA SN2100交换机以及下载Cumulus Linux和参考配置文件的操作步骤。
+
+
+
+ a| 
+link:replace_sn2100_switch_storage.html["_更换NVIDIA SN2100存储交换机_"^]
+ a| 
+介绍用于更换有缺陷的NVIDIA SN2100存储交换机以及下载Cumulus Linux和参考配置文件的操作步骤。
+
+|===

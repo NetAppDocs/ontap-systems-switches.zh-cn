@@ -1,0 +1,420 @@
+---
+permalink: switch-nvidia-sn2100/replace_sn2100_switch_cluster.html 
+sidebar: sidebar 
+keywords: replacing, replace, defective, nvidia, switch, cluster, network, nondisruptive, procedure, ndu, replace a nvidia msn2100 cluster switch - nvidia SN2100 
+summary: '更换集群网络中有故障的NVIDIA SN2100交换机是无中断的操作步骤 \(NDU\)。' 
+---
+= 更换NVIDIA SN2100集群交换机
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+更换集群网络中有故障的NVIDIA SN2100交换机是无中断操作步骤 (NDU)。
+
+在当前环境中以及在替代交换机上执行交换机更换之前，必须满足以下条件。
+
+* 现有集群和网络基础架构：
++
+** 必须使用至少一个完全连接的集群交换机验证现有集群是否完全正常运行。
+** 所有集群端口都必须已启动。
+** 所有集群逻辑接口（ LIF ）都必须已启动并位于其主端口上。
+** ONTAP `cluster ping-cluster -node node1`命令必须指示所有路径上的基本连接以及大于PMTU的通信均成功。
+
+
+* NVIDIA SN2100更换交换机：
++
+** 更换用的交换机上的管理网络连接必须正常工作。
+** 必须能够通过控制台访问更换用的交换机。
+** 节点连接是端口swp1到swp14。
+** 必须在端口swp15和swp16上禁用所有交换机间链路(ISL)端口。
+** 必须将所需的参考配置文件(RCF)和Cumulus操作系统映像交换机加载到交换机上。
+** 必须完成交换机的初始自定义，如中所述：
++
+之前的任何站点自定义设置，例如 STP ， SNMP 和 SSH ，都应复制到新交换机。
+
+
+
+
+
+您必须执行命令，从托管集群 LIF 的节点迁移集群 LIF 。
+
+此操作步骤中的示例使用以下交换机和节点命名：
+
+* 现有NVIDIA SN2100交换机的名称是_sw1_和_SW2_。
+* 新NVIDIA SN2100交换机的名称是_nsw2_。
+* 节点名称为 _node1_ 和 _node2_ 。
+* 每个节点上的集群端口均名为 _e3A_ 和 _e3b_ 。
+* 对于node1、集群LIF名称分别为_node1_clus1_和_node1_clus2_、对于node2、集群LIF名称分别为_node2_clus1_和_node2_clus2_。
+* 对所有集群节点进行更改的提示为`cluster1：：*>`
+* 分支端口采用以下格式：swp[port]s[分支端口0-3]。例如、swp1上的四个分支端口为_swp1s0_、_swp1s1_、_swp1s2_和_swp1s3_。
++
+
+NOTE: 以下操作步骤基于以下集群网络拓扑：
+
++
+[listing, subs="+quotes"]
+----
+cluster1::*> *network port show -ipspace Cluster*
+
+Node: node1
+                                                                        Ignore
+                                                  Speed(Mbps)  Health   Health
+Port      IPspace      Broadcast Domain Link MTU  Admin/Oper   Status   Status
+--------- ------------ ---------------- ---- ---- ------------ -------- ------
+e3a       Cluster      Cluster          up   9000  auto/100000 healthy  false
+e3b       Cluster      Cluster          up   9000  auto/100000 healthy  false
+
+Node: node2
+                                                                        Ignore
+                                                  Speed(Mbps)  Health   Health
+Port      IPspace      Broadcast Domain Link MTU  Admin/Oper   Status   Status
+--------- ------------ ---------------- ---- ---- ------------ -------- ------
+e3a       Cluster      Cluster          up   9000  auto/100000 healthy  false
+e3b       Cluster      Cluster          up   9000  auto/100000 healthy  false
+
+
+cluster1::*> *network interface show -vserver Cluster*
+
+            Logical    Status     Network            Current       Current Is
+Vserver     Interface  Admin/Oper Address/Mask       Node          Port    Home
+----------- ---------- ---------- ------------------ ------------- ------- ----
+Cluster
+            node1_clus1  up/up    169.254.209.69/16  node1         e3a     true
+            node1_clus2  up/up    169.254.49.125/16  node1         e3b     true
+            node2_clus1  up/up    169.254.47.194/16  node2         e3a     true
+            node2_clus2  up/up    169.254.19.183/16  node2         e3b     true
+
+
+cluster1::*> *network device-discovery show -protocol lldp*
+Node/       Local  Discovered
+Protocol    Port   Device (LLDP: ChassisID)  Interface     Platform
+----------- ------ ------------------------- ------------  ----------------
+node1      /lldp
+            e3a    sw1 (b8:ce:f6:19:1a:7e)   swp3          -
+            e3b    sw2 (b8:ce:f6:19:1b:96)   swp3          -
+node2      /lldp
+            e3a    sw1 (b8:ce:f6:19:1a:7e)   swp4          -
+            e3b    sw2 (b8:ce:f6:19:1b:96)   swp4          -
+----
++
+[listing, subs="+quotes"]
+----
+cumulus@sw1:~$ *net show lldp*
+
+LocalPort  Speed  Mode        RemoteHost         RemotePort
+---------  -----  ----------  -----------------  -----------
+swp3       100G   Trunk/L2    sw2                e3a
+swp4       100G   Trunk/L2    sw2                e3a
+swp15      100G   BondMember  sw2                swp15
+swp16      100G   BondMember  sw2                swp16
+
+
+cumulus@sw2:~$ *net show lldp*
+
+LocalPort  Speed  Mode        RemoteHost         RemotePort
+---------  -----  ----------  -----------------  -----------
+swp3       100G   Trunk/L2    sw1                e3b
+swp4       100G   Trunk/L2    sw1                e3b
+swp15      100G   BondMember  sw1                swp15
+swp16      100G   BondMember  sw1                swp16
+----
+
+
+.步骤
+. 如果在此集群上启用了 AutoSupport ，请通过调用 AutoSupport 消息来禁止自动创建案例： `ssystem node AutoSupport invoke -node * -type all -message MAINT=xh`
++
+其中 _x_ 是维护时段的持续时间，以小时为单位。
+
+. 将权限级别更改为高级，在系统提示您继续时输入 * y* ： `set -privilege advanced`
++
+此时将显示高级提示符（ * > ）。
+
+. 在交换机nsw2上安装相应的RCF和映像、并进行必要的站点准备。
++
+如有必要、请验证、下载并安装适用于新交换机的RCF和Cumulus软件的相应版本。如果您已确认新交换机设置正确、并且不需要更新RCF和Cumulus软件、请继续执行步骤3。请参见 link:install_setup_sn2100_switches_overview.html["设置和配置NVIDIA SN2100交换机"] 了解更多详细信息。
+
++
+.. 您可以从_NVIDIA Support_站点下载适用于您的集群交换机的适用的Cumulus软件。按照下载页面上的步骤下载所安装ONTAP 软件版本的Cumulus Linux。
+.. 可从获取相应的 RCF link:https://mysupport.netapp.com/site/products/all/details/nvidia-cluster-storage-switch/downloads-tab["_NVIDIA集群和存储交换机_"^] 页面。按照下载页面上的步骤下载适用于您要安装的 ONTAP 软件版本的正确 RCF 。
+
+
+. 在新交换机nsw2上、以admin身份登录并关闭将连接到节点集群接口的所有端口(端口swp1到swp14)。
++
+如果要更换的交换机无法正常工作并已关闭电源，请转至步骤 4 。集群节点上的 LIF 应已故障转移到每个节点的另一个集群端口。
+
++
+[listing, subs="+quotes"]
+----
+cumulus@nsw2:~$ *net add interface swp1s0-3, swp2s0-3, swp3-14 link down*
+cumulus@nsw2:~$ *net pending*
+cumulus@nsw2:~$ *net commit*
+----
+. 在集群LIF上禁用自动还原：`network interface modify -vserver cluster -lif *-auto-revert false`
++
+[listing, subs="+quotes"]
+----
+cluster1::*> *network interface modify -vserver Cluster -lif * -auto-revert false*
+
+Warning: Disabling the auto-revert feature of the cluster logical interface may effect the availability of your cluster network. Are you sure you want to continue? {y|n}: *y*
+----
+. 关闭SN2100交换机sw1上的ISL端口swp15和swp16：
++
+[listing, subs="+quotes"]
+----
+cumulus@sw1:~$ *net add interface swp15-16 link down*
+cumulus@sw1:~$ *net pending*
+cumulus@sw1:~$ *net commit*
+----
+. 拔下SN2100 sw1交换机上的所有缆线、然后将其连接到SN2100 nsw2交换机上的相同端口。
+. 启动sw1和nsw2交换机之间的ISL端口swp15和swp16。
++
+以下命令将在交换机sw1上启用ISL端口swp15和swp16：
+
++
+[listing, subs="+quotes"]
+----
+cumulus@sw1:~$ *net del interface swp15-16 link down*
+cumulus@sw1:~$ *net pending*
+cumulus@sw1:~$ *net commit*
+----
++
+以下示例显示交换机sw1上的ISL端口已启动：
+
++
+[listing, subs="+quotes"]
+----
+cumulus@sw1:~$ *net show interface*
+
+State  Name         Spd   MTU    Mode        LLDP           Summary
+-----  -----------  ----  -----  ----------  -------------- ----------------------
+...
+...
+UP     swp15        100G  9216   BondMember  nsw2 (swp15)   Master: cluster_isl(UP)
+UP     swp16        100G  9216   BondMember  nsw2 (swp16)   Master: cluster_isl(UP)
+----
++
+以下示例显示交换机nsw2上的ISL端口已启动：
+
++
+[listing, subs="+quotes"]
+----
+cumulus@nsw2:~$ *net show interface*
+
+State  Name         Spd   MTU    Mode        LLDP           Summary
+-----  -----------  ----  -----  ----------  -------------  -----------------------
+...
+...
+UP     swp15        100G  9216   BondMember  sw1 (swp15)    Master: cluster_isl(UP)
+UP     swp16        100G  9216   BondMember  sw1 (swp16)    Master: cluster_isl(UP)
+----
+. 确认所有节点上的端口`e3b`均已启动：`network port show -ipspace cluster`
++
+输出应类似于以下内容：
+
++
+[listing, subs="+quotes"]
+----
+cluster1::*> *network port show -ipspace Cluster*
+
+Node: node1
+                                                                         Ignore
+                                                   Speed(Mbps)  Health   Health
+Port      IPspace      Broadcast Domain Link MTU   Admin/Oper   Status   Status
+--------- ------------ ---------------- ---- ----- ------------ -------- -------
+e3a       Cluster      Cluster          up   9000  auto/100000  healthy  false
+e3b       Cluster      Cluster          up   9000  auto/100000  healthy  false
+
+
+Node: node2
+                                                                         Ignore
+                                                   Speed(Mbps) Health    Health
+Port      IPspace      Broadcast Domain Link MTU   Admin/Oper  Status    Status
+--------- ------------ ---------------- ---- ----- ----------- --------- -------
+e3a       Cluster      Cluster          up   9000  auto/100000  healthy  false
+e3b       Cluster      Cluster          up   9000  auto/100000  healthy  false
+----
+. 现在，从节点的角度来看，每个节点上的集群端口均以以下方式连接到集群交换机：
++
+[listing, subs="+quotes"]
+----
+cluster1::*> *network device-discovery show -protocol lldp*
+Node/       Local  Discovered
+Protocol    Port   Device (LLDP: ChassisID)  Interface     Platform
+----------- ------ ------------------------- ------------  ----------------
+node1      /lldp
+            e3a    sw1  (b8:ce:f6:19:1a:7e)   swp3          -
+            e3b    nsw2 (b8:ce:f6:19:1b:b6)   swp3          -
+node2      /lldp
+            e3a    sw1  (b8:ce:f6:19:1a:7e)   swp4          -
+            e3b    nsw2 (b8:ce:f6:19:1b:b6)   swp4          -
+----
+. 验证所有节点集群端口是否均已启动：`net show interface`
++
+[listing, subs="+quotes"]
+----
+cumulus@nsw2:~$ *net show interface*
+
+State  Name         Spd   MTU    Mode        LLDP              Summary
+-----  -----------  ----  -----  ----------  ----------------- ----------------------
+...
+...
+UP     swp3         100G  9216   Trunk/L2                      Master: bridge(UP)
+UP     swp4         100G  9216   Trunk/L2                      Master: bridge(UP)
+UP     swp15        100G  9216   BondMember  sw1 (swp15)       Master: cluster_isl(UP)
+UP     swp16        100G  9216   BondMember  sw1 (swp16)       Master: cluster_isl(UP)
+----
+. 验证两个节点的每个交换机是否都有一个连接：`net show lldp`
++
+以下示例显示了这两个交换机的相应结果：
+
++
+[listing, subs="+quotes"]
+----
+cumulus@sw1:~$ *net show lldp*
+
+LocalPort  Speed  Mode        RemoteHost         RemotePort
+---------  -----  ----------  -----------------  -----------
+swp3       100G   Trunk/L2    node1              e3a
+swp4       100G   Trunk/L2    node2              e3a
+swp15      100G   BondMember  nsw2               swp15
+swp16      100G   BondMember  nsw2               swp16
+
+
+cumulus@nsw2:~$ *net show lldp*
+
+LocalPort  Speed  Mode        RemoteHost         RemotePort
+---------  -----  ----------  -----------------  -----------
+swp3       100G   Trunk/L2    node1                e3b
+swp4       100G   Trunk/L2    node2                e3b
+swp15      100G   BondMember  sw1                swp15
+swp16      100G   BondMember  sw1                swp16
+----
+. 在集群LIF上启用自动还原：`cluster1：：：*> network interface modify -vserver cluster -lif *-auto-revert true`
+. 在交换机nsw2上、启动连接到节点网络端口的端口。
++
+[listing, subs="+quotes"]
+----
+cumulus@nsw2:~$ *net del interface swp1-14 link down*
+cumulus@nsw2:~$ *net pending*
+cumulus@nsw2:~$ *net commit*
+----
+. 显示有关集群中节点的信息： `cluster show`
++
+此示例显示此集群中 node1 和 node2 的节点运行状况为 true ：
+
++
+[listing, subs="+quotes"]
+----
+cluster1::*> *cluster show*
+
+Node          Health  Eligibility
+------------- ------- ------------
+node1         true    true
+node2         true    true
+----
+. 验证所有物理集群端口是否均已启动： `network port show IPSpace Cluster`
++
+[listing, subs="+quotes"]
+----
+cluster1::*> *network port show -ipspace Cluster*
+
+Node node1                                                               Ignore
+                                                    Speed(Mbps) Health   Health
+Port      IPspace     Broadcast Domain  Link  MTU   Admin/Oper  Status   Status
+--------- ----------- ----------------- ----- ----- ----------- -------- ------
+e3a       Cluster     Cluster           up    9000  auto/10000  healthy  false
+e3b       Cluster     Cluster           up    9000  auto/10000  healthy  false
+
+Node: node2
+                                                                         Ignore
+                                                    Speed(Mbps) Health   Health
+Port      IPspace      Broadcast Domain Link  MTU   Admin/Oper  Status   Status
+--------- ------------ ---------------- ----- ----- ----------- -------- ------
+e3a       Cluster      Cluster          up    9000  auto/10000  healthy  false
+e3b       Cluster      Cluster          up    9000  auto/10000  healthy  false
+
+----
+. 验证集群网络是否运行正常：
++
+[listing, subs="+quotes"]
+----
+cumulus@sw1:~$ *net show lldp*
+
+LocalPort  Speed  Mode        RemoteHost      RemotePort
+---------  -----  ----------  --------------  -----------
+swp3       100G   Trunk/L2    node1           e3a
+swp4       100G   Trunk/L2    node2           e3a
+swp15      100G   BondMember  nsw2            swp15
+swp16      100G   BondMember  nsw2            swp16
+----
+. 使用以下命令启用以太网交换机运行状况监控器日志收集功能以收集交换机相关的日志文件：`ssystem switch Ethernet log setup-password`和`ssystem switch Ethernet log enable-Collection`
++
+输入： `ssystem switch Ethernet log setup-password`
+
++
+[listing, subs="+quotes"]
+----
+cluster1::*> *system switch ethernet log setup-password*
+Enter the switch name: <return>
+The switch name entered is not recognized.
+Choose from the following list:
+*sw1*
+*nsw2*
+
+cluster1::*> *system switch ethernet log setup-password*
+
+Enter the switch name: *sw1*
+RSA key fingerprint is e5:8b:c6:dc:e2:18:18:09:36:63:d9:63:dd:03:d9:cc
+Do you want to continue? {y|n}::[n] *y*
+
+Enter the password: <enter switch password>
+Enter the password again: <enter switch password>
+
+cluster1::*> *system switch ethernet log setup-password*
+
+Enter the switch name: *nsw2*
+RSA key fingerprint is 57:49:86:a1:b9:80:6a:61:9a:86:8e:3c:e3:b7:1f:b1
+Do you want to continue? {y|n}:: [n] *y*
+
+Enter the password: <enter switch password>
+Enter the password again: <enter switch password>
+----
++
+后跟： `ssystem switch Ethernet log enable-Collection`
+
++
+[listing, subs="+quotes"]
+----
+cluster1::*> *system switch ethernet log enable-collection*
+
+Do you want to enable cluster log collection for all nodes in the cluster?
+{y|n}: [n] *y*
+
+Enabling cluster switch log collection.
+
+cluster1::*>
+----
++
+
+NOTE: 如果其中任何一个命令返回错误，请联系 NetApp 支持部门。
+
+. 启动交换机日志收集功能：`ssystem switch Ethernet log Collect -device *`
++
+等待10分钟、然后使用命令`ssystem switch Ethernet log show`检查日志收集是否成功
+
++
+[listing, subs="+quotes"]
+----
+cluster1::*> *system switch ethernet log show*
+Log Collection Enabled: true
+
+Index  Switch                       Log Timestamp        Status
+------ ---------------------------- -------------------  ---------    
+1      sw1 (b8:ce:f6:19:1b:42)      4/29/2022 03:05:25   complete   
+2      nsw2 (b8:ce:f6:19:1b:96)     4/29/2022 03:07:42   complete
+----
+. 将权限级别重新更改为 admin ： `set -privilege admin`
+. 如果禁止自动创建案例，请通过调用 AutoSupport 消息重新启用此功能： `ssystem node AutoSupport invoke -node * -type all -message MAINT=end`
+

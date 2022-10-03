@@ -1654,8 +1654,6 @@
   <block id="a393cd4f170aafc6db54b17ca62ffb74" category="sidebar">Broadcom 支持的 BES-53248</block>
   <block id="2b2815ca4a9fd5973ee66317adb580e4" category="sidebar">其他交换机型号</block>
   <block id="dfcc398099d6a64026e51ab282e16253" category="sidebar">更多资源</block>
-  <block id="353534d94bfe5cda4a518ae399d604c2" category="sidebar">AFF 和 FAS 文档</block>
-  <block id="86cc6ece4e15efa20636a6f89b7d305f" category="sidebar">AFF 和 FAS 升级文档</block>
   <block id="519131237f79eadb2dc6a1e003a087bc" category="sidebar">NetApp Active IQ Config Advisor</block>
   <block id="bc8be72fdc9d6054f356bb2b7f80fd12" category="sidebar">NetApp 互操作性表</block>
   <block id="dd490b81914dd945601e442a41cb4222" category="sidebar">NetApp 社区</block>
@@ -3409,7 +3407,6 @@
   <block id="09c6def1f4b49f6f04b28d41fd5d1662" category="list-text">`您禁止自动创建案例、请通过调用AutoSupport 消息重新启用此功能：`ssystem node AutoSupport invoke -node *-type all -message MAIN=end</block>
   <block id="bc8a2cd252a5beb1dbf4f209baea67eb" category="sidebar">共享交换机</block>
   <block id="626a7cbe056796bcb1c158b143866230" category="sidebar">《 ONTAP 发行说明》</block>
-  <block id="c09b5be4c2da04f4040eef1878f258aa" category="sidebar">ONTAP 9 文档</block>
   <block id="4ec6a95192d18718a540794417c8fa63" category="sidebar">NetApp Active IQ Digital Advisor</block>
   <block id="f196800c452474506c73b49c3937928d" category="paragraph">*初始交换机设置*</block>
   <block id="ce4b3e7ecf21d16073d0790ca53a6dd9" category="image-alt">初始交换机设置</block>
@@ -3418,4 +3415,322 @@
   <block id="3fb38d5aab534a043c30d7f1a3b0a9dd" category="paragraph">*集群节点连接已移至CS1-new交换机*</block>
   <block id="84532259a7d4acf54c61408e0d42d0ce" category="image-alt">集群节点连接已移至CS1-new交换机</block>
   <block id="51c9a924c6ea752a49b8df35531a26e7" category="paragraph">请参见 <block ref="22274518ab78de16bd162dd23a69479d" category="inline-link-macro-rx"></block> 和 <block ref="a2f030b123da393c4875ac0d059237dd" category="inline-link-macro-rx"></block> 用于启用集群运行状况交换机日志收集以收集交换机相关日志文件所需的步骤。</block>
+  <block id="9d36413c7ae238ebf79e37939969b9ee" category="summary">您可以将ONTAP 集群中较早的Cisco交换机无中断迁移到NVIDIA SN2100存储交换机。</block>
+  <block id="c0e54fd32010cccd4fea353a8f62265e" category="doc">从Cisco存储交换机迁移到NVIDIA SN2100存储交换机</block>
+  <block id="55f16d2d38939d5e5613dcce4660779c" category="paragraph">在将某些旧的Cisco交换机更换为NVIDIA SN2100存储交换机时、您必须了解某些配置信息、端口连接和布线要求。</block>
+  <block id="bdcdaedb42f04c50f04fe5d093e593c6" category="list-text">支持以下存储交换机：</block>
+  <block id="2685d1886e5c6ce7a602fe324c7fbea8" category="paragraph">您可以将ONTAP 集群中较早的Cisco存储交换机无中断迁移到NVIDIA SN2100存储交换机。</block>
+  <block id="bc6363ffb66952fddf7b24a035852e22" category="list-text">所有存储端口都必须处于up状态、以确保无中断运行。</block>
+  <block id="28fa2edb91149d5384166eeb2f7688c8" category="list-text">NVIDIA SN2100存储交换机必须在安装了正确版本的Cumulus Linux且应用了参考配置文件(Reference Configuration File、RCF)的情况下进行配置和运行。</block>
+  <block id="9708d0a2f674de8d78d458c499b9780c" category="list-text">现有存储网络配置必须满足以下条件：</block>
+  <block id="22cd64d0bcf2bc77bfb32f0318d14d3c" category="list-text">所有与集群 LIF 处于 up 状态的集群 LIF 均位于其主端口上。</block>
+  <block id="b51910f2be8efa76921ebe6a40149d60" category="list-text">您已将NVIDIA SN2100交换机上的某些端口配置为以100 GbE运行。</block>
+  <block id="776ee262c20b0dd2648bccba5b2cc347" category="list-text">您已规划、迁移并记录了从节点到NVIDIA SN2100存储交换机的100 GbE连接。</block>
+  <block id="9f4cc971f3ab9fd0958fd265eb306525" category="admonition">在此操作步骤 中、使用Cisco Nexus 9336C-x2存储交换机作为示例命令和输出。</block>
+  <block id="dab9b0ece6f1f8f1890127dd86465ac5" category="list-text">现有的Cisco Nexus 9336C-fx2存储交换机为_S1_和_S2_。</block>
+  <block id="9e868f2bf21bd2cd90fca2dc5bafc948" category="list-text">新的NVIDIA SN2100存储交换机为_sw1_和_SW2_。</block>
+  <block id="f02bf1e73f684a60f05864e6d5488f35" category="list-text">此操作步骤 中使用的网络端口为_e5a和_e5b_。</block>
+  <block id="c0dafa6a26d68c5516d35ddacdc99210" category="list-text">分支端口的格式为：swp1s0-3。例如、swp1上的四个分支端口为_swp1s0_、_swp1s1_、_swp1s2_和_swp1s3_。</block>
+  <block id="241262ab86a3f2909548b2df8d4b4ef3" category="list-text">交换机S2首先由交换机SW2取代、然后交换机S1由交换机sw1取代。</block>
+  <block id="9fdbbd8b74f2465ba22ef8f94cc417db" category="list-text">然后、节点和S2之间的布线将从S2断开、并重新连接到SW2。</block>
+  <block id="4ded409be8e99d0222e6920dab03f559" category="list-text">然后、节点和S1之间的布线将从S1断开、并重新连接到sw1。</block>
+  <block id="4e7a83da96739a6c51f20930a3c125eb" category="list-text">如果启用了AutoSupport 、则通过调用AutoSupport 消息禁止自动创建案例：`ssystem node AutoSupport invoke -node *-type all -message MAINT=xh`</block>
+  <block id="dbcef39ce4cc869cf2edc60abf080ec9" category="list-text">确定每个存储接口的管理或运行状态：</block>
+  <block id="9444ed63276c185ae4fc3959a828cfbf" category="paragraph">对于`S状态`、每个端口都应显示已启用。</block>
+  <block id="09c14abe0805eabd797e1813234da84d" category="paragraph">显示网络端口属性：`storage port show`</block>
+  <block id="7208d2743e2eb0a664acffbc1d2bed76" category="list-text">从节点的角度来看、每个节点上的存储端口均使用以下命令连接到现有存储交换机：`network device-discovery show -protocol LLDP`</block>
+  <block id="e7e725db477bdb3d29a07c4150816731" category="list-text">在交换机S1和S2上、存储端口和交换机会使用以下命令(从交换机的角度)进行连接：`sHow LLDP neighbors`</block>
+  <block id="b82d0a886822fefc74546a0db57a5f3f" category="list-text">在交换机SW2上、关闭连接到磁盘架存储端口和节点的端口。</block>
+  <block id="ea22015d2dbd58bc8c791b53805a2859" category="list-text">使用NVIDIA SN2100支持的适当布线方式、将控制器和磁盘架的节点存储端口从旧交换机S2移至新交换机SW2。</block>
+  <block id="af57695f7703a9c9e1b729a8d9522e28" category="list-text">在交换机SW2上、启动连接到节点和磁盘架存储端口的端口。</block>
+  <block id="ece31ff94247476496637a7601f809ca" category="list-text">现在、从节点的角度来看、每个节点上的存储端口均以以下方式连接到交换机：</block>
+  <block id="479f3a8c088d1257d183873dfde80fd3" category="list-text">验证网络端口属性：`storage port show`</block>
+  <block id="713a50cb8a7385b4bb65e05c034427cd" category="list-text">在交换机SW2上、验证所有节点存储端口是否均已启动：</block>
+  <block id="f2b2a4a72d2a8eed29cbd3b748d725d8" category="list-text">在交换机sw1上、关闭连接到节点和磁盘架存储端口的端口。</block>
+  <block id="ec0b0e240b5321461bce6981d9989a3e" category="list-text">使用NVIDIA SN2100支持的适当布线方式、将控制器的节点存储端口和磁盘架从旧交换机S1移至新交换机sw1。</block>
+  <block id="9dbf824bd31cc26010a5afdff9a86832" category="list-text">在交换机sw1上、启动连接到节点和磁盘架存储端口的端口。</block>
+  <block id="177b054724009ae5ee691333205a7f85" category="list-text">现在、从节点的角度来看、每个节点上的存储端口均以以下方式连接到交换机：</block>
+  <block id="187000b30b0a352995713820903db6ec" category="list-text">验证最终配置：`storage port show`</block>
+  <block id="6a4d86e98be7e5b289b38a5117298bfb" category="paragraph">每个端口都应显示enabled for `State`和enabled for `StStatus`。</block>
+  <block id="4cde2dc8257c4b4ae4c8d09b8edb9633" category="list-text">验证两个节点的每个交换机是否都有一个连接：`net show lldp`</block>
+  <block id="b366aa7d44d5ae24af827fa423f8a2f2" category="list-text">使用以下两个命令启用以太网交换机运行状况监控器日志收集功能以收集交换机相关的日志文件：`ssystem switch Ethernet log setup-password`和`ssystem switch Ethernet log enable-Collection`</block>
+  <block id="6d5256d36c2629c07d67ddb2fc78e95c" category="list-text">启动交换机日志收集功能：`ssystem switch Ethernet log Collect -device *`</block>
+  <block id="676b4f116c6b65afc97655131da52093" category="paragraph">等待10分钟、然后使用命令`ssystem switch Ethernet log show`检查日志收集是否成功</block>
+  <block id="7c18d4b4801585bab9d42a3318b71c29" category="summary">在安装RCF脚本之前、请确保交换机上具有以下配置</block>
+  <block id="3722090c5c0b0496759b23b1db5566cd" category="doc">安装RCF脚本</block>
+  <block id="01ed8be95a2e23de884b7ae4035220ed" category="paragraph">在安装RCF脚本之前、请确保交换机上具有以下配置：</block>
+  <block id="f0628c60efd94ed2822e83944aa83ad5" category="list-text">已安装Cumulus Linux 4.4.2。</block>
+  <block id="90bd80eefde443be8809a3edf64f7ef2" category="list-text">通过DHCP定义或手动配置的IP地址、子网掩码和默认网关。</block>
+  <block id="1d9152605063cf1b257a36675cece81c" category="inline-link-macro">布线和配置注意事项</block>
+  <block id="b8e6dac17b1f60251a359674d65117a9" category="admonition">请参见 <block ref="58ea2a922914aa470e8c647f2a05d6be" category="inline-link-macro-rx"></block> 了解注意事项和更多详细信息。</block>
+  <block id="526990b43ff7cafabc1a3c5dda4e8c9b" category="paragraph">有两个RCF脚本可用于集群和存储应用程序。每个的操作步骤 是相同的。</block>
+  <block id="d43ffd29b9c1918eacb74ce61ab9c93d" category="list-text">集群：* MSN2100-RCF-v1.8-Cluster*</block>
+  <block id="85948408e24eaebde36ef1a070afa259" category="list-text">存储：* MSN2100-RCF-v1.8-Storage*</block>
+  <block id="47a90a8bc6531c96684b95f438b570ff" category="admonition">以下示例操作步骤 显示了如何下载并应用集群交换机的RCF脚本。</block>
+  <block id="8e7538255f1b89e8cb901d939793795e" category="admonition">示例命令输出使用交换机管理IP地址10.233.204.71、网络掩码255.255.254.0和默认网关10.233.204.1。</block>
+  <block id="cba289d19a283a01be4ec7d5598b25e8" category="list-text">显示SN2100交换机上的可用接口：</block>
+  <block id="57b0a80c5a3ed4944b5b9a4dee8543f0" category="list-text">将RCF python脚本复制到交换机：</block>
+  <block id="31f5d9c51b1172585d012a33be1bef72" category="list-text">应用RCF python脚本*。MSN2100-RCF-v1.8-Cluster*：</block>
+  <block id="04e918e1232eed920664403f155f32ab" category="paragraph">RCF脚本将完成以下步骤：</block>
+  <block id="2256b58fcf58cb3dc806692af4a92886" category="list-text">更新横幅MOTD</block>
+  <block id="d24cee5d31595748374cfe2b0d8f60e6" category="list-text">禁用用于操作系统更新的apt-get</block>
+  <block id="63d6c0b7f07c6f3189dd21648d0b707b" category="list-text">定义分支接口和非分支接口</block>
+  <block id="411060d174ebfad660d876a708c33ffd" category="list-text">配置接口和SNMP</block>
+  <block id="0e095946edae537f1daa4858140e3425" category="list-text">禁用CDP</block>
+  <block id="c9f5089d48a4ebb41131b7219479c281" category="list-text">更改LLDP配置</block>
+  <block id="a39c98037d6a87c77e02c368fa9d3609" category="list-text">添加RoCE配置</block>
+  <block id="b80fb4489f390f48d56968db613b82e3" category="list-text">修改HA和集群RDMA的RoCE配置</block>
+  <block id="49effc2a848dda4523f36af8403e034d" category="list-text">重新启动交换机</block>
+  <block id="6c44f61373ec37c891240af419415fae" category="admonition">对于无法更正的任何RCF python脚本问题、请联系<block ref="c9ce34d90e004d0f3d3664ad1d8fe7ba" category="inline-link-rx"></block> 以获得帮助。</block>
+  <block id="0cf73b1dd1fc2f75b9293a2ee7043140" category="list-text">重新启动后验证配置：</block>
+  <block id="d6e0b1ed7c0032f9ee040b41f50f4696" category="list-text">验证接口中收发器的信息：`net show interface Pluggables`</block>
+  <block id="17eb42e5e21b8a355d025bf8a2ccfb82" category="list-text">验证每个节点是否都与每个交换机建立了连接：`net show lldp`</block>
+  <block id="f94f0c733aca2a6e08b26eff8a1263b4" category="list-text">从集群验证交换机运行状况(此操作可能不会显示交换机SW2、因为LIF不驻留在e0d上)。</block>
+  <block id="4e4a4a02911e122627365a67b690270e" category="summary">可以在交换机运行Cumulus Linux或ONIE时安装Cumulus Linux (CL)操作系统。</block>
+  <block id="7b3d3dc3c1c084f2a1b3b79612d49fdd" category="doc">在Cumulus模式下安装Cumulus Linux</block>
+  <block id="b68d7103bcc4e5db1876ba13a6e45bf9" category="paragraph">假设条件如下：</block>
+  <block id="1e5770738372c5d084640412f3475232" category="list-text">您拥有中级Linux知识。</block>
+  <block id="d4e1be5631ea2ef9eddf5d1491821590" category="list-text">您熟悉基本文本编辑、UNIX文件权限和进程监控。预安装了各种文本编辑器、包括`vi`和`nano`。</block>
+  <block id="0fd11f677b5f359fd48a5abfac889417" category="list-text">您必须有权访问Linux或UNIX Shell。如果您运行的是Windows、请使用Linux环境作为命令行工具与Cumulus Linux进行交互。</block>
+  <block id="815792b56cadfb802621ba5d3728c768" category="admonition">每次安装Cumulus Linux时、都会擦除并重建整个文件系统结构。</block>
+  <block id="6ae4d8bf3ebde7936b05c2fe894d7ada" category="admonition">累积用户帐户的默认密码为*累积用户*。首次登录到Cumulus Linux时、必须更改此默认密码。在安装新映像之前、请务必更新所有自动化脚本。Cumulus Linux提供了命令行选项、用于在安装过程中自动更改默认密码。</block>
+  <block id="06c2ede7dabacb6c8f4f628bf6b1de39" category="paragraph">要访问NVIDIA SN2100交换机控制台、必须将串行控制台交换机上的波特率要求设置为115200、如下所示：</block>
+  <block id="b7d317c3216324e11b73a2840fd43e28" category="list-text">登录到交换机。首次登录到交换机时、需要具有`sUdo`权限的用户名/密码*。</block>
+  <block id="9e6b336700c1d2e767e05525b2b57ef3" category="list-text">检查Cumulus Linux版本：</block>
+  <block id="2667c65a518ae8fb280dc9f6a61de3c5" category="list-text">配置主机名、IP地址、子网掩码和默认网关。只有在重新启动控制台/SSH会话后、新主机名才会生效。</block>
+  <block id="62b623b92c382746efee9767d590d86c" category="admonition">一个Cumulus Linux交换机至少可提供一个名为`eth0`的专用以太网管理端口。此接口专用于带外管理。默认情况下、管理接口使用DHCPv4进行寻址。</block>
+  <block id="91dcca4278a428afbccb2f118d523e13" category="admonition">请勿在主机名中使用下划线(_)、撇号(')或非ASCII字符。</block>
+  <block id="5e82a0b4b15e3bfeac2a57b4a294a39c" category="paragraph">此命令会同时修改`/etc/hostname`和`/etc/hosts`文件。</block>
+  <block id="13ddc20a0230a7df1f3c90a8ed3da8a5" category="list-text">确认主机名、IP地址、子网掩码和默认网关已更新：</block>
+  <block id="6c42fa7e4c3302fb56f4374e70b97fc2" category="list-text">使用NTP交互模式配置时区。</block>
+  <block id="3f13db29081af25b57d3e76ea324a03b" category="list-text">在终端上、运行以下命令：</block>
+  <block id="83d1563d45527134091bdab8d6e5072d" category="list-text">按照屏幕上的菜单选项选择地理区域和区域。</block>
+  <block id="fe0f6a5f9b992c1eea817100a2c1c148" category="list-text">要设置所有服务和守护进程的时区、请重新启动交换机。</block>
+  <block id="61d6aab01fc093c66c1e769d05c39812" category="list-text">验证交换机上的日期和时间是否正确、并在必要时进行更新。</block>
+  <block id="f415282bef0374e283b8082be4765eea" category="list-text">安装Cumulus Linux 4.4.2：</block>
+  <block id="9a828cf107e0b55e82b0e52b871aa982" category="paragraph">安装程序将开始下载。出现提示时、键入*。</block>
+  <block id="b64202cf747d1cf1ed877a2b16051b9b" category="list-text">重新启动NVIDIA SN2100交换机：</block>
+  <block id="9f4f33c5c40ac522549c3e58d187e0a0" category="list-text">安装将自动启动、并显示以下Grub屏幕。请勿*选择*。</block>
+  <block id="0356af5b3daf1c5f334184d547ba7462" category="list-text">Cumulus-Linux GNU/Linux</block>
+  <block id="a64ef5ea949c8d49f35a27151295f942" category="list-text">ONIE：安装操作系统</block>
+  <block id="e0fb005ad468c2c6da5d94ae5ee83311" category="list-text">Cumulus-install</block>
+  <block id="aaf5ecccbfaebfdecab9b13474cd1016" category="list-text">重复步骤1至4以登录。</block>
+  <block id="c883d7af8e0067ad8d312770086b2d07" category="list-text">验证Cumulus Linux版本是否为4.4.2：</block>
+  <block id="ec456cd346911330a2200aa0d18eceaf" category="list-text">创建新用户并将此用户添加到`sUdo`组。只有在重新启动控制台/SSH会话后、此用户才会生效：</block>
+  <block id="268d7e69c1c7b6a30eee297bf5fab5b9" category="summary">在配置NVIDIA SN2100交换机之前、请查看以下信息：</block>
+  <block id="e3d3971b51c381172149f6e144f03e90" category="list-text">使用X1151A NIC、X1146A NIC或板载100GbE端口的SN2100交换机仅支持光纤连接。例如：</block>
+  <block id="d35d5ab77a6267b38526b184dcfce0af" category="list-text">AFF A800位于端口e0a和e0b上</block>
+  <block id="b9017574c175e97b1d6c5e950a79e4c7" category="list-text">AFF A320位于端口e0g和e0h上</block>
+  <block id="137008107cba2aab0763be2879d9da87" category="list-text">使用QSA适配器连接到平台上的板载Intel集群端口时、并非所有链路都启动。</block>
+  <block id="39b92cc163c876722512c8dc4c617b9f" category="paragraph">示例平台包括：FAS2750、AFF A300和FAS8200 (全10G)以及AFF A250 (25G)。</block>
+  <block id="b1e03e9ce1f7041c2da53fa42cd21af3" category="paragraph">要解决此问题描述 、请执行以下操作：</block>
+  <block id="0118bfa1d2459b3b5f40a261f004e061" category="list-text">对于Intel 10G、手动将swp1s0-3链路速度设置为10000、并将自动协商设置为off</block>
+  <block id="b9f4ea426e4b9a2590c25e8559103a64" category="list-text">对于Chelsio 25G、手动将swp2s0-3链路速度设置为25000、并将自动协商设置为off</block>
+  <block id="ee42c1d9d1520c3cdd715411436b7999" category="admonition">使用10G/25G QSA、使用非分支40/100G端口。请勿将QSA适配器插入为分支配置的端口。</block>
+  <block id="2fdeef1f910c4fc8f12a5b45d51952bc" category="list-text">根据交换机端口中的收发器、您可能需要将交换机端口上的速度设置为固定速度。如果使用10G和25G分支端口、请确保自动协商已关闭、并已在交换机上硬设置端口速度。例如：</block>
+  <block id="2e48063923d7005a1d5b4c086c0a902a" category="summary">NVIDIA SN2100交换机是一款运行Cumulus Linux的10/25/40/100 GbE以太网交换机。SN2100交换机通过不同的交换机对为ONTAP 9.10.1中的集群和存储应用程序提供服务。</block>
+  <block id="736869e2dc47a4e8d50ebe15f7663677" category="doc">设置和配置NVIDIA SN2100交换机</block>
+  <block id="80e45406c521e50547dc90b37e743cb3" category="paragraph">NVIDIA SN2100交换机是一款运行Cumulus Linux的10/25/40/100 Gb以太网交换机。SN2100交换机通过不同的交换机对为ONTAP 9.10.1P3中的集群和存储应用程序提供服务。</block>
+  <block id="1f062c267bea10f6ce5587c8c6cd98aa" category="paragraph">可以在交换机运行Cumulus Linux或ONIE时安装Cumulus Linux (CL)操作系统。此版本支持Cumulus Linux 4.4.2版。</block>
+  <block id="d3f340b9ec1ceb3e805d6d66529c1899" category="admonition">此处的过程使用网络命令行实用程序(Network Command Line Utility、NCLU)、此命令行界面可确保所有用户均可完全访问Cumulus Linux。net命令是用于从终端执行操作的包装实用程序。</block>
+  <block id="5d33e9de1f292100664c873ddbc4d5d2" category="admonition">在对10G和25G使用分支缆线时、请确保自动协商已关闭并硬设置交换机上的端口速度。请参见 <block ref="58ea2a922914aa470e8c647f2a05d6be" category="inline-link-macro-rx"></block> 了解更多详细信息。</block>
+  <block id="1a29ca4be6c9125e8ac9fccfa8df289c" category="summary">更换无中断操作步骤 中存在故障的NVIDIA SN2100存储交换机\(NDU\)。</block>
+  <block id="ca56e40e95211438888f7e4c9e051ea5" category="doc">更换NVIDIA SN2100存储交换机</block>
+  <block id="fceed1976e801d73d13b11405b47a86b" category="paragraph">更换NVIDIA SN2100存储交换机时、您必须了解某些配置信息、端口连接和布线要求。</block>
+  <block id="899d97d3e02cd2b765c3558b86d81068" category="paragraph">在NVIDIA SN2100存储交换机上安装Cumulus软件和RCF之前、您必须验证是否存在以下条件：</block>
+  <block id="c6198cbcde2894fb96409239ec92a834" category="list-text">您的系统可以支持NVIDIA SN2100存储交换机。</block>
+  <block id="9a6126268af75b2f859c1a03dc4714c1" category="list-text">。<block ref="b973743bc19e2a373fedee1a51a110cc" category="inline-link-rx"></block> 提供支持的端口及其配置的完整详细信息。</block>
+  <block id="dba3be5e6f4f846b2a75667e3ff0477a" category="list-text">确保已完成所有故障排除步骤、以确认您的交换机需要更换。</block>
+  <block id="e06dcb466641dd36c53f025080bbb45e" category="paragraph">更换用的NVIDIA SN2100交换机必须具有以下特征：</block>
+  <block id="7398a7e3818a30c650d193a2db2016f7" category="list-text">必须将相应的RCF和Cumulus操作系统映像加载到交换机上。</block>
+  <block id="a622ee7c770c8ba1cbb73f2815e7ae56" category="paragraph">此操作步骤 将第二个NVIDIA SN2100存储交换机SW2替换为新的NVIDIA SN2100交换机nsw2。这两个节点分别为 node1 和 node2 。</block>
+  <block id="cc2313221eef083d36ffb52b29f6f98f" category="list-text">确认要更换的交换机为SW2。</block>
+  <block id="68bdf3a88cf83c1044a28599dd9d552b" category="list-text">断开交换机SW2的缆线。</block>
+  <block id="801161caa4832eac3a4336de33e12441" category="list-text">将缆线重新连接到交换机nsw2。</block>
+  <block id="856b3f22a7bc84281004d6833f8e5dd4" category="list-text">验证交换机nsw2上的所有设备配置。</block>
+  <block id="59ca6b134acac6e54edff8bb46ecd484" category="list-text">验证存储交换机sw1是否可用：`network device-discovery show`</block>
+  <block id="9b24f35607cbd93e203a1229537c7235" category="list-text">在工作交换机上运行`net show interface`命令、确认您可以同时看到节点和所有磁盘架：`net show interface`</block>
+  <block id="088f485f3bfad97fa43d043685e12b05" category="list-text">验证存储系统中的磁盘架端口：`storage shelf port show -fields remote-device、remote-port`</block>
+  <block id="d8f5536086bacf684c44e47a90fb5320" category="list-text">拔下连接到存储交换机SW2的所有缆线。</block>
+  <block id="166bf8fabdaf0d92b7865b37f13efc05" category="list-text">将所有缆线重新连接到更换用的交换机nsw2。</block>
+  <block id="7c8a62eb89bcf224c1a631d0b7e4a8f8" category="list-text">验证两个交换机是否均可用：`net device-discovery show`</block>
+  <block id="0b9620a0fea8fa88010e59eebf7cbf63" category="summary">您可以将ONTAP 集群中较早的Cisco集群交换机无中断迁移到NVIDIA SN2100集群网络交换机。</block>
+  <block id="9cb69df206c9ac9ed5e1f4f5f353f643" category="doc">从Cisco集群交换机迁移到NVIDIA SN2100集群交换机</block>
+  <block id="7d5958b12629d1a14fcc8aaf271ffebc" category="paragraph">您可以将ONTAP 集群的无中断Cisco集群交换机迁移到NVIDIA SN2100集群交换机。在将某些旧的Cisco集群交换机更换为NVIDIA SN2100集群交换机时、您必须了解某些配置信息、端口连接和布线要求。</block>
+  <block id="59e1b5d69300b7a66f466e0b62bf4f80" category="paragraph">支持以下Cisco集群交换机：</block>
+  <block id="3c4c5e6b442060363c10c67d61881b89" category="paragraph">您可以将ONTAP 集群中较早的Cisco集群交换机无中断迁移到NVIDIA SN2100集群交换机。</block>
+  <block id="807cbcaff3adfa7ca5f01a1549249db3" category="list-text">NVIDIA SN2100集群交换机必须在安装了正确版本的Cumulus Linux且应用了参考配置文件(Reference Configuration File、RCF)的情况下进行配置和运行。</block>
+  <block id="aa3331890b15956f0bf51715ce392770" category="list-text">您已将NVIDIA SN2100交换机上的某些端口配置为以40 GbE或100 GbE运行。</block>
+  <block id="8ff8ee6709912b52c1e6b3870b6b7250" category="list-text">您已规划、迁移并记录了从节点到NVIDIA SN2100集群交换机的40 GbE和100 GbE连接。</block>
+  <block id="55f909861b55f297c21514fdad63abae" category="admonition">在此操作步骤 中、使用Cisco Nexus 3232C集群交换机作为示例命令和输出。</block>
+  <block id="6407f122215af9069ce04e183a44eaff" category="list-text">新的NVIDIA SN2100集群交换机为_sw1_和_SW2_。</block>
+  <block id="ee5bb83d3cbaf132eeecb309a393b94c" category="list-text">此操作步骤 中使用的集群端口为_e3A_和_e3b_。</block>
+  <block id="852c5f97fc5712493a0f4ae06bc9d050" category="list-text">分支端口采用以下格式：swp[port]s[分支端口0-3]。例如、swp1上的四个分支端口为_swp1s0_、_swp1s1_、_swp1s2_和_swp1s3_。</block>
+  <block id="a628f874b9a2e414a9d3d71d13573dfa" category="list-text">交换机C2首先由交换机SW2取代、然后交换机C1由交换机sw1取代。</block>
+  <block id="ac84ae267a95761c56ac989f4e20ca23" category="list-text">然后、节点和C2之间的布线将从C2断开、并重新连接到SW2。</block>
+  <block id="8fe643f8e27975633f1ded07424aa6c9" category="list-text">然后、节点和C1之间的布线将从C1断开、并重新连接到sw1。</block>
+  <block id="e64ef54bc22e89a7865d584c549641bf" category="list-text">在集群LIF上禁用自动还原：`network interface modify -vserver cluster -lif *-auto-revert false`</block>
+  <block id="d204eae202d3382d49076db0a6957154" category="list-text">显示网络端口属性： `network port show -ipspace cluster`</block>
+  <block id="3c23423d82deff2c49b1f5a675affe46" category="list-text">显示有关逻辑接口及其指定主节点的信息： `network interface show -vserver Cluster`</block>
+  <block id="3dc587636ea58bb39b951053c233b58b" category="list-text">从节点的角度来看、每个节点上的集群端口均使用以下命令连接到现有集群交换机：`network device-discovery show -protocol LLDP`</block>
+  <block id="866e9195c3f1e53c818cc1513b132bbc" category="list-text">从交换机角度来看，集群端口和交换机使用以下命令进行连接： `show cdp neighbors`</block>
+  <block id="ac121473c5c5a24690b1a30d179ab677" category="list-text">使用命令 `cluster ping-cluster -node node-name` 确保集群网络具有完全连接</block>
+  <block id="9e23ccbda503c8dd0fa60d4057a41702" category="list-text">在交换机C2上、关闭连接到节点集群端口的端口。</block>
+  <block id="aba8d89ac417a82d843ceaf3c6ac2faa" category="list-text">使用NVIDIA SN2100支持的适当布线将节点集群端口从旧交换机C2移至新交换机SW2。</block>
+  <block id="203a7f618c9b080eaa78a5e38ccd907d" category="list-text">在交换机SW2上、验证所有节点集群端口是否均已启动：`net show interface`</block>
+  <block id="fb04bba6a926fcde1b4b8e9928fc6c8c" category="list-text">在交换机C1上、关闭连接到节点集群端口的端口。</block>
+  <block id="43f33859444af6796131da2f85045577" category="list-text">使用NVIDIA SN2100支持的适当布线将节点集群端口从旧交换机C1移至新交换机sw1。</block>
+  <block id="b1bf5b4949e8f0e4eed60de397513799" category="list-text">验证集群的最终配置： `network port show -ipspace cluster`</block>
+  <block id="8c4a30f92fb2c8309be6461a7438998f" category="list-text">在交换机sw1和SW2上、验证所有节点集群端口是否均已启动：`net show interface`</block>
+  <block id="141e7533eab03ff727c6bcbd3b10c6b7" category="list-text">在集群LIF上启用自动还原：`cluster1：：：*&gt; network interface modify -vserver cluster -lif *-auto-revert true`</block>
+  <block id="43d78ef507715bc4715cbc41d27662ca" category="list-text">验证所有集群网络LIF是否均已返回其主端口：`network interface show`</block>
+  <block id="af0741a63009a71666c8a00c5279b401" category="summary">如果您有一个现有的双节点无交换机集群环境、则可以使用NVIDIA SN2100交换机迁移到双节点有交换机集群环境、以便可以扩展到集群中的两个节点以上。</block>
+  <block id="47da18a30b9fcd2d1294cf032080276b" category="doc">迁移到使用NVIDIA SN2100集群交换机的双节点交换集群</block>
+  <block id="cc3660d80bc2c5730b70b777e1a7f05b" category="paragraph">在无中断地将双节点无交换机集群迁移到使用NVIDIA SN2100集群交换机的集群时、您必须了解某些配置信息、端口连接和布线要求。您使用的操作步骤取决于每个控制器上是有两个专用集群网络端口，还是每个控制器上有一个集群端口。记录的过程适用于使用光纤或双轴端口的所有节点、但如果节点将板载10GBASE-T RJ45端口用于集群网络端口、则此交换机不支持此过程。</block>
+  <block id="f4d3615da83026723a97f90653b00097" category="list-title">双节点无交换机配置</block>
+  <block id="7f9038e0cb80da2d88c487e9bccca0d1" category="list-text">节点必须运行ONTAP 9.10.1P3及更高版本。</block>
+  <block id="4bc0285bd4ff021f690292024f91a657" category="list-title">NVIDIA SN2100集群交换机配置</block>
+  <block id="6f604266345008efe009e8a2f02e7dc0" category="list-text">NVIDIA SN2100节点到节点交换机和交换机到交换机连接必须使用双轴电缆或光缆。</block>
+  <block id="2ab78bdcb0ea707a89a06e2121680282" category="list-text">交换机间链路(ISL)缆线必须连接到两个NVIDIA SN2100交换机上的端口swp15和swp16。</block>
+  <block id="2b8ba42446639a6c2fe280c152c68d19" category="list-text">必须完成两个SN2100交换机的初始自定义。这样：</block>
+  <block id="91fff5a6134f2be64c56d1695113e1f9" category="list-text">SN2100交换机正在运行最新版本的Cumulus Linux</block>
+  <block id="8e674e3cc0c8b6ecbd4956d1e90317e0" category="list-text">SN2100交换机的名称是_sw1_和_SW2_。</block>
+  <block id="c844edac5ec41b6dac1cc863f127ff48" category="list-text">在新集群交换机sw1和SW2上禁用所有面向节点的端口(而不是ISL端口)。</block>
+  <block id="00bb8074e6bd1737f80dabe96f73b517" category="paragraph">以下命令可禁用交换机sw1和SW2上面向节点的端口：</block>
+  <block id="67931ae596ec519b34f4d63e1772dea2" category="list-text">确认端口swp15和swp16上的ISL以及两个SN2100交换机sw1和SW2之间的ISL上的物理端口均已启动：`net show interface`</block>
+  <block id="79db2f8f30aa3d04c6b263659d467402" category="paragraph">以下示例显示交换机sw1上的ISL端口已启动：</block>
+  <block id="07e4cb210a1196abcb5adb44dde333b4" category="paragraph">以下示例显示交换机SW2上的ISL端口已启动：</block>
+  <block id="6bb0bcacdec60dbc4e5eff8e7819821c" category="list-text">验证所有集群端口是否均已启动：`network port show`</block>
+  <block id="c0093a431c96f2dc5a1e13aab041a68e" category="list-text">确认所有集群LIF均已启动且正常运行：`network interface show`</block>
+  <block id="881b0c6ec04a04c3fcbc1ba781dc7646" category="list-text">从节点1上的集群端口E3A断开缆线连接、然后使用SN2100交换机支持的相应布线方式将E3A连接到集群交换机sw1上的端口3。</block>
+  <block id="89815af81c37a8f9a7a98396057d0bcd" category="list-text">从节点2上的集群端口E3A断开缆线连接、然后使用SN2100交换机支持的相应布线方式将E3A连接到集群交换机sw1上的端口4。</block>
+  <block id="1c0aead7e1e98fe84e1a13e550546826" category="list-text">在交换机sw1上、启用所有面向节点的端口。</block>
+  <block id="e689d496da4acf9b83967f63b30bfff1" category="paragraph">以下命令将启用交换机sw1上面向节点的所有端口：</block>
+  <block id="aef48d101ce6aeaf1d9e06a4f8133421" category="list-text">在交换机sw1上、验证所有端口是否均已启动：`net show interface all`</block>
+  <block id="1f365578e399c977a3cb861440635597" category="list-text">断开缆线与node1上的集群端口e3b的连接、然后使用SN2100交换机支持的相应布线方式将e3b连接到集群交换机SW2上的端口3。</block>
+  <block id="2d65594cff5cc6e71db9a1b2fbbe8525" category="list-text">断开缆线与node2上的集群端口e3b的连接、然后使用SN2100交换机支持的相应布线方式将e3b连接到集群交换机SW2上的端口4。</block>
+  <block id="864ef5d9db6d1180631c2ebb8b3bf606" category="list-text">在交换机SW2上、启用所有面向节点的端口。</block>
+  <block id="b9d99f7d075a8daf5ab7e89104f0e843" category="paragraph">以下命令可在交换机SW2上启用面向节点的端口：</block>
+  <block id="a2bff1080bbbe5b4e639dc2fbf988208" category="list-text">在交换机SW2上、验证所有端口是否均已启动：`net show interface all`</block>
+  <block id="d09534185b2afa2c71d2d73bab9e4ceb" category="list-text">在两个交换机sw1和SW2上、验证两个节点与每个交换机都有一个连接：`net show lldp`</block>
+  <block id="8bd9cf76d8aa16ab6c3c62b74388262d" category="paragraph">以下示例显示了交换机sw1和SW2的相应结果：</block>
+  <block id="c4578e234eef8aa67fea2889f9b72b89" category="list-text">显示有关集群中发现的网络设备的信息：`net device-discovery show -protocol lldp`</block>
+  <block id="a78fbb2a7f637cdf29314befa6e61768" category="list-text">在所有集群LIF上启用自动还原：`net interface modify -vserver cluster -lif *-auto-revert true`</block>
+  <block id="096583756a3fa84e84e5f51c149129b2" category="list-text">确认`的所有接口均显示true、并且为Home`：`net interface show -vserver Cluster`</block>
+  <block id="7c1863f1ebbe4335b617904d5c56fbc1" category="admonition">此操作可能需要一分钟才能完成。</block>
+  <block id="efe6750a163af17e0e2f647d97ffba88" category="list-text">使用以下命令启用以太网交换机运行状况监控器日志收集功能以收集交换机相关的日志文件：`ssystem switch Ethernet log setup-password`和`ssystem switch Ethernet log enable-Collection`</block>
+  <block id="12e27dc9ec526105395945262e82d38e" category="summary">此版本支持使用SNMPv3进行日志监控。</block>
+  <block id="f4d16399cad037ef91c96c3b184f72c4" category="doc">为交换机日志收集配置SNMPv3</block>
+  <block id="6f6083e37db84a5d1b10558ba95e94fa" category="paragraph">此版本支持通过SNMPv3收集交换机运行状况监控(SHM)的交换机日志。</block>
+  <block id="e1ca8fa9e4221b7b9a580ee069ca1bd2" category="paragraph">以下命令用于在NVIDIA SN2100交换机上配置SNMPv3用户名：</block>
+  <block id="110a40639a346b7c822f54dc5b7a9ef8" category="list-text">对于*无身份验证*：`net add snmp-server username _SNMPv3用户_ auth-none`</block>
+  <block id="6722b3d0a7f42995fcde6cf7b40862f5" category="list-text">对于* MD5/SHA身份验证*：`net add snmp-server username _SNMPv3用户_[auth-md5_auth-sha]_AUTH-password_`</block>
+  <block id="8d5552205f24239fd2d08133de55fc4b" category="list-text">对于采用AES/DES加密的* MD5/SHA身份验证*：`net add snmp-server username _SNMPv3用户_[auth-md5_auth-sha]_AUTH-password_[encrypt-AES_encrypt-des]_PRIV-password_`</block>
+  <block id="2132c9b0a8f8d3b799472ad920bccf86" category="paragraph">以下命令会在ONTAP 端配置SNMPv3用户名：`cluster1：：：*&gt; security login create -user-or-group-name _SNMPv3用户_-application snmp -authentication-method USM -remote-switch-ipaddress _address_`</block>
+  <block id="ca65af4617cd5bce4dccd534fa37b1bd" category="paragraph">以下命令使用SHM建立SNMPv3用户名：`cluster1：：：：*&gt; system switch Ethernet modify -device _device_-snmp-version SNMPv3 -commune-or-username _SNMPv3用户_`</block>
+  <block id="4c348315b6be8e7c938e0954a5f9cb3d" category="list-text">在交换机上设置SNMPv3用户以使用身份验证和加密：</block>
+  <block id="37022d18c1102f14f74b1dafa078c998" category="list-text">在ONTAP 端设置SNMPv3用户：</block>
+  <block id="7ccc0070453e17819fe406e2e49de718" category="list-text">将SHM配置为使用新的SNMPv3用户进行监控：</block>
+  <block id="56180f062a344f4caed5b1683c902947" category="list-text">验证要向新创建的SNMPv3用户查询的序列号是否与SHM轮询期完成后上一步中详细介绍的序列号相同。</block>
+  <block id="a1db73a47f571c20627d62d37a2069c2" category="summary">更换集群网络中有故障的NVIDIA SN2100交换机是无中断的操作步骤 \(NDU\)。</block>
+  <block id="a3651ea5ff10cfef31750e91f195d5ee" category="doc">更换NVIDIA SN2100集群交换机</block>
+  <block id="087a0cdfa40d1253f83403998d37833d" category="paragraph">更换集群网络中有故障的NVIDIA SN2100交换机是无中断操作步骤 (NDU)。</block>
+  <block id="6aaebc9be5cb9f30472fb63a824c949e" category="list-text">ONTAP `cluster ping-cluster -node node1`命令必须指示所有路径上的基本连接以及大于PMTU的通信均成功。</block>
+  <block id="3d783a6ce1d3577899a2187587c7adeb" category="list-text">NVIDIA SN2100更换交换机：</block>
+  <block id="7c203e1a3f4b15f49b599181ccad697e" category="list-text">节点连接是端口swp1到swp14。</block>
+  <block id="9870eb7c51de1228e9b0b748603b1cc9" category="list-text">必须在端口swp15和swp16上禁用所有交换机间链路(ISL)端口。</block>
+  <block id="1b7189a6869b63c94afb7f51281b21ff" category="list-text">必须将所需的参考配置文件(RCF)和Cumulus操作系统映像交换机加载到交换机上。</block>
+  <block id="a4c878fb98636575acf74bb5da1fe02d" category="list-text">现有NVIDIA SN2100交换机的名称是_sw1_和_SW2_。</block>
+  <block id="7245dce9803a65915577b9b6c0a8fba4" category="list-text">新NVIDIA SN2100交换机的名称是_nsw2_。</block>
+  <block id="982217e543f0fa5e9da851302f28d805" category="list-text">对于node1、集群LIF名称分别为_node1_clus1_和_node1_clus2_、对于node2、集群LIF名称分别为_node2_clus1_和_node2_clus2_。</block>
+  <block id="251c6c04656af97cbcbd1aa3eea2bee5" category="list-text">对所有集群节点进行更改的提示为`cluster1：：*&gt;`</block>
+  <block id="2c84a4166919cc5a80a8c0726d1059e6" category="list-text">在交换机nsw2上安装相应的RCF和映像、并进行必要的站点准备。</block>
+  <block id="1eee77e5510e91c39ad8de358a66db8b" category="paragraph">如有必要、请验证、下载并安装适用于新交换机的RCF和Cumulus软件的相应版本。如果您已确认新交换机设置正确、并且不需要更新RCF和Cumulus软件、请继续执行步骤3。请参见 <block ref="f205112049fd2d705b8f40351f7959dc" category="inline-link-macro-rx"></block> 了解更多详细信息。</block>
+  <block id="1c7edbc9e87d89abba60270ce35ec08a" category="list-text">您可以从_NVIDIA Support_站点下载适用于您的集群交换机的适用的Cumulus软件。按照下载页面上的步骤下载所安装ONTAP 软件版本的Cumulus Linux。</block>
+  <block id="cb246b83c0c732bd49f45fceb6d1246f" category="inline-link-macro">_NVIDIA集群和存储交换机_</block>
+  <block id="7d496a68b55e69a007c148b8b4cf8fbe" category="list-text">可从获取相应的 RCF <block ref="bf48368f6fb605c4425a53dc48551d85" category="inline-link-macro-rx"></block> 页面。按照下载页面上的步骤下载适用于您要安装的 ONTAP 软件版本的正确 RCF 。</block>
+  <block id="f9ffe766b106d2867657d83e79723a59" category="list-text">在新交换机nsw2上、以admin身份登录并关闭将连接到节点集群接口的所有端口(端口swp1到swp14)。</block>
+  <block id="419843a482aac1b6d5c300aad109bf65" category="list-text">关闭SN2100交换机sw1上的ISL端口swp15和swp16：</block>
+  <block id="cbcdd16fbdf580bf90f773d5fa321dd0" category="list-text">拔下SN2100 sw1交换机上的所有缆线、然后将其连接到SN2100 nsw2交换机上的相同端口。</block>
+  <block id="3e1aa25294b9d1912eb351028c0ddab6" category="list-text">启动sw1和nsw2交换机之间的ISL端口swp15和swp16。</block>
+  <block id="f49c15d121cb3262e7dc4648fba76e8d" category="paragraph">以下命令将在交换机sw1上启用ISL端口swp15和swp16：</block>
+  <block id="b64c4a65624312e01d00d227b23dc7bb" category="paragraph">以下示例显示交换机nsw2上的ISL端口已启动：</block>
+  <block id="897e1548fc4ec5cb743ba59eb85c00b1" category="list-text">确认所有节点上的端口`e3b`均已启动：`network port show -ipspace cluster`</block>
+  <block id="b277a4be4886a83e4adc96de6cdbe36c" category="list-text">验证所有节点集群端口是否均已启动：`net show interface`</block>
+  <block id="4c8512f4b28df0de74c476436e30e971" category="list-text">在交换机nsw2上、启动连接到节点网络端口的端口。</block>
+  <block id="5c336d9150225836a1bf47b21339dedc" category="doc">在ONIE模式下安装Cumulus Linux</block>
+  <block id="4937b958fd592ecf33cfd084ea040c92" category="paragraph">您可以使用开放网络安装环境(Open Network Install Environment、ONIE)安装Cumulus Linux、以便自动发现网络安装程序映像。这有助于采用可选择的操作系统来保护交换机的系统模式、例如、Cumulus Linux。使用ONIE安装Cumulus Linux的最简单方法是使用本地HTTP发现。</block>
+  <block id="fdabb4753161a9b4bd109b3c1128441f" category="admonition">如果主机已启用IPv6、请确保其运行的是Web服务器。如果主机启用了IPv4、请确保它除了运行Web服务器之外还运行DHCP。</block>
+  <block id="458f980bedd0795625e83f297c0a66fd" category="paragraph">此操作步骤 演示了管理员在ONIE中启动后如何升级Cumulus Linux。</block>
+  <block id="36f831960326f190db5b27c1556e1475" category="list-text">将Cumulus Linux安装文件下载到Web服务器的根目录。将此文件重命名为`onie-installer`。</block>
+  <block id="2878ffd45e62a3c24da481616a508352" category="list-text">使用以太网缆线将主机连接到交换机的管理以太网端口。</block>
+  <block id="a83ecacfc8440093b21963c19b9cac25" category="list-text">打开交换机电源。交换机将下载ONIE映像安装程序并启动。安装完成后、终端窗口将显示Cumulus Linux登录提示。</block>
+  <block id="55f75855d3473529a9c81705515c63b5" category="list-text">重新启动SN2100交换机：</block>
+  <block id="bcf1a8adc78a0a57e9bd29992bcba6ab" category="list-text">在GNU Grub屏幕上按* Esc *键以中断正常启动过程、选择* ONIE*并按Enter键。</block>
+  <block id="b76e78139e129fd7b040b8c7c0c2cfe8" category="list-text">在显示的下一个屏幕上、选择*。onIE：install OS*。</block>
+  <block id="20e1a7fe30403f4a66c9409cc2bf3d02" category="list-text">ONIE安装程序发现过程将运行搜索自动安装。按Enter可临时停止此过程。</block>
+  <block id="42d9c8af3d281f936f3a1eb9fb48e341" category="list-text">发现过程停止后：</block>
+  <block id="1e36934707ca773ba62f0533c37dd8ee" category="list-text">如果DHCP服务正在网络上运行、请验证是否已正确分配IP地址、子网掩码和默认网关：</block>
+  <block id="165a7d7a1fcfac867768dfbb458bd9a0" category="list-text">如果手动定义了IP地址方案、请执行以下操作：</block>
+  <block id="148ef6fa9ac908db569ad63c96fb01e8" category="list-text">重复步骤9以验证是否正确输入了静态信息。</block>
+  <block id="71a98c939bf9fe1ba2c2453cd7777824" category="list-text">安装Cumulus Linux：</block>
+  <block id="5bb8ca227d3f9b0b9fc45003bbe7d06c" category="list-text">安装完成后、登录到交换机：</block>
+  <block id="098d312f939d7511ad5f9bf80ccaea96" category="list-text">验证Cumulus Linux版本：</block>
+  <block id="3d9882663c241e5e6078e7d90137ebc4" category="doc">将NS224磁盘架作为交换机连接的存储进行布线</block>
+  <block id="b154454eef50aecacf60925ed8851078" category="paragraph">如果您的系统需要将NS224驱动器架作为交换机连接存储(而不是直连存储)进行布线、请使用此处提供的信息。</block>
+  <block id="0ab54354ff641ba8f3492f71c03aa435" category="list-text">使用缆线将 NS224 驱动器架连接到存储交换机：</block>
+  <block id="afb935b1a48a04ad288c97c7899d840d" category="inline-link">Information for cabling switch-attached NS224 drive shelves</block>
+  <block id="9824994e3f8651cf2b6d695555bdc011" category="paragraph"><block ref="9824994e3f8651cf2b6d695555bdc011" category="inline-link-rx"></block></block>
+  <block id="d1f671afbf5d4ca47b95e86f70c6bcc1" category="list-text">安装存储交换机：</block>
+  <block id="008b8867712161228bd794977fcd0d4b" category="paragraph"><block ref="008b8867712161228bd794977fcd0d4b" category="inline-link-rx"></block></block>
+  <block id="4aaebba2a5287c74eb41bf080e6d1fe4" category="list-text">确认您的平台型号支持的硬件，例如存储交换机和缆线：</block>
+  <block id="6cce5d78fc7baf999a2f91945cec4681" category="doc">NVIDIA SN2100交换机</block>
+  <block id="a8a1b8afb1ab0b09f2d34e00280006bb" category="paragraph">从ONTAP 9.10.1P3开始、您可以使用NVIDIA SN2100交换机将存储和集群功能组合到共享交换机配置中。</block>
+  <block id="d7ddb122f5b0d427125ca1728604348a" category="paragraph">您可以在NVIDIA双/单交换机机柜中使用随交换机提供的标准支架安装NVIDIA SN2100交换机(X190006/X190106)。</block>
+  <block id="b0bf0f217cb1d53bd191aca5d6b62108" category="paragraph">下表列出了MSN2100交换机和导轨套件的部件号和问题描述 ：</block>
+  <block id="572fe15be859e8e821675b10e630a4ae" category="paragraph">X190006-PE</block>
+  <block id="1545f8e8b25daf1dcedbccfac0ffeb23" category="paragraph">集群交换机、NVIDIA SN2100、16磅100G、PTSX</block>
+  <block id="30f7229b421f56d9234c0201f097a8e0" category="paragraph">X190006-PI</block>
+  <block id="50db68e5e1edfdae301d0e13cf36b35c" category="paragraph">集群交换机、NVIDIA SN2100、16磅100G、PSIN</block>
+  <block id="11d13ed1e5722e39b9eed159c504b273" category="paragraph">X190106-FE-PE</block>
+  <block id="af3bf35952bf379b9c77580834f0ccea" category="paragraph">交换机、NVIDIA SN2100、16磅100G、PTSX、前端</block>
+  <block id="6c0dabd674a229e6a71c9efa0506c26c" category="paragraph">X190106-FE-PI</block>
+  <block id="89e63d10029caf2d14bf259863a398e7" category="paragraph">交换机、NVIDIA SN2100、16磅100G、PSIN、前端</block>
+  <block id="f14cae44efe4b8ece4c67a0bb8c96cf0" category="paragraph">X-MTEF套件D</block>
+  <block id="dd0da9a2cc690d430884295e008a2dab" category="paragraph">导轨套件、NVIDIA并排双交换机</block>
+  <block id="80ba4b0b3a217933f761ba1440471dee" category="paragraph">X-MTEF-KIT-E</block>
+  <block id="65adcaebf2b7d6b4197e6a8aff31717f" category="paragraph">导轨套件、NVIDIA单交换机、短深度</block>
+  <block id="8a6e8b822a02f19c1d150c230a03bf69" category="inline-link">安装SN2100交换机和导轨套件</block>
+  <block id="865b448eabcf17df6b422f9231393d1a" category="admonition">有关详细信息、请参见NVIDIA文档<block ref="39747b316e7d3df3f73757faf591c2d2" category="inline-link-rx"></block>。</block>
+  <block id="4cbae0b27dc5bb331502b630a138cc4a" category="paragraph">下表列出了适用于NVIDIA SN2100交换机的文档。</block>
+  <block id="b6b0513dd441d375575669499c028d77" category="inline-link-macro">设置和配置NVIDIA SN2100交换机_</block>
+  <block id="bc73d70686c873ae5e2f4e513f491722" category="paragraph"><block ref="bc73d70686c873ae5e2f4e513f491722" category="inline-link-macro-rx"></block></block>
+  <block id="77f388375aa4a60bc88c77b1a62210b1" category="paragraph">介绍如何设置和配置NVIDIA SN2100交换机、包括安装Cumulus Linux和适用的RCF。</block>
+  <block id="7f3bf3d40898d5f432e8fac499b35019" category="inline-link-macro">_从Cisco集群交换机迁移到NVIDIA SN2100集群交换机_</block>
+  <block id="3bbe54c8552e40dc5f89b73892046850" category="paragraph"><block ref="3bbe54c8552e40dc5f89b73892046850" category="inline-link-macro-rx"></block></block>
+  <block id="c215cbb78c56580b18190d97abd7667b" category="paragraph">介绍如何从使用Cisco集群交换机的环境迁移到使用NVIDIA SN2100集群交换机的环境。</block>
+  <block id="821a2f7945b3464ddee06f602c686f9b" category="inline-link-macro">_从Cisco存储交换机迁移到NVIDIA存储交换机_</block>
+  <block id="3fbe15969453ca44c2deb4fdfe8323ee" category="paragraph"><block ref="3fbe15969453ca44c2deb4fdfe8323ee" category="inline-link-macro-rx"></block></block>
+  <block id="26872f7030028e1569f2ce01c9bc352c" category="paragraph">介绍如何从使用Cisco存储交换机的环境迁移到使用NVIDIA SN2100存储交换机的环境。</block>
+  <block id="6f2cf7b704c57c57ef32132488de219a" category="inline-link-macro">_迁移到使用NVIDIA SN2100集群交换机的双节点交换集群_</block>
+  <block id="a5fe3028e8bedffa1849e536a4538b5b" category="paragraph"><block ref="a5fe3028e8bedffa1849e536a4538b5b" category="inline-link-macro-rx"></block></block>
+  <block id="f47598dac203329e94811e7ca007b4e2" category="paragraph">介绍如何使用NVIDIA SN2100集群交换机迁移到双节点交换环境。</block>
+  <block id="704deb422a6b7e49bc71f93eb9153e24" category="inline-link-macro">_更换NVIDIA SN2100集群交换机_</block>
+  <block id="cb35bcc230f43141ffe95979875e1193" category="paragraph"><block ref="cb35bcc230f43141ffe95979875e1193" category="inline-link-macro-rx"></block></block>
+  <block id="04c9967f210e3a292f67ab723d461b51" category="paragraph">介绍用于更换集群中有缺陷的NVIDIA SN2100交换机以及下载Cumulus Linux和参考配置文件的操作步骤。</block>
+  <block id="44bb54091263606f157bbaad0fdef9c3" category="inline-link-macro">_更换NVIDIA SN2100存储交换机_</block>
+  <block id="38c797c6506c8619afc1b09c65aa0655" category="paragraph"><block ref="38c797c6506c8619afc1b09c65aa0655" category="inline-link-macro-rx"></block></block>
+  <block id="2875df17f2e2895666eddce90fc6146f" category="paragraph">介绍用于更换有缺陷的NVIDIA SN2100存储交换机以及下载Cumulus Linux和参考配置文件的操作步骤。</block>
+  <block id="aaea07599d1157945444c3c301565e94" category="summary">NVIDIA SN2100交换机</block>
+  <block id="d502e4d284e017c272fbc044d1c805ee" category="paragraph">从ONTAP 9.10.1P3开始、您可以使用NVIDIA SN2100交换机将存储和集群功能整合到共享交换机方案中。</block>
+  <block id="94f92369bb57ec3cd50af356ac87615d" category="sidebar">NVIDIA SN2100</block>
+  <block id="9b69c1695f55a4595dbf315316635dc3" category="sidebar">AFF 和 FAS 文档</block>
+  <block id="3d78396bc2da5588ddc83088e252b438" category="sidebar">AFF 和FAS 升级文档</block>
+  <block id="5358757de9216cc29d688612a3d72fe1" category="sidebar">ONTAP 9 文档</block>
+  <block id="3ee7af3967e9385ab7a25cd0ac2015ae" category="sidebar">NVIDIA SN2100交换机</block>
+  <block id="5f0a12b5e055df565d02795623cf4bc2" category="sidebar">设置和配置NVIDIA SN2100交换机</block>
+  <block id="2f4146deaddc6e88b575577116cf8ce8" category="sidebar">从Cisco集群交换机迁移到NVIDIA SN2100集群交换机</block>
+  <block id="61203301024e828295cf8cd1ef164fc3" category="sidebar">从Cisco存储交换机迁移到NVIDIA SN2100存储交换机</block>
+  <block id="fdb05c6a8582161eedd71436841b5d8c" category="sidebar">迁移到使用NVIDIA SN2100交换机的双节点交换集群</block>
+  <block id="d758c27204bd1511d766f1b9d917e78a" category="sidebar">更换NVIDIA SN2100交换机</block>
 </blocks>

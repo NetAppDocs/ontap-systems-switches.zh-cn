@@ -1,0 +1,118 @@
+---
+permalink: switch-nvidia-sn2100/install_cumulus_linux_onie_mode.html 
+sidebar: sidebar 
+keywords: install cumulus onie mode, sn2100 SN2100 switches setup, cumulus linux, onie mode 
+summary: '可以在交换机运行Cumulus Linux或ONIE时安装Cumulus Linux (CL)操作系统。' 
+---
+= 在ONIE模式下安装Cumulus Linux
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+可以在交换机运行Cumulus Linux或ONIE时安装Cumulus Linux (CL)操作系统。
+
+您可以使用开放网络安装环境(Open Network Install Environment、ONIE)安装Cumulus Linux、以便自动发现网络安装程序映像。这有助于采用可选择的操作系统来保护交换机的系统模式、例如、Cumulus Linux。使用ONIE安装Cumulus Linux的最简单方法是使用本地HTTP发现。
+
+
+NOTE: 如果主机已启用IPv6、请确保其运行的是Web服务器。如果主机启用了IPv4、请确保它除了运行Web服务器之外还运行DHCP。
+
+此操作步骤 演示了管理员在ONIE中启动后如何升级Cumulus Linux。
+
+.步骤
+. 将Cumulus Linux安装文件下载到Web服务器的根目录。将此文件重命名为`onie-installer`。
+. 使用以太网缆线将主机连接到交换机的管理以太网端口。
+. 打开交换机电源。交换机将下载ONIE映像安装程序并启动。安装完成后、终端窗口将显示Cumulus Linux登录提示。
++
+
+NOTE: 每次安装Cumulus Linux时、都会擦除并重建整个文件系统结构。
+
+. 重新启动SN2100交换机：
++
+[listing, subs="+quotes"]
+----
+cumulus@cumulus:mgmt:~$ *sudo reboot*
+----
+. 在GNU Grub屏幕上按* Esc *键以中断正常启动过程、选择* ONIE*并按Enter键。
+. 在显示的下一个屏幕上、选择*。onIE：install OS*。
+. ONIE安装程序发现过程将运行搜索自动安装。按Enter可临时停止此过程。
+. 发现过程停止后：
++
+[listing, subs="+quotes"]
+----
+ONIE:/ # *onie-stop*
+discover: installer mode detected.
+Stopping: discover...start-stop-daemon: warning: killing process 427:
+No such process done.
+----
+. 如果DHCP服务正在网络上运行、请验证是否已正确分配IP地址、子网掩码和默认网关：
++
+[listing, subs="+quotes"]
+----
+ONIE:/ # *ifconfig eth0*
+eth0   Link encap:Ethernet  HWaddr B8:CE:F6:19:1D:F6
+       inet addr:10.233.204.71  Bcast:10.233.205.255  Mask:255.255.254.0
+       inet6 addr: fe80::bace:f6ff:fe19:1df6/64 Scope:Link
+       UP BROADCAST RUNNING MULTICAST  MTU:1500  Metric:1
+       RX packets:21344 errors:0 dropped:2135 overruns:0 frame:0
+       TX packets:3500 errors:0 dropped:0 overruns:0 carrier:0
+       collisions:0 txqueuelen:1000
+       RX bytes:6119398 (5.8 MiB)  TX bytes:472975 (461.8 KiB)
+       Memory:dfc00000-dfc1ffff
+
+ONIE:/ # *route*
+Kernel IP routing table
+Destination     Gateway         Genmask         Flags Metric Ref    Use Iface
+
+default         10.233.204.1    0.0.0.0         UG    0      0      0   eth0
+10.233.204.0    *               255.255.254.0   U     0      0      0   eth0
+----
+. 如果手动定义了IP地址方案、请执行以下操作：
++
+[listing, subs="+quotes"]
+----
+ONIE:/ # *ifconfig eth0 10.233.204.71 netmask 255.255.254.0*
+ONIE:/ # *route add default gw 10.233.204.1*
+----
+. 重复步骤9以验证是否正确输入了静态信息。
+. 安装Cumulus Linux：
++
+[listing, subs="+quotes"]
+----
+ONIE:/ # *route*
+
+  Kernel IP routing table
+
+  ONIE:/ # *onie-nos-install http://_<web-server>/<path>_/cumulus-linux-4.4.2-mlx-amd64.bin*
+
+  Stopping: discover... done.
+  Info: Attempting http://10.60.132.97/x/eng/testbedN,svl/nic/files/cumulus-linux-4.4.2-mlx-amd64.bin ...
+  Connecting to 10.60.132.97 (10.60.132.97:80)
+  installer            100% |*******************************|   552M  0:00:00 ETA
+  ...
+  ...
+----
+. 安装完成后、登录到交换机：
++
+[listing, subs="+quotes"]
+----
+cumulus login: *cumulus*
+Password: *cumulus*
+You are required to change your password immediately (administrator enforced)
+Changing password for cumulus.
+Current password: *cumulus*
+New password: *netapp1!*
+Retype new password: *netapp1!*
+----
+. 验证Cumulus Linux版本：
++
+[listing, subs="+quotes"]
+----
+cumulus@cumulus:mgmt:~$ *net show version*
+NCLU_VERSION=1.0-cl4.4.2u4
+DISTRIB_ID="Cumulus Linux"
+DISTRIB_RELEASE=*4.4.2*
+DISTRIB_DESCRIPTION=*"Cumulus Linux 4.4.2”*
+----
+

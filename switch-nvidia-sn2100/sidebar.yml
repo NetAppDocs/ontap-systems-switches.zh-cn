@@ -16,6 +16,8 @@ entries:
     url: "/switch-nvidia-sn2100/install_cumulus_linux_onie_mode.html"
   - title: 安装RCF脚本
     url: "/switch-nvidia-sn2100/install_sn2100_rcf.html"
+  - title: 为交换机日志收集配置SNMPv3
+    url: "/switch-nvidia-sn2100/install_snmpv3_support_for_log_collection.html"
   - title: 将NS224磁盘架作为交换机连接的存储进行布线
     url: "/switch-nvidia-sn2100/install_cable_shelves_SAT_sn2100.html"
 - title: 从Cisco集群交换机迁移到NVIDIA SN2100集群交换机
