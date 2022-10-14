@@ -3685,7 +3685,6 @@
   <block id="008b8867712161228bd794977fcd0d4b" category="paragraph"><block ref="008b8867712161228bd794977fcd0d4b" category="inline-link-rx"></block></block>
   <block id="4aaebba2a5287c74eb41bf080e6d1fe4" category="list-text">确认您的平台型号支持的硬件，例如存储交换机和缆线：</block>
   <block id="6cce5d78fc7baf999a2f91945cec4681" category="doc">NVIDIA SN2100交换机</block>
-  <block id="a8a1b8afb1ab0b09f2d34e00280006bb" category="paragraph">从ONTAP 9.10.1P3开始、您可以使用NVIDIA SN2100交换机将存储和集群功能组合到共享交换机配置中。</block>
   <block id="d7ddb122f5b0d427125ca1728604348a" category="paragraph">您可以在NVIDIA双/单交换机机柜中使用随交换机提供的标准支架安装NVIDIA SN2100交换机(X190006/X190106)。</block>
   <block id="b0bf0f217cb1d53bd191aca5d6b62108" category="paragraph">下表列出了MSN2100交换机和导轨套件的部件号和问题描述 ：</block>
   <block id="572fe15be859e8e821675b10e630a4ae" category="paragraph">X190006-PE</block>
@@ -3728,9 +3727,11 @@
   <block id="3d78396bc2da5588ddc83088e252b438" category="sidebar">AFF 和FAS 升级文档</block>
   <block id="5358757de9216cc29d688612a3d72fe1" category="sidebar">ONTAP 9 文档</block>
   <block id="3ee7af3967e9385ab7a25cd0ac2015ae" category="sidebar">NVIDIA SN2100交换机</block>
-  <block id="5f0a12b5e055df565d02795623cf4bc2" category="sidebar">设置和配置NVIDIA SN2100交换机</block>
   <block id="2f4146deaddc6e88b575577116cf8ce8" category="sidebar">从Cisco集群交换机迁移到NVIDIA SN2100集群交换机</block>
   <block id="61203301024e828295cf8cd1ef164fc3" category="sidebar">从Cisco存储交换机迁移到NVIDIA SN2100存储交换机</block>
   <block id="fdb05c6a8582161eedd71436841b5d8c" category="sidebar">迁移到使用NVIDIA SN2100交换机的双节点交换集群</block>
   <block id="d758c27204bd1511d766f1b9d917e78a" category="sidebar">更换NVIDIA SN2100交换机</block>
+  <block id="d645f4ad64c5de549a6e962f1b7e9a5d" category="doc">设置和配置NVIDIA SN2100交换机</block>
+  <block id="0bfa1a1e232ece62b9507c3e20a01280" category="paragraph">从ONTAP 9.10.1P3开始、您可以使用NVIDIA SN2100交换机将存储和集群功能组合到共享交换机配置中。</block>
+  <block id="153a5c90883f7a8479e2748a0919a601" category="sidebar">设置和配置NVIDIA SN2100交换机</block>
 </blocks>
