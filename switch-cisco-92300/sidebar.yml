@@ -38,16 +38,16 @@ entries:
     url: "/switch-cisco-92300/configure-install-initial.html"
   - title: 安装 NX-OS 软件
     url: "/switch-cisco-92300/configure-install-nxos.html"
-  - title: 安装参考配置文件（ RCF ）
-    url: "/switch-cisco-92300/configure-install-rcf.html"
+  - title: 安装参考配置文件
+    url: "/switch-cisco-92300/install-the-rcf-file.html"
 - title: 在 Cisco Nexus 92300YC 集群交换机上安装 NX-OS 软件和 RCF
   entries:
   - title: 概述
     url: "/switch-cisco-92300/install-nxos-overview.html"
   - title: 安装 NX-OS 软件
     url: "/switch-cisco-92300/install-nxos-software.html"
-  - title: 安装参考配置文件（ RCF ）
-    url: "/switch-cisco-92300/install-nxos-rcf.html"
+  - title: 安装参考配置文件
+    url: "/switch-cisco-92300/install-the-rcf-file.html"
 - title: 迁移到使用 Cisco Nexus 92300YC 交换机的双节点交换集群
   entries:
   - title: 概述
@@ -60,5 +60,5 @@ entries:
     url: "/switch-cisco-92300/migrate-to-92300yc-overview.html"
   - title: 如何从 Cisco 交换机迁移到 Cisco Nexus 92300YC 交换机
     url: "/switch-cisco-92300/migrate-to-92300yc.html"
-  - title: 更换 Cisco Nexus 92300YC 交换机
-    url: "/switch-cisco-92300/replace-92300yc.html"
+- title: 更换 Cisco Nexus 92300YC 交换机
+  url: "/switch-cisco-92300/replace-92300yc.html"

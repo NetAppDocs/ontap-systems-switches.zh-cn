@@ -133,7 +133,7 @@ swp16      100G   BondMember  sw1                swp16
 
 . 在交换机nsw2上安装相应的RCF和映像、并进行必要的站点准备。
 +
-如有必要、请验证、下载并安装适用于新交换机的RCF和Cumulus软件的相应版本。如果您已确认新交换机设置正确、并且不需要更新RCF和Cumulus软件、请继续执行步骤3。请参见 link:install_setup_sn2100_switches_overview.html["设置和配置NVIDIA SN2100交换机"] 了解更多详细信息。
+如有必要、请验证、下载并安装适用于新交换机的RCF和Cumulus软件的相应版本。如果您已确认新交换机设置正确、并且不需要更新RCF和Cumulus软件、请继续执行步骤4。请参见 link:install_setup_sn2100_switches_overview.html["设置和配置NVIDIA SN2100交换机"] 了解更多详细信息。
 
 +
 .. 您可以从_NVIDIA Support_站点下载适用于您的集群交换机的适用的Cumulus软件。按照下载页面上的步骤下载所安装ONTAP 软件版本的Cumulus Linux。
@@ -142,7 +142,7 @@ swp16      100G   BondMember  sw1                swp16
 
 . 在新交换机nsw2上、以admin身份登录并关闭将连接到节点集群接口的所有端口(端口swp1到swp14)。
 +
-如果要更换的交换机无法正常工作并已关闭电源，请转至步骤 4 。集群节点上的 LIF 应已故障转移到每个节点的另一个集群端口。
+如果要更换的交换机无法正常工作并已关闭电源、请转至步骤5。集群节点上的 LIF 应已故障转移到每个节点的另一个集群端口。
 
 +
 [listing, subs="+quotes"]

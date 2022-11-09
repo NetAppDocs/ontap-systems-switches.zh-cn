@@ -18,7 +18,7 @@ Cisco Nexus 92300YC 集群交换机上必须安装 Cisco NX-OS 软件和参考�
 * 集群必须完全正常运行（日志中不应有任何错误或类似问题）。
 * 如果您仅安装 NX-OS 并保留当前 RCF 版本，则必须在 RCF 中检查或设置所需的启动配置，以反映所需的启动映像。
 * 如果您需要更改启动配置以反映当前启动映像，则必须在重新应用 RCF 之前进行更改，以便在将来重新启动时实例化正确的版本。
-* 您必须已查看上的交换机兼容性表 https://support.netapp.com/NOW/download/software/cm_switches/["Cisco 以太网交换机"^] 页面上显示了受支持的 ONTAP ， NX-OS 和 RCF 版本。
+* 您必须已查看上的交换机兼容性表 https://mysupport.netapp.com/site/info/cisco-ethernet-switch["Cisco 以太网交换机"^] 页面上显示了受支持的 ONTAP ， NX-OS 和 RCF 版本。
 * RCF 中的命令语法与 NX-OS 版本中的命令语法之间可能存在命令依赖关系。
 * 您必须已参考 Cisco 网站上提供的相应软件和升级指南，以获取有关 Cisco 交换机升级和降级过程的完整文档 https://www.cisco.com/c/en/us/support/switches/nexus-9000-series-switches/series.html#InstallandUpgrade["Cisco Nexus 9000 系列交换机"^] 页面。
 * 您必须具有当前 RCF 。
@@ -52,7 +52,7 @@ NOTE: 操作步骤要求同时使用 ONTAP 命令和 Cisco Nexus 9000 系列交�
 
 . 如果在此集群上启用了 AutoSupport ，则通过调用 AutoSupport 消息禁止自动创建案例：
 +
-`ssystem node AutoSupport invoke -node * -type all -message MAINT=x h`
+`ssystem node AutoSupport invoke -node * -type all -message MAINT=xh`
 
 +
 其中 _x_ 是维护时段的持续时间，以小时为单位。
@@ -67,7 +67,7 @@ NOTE: AutoSupport 消息会通知技术支持此维护任务，以便在维护�
 +
 [listing]
 ----
-cluster1:> system node autosupport invoke -node * -type all -message MAINT=2h
+cluster1:> **system node autosupport invoke -node * -type all -message MAINT=2h**
 ----
 . 显示在每个集群互连交换机的每个节点上配置了多少个集群互连接口： `network device-discovery show -protocol cdp`
 +
@@ -89,7 +89,7 @@ node1      /cdp
 ----
 . 检查每个集群接口的管理或运行状态。
 +
-.. 显示网络端口属性：``network port show – IPSpace Cluster``
+.. 显示网络端口属性：  `network port show –ipspace Cluster`
 +
 [listing, subs="+quotes"]
 ----
@@ -182,49 +182,4 @@ Cluster
 
 4 entries were displayed.
 ----
-. 对于 ONTAP 9.4 及更高版本，请使用以下命令启用集群交换机运行状况监控器日志收集功能以收集交换机相关的日志文件：
-+
-`ssystem cluster-switch log setup-password` 和 `ssystem cluster-switch log enable-Collection`
-
-+
-[listing, subs="+quotes"]
-----
-cluster1::*> *system cluster-switch log setup-password*
-Enter the switch name: <return>
-The switch name entered is not recognized.
-Choose from the following list:
-cs1
-cs2
-
-cluster1::*> *system cluster-switch log setup-password*
-
-Enter the switch name: *cs1*
-RSA key fingerprint is e5:8b:c6:dc:e2:18:18:09:36:63:d9:63:dd:03:d9:cc
-Do you want to continue? {y|n}::[n] *y*
-
-Enter the password: <enter switch password>
-Enter the password again: <enter switch password>
-
-cluster1::*> *system cluster-switch log setup-password*
-
-Enter the switch name: *cs2*
-RSA key fingerprint is 57:49:86:a1:b9:80:6a:61:9a:86:8e:3c:e3:b7:1f:b1
-Do you want to continue? {y|n}:: [n] *y*
-
-Enter the password: <enter switch password>
-Enter the password again: <enter switch password>
-
-cluster1::*> *system cluster-switch log enable-collection*
-
-Do you want to enable cluster log collection for all nodes in the cluster?
-{y|n}: [n] *y*
-
-Enabling cluster switch log collection.
-
-cluster1::*>
-----
-+
-
-NOTE: 如果其中任何一个命令返回错误，请联系 NetApp 支持部门。
-
 

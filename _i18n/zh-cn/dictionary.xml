@@ -850,7 +850,6 @@
   <block id="28a53e17dbed56e3e939f59daaad8359" category="list-text">如果在此集群上启用了 AutoSupport ，请通过调用 AutoSupport 消息来禁止自动创建案例： `ssystem node AutoSupport invoke -node * -type all -message MAINT=x h`</block>
   <block id="255e02cb0fbcf856f38cae0c4b19764d" category="list-text">显示在每个集群互连交换机的每个节点上配置了多少个集群互连接口： `network device-discovery show -protocol cdp`</block>
   <block id="519cb91ef6e75c3c3143746a3e987bba" category="list-text">检查每个集群接口的管理或运行状态。</block>
-  <block id="f59d55fc3deab7022d8bbc8911bc97d9" category="list-text">显示网络端口属性：``network port show – IPSpace Cluster``</block>
   <block id="58d8f5733e0a28fbb10c789b8e8b1006" category="list-text">显示有关 LIF 的信息： `network interface show - Vserver Cluster`</block>
   <block id="2f5cda1fef4930180b762512f154862a" category="list-text">对远程集群 LIF 执行 Ping 操作： `cluster ping-cluster -node node-name`</block>
   <block id="fb42ee387302bdd24daf7381862b77b2" category="list-text">验证是否已在所有集群 LIF 上启用 auto-revert 命令： `network interface show -vserver cluster -fields auto-revert`</block>
@@ -1118,7 +1117,6 @@
   <block id="cb3b33954945611e0ba8b2628e06d629" category="inline-link">Cisco 以太网交换机</block>
   <block id="eb70cbf636a549bd2cc86304b271576a" category="summary">您可以使用此操作步骤执行 Cisco Nexus 9336C-x2 交换机的初始安装。</block>
   <block id="5f901dd2812b5cf833eff71d3b59a900" category="doc">首次安装 Nexus 9336C-x2 集群交换机</block>
-  <block id="4dad97b74eb8f56ecdedfd5718fe8d6a" category="paragraph">您可以从 NetApp 支持站点下载适用于您的交换机的 NetApp Cisco NX-OS 软件，网址为<block ref="7bc6752d2076d2c755eaebbdfeb91d23" category="inline-link-rx"></block></block>
   <block id="dc13ff13441dfc204b36688d5d7342b7" category="paragraph">NX-OS 是 Cisco Systems 提供的 Nexus 系列以太网交换机和 MDS 系列光纤通道（ FC ）存储区域网络交换机的网络操作系统。</block>
   <block id="f67462100040a7cd4a5b4d5bc2f2f73e" category="list-text">将管理端口（位于交换机的非端口端）连接到您的 SFTP 服务器所在的同一网络。</block>
   <block id="98bce1f85d815f540ae5aa99708e61f4" category="list-text">9600 波特</block>
@@ -1604,7 +1602,6 @@
   <block id="29b5c9f7c3e370b92a6acd04f777cd76" category="paragraph">此操作步骤中的示例使用两个节点。这些节点使用两个 10GbE 集群互连端口 `e0a` 和 `e0b` 。</block>
   <block id="3fab38e14396889cbb0c1a3103fa74e4" category="paragraph">请参见<block ref="e98f5e4074ae8b028a5791870586403d" category="inline-link-rx"></block> 验证平台上的集群端口是否正确。</block>
   <block id="ae51aab75debd2e4f744aa3423ddf6cf" category="list-text">集群 LIF 名称是 node1 的 `node1_clus1` 和 `node1_clus2` ， node2 的 `node2_clus1` 和 `node2_clus2` 。</block>
-  <block id="a7e5cc3b90446f6b486e4393aced65d6" category="paragraph">`ssystem node AutoSupport invoke -node * -type all -message MAINT=x h`</block>
   <block id="4910851fa218a8942f3c3f40e877fda8" category="paragraph">其中 _x_ 是维护时段的持续时间，以小时为单位。</block>
   <block id="e73ca78de91a85725d7897c5caaeeb3e" category="list-text">对远程集群 LIF 执行 Ping 操作：</block>
   <block id="f640804165fe8b3014b443db071bd7c2" category="list-text">验证是否已在所有集群 LIF 上启用 auto-revert 命令：</block>
@@ -1628,7 +1625,6 @@
   <block id="7004b79d6da7a937e4f095cf3128beec" category="list-text">Nexus 92300YC 更换交换机：</block>
   <block id="14aed4c393ab30261f9a29fa3cb60712" category="list-text">节点连接为端口 1/1 到 1/64 。</block>
   <block id="12014b8ecc927f834dff435ab28b8c21" category="list-text">必须在端口 1/65 和 1/66. 上禁用所有交换机间链路（ ISL ）端口。</block>
-  <block id="50a23b934f4f37044bdd5eac939b6cd6" category="inline-link-macro">配置新的 Cisco Nexus 92300YC 交换机</block>
   <block id="e6a737d65dbbe364da94490cf2b1e13c" category="list-text">现有 Nexus 92300YC 交换机的名称是 CS1 和 CS2 。</block>
   <block id="e33736da514784e931928160187a8d8d" category="list-text">新 Nexus 92300YC 交换机的名称是 newcs2 。</block>
   <block id="843e8bce6b1f5f343fc75f65042e3608" category="list-text">单击浏览器的后退箭头返回到 * 问题描述 * 页面，单击 * 继续 * ，接受许可协议，然后转到 * 下载 * 页面。</block>
@@ -3152,22 +3148,16 @@
   <block id="42e9b9ed0e598b47d3d52b57a6de6d6b" category="inline-link">更换 Cisco Nexus 92300YC 集群交换机 _</block>
   <block id="6ec490ecbf6e7036a91b8275d198efb1" category="paragraph"><block ref="6ec490ecbf6e7036a91b8275d198efb1" category="inline-link-rx"></block></block>
   <block id="d4ca40c00226dd9154451b22e0c4d626" category="paragraph">介绍用于更换集群中有故障的 Cisco Nexus 92300YC 交换机以及下载交换机操作系统和参考配置文件的操作步骤 。</block>
-  <block id="6c9cb5b0a3e8788afc621cc80a43f532" category="paragraph"><block ref="6c9cb5b0a3e8788afc621cc80a43f532" category="inline-link-macro-rx"></block></block>
   <block id="00f618bdb0daf68aeb2d205ea0709450" category="list-text">对于 ONTAP 9.4 及更高版本，使用 gthe commamds 启用集群交换机运行状况监控器日志收集功能以收集交换机相关的日志文件：</block>
   <block id="4d17ac80e3b613f4f1e738899b7885ec" category="paragraph">`ssystem cluster-switch log setup-password` 和 `ssystem cluster-switch log enable-Collection`</block>
   <block id="4d044e6cf669ad04cc841f7358407e18" category="inline-link">Hardware Universe - 交换机 _</block>
-  <block id="45af8674e7855691a3f6af99bffdc7d8" category="list-text">。<block ref="fc28ececd6878428d18cc5d1e48226af" category="inline-link-rx"></block> 包含有关所有集群交换机支持的布线的信息。</block>
-  <block id="46f4e846ca08ef976e5fa57699be7358" category="list-text">此操作步骤 支持的 ONTAP 和 NX-OS 版本位于上<block ref="a29f73ef9de6be7554c49272d8910429" category="inline-link-rx"></block> 页面。</block>
   <block id="31c61e8324cd3af2b0a885021ca2c68b" category="list-text">对于 ONTAP 9.6P8 及更高版本，使用以下命令启用以太网交换机运行状况监控器日志收集功能以收集交换机相关的日志文件： `ssystem cluster-switch log setup-password` 和 `ssystem cluster-switch log enable-Collection`</block>
-  <block id="d0cbcb031a5b57d5da00e038ff554757" category="list-text">您必须已查看上的交换机兼容性表<block ref="eea3e069983adcbba5050ccdef577ded" category="inline-link-rx"></block> 页面上显示了受支持的 ONTAP ， NX-OS 和 RCF 版本。</block>
   <block id="3f5c9d6967d91a65ea882b77345f4b64" category="list-text">您必须已参考 Cisco 网站上提供的相应软件和升级指南，以获取有关 Cisco 交换机升级和降级过程的完整文档<block ref="8cf592c671d256b1fe33924853db0b89" category="inline-link-rx"></block> 页面。</block>
   <block id="bd377da5df344ea4407f28a5db2a6983" category="paragraph">请参见<block ref="cd25cbe53f0a314145c84729c6ce2c78" category="inline-link-rx"></block> 验证平台上的集群端口是否正确。</block>
   <block id="07d9b89ec6258781d7ac664bc095c5af" category="list-text">对于 ONTAP 9.4 及更高版本，请使用以下命令启用集群交换机运行状况监控器日志收集功能以收集交换机相关的日志文件：</block>
   <block id="53564612bada3c4cb7f13055cbf73c80" category="list-text">对于 ONTAP 9.4 及更高版本，使用以下命令启用集群交换机运行状况监控器日志收集功能以收集交换机相关的日志文件：</block>
   <block id="e1d4a65999e59095e2f5717315918e3a" category="paragraph">。<block ref="fc28ececd6878428d18cc5d1e48226af" category="inline-link-rx"></block> 包含有关布线的详细信息。</block>
   <block id="3a0b0dd1c880db53d26f43f8e16362f2" category="paragraph">。<block ref="ff01bb393f25256f57a8767d2f828068" category="inline-link-rx"></block> 包含有关平台的实际集群端口的最新信息。</block>
-  <block id="c2995f917cf848b1a8ad4f123990b08f" category="inline-link-macro">Hardware Universe^ _</block>
-  <block id="47db2740e391cb9dd7afd4c727db1c28" category="paragraph">请参见 <block ref="2e30f42bb79c7c9fe477a9d63d7f110d" category="inline-link-macro-rx"></block> 您的平台支持的实际集群端口。</block>
   <block id="f267a68fd1c8bddcc992701898021398" category="sidebar">集群交换机</block>
   <block id="21cefb007c9064d8adcf6c162e74b0bf" category="sidebar">Cisco Nexus 3232C</block>
   <block id="403284bd44beda112195a484c8a76421" category="sidebar">存储交换机</block>
@@ -3645,7 +3635,6 @@
   <block id="982217e543f0fa5e9da851302f28d805" category="list-text">对于node1、集群LIF名称分别为_node1_clus1_和_node1_clus2_、对于node2、集群LIF名称分别为_node2_clus1_和_node2_clus2_。</block>
   <block id="251c6c04656af97cbcbd1aa3eea2bee5" category="list-text">对所有集群节点进行更改的提示为`cluster1：：*&gt;`</block>
   <block id="2c84a4166919cc5a80a8c0726d1059e6" category="list-text">在交换机nsw2上安装相应的RCF和映像、并进行必要的站点准备。</block>
-  <block id="1eee77e5510e91c39ad8de358a66db8b" category="paragraph">如有必要、请验证、下载并安装适用于新交换机的RCF和Cumulus软件的相应版本。如果您已确认新交换机设置正确、并且不需要更新RCF和Cumulus软件、请继续执行步骤3。请参见 <block ref="f205112049fd2d705b8f40351f7959dc" category="inline-link-macro-rx"></block> 了解更多详细信息。</block>
   <block id="1c7edbc9e87d89abba60270ce35ec08a" category="list-text">您可以从_NVIDIA Support_站点下载适用于您的集群交换机的适用的Cumulus软件。按照下载页面上的步骤下载所安装ONTAP 软件版本的Cumulus Linux。</block>
   <block id="cb246b83c0c732bd49f45fceb6d1246f" category="inline-link-macro">_NVIDIA集群和存储交换机_</block>
   <block id="7d496a68b55e69a007c148b8b4cf8fbe" category="list-text">可从获取相应的 RCF <block ref="bf48368f6fb605c4425a53dc48551d85" category="inline-link-macro-rx"></block> 页面。按照下载页面上的步骤下载适用于您要安装的 ONTAP 软件版本的正确 RCF 。</block>
@@ -3734,4 +3723,33 @@
   <block id="d645f4ad64c5de549a6e962f1b7e9a5d" category="doc">设置和配置NVIDIA SN2100交换机</block>
   <block id="0bfa1a1e232ece62b9507c3e20a01280" category="paragraph">从ONTAP 9.10.1P3开始、您可以使用NVIDIA SN2100交换机将存储和集群功能组合到共享交换机配置中。</block>
   <block id="153a5c90883f7a8479e2748a0919a601" category="sidebar">设置和配置NVIDIA SN2100交换机</block>
+  <block id="f244d0b9bbad19d8b6169c577369193c" category="paragraph">如有必要、请验证、下载并安装适用于新交换机的RCF和Cumulus软件的相应版本。如果您已确认新交换机设置正确、并且不需要更新RCF和Cumulus软件、请继续执行步骤4。请参见 <block ref="f205112049fd2d705b8f40351f7959dc" category="inline-link-macro-rx"></block> 了解更多详细信息。</block>
+  <block id="29bedbdcff648e4ff4cb387a7587b82b" category="paragraph">如果要更换的交换机无法正常工作并已关闭电源、请转至步骤5。集群节点上的 LIF 应已故障转移到每个节点的另一个集群端口。</block>
+  <block id="5f165828e6700ebf88d288359161875f" category="list-text">。<block ref="abaf454a950eaeabe7c7af627e77fec0" category="inline-link-rx"></block> 包含有关所有集群交换机支持的布线的信息。</block>
+  <block id="3ce37c2e20f62b8f2f558b1dde3f582c" category="paragraph">您可以从下载适用于您的交换机的NetApp Cisco NX-OS软件<block ref="1a36b59ecae7684863b79a0f690b6840" category="inline-link-rx"></block> 站点</block>
+  <block id="423ce536244985b76193e04f1a380a55" category="paragraph"><block ref="423ce536244985b76193e04f1a380a55" category="inline-link-macro-rx"></block></block>
+  <block id="06ca91732493d122c261ce88fd963f4f" category="paragraph">首次设置 Nexus 92300YC 交换机后，您可以安装 RCF 。您也可以使用此操作步骤升级 RCF 版本。</block>
+  <block id="2b85c11758e0aa43ebfe299220ad905f" category="list-text">集群LIF名称是<block ref="efdc0a97303fb41897cab634f9381835" prefix=" " category="inline-code"></block>，<block ref="bd152ff09f603987e4c87a156b246966" prefix=" " category="inline-code"></block>，<block ref="a466bba1804a252e783c3e78c73981b0" prefix=" " category="inline-code"></block>，和<block ref="e136e422a5bae645f7cdf8ea4cf1a818" prefix=" " category="inline-code"></block>。</block>
+  <block id="4a07f902b1949e45ece7e6201b5ed48a" category="list-text">操作步骤 需要同时使用ONTAP 命令和<block ref="8cf592c671d256b1fe33924853db0b89" category="inline-link-rx"></block>；除非另有说明、否则使用ONTAP 命令。</block>
+  <block id="fb4310212b202ff28abb0d68f283cb8b" category="list-text">验证所有集群端口是否均已启动且状态正常：<block ref="7fcda764b68d3ee8ce2b37f3a72bab05" prefix=" " category="inline-code"></block></block>
+  <block id="bb754a8f2ed54673939ff1c56735741a" category="list-text">验证所有集群接口（ LIF ）是否均位于主端口上：<block ref="7af866342cc7e87972580d7b709d8820" prefix=" " category="inline-code"></block></block>
+  <block id="d94df61bb97f9ea96d2f4261018924d3" category="list-text">验证集群端口是否已迁移到集群交换机 CS1 上托管的端口。这可能需要几秒钟的时间。<block ref="7af866342cc7e87972580d7b709d8820" prefix=" " category="inline-code"></block></block>
+  <block id="ea0682ea1f2ae756bec0f630a5158cc9" category="list-text">使用以下传输协议之一将 RCF 复制到交换机 CS2 的启动闪存： FTP ， TFTP ， SFTP 或 SCP 。有关 Cisco 命令的详细信息，请参见中的相应指南<block ref="8cf592c671d256b1fe33924853db0b89" category="inline-link-rx"></block> 指南。</block>
+  <block id="4808008925bc79a710baa7a191901060" category="paragraph">有关 Cisco 命令的详细信息，请参见中的相应指南<block ref="8cf592c671d256b1fe33924853db0b89" category="inline-link-rx"></block> 指南。</block>
+  <block id="93bd51f238944c9338cdde2082538910" category="paragraph">此示例显示了RCF文件<block ref="8749b604b31fccaea2fa775c5ecf4fdc" prefix=" " category="inline-code"></block> 安装在交换机CS2上：</block>
+  <block id="08aaa260c77b71319efd7f9112354999" category="list-text">【第12步】验证RCF文件是否为正确的较新版本：<block ref="d064a73c32d00bf384204782a696a298" prefix=" " category="inline-code"></block></block>
+  <block id="41b08f66ec0303ffe518bbdc4d5527ad" category="list-text">验证集群上集群端口的运行状况。</block>
+  <block id="8939c03fb033b2c9a57e27fdec9078a0" category="list-text">验证集群中所有节点上的 e0d 端口是否均已启动且运行正常：<block ref="7fcda764b68d3ee8ce2b37f3a72bab05" prefix=" " category="inline-code"></block></block>
+  <block id="f23c856b4e6549c08ee780dcad3fc85c" category="list-text">验证集群 LIF 是否已迁移到交换机 CS2 上托管的端口。这可能需要几秒钟的时间。<block ref="7af866342cc7e87972580d7b709d8820" prefix=" " category="inline-code"></block></block>
+  <block id="97283617aa91dff9f5c3768547ba0d7c" category="list-text">验证集群 LIF 是否已还原到其主端口：<block ref="7af866342cc7e87972580d7b709d8820" prefix=" " category="inline-code"></block></block>
+  <block id="53c5b9bd181f1473f498076dceb33fdd" category="open-title">适用于ONTAP 9.8及更高版本</block>
+  <block id="d9ede0cfb7182a5668cc6e90c80efb6d" category="paragraph">对于 ONTAP 9.8 及更高版本，使用以下命令启用集群交换机运行状况监控器日志收集功能以收集交换机相关的日志文件：<block ref="36ac3c1f3bae8142b5d110fb906ba03e" prefix=" " category="inline-code"></block> 和<block ref="ff5aaae616b6f326cad680284f32b588" prefix=" " category="inline-code"></block></block>
+  <block id="e430037525fdc395a913568c2bcc487b" category="paragraph">输入 ... <block ref="36ac3c1f3bae8142b5d110fb906ba03e" prefix="" category="inline-code"></block></block>
+  <block id="97cb97536848aa999492d6cd929b1702" category="paragraph">后跟： <block ref="ff5aaae616b6f326cad680284f32b588" prefix="" category="inline-code"></block></block>
+  <block id="83bd7d6d3bceee06d3d796e3ff2402d4" category="open-title">适用于ONTAP 9.4及更高版本</block>
+  <block id="afa8e0a19468b9b0551aac700a287731" category="paragraph">后跟： <block ref="abefab8d02f9c0ef8226a4fcf49448a1" prefix="" category="inline-code"></block></block>
+  <block id="c1b997d8bbe75177eb1d5324cccf7e5f" category="list-text">您必须已查看上的交换机兼容性表<block ref="41f6a53a5371a0ad5564ad4009d568bc" category="inline-link-rx"></block> 页面上显示了受支持的 ONTAP ， NX-OS 和 RCF 版本。</block>
+  <block id="57bf5d8f5891a8230d2c53c4b728728e" category="list-text">显示网络端口属性： <block ref="5a2357a985889803fc9ad4bba1f860e2" prefix=" " category="inline-code"></block></block>
+  <block id="3ca5e137a21251c69373aa645cc945d5" category="paragraph">请参见 <block ref="e90918249884ccf48e81d939a33e43ce" category="inline-link-macro-rx"></block> 您的平台支持的实际集群端口。</block>
+  <block id="bb06ef3d1301c60ccc059da2e6365064" category="sidebar">安装参考配置文件</block>
 </blocks>
