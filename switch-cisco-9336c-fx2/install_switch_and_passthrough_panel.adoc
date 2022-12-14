@@ -13,6 +13,7 @@ summary: 您可以将 Cisco Nexus 9336C-FX2 交换机和直通面板安装在 Ne
 [role="lead"]
 您可以将 Cisco Nexus 9336C-FX2 交换机和直通面板安装在 NetApp 机柜中，并使用交换机附带的标准支架。
 
+.关于此任务
 您必须已查看初始准备要求，套件内容和安全预防措施。
 
 https://www.cisco.com/c/en/us/td/docs/switches/datacenter/nexus9000/hw/aci_9336cfx2_hig/guide/b_n9336cFX2_aci_hardware_installation_guide.html["《 Cisco Nexus 9000 系列硬件安装指南》"^]
@@ -61,9 +62,9 @@ image::../media/cisco_9148_jumper_cords.gif[Cisco 9148 跳线]
 +
 image::../media/3132q_front_bracket.gif[前支架]
 
-.. 重复步骤 ,2a. 另一个正面机架安装支架位于交换机另一侧。
+.. 重复步骤 <<SUBSTEP_9F2E2DDAEE084FE5853D1A6C6D945941,2a.>> 另一个正面机架安装支架位于交换机另一侧。
 .. 在交换机机箱上安装后机架安装支架。
-.. 重复步骤 ,2c 另一个后机架安装支架位于交换机另一侧。
+.. 重复步骤 <<SUBSTEP_53A502380D6D4F058F62ED5ED5FC2000,2c>> 另一个后机架安装支架位于交换机另一侧。
 
 
 . 在所有四个 IEA 柱的方孔位置安装卡夹螺母。
@@ -84,8 +85,8 @@ image::../media/3132q_v_slider_rails.gif[3132q v 滑轨]
 ... 将滑轨的螺钉拧紧到机柜柱上。
 
 
-.. 重复步骤 ,4A. 用于右侧后柱。
-.. 重复步骤 ,4A. 和 ,4B 在机柜上的 RU41 位置。
+.. 重复步骤 <<SUBSTEP_81651316D3F84964A76BC80A9DE48C0E,4A.>> 用于右侧后柱。
+.. 重复步骤 <<SUBSTEP_81651316D3F84964A76BC80A9DE48C0E,4A.>> 和 <<SUBSTEP_593967A423024594B9A41A04703DC458,4B>> 在机柜上的 RU41 位置。
 
 
 . 将交换机安装到机柜中。
@@ -112,7 +113,7 @@ image::../media/3132q_attaching.gif[3132q 正在连接]
 
 
 .. 现在，在机箱无需任何协助的情况下，将前螺钉完全拧紧到柱上。
-.. 重复步骤 ,5a. 到 ,5C 适用于 RU42 位置的第二个交换机。
+.. 重复步骤 <<SUBSTEP_4F538C8C55E34C5FB5D348391088A0FE,5a.>> 到 <<SUBSTEP_EB8FE2FED2CA4120B709CC753C0F50FC,5C>> 适用于 RU42 位置的第二个交换机。
 +
 
 NOTE: 通过使用完全安装的交换机作为支持，在安装过程中无需握住第二个交换机的正面。

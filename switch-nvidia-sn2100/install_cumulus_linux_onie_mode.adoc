@@ -13,6 +13,7 @@ summary: '可以在交换机运行Cumulus Linux或ONIE时安装Cumulus Linux (CL
 [role="lead"]
 可以在交换机运行Cumulus Linux或ONIE时安装Cumulus Linux (CL)操作系统。
 
+.开始之前
 您可以使用开放网络安装环境(Open Network Install Environment、ONIE)安装Cumulus Linux、以便自动发现网络安装程序映像。这有助于采用可选择的操作系统来保护交换机的系统模式、例如、Cumulus Linux。使用ONIE安装Cumulus Linux的最简单方法是使用本地HTTP发现。
 
 

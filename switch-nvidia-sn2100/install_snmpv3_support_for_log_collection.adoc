@@ -13,6 +13,7 @@ summary: 此版本支持使用SNMPv3进行日志监控。
 [role="lead"]
 此版本支持通过SNMPv3收集交换机运行状况监控(SHM)的交换机日志。
 
+.关于此任务
 以下命令用于在NVIDIA SN2100交换机上配置SNMPv3用户名：
 
 * 对于*无身份验证*：`net add snmp-server username _SNMPv3用户_ auth-none`

@@ -41,6 +41,7 @@ IMPORTANT: 请参见 link:install_cabling_config_considerations_sn2100.html["布
 
 
 
+.关于此任务
 此操作步骤中的示例使用以下集群交换机和节点命名：
 
 * SN2100交换机的名称是_sw1_和_SW2_。

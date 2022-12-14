@@ -13,6 +13,7 @@ summary: 要将集群中的现有 CN1610 集群交换机更换为支持 Broadcom
 [role="lead"]
 要将集群中的现有 CN1610 集群交换机更换为支持 Broadcom 的 BES-53248 集群交换机，您必须执行一系列特定的任务。
 
+.您需要的内容
 此操作步骤中的示例使用两个节点，每个节点部署两个 10 GbE 集群互连端口： `e0a` 和 `e0b` 。
 
 此操作步骤中的示例使用以下交换机和节点命名：
@@ -26,6 +27,7 @@ summary: 要将集群中的现有 CN1610 集群交换机更换为支持 Broadcom
 * 集群 LIF 名称是 node1 的 `node1_clus1` 和 `node1_clus2` ， node2 的 `node2_clus1` 和 `node2_clus2` 。
 
 
+.关于此任务
 此操作步骤包括以下情形：
 
 * 集群从两个节点连接到两个 CN1610 集群交换机开始。
@@ -572,6 +574,7 @@ cluster::*> *system node autosupport invoke -node \* -type all -message MAINT=EN
 ----
 
 
+.完成后
 请参见 link:configure-health-monitor.html["安装集群交换机运行状况监控器（ CSHM ）配置文件"] 和 link:configure-log-collection.html["配置集群交换机日志收集功能"] 用于启用集群运行状况交换机日志收集以收集交换机相关日志文件所需的步骤。
 
 * 相关信息 *

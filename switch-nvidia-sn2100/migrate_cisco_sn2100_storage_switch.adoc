@@ -22,6 +22,7 @@ summary: 您可以将ONTAP 集群中较早的Cisco交换机无中断迁移到NVI
 * 请参见 https://hwu.netapp.com/["Hardware Universe"^] 有关支持的端口及其配置的完整详细信息。
 
 
+.开始之前
 您可以将ONTAP 集群中较早的Cisco存储交换机无中断迁移到NVIDIA SN2100存储交换机。
 
 * 现有集群必须已正确设置并正常运行。
@@ -44,6 +45,7 @@ NOTE: 在此操作步骤 中、使用Cisco Nexus 9336C-x2存储交换机作为�
 
 
 
+.关于此任务
 此操作步骤中的示例使用以下交换机和节点命名：
 
 * 现有的Cisco Nexus 9336C-fx2存储交换机为_S1_和_S2_。

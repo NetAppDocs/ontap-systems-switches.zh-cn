@@ -13,6 +13,7 @@ summary: 您可以将 ONTAP 集群中较早的 Cisco 集群交换机无中断迁
 [role="lead"]
 您可以将 ONTAP 集群中较早的 Cisco 集群交换机无中断迁移到 Cisco Nexus 9336C-x2 集群网络交换机。
 
+.开始之前
 在将旧版Cisco Nexus集群交换机更换为Cisco Nexus 9336C-FX2集群交换机之前、必须满足以下条件：
 
 * 集群必须完全正常运行（日志中不应有任何错误或类似问题）。
@@ -27,6 +28,7 @@ summary: 您可以将 ONTAP 集群中较早的 Cisco 集群交换机无中断迁
 * 您必须已参考 Cisco 网站上提供的相应软件和升级指南，以获取有关 Cisco 交换机升级和降级过程的完整文档 https://www.cisco.com/c/en/us/support/switches/nexus-9000-series-switches/series.htmlCisco["Nexus 9000系列交换机"^]。
 
 
+.关于此任务
 此操作步骤中的示例使用两个节点。这些节点使用两个 10GbE 集群互连端口 e0a 和 e0b 。请参见 https://hwu.netapp.com/["Hardware Universe"^] 验证平台上的集群端口是否正确。
 
 

@@ -20,6 +20,7 @@ summary: 迁移到双节点交换集群
 * 您可以将 NetApp CN1610 交换机更换为 Cisco Nexus 3132Q-V 集群交换机。
 
 
+.可用文档
 下表列出了可用于 Cisco Nexus 3132Q-V 交换机的文档。
 
 |===

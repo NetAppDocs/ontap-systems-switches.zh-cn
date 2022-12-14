@@ -20,6 +20,7 @@ summary: 在安装RCF脚本之前、请确保交换机上具有以下配置
 
 IMPORTANT: 请参见 link:install_cabling_config_considerations_sn2100.html["布线和配置注意事项"^] 了解注意事项和更多详细信息。
 
+.当前RCF脚本版本
 有两个RCF脚本可用于集群和存储应用程序。每个的操作步骤 是相同的。
 
 * 集群：* MSN2100-RCF-v1.8-Cluster*

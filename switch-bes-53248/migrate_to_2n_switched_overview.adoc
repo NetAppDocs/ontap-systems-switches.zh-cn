@@ -13,6 +13,7 @@ summary: 如果您有一个现有的双节点无交换机集群环境，则可�
 [role="lead"]
 如果您有一个现有的双节点无交换机集群环境，则可以使用支持 Broadcom 的 BES-53248 集群交换机迁移到双节点有交换机集群环境，以便可以扩展到集群中的两个节点以上。
 
+.您需要的内容
 双节点无交换机配置：
 
 * 双节点无交换机配置必须已正确设置并正常运行。
@@ -43,6 +44,7 @@ Broadcom 支持的 BES-53248 集群交换机配置：
 
 
 
+.关于此任务
 此操作步骤中的示例使用以下集群交换机和节点命名：
 
 * BES-53248 交换机的名称是 `CS1` 和 `CS2` 。
@@ -507,6 +509,7 @@ cluster1::*> system node autosupport invoke -node \* -type all -message MAINT=EN
 ----
 
 
+.完成后
 请参见 link:configure-health-monitor.html["安装集群交换机运行状况监控器（ CSHM ）配置文件"] 和 link:configure-log-collection.html["配置集群交换机日志收集功能"] 用于启用集群运行状况交换机日志收集以收集交换机相关日志文件所需的步骤。
 
 * 相关信息 *

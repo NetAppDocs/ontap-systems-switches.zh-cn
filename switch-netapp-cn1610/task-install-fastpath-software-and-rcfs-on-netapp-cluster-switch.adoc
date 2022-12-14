@@ -28,6 +28,7 @@ RCF 和 FastPath 版本中的命令语法之间可能存在命令依赖关系。
 
 NOTE: 在 RCF 1.2 版中，出于安全考虑，已明确禁用对 Telnet 的支持。要在安装 RCF 1.2 时避免连接问题，您必须验证是否已启用安全外壳（ SSH ）。。 https://library.netapp.com/ecm/ecm_get_file/ECMP1117874["《 NetApp ® CN1610 交换机管理员指南》"^] 了解有关 SSH 的详细信息。
 
+.关于此任务
 此操作步骤中的示例使用以下交换机和节点命名：
 
 * 本文档中的过程使用集群模式 Data ONTAP 8.2 语法。因此，集群 Vserver ， LIF 名称和命令行界面输出将与 Data ONTAP 8.3 中的不同。

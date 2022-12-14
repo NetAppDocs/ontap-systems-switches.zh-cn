@@ -13,6 +13,7 @@ summary: 更换集群网络中存在故障的 Nexus 92300YC 交换机是无中�
 [role="lead"]
 更换集群网络中存在故障的 Nexus 92300YC 交换机是无中断操作步骤（ NDU ）。
 
+.开始之前
 在当前环境中以及在替代交换机上执行交换机更换之前，必须满足以下条件。
 
 * 现有集群和网络基础架构：
@@ -41,6 +42,7 @@ link:https://docs.netapp.com/us-en/ontap-systems-switches/switch-cisco-92300/con
 
 
 
+.关于此任务
 您必须执行命令，从托管集群 LIF 的节点迁移集群 LIF 。
 
 此操作步骤中的示例使用以下交换机和节点命名：

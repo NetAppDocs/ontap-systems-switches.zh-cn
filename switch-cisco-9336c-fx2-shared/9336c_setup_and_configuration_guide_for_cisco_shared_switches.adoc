@@ -63,7 +63,7 @@ summary:
 * 您必须能够访问安装站点上的 HTTP ， FTP 或 TFTP 服务器，才能下载适用的 NX-OS 和参考配置文件（ RCF ）版本。
 * 您必须具有所需的共享交换机文档。
 +
-请参见  documentation for shared switches 有关详细信息 ...
+请参见 <<共享交换机所需的文档>> 有关详细信息 ...
 
 * 您必须具有所需的控制器文档和 ONTAP 文档。
 +
@@ -76,6 +76,7 @@ summary:
 
 NOTE: 除了布线图之外，本指南还提供了一些示例工作表，其中包含建议的端口分配以及可用于设置网络的空白工作表。有关详细信息，请参见 https://hwu.netapp.com["Hardware Universe"]。
 
+.关于此任务
 所有 Cisco 共享交换机都附带标准的 Cisco 出厂默认配置。这些交换机还具有最新版本的 NX-OS 软件，但未加载 RCF 。
 
 
@@ -87,11 +88,11 @@ IMPORTANT: 您必须从下载适用的 NetApp RCF https://mysupport.netapp.com["
 
 . 将交换机，控制器和 NS224 NVMe 存储架装入机架。请参见https://docs.netapp.com/platstor/topic/com.netapp.doc.hw-sw-9336c-install-cabinet/GUID-92287262-E7A6-4A62-B159-7F148097B33B.html["在 NetApp 机柜中安装 Cisco Nexus 9336C-x2 集群交换机和直通面板"] 有关在 NetApp 机柜中安装交换机的说明的指南。
 . 打开交换机，控制器和 NS224 NVMe 存储架的电源。
-. 【第 3 步】根据中提供的信息对交换机执行初始配置  configuration information。
+. 【第 3 步】根据中提供的信息对交换机执行初始配置 <<所需的配置信息>>。
 . 验证您在设置结束时显示的屏幕中所做的配置选择，并确保保存此配置。
 . 检查交换机上的软件版本，如有必要，请将 NetApp 支持的软件版本下载到这些交换机。
 +
-如果您下载的是 NetApp 支持的软件版本，则还必须下载 NetApp 网络交换机参考配置文件并将其与保存在中的配置合并 ,第 3 步。您可以从下载文件和说明 https://mysupport.netapp.com/site/info/cisco-ethernet-switch["Cisco 以太网交换机"] 页面。如果您有自己的交换机，请参见 http://www.cisco.com["Cisco"] 站点
+如果您下载的是 NetApp 支持的软件版本，则还必须下载 NetApp 网络交换机参考配置文件并将其与保存在中的配置合并 <<step3,第 3 步>>。您可以从下载文件和说明 https://mysupport.netapp.com/site/info/cisco-ethernet-switch["Cisco 以太网交换机"] 页面。如果您有自己的交换机，请参见 http://www.cisco.com["Cisco"] 站点
 
 
 

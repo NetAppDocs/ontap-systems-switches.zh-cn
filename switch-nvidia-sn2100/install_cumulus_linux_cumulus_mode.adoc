@@ -13,6 +13,7 @@ summary: '可以在交换机运行Cumulus Linux或ONIE时安装Cumulus Linux (CL
 [role="lead"]
 可以在交换机运行Cumulus Linux或ONIE时安装Cumulus Linux (CL)操作系统。
 
+.开始之前
 假设条件如下：
 
 * 您拥有中级Linux知识。

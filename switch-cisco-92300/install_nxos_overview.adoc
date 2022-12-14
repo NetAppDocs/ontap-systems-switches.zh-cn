@@ -13,6 +13,7 @@ summary: Cisco Nexus 92300YC 集群交换机上必须安装 Cisco NX-OS 软件�
 [role="lead"]
 Cisco Nexus 92300YC 集群交换机上必须安装 Cisco NX-OS 软件和参考配置文件（ RCF ）。
 
+.开始之前
 在集群交换机上安装 NX-OS 软件和参考配置文件（ Reference Configuration Files ， RCF ）之前，必须满足以下条件：
 
 * 集群必须完全正常运行（日志中不应有任何错误或类似问题）。
@@ -24,6 +25,7 @@ Cisco Nexus 92300YC 集群交换机上必须安装 Cisco NX-OS 软件和参考�
 * 您必须具有当前 RCF 。
 
 
+.关于此任务
 此操作步骤中的示例使用两个节点。这些节点使用两个 10GbE 集群互连端口 `e0a` 和 `e0b` 。
 
 请参见 https://hwu.netapp.com/SWITCH/INDEX["Hardware Universe"^] 验证平台上的集群端口是否正确。
