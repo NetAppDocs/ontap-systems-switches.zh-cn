@@ -1,0 +1,22 @@
+---
+permalink: switch-nvidia-sn2100/install-hardware-sn2100-cluster.html 
+sidebar: sidebar 
+keywords: switches hardware installation 
+summary: 要安装SN2100硬件、请参阅NVIDIA的文档。 
+---
+= 安装NVIDIA SN2100交换机的硬件
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+要安装SN2100硬件、请参阅NVIDIA的文档。
+
+.步骤
+. 查看 link:configure-reqs-sn2100-cluster.html["配置要求"]。
+. 按照中的说明进行操作 https://docs.nvidia.com/networking/display/sn2000pub/Installation["NVIDIA交换机安装指南"^]。
+
+
+.下一步是什么？
+link:configure-sn2100-cluster.html["配置交换机"]。

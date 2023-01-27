@@ -1,0 +1,33 @@
+---
+permalink: switch-cisco-3232c/configure-reqs-3232c.html 
+sidebar: sidebar 
+keywords: cisco 3232c, cluster switches 
+summary: 您可以将 Cisco Nexus 3232C 交换机用作 AFF 或 FAS 集群中的集群交换机。 
+---
+= Cisco Nexus 3232C交换机的配置要求
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+对于Cisco Nexus 3232C交换机安装和维护、请务必查看配置和网络要求。
+
+
+
+== 配置要求
+
+要配置集群，您需要为交换机配置适当数量和类型的缆线和缆线连接器。根据您最初配置的交换机类型，您需要使用随附的控制台缆线连接到交换机控制台端口；您还需要提供特定的网络信息。
+
+
+
+== 网络要求
+
+所有交换机配置都需要以下网络信息：
+
+* 用于管理网络流量的 IP 子网
+* 每个存储系统控制器和所有适用交换机的主机名和 IP 地址
+* 大多数存储系统控制器通过 e0M 接口连接到以太网服务端口（扳手图标）进行管理。在 AFF A800 和 AFF A700 系统上， e0M 接口使用专用以太网端口。
+
+
+请参见 https://hwu.netapp.com["Hardware Universe"^] 了解最新信息。

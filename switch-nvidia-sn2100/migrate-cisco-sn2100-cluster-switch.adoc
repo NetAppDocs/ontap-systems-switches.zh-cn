@@ -1,0 +1,624 @@
+---
+permalink: switch-nvidia-sn2100/migrate-cisco-sn2100-cluster-switch.html 
+sidebar: sidebar 
+keywords: migrating to a cluster with NVIDIA SN2100 cluster switches, how to migrate 
+summary: 您可以将ONTAP 集群中较早的Cisco集群交换机无中断迁移到NVIDIA SN2100集群网络交换机。 
+---
+= 从Cisco集群交换机迁移到NVIDIA SN2100集群交换机
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+您可以将ONTAP 集群的Cisco集群交换机迁移到NVIDIA SN2100集群交换机。这是一个无中断操作步骤。
+
+
+
+== 查看要求
+
+在将某些旧的Cisco集群交换机更换为NVIDIA SN2100集群交换机时、您必须了解某些配置信息、端口连接和布线要求。请参见 link:configure-overview-sn2100-cluster.html["NVIDIA SN2100交换机安装和配置概述"]。
+
+.支持的交换机
+支持以下Cisco集群交换机：
+
+* Nexus 9336C-x2
+* Nexus 92300YC
+* Nexus 5596UP
+* Nexus 3232C
+* Nexus 3132Q-V
+
+
+有关支持的端口及其配置的详细信息、请参见 https://hwu.netapp.com/["Hardware Universe"^] 。
+
+.您需要的内容
+确保：
+
+* 现有集群已正确设置并正常运行。
+* 所有集群端口均处于*启动*状态、以确保无中断运行。
+* NVIDIA SN2100集群交换机在安装了正确版本的Cumulus Linux并应用了参考配置文件(Reference Configuration File、RCF)的情况下进行配置和运行。
+* 现有集群网络配置具有以下特点：
++
+** 使用两个旧版 Cisco 交换机的冗余且功能完备的 NetApp 集群。
+** 管理连接以及对旧 Cisco 交换机和新交换机的控制台访问。
+** 所有与集群 LIF 处于 up 状态的集群 LIF 均位于其主端口上。
+** ISL 端口已启用，并已在旧的 Cisco 交换机之间以及新交换机之间进行布线。
+
+
+* NVIDIA SN2100交换机上的某些端口配置为以40 GbE或100 GbE运行。
+* 您已规划、迁移并记录了从节点到NVIDIA SN2100集群交换机的40 GbE和100 GbE连接。
+
+
+
+
+== 迁移交换机
+
+.关于示例
+在此操作步骤 中、使用Cisco Nexus 3232C集群交换机作为示例命令和输出。
+
+此操作步骤中的示例使用以下交换机和节点命名：
+
+* 现有 Cisco Nexus 3232C 集群交换机为 _c1_ 和 _c2_ 。
+* 新的NVIDIA SN2100集群交换机为_sw1_和_SW2_。
+* 节点为 _node1_ 和 _node2_ 。
+* 集群 LIF 分别是节点 1 上的 _node1_clus1_ 和 _node1_clus2_ 以及节点 2 上的 _node2_clus1_ 和 _node2_clus2_ 。
+* `cluster1 ：：： * >` 提示符指示集群的名称。
+* 此操作步骤 中使用的集群端口为_e3A_和_e3b_。
+* 分支端口采用以下格式：swp[port]s[分支端口0-3]。例如、swp1上的四个分支端口为_swp1s0_、_swp1s1_、_swp1s2_和_swp1s3_。
+* 交换机C2首先由交换机SW2取代、然后交换机C1由交换机sw1取代。
++
+** 然后、节点和C2之间的布线将从C2断开、并重新连接到SW2。
+** 然后、节点和C1之间的布线将从C1断开、并重新连接到sw1。
+
+
+
+
+
+
+=== 第1步：准备迁移
+
+. 如果在此集群上启用了 AutoSupport ，则通过调用 AutoSupport 消息禁止自动创建案例：
++
+`ssystem node AutoSupport invoke -node * -type all -message MAINT=xh`
+
++
+其中 _x_ 是维护时段的持续时间，以小时为单位。
+
+. 将权限级别更改为高级，在系统提示您继续时输入 * y * ：
++
+`set -privilege advanced`
+
++
+此时将显示高级提示符（ * > ）。
+
+. 在集群LIF上禁用自动还原：
++
+`network interface modify -vserver cluster -lif *-auto-revert false`
+
++
+.显示示例
+[%collapsible]
+====
+[listing, subs="+quotes"]
+----
+cluster1::*> *network interface modify -vserver Cluster -lif * -auto-revert false*
+
+Warning: Disabling the auto-revert feature of the cluster logical interface may effect the availability of your cluster network. Are you sure you want to continue? {y|n}: *y*
+----
+====
+
+
+
+
+=== 第2步：配置端口和布线
+
+. 确定每个集群接口的管理或运行状态。
++
+对于 `Link` ，每个端口均应显示 up ；对于 `Health Status` ，每个端口均应显示 Healthy 。
+
++
+.. 显示网络端口属性：
++
+`network port show -ipspace cluster`
+
++
+.显示示例
+[%collapsible]
+====
+[listing, subs="+quotes"]
+----
+cluster1::*> *network port show -ipspace Cluster*
+
+Node: node1
+                                                                       Ignore
+                                                 Speed(Mbps)  Health   Health
+Port      IPspace    Broadcast Domain Link MTU   Admin/Oper   Status   Status
+--------- ---------- ---------------- ---- ----- ------------ -------- ------
+e3a       Cluster    Cluster          up   9000  auto/100000  healthy  false
+e3b       Cluster    Cluster          up   9000  auto/100000  healthy  false
+
+Node: node2
+                                                                       Ignore
+                                                 Speed(Mbps)  Health   Health
+Port      IPspace    Broadcast Domain Link MTU   Admin/Oper   Status   Status
+--------- ---------- ---------------- ---- ----- ------------ -------- ------
+e3a       Cluster    Cluster          up   9000  auto/100000  healthy  false
+e3b       Cluster    Cluster          up   9000  auto/100000  healthy  false
+----
+====
+.. 显示有关逻辑接口及其指定主节点的信息：
++
+`network interface show -vserver cluster`
+
++
+应显示每个LIF `up/up` 适用于 `Status Admin/Oper` 适用于 `Is Home`。
+
++
+.显示示例
+[%collapsible]
+====
+[listing, subs="+quotes"]
+----
+cluster1::*> *network interface show -vserver Cluster*
+
+            Logical      Status     Network            Current     Current Is
+Vserver     Interface    Admin/Oper Address/Mask       Node        Port    Home
+----------- -----------  ---------- ------------------ ----------- ------- ----
+Cluster
+            node1_clus1  up/up      169.254.209.69/16  node1       e3a     true
+            node1_clus2  up/up      169.254.49.125/16  node1       e3b     true
+            node2_clus1  up/up      169.254.47.194/16  node2       e3a     true
+            node2_clus2  up/up      169.254.19.183/16  node2       e3b     true
+
+----
+====
+
+
+. 从节点的角度来看，每个节点上的集群端口均使用命令以以下方式连接到现有集群交换机：
++
+`network device-discovery show -protocol lldp`
+
++
+.显示示例
+[%collapsible]
+====
+[listing, subs="+quotes"]
+----
+cluster1::*> *network device-discovery show -protocol lldp*
+Node/       Local  Discovered
+Protocol    Port   Device (LLDP: ChassisID)  Interface         Platform
+----------- ------ ------------------------- ----------------  ----------------
+node1      /lldp
+            e3a    c1 (6a:ad:4f:98:3b:3f)    Eth1/1            -
+            e3b    c2 (6a:ad:4f:98:4c:a4)    Eth1/1            -
+node2      /lldp
+            e3a    c1 (6a:ad:4f:98:3b:3f)    Eth1/2            -
+            e3b    c2 (6a:ad:4f:98:4c:a4)    Eth1/2            -
+----
+====
+. 从交换机的角度来看，集群端口和交换机使用命令以以下方式进行连接：
++
+`s如何使用 cdp 邻居`
+
++
+.显示示例
+[%collapsible]
+====
+[listing, subs="+quotes"]
+----
+c1# *show cdp neighbors*
+
+Capability Codes: R - Router, T - Trans-Bridge, B - Source-Route-Bridge
+                  S - Switch, H - Host, I - IGMP, r - Repeater,
+                  V - VoIP-Phone, D - Remotely-Managed-Device,
+                  s - Supports-STP-Dispute
+
+Device-ID             Local Intrfce Hldtme Capability  Platform         Port ID
+node1                 Eth1/1         124   H           AFF-A400         e3a
+node2                 Eth1/2         124   H           AFF-A400         e3a
+c2                    Eth1/31        179   S I s       N3K-C3232C       Eth1/31
+c2                    Eth1/32        175   S I s       N3K-C3232C       Eth1/32
+
+c2# *show cdp neighbors*
+
+Capability Codes: R - Router, T - Trans-Bridge, B - Source-Route-Bridge
+                  S - Switch, H - Host, I - IGMP, r - Repeater,
+                  V - VoIP-Phone, D - Remotely-Managed-Device,
+                  s - Supports-STP-Dispute
+
+
+Device-ID             Local Intrfce Hldtme Capability  Platform         Port ID
+node1                 Eth1/1        124    H           AFF-A400         e3b
+node2                 Eth1/2        124    H           AFF-A400         e3b
+c1                    Eth1/31       175    S I s       N3K-C3232C       Eth1/31
+c1                    Eth1/32       175    S I s       N3K-C3232C       Eth1/32
+----
+====
+. 使用命令确保集群网络具有完全连接：
++
+`cluster ping-cluster -node node-name`
+
++
+.显示示例
+[%collapsible]
+====
+[listing, subs="+quotes"]
+----
+cluster1::*> *cluster ping-cluster -node node2*
+
+Host is node2
+Getting addresses from network interface table...
+Cluster node1_clus1 169.254.209.69 node1     e3a
+Cluster node1_clus2 169.254.49.125 node1     e3b
+Cluster node2_clus1 169.254.47.194 node2     e3a
+Cluster node2_clus2 169.254.19.183 node2     e3b
+Local = 169.254.47.194 169.254.19.183
+Remote = 169.254.209.69 169.254.49.125
+Cluster Vserver Id = 4294967293
+Ping status:
+....
+Basic connectivity succeeds on 4 path(s)
+Basic connectivity fails on 0 path(s)
+................
+Detected 9000 byte MTU on 4 path(s):
+    Local 169.254.19.183 to Remote 169.254.209.69
+    Local 169.254.19.183 to Remote 169.254.49.125
+    Local 169.254.47.194 to Remote 169.254.209.69
+    Local 169.254.47.194 to Remote 169.254.49.125
+Larger than PMTU communication succeeds on 4 path(s)
+RPC status:
+2 paths up, 0 paths down (tcp check)
+2 paths up, 0 paths down (udp check)
+----
+====
+. 在交换机C2上、关闭连接到节点集群端口的端口。
++
+.显示示例
+[%collapsible]
+====
+[listing, subs="+quotes"]
+----
+(c2)# *configure*
+Enter configuration commands, one per line. End with CNTL/Z.
+
+(c2)(Config)# *interface*
+(c2)(config-if-range)# *shutdown _<interface_list>_*
+(c2)(config-if-range)# *exit*
+(c2)(Config)# *exit*
+(c2)#
+----
+====
+. 使用NVIDIA SN2100支持的适当布线将节点集群端口从旧交换机C2移至新交换机SW2。
+. 显示网络端口属性：
++
+`network port show -ipspace cluster`
+
++
+.显示示例
+[%collapsible]
+====
+[listing, subs="+quotes"]
+----
+cluster1::*> *network port show -ipspace Cluster*
+
+Node: node1
+                                                                       Ignore
+                                                 Speed(Mbps)  Health   Health
+Port      IPspace    Broadcast Domain Link MTU   Admin/Oper   Status   Status
+--------- ---------- ---------------- ---- ----- ------------ -------- ------
+e3a       Cluster    Cluster          up   9000  auto/100000  healthy  false
+e3b       Cluster    Cluster          up   9000  auto/100000  healthy  false
+
+Node: node2
+                                                                       Ignore
+                                                 Speed(Mbps)  Health   Health
+Port      IPspace    Broadcast Domain Link MTU   Admin/Oper   Status   Status
+--------- ---------- ---------------- ---- ----- ------------ -------- ------
+e3a       Cluster    Cluster          up   9000  auto/100000  healthy  false
+e3b       Cluster    Cluster          up   9000  auto/100000  healthy  false
+----
+====
+. 现在，从节点的角度来看，每个节点上的集群端口均以以下方式连接到集群交换机：
++
+.显示示例
+[%collapsible]
+====
+[listing, subs="+quotes"]
+----
+cluster1::*> *network device-discovery show -protocol lldp*
+
+Node/       Local  Discovered
+Protocol    Port   Device (LLDP: ChassisID)  Interface         Platform
+----------- ------ ------------------------- ----------------  ----------------
+node1      /lldp
+            e3a    c1  (6a:ad:4f:98:3b:3f)   Eth1/1            -
+            e3b    sw2 (b8:ce:f6:19:1a:7e)   swp3              -
+node2      /lldp
+            e3a    c1  (6a:ad:4f:98:3b:3f)   Eth1/2            -
+            e3b    sw2 (b8:ce:f6:19:1b:96)   swp4              -
+----
+====
+. 在交换机SW2上、验证所有节点集群端口是否均已启动：
++
+`net show interface`
+
++
+.显示示例
+[%collapsible]
+====
+[listing, subs="+quotes"]
+----
+cumulus@sw2:~$ *net show interface*
+
+State  Name         Spd   MTU    Mode        LLDP              Summary
+-----  -----------  ----  -----  ----------  ----------------- ----------------------
+...
+...
+UP     swp3         100G  9216   Trunk/L2    e3b               Master: bridge(UP)
+UP     swp4         100G  9216   Trunk/L2    e3b               Master: bridge(UP)
+UP     swp15        100G  9216   BondMember  sw1 (swp15)       Master: cluster_isl(UP)
+UP     swp16        100G  9216   BondMember  sw1 (swp16)       Master: cluster_isl(UP)
+----
+====
+. 在交换机C1上、关闭连接到节点集群端口的端口。
++
+.显示示例
+[%collapsible]
+====
+[listing, subs="+quotes"]
+----
+(c1)# *configure*
+Enter configuration commands, one per line. End with CNTL/Z.
+
+(c1)(Config)# *interface*
+(c1)(config-if-range)# *shutdown _<interface_list>_*
+(c1)(config-if-range)# *exit*
+(c1)(Config)# *exit*
+(c1)#
+----
+====
+. 使用NVIDIA SN2100支持的适当布线将节点集群端口从旧交换机C1移至新交换机sw1。
+. 验证集群的最终配置：
++
+`network port show -ipspace cluster`
+
++
+应显示每个端口 `up` 适用于 `Link` 运行状况良好 `Health Status`。
+
++
+.显示示例
+[%collapsible]
+====
+[listing, subs="+quotes"]
+----
+cluster1::*> *network port show -ipspace Cluster*
+
+Node: node1
+                                                                       Ignore
+                                                 Speed(Mbps)  Health   Health
+Port      IPspace    Broadcast Domain Link MTU   Admin/Oper   Status   Status
+--------- ---------- ---------------- ---- ----- ------------ -------- ------
+e3a       Cluster    Cluster          up   9000  auto/100000  healthy  false
+e3b       Cluster    Cluster          up   9000  auto/100000  healthy  false
+
+Node: node2
+                                                                       Ignore
+                                                 Speed(Mbps)  Health   Health
+Port      IPspace    Broadcast Domain Link MTU   Admin/Oper   Status   Status
+--------- ---------- ---------------- ---- ----- ------------ -------- ------
+e3a       Cluster    Cluster          up   9000  auto/100000  healthy  false
+e3b       Cluster    Cluster          up   9000  auto/100000  healthy  false
+----
+====
+. 现在，从节点的角度来看，每个节点上的集群端口均以以下方式连接到集群交换机：
++
+.显示示例
+[%collapsible]
+====
+[listing, subs="+quotes"]
+----
+cluster1::*> *network device-discovery show -protocol lldp*
+
+Node/       Local  Discovered
+Protocol    Port   Device (LLDP: ChassisID)  Interface       Platform
+----------- ------ ------------------------- --------------  ----------------
+node1      /lldp
+            e3a    sw1 (b8:ce:f6:19:1a:7e)   swp3            -
+            e3b    sw2 (b8:ce:f6:19:1b:96)   swp3            -
+node2      /lldp
+            e3a    sw1 (b8:ce:f6:19:1a:7e)   swp4            -
+            e3b    sw2 (b8:ce:f6:19:1b:96)   swp4            -
+----
+====
+. 在交换机sw1和SW2上、验证所有节点集群端口是否均已启动：
++
+`net show interface`
+
++
+.显示示例
+[%collapsible]
+====
+[listing, subs="+quotes"]
+----
+cumulus@sw1:~$ *net show interface*
+
+State  Name         Spd   MTU    Mode        LLDP              Summary
+-----  -----------  ----  -----  ----------  ----------------- ----------------------
+...
+...
+UP     swp3         100G  9216   Trunk/L2    e3a               Master: bridge(UP)
+UP     swp4         100G  9216   Trunk/L2    e3a               Master: bridge(UP)
+UP     swp15        100G  9216   BondMember  sw2 (swp15)       Master: cluster_isl(UP)
+UP     swp16        100G  9216   BondMember  sw2 (swp16)       Master: cluster_isl(UP)
+
+
+cumulus@sw2:~$ *net show interface*
+
+State  Name         Spd   MTU    Mode        LLDP              Summary
+-----  -----------  ----  -----  ----------  ----------------- -----------------------
+...
+...
+UP     swp3         100G  9216   Trunk/L2    e3b               Master: bridge(UP)
+UP     swp4         100G  9216   Trunk/L2    e3b               Master: bridge(UP)
+UP     swp15        100G  9216   BondMember  sw1 (swp15)       Master: cluster_isl(UP)
+UP     swp16        100G  9216   BondMember  sw1 (swp16)       Master: cluster_isl(UP)
+----
+====
+. 验证两个节点与每个交换机之间是否有一个连接：
++
+`net show lldp`
+
++
+.显示示例
+[%collapsible]
+====
+以下示例显示了这两个交换机的相应结果：
+
+[listing, subs="+quotes"]
+----
+cumulus@sw1:~$ *net show lldp*
+
+LocalPort  Speed  Mode        RemoteHost          RemotePort
+---------  -----  ----------  ------------------  -----------
+swp3       100G   Trunk/L2    node1               e3a
+swp4       100G   Trunk/L2    node2               e3a
+swp15      100G   BondMember  sw2                 swp15
+swp16      100G   BondMember  sw2                 swp16
+
+cumulus@sw2:~$ *net show lldp*
+
+LocalPort  Speed  Mode        RemoteHost          RemotePort
+---------  -----  ----------  ------------------  -----------
+swp3       100G   Trunk/L2    node1               e3b
+swp4       100G   Trunk/L2    node2               e3b
+swp15      100G   BondMember  sw1                 swp15
+swp16      100G   BondMember  sw1                 swp16
+----
+====
+
+
+
+
+=== 第3步：完成操作步骤
+
+. 在集群 LIF 上启用自动还原：
++
+`cluster1::*> network interface modify -vserver Cluster -lif * -auto-revert true`
+
+. 验证所有集群网络LIF是否均已恢复其主端口：
++
+`network interface show`
+
++
+.显示示例
+[%collapsible]
+====
+[listing, subs="+quotes"]
+----
+cluster1::*> *network interface show -vserver Cluster*
+
+            Logical    Status     Network            Current       Current Is
+Vserver     Interface  Admin/Oper Address/Mask       Node          Port    Home
+----------- ---------- ---------- ------------------ ------------- ------- ----
+Cluster
+            node1_clus1  up/up    169.254.209.69/16  node1         e3a     true
+            node1_clus2  up/up    169.254.49.125/16  node1         e3b     true
+            node2_clus1  up/up    169.254.47.194/16  node2         e3a     true
+            node2_clus2  up/up    169.254.19.183/16  node2         e3b     true
+----
+====
+. 使用以下两个命令启用以太网交换机运行状况监控器日志收集功能、以收集交换机相关的日志文件：
++
+`ssystem switch Ethernet log setup-password`和`ssystem switch Ethernet log enable-Collection`
+
++
+.. 输入： `ssystem switch Ethernet log setup-password`
++
+.显示示例
+[%collapsible]
+====
+[listing, subs="+quotes"]
+----
+cluster1::*> *system switch ethernet log setup-password*
+Enter the switch name: <return>
+The switch name entered is not recognized.
+Choose from the following list:
+*sw1*
+*sw2*
+
+cluster1::*> *system switch ethernet log setup-password*
+
+Enter the switch name: *sw1*
+RSA key fingerprint is e5:8b:c6:dc:e2:18:18:09:36:63:d9:63:dd:03:d9:cc
+Do you want to continue? {y|n}::[n] *y*
+
+Enter the password: <enter switch password>
+Enter the password again: <enter switch password>
+
+cluster1::*> *system switch ethernet log setup-password*
+
+Enter the switch name: *sw2*
+RSA key fingerprint is 57:49:86:a1:b9:80:6a:61:9a:86:8e:3c:e3:b7:1f:b1
+Do you want to continue? {y|n}:: [n] *y*
+
+Enter the password: <enter switch password>
+Enter the password again: <enter switch password>
+----
+====
+.. 后跟： `ssystem switch Ethernet log enable-Collection`
++
+.显示示例
+[%collapsible]
+====
+[listing, subs="+quotes"]
+----
+cluster1::*> *system  switch ethernet log enable-collection*
+
+Do you want to enable cluster log collection for all nodes in the cluster?
+{y|n}: [n] *y*
+
+Enabling cluster switch log collection.
+
+cluster1::*>
+----
+====
++
+
+NOTE: 如果其中任何一个命令返回错误，请联系 NetApp 支持部门。
+
+
+
+. 启动交换机日志收集功能：
++
+`system switch ethernet log collect -device *`
+
++
+等待10分钟、然后使用命令检查日志收集是否成功：
+
++
+`system switch ethernet log show`
+
++
+.显示示例
+[%collapsible]
+====
+[listing, subs="+quotes"]
+----
+cluster1::*> system switch ethernet log show
+Log Collection Enabled: true
+
+Index  Switch                       Log Timestamp        Status
+------ ---------------------------- -------------------  ---------    
+1      sw1 (b8:ce:f6:19:1b:42)      4/29/2022 03:05:25   complete   
+2      sw2 (b8:ce:f6:19:1b:96)      4/29/2022 03:07:42   complete
+----
+====
+. 将权限级别重新更改为 admin ：
++
+`set -privilege admin`
+
+. 如果禁止自动创建案例，请通过调用 AutoSupport 消息重新启用它：
++
+`ssystem node AutoSupport invoke -node * -type all -message MAINT=end`
+
+

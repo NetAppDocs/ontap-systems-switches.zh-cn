@@ -1,0 +1,75 @@
+---
+permalink: switch-nvidia-sn2100/components-sn2100-storage.html 
+sidebar: sidebar 
+keywords: nvidia SN2100 switches 
+summary: 对于NVIDIA SN2100交换机安装和维护、请务必查看机柜和导轨套件的组件列表和部件号。 
+---
+= NVIDIA SN2100交换机的组件和部件号
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+对于NVIDIA SN2100交换机安装和维护、请务必查看机柜和导轨套件的组件列表和部件号。
+
+
+
+== 机柜详细信息
+
+您可以在NVIDIA双/单交换机机柜中使用随交换机提供的标准支架安装NVIDIA SN2100交换机(X190006/X190106)。
+
+
+
+== 导轨套件详细信息
+
+下表列出了MSN2100交换机和导轨套件的部件号和问题描述 ：
+
+[cols="1,2"]
+|===
+| 部件号 | Description 
+
+
+ a| 
+X190006-PE
+ a| 
+集群交换机、NVIDIA SN2100、16磅100G、PTSX
+
+
+
+ a| 
+X190006-PI
+ a| 
+集群交换机、NVIDIA SN2100、16磅100G、PSIN
+
+
+
+ a| 
+X190106-FE-PE
+ a| 
+交换机、NVIDIA SN2100、16磅100G、PTSX、前端
+
+
+
+ a| 
+X190106-FE-PI
+ a| 
+交换机、NVIDIA SN2100、16磅100G、PSIN、前端
+
+
+
+ a| 
+X-MTEF套件D
+ a| 
+导轨套件、NVIDIA并排双交换机
+
+
+
+ a| 
+X-MTEF-KIT-E
+ a| 
+导轨套件、NVIDIA单交换机、短深度
+
+|===
+
+NOTE: 有关详细信息、请参见NVIDIA文档 https://docs.nvidia.com/networking/display/sn2000pub/Installation["安装SN2100交换机和导轨套件"^]。

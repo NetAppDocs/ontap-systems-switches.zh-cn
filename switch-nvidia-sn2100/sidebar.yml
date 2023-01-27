@@ -1,34 +1,44 @@
 ---
 section: switch-nvidia-sn2100
-title: NVIDIA SN2100交换机
+title: NVIDIA SN2100
 entries:
 - title: 概述
-  url: "/switch-nvidia-sn2100/sn2100-overview.html"
-- title: 设置和配置NVIDIA SN2100交换机
   entries:
-  - title: 概述
-    url: "/switch-nvidia-sn2100/install_setup_sn2100_switches_overview.html"
-  - title: 布线和配置注意事项
-    url: "/switch-nvidia-sn2100/install_cabling_config_considerations_sn2100.html"
+  - title: 配置概述
+    url: "/switch-nvidia-sn2100/configure-overview-sn2100-cluster.html"
+  - title: 配置要求
+    url: "/switch-nvidia-sn2100/configure-reqs-sn2100-cluster.html"
+  - title: 组件和部件号
+    url: "/switch-nvidia-sn2100/components-sn2100-cluster.html"
+  - title: 所需文档
+    url: "/switch-nvidia-sn2100/required-documentation-sn2100-cluster.html"
+- title: 安装硬件
+  entries:
+  - title: 安装交换机
+    url: "/switch-nvidia-sn2100/install-hardware-sn2100-cluster.html"
+  - title: 配置交换机
+    url: "/switch-nvidia-sn2100/configure-sn2100-cluster.html"
+  - title: 查看布线和配置
+    url: "/switch-nvidia-sn2100/cabling-considerations-sn2100-cluster.html"
+  - title: 为NS224磁盘架布线
+    url: "/switch-nvidia-sn2100/install-cable-shelves-sn2100-cluster.html"
+- title: 配置软件
+  entries:
+  - title: 软件安装工作流
+    url: "/switch-nvidia-sn2100/configure-software-overview-sn2100-cluster.html"
   - title: 在Cumulus模式下安装Cumulus Linux
-    url: "/switch-nvidia-sn2100/install_cumulus_linux_cumulus_mode.html"
+    url: "/switch-nvidia-sn2100/install-cumulus-mode-sn2100-cluster.html"
   - title: 在ONIE模式下安装Cumulus Linux
-    url: "/switch-nvidia-sn2100/install_cumulus_linux_onie_mode.html"
+    url: "/switch-nvidia-sn2100/install-onie-mode-sn2100-cluster.html"
   - title: 安装RCF脚本
-    url: "/switch-nvidia-sn2100/install_sn2100_rcf.html"
-  - title: 为交换机日志收集配置SNMPv3
-    url: "/switch-nvidia-sn2100/install_snmpv3_support_for_log_collection.html"
-  - title: 将NS224磁盘架作为交换机连接的存储进行布线
-    url: "/switch-nvidia-sn2100/install_cable_shelves_SAT_sn2100.html"
-- title: 从Cisco集群交换机迁移到NVIDIA SN2100集群交换机
-  url: "/switch-nvidia-sn2100/migrate_cisco_sn2100_cluster_switch.html"
-- title: 从Cisco存储交换机迁移到NVIDIA SN2100存储交换机
-  url: "/switch-nvidia-sn2100/migrate_cisco_sn2100_storage_switch.html"
-- title: 迁移到使用NVIDIA SN2100交换机的双节点交换集群
-  url: "/switch-nvidia-sn2100/migrate_2n_switched_sn2100_switches.html"
-- title: 更换NVIDIA SN2100交换机
+    url: "/switch-nvidia-sn2100/install-rcf-sn2100-cluster.html"
+  - title: 配置交换机日志收集
+    url: "/switch-nvidia-sn2100/install-snmpv3-sn2100-cluster.html"
+- title: 迁移交换机
   entries:
-  - title: 更换NVIDIA SN2100集群交换机
-    url: "/switch-nvidia-sn2100/replace_sn2100_switch_cluster.html"
-  - title: 更换NVIDIA SN2100存储交换机
-    url: "/switch-nvidia-sn2100/replace_sn2100_switch_storage.html"
+  - title: 从Cisco集群交换机迁移
+    url: "/switch-nvidia-sn2100/migrate-cisco-sn2100-cluster-switch.html"
+  - title: 迁移到双节点无交换机集群
+    url: "/switch-nvidia-sn2100/migrate-to-switchless-interconnect-sn2100-cluster.html"
+- title: 更换集群交换机
+  url: "/switch-nvidia-sn2100/replace-sn2100-switch-cluster.html"

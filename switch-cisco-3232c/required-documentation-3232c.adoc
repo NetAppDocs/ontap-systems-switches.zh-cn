@@ -1,0 +1,136 @@
+---
+permalink: switch-cisco-3232c/required-documentation-3232c.html 
+sidebar: sidebar 
+keywords: cisco 3232c, cluster switches 
+summary: 对于Cisco Nexus 3232C交换机安装和维护、请务必查看所有建议文档。 
+---
+= Cisco Nexus 3232C交换机的文档要求
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+对于Cisco Nexus 3232C交换机安装和维护、请务必查看所有建议文档。
+
+
+
+== 交换机文档
+
+要设置Cisco Nexus 3232C交换机、您需要中的以下文档 https://www.cisco.com/c/en/us/support/switches/nexus-3000-series-switches/series.html["Cisco Nexus 3000 系列交换机支持"^] 页面。
+
+[cols="1,2"]
+|===
+| 文档标题 | Description 
+
+
+ a| 
+_Nexus 3000 系列硬件安装指南 _
+ a| 
+提供有关站点要求，交换机硬件详细信息和安装选项的详细信息。
+
+
+
+ a| 
+_Cisco Nexus 3000 系列交换机软件配置指南 _ （选择适用于交换机上安装的 NX-OS 版本的指南）
+ a| 
+提供为 ONTAP 操作配置交换机之前所需的初始交换机配置信息。
+
+
+
+ a| 
+_Cisco Nexus 3000 系列 NX-OS 软件升级和降级指南 _ （选择适用于交换机上安装的 NX-OS 版本的指南）
+ a| 
+提供有关如何根据需要将交换机降级为 ONTAP 支持的交换机软件的信息。
+
+
+
+ a| 
+_Cisco Nexus 3000 系列 NX-OS 命令参考主索引 _
+ a| 
+提供 Cisco 提供的各种命令参考的链接。
+
+
+
+ a| 
+_Cisco Nexus 3000 MIB 参考 _
+ a| 
+介绍 Nexus 3000 交换机的管理信息库（ Management Information Base ， MIB ）文件。
+
+
+
+ a| 
+_Nexus 3000 系列 NX-OS 系统消息参考 _
+ a| 
+介绍 Cisco Nexus 3000 系列交换机的系统消息，信息性消息以及可能有助于诊断链路，内部硬件或系统软件问题的其他消息。
+
+
+
+ a| 
+_Cisco Nexus 3000 系列 NX-OS 发行说明（为交换机上安装的 NX-OS 版本选择注释） _
+ a| 
+介绍 Cisco Nexus 3000 系列的功能，错误和限制。
+
+
+
+ a| 
+Cisco Nexus 6000 ， Cisco Nexus 5000 系列， Cisco Nexus 3000 系列和 Cisco Nexus 2000 系列的法规，合规性和安全信息
+ a| 
+提供 Nexus 3000 系列交换机的国际机构合规性，安全性和法定信息。
+
+|===
+
+
+== ONTAP 系统文档
+
+要设置 ONTAP 系统，您需要在中为您的操作系统版本提供以下文档 https://docs.netapp.com/ontap-9/index.jsp["ONTAP 9 文档中心"^]。
+
+[cols="1,2"]
+|===
+| Name | Description 
+
+
+ a| 
+特定于控制器的安装和设置说明
+ a| 
+介绍如何安装 NetApp 硬件。
+
+
+
+ a| 
+ONTAP 文档
+ a| 
+提供有关 ONTAP 版本各个方面的详细信息。
+
+
+
+ a| 
+https://hwu.netapp.com["Hardware Universe"^]
+ a| 
+提供 NetApp 硬件配置和兼容性信息。
+
+|===
+
+
+== 导轨套件和机柜文档
+
+要在NetApp机柜中安装3232C Cisco交换机、请参见以下硬件文档。
+
+[cols="1,2"]
+|===
+| Name | Description 
+
+
+ a| 
+https://library.netapp.com/ecm/ecm_download_file/ECMM1280394["42U 系统机柜，深度指南"^]
+ a| 
+介绍与 42U 系统机柜关联的 FRU ，并提供维护和 FRU 更换说明。
+
+
+
+ a| 
+link:task-install-a-cisco-nexus-3232c-cluster-switch-and-pass-through-panel-in-a-netapp-cabinet.html["在NetApp机柜中安装Cisco Nexus 3232C交换机"^]
+ a| 
+介绍如何在四柱 NetApp 机柜中安装 Cisco Nexus 3232C 交换机。
+
+|===

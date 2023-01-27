@@ -1,0 +1,22 @@
+---
+permalink: switch-bes-53248/install-hardware-bes53248.html 
+sidebar: sidebar 
+keywords: switches hardware installation 
+summary: 要安装BES-53248硬件、请参见Broadcom文档。 
+---
+= 安装BES-53248集群交换机的硬件
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+要安装BES-53248硬件、请参见Broadcom文档。
+
+.步骤
+. 查看 link:configure-reqs-bes53248.html["配置要求"]。
+. 按照中的说明进行操作 https://library.netapp.com/ecm/ecm_download_file/ECMLP2864537["Broadcom支持的BES-53248集群交换机安装指南"^]。
+
+
+.下一步是什么？
+link:configure-install-initial.html["配置交换机"]。

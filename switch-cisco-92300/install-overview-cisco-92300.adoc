@@ -1,0 +1,36 @@
+---
+permalink: switch-cisco-92300/install-overview-cisco-92300.html 
+sidebar: sidebar 
+keywords: install, cisco nexus 92300 switch, 
+summary: 在配置Cisco Nexus 92300交换机之前、请查看此过程的概述和术语。 
+---
+= Cisco Nexus 92300交换机安装和配置概述
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+在配置Cisco Nexus 92300交换机之前、请查看操作步骤 概述。
+
+要在运行ONTAP 的系统上初始配置Cisco Nexus 92300交换机、请执行以下步骤：
+
+. link:setup-worksheet-92300yc.html["填写Cisco Nexus 92300YC布线工作表"]。示例布线工作表提供了从交换机到控制器的建议端口分配示例。空白工作表提供了一个模板、可用于设置集群。
+. link:configure-install-initial.html["配置Cisco Nexus 92300YC交换机"]。设置和配置Cisco Nexus 92300YC交换机。
+. link:install-nxos-overview.html["准备安装NX-OS软件和参考配置文件(Reference Configuration File、RCF)"]。准备安装NX-OS软件和参考配置文件(Reference Configuration File、RCF)。
+. link:install-nxos-software.html["安装 NX-OS 软件"]。在Nexus 92300YC交换机上安装NX-OS软件。NX-OS 是 Cisco Systems 提供的 Nexus 系列以太网交换机和 MDS 系列光纤通道（ FC ）存储区域网络交换机的网络操作系统。
+. link:install-the-rcf-file.html["安装参考配置文件（ RCF ）"]。首次设置Nexus 92300YC交换机后安装RCF。您也可以使用此操作步骤升级 RCF 版本。
+. link:setup-install-cshm-file.html["安装集群交换机运行状况监控器（ CSHM ）配置文件"]。安装适用于Nexus 92300YC集群交换机的集群交换机运行状况监控的配置文件。
+
+
+
+
+== 追加信息
+
+开始安装或维护之前、请务必查看以下内容：
+
+* link:configure-reqs-92300.html["配置要求"]
+* link:components-92300.html["组件和部件号"]
+* link:required-documentation-92300.html["所需文档"]
+* link:smart-call-home-92300.html["智能自动通报要求"]
+

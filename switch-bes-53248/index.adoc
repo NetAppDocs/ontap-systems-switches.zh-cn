@@ -2,11 +2,243 @@
 permalink: switch-bes-53248/index.html 
 sidebar: sidebar 
 keywords: broadcom, support, bes, cluster, switch, broadcam-supported bes-53248 cluster switches 
-summary: Broadcom 支持的 BES-53248 集群交换机 
+summary: 对于BES-53248交换机安装和维护、请务必查看操作系统支持、部件号、配置要求和文档要求。 
 ---
-= Broadcom 支持的 BES-53248 集群交换机
+= 概述和要求：BES-53248交换机
 :allow-uri-read: 
 :icons: font
 :imagesdir: ../media/
 
 
+[role="lead"]
+对于BES-53248交换机安装和维护、请务必查看操作系统支持、部件号、配置要求和文档要求。
+
+
+
+== 操作系统(OS)支持
+
+BES-53248交换机支持以下功能：
+
+* * EFOS固件3.4.4.6及更高版本*。BES-53248交换机运行在Broadcom嵌入式操作系统上、称为以太网阵列操作系统(EFOS)。从 EFOS 固件版本 3.4.4.6 及更高版本开始，支持 40/100 GbE 集群端口。
+* * ONTAP 9.5P8及更高版本*。在ONTAP 9.5P8及更高版本中、支持Broadcom的BES-53248集群交换机可在2到24个节点的大小范围内工作。
+
+
+
+
+== 交换机组件部件号
+
+下表列出了BES-53248集群交换机组件的部件号和问题描述 、包括机架安装导轨套件、风扇和电源。
+
+[cols="1,2"]
+|===
+| 部件号 | Description 
+
+
+ a| 
+X190005
+ a| 
+BES-53248 ， CLSW ， 16Pt10/25GB ， PTSX ， BRDCM 支持（ PTSX = 端口侧排气）
+
+
+
+ a| 
+X190005r
+ a| 
+BES-53248 ， CLSW ， 16Pt10/25GB ， PSIN ， BRDCM 支持（ PSIN = 端口侧进气）
+
+
+
+ a| 
+X-RAIL 4Post-190005
+ a| 
+19 英寸 Ozeki 4 柱机架安装导轨套件
+
+
+
+ a| 
+X-Fan-190005-R
+ a| 
+风扇，端口侧进气 X190005
+
+
+
+ a| 
+X-Fan-190005-F
+ a| 
+风扇，端口侧排气 X190005
+
+
+
+ a| 
+X-PSU-190005-R
+ a| 
+电源，端口侧进气 X190005
+
+端口侧进气气流（反向空气）：冷空气通过冷通道的端口端进入机箱，并通过热通道中的风扇和电源模块进行排气。
+
+
+
+ a| 
+X-PSU-190005-F
+ a| 
+电源，端口侧排气 X190005
+
+端口端排气气流（标准空气）：冷空气通过冷通道中的风扇和电源模块进入机箱，并通过热通道中的机箱端口端进行排气。蓝色颜色表示端口端的排气气流。这是最常见的选项。
+
+|===
+
+
+== 配置要求
+
+要配置集群，您需要为集群交换机提供适当数量和类型的缆线和缆线连接器。根据您最初配置的集群交换机类型，您需要使用随附的控制台缆线连接到交换机控制台端口，并且需要特定的网络信息。
+
+.集群交换机端口分配
+您可以参考Broadcom支持的BES-53248集群交换机端口分配表来配置集群。
+
+[cols="1,2"]
+|===
+| 交换机端口 | 端口使用情况 
+
+
+ a| 
+01-16
+ a| 
+10/25GbE集群端口节点、基本配置
+
+
+
+ a| 
+17-48
+ a| 
+10/25GbE集群端口节点、带许可证
+
+
+
+ a| 
+49-54
+ a| 
+100GbE集群端口节点、含许可证、从右向左添加
+
+
+
+ a| 
+55-56
+ a| 
+100GbE 集群交换机间链路（ ISL ）端口，基本配置
+
+|===
+.端口组速度限制
+在BES-53248集群交换机上、48个10/25GbE (SFP28/SFP+)端口组合为12个4端口组、如下所示：端口1-4、5-8、9-12、13-16、17-20、21-24、25-28、29-32、33-36、37-40、41-44和45-48。
+
+在四端口组中的所有端口之间， SFP28/SFP+ 端口速度必须相同（ 10GbE 或 25GbE ）。
+
+
+
+== 文档要求
+
+要设置BES-53248集群交换机和ONTAP 集群、您需要特定的交换机和控制器文档。
+
+
+
+=== Broadcom文档
+
+要设置 BES-53248 集群交换机，您需要从 Broadcom 支持站点获取以下文档： https://www.broadcom.com/support/bes-switch["Broadcom 以太网交换机产品线"^]
+
+[cols="1,2"]
+|===
+| 文档标题 | Description 
+
+
+ a| 
+_EFOS 管理员指南 v3.4.3_
+ a| 
+提供了如何在典型网络中使用 BES-53248 交换机的示例。
+
+
+
+ a| 
+_EFOS CLI 命令参考 v3.4.3_
+ a| 
+介绍用于查看和配置 BES-53248 软件的命令行界面（ CLI ）命令。
+
+
+
+ a| 
+_EFOS 入门指南 v3.4.3_
+ a| 
+提供了有关 BES-53248 交换机的详细信息。
+
+
+
+ a| 
+_EFOS SNMP 参考指南 v3.4.3_
+ a| 
+提供了如何在典型网络中使用 BES-53248 交换机的示例。
+
+
+
+ a| 
+_EFOS 扩展参数和值 v3.4.3_
+ a| 
+介绍在支持的平台上交付和验证 EFOS 软件所使用的默认扩展参数。
+
+
+
+ a| 
+_EFOS 功能规格 v3.4.3_
+ a| 
+介绍了受支持平台上 EFOS 软件的规格。
+
+
+
+ a| 
+_EFOS 发行说明 v3.4.3_
+ a| 
+提供有关 BES-53248 软件的特定版本信息。
+
+
+
+ a| 
+_Cluster网络和管理网络兼容性表_
+ a| 
+提供有关网络兼容性的信息。此表可从BES-53248交换机下载站点获得、网址为 https://mysupport.netapp.com/site/products/all/details/broadcom-cluster-switches/downloads-tab["Broadcom 集群交换机"^]。
+
+|===
+
+
+=== ONTAP 系统文档和知识库文章
+
+要设置 ONTAP 系统，您需要从 NetApp 支持站点获取以下文档，网址为 http://mysupport.netapp.com/["mysupport.netapp.com"^] 或知识库(KB)站点、网址为 https://kb.netapp.com/["kb.netapp.com"^]。
+
+[cols="1,2"]
+|===
+| Name | Description 
+
+
+ a| 
+https://hwu.netapp.com/Home/Index["NetApp Hardware Universe"^]
+ a| 
+介绍包括系统机柜在内的所有NetApp硬件的电源和站点要求、并提供有关要使用的相关连接器和缆线选项及其部件号的信息。
+
+
+
+ a| 
+特定于控制器的安装和设置说明
+ a| 
+介绍如何安装 NetApp 硬件。
+
+
+
+ a| 
+ONTAP 9.
+ a| 
+提供有关 ONTAP 9 版本所有方面的详细信息。
+
+
+
+ a| 
+_How to add additional port licensing for the Broadcom-supported BES-53248 switch_
+ a| 
+提供有关添加端口许可证的详细信息。转至 https://kb.netapp.com/Advice_and_Troubleshooting/Data_Protection_and_Security/MetroCluster/How_to_add_Additional_Port_Licensing_for_the_Broadcom-Supported_BES-53248_Switch["知识库文章"^]。
+
+|===

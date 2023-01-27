@@ -1,64 +1,42 @@
 ---
 section: switch-cisco-92300
-title: Cisco Nexus 92300YC 交换机
+title: Cisco Nexus 92300YC
 entries:
 - title: 概述
-  url: "/switch-cisco-92300/92300-overview.html"
-- title: 设置
   entries:
-  - title: 设置交换机
-    url: "/switch-cisco-9336c-fx2/setup-switches.html"
-  - title: 所需的集群配置信息
-    url: "/switch-cisco-9336c-fx2/setup-required-information.html"
-  - title: 为 92300YC 交换机安装集群交换机运行状况监控器（ Cluster Switch Health Monitor ， CSHM ）配置文件
-    url: "/switch-cisco-9336c-fx2/setup-install-cshm-file.html"
+  - title: 配置概述
+    url: "/switch-cisco-92300/install-overview-cisco-92300.html"
+  - title: 配置要求
+    url: "/switch-cisco-92300/configure-reqs-92300.html"
+  - title: 组件和部件号
+    url: "/switch-cisco-92300/components-92300.html"
   - title: 所需文档
-    url: "/switch-cisco-9336c-fx2/setup-required-documentation.html"
-  - title: 使用智能自动通报的注意事项
-    url: "/switch-cisco-9336c-fx2/setup-considerations-smart-call.html"
-  - title: 示例和空白布线工作表
-    entries:
-    - title: Cisco Nexus 9336C-x2 布线工作表
-      url: "/switch-cisco-9336c-fx2/setup-worksheet-9336c.html"
-    - title: Cisco Nexus 92300YC 布线工作表
-      url: "/switch-cisco-9336c-fx2/setup-worksheet-92300yc.html"
-    - title: Cisco Nexus 3232C 布线工作表
-      url: "/switch-cisco-9336c-fx2/setup-worksheet-3232c.html"
-    - title: Cisco Nexus 3132Q-V 布线工作表
-      url: "/switch-cisco-9336c-fx2/setup-worksheet-3132q.html"
-    - title: Cisco Nexus 5596UP 和 5596T 布线工作表
-      url: "/switch-cisco-9336c-fx2/setup-worksheet-5596.html"
-    - title: 布线工作表示例
-      url: "/switch-cisco-9336c-fx2/setup-worksheets-sample-cabling.html"
-- title: 配置新的 Cisco Nexus 92300YC 交换机
+    url: "/switch-cisco-92300/required-documentation-92300.html"
+  - title: 智能自动通报要求
+    url: "/switch-cisco-92300/smart-call-home-92300.html"
+- title: 安装硬件
   entries:
-  - title: 概述
-    url: "/switch-cisco-92300/configure-overview.html"
-  - title: 首次安装 Cisco Nexus 92300YC 交换机
+  - title: 完成布线工作表
+    url: "/switch-cisco-92300/setup-worksheet-92300yc.html"
+  - title: 配置交换机
     url: "/switch-cisco-92300/configure-install-initial.html"
-  - title: 安装 NX-OS 软件
-    url: "/switch-cisco-92300/configure-install-nxos.html"
-  - title: 安装参考配置文件
-    url: "/switch-cisco-92300/install-the-rcf-file.html"
-- title: 在 Cisco Nexus 92300YC 集群交换机上安装 NX-OS 软件和 RCF
+- title: 配置软件
   entries:
-  - title: 概述
+  - title: 准备安装NX-OS和RCF
     url: "/switch-cisco-92300/install-nxos-overview.html"
-  - title: 安装 NX-OS 软件
+  - title: 安装NX-OS
     url: "/switch-cisco-92300/install-nxos-software.html"
-  - title: 安装参考配置文件
+  - title: 安装RCF配置文件
     url: "/switch-cisco-92300/install-the-rcf-file.html"
-- title: 迁移到使用 Cisco Nexus 92300YC 交换机的双节点交换集群
+  - title: 安装CSHM
+    url: "/switch-cisco-92300/setup-install-cshm-file.html"
+- title: 迁移交换机
   entries:
-  - title: 概述
-    url: "/switch-cisco-92300/migrate-to-2n-switched-overview.html"
-  - title: 如何迁移
+  - title: 迁移到双节点交换集群
     url: "/switch-cisco-92300/migrate-to-2n-switched.html"
-- title: 从 Cisco 交换机迁移到 Cisco Nexus 92300YC 交换机
-  entries:
-  - title: 概述
-    url: "/switch-cisco-92300/migrate-to-92300yc-overview.html"
-  - title: 如何从 Cisco 交换机迁移到 Cisco Nexus 92300YC 交换机
+  - title: 从旧版Cisco交换机迁移
     url: "/switch-cisco-92300/migrate-to-92300yc.html"
-- title: 更换 Cisco Nexus 92300YC 交换机
+  - title: 迁移到双节点无交换机集群
+    url: "/switch-cisco-92300/migrate-to-switchless-cluster-interconnect.html"
+- title: 更换交换机
   url: "/switch-cisco-92300/replace-92300yc.html"

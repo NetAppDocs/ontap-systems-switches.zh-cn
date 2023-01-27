@@ -4,20 +4,33 @@ sidebar: sidebar
 keywords: nvidia SN2100 switches 
 summary: 如果要使用两个以上的节点构建 ONTAP 集群，则需要两个受支持的集群网络交换机。您可以使用其他管理交换机，这些交换机是可选的。 
 ---
-= NVIDIA SN2100交换机
+= 概述和要求：NVIDIA SN2100交换机
 :allow-uri-read: 
 :icons: font
 :imagesdir: ../media/
 
 
 [role="lead"]
-从ONTAP 9.10.1P3开始、您可以使用NVIDIA SN2100交换机将存储和集群功能组合到共享交换机配置中。
+对于NVIDIA SN2100交换机安装和维护、请务必查看所有要求和建议的文档。
 
 如果要使用两个以上的节点构建 ONTAP 集群，则需要两个受支持的集群网络交换机。您可以使用其他管理交换机，这些交换机是可选的。
 
+
+
+== 支持ONTAP 和Linux
+
+NVIDIA SN2100交换机是一款运行Cumulus Linux的10/25/40/100 Gb以太网交换机。交换机支持以下功能：
+
+* ONTAP 9.10.1P3。SN2100交换机通过不同的交换机对为ONTAP 9.10.1P3中的集群和存储应用程序提供服务。从ONTAP 9.10.1P3开始、您可以使用NVIDIA SN2100交换机将存储和集群功能组合到共享交换机配置中。
+* Cumulus Linux (CL)操作系统4.4.2版。可以在交换机运行的是Cumulus Linux或ONIE时安装Cumulus Linux。
+
+
+
+
+== 机柜和导轨套件详细信息
+
 您可以在NVIDIA双/单交换机机柜中使用随交换机提供的标准支架安装NVIDIA SN2100交换机(X190006/X190106)。
 
-.SN2100交换机和导轨套件详细信息
 下表列出了MSN2100交换机和导轨套件的部件号和问题描述 ：
 
 [cols="1,2"]
@@ -67,9 +80,12 @@ X-MTEF-KIT-E
 
 |===
 
-IMPORTANT: 有关详细信息、请参见NVIDIA文档 https://docs.nvidia.com/networking/display/sn2000pub/Installation["安装SN2100交换机和导轨套件"^]。
+NOTE: 有关详细信息、请参见NVIDIA文档 https://docs.nvidia.com/networking/display/sn2000pub/Installation["安装SN2100交换机和导轨套件"^]。
 
-.可用文档
+
+
+== 可用文档
+
 下表列出了适用于NVIDIA SN2100交换机的文档。
 
 [cols="1,2"]

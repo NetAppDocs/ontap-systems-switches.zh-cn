@@ -1,0 +1,58 @@
+---
+permalink: get-started/learn-switch-concept.html 
+sidebar: sidebar 
+keywords:  
+summary: 了解集群、存储和共享交换机。 
+---
+= 了解集群、存储和共享交换机
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+NetApp提供的集群、存储和共享交换机可提供内部通信、并能够在集群中无中断地移动数据和网络接口。
+
+"前端"交换机提供与主机存储的连接、而"后端"集群交换机则提供两个或更多NetApp控制器之间的连接。
+
+
+
+== 集群交换机
+
+通过集群交换机、您可以使用两个以上的节点构建ONTAP 集群。NetApp支持的集群交换机包括：
+
+* Broadcom BES-53248
+* Cisco Nexus 9336C-x2
+* NVIDIA SN2100
+
+
+
+
+== 存储交换机
+
+通过存储交换机、您可以在存储区域网络(SAN)中的服务器和存储阵列之间路由数据。NetApp支持的集群交换机包括：
+
+* Cisco Nexus 9336C-x2
+* NVIDIA SN2100
+
+
+
+
+== 共享交换机
+
+通过共享交换机、您可以通过支持使用共享集群和存储RCF将集群和存储功能组合到共享交换机配置中。NetApp支持的共享交换机为：
+
+* Cisco Nexus 9336C-x2
+
+
+
+
+== 可用性终止
+
+以下存储交换机不再可供购买、但仍受支持：
+
+* Cisco Nexus 3232C
+* Cisco Nexus 3132Q-V
+* Cisco Nexus 92300YC
+* NetApp CN1610
+

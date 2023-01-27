@@ -1,0 +1,47 @@
+---
+sidebar: sidebar 
+permalink: /switch-cisco-9336c-fx2-storage/configure-reqs-9336c-storage.html 
+keywords: shared storage cluster switch 
+summary: 从 ONTAP 9.1.1 开始，您可以使用 Cisco Nexus 9336C-f2 交换机将存储和集群功能结合到共享交换机方案中。 
+---
+= Cisco Nexus 9336C-x2存储交换机的配置要求
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ./media/
+
+
+[role="lead"]
+对于Cisco Nexus 9336C-x2交换机安装和维护、请务必查看配置和网络要求。
+
+
+
+== ONTAP 支持
+
+从 ONTAP 9.1.1 开始，您可以使用 Cisco Nexus 9336C-f2 交换机将存储和集群功能组合到共享交换机配置中。
+
+如果要使用两个以上的节点构建 ONTAP 集群，则需要两个受支持的网络交换机。
+
+
+
+== 配置要求
+
+要进行配置，您需要为交换机提供适当数量和类型的缆线和缆线连接器。
+
+根据您最初配置的交换机类型，您需要使用随附的控制台缆线连接到交换机控制台端口；您还需要提供特定的网络信息。
+
+
+
+== 网络要求
+
+所有交换机配置都需要以下网络信息。
+
+* 用于管理网络流量的 IP 子网
+* 每个存储系统控制器和所有适用交换机的主机名和 IP 地址
+* 大多数存储系统控制器通过 e0M 接口连接到以太网服务端口（扳手图标）进行管理。在 AFF A800 和 AFF A700s 系统上， e0M 接口使用专用以太网端口。
+* 请参见 https://hwu.netapp.com["Hardware Universe"] 以获取最新信息。
+
+
+有关交换机初始配置的详细信息，请参见以下指南： https://www.cisco.com/c/en/us/td/docs/dcn/hw/nx-os/nexus9000/9336c-fx2-e/cisco-nexus-9336c-fx2-e-nx-os-mode-switch-hardware-installation-guide.html["《 Cisco Nexus 9336C-x2 安装和升级指南》"]。

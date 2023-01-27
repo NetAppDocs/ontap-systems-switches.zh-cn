@@ -1,0 +1,41 @@
+---
+permalink: switch-cisco-9336c-fx2/configure-switch-overview-9336c-cluster.html 
+sidebar: sidebar 
+keywords: BES-53248 switches, initial installation, configure switch-cisco-9336c-fx2 switch 
+summary: Cisco Nexus 9336C-x2集群交换机安装和配置概述 
+---
+= Cisco Nexus 9336C-x2集群交换机安装和配置概述
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Cisco Nexus 9336C-x2集群交换机是Cisco Nexus 9000平台的一部分、可以安装在NetApp系统机柜中。通过集群交换机、您可以使用两个以上的节点构建ONTAP 集群。
+
+
+
+== 初始配置概述
+
+要在运行ONTAP 的系统上初始配置Cisco Nexus 9336C-FX2交换机、请执行以下步骤：
+
+. link:setup-worksheet-9336c-cluster.html["填写Cisco Nexus 9336C-x2布线工作表"]。示例布线工作表提供了从交换机到控制器的建议端口分配示例。空白工作表提供了一个模板、可用于设置集群。
+. link:install-switch-9336c-cluster.html["安装交换机"]。设置交换机硬件。
+. link:setup-switch-9336c-cluster.html["配置9336C-x2集群交换机"]。设置Cisco Nexus 9336C-x2交换机。
+. link:install-switch-and-passthrough-panel-9336c-cluster.html["在NetApp机柜中安装Cisco Nexus 9336C-x2交换机"]。根据您的配置、您可以将Cisco Nexus 9336C-FX2交换机和直通面板安装在NetApp机柜中、并使用交换机附带的标准支架。
+. link:install-nxos-overview-9336c-cluster.html["准备安装NX-OS软件和RCF"]。请按照准备安装Cisco NX-OS软件和参考配置文件(RCF)的初步过程进行操作。
+. link:install-nxos-software-9336c-cluster.html["安装 NX-OS 软件"]。在Nexus 9336C-FX2集群交换机上安装NX-OS软件。
+. link:install-nxos-rcf-9336c-cluster.html["安装参考配置文件（ RCF ）"]。首次设置Nexus 9336C-x2交换机后、安装RCF。您也可以使用此操作步骤升级 RCF 版本。
+
+
+
+
+== 追加信息
+
+开始安装或维护之前、请务必查看以下内容：
+
+* link:configure-reqs-9336c-cluster.html["配置要求"]
+* link:components-9336c-cluster.html["组件和部件号"]
+* link:required-documentation-9336c-cluster.html["所需文档"]
+* link:smart-call-9336c-cluster.html["智能自动通报要求"]
+

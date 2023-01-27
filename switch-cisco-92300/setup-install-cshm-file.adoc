@@ -1,0 +1,67 @@
+---
+permalink: switch-cisco-92300/setup-install-cshm-file.html 
+sidebar: sidebar 
+keywords: 'install, applicable, configuration, file, cluster, switch, health, monitor, nexus, ontap, install the cluster switch health monitor (csm) configuration file for 92300yc switches - cisco nexus 9336c-fx2' 
+summary: 您可以使用此操作步骤安装适用于 Nexus 92300YC 集群交换机的集群交换机运行状况监控的配置文件。 
+---
+= 安装集群交换机运行状况监控器（ CSHM ）配置文件
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+按照此操作步骤 安装适用于Nexus 92300YC集群交换机的集群交换机运行状况监控的配置文件。
+
+在 ONTAP 9.5P7 及更早版本以及 9.6P2 及更早版本中，您必须单独下载集群交换机运行状况监控器配置文件。在 ONTAP 9.5P8 及更高版本， 9.6P3 及更高版本以及 9.7 及更高版本中，集群交换机运行状况监控器配置文件与 ONTAP 捆绑在一起。
+
+.您需要的内容
+在为92300YC集群交换机设置交换机运行状况监控器之前、请确保ONTAP 集群已启动且正在运行。
+
+
+NOTE: 您还应启用SSH以使用CSHM中提供的所有功能。
+
+.步骤
+. 根据相应的 ONTAP 版本下载集群交换机运行状况监控器配置 zip 文件。此文件可从获取 https://mysupport.netapp.com/NOW/cgi-bin/software/["NetApp 软件下载"^] 页面。
++
+.. 在软件下载页面上，选择 * 交换机运行状况监控器配置文件 *
+.. 选择平台 = * ONTAP * ，然后单击 * 执行！ *
+.. 在 "Switch Health Monitor Configuration Files for ONTAP " 页面上，单击 * 查看并下载 *
+.. 在适用于 ONTAP - 问题描述的交换机运行状况监控器配置文件页面上，对于适用的集群交换机型号，单击 * 下载 * ，例如： * Cisco Nexus 92300YC*
+.. 在最终用户许可协议页面上，单击 * 接受 *
+.. 在 "Switch Health Monitor Configuration Files for ONTAP - Download" 页面上，选择适用的配置文件，例如： * Cisco_Nexus _923300 YC.zip
+
+
+. 将适用的 zip 文件上传到 IP 地址为 X.X.X.X.X 的内部 Web 服务器
++
+对于内部 Web 服务器 IP 地址 192.168.2.2 并假设存在 /usr/download 目录，您可以使用 scp 将 zip 文件上传到 Web 服务器：
+
++
+[listing]
+----
+% scp Cisco_Nexus_92300YC.zip admin@192.168.2.20:/usr/download/Cisco_Nexus_92300YC.zip
+----
+. 使用命令 set-privilege advanced 从集群中的一个 ONTAP 系统访问高级模式设置：
++
+[listing]
+----
+cluster1::> set -privilege advanced
+----
+. 运行 switch health monitor configure 命令 system cluster-switch configure-health-monitor -node * -package-url X.x.X/location_to_download_zip 文件：
++
+[listing]
+----
+cluster1::> system cluster-switch configure-health-monitor -node * -package-url 192.168.2.20/usr/download/Cisco_Nexus_92300YC.zip
+----
+. 验证命令输出是否包含文本字符串 "downloaded package processed successfully" 。如果发生错误，请联系 NetApp 支持部门。
+. 在ONTAP 系统上运行system cluster-switch show命令、并确保在发现集群交换机时将受监控字段设置为"True"。
++
+[listing]
+----
+cluster1::> system cluster-switch show
+----
++
+
+NOTE: 如果您随时还原到早期版本的 ONTAP ，则需要重新安装 CSHM 配置文件，以便对 923300 YC 集群交换机启用交换机运行状况监控。
+
+

@@ -1,0 +1,19 @@
+---
+permalink: switch-cisco-9336c-fx2-storage/configure-software-overview-9336c-storage.html 
+sidebar: sidebar 
+keywords: BES-53248 switches, initial installation, configure switch-cisco-9336c-fx2 switch 
+summary: Cisco Nexus 9336C-x2存储交换机的软件配置概述 
+---
+= Cisco Nexus 9336C-x2存储交换机的软件安装工作流
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+要为Cisco Nexus 9336C-FX2交换机安装和配置软件、请执行以下步骤：
+
+. link:install-nxos-overview-9336c-storage.html["准备安装NX-OS和RCF"]。请按照准备安装Cisco NX-OS软件和参考配置文件(RCF)的初步过程进行操作。
+. link:install-nxos-software-9336c-storage.html["安装 NX-OS 软件"]。在Nexus 9336C-FX2集群交换机上安装NX-OS软件。
+. link:install-nxos-rcf-9336c-storage.html["安装RCF配置文件"]。首次设置Nexus 9336C-x2交换机后、安装RCF。您也可以使用此操作步骤升级 RCF 版本。
+

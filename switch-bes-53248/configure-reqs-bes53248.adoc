@@ -1,0 +1,78 @@
+---
+permalink: switch-bes-53248/configure-reqs-bes53248.html 
+sidebar: sidebar 
+keywords: bes, cluster, switch, port, assignment, table, configure, bes-53428 cluster switch port assignments - bes-53428 switches 
+summary: 您可以参考 BES-53248 集群交换机端口分配表来配置集群。 
+---
+= BES-53248集群交换机的配置要求
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+对于BES-53248交换机安装和维护、请务必查看操作系统支持和配置要求。
+
+
+
+== 操作系统(OS)支持
+
+BES-53248交换机支持以下功能：
+
+* * EFOS固件3.4.4.6及更高版本*。BES-53248交换机运行在Broadcom嵌入式操作系统上、称为以太网阵列操作系统(EFOS)。从 EFOS 固件版本 3.4.4.6 及更高版本开始，支持 40/100 GbE 集群端口。
+* * ONTAP 9.5P8及更高版本*。在ONTAP 9.5P8及更高版本中、支持Broadcom的BES-53248集群交换机可在2到24个节点的大小范围内工作。
+
+
+
+
+== 配置要求
+
+要配置集群、您需要为集群交换机提供适当数量和类型的缆线和缆线连接器。根据您最初配置的集群交换机类型、您需要使用随附的控制台缆线连接到交换机控制台端口。
+
+
+
+=== 集群交换机端口分配
+
+您可以参考Broadcom支持的BES-53248集群交换机端口分配表来配置集群。
+
+[cols="1,2"]
+|===
+| 交换机端口 | 端口使用情况 
+
+
+ a| 
+01-16
+ a| 
+10/25GbE集群端口节点、基本配置
+
+
+
+ a| 
+17-48
+ a| 
+10/25GbE集群端口节点、带许可证
+
+
+
+ a| 
+49-54
+ a| 
+100GbE集群端口节点、含许可证、从右向左添加
+
+
+
+ a| 
+55-56
+ a| 
+100GbE 集群交换机间链路（ ISL ）端口，基本配置
+
+|===
+请参见 https://hwu.netapp.com/Switch/Index["Hardware Universe"] 有关交换机端口的详细信息。
+
+
+
+=== 端口组速度限制
+
+在BES-53248集群交换机上、48个10/25GbE (SFP28/SFP+)端口组合为12个4端口组、如下所示：端口1-4、5-8、9-12、13-16、17-20、21-24、25-28、29-32、33-36、37-40、41-44和45-48。
+
+在四端口组中的所有端口之间， SFP28/SFP+ 端口速度必须相同（ 10GbE 或 25GbE ）。

@@ -1,0 +1,91 @@
+---
+permalink: switch-bes-53248/replace-verify.html 
+sidebar: sidebar 
+keywords: command, verify, operational, bes, cluster, switch, upgrade, verify the configuration after a cluster switch upgrade - bes-53428 switches 
+summary: 您可以使用此处提供的命令验证升级 BES-53248 集群交换机后所有交换机是否均正常运行。 
+---
+= 升级BES-53248集群交换机后验证配置
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+升级BES-53248集群交换机后、您可以使用建议的命令来验证操作。
+
+.步骤
+. 使用命令显示有关集群上网络端口的信息：
++
+`network port show -ipspace cluster`
+
++
+`链接` 必须具有值 `up` 和 `运行状况` 必须为 `运行状况` 。
+
++
+.显示示例
+[%collapsible]
+====
+以下示例显示了命令的输出：
+
+[listing, subs="+quotes"]
+----
+cluster1::> *network port show -ipspace Cluster*
+
+Node: node1
+                                                                    Ignore
+                                               Speed(Mbps) Health   Health
+Port   IPspace      Broadcast Domain Link MTU  Admin/Oper  Status   Status
+------ ------------ ---------------- ---- ---- ----------- -------- ------
+e0a    Cluster      Cluster          up   9000  auto/10000 healthy  false
+e0b    Cluster      Cluster          up   9000  auto/10000 healthy  false
+
+Node: node2
+                                                                    Ignore
+                                               Speed(Mbps) Health   Health
+Port   IPspace      Broadcast Domain Link MTU  Admin/Oper  Status   Status
+-----  ------------ ---------------- ---- ---- ----------- -------- ------
+e0a    Cluster      Cluster          up   9000  auto/10000 healthy  false
+e0b    Cluster      Cluster          up   9000  auto/10000 healthy  false
+----
+====
+. 对于每个LIF、请验证 `Is Home` 为 `true` 和 `Status Admin/Oper` 为 `up` 在两个节点上、使用命令：
++
+`network interface show -vserver cluster`
+
++
+.显示示例
+[%collapsible]
+====
+[listing, subs="+quotes"]
+----
+cluster1::> *network interface show -vserver Cluster*
+
+            Logical    Status     Network            Current       Current Is
+Vserver     Interface  Admin/Oper Address/Mask       Node          Port    Home
+----------- ---------- ---------- ------------------ ------------- ------- ----
+Cluster
+            node1_clus1  up/up    169.254.217.125/16 node1         e0a     true
+            node1_clus2  up/up    169.254.205.88/16  node1         e0b     true
+            node2_clus1  up/up    169.254.252.125/16 node2         e0a     true
+            node2_clus2  up/up    169.254.110.131/16 node2         e0b     true
+----
+====
+. 验证是否已 `Health Status` 每个节点的 `true` 使用命令：
++
+`cluster show`
+
++
+.显示示例
+[%collapsible]
+====
+[listing, subs="+quotes"]
+----
+cluster1::> *cluster show*
+
+Node                 Health  Eligibility   Epsilon
+-------------------- ------- ------------  ------------
+node1                true    true          false
+node2                true    true          false
+----
+====
+

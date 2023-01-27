@@ -1,73 +1,56 @@
 ---
 section: switch-bes-53248
-title: Broadcom 支持的 BES-53248 交换机
+title: Broadcom 支持的 BES-53248
 entries:
-- title: BES-53248 集群交换机概述
-  url: "/switch-bes-53248/overview-bes53248.html"
-- title: 设置交换机
+- title: 概述
   entries:
-  - title: BES-53248 集群交换机配置要求
-    url: "/switch-bes-53248/replace-requirements.html"
+  - title: 配置概述
+    url: "/switch-bes-53248/configure-new-switch-overview.html"
+  - title: 配置要求
+    url: "/switch-bes-53248/configure-reqs-bes53248.html"
+  - title: 组件和部件号
+    url: "/switch-bes-53248/components-bes53248.html"
   - title: 所需文档
-    url: "/switch-bes-53248/replace-required-documentation.html"
-  - title: 配置BES-53248集群交换机
-    entries:
-    - title: 配置新的 BES-53248 交换机
-      url: "/switch-bes-53248/configure-new-switch.html"
-    - title: 初始安装
-      url: "/switch-bes-53248/configure-install-initial.html"
-    - title: 安装 EFOS 软件
-      url: "/switch-bes-53248/configure-efos-software.html"
-    - title: 安装许可证
-      entries:
-      - title: 安装 BES-53248 集群交换机的许可证
-        url: "/switch-bes-53248/configure-licenses.html"
-      - title: 限制和限制
-        url: "/switch-bes-53248/configure-restrictions.html"
-      - title: 编辑RCF以激活许可端口
-        url: "/switch-bes-53248/configure-edit-rcf.html"
-    - title: 安装参考配置文件（ RCF ）
-      url: "/switch-bes-53248/configure-install-rcf.html"
-    - title: 安装集群交换机运行状况监控器（ CSHM ）配置文件
-      url: "/switch-bes-53248/configure-health-monitor.html"
-    - title: 在 BES-53248 集群交换机上启用 SSH
-      url: "/switch-bes-53248/configure-ssh.html"
-    - title: 配置集群交换机日志收集功能
-      url: "/switch-bes-53248/configure-log-collection.html"
-- title: 从 CN1610 交换机迁移到 BES-53248 交换机
+    url: "/switch-bes-53248/required-documentation-bes53248.html"
+- title: 安装硬件
   entries:
-  - title: 概述
-    url: "/switch-bes-53248/migrate-cn1610-overview.html"
-  - title: 如何迁移到BES-53248交换机
-    url: "/switch-bes-53248/migrate-cn1610.html"
-- title: 迁移到双节点交换集群
+  - title: 安装交换机
+    url: "/switch-bes-53248/install-hardware-bes53248.html"
+  - title: 配置交换机
+    url: "/switch-bes-53248/configure-install-initial.html"
+- title: 配置软件
   entries:
-  - title: 准备迁移
-    url: "/switch-bes-53248/migrate-to-2n-switched.html"
-  - title: 迁移到交换式 NetApp 集群环境
-    url: "/switch-bes-53248/migrate-to-2n-switched-overview.html"
-- title: 升级 NDS/NDU 环境中的交换机
-  entries:
-  - title: 概述
-    url: "/switch-bes-53248/replace-upgrade.html"
-  - title: 准备控制器
-    url: "/switch-bes-53248/replace-prepare-controller.html"
-  - title: 安装 EFOS 软件
-    url: "/switch-bes-53248/replace-install-efos.html"
+  - title: 软件安装工作流
+    url: "/switch-bes-53248/configure-software-overview-bes53248.html"
+  - title: 安装EFOS软件
+    url: "/switch-bes-53248/configure-efos-software.html"
   - title: 安装许可证
-    url: "/switch-bes-53248/replace-install-licenses.html"
-    entries:
-    - title: 限制和限制
-      url: "/switch-bes-53248/replace-restrictions.html"
-    - title: 编辑参考配置文件（ RCF ）
-      url: "/switch-bes-53248/replace-edit-rcf.html"
-  - title: 安装参考配置文件（ RCF ）
-    url: "/switch-bes-53248/replace-install-rcf.html"
-  - title: 安装集群交换机运行状况监控器（ CSHM ）配置文件
-    url: "/switch-bes-53248/replace-install-cshm-file.html"
-  - title: 配置集群交换机日志收集功能
-    url: "/switch-bes-53248/replace-configure-log-collection.html"
-  - title: 验证配置
+    url: "/switch-bes-53248/configure-licenses.html"
+  - title: 安装RCF配置文件
+    url: "/switch-bes-53248/configure-install-rcf.html"
+  - title: 安装CSHM配置文件
+    url: "/switch-bes-53248/configure-health-monitor.html"
+  - title: 启用 SSH ：
+    url: "/switch-bes-53248/configure-ssh.html"
+  - title: 启用日志收集
+    url: "/switch-bes-53248/configure-log-collection.html"
+- title: 升级交换机
+  entries:
+  - title: 升级概述
+    url: "/switch-bes-53248/upgrade-switch-overview.html"
+  - title: 升级交换机
+    url: "/switch-bes-53248/replace-upgrade.html"
+  - title: 验证升级配置
     url: "/switch-bes-53248/replace-verify.html"
-- title: 更换 BES-53248 交换机
-  url: "/switch-bes-53248/replace-switch.html"
+- title: 迁移交换机
+  entries:
+  - title: 从CN1610交换机迁移
+    url: "/switch-bes-53248/migrate-cn1610.html"
+  - title: 迁移到双节点交换机
+    url: "/switch-bes-53248/migrate-to-2n-switched.html"
+- title: 更换交换机
+  entries:
+  - title: 更换要求
+    url: "/switch-bes-53248/replace-switch-reqs.html"
+  - title: 更换BES-53248交换机
+    url: "/switch-bes-53248/replace-switch.html"

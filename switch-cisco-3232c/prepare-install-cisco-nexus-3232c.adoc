@@ -1,0 +1,290 @@
+---
+permalink: switch-cisco-3232c/prepare-install-cisco-nexus-3232c.html 
+sidebar: sidebar 
+keywords: nx-os software, install, cisco nexus cluster switches, 3232c, rcfs 
+summary: Cisco Nexus 3232C 集群交换机上必须安装 Cisco NX-OS 软件和参考配置文件（ Reference Configuration Files ， RCF ）。 
+---
+= 准备安装NX-OS软件和参考配置文件(Reference Configuration File、RCF)
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+在安装NX-OS软件和参考配置文件(Reference Configuration File、RCF)之前、请遵循此操作步骤。
+
+.关于示例
+此操作步骤中的示例使用两个节点。这些节点使用两个 10GbE 集群互连端口 `e0a` 和 `e0b` 。
+
+请参见 link:https://hwu.netapp.com/SWITCH/INDEX["Hardware Universe"^] 验证平台上的集群端口是否正确。
+
+[NOTE]
+====
+根据不同版本的 ONTAP ，命令输出可能会有所不同。
+
+====
+.交换机和节点命名
+此操作步骤中的示例使用以下交换机和节点命名：
+
+* 这两台 Cisco 交换机的名称分别为 `CS1` 和 `CS2` 。
+* 节点名称为 `cluster1-01` 和 `cluster1-02` 。
+* 集群 LIF 名称为 `cluster1-01_clus1` 和 `cluster1-01_clus2` （对于 cluster1-01 ）和 `cluster1-02_clus1` 和 `cluster1-02_clus2` （对于 cluster1-02 ）。
+* `cluster1 ：：： * >` 提示符指示集群的名称。
+
+
+.关于此任务
+操作步骤 要求同时使用 ONTAP 命令和 Cisco Nexus 3000 系列交换机命令；除非另有说明，否则使用 ONTAP 命令。
+
+.步骤
+. 如果在此集群上启用了 AutoSupport ，请通过调用 AutoSupport 消息来禁止自动创建案例： `ssystem node AutoSupport invoke -node * -type all -message MAINT=x h`
++
+其中 _x_ 是维护时段的持续时间，以小时为单位。
+
++
+[NOTE]
+====
+AutoSupport 消息会通知技术支持此维护任务，以便在维护窗口期间禁止自动创建案例。
+
+====
+. 将权限级别更改为高级，在系统提示您继续时输入 * y * ：
++
+`set -privilege advanced`
+
++
+此时将显示高级提示符（` * >` ）。
+
+. 显示每个集群互连交换机的每个节点中配置的集群互连接口数量：
++
+`network device-discovery show -protocol cdp`
+
++
+.显示示例
+[%collapsible]
+====
+[listing]
+----
+cluster1::*> network device-discovery show -protocol cdp
+
+Node/       Local  Discovered
+Protocol    Port   Device (LLDP: ChassisID)  Interface         Platform
+----------- ------ ------------------------- ----------------- --------
+cluster1-02/cdp
+            e0a    cs1                       Eth1/2            N3K-C3232C
+            e0b    cs2                       Eth1/2            N3K-C3232C
+cluster1-01/cdp
+            e0a    cs1                       Eth1/1            N3K-C3232C
+            e0b    cs2                       Eth1/1            N3K-C3232C
+
+4 entries were displayed.
+----
+====
+. 检查每个集群接口的管理或运行状态。
++
+.. 显示网络端口属性：
++
+`network port show – IP 空间集群`
+
++
+.显示示例
+[%collapsible]
+====
+[listing]
+----
+cluster1::*> network port show -ipspace Cluster
+
+Node: cluster1-02
+                                                  Speed(Mbps) Health
+Port      IPspace      Broadcast Domain Link MTU  Admin/Oper  Status
+--------- ------------ ---------------- ---- ---- ----------- ------
+e0a       Cluster      Cluster          up   9000  auto/10000 healthy
+e0b       Cluster      Cluster          up   9000  auto/10000 healthy
+
+Node: cluster1-01
+                                                  Speed(Mbps) Health
+Port      IPspace      Broadcast Domain Link MTU  Admin/Oper  Status
+--------- ------------ ---------------- ---- ---- ----------- ------
+e0a       Cluster      Cluster          up   9000  auto/10000 healthy
+e0b       Cluster      Cluster          up   9000  auto/10000 healthy
+
+4 entries were displayed.
+----
+====
+.. 显示有关 LIF 的信息： `network interface show - Vserver Cluster`
++
+.显示示例
+[%collapsible]
+====
+[listing]
+----
+cluster1::*> network interface show -vserver Cluster
+
+            Logical            Status     Network            Current       Current Is
+Vserver     Interface          Admin/Oper Address/Mask       Node          Port    Home
+----------- ------------------ ---------- ------------------ ------------- ------- ----
+Cluster
+            cluster1-01_clus1  up/up      169.254.209.69/16  cluster1-01   e0a     true
+            cluster1-01_clus2  up/up      169.254.49.125/16  cluster1-01   e0b     true
+            cluster1-02_clus1  up/up      169.254.47.194/16  cluster1-02   e0a     true
+            cluster1-02_clus2  up/up      169.254.19.183/16  cluster1-02   e0b     true
+
+4 entries were displayed.
+----
+====
+
+
+. 对远程集群 LIF 执行 Ping 操作： `cluster ping-cluster -node _node-name_`
++
+.显示示例
+[%collapsible]
+====
+[listing]
+----
+cluster1::*> **cluster ping-cluster -node cluster1-02**
+Host is cluster1-02
+Getting addresses from network interface table...
+Cluster cluster1-01_clus1 169.254.209.69 cluster1-01     e0a
+Cluster cluster1-01_clus2 169.254.49.125 cluster1-01     e0b
+Cluster cluster1-02_clus1 169.254.47.194 cluster1-02     e0a
+Cluster cluster1-02_clus2 169.254.19.183 cluster1-02     e0b
+Local = 169.254.47.194 169.254.19.183
+Remote = 169.254.209.69 169.254.49.125
+Cluster Vserver Id = 4294967293
+Ping status:
+....
+Basic connectivity succeeds on 4 path(s)
+Basic connectivity fails on 0 path(s)
+................
+Detected 9000 byte MTU on 4 path(s):
+    Local 169.254.19.183 to Remote 169.254.209.69
+    Local 169.254.19.183 to Remote 169.254.49.125
+    Local 169.254.47.194 to Remote 169.254.209.69
+    Local 169.254.47.194 to Remote 169.254.49.125
+Larger than PMTU communication succeeds on 4 path(s)
+RPC status:
+2 paths up, 0 paths down (tcp check)
+2 paths up, 0 paths down (udp check)
+----
+====
+. 验证是否已在所有集群 LIF 上启用 `auto-revert` 命令： `network interface show -vserver cluster -fields auto-revert`
++
+.显示示例
+[%collapsible]
+====
+[listing]
+----
+cluster1::*> network interface show -vserver Cluster -fields auto-revert
+
+          Logical
+Vserver   Interface           Auto-revert
+--------- ––––––-------------- ------------
+Cluster
+          cluster1-01_clus1   true
+          cluster1-01_clus2   true
+          cluster1-02_clus1   true
+          cluster1-02_clus2   true
+4 entries were displayed.
+----
+====
+. 对于 ONTAP 9.8 及更高版本，使用命令 `ssystem switch Ethernet log setup-password` 启用以太网交换机运行状况监控器日志收集功能以收集交换机相关的日志文件
++
+`s系统交换机以太网日志 enable-Collection`
+
++
+.显示示例
+[%collapsible]
+====
+[listing]
+----
+cluster1::*> system switch ethernet log setup-password
+Enter the switch name: <return>
+The switch name entered is not recognized.
+Choose from the following list:
+cs1
+cs2
+
+cluster1::*> system switch ethernet log setup-password
+
+Enter the switch name: cs1
+RSA key fingerprint is e5:8b:c6:dc:e2:18:18:09:36:63:d9:63:dd:03:d9:cc
+Do you want to continue? {y|n}::[n] y
+
+Enter the password: <enter switch password>
+Enter the password again: <enter switch password>
+
+cluster1::*> system switch ethernet log setup-password
+
+Enter the switch name: cs2
+RSA key fingerprint is 57:49:86:a1:b9:80:6a:61:9a:86:8e:3c:e3:b7:1f:b1
+Do you want to continue? {y|n}:: [n] y
+
+Enter the password: <enter switch password>
+Enter the password again: <enter switch password>
+
+cluster1::*> system  switch ethernet log enable-collection
+
+Do you want to enable cluster log collection for all nodes in the cluster?
+{y|n}: [n] y
+
+Enabling cluster switch log collection.
+
+cluster1::*>
+----
+====
++
+[NOTE]
+====
+如果其中任何一个命令返回错误，请联系 NetApp 支持部门。
+
+====
+. 对于 ONTAP 9.5P16 ， 9.6P12 和 9.7P10 及更高版本的修补程序，请使用以下命令启用以太网交换机运行状况监控器日志收集功能以收集交换机相关的日志文件： `ssystem cluster-switch log setup-password`
++
+`ssystem cluster-switch log enable-Collection`
+
++
+.显示示例
+[%collapsible]
+====
+[listing]
+----
+cluster1::*> system cluster-switch log setup-password
+Enter the switch name: <return>
+The switch name entered is not recognized.
+Choose from the following list:
+cs1
+cs2
+
+cluster1::*> system cluster-switch log setup-password
+
+Enter the switch name: cs1
+RSA key fingerprint is e5:8b:c6:dc:e2:18:18:09:36:63:d9:63:dd:03:d9:cc
+Do you want to continue? {y|n}::[n] y
+
+Enter the password: <enter switch password>
+Enter the password again: <enter switch password>
+
+cluster1::*> system cluster-switch log setup-password
+
+Enter the switch name: cs2
+RSA key fingerprint is 57:49:86:a1:b9:80:6a:61:9a:86:8e:3c:e3:b7:1f:b1
+Do you want to continue? {y|n}:: [n] y
+
+Enter the password: <enter switch password>
+Enter the password again: <enter switch password>
+
+cluster1::*> system cluster-switch log enable-collection
+
+Do you want to enable cluster log collection for all nodes in the cluster?
+{y|n}: [n] y
+
+Enabling cluster switch log collection.
+
+cluster1::*>
+----
+====
++
+[NOTE]
+====
+如果其中任何一个命令返回错误，请联系 NetApp 支持部门。
+
+====
+

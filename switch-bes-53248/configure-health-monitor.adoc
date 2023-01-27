@@ -1,0 +1,75 @@
+---
+permalink: switch-bes-53248/configure-health-monitor.html 
+sidebar: sidebar 
+keywords: CSHM,initial setup,configuration file,cshm,enable SSH 
+summary: '您可以安装集群交换机运行状况监控器(Cluster Switch Health Monitor、CSHM)配置文件、该文件可监控BES-53248集群交换机。' 
+---
+= 安装集群交换机运行状况监控器（ CSHM ）配置文件
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+您可以安装集群交换机运行状况监控器(Cluster Switch Health Monitor、CSHM)配置文件、该文件可监控BES-53248集群交换机。
+
+在ONTAP 9.5P7及更早版本以及9.6P2及更早版本中、您必须单独下载CSHM文件。在ONTAP 9.5P8及更高版本、9.6P3及更高版本以及9.7及更高版本中、CSHM文件与ONTAP 捆绑在一起。
+
+.您需要的内容
+确保ONTAP 集群已启动且正在运行。
+
+.步骤
+. 根据相应的ONTAP 版本下载CSHM zip文件。此文件可从页面获得： https://mysupport.netapp.com/NOW/cgi-bin/software/["NetApp 软件下载"^]
++
+.. 在软件下载页面上、选择*交换机运行状况监控器配置文件*。
+.. 选择平台=* ONTAP *、然后单击*执行！*。
+.. 在"Switch Health Monitor Configuration Files for ONTAP "页面上、单击*查看并下载*。
+.. 在适用于ONTAP -问题描述 的交换机运行状况监控器配置文件页面上、针对适用的集群交换机型号单击*下载*；例如：* Broadcom支持的BES-53248*。
+.. 在最终用户许可协议页面上、单击*接受*。
+.. 在"Switch Health Monitor Configuration Files for ONTAP - Download"页面上、选择适用的配置文件；例如：* Broadcom_BES-53248.zip *。
+
+
+. 将适用的 zip 文件上传到 IP 地址为 X.X.X.X.X 的内部 Web 服务器
++
+对于内部Web服务器IP地址192.168.2.2、如果存在/usr/download目录、则可以使用将zip文件上传到Web服务器 `scp`：
+
++
+[listing, subs="+quotes"]
+----
+% *scp Broadcom_BES-53248.zip admin@192.168.2.20:/usr/download/Broadcom_BES-53248.zip*
+----
+. 使用命令 `set -privilege advanced` 从集群中的一个 ONTAP 系统访问高级模式设置：
++
+[listing, subs="+quotes"]
+----
+cluster1::> *set -privilege advanced*
+----
+. 运行switch health monitor configure命令：
++
+`system cluster-switch configure-health-monitor -node * -package-url \http://server/file-location`
+
++
+.显示示例
+[%collapsible]
+====
+[listing, subs="+quotes"]
+----
+cluster1::> *system cluster-switch configure-health-monitor -node * -package-url
+http://192.168.2.20/usr/download/Broadcom_BES-53248.zip*
+----
+====
+. 验证命令输出是否包含文本字符串： `downloaded package processed successfully`。如果发生错误，请联系 NetApp 支持部门。
+. 在 ONTAP 系统上运行命令 `ssystem cluster-switch show` ，并确保在发现集群交换机时已将受监控字段设置为 "True" 。
++
+[listing, subs="+quotes"]
+----
+cluster1::> *system cluster-switch show*
+----
++
+
+NOTE: 如果您随时还原到早期版本的ONTAP 、则必须重新安装CSHM配置文件、以便对BES-53248集群交换机启用交换机运行状况监控。
+
+
+
+.下一步是什么？
+要使用CSHM中提供的所有功能、请按中所述启用SSH link:configure-ssh.html["在 BES-53248 集群交换机上启用 SSH"]。

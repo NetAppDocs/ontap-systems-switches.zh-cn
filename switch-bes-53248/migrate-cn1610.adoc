@@ -1,0 +1,711 @@
+---
+permalink: switch-bes-53248/migrate-cn1610.html 
+sidebar: sidebar 
+keywords: CN1610, CN1610 replacing, migrate from CN1610 
+summary: 要将集群中的现有 CN1610 集群交换机更换为支持 Broadcom 的 BES-53248 集群交换机，您必须执行一系列特定的任务。 
+---
+= 将CN1610集群交换机迁移到BES-53248集群交换机
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+要将集群中的CN1610集群交换机迁移到受Broadcom支持的BES-53248集群交换机、请查看迁移要求、然后按照迁移操作步骤 进行操作。
+
+支持以下集群交换机：
+
+* CN1610
+* BES-53248
+
+
+
+
+== 查看要求
+
+查看配置信息、端口连接和布线要求。
+
+
+
+=== 节点连接
+
+集群交换机支持以下节点连接：
+
+* NetApp CN1610 ：端口 0/1 到 0/12 （ 10 GbE ）
+* BES-53248 ：端口 0/1-0/16 （ 10/25 GbE ）
++
+
+NOTE: 可以通过购买端口许可证来激活其他端口。
+
+
+
+
+
+=== ISL 端口
+
+集群交换机使用以下交换机间链路（ ISL ）端口：
+
+* NetApp CN1610 ：端口 0/13 至 0/16 （ 10 GbE ）
+* BES-53248 ：端口 0/55-0/56 （ 100 GbE ）
+
+
+。 https://hwu.netapp.com/Home/Index["_NetApp Hardware Universe"^] 包含有关ONTAP 兼容性、支持的EFOS固件以及BES-53248集群交换机布线的信息。
+
+
+
+=== ISL布线
+
+相应的 ISL 布线如下所示：
+
+* * 起始： * 对于 CN1610 到 CN1610 （ SFP+ 到 SFP+ ），需要四根 SFP+ 光纤或铜缆直连缆线。
+* * 临时： * 对于 CN1610 到 BES-53248 （ SFP+ 到 SFP28 ），使用四根 10G SFP+ 光纤收发器 / 光纤或铜缆直连。
+* * 最终版本： * 对于 BES-53248 到 BES-53248 （ QSFP28 到 QSFP28 ），需要两根 QSFP28 光纤收发器 / 光纤或铜缆直连缆线。
+
+
+
+
+== 迁移交换机
+
+按照此操作步骤 将CN1610集群交换机迁移到BES-53248集群交换机。
+
+.关于示例
+此操作步骤中的示例使用以下交换机和节点命名：
+
+* 这些示例使用两个节点、每个节点部署两个10 GbE集群互连端口： `e0a` 和 `e0b`。
+* 根据不同版本的 ONTAP 软件，命令输出可能会有所不同。
+* 要更换的 CN1610 交换机为 `CL1` 和 `CL2` 。
+* 用于更换 CN1610 交换机的 BES-53248 交换机为 `CS1` 和 `CS2` 。
+* 节点为 `node1` 和 `node2` 。
+* 交换机 CL2 首先由 CS2 取代，然后由 CL1 取代 CS1 。
+* BES-53248 交换机预加载了受支持的参考配置文件（ Reference Configuration File ， RCF ）和以太网阵列操作系统（ Ethernet Fabric OS ， EFOS ）版本，并在端口 55 和 56 上连接了 ISL 缆线。
+* 集群 LIF 名称是 node1 的 `node1_clus1` 和 `node1_clus2` ， node2 的 `node2_clus1` 和 `node2_clus2` 。
+
+
+.关于此任务
+此操作步骤包括以下情形：
+
+* 集群从两个节点连接到两个 CN1610 集群交换机开始。
+* CN1610 交换机 CL2 由 BES-53248 交换机 CS2 取代：
++
+** 从连接到 CL2 的所有节点上的所有集群端口断开缆线连接，然后使用支持的缆线将端口重新连接到新的集群交换机 CS2 。
+** 断开 ISL 端口 CL1 和 CL2 之间的缆线，然后使用支持的缆线将端口从 CL1 重新连接到 CS2 。
+
+
+* CN1610 交换机 CL1 由 BES-53248 交换机 CS1 取代：
++
+** 从连接到 CL1 的所有节点上的所有集群端口断开缆线连接，然后使用支持的缆线将端口重新连接到新的集群交换机 CS1 。
+** 断开 ISL 端口 CL1 和 CS2 之间的缆线，然后使用支持的缆线将端口从 CS1 重新连接到 CS2 。
+
+
+
+
+
+
+=== 第1步：准备迁移
+
+. 如果在此集群上启用了 AutoSupport ，则通过调用 AutoSupport 消息禁止自动创建案例：
++
+`ssystem node AutoSupport invoke -node * -type all -message MAINT=xh`
+
++
+其中 x 是维护时段的持续时间，以小时为单位。
+
++
+
+NOTE: AutoSupport 消息会通知技术支持此维护任务，以便在维护窗口期间禁止自动创建案例。
+
++
+以下命令将禁止自动创建案例 2 小时：
+
++
+[listing]
+----
+cluster1::*> system node autosupport invoke -node \* -type all -message MAINT=2h
+----
+. 将权限级别更改为高级，在系统提示您继续时输入 * y * ：
++
+`set -privilege advanced`
+
++
+此时将显示高级提示符（ * > ）。
+
+. 验证是否已在所有集群 LIF 上启用自动还原：
++
+`network interface show - vserver cluster -fields auto-revert`
+
++
+.显示示例
+[%collapsible]
+====
+[listing, subs="+quotes"]
+----
+cluster1::*> *network interface show -vserver Cluster -fields auto-revert*
+
+          Logical
+Vserver   Interface     Auto-revert
+--------- ------------- ------------
+Cluster
+          node1_clus1   true
+          node1_clus2   true
+          node2_clus1   true
+          node2_clus2   true
+----
+====
+. 显示有关配置中设备的信息：
++
+`network device-discovery show -protocol cdp`
+
++
+.显示示例
+[%collapsible]
+====
+以下示例显示了在每个节点中为每个集群互连交换机配置了多少个集群互连接口：
+
+[listing, subs="+quotes"]
+----
+cluster1::*> *network device-discovery show -protocol cdp*
+Node/       Local  Discovered
+Protocol    Port   Device (LLDP: ChassisID)  Interface         Platform
+----------- ------ ------------------------- ----------------  ----------------
+node2      /cdp
+            e0a    CL2                       0/2               CN1610
+            e0b    CL1                       0/2               CN1610
+node1      /cdp
+            e0a    CL2                       0/1               CN1610
+            e0b    CL1                       0/1               CN1610
+----
+====
+. 确定每个集群接口的管理或运行状态。
++
+.. 显示集群网络端口属性：
++
+`network port show -ipspace cluster`
+
++
+.显示示例
+[%collapsible]
+====
+[listing, subs="+quotes"]
+----
+cluster1::*> *network port show -ipspace Cluster*
+
+Node: node1
+                                                                       Ignore
+                                                  Speed(Mbps) Health   Health
+Port      IPspace      Broadcast Domain Link MTU  Admin/Oper  Status   Status
+--------- ------------ ---------------- ---- ---- ----------- -------- ------
+e0a       Cluster      Cluster          up   9000  auto/10000 healthy  false
+e0b       Cluster      Cluster          up   9000  auto/10000 healthy  false
+
+Node: node2
+                                                                       Ignore
+                                                  Speed(Mbps) Health   Health
+Port      IPspace      Broadcast Domain Link MTU  Admin/Oper  Status   Status
+--------- ------------ ---------------- ---- ---- ----------- -------- ------
+e0a       Cluster      Cluster          up   9000  auto/10000 healthy  false
+e0b       Cluster      Cluster          up   9000  auto/10000 healthy  false
+----
+====
+.. 显示有关逻辑接口的信息：
++
+`network interface show -vserver cluster`
+
++
+.显示示例
+[%collapsible]
+====
+[listing, subs="+quotes"]
+----
+cluster1::*> *network interface show -vserver Cluster*
+
+            Logical    Status     Network            Current       Current Is
+Vserver     Interface  Admin/Oper Address/Mask       Node          Port    Home
+----------- ---------- ---------- ------------------ ------------- ------- ----
+Cluster
+            node1_clus1  up/up    169.254.209.69/16  node1         e0a     true
+            node1_clus2  up/up    169.254.49.125/16  node1         e0b     true
+            node2_clus1  up/up    169.254.47.194/16  node2         e0a     true
+            node2_clus2  up/up    169.254.19.183/16  node2         e0b     true
+----
+====
+
+
+. 根据需要，验证新 BES-53248 交换机上是否安装了适当的端口许可证， RCF 和 EFOS 映像，并进行任何必要的站点自定义，例如用户和密码，网络地址等。
+. 对远程集群接口执行 Ping 操作：
++
+`cluster ping-cluster -node node-name`
+
++
+.显示示例
+[%collapsible]
+====
+以下示例显示了如何对远程集群接口执行 ping 操作：
+
+[listing, subs="+quotes"]
+----
+cluster1::*> *cluster ping-cluster -node node2*
+
+Host is node2
+Getting addresses from network interface table...
+Cluster node1_clus1 169.254.209.69  node1     e0a
+Cluster node1_clus2 169.254.49.125  node1     e0b
+Cluster node2_clus1 169.254.47.194  node2     e0a
+Cluster node2_clus2 169.254.19.183  node2     e0b
+
+Local = 169.254.47.194 169.254.19.183
+Remote = 169.254.209.69 169.254.49.125
+Cluster Vserver Id = 4294967293
+Ping status:
+
+Basic connectivity succeeds on 4 path(s)
+Basic connectivity fails on 0 path(s)
+
+Detected 9000 byte MTU on 4 path(s):
+    Local 169.254.47.194 to Remote 169.254.209.69
+    Local 169.254.47.194 to Remote 169.254.49.125
+    Local 169.254.19.183 to Remote 169.254.209.69
+    Local 169.254.19.183 to Remote 169.254.49.125
+Larger than PMTU communication succeeds on 4 path(s)
+
+RPC status:
+2 paths up, 0 paths down (tcp check)
+2 paths up, 0 paths down (udp check)
+----
+====
+
+
+
+
+=== 第2步：配置端口和布线
+
+. 关闭活动 CN1610 交换机 CL1 上的 ISL 端口 13 到 16 ：
++
+`s下行`
+
++
+.显示示例
+[%collapsible]
+====
+以下示例显示了如何关闭 CN1610 交换机 CL1 上的 ISL 端口 13 到 16 ：
+
+[listing, subs="+quotes"]
+----
+(CL1)# *configure*
+(CL1)(Config)# *interface 0/13-0/16*
+(CL1)(Interface 0/13-0/16)# *shutdown*
+(CL1)(Interface 0/13-0/16)# *exit*
+(CL1)(Config)# *exit*
+(CL1)#
+----
+====
+. 在 CN1610 CL1 和新的 BES-53248 CS2 之间构建临时 ISL 。ISL 只能在 CS2 上定义，因为 CL1 上的现有 ISL 可以重复使用。
++
+.显示示例
+[%collapsible]
+====
+以下示例将在CS2上构建一个临时ISL (端口13-16)、以连接到CL1上的现有ISL (端口13-16)。
+
+[listing, subs="+quotes"]
+----
+(cs2)# *configure*
+(cs2) (Config)# *port-channel name 1/2 temp-isl-cn1610*
+(cs2) (Config)# *interface 0/13-0/16*
+(cs2) (Interface 0/13-0/16)# *no spanning-tree edgeport*
+(cs2) (Interface 0/13-0/16)# *addport 1/2*
+(cs2) (Interface 0/13-0/16)# *exit*
+(cs2) (Config)# *interface lag 2*
+(cs2) (Interface lag 2)# *mtu 9216*
+(cs2) (Interface lag 2)# *port-channel load-balance 7*
+(cs2) (Config)# *exit*
+
+(cs2)# *show port-channel 1/2*
+Local Interface................................ 1/2
+Channel Name................................... temp-isl-cn1610
+Link State..................................... Down
+Admin Mode..................................... Enabled
+Type........................................... Static
+Port-channel Min-links......................... 1
+Load Balance Option............................ 7
+(Enhanced hashing mode)
+
+Mbr     Device/        Port      Port
+Ports   Timeout        Speed     Active
+------- -------------- --------- -------
+0/13    actor/long     10G Full  False
+        partner/long
+0/14    actor/long     10G Full  False
+        partner/long
+0/15    actor/long     10G Full  False
+        partner/long
+0/16    actor/long     10G Full  False
+        partner/long
+----
+====
+. 在所有节点上，拔下连接到 CN1610 交换机 CL2 的缆线。
++
+然后，您必须将所有节点上已断开连接的端口重新连接到新的 BES-53248 交换机 CS2 。请参见 https://hwu.netapp.com/Home/Index["_NetApp Hardware Universe"^] 用于获得批准的布线选项。
+
+. 从 CN1610 交换机 CL2 上的端口 13 到 16 拔下四根 ISL 缆线。
++
+您必须使用适当的布线方式将新 BES-53248 交换机 CS2 上的端口 0/13 连接到 0/16 ，并将其连接到现有 CN1610 交换机 CL1 上的端口 13 到 16 。
+
+. 在活动的 CN1610 交换机 CL1 上启动 ISL 13 到 16 。
++
+.显示示例
+[%collapsible]
+====
+以下示例说明了在 CL1 上启动 ISL 端口 13 到 16 的过程：
+
+[listing, subs="+quotes"]
+----
+(CL1)# *configure*
+(CL1)(Config)# *interface 0/13-0/16*
+(CL1)(Interface 0/13-0/16,3/1)# *no shutdown*
+(CL1)(Interface 0/13-0/16,3/1)# *exit*
+(CL1)(Config)# *exit*
+(CL1)#
+----
+====
+. 验证CN1610交换机CL1上的ISL是否已"启动"：
++
+`s如何使用端口通道`
+
++
+。 `Link State` 应为"up"、 `Type` 应为"静态"、和 `Port Active` 端口0/13到0/16应为"True"：
+
++
+.显示示例
+[%collapsible]
+====
+[listing, subs="+quotes"]
+----
+(CL2)# *show port-channel 3/1*
+Local Interface................................ 3/1
+Channel Name................................... ISL-LAG
+Link State..................................... Up
+Admin Mode..................................... Enabled
+Type........................................... Static
+Load Balance Option............................ 7
+
+
+(Enhanced hashing mode)
+Mbr      Device/        Port        Port
+Ports    Timeout        Speed       Active
+-------- -------------- ----------- --------
+0/13     actor/long     10 Gb Full  True
+         partner/long
+0/14     actor/long     10 Gb Full  True
+         partner/long
+0/15     actor/long     10 Gb Full  True
+         partner/long
+0/16     actor/long     10 Gb Full  True
+         partner/long
+----
+====
+. 验证 BES-53248 交换机上的 ISL 端口是否已启动：
++
+`s如何使用端口通道`
+
++
+.显示示例
+[%collapsible]
+====
+[listing, subs="+quotes"]
+----
+(cs2)# *show port-channel 1/2*
+
+Local Interface................................ 1/2
+Channel Name................................... temp-isl-cn1610
+Link State..................................... Up
+Admin Mode..................................... Enabled
+Type........................................... Static
+Port-channel Min-links......................... 1
+Load Balance Option............................ 7
+
+(Src/Dest MAC, VLAN, EType, incoming port)
+
+Mbr     Device/       Port      Port
+Ports   Timeout       Speed     Active
+------- ------------- --------- -------
+0/13    actor/long    10G Full  True
+        partner/long
+0/14    actor/long    10G Full  True
+        partner/long
+0/15    actor/long    10G Full  True
+        partner/long
+0/16    actor/long    10G Full  True
+        partner/long
+----
+====
+. 验证所有集群互连端口是否均已还原到其主端口：
++
+`network interface show -vserver cluster`
+
++
+.显示示例
+[%collapsible]
+====
+[listing, subs="+quotes"]
+----
+cluster1::*> *network interface show -vserver Cluster*
+            Logical      Status     Network            Current       Current Is
+Vserver     Interface    Admin/Oper Address/Mask       Node          Port    Home
+----------- ------------ ---------- ------------------ ------------- ------- ----
+Cluster
+            node1_clus1  up/up      169.254.209.69/16  node1         e0a     true
+            node1_clus2  up/up      169.254.49.125/16  node1         e0b     true
+            node2_clus1  up/up      169.254.47.194/16  node2         e0a     true
+            node2_clus2  up/up      169.254.19.183/16  node2         e0b     true
+----
+====
+. 验证所有集群端口是否均已连接：
++
+`network port show -ipspace cluster`
+
++
+.显示示例
+[%collapsible]
+====
+以下示例显示了上一个命令的结果，用于验证所有集群互连是否均已启动：
+
+[listing, subs="+quotes"]
+----
+cluster1::*> *network port show -ipspace Cluster*
+
+Node: node1
+                                                                       Ignore
+                                                  Speed(Mbps) Health   Health
+Port      IPspace      Broadcast Domain Link MTU  Admin/Oper  Status   Status
+--------- ------------ ---------------- ---- ---- ----------- -------- ------
+e0a       Cluster      Cluster          up   9000  auto/10000 healthy  false
+e0b       Cluster      Cluster          up   9000  auto/10000 healthy  false
+
+Node: node2
+                                                                       Ignore
+                                                  Speed(Mbps) Health   Health
+Port      IPspace      Broadcast Domain Link MTU  Admin/Oper  Status   Status
+--------- ------------ ---------------- ---- ---- ----------- -------- ------
+e0a       Cluster      Cluster          up   9000  auto/10000 healthy  false
+e0b       Cluster      Cluster          up   9000  auto/10000 healthy  false
+----
+====
+. 对远程集群接口执行 Ping 操作：
++
+`cluster ping-cluster -node _node-name_`
+
++
+.显示示例
+[%collapsible]
+====
+以下示例显示了如何对远程集群接口执行 ping 操作：
+
+[listing, subs="+quotes"]
+----
+cluster1::*> *cluster ping-cluster -node node2*
+Host is node2
+Getting addresses from network interface table...
+Cluster node1_clus1 169.254.209.69  node1     e0a
+Cluster node1_clus2 169.254.49.125  node1     e0b
+Cluster node2_clus1 169.254.47.194  node2     e0a
+Cluster node2_clus2 169.254.19.183  node2     eob
+Local = 169.254.47.194 169.254.19.183
+Remote = 169.254.209.69 169.254.49.125
+Cluster Vserver Id = 4294967293
+Ping status:
+....
+Basic connectivity succeeds on 4 path(s)
+Basic connectivity fails on 0 path(s)
+................
+Detected 9000 byte MTU on 4 path(s):
+    Local 169.254.47.194 to Remote 169.254.209.69
+    Local 169.254.47.194 to Remote 169.254.49.125
+    Local 169.254.19.183 to Remote 169.254.209.69
+    Local 169.254.19.183 to Remote 169.254.49.125
+Larger than PMTU communication succeeds on 4 path(s)
+RPC status:
+2 paths up, 0 paths down (tcp check)
+2 paths up, 0 paths down (udp check)
+----
+====
+. 在所有节点上，拔下连接到 CN1610 交换机 CL1 的缆线。
++
+然后，您必须将所有节点上已断开连接的端口重新连接到新的 BES-53248 交换机 CS1 。请参见 https://hwu.netapp.com/Home/Index["_NetApp Hardware Universe"^] 用于获得批准的布线选项。
+
+. 拔下 BES-53248 交换机 CS2 上端口 13 到 16 的四根 ISL 缆线。
+. 删除 CS2 上的临时端口通道 2 。
++
+.显示示例
+[%collapsible]
+====
+以下示例将删除 port-channel 2 并将运行配置文件复制到启动配置文件：
+
+[listing, subs="+quotes"]
+----
+(cs2)# *configure*
+(cs2) (Config)# *deleteport 1/2 all*
+(cs2) (Config)# *interface 0/13-0/16*
+(cs2) (Interface 0/13-0/16)# *spanning-tree edgeport*
+​​​​​(cs2) (Interface 0/13-0/16)# *exit*
+(cs2) (Config)# *exit*
+(cs2)# *write memory*
+
+This operation may take a few minutes.
+Management interfaces will not be available during this time.
+
+Are you sure you want to save? (y/n) *y*
+
+Config file 'startup-config' created successfully .
+----
+====
+. 验证集群节点端口的状态：
++
+`network port show -ipspace cluster`
+
++
+以下示例验证 node1 和 node2 上的所有集群互连端口是否均为 `up` ：
+
++
+.显示示例
+[%collapsible]
+====
+[listing, subs="+quotes"]
+----
+cluster1::*> *network port show -ipspace Cluster*
+
+Node: node1
+                                                                       Ignore
+                                                  Speed(Mbps) Health   Health
+Port      IPspace      Broadcast Domain Link MTU  Admin/Oper  Status   Status
+--------- ------------ ---------------- ---- ---- ----------- -------- ------
+e0a       Cluster      Cluster          up   9000  auto/10000 healthy  false
+e0b       Cluster      Cluster          up   9000  auto/10000 healthy  false
+
+Node: node2
+                                                                       Ignore
+                                                  Speed(Mbps) Health   Health
+Port      IPspace      Broadcast Domain Link MTU  Admin/Oper  Status   Status
+--------- ------------ ---------------- ---- ---- ----------- -------- ------
+e0a       Cluster      Cluster          up   9000  auto/10000 healthy  false
+e0b       Cluster      Cluster          up   9000  auto/10000 healthy  false
+----
+====
+
+
+
+
+=== 第3步：验证配置
+
+. 验证接口现在是否为主：
++
+`network interface show -vserver cluster`
+
++
+.显示示例
+[%collapsible]
+====
+以下示例显示了 node1 和 node2 的集群互连接口状态为 `up` 和 `is home` ：
+
+[listing, subs="+quotes"]
+----
+cluster1::*> *network interface show -vserver Cluster*
+            Logical      Status     Network            Current   Current Is
+Vserver     Interface    Admin/Oper Address/Mask       Node      Port    Home
+----------- ------------ ---------- ------------------ --------- ------- ------
+Cluster
+            node1_clus1  up/up      169.254.209.69/16  node1     e0a     true
+            node1_clus2  up/up      169.254.49.125/16  node1     e0b     true
+            node2_clus1  up/up      169.254.47.194/16  node2     e0a     true
+            node2_clus2  up/up      169.254.19.183/16  node2     e0b     true
+----
+====
+. 对远程集群接口执行 Ping 操作，然后执行远程操作步骤调用服务器检查：
++
+`cluster ping-cluster -node _node-name_`
+
++
+.显示示例
+[%collapsible]
+====
+以下示例显示了如何对远程集群接口执行 ping 操作：
+
+[listing, subs="+quotes"]
+----
+cluster1::*> *cluster ping-cluster -node node2*
+Host is node2
+Getting addresses from network interface table...
+Cluster node1_clus1 169.254.209.69  node1     e0a
+Cluster node1_clus2 169.254.49.125  node1     e0b
+Cluster node2_clus1 169.254.47.194  node2     e0a
+Cluster node2_clus2 169.254.19.183  node2     e0b
+Local = 169.254.47.194 169.254.19.183
+Remote = 169.254.209.69 169.254.49.125
+Cluster Vserver Id = 4294967293
+Ping status:
+
+Basic connectivity succeeds on 4 path(s)
+Basic connectivity fails on 0 path(s)
+................
+Detected 9000 byte MTU on 4 path(s):
+    Local 169.254.47.194 to Remote 169.254.209.69
+    Local 169.254.47.194 to Remote 169.254.49.125
+    Local 169.254.19.183 to Remote 169.254.209.69
+    Local 169.254.19.183 to Remote 169.254.49.125
+Larger than PMTU communication succeeds on 4 path(s)
+RPC status:
+2 paths up, 0 paths down (tcp check)
+2 paths up, 0 paths down (udp check)
+----
+====
+. 显示有关配置中的设备的信息：
++
+`network device-discovery show -protocol cdp`
+
++
+.显示示例
+[%collapsible]
+====
+以下示例显示 node1 和 node2 已从 CN1610 CL2 和 CL1 迁移到 BES-53248 CS2 和 CS1 ：
+
+[listing, subs="+quotes"]
+----
+cluster1::*> *network device-discovery show -protocol cdp*
+Node/       Local  Discovered
+Protocol    Port   Device (LLDP: ChassisID)  Interface         Platform
+----------- ------ ------------------------- ----------------  ----------------
+node1      /cdp
+            e0a    cs2                       0/1               BES-53248
+            e0b    cs1                       0/1               BES-53248
+node2      /cdp
+            e0a    cs2                       0/2               BES-53248
+            e0b    cs1                       0/2               BES-53248
+----
+====
+. 如果未自动删除更换的 CN1610 交换机，请将其卸下：
++
+`ssystem cluster-switch delete -device _device-name_`
+
++
+.显示示例
+[%collapsible]
+====
+以下示例显示了如何删除 CN1610 交换机：
+
+[listing, subs="+quotes"]
+----
+cluster::*> *system cluster-switch delete –device CL2*
+cluster::*> *system cluster-switch delete –device CL1*
+----
+====
+. 如果禁止自动创建案例，请通过调用 AutoSupport 消息重新启用它：
++
+`ssystem node AutoSupport invoke -node * -type all -message MAINT=end`
+
++
+[listing, subs="+quotes"]
+----
+cluster::*> *system node autosupport invoke -node \* -type all -message MAINT=END*
+----
+
+
+.下一步是什么？
+迁移完成后，您可能需要安装所需的配置文件，以支持 BES-53248 集群交换机的集群交换机运行状况监控器（ Cluster Switch Health Monitor ， CSHM ）。请参见 link:configure-health-monitor.html["安装集群交换机运行状况监控器（ CSHM ）配置文件"] 和 link:configure-log-collection.html["启用日志收集功能"]。

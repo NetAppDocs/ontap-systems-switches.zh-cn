@@ -1,0 +1,74 @@
+---
+permalink: switch-bes-53248/components-bes53248.html 
+sidebar: sidebar 
+keywords: cluster-mode,supported versions,switches supported,cluster network,efos 
+summary: 对于BES-53248交换机安装和维护、请务必查看组件列表和部件号。 
+---
+= BES-53248集群交换机的组件和部件号
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+对于BES-53248交换机安装和维护、请务必查看组件列表和部件号。
+
+下表列出了BES-53248集群交换机组件的部件号和问题描述 、包括机架安装导轨套件、风扇和电源。
+
+[cols="1,2"]
+|===
+| 部件号 | Description 
+
+
+ a| 
+X190005
+ a| 
+BES-53248 ， CLSW ， 16Pt10/25GB ， PTSX ， BRDCM 支持（ PTSX = 端口侧排气）
+
+
+
+ a| 
+X190005r
+ a| 
+BES-53248 ， CLSW ， 16Pt10/25GB ， PSIN ， BRDCM 支持（ PSIN = 端口侧进气）
+
+
+
+ a| 
+X-RAIL 4Post-190005
+ a| 
+19 英寸 Ozeki 4 柱机架安装导轨套件
+
+
+
+ a| 
+X-Fan-190005-R
+ a| 
+风扇，端口侧进气 X190005
+
+
+
+ a| 
+X-Fan-190005-F
+ a| 
+风扇，端口侧排气 X190005
+
+
+
+ a| 
+X-PSU-190005-R
+ a| 
+电源，端口侧进气 X190005
+
+端口侧进气气流（反向空气）：冷空气通过冷通道的端口端进入机箱，并通过热通道中的风扇和电源模块进行排气。
+
+
+
+ a| 
+X-PSU-190005-F
+ a| 
+电源，端口侧排气 X190005
+
+端口端排气气流（标准空气）：冷空气通过冷通道中的风扇和电源模块进入机箱，并通过热通道中的机箱端口端进行排气。蓝色颜色表示端口端的排气气流。这是最常见的选项。
+
+|===

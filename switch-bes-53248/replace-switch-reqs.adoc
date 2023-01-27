@@ -1,0 +1,50 @@
+---
+permalink: switch-bes-53248/replace-switch-reqs.html 
+sidebar: sidebar 
+keywords: replace, replacing, defective, broadcom-supported, bes, cluster, switch, network, nondisruptive, procedure, ndu, replace a broadcom-supported bes-53428 cluster switch - bes-53428 switches 
+summary: 在集群网络中更换 Broadcom 支持的故障 BES-53248 集群交换机是无中断操作步骤 \ （ NDU\ ）。 
+---
+= 更换要求
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+在更换交换机之前、请确保当前环境和替代交换机满足以下条件。
+
+
+
+== 现有集群和网络基础架构
+
+请确保：
+
+* 现有集群已通过验证可完全正常运行、并且至少有一个完全连接的集群交换机。
+* 所有集群端口均为*启动*。
+* 所有集群逻辑接口(LIF)在管理和操作上均为*启动*并位于其主端口上。
+* ONTAP `cluster ping-cluster -node node1` 命令必须指示设置、 `basic connectivity` 和 `larger than PMTU communication`、已在所有路径上成功。
+
+
+
+
+== BES-53248更换集群交换机
+
+请确保：
+
+* 替代交换机上的管理网络连接正常工作。
+* 可以通过控制台访问替代交换机。
+* 节点连接为端口 0/1 到 0/16 ，并具有默认许可。
+* 端口0/55和0/56上的所有交换机间链路(ISL)端口均已禁用。
+* 所需的参考配置文件(Reference Configuration File、RCF)和EFOS操作系统交换机映像将加载到交换机上。
+* 交换机的初始自定义已完成、如中所述 link:configure-install-initial.html["配置BES-53248集群交换机"]。
+
+
+先前的所有站点自定义设置(例如STP、SNMP和SSH)都会复制到新交换机。
+
+
+
+== 有关详细信息 ...
+
+* https://mysupport.netapp.com/["NetApp 支持站点"^]
+* https://hwu.netapp.com/Home/Index["NetApp Hardware Universe"^]
+
