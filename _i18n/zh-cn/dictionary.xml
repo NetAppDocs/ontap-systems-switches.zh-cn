@@ -3444,8 +3444,6 @@
   <block id="ae93751a93d78c7a46cb2fb14c4ee8b7" category="paragraph"><block ref="37012567363af00fe31747157af69b42" prefix="" category="inline-code"></block></block>
   <block id="9678824a283295181839404bacab6aec" category="paragraph">在的横幅输出中<block ref="6d53824b9996e36fd31937e922967215" prefix=" " category="inline-code"></block> 命令中、您必须阅读并按照*重要说明*一节中的说明进行操作、以确保交换机的配置和操作正确无误。</block>
   <block id="5691cd5298e545e7d1addfde1db9b5b8" category="list-text">验证软件版本和交换机设置是否正确后、复制<block ref="092a495b03acdb0bf155d8ff2997a8d6" prefix=" " category="inline-code"></block> 将文件保存到<block ref="35b7dd24bfd716b0553d5e558b8afe97" prefix=" " category="inline-code"></block> 交换机S2上的文件。</block>
-  <block id="e3adda4268a7e7bd78f47e8cc5f86c48" category="section-title">第3步：将NX-OS映像下载到Cisco交换机S2并重新启动</block>
-  <block id="fb7ec7093f3964bd1d568e19bda96e76" category="list-text">将 NX-OS 映像下载到交换机 S2 。</block>
   <block id="4e829ce6afd35ae225b70f58b27f634a" category="paragraph">系统将提示您重新启动系统。</block>
   <block id="9f78f2ea8dc9f03e722eb98915e83eae" category="list-text">确认交换机上已有新的 NX-OS 版本号：</block>
   <block id="8492932a4b3a469a1fb900aea61b22ff" category="section-title">第4步：重新检查交换机和端口的运行状况</block>
@@ -4310,4 +4308,6 @@
   <block id="a8bb0b5314965a8ac1d110202d7aae1f" category="sidebar">安装NX-OS</block>
   <block id="72f2a813dae956304645ec60ccd278dd" category="sidebar">安装CSHM</block>
   <block id="9c065304d8a82e97da8536d4c7484ee2" category="sidebar">从旧版Cisco交换机迁移</block>
+  <block id="c95ced7468e70606897322014b89e5b3" category="section-title">第3步：将NX-OS映像复制到Cisco交换机S2并重新启动</block>
+  <block id="04677d95852adc11088eca251913d172" category="list-text">将NX-OS映像复制到交换机S2。</block>
 </blocks>
