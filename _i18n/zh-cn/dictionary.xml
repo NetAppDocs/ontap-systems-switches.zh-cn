@@ -2685,16 +2685,9 @@
   <block id="12e75289f74531c2e9239c05b88eb32e" category="paragraph">NVIDIA SN2100是一款存储交换机、可用于在存储区域网络(Storage Area Network、SAN)中的服务器和存储阵列之间路由数据。</block>
   <block id="aac9f267bacea6f425f8665241d6901e" category="section-title">初始配置概述</block>
   <block id="2ef7b00479266befed2783905ed9725e" category="paragraph">要在运行ONTAP 的系统上配置NVIDIA SN2100交换机、请执行以下步骤：</block>
-  <block id="3994bd0b5a767947c369850036abad60" category="list-text"><block ref="5f708dbff4511d944b6c35289a542f62" category="inline-link-macro-rx"></block>。有关说明、请参见_NVIDIA交换机安装指南_。</block>
-  <block id="3648cc7768f261614627db580d504021" category="list-text"><block ref="d639995fde516a3ba2e60963b02aecc1" category="inline-link-macro-rx"></block>。有关说明、请参见NVIDIA文档。</block>
   <block id="a194a4ea8dc4dc236627221cad9344d4" category="inline-link-macro">查看布线和配置注意事项</block>
-  <block id="68a82bf46901489d0528eb6e278407eb" category="list-text"><block ref="75ce5666fba6992a0719935651dd5b1b" category="inline-link-macro-rx"></block>。查看光纤连接、QSA适配器和交换机端口速度的要求。</block>
-  <block id="b2ec815093c92aab1190a2ccae478741" category="list-text"><block ref="9a00636def01671b999a7c1df59762ff" category="inline-link-macro-rx"></block>。如果您的系统需要将NS224驱动器架作为交换机连接存储(而不是直连存储)进行布线、请按照以下过程进行操作。</block>
   <block id="8043ee61c7f7379917235c3269fed7c9" category="inline-link-macro">在ONIE模式下安装Cumulus Linux</block>
-  <block id="6223814e9963eab1fb3fc8cbe6212288" category="list-text"><block ref="3041b5118a03f510955dbbcc0f577290" category="inline-link-macro-rx"></block> 或 <block ref="ac50052da6099ecd2d2a2ee1cd713de9" category="inline-link-macro-rx"></block>。可以在交换机运行Cumulus Linux或ONIE时安装Cumulus Linux (CL)操作系统。</block>
   <block id="516d8e9da45554d526faa978810dc178" category="inline-link-macro">安装参考配置文件脚本</block>
-  <block id="4696751771880c5f796bbc2f169663f7" category="list-text"><block ref="ef1c46298c43687118873cf83b7acf6b" category="inline-link-macro-rx"></block>。有两个RCF脚本可用于集群和存储应用程序。</block>
-  <block id="4bcf43c077e3614ae69de5f73808169c" category="list-text"><block ref="09a98bef759f1f04f7d518542e1b74bb" category="inline-link-macro-rx"></block>。此版本支持使用SNMPv3收集交换机日志和使用交换机运行状况监控(SHM)。</block>
   <block id="21429d09c1e8e6c38145050f75f1ba07" category="admonition">这些过程使用网络命令行实用程序(Network Command Line Utility、NCLU)、它是一个命令行界面、可确保所有用户均可完全访问Cumulus Linux。net命令是用于从终端执行操作的包装实用程序。</block>
   <block id="0f68b904e33d9ac04605aecc958bcf52" category="section-title">追加信息</block>
   <block id="16bd9f785cf803befb40588a09dc4b7f" category="paragraph">开始安装或维护之前、请务必查看以下内容：</block>
@@ -2901,9 +2894,6 @@
   <block id="649659a19a40cf2a55efabc4c7a28c68" category="summary">软件配置或NVIDIA SN2100交换机概述。</block>
   <block id="0d6a39d4370d0a5005a4a2e73039bb0b" category="doc">NVIDIA SN2100交换机的软件安装工作流</block>
   <block id="c8a27d215bcb482f0471051f67b496b5" category="paragraph">要为NVIDIA SN2100交换机安装和配置软件、请执行以下步骤：</block>
-  <block id="7b84c9478382206beb8f56b35ae7c7a4" category="list-text"><block ref="770c77dd441cd3adc4139ccb3c0d491b" category="inline-link-macro-rx"></block> 或 <block ref="28a30a7b340666b28d9a4222e714aaf7" category="inline-link-macro-rx"></block>。可以在交换机运行Cumulus Linux或ONIE时安装Cumulus Linux (CL)操作系统。</block>
-  <block id="eda2335614343224f067dc84ae521056" category="list-text"><block ref="464fe9c0adfef54cfb4c6fe21ef12b08" category="inline-link-macro-rx"></block>。有两个RCF脚本可用于集群和存储应用程序。每个的操作步骤 是相同的。</block>
-  <block id="5d307fbc4ffa96882d324a2f8da9f269" category="list-text"><block ref="eb6455edffdd82039a8793f500a86be5" category="inline-link-macro-rx"></block>。此版本支持使用SNMPv3收集交换机日志和使用交换机运行状况监控(SHM)。</block>
   <block id="6b3339f062ab261c4987d608ec574504" category="paragraph">按照此操作步骤 更换集群网络中有故障的NVIDIA SN2100交换机。这是无中断操作步骤 (NDU)。</block>
   <block id="dcc2aa0bf74cf9b9dfc30761986fb4ef" category="paragraph-title">现有集群和网络基础架构</block>
   <block id="4d7831edc195e453c0f47fc21741aa5d" category="list-text">经验证、现有集群可以完全正常运行、并且至少有一个完全连接的集群交换机。</block>
@@ -2932,10 +2922,6 @@
   <block id="a38ceeb006478442a9d71fea4faa1bec" category="list-text">验证集群网络是否运行正常。</block>
   <block id="e868bded76541295e018b74bb15a7920" category="doc">NVIDIA SN2100交换机安装和配置概述</block>
   <block id="17bac2b43f841c260ed0b0ae5bac894f" category="paragraph">NVIDIA SN2100是一款集群交换机、可用于构建具有两个以上节点的ONTAP 集群。</block>
-  <block id="fdfa4fe5f12121bf8acd7242cdd25320" category="list-text"><block ref="d4a90f7cd2b65eac1430336cfe2ee64b" category="inline-link-macro-rx"></block>。有关说明、请参见_NVIDIA交换机安装指南_。</block>
-  <block id="f54841b17626f4a1373235b78086d925" category="list-text"><block ref="00e0372232f46e972c663d4404b271c3" category="inline-link-macro-rx"></block>。有关说明、请参见NVIDIA的文档。</block>
-  <block id="90c36be7f6edddb34497f3775c087531" category="list-text"><block ref="81e27480a79c2bb77194c038c9737157" category="inline-link-macro-rx"></block>。查看光纤连接、QSA适配器和交换机端口速度的要求。</block>
-  <block id="79e3b136a83c9c55ce247a250a7df71c" category="list-text"><block ref="5e0473d3f7899dd064d2b0943ad87ca5" category="inline-link-macro-rx"></block>。如果您的系统需要将NS224驱动器架作为交换机连接存储(而不是直连存储)进行布线、请按照以下过程进行操作。</block>
   <block id="2e95d6c246df629a6432f312c5db273b" category="admonition">请参见<block ref="16a6d09025d51cb8dd3516798b3fee8a" category="inline-link-rx"></block> 所有受支持的ONTAP 版本。</block>
   <block id="1b634b8feab38e3bbd4e434301816457" category="list-text"><block ref="1b634b8feab38e3bbd4e434301816457" category="inline-link-macro-rx"></block></block>
   <block id="e831ca446f09bd354bf76a86391af038" category="list-text"><block ref="e831ca446f09bd354bf76a86391af038" category="inline-link-macro-rx"></block></block>
@@ -2984,18 +2970,11 @@
   <block id="9907ba6708c9ebadda3cca4eb234f091" category="paragraph">Cisco Nexus 9336C-x2存储交换机是Cisco Nexus 9000平台的一部分、可以安装在NetApp系统机柜中。通过存储交换机、您可以在存储区域网络(SAN)中的服务器和存储阵列之间路由数据。</block>
   <block id="be4cd7f1969695f8e6e1f2c8040abcd4" category="paragraph">要在运行ONTAP 的系统上初始配置Cisco Nexus 9336C-FX2交换机、请执行以下步骤：</block>
   <block id="5ac09e984471f320b2e8920ece32b03d" category="inline-link-macro">完成布线工作表</block>
-  <block id="a35232db42c207647b7450aaea5bc41b" category="list-text"><block ref="cef14d0feb244958ea603547d0bd8a6e" category="inline-link-macro-rx"></block>。使用布线图完成控制器和交换机之间的布线。</block>
   <block id="ef44963f41cab6cd9db7a1c9e6197076" category="inline-link-macro">安装交换机</block>
-  <block id="42acb098b5b72219ca0f1a73a63380f8" category="list-text"><block ref="8e341dc1e80127ca0dc2c12db6d0237a" category="inline-link-macro-rx"></block>。安装交换机硬件。</block>
   <block id="1fc245f373dd47304db35c4ef2df408e" category="inline-link-macro">配置交换机</block>
-  <block id="e797a214e0e9fe41332222602c81b75f" category="list-text"><block ref="17076ab60a08d2531d3ed2402e1393ec" category="inline-link-macro-rx"></block>。设置Cisco Nexus 9336C-x2共享交换机。</block>
   <block id="d33665f1bbad937646d20fe1a9b8ace8" category="inline-link-macro">将交换机安装在NetApp机柜中</block>
-  <block id="baea6e11a543077778fab5d113bad405" category="list-text"><block ref="e635379a5d7f0e2ce1a042bff79838b6" category="inline-link-macro-rx"></block>。根据您的配置、您可以将Cisco Nexus 9336C-FX2交换机和直通面板安装在NetApp机柜中、并使用交换机附带的标准支架。</block>
   <block id="0d5a52d62bb26b9e7ae6a509e4469dc1" category="inline-link-macro">准备安装NX-OS和RCF</block>
-  <block id="2791008378be4a6c43c8c41273ff29ef" category="list-text"><block ref="16a9a5fa8979bab3106e7aad0dfd20d9" category="inline-link-macro-rx"></block>。请按照准备安装Cisco NX-OS软件和参考配置文件(RCF)的初步过程进行操作。</block>
-  <block id="d9f1a542277f8e19773fbf2490fc1bd0" category="list-text"><block ref="9b0c8f45dcf821cab50389f012ecc68f" category="inline-link-macro-rx"></block>。在Nexus 9336C-FX2集群交换机上安装NX-OS软件。</block>
   <block id="45082651a479febeab25b63e58d36d5e" category="inline-link-macro">安装RCF配置文件</block>
-  <block id="f88457b6e24840a99ce949f1b69995c8" category="list-text"><block ref="1310b35f96fb7b8136de7cec708b0834" category="inline-link-macro-rx"></block>。首次设置Nexus 9336C-x2交换机后、安装RCF。您也可以使用此操作步骤升级 RCF 版本。</block>
   <block id="963382b42eb000171ee5f8379237c25e" category="list-text"><block ref="963382b42eb000171ee5f8379237c25e" category="inline-link-macro-rx"></block></block>
   <block id="88abf51732f30f17b65def4d1747e28f" category="list-text"><block ref="88abf51732f30f17b65def4d1747e28f" category="inline-link-macro-rx"></block></block>
   <block id="08712014b627ff0e1c01c2b7e6c49149" category="list-text"><block ref="08712014b627ff0e1c01c2b7e6c49149" category="inline-link-macro-rx"></block></block>
@@ -3713,8 +3692,6 @@
   <block id="5397dcc92d377f4ebfbca5756b92d81f" category="doc">BES-53248交换机的安装和配置概述</block>
   <block id="84247410f9abb8ef1b7e190d6a0a0b48" category="paragraph">BES-53248是一款裸机交换机、设计用于2到24个节点的ONTAP 集群。</block>
   <block id="d26749e6607016e99f01bc39d1671b57" category="paragraph">要在运行ONTAP 的系统上初始配置BES-53248集群交换机、请执行以下步骤：</block>
-  <block id="ab3c2ce6ae29aecd902b23e99c4b87e7" category="list-text"><block ref="949c7bd82934f57f3d06056d5065442f" category="inline-link-macro-rx"></block>。有关说明、请参见_Broadcom-Supported BES-53248 Cluster Switch Installation Guide_。</block>
-  <block id="d4756172ad6ad11b5eb815da730b09c1" category="list-text"><block ref="5d9dfcd78fc81899f18975b4b56b3ae1" category="inline-link-macro-rx"></block>。对BES-53248集群交换机执行初始设置。</block>
   <block id="30bc59659410cfda61387b34e1612b7c" category="list-text"><block ref="30bc59659410cfda61387b34e1612b7c" category="inline-link-macro-rx"></block></block>
   <block id="9b98f71b4f8966672466da09f0a3d382" category="doc">BES-53248集群交换机的文档要求</block>
   <block id="4c80b08bbc6e6756fd49dea97199c7f2" category="paragraph">有关BES-53248交换机的安装和维护、请务必查看特定的交换机和控制器文档。</block>
@@ -3875,7 +3852,6 @@
   <block id="e146a01f183a5d149c1cbd22bd0299b2" category="list-text"><block ref="e146a01f183a5d149c1cbd22bd0299b2" category="inline-link-macro-rx"></block></block>
   <block id="0cc464fe26f2dccabb9644f27a14d078" category="list-text"><block ref="0cc464fe26f2dccabb9644f27a14d078" category="inline-link-macro-rx"></block></block>
   <block id="00266598571441926f1f10292cbdf9fc" category="list-text"><block ref="00266598571441926f1f10292cbdf9fc" category="inline-link-macro-rx"></block></block>
-  <block id="8c7daf3ed25e8803fb5850230824d4ab" category="list-text"><block ref="8c7daf3ed25e8803fb5850230824d4ab" category="inline-link-macro-rx"></block></block>
   <block id="51a94b8766ae9701011e60140f80ec28" category="section-title">第6步：完成系统设置</block>
   <block id="8a19d1619bb8803d8a6b5d21556d87ad" category="paragraph">配置交换机并安装所需软件后、请访问适用于AFF/FAS平台型号的安装和设置说明以完成系统设置。</block>
   <block id="042015a72c43c5acf32394204c5b7924" category="section-title">第7步：完成ONTAP 配置</block>
@@ -3918,9 +3894,6 @@
   <block id="ba22e161ba175c3d6824e6b50ef5221a" category="list-text">验证交换网络配置是否有效：</block>
   <block id="aa31f7677652c2fea1d778b59293da53" category="summary">Cisco Nexus 9336C-x2共享交换机的软件配置概述</block>
   <block id="3a43f2b6e73a7e4209395e71b6dff7d0" category="doc">Cisco Nexus 9336C-x2共享交换机的软件安装工作流</block>
-  <block id="973bc6d62150fbaa55e70d8df81ec0f8" category="list-text"><block ref="7f9772c8b2604a832c6aad846dc2adc9" category="inline-link-macro-rx"></block>。请按照准备安装Cisco NX-OS软件和参考配置文件(RCF)的初步过程进行操作。</block>
-  <block id="2b6a38f1a48788fb8b8b1ac579851599" category="list-text"><block ref="f9b2ed845567b21857ae5d0479088ab0" category="inline-link-macro-rx"></block>。在Nexus 9336C-FX2集群交换机上安装NX-OS软件。</block>
-  <block id="7a5c9fd989250a77986d129505d532d7" category="list-text"><block ref="ac0177a37e0d6a9d48948f0f0ce18138" category="inline-link-macro-rx"></block>。首次设置Nexus 9336C-x2交换机后、安装RCF。您也可以使用此操作步骤升级 RCF 版本。</block>
   <block id="8899b5a1c597241a90b454a6466879e6" category="doc">从具有交换机连接存储的交换集群迁移</block>
   <block id="c7b8e40be77126b5eacc99bd6f348ab5" category="paragraph">您可以通过重复使用存储交换机从具有交换机连接存储的交换集群进行迁移。</block>
   <block id="308e73b5eb7a02415a015d81cb5e889b" category="list-text">【第14步】验证HA对1的存储配置是否正确且无错误：</block>
@@ -3946,11 +3919,6 @@
   <block id="39f03c8807c9d36b2901f7198a4ae0c2" category="paragraph">根据您的配置、您可以 <block ref="bd7e5f56c6474a1d0a59eeac0ce681d7" category="inline-link-macro-rx"></block>。否则，请转到 <block ref="16a9a5fa8979bab3106e7aad0dfd20d9" category="inline-link-macro-rx"></block>。</block>
   <block id="e0f95538095f3006db4ec3d4d022f616" category="summary">Cisco Nexus 9336C-x2共享交换机的安装和配置概述</block>
   <block id="c4081cf1ddd1a31c8c993d369968dbdb" category="paragraph">Cisco Nexus 9336C-x2共享交换机是Cisco Nexus 9000平台的一部分、可以安装在NetApp系统机柜中。通过共享交换机、您可以通过支持使用共享集群和存储参考配置文件、将集群和存储功能组合到共享交换机配置中。</block>
-  <block id="714e0b43f6eac719e758ce441d8685a7" category="list-text"><block ref="791d44ab04841c1e3ddab1f7a28b754b" category="inline-link-macro-rx"></block>。使用布线图完成控制器和交换机之间的布线。</block>
-  <block id="0d2f14710c4bb7625d4fa9deaca75762" category="list-text"><block ref="2d5ab056fce0957a1995d7dbefe2460c" category="inline-link-macro-rx"></block>。安装交换机硬件。</block>
-  <block id="d0d296dbf35da2987b88d950b61aefa5" category="list-text"><block ref="068ae9dc6825f9dcbe393c782d23d120" category="inline-link-macro-rx"></block>。设置Cisco Nexus 9336C-x2共享交换机。</block>
-  <block id="e6d372855e3dc8472c2411ea8cf7380d" category="list-text"><block ref="66c8d67023ba728df76220c253a81713" category="inline-link-macro-rx"></block>。根据您的配置、您可以将Cisco Nexus 9336C-FX2交换机和直通面板安装在NetApp机柜中、并使用交换机附带的标准支架。</block>
-  <block id="23d4101fbbc40a70acd20a22047d4490" category="list-text"><block ref="cd3d2c6d0c8a0c43f0a0e10375ad6bbc" category="inline-link-macro-rx"></block>。请按照准备安装Cisco NX-OS软件和参考配置文件(RCF)的初步过程进行操作。</block>
   <block id="6b60b7ab5a3f661e97c0ea00594d9f2a" category="list-text"><block ref="6b60b7ab5a3f661e97c0ea00594d9f2a" category="inline-link-macro-rx"></block></block>
   <block id="ce2926213e4f5e76e8b29ae87f344220" category="list-text"><block ref="ce2926213e4f5e76e8b29ae87f344220" category="inline-link-macro-rx"></block></block>
   <block id="c05d7708e583b7d4b251d68f1130d2c6" category="list-text"><block ref="c05d7708e583b7d4b251d68f1130d2c6" category="inline-link-macro-rx"></block></block>
@@ -4048,11 +4016,8 @@
   <block id="543e6a3c9b07a3642afb462fba582642" category="inline-link-macro">安装硬件</block>
   <block id="869193bc7b6778ff0fc35c9d38a31f66" category="list-text"><block ref="869193bc7b6778ff0fc35c9d38a31f66" category="inline-link-macro-rx"></block></block>
   <block id="bdfe1ecddcd4f86ab15c01ce788e67b1" category="list-text"><block ref="bdfe1ecddcd4f86ab15c01ce788e67b1" category="inline-link-macro-rx"></block></block>
-  <block id="e4d0daedaba3c8eeff651b790239b758" category="inline-link-macro">安装参考配置文件</block>
-  <block id="4c01936e1c2580034e898b60cf583518" category="list-text"><block ref="4c01936e1c2580034e898b60cf583518" category="inline-link-macro-rx"></block></block>
   <block id="085e32a02cb4ebf3ac87c8b1791d407a" category="inline-link-macro">在运行ONTAP 8.3.1及更高版本的交换机上安装FastPath和RCF。</block>
   <block id="fa46630a0f02f3a3e380fcfce6961441" category="admonition">如果交换机运行的是ONTAP 8.3.1或更高版本、请按照中的说明进行操作 <block ref="b8d373212331c2dcd588cc85c06ecfce" category="inline-link-macro-rx"></block></block>
-  <block id="98550b7da12ec82b7d7b8d53475975fd" category="list-text"><block ref="98550b7da12ec82b7d7b8d53475975fd" category="inline-link-macro-rx"></block></block>
   <block id="56d51248b29d38d6d0101b911261169f" category="doc">配置NetApp CN1610交换机的硬件</block>
   <block id="e0989ea3222f6d87d164f29c5bf26ac3" category="paragraph">要为集群环境配置交换机硬件和软件、请参见 <block ref="97da2fa0661aaa2adc4945dcf4ec0676" category="inline-link-rx"></block>。</block>
   <block id="b8669d2ad31b6d953ab86a73bb3d959f" category="summary">有关NetApp CN1610交换机的安装和维护、请务必查看所有建议的文档。</block>
@@ -4310,4 +4275,54 @@
   <block id="9c065304d8a82e97da8536d4c7484ee2" category="sidebar">从旧版Cisco交换机迁移</block>
   <block id="c95ced7468e70606897322014b89e5b3" category="section-title">第3步：将NX-OS映像复制到Cisco交换机S2并重新启动</block>
   <block id="04677d95852adc11088eca251913d172" category="list-text">将NX-OS映像复制到交换机S2。</block>
+  <block id="d04983d9bd489fd4f53e439238800094" category="list-text"><block ref="5f708dbff4511d944b6c35289a542f62" category="inline-link-macro-rx"></block>。</block>
+  <block id="ddee9ddda45482f8b50a8ca3d914d59a" category="paragraph">有关说明、请参见_NVIDIA交换机安装指南_。</block>
+  <block id="5845d3fca01cce4672ef2b7e32409ff8" category="paragraph">有关说明、请参见NVIDIA文档。</block>
+  <block id="b5cafb18c89d57d8df7255c9f420d2ca" category="paragraph">查看光纤连接、QSA适配器和交换机端口速度的要求。</block>
+  <block id="dc2bbc38ec9887a7f4fa50b23f2c0a3d" category="paragraph">如果您的系统需要将NS224驱动器架作为交换机连接存储(而不是直连存储)进行布线、请按照以下过程进行操作。</block>
+  <block id="cee17d3de1bd4e10ffb4f75ffbd430da" category="list-text"><block ref="3041b5118a03f510955dbbcc0f577290" category="inline-link-macro-rx"></block> 或 <block ref="ac50052da6099ecd2d2a2ee1cd713de9" category="inline-link-macro-rx"></block>。</block>
+  <block id="c9c417af7a858dfc220fb9facdaa5893" category="paragraph">当交换机运行的是Cumulus Linux或ONIE时、您可以安装Cumulus Linux (CL)操作系统。</block>
+  <block id="02c867e49effa332687b835abcbc2abe" category="list-text"><block ref="ef1c46298c43687118873cf83b7acf6b" category="inline-link-macro-rx"></block>。</block>
+  <block id="c945ea7b3efde1e618122f92507cc502" category="paragraph">有两个RCF脚本可用于集群和存储应用程序。</block>
+  <block id="c429557b3b11e35c09d4c091bc095bbd" category="list-text"><block ref="09a98bef759f1f04f7d518542e1b74bb" category="inline-link-macro-rx"></block>。</block>
+  <block id="2764c65a7d4c079147d8cf98e461cb33" category="paragraph">此版本支持使用SNMPv3收集交换机日志和使用交换机运行状况监控(SHM)。</block>
+  <block id="aa0ae6c76f83fc6d32395967e66e1a57" category="list-text"><block ref="eb6455edffdd82039a8793f500a86be5" category="inline-link-macro-rx"></block>。</block>
+  <block id="78a3145f7f81ea095cdce342b0eeb83a" category="list-text"><block ref="d4a90f7cd2b65eac1430336cfe2ee64b" category="inline-link-macro-rx"></block>。</block>
+  <block id="730c2f2b2335ad619f1d2f8616c9d744" category="paragraph">有关说明、请参见NVIDIA的文档。</block>
+  <block id="280f95118eded8b0219c276178c30e97" category="list-text"><block ref="5e0473d3f7899dd064d2b0943ad87ca5" category="inline-link-macro-rx"></block>。</block>
+  <block id="b8cd88654eafece50754fca964cba8a1" category="paragraph">如果您的系统需要将NS224驱动器架作为交换机连接存储(而不是直连存储)进行布线、请按照布线过程进行操作。</block>
+  <block id="f652bccf577477735d669989c28905ac" category="list-text"><block ref="ec4312d0db3bce928129e7e5c3a58d73" category="inline-link-rx"></block> 所有受支持的ONTAP 版本。</block>
+  <block id="8d9b5d4f25fe1897c088fde7c5ba650b" category="list-text"><block ref="cef14d0feb244958ea603547d0bd8a6e" category="inline-link-macro-rx"></block>。</block>
+  <block id="be822dc3c2f09a2076f72c87018d7d7b" category="list-text"><block ref="8e341dc1e80127ca0dc2c12db6d0237a" category="inline-link-macro-rx"></block>。</block>
+  <block id="e8831472105c8c0531f42bc39d32f613" category="list-text"><block ref="17076ab60a08d2531d3ed2402e1393ec" category="inline-link-macro-rx"></block>。</block>
+  <block id="eec1cb97c2d9b50587b39148509bdfbd" category="list-text"><block ref="e635379a5d7f0e2ce1a042bff79838b6" category="inline-link-macro-rx"></block>。</block>
+  <block id="279268b426208b389290aef165bbd309" category="paragraph">根据您的配置、您可以将Cisco Nexus 9336C-FX2交换机和直通面板安装在NetApp机柜中、并使用交换机附带的标准支架。</block>
+  <block id="04d079026b4a7b63a084b7ab24426723" category="list-text"><block ref="16a9a5fa8979bab3106e7aad0dfd20d9" category="inline-link-macro-rx"></block>。</block>
+  <block id="b7f670881100cb5015f24ab017668ff1" category="list-text"><block ref="1310b35f96fb7b8136de7cec708b0834" category="inline-link-macro-rx"></block>。</block>
+  <block id="47af580397d4becd89e7a33361eb8cbd" category="paragraph">首次设置Nexus 9336C-x2交换机后、安装RCF。您也可以使用此操作步骤升级 RCF 版本。</block>
+  <block id="97a8a7ac4811fc17c5e935133726b9b2" category="list-text"><block ref="ac6f2160356afb2413aaa23f35f53bc6" category="inline-link-macro-rx"></block>。</block>
+  <block id="fd280d62f276e98d2c1156b6a7cd8932" category="paragraph">在BES-53248集群交换机上下载并安装以太网阵列操作系统(EFOS)软件。</block>
+  <block id="e5e0ceddda654af2c9e3c1386537e4f7" category="paragraph">或者、也可以通过购买和安装更多许可证来添加新端口。此交换机基本型号已获得16个10GbE或25GbE端口和两个100GbE端口的许可。</block>
+  <block id="33446f9dc3d57cc65d0607602cea0067" category="paragraph">在BES-53248集群交换机上安装或升级RCF、然后在应用RCF后验证端口以获取额外许可证。</block>
+  <block id="4b0084dedd91a320badd9ce702d9bae0" category="list-text"><block ref="22274518ab78de16bd162dd23a69479d" category="inline-link-macro-rx"></block>。</block>
+  <block id="92ea1bc6f68e93d2d5fc9ac24486d4d4" category="paragraph">安装适用于集群交换机运行状况监控的配置文件。</block>
+  <block id="b983f14988f359bc65d91f081089597f" category="list-text"><block ref="e2b4c4f5313b05dff7c4a02a4e9e0df6" category="inline-link-macro-rx"></block>。</block>
+  <block id="874b218fc41a6956a440db02a0f0cc5a" category="paragraph">如果使用集群交换机运行状况监控器(Cluster Switch Health Monitor、CSHM)和日志收集功能、请在交换机上启用SSH。</block>
+  <block id="067297cae08e3bd57831d980bc629dab" category="paragraph">使用此功能可在ONTAP 中收集与交换机相关的日志文件。</block>
+  <block id="cacc96166a33cf689a2b3e556a37bf40" category="list-text"><block ref="949c7bd82934f57f3d06056d5065442f" category="inline-link-macro-rx"></block>。</block>
+  <block id="0d43ac9863e3c78b4df62b7cf3843813" category="paragraph">有关说明、请参见_Broadcom-Supported BES-53248 Cluster Switch Installation Guide_。</block>
+  <block id="921a3f90728cb9d30beb8ec9a74ab1f2" category="list-text"><block ref="5d9dfcd78fc81899f18975b4b56b3ae1" category="inline-link-macro-rx"></block>。</block>
+  <block id="bddd350f57f122b08e2cb443bea291f8" category="paragraph">对BES-53248集群交换机执行初始设置。</block>
+  <block id="52e2edab7e3825b54d082dec1bec95c2" category="paragraph">使用日志收集功能在ONTAP 中收集与交换机相关的日志文件。</block>
+  <block id="89176363c7d28c567fb702f95f7eee23" category="list-text"><block ref="89176363c7d28c567fb702f95f7eee23" category="inline-link-macro-rx"></block></block>
+  <block id="c3751db0b816eb77f301f33109e09667" category="list-text"><block ref="7f9772c8b2604a832c6aad846dc2adc9" category="inline-link-macro-rx"></block>参考配置文件(RCF)。</block>
+  <block id="2aff03c3dbc05dcd1a7473fdae46a518" category="list-text"><block ref="ac0177a37e0d6a9d48948f0f0ce18138" category="inline-link-macro-rx"></block>。</block>
+  <block id="77e50b9c28c254a30c6532cef05d409b" category="list-text"><block ref="791d44ab04841c1e3ddab1f7a28b754b" category="inline-link-macro-rx"></block>。</block>
+  <block id="fd5531349e673e037070aacc3a802f37" category="list-text"><block ref="2d5ab056fce0957a1995d7dbefe2460c" category="inline-link-macro-rx"></block>。</block>
+  <block id="95d266841a36bd621358bb2987e0ecdd" category="list-text"><block ref="068ae9dc6825f9dcbe393c782d23d120" category="inline-link-macro-rx"></block>。</block>
+  <block id="eac119f90bf735cc1cb17268d9240728" category="list-text"><block ref="66c8d67023ba728df76220c253a81713" category="inline-link-macro-rx"></block>。</block>
+  <block id="cdb75160db01dcaff8578367832cc1a8" category="list-text"><block ref="cd3d2c6d0c8a0c43f0a0e10375ad6bbc" category="inline-link-macro-rx"></block>。</block>
+  <block id="f179eebc625c94b5b94fc136b78506e5" category="inline-link-macro">安装参考配置文件</block>
+  <block id="67bea00aeda47411a539357c5eea36bd" category="list-text"><block ref="67bea00aeda47411a539357c5eea36bd" category="inline-link-macro-rx"></block></block>
+  <block id="a4cc27f030d5855528a867889ecb752b" category="list-text"><block ref="a4cc27f030d5855528a867889ecb752b" category="inline-link-macro-rx"></block></block>
 </blocks>

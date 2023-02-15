@@ -19,20 +19,37 @@ NVIDIA SN2100是一款集群交换机、可用于构建具有两个以上节点�
 
 要在运行ONTAP 的系统上配置NVIDIA SN2100交换机、请执行以下步骤：
 
-. link:install-hardware-sn2100-cluster.html["安装NVIDIA SN2100交换机的硬件"]。有关说明、请参见_NVIDIA交换机安装指南_。
-. link:configure-sn2100-cluster.html["配置交换机"]。有关说明、请参见NVIDIA的文档。
-. link:cabling-considerations-sn2100-cluster.html["查看布线和配置注意事项"]。查看光纤连接、QSA适配器和交换机端口速度的要求。
-. link:install-cable-shelves-sn2100-cluster.html["将NS224磁盘架作为交换机连接的存储进行布线"]。如果您的系统需要将NS224驱动器架作为交换机连接存储(而不是直连存储)进行布线、请按照以下过程进行操作。
-. link:install-cumulus-mode-sn2100-cluster.html["在Cumulus模式下安装Cumulus Linux"] 或 link:install-onie-mode-sn2100-cluster.html["在ONIE模式下安装Cumulus Linux"]。可以在交换机运行Cumulus Linux或ONIE时安装Cumulus Linux (CL)操作系统。
-. link:install-rcf-sn2100-cluster.html["安装参考配置文件(Reference Configuration File、RCF)脚本"]。有两个RCF脚本可用于集群和存储应用程序。每个的操作步骤 是相同的。
-. link:install-snmpv3-sn2100-cluster.html["为交换机日志收集配置SNMPv3"]。此版本支持使用SNMPv3收集交换机日志和使用交换机运行状况监控(SHM)。
+. link:install-hardware-sn2100-cluster.html["安装NVIDIA SN2100交换机的硬件"]。
++
+有关说明、请参见_NVIDIA交换机安装指南_。
+
+. link:configure-sn2100-cluster.html["配置交换机"]。
++
+有关说明、请参见NVIDIA的文档。
+
+. link:cabling-considerations-sn2100-cluster.html["查看布线和配置注意事项"]。
++
+查看光纤连接、QSA适配器和交换机端口速度的要求。
+
+. link:install-cable-shelves-sn2100-cluster.html["将NS224磁盘架作为交换机连接的存储进行布线"]。
++
+如果您的系统需要将NS224驱动器架作为交换机连接存储(而不是直连存储)进行布线、请按照布线过程进行操作。
+
+. link:install-cumulus-mode-sn2100-cluster.html["在Cumulus模式下安装Cumulus Linux"] 或 link:install-onie-mode-sn2100-cluster.html["在ONIE模式下安装Cumulus Linux"]。
++
+当交换机运行的是Cumulus Linux或ONIE时、您可以安装Cumulus Linux (CL)操作系统。
+
+. link:install-rcf-sn2100-cluster.html["安装参考配置文件(Reference Configuration File、RCF)脚本"]。
++
+有两个RCF脚本可用于集群和存储应用程序。每个的操作步骤 是相同的。
+
+. link:install-snmpv3-sn2100-cluster.html["为交换机日志收集配置SNMPv3"]。
++
+此版本支持使用SNMPv3收集交换机日志和使用交换机运行状况监控(SHM)。
 
 
 
-NOTE: 这些过程使用网络命令行实用程序(Network Command Line Utility、NCLU)、它是一个命令行界面、可确保所有用户均可完全访问Cumulus Linux。net命令是用于从终端执行操作的包装实用程序。
-
-
-NOTE: 请参见 https://hwu.netapp.com["Hardware Universe"^] 所有受支持的ONTAP 版本。
+这些过程使用网络命令行实用程序(Network Command Line Utility、NCLU)、它是一个命令行界面、可确保所有用户均可完全访问Cumulus Linux。net命令是用于从终端执行操作的包装实用程序。
 
 
 
@@ -43,4 +60,5 @@ NOTE: 请参见 https://hwu.netapp.com["Hardware Universe"^] 所有受支持的O
 * link:configure-reqs-sn2100-cluster.html["配置要求"]
 * link:components-sn2100-cluster.html["组件和部件号"]
 * link:required-documentation-sn2100-cluster.html["所需文档"]
+* https://hwu.netapp.com["Hardware Universe"^] 所有受支持的ONTAP 版本。
 
