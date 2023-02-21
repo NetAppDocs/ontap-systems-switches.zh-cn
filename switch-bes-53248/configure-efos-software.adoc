@@ -101,9 +101,6 @@ EFOS软件包括一组高级网络功能和协议、用于开发以太网和IP�
 
 |===
 
-IMPORTANT: 请注意，将 BES-53248 集群交换机从 EFOS 3.3.x.x 或 3.4.x.x 升级到 EFOS 3.7.0.4 或 3.8.0.2 后，交换机间链路（ ISL ）和端口通道将标记为 * 关闭 * 状态。请参见此知识库文章： https://kb.netapp.com/Advice_and_Troubleshooting/Data_Storage_Systems/Fabric%2C_Interconnect_and_Management_Switches/BES-53248_Cluster_Switch_NDU_failed_upgrade_to_EFOS_3.7.0.4_and_later["BES-53248集群交换机NDU无法升级到EFOS 3.7.0.4及更高版本"^] 了解更多详细信息。
-
-
 
 == 安装软件
 
@@ -118,6 +115,9 @@ IMPORTANT: 请注意，将 BES-53248 集群交换机从 EFOS 3.3.x.x 或 3.4.x.x
 === 方法1：安装EFOS
 
 执行以下步骤以安装或升级EFOS软件。
+
+
+IMPORTANT: 请注意，将 BES-53248 集群交换机从 EFOS 3.3.x.x 或 3.4.x.x 升级到 EFOS 3.7.0.4 或 3.8.0.2 后，交换机间链路（ ISL ）和端口通道将标记为 * 关闭 * 状态。请参见此知识库文章： https://kb.netapp.com/Advice_and_Troubleshooting/Data_Storage_Systems/Fabric%2C_Interconnect_and_Management_Switches/BES-53248_Cluster_Switch_NDU_failed_upgrade_to_EFOS_3.7.0.4_and_later["BES-53248集群交换机NDU无法升级到EFOS 3.7.0.4及更高版本"^] 了解更多详细信息。
 
 .步骤
 . 将 BES-53248 集群交换机连接到管理网络。
