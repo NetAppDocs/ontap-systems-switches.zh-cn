@@ -15,6 +15,7 @@ summary: 按照此操作步骤 设置和配置Cisco Nexus 9336C-x2交换机。
 
 .您需要的内容
 * 访问安装站点上的HTTP、FTP或TFTP服务器以下载适用的NX-OS和参考配置文件(Reference Configuration File、RCF)版本。
+* 适用的NX-OS版本、从下载 https://software.cisco.com/download/home["Cisco软件下载"^] 页面。
 * 适用的许可证、网络和配置信息以及缆线。
 * 已完成 link:setup-worksheet-9336c-cluster.html["布线工作表"]。
 * 从NetApp 支持站点 下载的适用NetApp集群网络和管理网络RCF、网址为 http://mysupport.netapp.com/["mysupport.netapp.com"^]。所有 Cisco 集群网络和管理网络交换机均采用标准的 Cisco 出厂默认配置。这些交换机还具有最新版本的 NX-OS 软件，但未加载 RCF 。
@@ -185,14 +186,7 @@ NOTE: 如果您在此阶段未保存配置，则下次重新启动交换机时�
 
 |===
 . 验证您在设置结束时显示的屏幕中所做的配置选择，并确保保存此配置。
-. 检查集群网络交换机上的版本，如有必要，请将 NetApp 支持的软件版本下载到这些交换机。
-+
-如果您下载的是 NetApp 支持的软件版本，则还必须下载 _NetApp 集群网络交换机参考配置文件 _ 并将其与步骤 5 中保存的配置合并。您可以从下载文件和说明 https://mysupport.netapp.com/site/info/cisco-ethernet-switch["Cisco 以太网交换机"^] 页面。
-
-. 检查网络交换机上的软件版本，如有必要，请将 NetApp 支持的软件版本下载到这些交换机。如果您有自己的交换机，请参见 https://cisco.com["Cisco 站点"^]。
-+
-如果您下载的是NetApp支持的软件版本、则还必须下载_NetApp管理网络交换机参考配置文件_并将其与先前保存的配置合并。您可以从下载文件和说明 https://mysupport.netapp.com/site/info/cisco-ethernet-switch["Cisco 以太网交换机"^] 页面。
-
+. 检查集群网络交换机上的版本、如有必要、从将NetApp支持的软件版本下载到交换机 https://software.cisco.com/download/home["Cisco软件下载"^] 页面。
 
 
 .下一步是什么？

@@ -40,6 +40,8 @@ NOTE: 根据不同版本的 ONTAP ，命令输出可能会有所不同。
 .关于此任务
 操作步骤要求同时使用 ONTAP 命令和 Cisco Nexus 9000 系列交换机命令；除非另有说明，否则使用 ONTAP 命令。
 
+在此操作步骤 期间、不需要可操作的交换机间链路(ISL)。这是设计上的原因、因为RCF版本更改可能会暂时影响ISL连接。为了确保集群无中断运行、以下操作步骤 会在对目标交换机执行步骤时将所有集群LIF迁移到运行中的配对交换机。
+
 
 CAUTION: 在安装新的交换机软件版本和 RCF 之前，您必须擦除交换机设置并执行基本配置。您必须使用串行控制台连接到交换机。此任务将重置管理网络的配置。
 
@@ -193,7 +195,7 @@ cluster1::*>
 ====
 [listing]
 ----
-cluster1::*> network interface modify -vserver Cluster -lif \* -auto-revert false
+cluster1::*> network interface modify -vserver Cluster -lif * -auto-revert false
 ----
 ====
 
@@ -578,7 +580,7 @@ cluster1::*>
 ====
 [listing]
 ----
-cluster1::*> network interface modify -vserver Cluster -lif \* -auto-revert True
+cluster1::*> network interface modify -vserver Cluster -lif * -auto-revert True
 ----
 ====
 . 重新启动交换机 CS1 。执行此操作可触发集群 LIF 还原到其主端口。在交换机重新启动时，您可以忽略节点上报告的 "`cluster ports down` " 事件。
@@ -605,7 +607,7 @@ This command will reboot the system. (y/n)?  [n] y
 ====
 [listing]
 ----
-cs1# show interface brief \| grep up
+cs1# show interface brief | grep up
 .
 .
 Eth1/1/1      1       eth  access up      none                    10G(D) --

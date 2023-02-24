@@ -62,6 +62,9 @@ _x_ 是维护时段的持续时间，以小时为单位。
 `storage port show -port-type ENET`
 
 +
+.显示示例
+[%collapsible]
+====
 [listing, subs="+quotes"]
 ----
 cluster1::*> *storage port show -port-type ENET*
@@ -80,8 +83,12 @@ node2
                e7b  ENET  storage 100    enabled  online      30
 cluster1::*>
 ----
+====
 . 验证存储交换机sw1是否可用：`network device-discovery show`
 +
+.显示示例
+[%collapsible]
+====
 [listing, subs="+quotes"]
 ----
 cluster1::*> *network device-discovery show protocol lldp*
@@ -94,8 +101,12 @@ node2/lldp
            e3a   sw1 (b8:ce:f6:19:1b:42)   swp4        -
 cluster1::*>
 ----
+====
 . 在工作交换机上运行`net show interface`命令、确认您可以同时看到节点和所有磁盘架：`net show interface`
 +
+.显示示例
+[%collapsible]
+====
 [listing, subs="+quotes"]
 ----
 cumulus@sw1:~$ *net show interface*
@@ -113,8 +124,12 @@ UP     swp6    100G  9216   Trunk/L2   SHFFG1826000102 (e0b)   Master: bridge(UP
 ...
 ...
 ----
+====
 . 验证存储系统中的磁盘架端口：`storage shelf port show -fields remote-device、remote-port`
 +
+.显示示例
+[%collapsible]
+====
 [listing, subs="+quotes"]
 ----
 cluster1::*> *storage shelf port show -fields remote-device, remote-port*
@@ -130,10 +145,14 @@ shelf   id  remote-port   remote-device
 3.20    3   -             -
 cluster1::*>
 ----
+====
 . 拔下连接到存储交换机SW2的所有缆线。
 . 将所有缆线重新连接到更换用的交换机nsw2。
 . 重新检查存储节点端口的运行状况： `storage port show -port-type ENET`
 +
+.显示示例
+[%collapsible]
+====
 [listing, subs="+quotes"]
 ----
 cluster1::*> *storage port show -port-type ENET*
@@ -152,8 +171,12 @@ node2
                  e7b  ENET  storage 100    enabled  online      30
 cluster1::*>
 ----
+====
 . 验证两个交换机是否均可用：`net device-discovery show`
 +
+.显示示例
+[%collapsible]
+====
 [listing, subs="+quotes"]
 ----
 cluster1::*> *network device-discovery show protocol lldp*
@@ -168,8 +191,12 @@ node2/lldp
           e7b  nsw2 (b8:ce:f6:19:1a:7e)   swp2        -
 cluster1::*>
 ----
+====
 . 验证存储系统中的磁盘架端口：`storage shelf port show -fields remote-device、remote-port`
 +
+.显示示例
+[%collapsible]
+====
 [listing, subs="+quotes"]
 ----
 cluster1::*> *storage shelf port show -fields remote-device, remote-port*
@@ -185,11 +212,15 @@ shelf   id    remote-port     remote-device
 3.20    3     swp6            nsw2
 cluster1::*>
 ----
+====
 . 使用以下两个命令启用以太网交换机运行状况监控器日志收集功能以收集交换机相关的日志文件：`ssystem switch Ethernet log setup-password`和`ssystem switch Ethernet log enable-Collection`
 +
 输入： `ssystem switch Ethernet log setup-password`
 
 +
+.显示示例
+[%collapsible]
+====
 [listing, subs="+quotes"]
 ----
 cluster1::*> *system switch ethernet log setup-password*
@@ -217,10 +248,14 @@ Do you want to continue? {y|n}:: [n] *y*
 Enter the password: <enter switch password>
 Enter the password again: <enter switch password>
 ----
+====
 +
 后跟： `ssystem switch Ethernet log enable-Collection`
 
 +
+.显示示例
+[%collapsible]
+====
 [listing, subs="+quotes"]
 ----
 cluster1::*> *system  switch ethernet log enable-collection*
@@ -232,6 +267,7 @@ Enabling cluster switch log collection.
 
 cluster1::*>
 ----
+====
 +
 
 NOTE: 如果其中任何一个命令返回错误，请联系 NetApp 支持部门。
@@ -241,6 +277,9 @@ NOTE: 如果其中任何一个命令返回错误，请联系 NetApp 支持部门
 等待10分钟、然后使用命令`ssystem switch Ethernet log show`检查日志收集是否成功
 
 +
+.显示示例
+[%collapsible]
+====
 [listing, subs="+quotes"]
 ----
 cluster1::*> *system switch ethernet log show*
@@ -251,6 +290,7 @@ Index  Switch                       Log Timestamp        Status
 1      sw1 (b8:ce:f6:19:1b:42)      4/29/2022 03:05:25   complete   
 2      nsw2 (b8:ce:f6:19:1b:96)     4/29/2022 03:07:42   complete
 ----
+====
 . 将权限级别重新更改为 admin ： `set -privilege admin`
 . 如果禁止自动创建案例，请通过调用 AutoSupport 消息重新启用此功能： `ssystem node AutoSupport invoke -node * -type all -message MAINT=end`
 

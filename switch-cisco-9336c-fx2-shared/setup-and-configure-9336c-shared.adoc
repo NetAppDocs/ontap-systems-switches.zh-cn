@@ -130,16 +130,7 @@ NOTE: 使用集群交换机运行状况监控器（ CSHM ）收集日志功能�
 
 NOTE: 如果您在此阶段未保存配置，则下次重新启动交换机时，所有更改都不会生效。
 
-. 检查交换机上的软件版本，如有必要，请将 NetApp 支持的软件版本下载到这些交换机。
-+
-如果您下载的是 NetApp 支持的软件版本，则还必须下载 NetApp 网络交换机参考配置文件并将其与保存在中的配置合并 <<step3,第 3 步>>。
-
-+
-您可以从下载文件和说明 https://mysupport.netapp.com/site/info/cisco-ethernet-switch["Cisco 以太网交换机"] 页面。
-
-+
-如果您有自己的交换机，请参见 http://www.cisco.com["Cisco"] 站点
-
+. 检查集群网络交换机上的版本、如有必要、从将NetApp支持的软件版本下载到交换机 https://software.cisco.com/download/home["Cisco软件下载"^] 页面。
 
 
 .下一步是什么？
