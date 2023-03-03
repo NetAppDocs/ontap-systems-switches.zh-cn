@@ -26,13 +26,17 @@ summary: 首次设置 Nexus 92300YC 交换机后，您可以安装 RCF 。
 ====
 * 操作步骤 需要同时使用ONTAP 命令和 https://www.cisco.com/c/en/us/support/switches/nexus-9000-series-switches/series.html#InstallandUpgrade["Cisco Nexus 9000 系列交换机"^]；除非另有说明、否则使用ONTAP 命令。
 * 在执行此操作步骤 之前、请确保已为交换机配置创建备份。
+* 在此操作步骤 期间、不需要可操作的交换机间链路(ISL)。这是设计上的原因、因为RCF版本更改可能会暂时影响ISL连接。为了确保集群无中断运行、以下操作步骤 会在对目标交换机执行步骤时将所有集群LIF迁移到运行中的配对交换机。
 
 
 ====
 .步骤
 . 显示连接到集群交换机的每个节点上的集群端口： `network device-discovery show`
 +
-[listing, subs="+quotes"]
+.显示示例
+[%collapsible]
+====
+[listing]
 ----
 cluster1::*> *network device-discovery show*
 Node/       Local  Discovered
@@ -46,12 +50,16 @@ node2/cdp
             e0b    cs2                       Ethernet1/1/2     N9K-C92300YC
 cluster1::*>
 ----
+====
 . 检查每个集群端口的管理和运行状态。
 +
 .. 验证所有集群端口是否均已启动且状态正常：
 `network port show -ipspace Cluster`
 +
-[listing, subs="+quotes"]
+.显示示例
+[%collapsible]
+====
+[listing]
 ----
 cluster1::*> *network port show -ipspace Cluster*
 
@@ -72,10 +80,14 @@ e0c       Cluster      Cluster          up   9000  auto/100000 healthy false
 e0d       Cluster      Cluster          up   9000  auto/100000 healthy false
 cluster1::*>
 ----
+====
 .. 验证所有集群接口（ LIF ）是否均位于主端口上：
 `network interface show -vserver Cluster`
 +
-[listing, subs="+quotes"]
+.显示示例
+[%collapsible]
+====
+[listing]
 ----
 cluster1::*> *network interface show -vserver Cluster*
             Logical            Status     Network           Current      Current Is
@@ -88,9 +100,13 @@ Cluster
             node2_clus2        up/up      169.254.3.9/23    node2        e0d     true
 cluster1::*>
 ----
+====
 .. 验证集群是否同时显示两个集群交换机的信息： `ssystem cluster-switch show -is-monitoring-enableed-Operational true`
 +
-[listing, subs="+quotes"]
+.显示示例
+[%collapsible]
+====
+[listing]
 ----
 cluster1::*> *system cluster-switch show -is-monitoring-enabled-operational true*
 Switch                      Type               Address          Model
@@ -113,6 +129,7 @@ cs2                         cluster-network    10.233.205.93    N9K-C92300YC
 
 2 entries were displayed.
 ----
+====
 
 
 . 在集群 LIF 上禁用自动还原。
@@ -131,7 +148,10 @@ cs2(config-if-range)# *shutdown*
 . 验证集群端口是否已迁移到集群交换机 CS1 上托管的端口。这可能需要几秒钟的时间。
 `network interface show -vserver Cluster`
 +
-[listing, subs="+quotes"]
+.显示示例
+[%collapsible]
+====
+[listing]
 ----
 cluster1::*> *network interface show -vserver Cluster*
             Logical           Status     Network            Current       Current Is
@@ -144,9 +164,13 @@ Cluster
             node2_clus2       up/up      169.254.3.9/23     node2         e0c     false
 cluster1::*>
 ----
+====
 . 验证集群是否运行正常： `cluster show`
 +
-[listing, subs="+quotes"]
+.显示示例
+[%collapsible]
+====
+[listing]
 ----
 cluster1::*> *cluster show*
 Node           Health  Eligibility   Epsilon
@@ -155,6 +179,7 @@ node1          true    true          false
 node2          true    true          false
 cluster1::*>
 ----
+====
 . 如果您还没有交换机的当前备份、则可以通过将以下命令的输出复制到日志文件来保存当前交换机配置：
 +
 `s如何运行配置`
@@ -311,7 +336,10 @@ This command will reboot the system. (y/n)?  [n] *y*
 .. 验证集群中所有节点上的 e0d 端口是否均已启动且运行正常：
 `network port show -ipspace Cluster`
 +
-[listing, subs="+quotes"]
+.显示示例
+[%collapsible]
+====
+[listing]
 ----
 cluster1::*> *network port show -ipspace Cluster*
 
@@ -331,9 +359,13 @@ Port      IPspace      Broadcast Domain Link MTU  Admin/Oper  Status   Status
 e0a       Cluster      Cluster          up   9000  auto/10000 healthy  false
 e0b       Cluster      Cluster          up   9000  auto/10000 healthy  false
 ----
+====
 .. 从集群验证交换机运行状况（此操作可能不会显示交换机 CS2 ，因为 LIF 不驻留在 e0d 上）。
 +
-[listing, subs="+quotes"]
+.显示示例
+[%collapsible]
+====
+[listing]
 ----
 cluster1::*> *network device-discovery show -protocol cdp*
 Node/       Local  Discovered
@@ -367,6 +399,7 @@ cs2                         cluster-network    10.233.205.91    N9K-C92300YC
 
 2 entries were displayed.
 ----
+====
 
 
 +
@@ -392,7 +425,10 @@ cs1(config-if-range)# *shutdown*
 ----
 . 验证集群 LIF 是否已迁移到交换机 CS2 上托管的端口。这可能需要几秒钟的时间。 `network interface show -vserver Cluster`
 +
-[listing, subs="+quotes"]
+.显示示例
+[%collapsible]
+====
+[listing]
 ----
 cluster1::*> *network interface show -vserver Cluster*
             Logical          Status     Network            Current           Current Is
@@ -405,9 +441,13 @@ Cluster
             node2_clus2      up/up      169.254.3.9/23     node2             e0d     true
 cluster1::*>
 ----
+====
 . 验证集群是否运行正常： `cluster show`
 +
-[listing, subs="+quotes"]
+.显示示例
+[%collapsible]
+====
+[listing]
 ----
 cluster1::*> *cluster show*
 Node           Health   Eligibility   Epsilon
@@ -416,6 +456,7 @@ node1          true     true          false
 node2          true     true          false
 cluster1::*>
 ----
+====
 . 对交换机 CS1 重复步骤 7 至 14 。
 . 在集群 LIF 上启用自动还原。
 +
@@ -446,7 +487,10 @@ Ethernet1/4      1       eth  trunk  up      none                   100G(D) --
 ----
 . 验证 CS1 和 CS2 之间的 ISL 是否正常运行： `s如何执行端口通道摘要`
 +
-[listing, subs="+quotes"]
+.显示示例
+[%collapsible]
+====
+[listing]
 ----
 cs1# *show port-channel summary*
 Flags:  D - Down        P - Up in port-channel (members)
@@ -464,10 +508,14 @@ Group Port-       Type     Protocol  Member Ports
 1     Po1(SU)     Eth      LACP      Eth1/65(P)   Eth1/66(P)
 cs1#
 ----
+====
 . 验证集群 LIF 是否已还原到其主端口：
 `network interface show -vserver Cluster`
 +
-[listing, subs="+quotes"]
+.显示示例
+[%collapsible]
+====
+[listing]
 ----
 cluster1::*> *network interface show -vserver Cluster*
             Logical       Status     Network            Current       Current Is
@@ -480,9 +528,13 @@ Cluster
             node2_clus2   up/up      169.254.3.9/23     node2         e0d     true
 cluster1::*>
 ----
+====
 . 验证集群是否运行正常： `cluster show`
 +
-[listing, subs="+quotes"]
+.显示示例
+[%collapsible]
+====
+[listing]
 ----
 cluster1::*> *cluster show*
 Node           Health  Eligibility   Epsilon
@@ -490,9 +542,13 @@ Node           Health  Eligibility   Epsilon
 node1          true    true          false
 node2          true    true          false
 ----
+====
 . 对远程集群接口执行 Ping 操作以验证连接： `cluster ping-cluster -node local`
 +
-[listing, subs="+quotes"]
+.显示示例
+[%collapsible]
+====
+[listing]
 ----
 cluster1::*> *cluster ping-cluster -node local*
 Host is node1
@@ -527,6 +583,7 @@ RPC status:
 6 paths up, 0 paths down (tcp check)
 6 paths up, 0 paths down (udp check)
 ----
+====
 
 
 [role="tabbed-block"]

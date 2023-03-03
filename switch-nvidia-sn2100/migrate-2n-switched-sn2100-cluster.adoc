@@ -44,6 +44,9 @@ IMPORTANT: 请参见 link:cabling-considerations-sn2100-cluster.html["查看布�
 ** SN2100交换机正在运行最新版本的Cumulus Linux
 ** 参考配置文件(Reference Configuration Files、RCF)将应用于交换机
 ** 新交换机上会配置任何站点自定义、例如SMTP、SNMP和SSH。
++
+。 https://hwu.netapp.com["Hardware Universe"^] 包含有关平台的实际集群端口的最新信息。
+
 
 
 

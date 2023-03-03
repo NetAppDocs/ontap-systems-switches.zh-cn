@@ -38,6 +38,8 @@ entries:
   entries:
   - title: 从Cisco集群交换机迁移
     url: "/switch-nvidia-sn2100/migrate-cisco-sn2100-cluster-switch.html"
+  - title: 迁移到双节点交换集群
+    url: "/switch-nvidia-sn2100/migrate-2n-switched-sn2100-cluster.html"
   - title: 迁移到双节点无交换机集群
     url: "/switch-nvidia-sn2100/migrate-to-switchless-interconnect-sn2100-cluster.html"
 - title: 更换集群交换机
