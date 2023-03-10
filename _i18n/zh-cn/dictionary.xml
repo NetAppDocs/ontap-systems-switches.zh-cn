@@ -4285,4 +4285,5 @@
   <block id="03f4e394a093a045e6047871ed96a882" category="list-text">适用的NX-OS版本、从下载<block ref="5a1c929e557009655aef79d819d791d1" category="inline-link-rx"></block> 页面。</block>
   <block id="c5490cef816a5fdfd03bfbae460638f5" category="paragraph"><block ref="c5490cef816a5fdfd03bfbae460638f5" category="inline-link-macro-rx"></block></block>
   <block id="674dac01986b07db44266812735775f6" category="paragraph">您也可以选择 <block ref="2243efeaee625d6b6076bcdcbd40e014" category="inline-link-macro-rx"></block>。否则，请转到 <block ref="16a9a5fa8979bab3106e7aad0dfd20d9" category="inline-link-macro-rx"></block>。</block>
+  <block id="3eb0f8cafe973dd42647b7ade90f7100" category="admonition">在继续执行下一步之前、您必须至少等待两分钟、以确认组1上的背对背连接正常工作。</block>
 </blocks>
