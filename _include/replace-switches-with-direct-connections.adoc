@@ -244,6 +244,10 @@ Enable Switchless Cluster: true
 +
 `cluster ping-cluster -node local`
 
++
+
+IMPORTANT: 在继续执行下一步之前、您必须至少等待两分钟、以确认组1上的背对背连接正常工作。
+
 . 为组2中的端口设置无交换机配置。
 +
 

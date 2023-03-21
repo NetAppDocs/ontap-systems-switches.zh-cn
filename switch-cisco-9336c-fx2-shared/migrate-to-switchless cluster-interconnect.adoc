@@ -4,7 +4,7 @@ sidebar: sidebar
 keywords: migrate, switchless cluster interconnect, cisco nexus switch 9336C-FX2 
 summary: 对于ONTAP 9.3及更高版本、您可以从具有交换集群网络的集群迁移到两个节点直接连接的集群。 
 ---
-= 使用Cisco Nexus 9336C-x2集群交换机迁移到双节点无交换机集群
+= 使用Cisco Nexus 9336C-FX2集群交换机从切换集群迁移到无交换机集群
 :allow-uri-read: 
 :icons: font
 :imagesdir: ../media/
@@ -252,6 +252,10 @@ Enable Switchless Cluster: true
 . 验证集群网络是否未中断：
 +
 `cluster ping-cluster -node local`
+
++
+
+IMPORTANT: 在继续执行下一步之前、您必须至少等待两分钟、以确认组1上的背对背连接正常工作。
 
 . 为组2中的端口设置无交换机配置。
 +

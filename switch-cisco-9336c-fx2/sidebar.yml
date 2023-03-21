@@ -40,7 +40,9 @@ entries:
     url: "/switch-cisco-9336c-fx2/migrate-to-9336-cluster.html"
   - title: 迁移到双节点交换集群
     url: "/switch-cisco-9336c-fx2/migrate-to-2n-switched-9336-cluster.html"
-  - title: 迁移到双节点无交换机集群
+- title: 更换交换机
+  entries:
+  - title: 更换集群交换机
+    url: "/switch-cisco-9336c-fx2/replace-9336c-cluster.html"
+  - title: 将集群交换机更换为无交换机连接
     url: "/switch-cisco-9336c-fx2/migrate-to-switchless-interconnect-9336-cluster.html"
-- title: 更换集群交换机
-  url: "/switch-cisco-9336c-fx2/replace-9336c-cluster.html"

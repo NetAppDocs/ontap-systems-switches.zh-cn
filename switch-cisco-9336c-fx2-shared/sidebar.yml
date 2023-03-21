@@ -42,7 +42,5 @@ entries:
     url: "/switch-cisco-9336c-fx2-shared/migrate-from-switchless-configuration-sat-storage.html"
   - title: 从交换式SAT集群迁移
     url: "/switch-cisco-9336c-fx2-shared/migrate-from-switched-cluster-sat-storage.html"
-  - title: 迁移到双节点无交换机集群
-    url: "/switch-cisco-9336c-fx2-shared/migrate-to-switchless-cluster-interconnect.html"
 - title: 更换交换机
   url: "/switch-cisco-9336c-fx2-shared/replace-9336c-fx2-shared.html"

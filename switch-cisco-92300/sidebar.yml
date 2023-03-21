@@ -36,7 +36,9 @@ entries:
     url: "/switch-cisco-92300/migrate-to-2n-switched.html"
   - title: 从旧版Cisco交换机迁移
     url: "/switch-cisco-92300/migrate-to-92300yc.html"
-  - title: 迁移到双节点无交换机集群
-    url: "/switch-cisco-92300/migrate-to-switchless-cluster-interconnect.html"
 - title: 更换交换机
-  url: "/switch-cisco-92300/replace-92300yc.html"
+  entries:
+  - title: 更换交换机
+    url: "/switch-cisco-92300/replace-92300yc.html"
+  - title: 将集群交换机更换为无交换机连接
+    url: "/switch-cisco-92300/migrate-to-switchless-cluster-interconnect.html"

@@ -40,7 +40,9 @@ entries:
     url: "/switch-nvidia-sn2100/migrate-cisco-sn2100-cluster-switch.html"
   - title: 迁移到双节点交换集群
     url: "/switch-nvidia-sn2100/migrate-2n-switched-sn2100-cluster.html"
-  - title: 迁移到双节点无交换机集群
+- title: 更换交换机
+  entries:
+  - title: 更换集群交换机
+    url: "/switch-nvidia-sn2100/replace-sn2100-switch-cluster.html"
+  - title: 将集群交换机更换为无交换机连接
     url: "/switch-nvidia-sn2100/migrate-to-switchless-interconnect-sn2100-cluster.html"
-- title: 更换集群交换机
-  url: "/switch-nvidia-sn2100/replace-sn2100-switch-cluster.html"
