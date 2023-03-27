@@ -19,7 +19,7 @@ summary: 您可以使用此操作步骤执行 BES-53248 集群交换机的初始
 +
 ** link:configure-reqs-bes53248.html["配置要求"]
 ** link:components-bes53248.html["组件和部件号"]
-** link:required-documentation-53248.html["文档要求"]
+** link:required-documentation-bes53248.html["文档要求"]
 
 
 

@@ -79,7 +79,7 @@ Cisco Nexus 92300YC 交换机气流详细信息：
 
 
  a| 
-https://docs.netapp.com/us-en/ontap-systems-switches/switch-cisco-9336c-fx2/setup-switches.html["设置 Cisco ® Nexus 92300YC 集群交换机 _"^]
+https://docs.netapp.com/us-en/ontap-systems-switches/switch-cisco-92300/install-overview-cisco-92300.html["设置 Cisco ® Nexus 92300YC 集群交换机 _"^]
  a| 
 介绍如何设置和配置 Cisco Nexus 92300YC 集群交换机。
 
@@ -93,7 +93,7 @@ https://docs.netapp.com/us-en/ontap-systems-switches/switch-cisco-92300/install-
 
 
  a| 
-https://docs.netapp.com/us-en/ontap-systems-switches/switch-cisco-92300/configure-overview.html["配置新的 Cisco Nexus 92300YC 交换机 _"^]
+https://docs.netapp.com/us-en/ontap-systems-switches/switch-cisco-92300/configure-install-initial.html["配置新的 Cisco Nexus 92300YC 交换机 _"^]
  a| 
 介绍如何从使用旧版 Cisco 交换机的环境迁移到使用 Cisco 92300YC 交换机的环境。
 

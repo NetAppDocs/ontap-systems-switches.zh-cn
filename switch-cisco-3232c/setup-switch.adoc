@@ -18,7 +18,7 @@ summary: 如果您还没有所需的配置信息和文档，则需要在设置�
 * 适用的NX-OS版本、从下载 https://software.cisco.com/download/home["Cisco软件下载"^] 页面。
 * 所需的集群网络和管理网络交换机文档。
 +
-请参见 xref:setup-required-documentation.adoc[所需文档] 有关详细信息 ...
+请参见 link:required-documentation-3232c.html["所需文档"] 有关详细信息 ...
 
 * 所需的控制器文档和ONTAP 文档。
 +

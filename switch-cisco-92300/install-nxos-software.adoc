@@ -377,4 +377,4 @@ GEM FPGA                         0x2
 
 
 .下一步是什么？
-link:.install-the-rcf-file.html["安装参考配置文件"]。
+link:install-the-rcf-file.html["安装参考配置文件"]

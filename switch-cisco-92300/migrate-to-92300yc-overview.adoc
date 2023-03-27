@@ -43,6 +43,6 @@ summary: 在将某些旧的 Cisco Nexus 集群交换机更换为 Cisco Nexus 923
 * 此操作步骤 支持的 ONTAP 和 NX-OS 版本位于上 https://mysupport.netapp.com/site/info/cisco-ethernet-switch["Cisco 以太网交换机"^] 页面。
 +
 
-NOTE: 迁移完成后，您可能需要安装所需的配置文件，以支持 923300 YC 集群交换机的集群交换机运行状况监控器（ Cluster Switch Health Monitor ， CSHM ）。请参见中的 _Installing the Cluster Switch Health Monitor （ CSHM ） configuration file for 923300 YC switchs_ link:../com.netapp.doc.hw-sw-cisco-setup/home.html["设置"] 指南
+NOTE: 迁移完成后，您可能需要安装所需的配置文件，以支持 923300 YC 集群交换机的集群交换机运行状况监控器（ Cluster Switch Health Monitor ， CSHM ）。请参见 link:setup-install-cshm-file.html["安装集群交换机运行状况监控器（ CSHM ）配置文件"] 了解详细信息。
 
 

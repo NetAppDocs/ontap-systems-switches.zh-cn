@@ -20,7 +20,7 @@ Cisco Nexus 3132Q-V交换机可用作AFF 或FAS 集群中的集群交换机。�
 要在运行ONTAP 的系统上初始配置Cisco Nexus 3132Q-V交换机、请执行以下步骤：
 
 . link:setup_worksheet_3132q.html["完整的Cisco Nexus 3132Q-V布线工作表"]。示例布线工作表提供了从交换机到控制器的建议端口分配示例。空白工作表提供了一个模板、可用于设置集群。
-. link:install-cisco-nexus-3232c.html["在NetApp机柜中安装Cisco Nexus 3132Q-V集群交换机"]。将Cisco Nexus 3132Q-V交换机和直通面板安装在NetApp机柜中、并使用交换机附带的标准支架。
+. link:install-cisco-nexus-3132qv.html["在NetApp机柜中安装Cisco Nexus 3132Q-V集群交换机"]。将Cisco Nexus 3132Q-V交换机和直通面板安装在NetApp机柜中、并使用交换机附带的标准支架。
 . link:setup-switch.html["配置Cisco Nexus 3132Q-V交换机"]。设置和配置Cisco Nexus 3132Q-V交换机。
 . link:prepare-install-cisco-nexus-3132q.html["准备安装NX-OS软件和参考配置文件"]。准备安装NX-OS软件和参考配置文件(Reference Configuration File、RCF)。
 . link:install-nx-os-software-3132q-v.html["安装 NX-OS 软件"]。按照此操作步骤 在Nexus 3132Q-V集群交换机上安装NX-OS软件。

@@ -592,7 +592,6 @@
   <block id="c32a2c4a7520ad02a1a78600f2a6b3bd" category="admonition">更新或应用新 RCF 时，必须擦除交换机设置并执行基本配置。您必须使用串行控制台连接到交换机，才能擦除交换机设置。</block>
   <block id="807acdbbef909943d9431809ace5cd2a" category="summary">如果您还没有所需的配置信息和文档，则需要在设置集群和管理网络交换机之前收集这些信息。</block>
   <block id="a62b8b622fa4ab9cba37776a261a9067" category="inline-xref-macro">所需文档</block>
-  <block id="caf0eb5dcf09e6feaabb021fca4aa115" category="paragraph">请参见 <block ref="ce02abd585ceec2d373feba1d7f19db4" category="inline-xref-macro-rx"></block> 有关详细信息 ...</block>
   <block id="7a4e9cb5597c0c38152cde29a5ffea15" category="inline-link">NetApp 文档</block>
   <block id="2d2d15802cb077df3166f27c899dcea5" category="list-text">将集群网络和管理网络交换机和控制器装入机架。</block>
   <block id="06e20e422a3449f5c8066b397a26a649" category="cell">如果要安装 ...</block>
@@ -2085,12 +2084,6 @@
   <block id="fed5c0ebbd302d8836d54ddd5217900f" category="list-text">对于 ONTAP 9.5P16 ， 9.6P12 和 9.7P10 及更高版本的修补程序，请使用以下命令启用以太网交换机运行状况监控器日志收集功能以收集交换机相关的日志文件： `ssystem cluster-switch log setup-password`</block>
   <block id="9aa8a0ae2c0c1e8fae620818f15e5745" category="sidebar">《 CN1601 交换机管理员指南》</block>
   <block id="0dbd44ca48760058c465f203895f8233" category="summary">Cisco 936-x2` 交换机</block>
-  <block id="5851bb17419faa449f719ec90fe12181" category="list-text">【第 7 步】将共享交换机 A 上的存储 RCF 替换为共享 RCF 文件。请参见 <block ref="2e5583639979312d3d691c4092c19d52" category="inline-link-macro-rx"></block> 了解更多详细信息。</block>
-  <block id="ea9f3090e45d8199fc92892a96dd0214" category="list-text">【第 13 步】将共享交换机 B 上的存储 RCF 文件替换为共享 RCF 文件。请参见 <block ref="2e5583639979312d3d691c4092c19d52" category="inline-link-macro-rx"></block> 了解更多详细信息。</block>
-  <block id="779f2e1ced3dc42aa441f71771bcb993" category="list-text">【第 16 步】将 HA 对 1 从无交换机集群转换为有交换机集群。使用共享 RCF 定义的集群端口分配。请参见 <block ref="2e68fbe1bf6d8e813f758c3b7509ff6f" category="inline-link-macro-rx"></block>了解更多详细信息。</block>
-  <block id="f0ce965dd466a7b645474763caf2ba5a" category="list-text">【第 6 步】将共享交换机 A 上的存储 RCF 替换为共享 RCF 文件。请参见 <block ref="2e5583639979312d3d691c4092c19d52" category="inline-link-macro-rx"></block> 了解更多详细信息。</block>
-  <block id="3e8e79feff4b6aa3e8cf99d5fd2e529c" category="list-text">【第 12 步】将共享交换机 B 上的存储 RCF 文件替换为共享 RCF 文件。请参见 <block ref="2e5583639979312d3d691c4092c19d52" category="inline-link-macro-rx"></block> 了解更多详细信息。</block>
-  <block id="b2f0294b7ae68a5ba87ae2839d34a70c" category="list-text">【第 16 步】使用替代交换机操作步骤和共享 RCF 将集群网络从现有集群交换机迁移到共享交换机。新的共享交换机 A 为 "CS1" 。新的共享交换机 B 为 "CS2" 。请参见 <block ref="cbb16447b88abbf626db4295a94e10df" category="inline-link-macro-rx"></block> 和 <block ref="2e5583639979312d3d691c4092c19d52" category="inline-link-macro-rx"></block> 了解更多详细信息。</block>
   <block id="cc02bee3f16f9cf028c930e3ae85fb8f" category="list-text"><block ref="3ddccd8b1e06c6aa2ada1397d17562ec" category="inline-link-macro-rx"></block> 介绍如何安装 FastPath 软件。</block>
   <block id="f8bb1b8464f9bde121f11f7a53f13011" category="list-text"><block ref="684215f55a46dbb917d8e38fd766cffd" category="inline-link-macro-rx"></block> 介绍如何安装 RCF 。</block>
   <block id="8cd379638fc4ccb9fe87c298fc5389eb" category="paragraph">交换机支持通过控制台端口进行本地管理，或者通过网络连接使用 Telnet 或 SSH 进行远程管理。CN1610 包括一个专用的千兆以太网 RJ45 管理端口，用于带外交换机管理。您可以通过在命令行界面（ CLI ）中输入命令或使用基于 SNMP 的网络管理系统（ NMS ）来管理交换机。</block>
@@ -2190,12 +2183,10 @@
   <block id="10c3982f55470a52b67f5f1e0cac4098" category="doc">Cisco Nexus 92300YC 交换机概述</block>
   <block id="d63345204e5c17d6bcf92cf136b9db27" category="paragraph">下表列出了可用于 Cisco Nexus 92300YC 交换机的文档。</block>
   <block id="ecb1fb78f0a7256fc432444618ad1a8a" category="inline-link">设置 Cisco ® Nexus 92300YC 集群交换机 _</block>
-  <block id="233068d024bf94c66deaa2970d7b9fd3" category="paragraph"><block ref="233068d024bf94c66deaa2970d7b9fd3" category="inline-link-rx"></block></block>
   <block id="c50690ac186612ed9379c8fda0fb361b" category="paragraph">介绍如何设置和配置 Cisco Nexus 92300YC 集群交换机。</block>
   <block id="992891edbdc5eb8cc0b55e47bf60836a" category="paragraph"><block ref="992891edbdc5eb8cc0b55e47bf60836a" category="inline-link-rx"></block></block>
   <block id="eccfa27226994fa4bdd73f45a4dd5759" category="paragraph">介绍如何在 Nexus 92300YC 集群交换机上安装 NX-OS 和参考配置文件（ RCF ）。</block>
   <block id="9609b0108c844f45a60fa9ab473cb104" category="inline-link">配置新的 Cisco Nexus 92300YC 交换机 _</block>
-  <block id="a912d5a866cb6cfbd2f1d30042ff0e78" category="paragraph"><block ref="a912d5a866cb6cfbd2f1d30042ff0e78" category="inline-link-rx"></block></block>
   <block id="30237fd637d825e779189d71b17a50a9" category="paragraph">介绍如何从使用旧版 Cisco 交换机的环境迁移到使用 Cisco 92300YC 交换机的环境。</block>
   <block id="52b4746fcf8ac5f85a48a7b72b6213d3" category="inline-link">_ 从旧版 Cisco 交换机迁移到 Cisco Nexus 92300YC 交换机 _</block>
   <block id="e43fce9494e572945ab96f1a3707d3ee" category="paragraph"><block ref="e43fce9494e572945ab96f1a3707d3ee" category="inline-link-rx"></block></block>
@@ -2576,22 +2567,16 @@
   <block id="865b448eabcf17df6b422f9231393d1a" category="admonition">有关详细信息、请参见NVIDIA文档<block ref="39747b316e7d3df3f73757faf591c2d2" category="inline-link-rx"></block>。</block>
   <block id="4cbae0b27dc5bb331502b630a138cc4a" category="paragraph">下表列出了适用于NVIDIA SN2100交换机的文档。</block>
   <block id="b6b0513dd441d375575669499c028d77" category="inline-link-macro">设置和配置NVIDIA SN2100交换机_</block>
-  <block id="bc73d70686c873ae5e2f4e513f491722" category="paragraph"><block ref="bc73d70686c873ae5e2f4e513f491722" category="inline-link-macro-rx"></block></block>
   <block id="77f388375aa4a60bc88c77b1a62210b1" category="paragraph">介绍如何设置和配置NVIDIA SN2100交换机、包括安装Cumulus Linux和适用的RCF。</block>
   <block id="7f3bf3d40898d5f432e8fac499b35019" category="inline-link-macro">_从Cisco集群交换机迁移到NVIDIA SN2100集群交换机_</block>
-  <block id="3bbe54c8552e40dc5f89b73892046850" category="paragraph"><block ref="3bbe54c8552e40dc5f89b73892046850" category="inline-link-macro-rx"></block></block>
   <block id="c215cbb78c56580b18190d97abd7667b" category="paragraph">介绍如何从使用Cisco集群交换机的环境迁移到使用NVIDIA SN2100集群交换机的环境。</block>
   <block id="821a2f7945b3464ddee06f602c686f9b" category="inline-link-macro">_从Cisco存储交换机迁移到NVIDIA存储交换机_</block>
-  <block id="3fbe15969453ca44c2deb4fdfe8323ee" category="paragraph"><block ref="3fbe15969453ca44c2deb4fdfe8323ee" category="inline-link-macro-rx"></block></block>
   <block id="26872f7030028e1569f2ce01c9bc352c" category="paragraph">介绍如何从使用Cisco存储交换机的环境迁移到使用NVIDIA SN2100存储交换机的环境。</block>
   <block id="6f2cf7b704c57c57ef32132488de219a" category="inline-link-macro">_迁移到使用NVIDIA SN2100集群交换机的双节点交换集群_</block>
-  <block id="a5fe3028e8bedffa1849e536a4538b5b" category="paragraph"><block ref="a5fe3028e8bedffa1849e536a4538b5b" category="inline-link-macro-rx"></block></block>
   <block id="f47598dac203329e94811e7ca007b4e2" category="paragraph">介绍如何使用NVIDIA SN2100集群交换机迁移到双节点交换环境。</block>
   <block id="704deb422a6b7e49bc71f93eb9153e24" category="inline-link-macro">_更换NVIDIA SN2100集群交换机_</block>
-  <block id="cb35bcc230f43141ffe95979875e1193" category="paragraph"><block ref="cb35bcc230f43141ffe95979875e1193" category="inline-link-macro-rx"></block></block>
   <block id="04c9967f210e3a292f67ab723d461b51" category="paragraph">介绍用于更换集群中有缺陷的NVIDIA SN2100交换机以及下载Cumulus Linux和参考配置文件的操作步骤。</block>
   <block id="44bb54091263606f157bbaad0fdef9c3" category="inline-link-macro">_更换NVIDIA SN2100存储交换机_</block>
-  <block id="38c797c6506c8619afc1b09c65aa0655" category="paragraph"><block ref="38c797c6506c8619afc1b09c65aa0655" category="inline-link-macro-rx"></block></block>
   <block id="2875df17f2e2895666eddce90fc6146f" category="paragraph">介绍用于更换有缺陷的NVIDIA SN2100存储交换机以及下载Cumulus Linux和参考配置文件的操作步骤。</block>
   <block id="94f92369bb57ec3cd50af356ac87615d" category="sidebar">NVIDIA SN2100</block>
   <block id="f244d0b9bbad19d8b6169c577369193c" category="paragraph">如有必要、请验证、下载并安装适用于新交换机的RCF和Cumulus软件的相应版本。如果您已确认新交换机设置正确、并且不需要更新RCF和Cumulus软件、请继续执行步骤4。请参见 <block ref="f205112049fd2d705b8f40351f7959dc" category="inline-link-macro-rx"></block> 了解更多详细信息。</block>
@@ -2988,7 +2973,6 @@
   <block id="ec8855627efbb26afaa912164ff82dbd" category="inline-link-macro">安装RCF配置文件</block>
   <block id="afe6bd84cf9f314186e891843eba49cc" category="paragraph"><block ref="41aae7f405e62aa01d791efeede3f9c2" category="inline-link-macro-rx"></block>。</block>
   <block id="2563a96fdb66dda5382058af89e8a58c" category="paragraph-title">交换机和节点命名</block>
-  <block id="b4e654973509f8baaa138d687ecb2501" category="doc">使用Cisco Nexus 9336C-x2集群交换机迁移到双节点无交换机集群</block>
   <block id="a2d07f4e7a36ed872e60c08cdcc73771" category="doc">迁移到双节点交换集群</block>
   <block id="5b1bedb3dd2208af0449bbbfcc022136" category="paragraph">如果您有一个现有的双节点无交换机集群环境、则可以使用Cisco Nexus 9336C-f2交换机迁移到双节点_switched_cluster环境、以便可以扩展到集群中的两个节点以上。</block>
   <block id="a693fd2056f9dc0037e9baefb9fbe3bb" category="paragraph">此迁移过程适用于使用光纤或双轴端口的所有节点、但如果节点使用板载10 Gb Base-T RJ45端口作为集群网络端口、则此交换机不支持此过程。</block>
@@ -3101,7 +3085,6 @@
   <block id="e6aebd52a61a760e0bd9e778093f435d" category="paragraph">要设置Cisco Nexus 3132Q-V交换机、您需要中的以下文档<block ref="40f761a60b53eb5657b22596a88a5500" category="inline-link-rx"></block> 页面。</block>
   <block id="67c1b479900ac0bd70bc53cec53ab09d" category="paragraph">要在NetApp机柜中安装3132Q-V Cisco交换机、请参见以下硬件文档。</block>
   <block id="7b180b39357479c0dfc914a589065e0f" category="inline-link-macro">在NetApp机柜中安装Cisco Nexus 3132Q-V交换机</block>
-  <block id="bf52aa99c31093c8c238d41b9b3fcef1" category="paragraph"><block ref="bf52aa99c31093c8c238d41b9b3fcef1" category="inline-link-macro-rx"></block></block>
   <block id="077662abda369797cf161b3c680959fa" category="doc">更换Cisco Nexus 3132Q-V集群交换机的要求</block>
   <block id="b626c24802c9c9fd81b149f1462a9392" category="paragraph">更换集群交换机时、请确保您了解配置要求、端口连接和布线要求。</block>
   <block id="5ec6a450c60171f21b1076c5993144d4" category="section-title">Cisco Nexus 3132Q-V要求</block>
@@ -3151,7 +3134,6 @@
   <block id="85ed1ee9f4201a216125c557ae3a7f55" category="paragraph">要在运行ONTAP 的系统上初始配置Cisco Nexus 3132Q-V交换机、请执行以下步骤：</block>
   <block id="2b4b02e189294d861923b97358dd2f5a" category="list-text"><block ref="23d1fa41a61ba507d26b61266d9bc561" category="inline-link-macro-rx"></block>。示例布线工作表提供了从交换机到控制器的建议端口分配示例。空白工作表提供了一个模板、可用于设置集群。</block>
   <block id="4e9e2beeb3b73a531c47ec929bbfd872" category="inline-link-macro">在NetApp机柜中安装Cisco Nexus 3132Q-V集群交换机</block>
-  <block id="4a6db6e3b93a6522439406532f3a4a17" category="list-text"><block ref="797ca528d8b2d9437ce0102b5130ae34" category="inline-link-macro-rx"></block>。将Cisco Nexus 3132Q-V交换机和直通面板安装在NetApp机柜中、并使用交换机附带的标准支架。</block>
   <block id="d33a1a3c4cea4496ac1583d929f95c2b" category="inline-link-macro">配置Cisco Nexus 3132Q-V交换机</block>
   <block id="ab65b98e8410ac425fabe5d73b5e3eed" category="list-text"><block ref="6e21de03ac85481d2e774cd373205342" category="inline-link-macro-rx"></block>。设置和配置Cisco Nexus 3132Q-V交换机。</block>
   <block id="d6a0822a7c97bddf0c6c35c07c36f7b0" category="list-text"><block ref="c7d9f92acf90399e5467216f763af38e" category="inline-link-macro-rx"></block>。准备安装NX-OS软件和参考配置文件(Reference Configuration File、RCF)。</block>
@@ -3252,7 +3234,6 @@
   <block id="8e89ccec40320a1b61989fb275303962" category="paragraph">请参见以下内容：</block>
   <block id="379715148f20afc8152f9fd0f9300f3b" category="paragraph">此替代操作步骤 介绍了以下情形：</block>
   <block id="eb643417b6ed41175edc34f9fab61508" category="paragraph">此替代操作步骤 将第二个Nexus 3232C集群交换机CL2替换为新的3232C交换机C2。</block>
-  <block id="5e657936f35f6654d5a390a94d411b26" category="paragraph">此替代操作步骤 中的示例使用四个节点。其中两个节点使用四个 10 Gb 集群互连端口： e0a ， e0b ， e0c 和 e0d 。其他两个节点使用两个 40 Gb 集群互连端口： E4A 和 e4e 。请参见 <block ref="862bc7e99d01b4498927c2ced84e253e" category="inline-link-macro-rx"></block> 验证适用于您的平台的集群端口是否正确。</block>
   <block id="5451f895474fe79cd46d771ade1be8a2" category="section-title">第1步：显示集群端口并将其迁移到交换机</block>
   <block id="fb752c4a6200ed286349457edd2d4ac3" category="list-text">关闭物理连接到原始交换机CL2的集群互连端口：</block>
   <block id="40bb1c214aa359fc74abb9464fb96251" category="section-title">第2步：将ISL迁移到交换机CL1和C2</block>
@@ -3329,9 +3310,7 @@
   <block id="47ef3517d3d3996b89399d4a9639bea1" category="paragraph">要设置Cisco Nexus 3232C交换机、您需要中的以下文档<block ref="40f761a60b53eb5657b22596a88a5500" category="inline-link-rx"></block> 页面。</block>
   <block id="25de84bcfcfc826d24ce4a2563335dc2" category="paragraph">要在NetApp机柜中安装3232C Cisco交换机、请参见以下硬件文档。</block>
   <block id="536a003d2bb3a06adeaae4beb1438864" category="inline-link-macro">在NetApp机柜中安装Cisco Nexus 3232C交换机</block>
-  <block id="c49b5e210e49767e7c1d24da3ed18174" category="paragraph"><block ref="c49b5e210e49767e7c1d24da3ed18174" category="inline-link-macro-rx"></block></block>
   <block id="484438288295ccb871ffe387515ce29d" category="paragraph">请务必在中完成操作步骤 <block ref="92ff606cd08828782a7061b88d8a96a2" category="inline-link-macro-rx"></block>、然后按照以下步骤进行操作。</block>
-  <block id="5ccb38ebed4216ec8a6d18c4dc589f1e" category="paragraph"><block ref="a4d2e439383c877b79e3ee8d38ee9828" category="inline-link-macro-rx"></block>。</block>
   <block id="096a3404a2a07948959b99d02933138c" category="paragraph">按照此操作步骤 设置和配置Cisco Nexus 3232C交换机。</block>
   <block id="b91a19f0a97dcea0bc6535cbc925db21" category="list-text">所需的集群网络和管理网络交换机文档。</block>
   <block id="b9f5f24ad90c4ea8ff15fad9ac408f42" category="list-text">所需的控制器文档和ONTAP 文档。</block>
@@ -3478,7 +3457,6 @@
   <block id="81c54e4e4741aebd357dd94f97940d7d" category="list-text">您已查看以下内容：</block>
   <block id="06e45f008f3f22d11a5dc4eb8e875800" category="list-text"><block ref="06e45f008f3f22d11a5dc4eb8e875800" category="inline-link-macro-rx"></block></block>
   <block id="8b21286de1f0b27e78e54a55a69f517f" category="list-text"><block ref="8b21286de1f0b27e78e54a55a69f517f" category="inline-link-macro-rx"></block></block>
-  <block id="69ee4bf3a06817e8c0fa7c6865794f53" category="list-text"><block ref="69ee4bf3a06817e8c0fa7c6865794f53" category="inline-link-macro-rx"></block></block>
   <block id="e3eebebd717a15c05b5d4bda6525db57" category="paragraph">配置过程中的示例使用以下交换机和节点命名：</block>
   <block id="2a589226697f86d1ec8dba9f56cb3a14" category="list-text">NetApp交换机名称是<block ref="b12efe4e2b53de51a261421f77a3cbef" prefix=" " category="inline-code"></block> 和<block ref="43c8ce94d81492e62c60092a3664a65f" prefix=" " category="inline-code"></block>。升级将从第二台交换机_CS2._开始</block>
   <block id="569d321ae19e7d1c701bb976abe74690" category="list-text">每个节点上的集群端口均命名为<block ref="922c556baf6272bffc4fa28b2e9a0bbc" prefix=" " category="inline-code"></block> 和<block ref="22fe67c2e87caff18249cf1804bbeaad" prefix=" " category="inline-code"></block>。请参见<block ref="6a8cef5b71adde6301ea0984592ea5c1" category="inline-link-rx"></block> 您的平台支持的实际集群端口。</block>
@@ -3720,13 +3698,11 @@
   <block id="b6000f9eed7f8ea9ee4632bd2f77961a" category="inline-link">AFF C190</block>
   <block id="8e4eec704f9a8706e1a3cf96accb2c17" category="list-text"><block ref="8e4eec704f9a8706e1a3cf96accb2c17" category="inline-link-rx"></block></block>
   <block id="8fd3ca5f66dff5be16e79560dd28171e" category="inline-link">AFF A220</block>
-  <block id="fafaf2b4975899cdac53345e69aac224" category="list-text"><block ref="fafaf2b4975899cdac53345e69aac224" category="inline-link-rx"></block></block>
   <block id="68b23d3f7da36f1f08be0727f515bcb1" category="inline-link">AFF A250</block>
   <block id="5173935e91aef44c51b8afd57f32f13f" category="list-text"><block ref="5173935e91aef44c51b8afd57f32f13f" category="inline-link-rx"></block></block>
   <block id="540dacfeb5577ce4282c41e9c7518680" category="inline-link">AFF A400</block>
   <block id="e06ad9290eff5c16396920aafb75091e" category="list-text"><block ref="e06ad9290eff5c16396920aafb75091e" category="inline-link-rx"></block></block>
   <block id="56c7968a1d140906ab8313162854322d" category="inline-link">AFF A700</block>
-  <block id="550e0f3f38fa7f062f0cd580e8ec9904" category="list-text"><block ref="550e0f3f38fa7f062f0cd580e8ec9904" category="inline-link-rx"></block></block>
   <block id="53270fbfda62583949b287e08ae3d063" category="inline-link">AFF A800</block>
   <block id="2f143cdae4fee80d6697460e215b8a02" category="list-text"><block ref="2f143cdae4fee80d6697460e215b8a02" category="inline-link-rx"></block></block>
   <block id="ec5e81cea4c5ee83d635778e86350e80" category="inline-link">AFF A900</block>
@@ -3737,11 +3713,9 @@
   <block id="1752b126dd5e4219fbf53c09ee63d51e" category="inline-link">FAS8300</block>
   <block id="9832cac218f9fee6c6d44a9f9b5e7d76" category="list-text"><block ref="9832cac218f9fee6c6d44a9f9b5e7d76" category="inline-link-rx"></block></block>
   <block id="0588c4f1b58eac9f5062dc1da6e8435a" category="inline-link">FAS8700</block>
-  <block id="c892df1b5e8927f2c5ea04ddabf1eade" category="list-text"><block ref="c892df1b5e8927f2c5ea04ddabf1eade" category="inline-link-rx"></block></block>
   <block id="ec5c696a4bc57321a5a79c91b886d5ff" category="inline-link">FAS9000</block>
   <block id="6cfed826aaeccc59ecbf1bef0c41c6b6" category="list-text"><block ref="6cfed826aaeccc59ecbf1bef0c41c6b6" category="inline-link-rx"></block></block>
   <block id="756d409209ace98589705774b5011aa0" category="inline-link">FAS9500</block>
-  <block id="12308a6b5626caec9567d89e267f0550" category="list-text"><block ref="12308a6b5626caec9567d89e267f0550" category="inline-link-rx"></block></block>
   <block id="f3fd85a3ac5b5eb87b15d1c52c1dc13c" category="section-title">第2步：安装交换机硬件</block>
   <block id="26d2e0bd267361cc8916e7e16faebcbb" category="paragraph">将交换机安装在机架或机柜中。根据您的交换机型号访问以下说明。</block>
   <block id="8821c03ea98d1edaf4b4b82c0aaf59dc" category="inline-link-macro">安装BES-53248交换机</block>
@@ -3795,8 +3769,6 @@
   <block id="cd0ac8ac6ae100c0f56d712237ad4aea" category="list-text">有关采用MetroCluster 的ONTAP 部署、请参见<block ref="725c74f5b5396d66bd86e73daf02329b" category="inline-link-rx"></block>。</block>
   <block id="1e672cb0691529b9dab89394f7a5f58c" category="paragraph"><block ref="f9b2ed845567b21857ae5d0479088ab0" category="inline-link-macro-rx"></block>。</block>
   <block id="21f31f792b72c310b4fd5aa9c2e35835" category="paragraph">按照此操作步骤 在Nexus 9336C-x2共享交换机上安装NX-OS软件。</block>
-  <block id="7a0053c4b6fad6758411d3fe2d648fb7" category="paragraph">开始之前、请填写中的操作步骤 <block ref="7f9772c8b2604a832c6aad846dc2adc9" category="inline-link-macro-rx"></block>。</block>
-  <block id="708b9bef34421e8293c00d9205b84615" category="paragraph"><block ref="22eb01d1e7d6584a0da20f490dc5af77" category="inline-link-macro-rx"></block>。</block>
   <block id="3353682bf555dc374d0a35c53f69888f" category="paragraph">您可以更换有故障的Nexus 9336C-x2共享交换机。这是无中断操作步骤 (NDU)。</block>
   <block id="417613c56ec1e642135d2c1c9047771b" category="list-text">在现有集群和网络基础架构中：</block>
   <block id="a3fed8ac06490f1babb7bb8e52ad3317" category="list-text">对于Nexus 9336C-x2更换交换机：</block>
@@ -3840,13 +3812,11 @@
   <block id="f1d2082f6b7e2fe0bd21c264b34b1db0" category="inline-link">机架安装说明</block>
   <block id="85fdb4a8732610c4c52e8f55737378a6" category="paragraph">请参见<block ref="bbb1ee507d7be4aaba439496ffdc6801" category="inline-link-rx"></block> 了解如何将交换机装入NetApp机柜。</block>
   <block id="d2fa93779a0f6b07d1717e02308c2fa6" category="inline-link-macro">配置Cisco Nexus 9336C-x2共享交换机</block>
-  <block id="5273d8542606089233fc6b6190b5a6a1" category="paragraph">转至 <block ref="1b64b8467f6d243e16d469a0634ee2e3" category="inline-link-macro-rx"></block>。</block>
   <block id="c5ad5ecc479e35c7979fd57a0ebbe702" category="doc">配置Cisco Nexus 9336C-x2共享交换机</block>
   <block id="a241f03e92a7f9be7881ccbebc3c49c1" category="list-text">【第3步】对交换机执行初始配置。</block>
   <block id="f1763dacc91922ffa978d054dfd1f86a" category="list-text">启动交换机。</block>
   <block id="dccfac69359fbbc2d697ceff2f471768" category="paragraph">首次启动交换机时、请针对以下初始设置问题提供相应的回答。</block>
   <block id="aae42f96c85f765e2daf91cfda78fbed" category="paragraph">您站点的安全策略定义了响应和服务，以实现：</block>
-  <block id="39f03c8807c9d36b2901f7198a4ae0c2" category="paragraph">根据您的配置、您可以 <block ref="bd7e5f56c6474a1d0a59eeac0ce681d7" category="inline-link-macro-rx"></block>。否则，请转到 <block ref="16a9a5fa8979bab3106e7aad0dfd20d9" category="inline-link-macro-rx"></block>。</block>
   <block id="e0f95538095f3006db4ec3d4d022f616" category="summary">Cisco Nexus 9336C-x2共享交换机的安装和配置概述</block>
   <block id="c4081cf1ddd1a31c8c993d369968dbdb" category="paragraph">Cisco Nexus 9336C-x2共享交换机是Cisco Nexus 9000平台的一部分、可以安装在NetApp系统机柜中。通过共享交换机、您可以通过支持使用共享集群和存储参考配置文件、将集群和存储功能组合到共享交换机配置中。</block>
   <block id="6b60b7ab5a3f661e97c0ea00594d9f2a" category="list-text"><block ref="6b60b7ab5a3f661e97c0ea00594d9f2a" category="inline-link-macro-rx"></block></block>
@@ -4070,7 +4040,6 @@
   <block id="4f1029afef8c698983cd55b4b7196076" category="list-text">适用于NetApp 支持站点 中交换机的NetApp Cisco NX-OS软件、可从获取<block ref="7bc6752d2076d2c755eaebbdfeb91d23" category="inline-link-rx"></block></block>
   <block id="c2995f917cf848b1a8ad4f123990b08f" category="inline-link-macro">Hardware Universe^ _</block>
   <block id="47db2740e391cb9dd7afd4c727db1c28" category="paragraph">请参见 <block ref="2e30f42bb79c7c9fe477a9d63d7f110d" category="inline-link-macro-rx"></block> 您的平台支持的实际集群端口。</block>
-  <block id="a998998d9aa85cfad622a955a89c3928" category="paragraph"><block ref="c9caf8686378c2ac2326b9009e47db5d" category="inline-link-macro-rx"></block>。</block>
   <block id="3fbd08493d5c275b232c6896255f6eba" category="paragraph">在执行交换机更换之前、请确保：</block>
   <block id="9bcdab9bd4ecdb0aaa64e3361181edda" category="list-text">对于Nexus 92300YC更换交换机：</block>
   <block id="ddb606c3427383a547248e87a5791c6d" category="list-text">端口1/65和1/66上的所有交换机间链路(ISL)端口均已禁用。</block>
@@ -4118,8 +4087,6 @@
   <block id="4ebdda488f805c9ab0a258700a488e0b" category="doc">Cisco Nexus 92300YC交换机的文档要求</block>
   <block id="4f6bac6c0b1a5da139b3d40b1f27d66c" category="paragraph">要设置Cisco Nexus 92300YC交换机、您需要中的以下文档<block ref="f4fbe3bed062fba5aa150f0db2ededbd" category="inline-link-rx"></block> 页面。</block>
   <block id="1bae6202d6745d172ebce83b73e80d17" category="paragraph">要在NetApp机柜中安装Cisco Nexus 92300YC交换机、请参见以下硬件文档。</block>
-  <block id="38432f6d5817226c6aa0cd518b5f378d" category="inline-link-macro">在NetApp机柜中安装Cisco Nexus 92300YC交换机</block>
-  <block id="5c446008fefc03f89204e24056931fa6" category="paragraph"><block ref="5c446008fefc03f89204e24056931fa6" category="inline-link-macro-rx"></block></block>
   <block id="1c246914de63b585e3ac51879ee3dc8f" category="paragraph">介绍如何在四柱NetApp机柜中安装Cisco Nexus 92300YC交换机。</block>
   <block id="88a0b3df07cdb106fc7a25b0182e181c" category="summary">在无中断地将双节点无交换机集群迁移到使用 Cisco Nexus 92300YC 集群交换机的集群时，您必须了解某些配置信息，端口连接和布线要求。</block>
   <block id="5763545af30d991e7fec280eebb750f9" category="paragraph">您使用的操作步骤取决于每个控制器上是有两个专用集群网络端口，还是每个控制器上有一个集群端口。记录的过程适用于使用光纤或双轴端口的所有节点，但如果节点将板载 10 Gb BASE-T RJ45 端口用于集群网络端口，则此交换机不支持此过程。</block>
@@ -4237,7 +4204,6 @@
   <block id="bddd350f57f122b08e2cb443bea291f8" category="paragraph">对BES-53248集群交换机执行初始设置。</block>
   <block id="52e2edab7e3825b54d082dec1bec95c2" category="paragraph">使用日志收集功能在ONTAP 中收集与交换机相关的日志文件。</block>
   <block id="89176363c7d28c567fb702f95f7eee23" category="list-text"><block ref="89176363c7d28c567fb702f95f7eee23" category="inline-link-macro-rx"></block></block>
-  <block id="c3751db0b816eb77f301f33109e09667" category="list-text"><block ref="7f9772c8b2604a832c6aad846dc2adc9" category="inline-link-macro-rx"></block>参考配置文件(RCF)。</block>
   <block id="2aff03c3dbc05dcd1a7473fdae46a518" category="list-text"><block ref="ac0177a37e0d6a9d48948f0f0ce18138" category="inline-link-macro-rx"></block>。</block>
   <block id="77e50b9c28c254a30c6532cef05d409b" category="list-text"><block ref="791d44ab04841c1e3ddab1f7a28b754b" category="inline-link-macro-rx"></block>。</block>
   <block id="fd5531349e673e037070aacc3a802f37" category="list-text"><block ref="2d5ab056fce0957a1995d7dbefe2460c" category="inline-link-macro-rx"></block>。</block>
@@ -4268,6 +4234,39 @@
   <block id="6772e4d59dd062c5a9260242b751786f" category="doc">将Cisco Nexus 3232C集群交换机更换为无交换机连接</block>
   <block id="6dd41d8a8ed57c2ab7e587572c2bf8c5" category="doc">将Cisco Nexus 92300YC集群交换机更换为无交换机连接</block>
   <block id="5e1805c74a69eb3dca33ebb7e0f38ef6" category="doc">将Cisco Nexus 9336C-x2集群交换机更换为无交换机连接</block>
-  <block id="1991711774b7f5c3d1ceb09a3f94be78" category="doc">使用Cisco Nexus 9336C-FX2集群交换机从切换集群迁移到无交换机集群</block>
   <block id="0cb146d69d0fe75b8dbae294e40edac5" category="sidebar">将集群交换机更换为无交换机连接</block>
+  <block id="c0a5b1a3d1bb172f76bd6c3a49e192b0" category="paragraph"><block ref="c0a5b1a3d1bb172f76bd6c3a49e192b0" category="inline-link-rx"></block></block>
+  <block id="c0465e16a8eab6f05c1f0b75df3a60ef" category="paragraph"><block ref="c0465e16a8eab6f05c1f0b75df3a60ef" category="inline-link-rx"></block></block>
+  <block id="5209c02c28f9cf2ff12a0dc853b7bfc8" category="paragraph"><block ref="5209c02c28f9cf2ff12a0dc853b7bfc8" category="inline-link-rx"></block></block>
+  <block id="3d1ad993d058b226af4c41175610801a" category="paragraph"><block ref="3d1ad993d058b226af4c41175610801a" category="inline-link-rx"></block></block>
+  <block id="52411f7e6913940f22e4643fd665796b" category="paragraph"><block ref="52411f7e6913940f22e4643fd665796b" category="inline-link-rx"></block></block>
+  <block id="a780e0abe892abffee72be061886b35a" category="paragraph"><block ref="a780e0abe892abffee72be061886b35a" category="inline-link-rx"></block></block>
+  <block id="f88ff492d9ac2b71b83a8f1cf903002f" category="paragraph"><block ref="f88ff492d9ac2b71b83a8f1cf903002f" category="inline-link-macro-rx"></block></block>
+  <block id="3de316d04f9ddd9e9153f3bf9d611beb" category="list-text"><block ref="0f34072d0ab1c4a9db39b14366a38c31" category="inline-link-macro-rx"></block>。将Cisco Nexus 3132Q-V交换机和直通面板安装在NetApp机柜中、并使用交换机附带的标准支架。</block>
+  <block id="51f182c7d57e93ac41dc191ea3467c70" category="paragraph"><block ref="51f182c7d57e93ac41dc191ea3467c70" category="inline-link-macro-rx"></block></block>
+  <block id="febc0aefd48524c17323ea62f494c0a3" category="paragraph">请参见 <block ref="1dbca34b24162eb59cc33616a1549705" category="inline-link-macro-rx"></block> 有关详细信息 ...</block>
+  <block id="fc03792e787f91930c4afa79aa28d773" category="paragraph"><block ref="fc03792e787f91930c4afa79aa28d773" category="inline-link-macro-rx"></block></block>
+  <block id="10fd49cfa6f861021f96ea607a4f1301" category="paragraph">此替代操作步骤 中的示例使用四个节点。其中两个节点使用四个 10 Gb 集群互连端口： e0a ， e0b ， e0c 和 e0d 。其他两个节点使用两个 40 Gb 集群互连端口： E4A 和 e4e 。请参见 <block ref="9c839fcdfb8699a63c787254d7b1ae03" category="inline-link-macro-rx"></block> 验证适用于您的平台的集群端口是否正确。</block>
+  <block id="7b1f8572a598b67cece8c82d64948766" category="paragraph"><block ref="7b1f8572a598b67cece8c82d64948766" category="inline-link-macro-rx"></block></block>
+  <block id="a4546ad702e5e121d27f5d4775aafe40" category="paragraph"><block ref="a4546ad702e5e121d27f5d4775aafe40" category="inline-link-rx"></block></block>
+  <block id="5e39f518f379edf87fbd37cab3947422" category="paragraph"><block ref="5e39f518f379edf87fbd37cab3947422" category="inline-link-rx"></block></block>
+  <block id="df45f84b5087e66d03f27b014107fca6" category="admonition">迁移完成后，您可能需要安装所需的配置文件，以支持 923300 YC 集群交换机的集群交换机运行状况监控器（ Cluster Switch Health Monitor ， CSHM ）。请参见 <block ref="7548ef470ae7a4b5446d2e75f973e9c7" category="inline-link-macro-rx"></block> 了解详细信息。</block>
+  <block id="85e1bd0d0188ca0339d3e60bb2a7e065" category="inline-link-macro">[在NetApp机柜中安装Cisco Nexus 92300YC交换机</block>
+  <block id="a3eb3beddbb43f454ab9432019c1c2ba" category="paragraph"><block ref="a3eb3beddbb43f454ab9432019c1c2ba" category="inline-link-macro-rx"></block></block>
+  <block id="9461b7a834c383c5538d97f8a173943a" category="paragraph"><block ref="9461b7a834c383c5538d97f8a173943a" category="inline-link-macro-rx"></block></block>
+  <block id="7f8ff44cf8415837b6ddd0f6cfbf3f5a" category="list-text"><block ref="7f8ff44cf8415837b6ddd0f6cfbf3f5a" category="inline-link-macro-rx"></block></block>
+  <block id="564ec135f22614fd51e7ace4addc3c82" category="list-text"><block ref="564ec135f22614fd51e7ace4addc3c82" category="inline-link-rx"></block></block>
+  <block id="5cebcc95a2116e4839d188e34a24089c" category="list-text"><block ref="5cebcc95a2116e4839d188e34a24089c" category="inline-link-rx"></block></block>
+  <block id="4cd32923632a1028f1e64fee85335b39" category="list-text"><block ref="4cd32923632a1028f1e64fee85335b39" category="inline-link-rx"></block></block>
+  <block id="2bf999bae7084da5db26c6b483ac44f0" category="list-text"><block ref="2bf999bae7084da5db26c6b483ac44f0" category="inline-link-rx"></block></block>
+  <block id="17467de5e625043cda6499d3541a20d4" category="list-text">【第 7 步】将共享交换机 A 上的存储 RCF 替换为共享 RCF 文件。请参见 <block ref="2f595b9f03c1eca7e988cc615d685264" category="inline-link-macro-rx"></block> 了解更多详细信息。</block>
+  <block id="636bbeffec3fc87e3384d539d543afee" category="list-text">【第 13 步】将共享交换机 B 上的存储 RCF 文件替换为共享 RCF 文件。请参见 <block ref="2f595b9f03c1eca7e988cc615d685264" category="inline-link-macro-rx"></block> 了解更多详细信息。</block>
+  <block id="73cb4c03f2757beb35ad69fd322003be" category="list-text">【第 16 步】将 HA 对 1 从无交换机集群转换为有交换机集群。使用共享 RCF 定义的集群端口分配。请参见 <block ref="e0b55f136d815f7a36c41fd7fe28e0fd" category="inline-link-macro-rx"></block>了解更多详细信息。</block>
+  <block id="12bc639206c2ca12e8a65041a697e4fc" category="paragraph">转至<block ref="c686ee523547302c3fa5199eafd95753" category="inline-link-rx"></block>。</block>
+  <block id="6446fc62a2115815d4bdbe55f18815c1" category="list-text"><block ref="47109c7943148b2a9617cfcb4b49a79f" category="inline-link-macro-rx"></block>。</block>
+  <block id="22eb01d1e7d6584a0da20f490dc5af77" category="paragraph"><block ref="22eb01d1e7d6584a0da20f490dc5af77" category="inline-link-macro-rx"></block></block>
+  <block id="6f773061a9b11739f4b04a8b170f8f8e" category="paragraph">根据您的配置、您可以 <block ref="bd7e5f56c6474a1d0a59eeac0ce681d7" category="inline-link-macro-rx"></block>。否则，请转到 <block ref="cd3d2c6d0c8a0c43f0a0e10375ad6bbc" category="inline-link-macro-rx"></block>。</block>
+  <block id="7f81bc06b8e7a4bfd515767a4b4385fe" category="list-text">【第 6 步】将共享交换机 A 上的存储 RCF 替换为共享 RCF 文件。请参见 <block ref="2f595b9f03c1eca7e988cc615d685264" category="inline-link-macro-rx"></block> 了解更多详细信息。</block>
+  <block id="2b888f1fbb1010b5a426f7a2a88e0914" category="list-text">【第 12 步】将共享交换机 B 上的存储 RCF 文件替换为共享 RCF 文件。请参见 <block ref="2f595b9f03c1eca7e988cc615d685264" category="inline-link-macro-rx"></block> 了解更多详细信息。</block>
+  <block id="8ddcfbe457d5db5e61625624a6a20b33" category="list-text">【第 16 步】使用替代交换机操作步骤和共享 RCF 将集群网络从现有集群交换机迁移到共享交换机。新的共享交换机 A 为 "CS1" 。新的共享交换机 B 为 "CS2" 。请参见 <block ref="79be7ff3aee9976e13251b5a88fadf5c" category="inline-link-macro-rx"></block> 和 <block ref="2f595b9f03c1eca7e988cc615d685264" category="inline-link-macro-rx"></block> 了解更多详细信息。</block>
 </blocks>

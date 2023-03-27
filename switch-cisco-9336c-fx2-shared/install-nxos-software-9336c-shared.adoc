@@ -13,7 +13,7 @@ summary: 您可以使用此操作步骤在 Nexus 9336C-x2 集群交换机上安�
 [role="lead"]
 按照此操作步骤 在Nexus 9336C-x2共享交换机上安装NX-OS软件。
 
-开始之前、请填写中的操作步骤 link:install-nxos-overview-9336c-shared.html["准备安装NX-OS和RCF"]。
+开始之前、请填写中的操作步骤 link:prepare-nxos-rcf-9336c-shared.html["准备安装NX-OS和RCF"]。
 
 
 
@@ -369,4 +369,4 @@ GEM  FPGA                        0x2
 
 
 .下一步是什么？
-link:install-nxos-rcf-9336c-shared.html["安装RCF配置文件"]。
+link:install-nxos-rcf-9336c-shared.html["安装RCF配置文件"]

@@ -89,7 +89,7 @@ node2
 ====
 
 
-. 【第 6 步】将共享交换机 A 上的存储 RCF 替换为共享 RCF 文件。请参见 link:9336c_install_nx-os_software_and_reference_configuration_files_rcfs.html#install-the-rcf-on-a-cisco-nexus-9336c-fx2-shared-switch["在 Cisco Nexus 9336C-x2 共享交换机上安装 RCF"] 了解更多详细信息。
+. 【第 6 步】将共享交换机 A 上的存储 RCF 替换为共享 RCF 文件。请参见 link:install-nxos-rcf-9336c-shared.html["在 Cisco Nexus 9336C-x2 共享交换机上安装 RCF"] 了解更多详细信息。
 . 验证连接到HA对1存储交换机A的存储是否运行正常：
 +
 `system health alert show -instance`
@@ -125,7 +125,7 @@ There are no entries matching your query.
 ====
 
 
-. 【第 12 步】将共享交换机 B 上的存储 RCF 文件替换为共享 RCF 文件。请参见 link:9336c_install_nx-os_software_and_reference_configuration_files_rcfs.html#install-the-rcf-on-a-cisco-nexus-9336c-fx2-shared-switch["在 Cisco Nexus 9336C-x2 共享交换机上安装 RCF"] 了解更多详细信息。
+. 【第 12 步】将共享交换机 B 上的存储 RCF 文件替换为共享 RCF 文件。请参见 link:install-nxos-rcf-9336c-shared.html["在 Cisco Nexus 9336C-x2 共享交换机上安装 RCF"] 了解更多详细信息。
 . 验证连接到HA对1存储交换机B的存储是否运行正常：
 +
 `system health alert show -instance`
@@ -203,7 +203,7 @@ sh1 (config)# *exit*
 ====
 
 
-. 【第 16 步】使用替代交换机操作步骤和共享 RCF 将集群网络从现有集群交换机迁移到共享交换机。新的共享交换机 A 为 "CS1" 。新的共享交换机 B 为 "CS2" 。请参见 link:9336c_replace_a_cisco_nexus_9336c-fx2_shared_switch.html["更换 Cisco Nexus 9336C-x2 共享交换机"] 和 link:9336c_install_nx-os_software_and_reference_configuration_files_rcfs.html#install-the-rcf-on-a-cisco-nexus-9336c-fx2-shared-switch["在 Cisco Nexus 9336C-x2 共享交换机上安装 RCF"] 了解更多详细信息。
+. 【第 16 步】使用替代交换机操作步骤和共享 RCF 将集群网络从现有集群交换机迁移到共享交换机。新的共享交换机 A 为 "CS1" 。新的共享交换机 B 为 "CS2" 。请参见 link:replace-9336c-fx2-shared.html["更换 Cisco Nexus 9336C-x2 共享交换机"] 和 link:install-nxos-rcf-9336c-shared.html["在 Cisco Nexus 9336C-x2 共享交换机上安装 RCF"] 了解更多详细信息。
 . 验证交换网络配置是否有效：
 +
 `network port show`

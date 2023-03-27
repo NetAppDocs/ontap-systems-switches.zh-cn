@@ -129,7 +129,7 @@ https://library.netapp.com/ecm/ecm_download_file/ECMM1280394["42U 系统机柜�
 
 
  a| 
-link:task-install-a-cisco-nexus-3232c-cluster-switch-and-pass-through-panel-in-a-netapp-cabinet.html["在NetApp机柜中安装Cisco Nexus 3132Q-V交换机"^]
+link:install-cisco-nexus-3132qv.html["在NetApp机柜中安装Cisco Nexus 3132Q-V交换机"^]
  a| 
 介绍如何在四柱 NetApp 机柜中安装 Cisco Nexus 3132Q-V 交换机。
 

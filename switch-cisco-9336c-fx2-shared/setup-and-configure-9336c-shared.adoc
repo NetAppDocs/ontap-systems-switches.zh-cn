@@ -134,4 +134,4 @@ NOTE: 如果您在此阶段未保存配置，则下次重新启动交换机时�
 
 
 .下一步是什么？
-根据您的配置、您可以 link:install-switch-and-passthrough-panel-9336c-shared.html["将交换机安装在NetApp机柜中"]。否则，请转到 link:install-nxos-overview-9336c-storage.html["准备安装NX-OS和RCF"]。
+根据您的配置、您可以 link:install-switch-and-passthrough-panel-9336c-shared.html["将交换机安装在NetApp机柜中"]。否则，请转到 link:prepare-nxos-rcf-9336c-shared.html["准备安装NX-OS和RCF"]。

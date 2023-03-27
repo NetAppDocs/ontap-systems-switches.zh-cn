@@ -25,7 +25,7 @@ indexpage:
     - title: AFF/FAS硬件系统
       url: https://docs.netapp.com/us-en/ontap-systems/index.html
     - title: ONTAP 软件
-      url: https://docs.netapp.com/us-en/ontap/index.htmly/
+      url: https://docs.netapp.com/us-en/ontap/index.html
   - title: 工具支持
     links:
     - title: NetApp 互操作性表
