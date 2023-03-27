@@ -15,16 +15,15 @@ summary: 了解集群、存储和共享交换机。
 
 部署交换机涉及以下工作流。
 
-
-
-== 第1步：安装AFF/FAS控制器
-
+.image:https://raw.githubusercontent.com/NetAppDocs/common/main/media/number-1.png["一个"] 安装AFF/FAS控制器
+[role="quick-margin-para"]
 在机架或机柜中安装AFF/FAS控制器。访问适用于您的AFF/FAS平台型号的安装和设置说明。
 
-[cols="9,9,9"]
+[cols="4,9,9,9"]
 |===
 
 
+ a| 
  a| 
 .AFF 系统
 * https://docs.netapp.com/us-en/ontap-systems/c190/install-setup.html["AFF C190"]
@@ -46,16 +45,15 @@ summary: 了解集群、存储和共享交换机。
  a| 
 
 |===
-
-
-== 第2步：安装交换机硬件
-
+.image:https://raw.githubusercontent.com/NetAppDocs/common/main/media/number-2.png["两个"] 安装交换机硬件
+[role="quick-margin-para"]
 将交换机安装在机架或机柜中。根据您的交换机型号访问以下说明。
 
-[cols="9,9,9"]
+[cols="2,9,9,9"]
 |===
 
 
+ a| 
  a| 
 .集群交换机
 * link:../switch-bes-53248/install-hardware-bes53248.html["安装BES-53248交换机"]
@@ -73,16 +71,15 @@ summary: 了解集群、存储和共享交换机。
 
 
 |===
-
-
-== 第3步：使用缆线将交换机连接到控制器
-
+.image:https://raw.githubusercontent.com/NetAppDocs/common/main/media/number-3.png["三个"]使用缆线将交换机连接到控制器
+[role="quick-margin-para"]
 AFF/FAS安装和设置说明介绍了如何使用缆线将控制器端口连接到交换机。但是、如果您需要受支持的缆线和收发器列表以及有关交换机主机端口的详细信息、请根据您的交换机型号访问以下说明。
 
-[cols="9,9,9"]
+[cols="2,9,9,9"]
 |===
 
 
+ a| 
  a| 
 .集群交换机
 * link:../switch-bes-53248/configure-reqs-bes53248.html#configuration-requirements["为BES-53248交换机布线"]
@@ -100,16 +97,15 @@ AFF/FAS安装和设置说明介绍了如何使用缆线将控制器端口连接�
 
 
 |===
-
-
-== 第4步：配置交换机
-
+.image:https://raw.githubusercontent.com/NetAppDocs/common/main/media/number-4.png["四个"]配置交换机
+[role="quick-margin-para"]
 对交换机执行初始设置。根据您的交换机型号访问以下说明。
 
-[cols="9,9,9"]
+[cols="2,9,9,9"]
 |===
 
 
+ a| 
  a| 
 .集群交换机
 * link:../switch-bes-53248/configure-install-initial.html["配置BES-53248交换机"]
@@ -127,16 +123,15 @@ AFF/FAS安装和设置说明介绍了如何使用缆线将控制器端口连接�
 
 
 |===
-
-
-== 第5步：安装交换机软件
-
+.image:https://raw.githubusercontent.com/NetAppDocs/common/main/media/number-5.png["五个"] 安装交换机软件
+[role="quick-margin-para"]
 要在交换机上安装和配置软件、请按照适用于您的交换机型号的软件安装工作流进行操作。
 
-[cols="9,9,9"]
+[cols="2,9,9,9"]
 |===
 
 
+ a| 
  a| 
 .集群交换机
 * link:../switch-bes-53248/configure-software-overview-bes53248.html["为BES-53248交换机安装软件"]
@@ -154,16 +149,15 @@ AFF/FAS安装和设置说明介绍了如何使用缆线将控制器端口连接�
 
 
 |===
-
-
-== 第6步：完成系统设置
-
+.image:https://raw.githubusercontent.com/NetAppDocs/common/main/media/number-6.png["六个"] 完成系统设置
+[role="quick-margin-para"]
 配置交换机并安装所需软件后、请访问适用于AFF/FAS平台型号的安装和设置说明以完成系统设置。
 
-[cols="9,9,9"]
+[cols="4,9,9,9"]
 |===
 
 
+ a| 
  a| 
 .AFF 系统
 * https://docs.netapp.com/us-en/ontap-systems/c190/install-setup.html["AFF C190"]
@@ -185,12 +179,11 @@ AFF/FAS安装和设置说明介绍了如何使用缆线将控制器端口连接�
  a| 
 
 |===
-
-
-== 第7步：完成ONTAP 配置
-
+.image:https://raw.githubusercontent.com/NetAppDocs/common/main/media/number-7.png["七个"] 完成ONTAP 配置
+[role="quick-margin-para"]
 安装并设置AFF/FAS控制器和交换机后、必须在ONTAP 中完成存储配置。根据您的部署配置访问以下说明。
 
+[role="quick-margin-list"]
 * 有关ONTAP 部署、请参见 https://docs.netapp.com/us-en/ontap/task_configure_ontap.html["配置 ONTAP"]。
 * 有关采用MetroCluster 的ONTAP 部署、请参见 https://docs.netapp.com/us-en/ontap-metrocluster/["使用ONTAP 配置MetroCluster"]。
 
