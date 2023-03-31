@@ -2901,7 +2901,6 @@
   <block id="496fe3dd70b4f5816f2c409909812bb5" category="list-text">验证所有集群网络LIF是否均已恢复其主端口：</block>
   <block id="829106baec07d32d260194a2527e041b" category="paragraph"><block ref="81e27480a79c2bb77194c038c9737157" category="inline-link-macro-rx"></block>。</block>
   <block id="551d30a8d4eb4a668b69a7293c7a7b96" category="section-title">QSA适配器</block>
-  <block id="23e40c2eacc1cd3639734b7ae7430b2d" category="paragraph">使用QSA适配器连接到平台上的板载Intel集群端口时、并非所有链路都启动。示例平台包括FAS2750、AFF A300和FAS8200 (全10G)以及AFF A250 (25G)。</block>
   <block id="95014a22727b6c60eefe66a36ce9ded2" category="paragraph"><block ref="520f63525f898e977d91bb94f9da1129" category="inline-link-macro-rx"></block>。</block>
   <block id="b3ab991775278214a4482646f14a4804" category="paragraph">您使用的操作步骤取决于每个控制器上是有两个专用集群网络端口，还是每个控制器上有一个集群端口。记录的过程适用于使用光纤或双轴端口的所有节点、但如果节点将板载10GBASE-T RJ45端口用于集群网络端口、则此交换机不支持此过程。</block>
   <block id="52c5fb2d511e57cc084140509647dd1e" category="list-text">双节点无交换机配置已正确设置并正常运行。</block>
@@ -4276,4 +4275,25 @@
   <block id="aea7345148c1589735242fc13ad81924" category="paragraph-title"><block ref="ef78558f80439832e0f51cc22cee8b8c" category="inline-image-macro-rx" type="image"></block> 完成系统设置</block>
   <block id="12e67aac3e7f9227cc35f8f047d7dc74" category="inline-image-macro">七个</block>
   <block id="8f5988d6d5abedb5da92f0fcbc79872d" category="paragraph-title"><block ref="36915574c413876eaa75cbd48f69fd00" category="inline-image-macro-rx" type="image"></block> 完成ONTAP 配置</block>
+  <block id="d8c8c02df74538b604d42f3f6d992c40" category="paragraph">4个10GbE分支集群端口节点</block>
+  <block id="331bcd76038fdc1605be4c587c56294c" category="paragraph">4个25GbE分支集群端口节点</block>
+  <block id="e451d063f2ca2617078b2305ef087f02" category="paragraph">swp3-14</block>
+  <block id="0d60da82680f3305621fd4472d897e3b" category="paragraph">40/100集群端口节点</block>
+  <block id="044141a7c2076e2a8d84961a043b480a" category="paragraph">swp15-16</block>
+  <block id="cab42d967475ecc877f819cc849c3392" category="paragraph">40/100交换机间链路(ISL)端口</block>
+  <block id="c462eb588f6f13a8e04bee80aae30ba8" category="paragraph">请参见<block ref="c043e01cdc55399f824e6d1e4eb8a5b5" category="inline-link-rx"></block> 有关交换机端口的详细信息。</block>
+  <block id="e7af52912cd69e9bf38776786cbca8a3" category="paragraph">对于Cumulus Linux 4.4.2、使用X1151A NIC、X1146A NIC或板载100GbE端口的SN2100交换机仅支持光纤连接。例如：</block>
+  <block id="85a0e57a29218d20a48e10c13bdf7cb6" category="paragraph">对于Cumulus Linux 4.4.3及更高版本、需要进行以下配置更改才能修复此问题描述。</block>
+  <block id="f3f1289d53f31212ba6b49b341ffc7e6" category="list-text">将以下两行添加到<block ref="d4b3c0affe66439bbee012d30e38441b" prefix=" " category="inline-code"></block> 使用40/100GbE铜缆的每个端口(swp &lt;n&gt;)的文件：</block>
+  <block id="69cf9ddd2a167644a30a59dda49e0f6a" category="list-text"><block ref="0babc1daa70cf30fe3f5ad4e3e07fab2" prefix="" category="inline-code"></block></block>
+  <block id="7ecf603eb76daba643481182546f4e38" category="list-text"><block ref="a0ce25310d7a8e2527bb141f43700add" prefix="" category="inline-code"></block></block>
+  <block id="6ec72ecd2f587c249b56c3e03401ecae" category="list-text">重新启动switchd守护进程：<block ref="2b526042e0b783c1b2eb28b0ef5623de" prefix=" " category="inline-code"></block></block>
+  <block id="ab57fd0432e25d5b3013133a1c910d56" category="inline-link">知识库</block>
+  <block id="d1230bc869b84c83439b8c8e7519dde2" category="paragraph">请参见以下内容<block ref="a885142d9d0638feca0ff8bbde23eb83" category="inline-link-rx"></block> 了解更多详细信息。</block>
+  <block id="7fa926cf10e568e38d190fa4bb643575" category="paragraph">使用QSA适配器连接到平台上的板载集群端口时、链路可能无法启动。</block>
+  <block id="3ff6d247db095566d17ccb43d3672576" category="list-text">对于10G、请手动将swp1s0-3链路速度设置为10000、并将自动协商设置为off。</block>
+  <block id="7884c7a18dfb8ee5902cac6f25fd2535" category="list-text">对于25G、手动将swp2s0-3链路速度设置为25000、并将自动协商设置为off。</block>
+  <block id="6b7eaec843bb5fcdab1371328ab1e94c" category="admonition">使用10G/25G QSA时、请将其插入非分支40/100G端口。请勿将QSA适配器插入为分支配置的端口。</block>
+  <block id="92f8e266fe70da4f6717e931d81faa46" category="section-title">设置分支端口上的接口速度</block>
+  <block id="577c386d1bb7bbffa59ac5c15182ada1" category="paragraph">根据交换机端口中的收发器、您可能需要将交换机接口上的速度设置为固定速度。如果使用10G和25G分支端口、请确保自动协商已关闭、并在交换机上硬设置接口速度。例如：</block>
 </blocks>
