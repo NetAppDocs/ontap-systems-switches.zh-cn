@@ -4,16 +4,16 @@ sidebar: sidebar
 keywords: install, cisco nexus 92300 switch, 
 summary: 在配置Cisco Nexus 92300交换机之前、请查看此过程的概述和术语。 
 ---
-= Cisco Nexus 92300交换机安装和配置概述
+= Cisco Nexus 92300YC交换机安装和配置概述
 :allow-uri-read: 
 :icons: font
 :imagesdir: ../media/
 
 
 [role="lead"]
-在配置Cisco Nexus 92300交换机之前、请查看操作步骤 概述。
+在配置Cisco Nexus 92300YC交换机之前、请查看操作步骤 概述。
 
-要在运行ONTAP 的系统上初始配置Cisco Nexus 92300交换机、请执行以下步骤：
+要在运行ONTAP 的系统上初始配置Cisco Nexus 92300YC交换机、请执行以下步骤：
 
 . link:setup-worksheet-92300yc.html["填写Cisco Nexus 92300YC布线工作表"]。示例布线工作表提供了从交换机到控制器的建议端口分配示例。空白工作表提供了一个模板、可用于设置集群。
 . link:configure-install-initial.html["配置Cisco Nexus 92300YC交换机"]。设置和配置Cisco Nexus 92300YC交换机。

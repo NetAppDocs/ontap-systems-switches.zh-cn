@@ -11,7 +11,7 @@ summary: 如果要使用两个以上的节点构建 ONTAP 集群，则需要两�
 
 
 [role="lead"]
-对于Cisco Nexus 92300YC交换机安装和维护、请务必查看所有交换机组件和部件号。
+对于Cisco Nexus 92300YC交换机安装和维护、请务必查看所有交换机组件和部件号。请参见 https://hwu.netapp.com/SWITCH/INDEX["Hardware Universe"^] 了解详细信息。
 
 下表列出了 92300YC 交换机，风扇和电源的部件号和问题描述：
 

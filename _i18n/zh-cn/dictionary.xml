@@ -4039,9 +4039,6 @@
   <block id="4db4d99be4b5b2288798925cd1faeda3" category="list-text">交换机的初始自定义已完成、详见： <block ref="f0d24ec92e2951fca3ce05ded916eb30" category="inline-link-macro-rx"></block>。</block>
   <block id="2367f63a291e7e1383961daf65d8b44f" category="example-title">显示拓扑</block>
   <block id="255c4d8b5fe19006ce3e32d6abe4c5dd" category="summary">在配置Cisco Nexus 92300交换机之前、请查看此过程的概述和术语。</block>
-  <block id="69614c5d5f9b9621dc6f19eb2e11553a" category="doc">Cisco Nexus 92300交换机安装和配置概述</block>
-  <block id="c5576d656ffb0b43f469f79ee2d05339" category="paragraph">在配置Cisco Nexus 92300交换机之前、请查看操作步骤 概述。</block>
-  <block id="13c3fd465bc0082cbe1310f539553cfc" category="paragraph">要在运行ONTAP 的系统上初始配置Cisco Nexus 92300交换机、请执行以下步骤：</block>
   <block id="ffbe1aba3ae8a278e4f28ac52b2be316" category="list-text"><block ref="d38e35e34a06630798f8736804a06d84" category="inline-link-macro-rx"></block>。示例布线工作表提供了从交换机到控制器的建议端口分配示例。空白工作表提供了一个模板、可用于设置集群。</block>
   <block id="71be1affbed75bebb8eb96c3572e9f1b" category="list-text"><block ref="f0d24ec92e2951fca3ce05ded916eb30" category="inline-link-macro-rx"></block>。设置和配置Cisco Nexus 92300YC交换机。</block>
   <block id="1aaeb527f308dd42bbc5d35f0f59358b" category="list-text"><block ref="8b831959a634cc7821f2f066cbf13103" category="inline-link-macro-rx"></block>。准备安装NX-OS软件和参考配置文件(Reference Configuration File、RCF)。</block>
@@ -4061,7 +4058,6 @@
   <block id="e617d80a2294adb5c3c62b25af747e57" category="inline-link-macro">安装集群交换机运行状况监控器（ CSHM ）配置文件</block>
   <block id="a08609130428631761bac82d994b04c7" category="paragraph"><block ref="6f694a83f3a80cbdd0707c7c90c80946" category="inline-link-macro-rx"></block>。</block>
   <block id="06f7473ee7b667cf7e6c7384b4e91957" category="doc">Cisco Nexus 92300YC交换机的组件</block>
-  <block id="cca2cd595451689ee569b5dab14cb718" category="paragraph">对于Cisco Nexus 92300YC交换机安装和维护、请务必查看所有交换机组件和部件号。</block>
   <block id="26961e618ecd01e172d0cc2829344d09" category="list-text">端口端排气气流(标准空气)—冷空气通过冷通道中的风扇和电源模块进入机箱、并通过热通道中的机箱端口端进行排气。端口端的排气气流，蓝色。</block>
   <block id="a65de0b2540eeae253ed86b6c80d5cd8" category="list-text">端口侧进气气流(反向空气)—冷空气通过冷通道的端口端进入机箱、并通过热通道中的风扇和电源模块进行排气。端口侧进气气流，具有红色。</block>
   <block id="c24412eff0fdd364ed38f42c78180f6d" category="list-text">功能完备的现有集群。</block>
@@ -4296,4 +4292,8 @@
   <block id="6b7eaec843bb5fcdab1371328ab1e94c" category="admonition">使用10G/25G QSA时、请将其插入非分支40/100G端口。请勿将QSA适配器插入为分支配置的端口。</block>
   <block id="92f8e266fe70da4f6717e931d81faa46" category="section-title">设置分支端口上的接口速度</block>
   <block id="577c386d1bb7bbffa59ac5c15182ada1" category="paragraph">根据交换机端口中的收发器、您可能需要将交换机接口上的速度设置为固定速度。如果使用10G和25G分支端口、请确保自动协商已关闭、并在交换机上硬设置接口速度。例如：</block>
+  <block id="5501293605b4b8c8957b68e1854b0f11" category="doc">Cisco Nexus 92300YC交换机安装和配置概述</block>
+  <block id="c5fed3189b0ec4237029df463c0c1f64" category="paragraph">在配置Cisco Nexus 92300YC交换机之前、请查看操作步骤 概述。</block>
+  <block id="109e216a5aa6e526f504483738dabc7b" category="paragraph">要在运行ONTAP 的系统上初始配置Cisco Nexus 92300YC交换机、请执行以下步骤：</block>
+  <block id="ed6ae629414abab8b0e9b2e8deadb8c2" category="paragraph">对于Cisco Nexus 92300YC交换机安装和维护、请务必查看所有交换机组件和部件号。请参见<block ref="cd25cbe53f0a314145c84729c6ce2c78" category="inline-link-rx"></block> 了解详细信息。</block>
 </blocks>
