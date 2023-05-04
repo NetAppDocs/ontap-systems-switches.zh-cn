@@ -17,7 +17,7 @@ summary: 如果要使用两个以上的节点构建 ONTAP 集群，则需要两�
 
 == 机柜详细信息
 
-您可以在NVIDIA双/单交换机机柜中使用随交换机提供的标准支架安装NVIDIA SN2100交换机(X190006/X190106)。
+使用NVIDIA SN2100交换机(X190006)随附的标准支架安装在NVIDIA双/单交换机机柜中。
 
 
 
@@ -33,28 +33,14 @@ summary: 如果要使用两个以上的节点构建 ONTAP 集群，则需要两�
  a| 
 X190006-PE
  a| 
-集群交换机、NVIDIA SN2100、16磅100G、PTSX
+集群交换机、NVIDIA SN2100、16端口100GbE、PTSX
 
 
 
  a| 
 X190006-PI
  a| 
-集群交换机、NVIDIA SN2100、16磅100G、PSIN
-
-
-
- a| 
-X190106-FE-PE
- a| 
-交换机、NVIDIA SN2100、16磅100G、PTSX、前端
-
-
-
- a| 
-X190106-FE-PI
- a| 
-交换机、NVIDIA SN2100、16磅100G、PSIN、前端
+集群交换机、NVIDIA SN2100、16端口100GbE、PSIN
 
 
 

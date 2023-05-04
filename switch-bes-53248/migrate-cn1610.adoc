@@ -681,22 +681,32 @@ node2      /cdp
 ----
 ====
 . 如果未自动删除更换的 CN1610 交换机，请将其卸下：
-+
+
+
+[role="tabbed-block"]
+====
+.适用于ONTAP 9.8及更高版本
+--
+`system switch ethernet delete -device _device-name_`
+
+[listing]
+----
+cluster::*> system switch ethernet delete –device CL2
+cluster::*> system switch ethernet delete –device CL1
+----
+--
+.适用于ONTAP 9.4及更高版本
+--
 `ssystem cluster-switch delete -device _device-name_`
 
-+
-.显示示例
-[%collapsible]
-====
-以下示例显示了如何删除 CN1610 交换机：
-
-[listing, subs="+quotes"]
+[listing]
 ----
-cluster::*> *system cluster-switch delete –device CL2*
-cluster::*> *system cluster-switch delete –device CL1*
+cluster::*> system cluster-switch delete –device CL2
+cluster::*> system cluster-switch delete –device CL1
 ----
+--
 ====
-. 如果禁止自动创建案例，请通过调用 AutoSupport 消息重新启用它：
+. [[STEP5]]如果禁止自动创建案例、请通过调用AutoSupport 消息重新启用：
 +
 `ssystem node AutoSupport invoke -node * -type all -message MAINT=end`
 

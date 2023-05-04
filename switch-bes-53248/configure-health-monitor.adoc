@@ -45,31 +45,50 @@ summary: '您可以安装集群交换机运行状况监控器(Cluster Switch Hea
 cluster1::> *set -privilege advanced*
 ----
 . 运行switch health monitor configure命令：
-+
+
+
+[role="tabbed-block"]
+====
+.适用于ONTAP 9.8及更高版本
+--
+`system switch ethernet configure-health-monitor -node * -package-url \http://server/file-location`
+
+[listing]
+----
+cluster1::> switch ethernet configure-health-monitor -node * -package-url
+http://192.168.2.20/usr/download/Broadcom_BES-53248.zip
+----
+--
+.适用于ONTAP 9.4及更高版本
+--
 `system cluster-switch configure-health-monitor -node * -package-url \http://server/file-location`
 
-+
-.显示示例
-[%collapsible]
+[listing]
+----
+cluster1::> system cluster-switch configure-health-monitor -node * -package-url
+http://192.168.2.20/usr/download/Broadcom_BES-53248.zip
+----
+--
 ====
-[listing, subs="+quotes"]
-----
-cluster1::> *system cluster-switch configure-health-monitor -node * -package-url
-http://192.168.2.20/usr/download/Broadcom_BES-53248.zip*
-----
+. [[STEP5]]验证命令输出是否包含文本字符串： `downloaded package processed successfully`。如果发生错误、请联系NetApp支持部门。
+. 在ONTAP 系统上运行命令、并验证是否已发现集群交换机且监控字段设置为"True"：
+
+
+[role="tabbed-block"]
 ====
-. 验证命令输出是否包含文本字符串： `downloaded package processed successfully`。如果发生错误，请联系 NetApp 支持部门。
-. 在 ONTAP 系统上运行命令 `ssystem cluster-switch show` ，并确保在发现集群交换机时已将受监控字段设置为 "True" 。
-+
-[listing, subs="+quotes"]
-----
-cluster1::> *system cluster-switch show*
-----
-+
+.适用于ONTAP 9.8及更高版本
+--
+`system switch ethernet show`
+
+--
+.适用于ONTAP 9.4及更高版本
+--
+`ssystem cluster-switch show`
+
+--
+====
 
 NOTE: 如果您随时还原到早期版本的ONTAP 、则必须重新安装CSHM配置文件、以便对BES-53248集群交换机启用交换机运行状况监控。
-
-
 
 .下一步是什么？
 要使用CSHM中提供的所有功能、请按中所述启用SSH link:configure-ssh.html["在 BES-53248 集群交换机上启用 SSH"]。

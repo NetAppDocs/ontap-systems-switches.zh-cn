@@ -51,7 +51,6 @@
   <block id="903944fca05d1da45a504e69ed5609fb" category="paragraph">对于内部 Web 服务器 IP 地址 192.168.2.2 并假设存在 /usr/download 目录，您可以使用 scp 将 zip 文件上传到 Web 服务器：</block>
   <block id="ec633497488ed81a95ccbbbb57302ba3" category="list-text">使用命令 `set -privilege advanced` 从集群中的一个 ONTAP 系统访问高级模式设置：</block>
   <block id="f4ab3be3915b88f9d23c5faf297e78ff" category="list-text">验证命令输出是否包含文本字符串 "downloaded package processed successfully" 。如果发生错误，请联系 NetApp 支持部门。</block>
-  <block id="77050d62a86740ca649977f25aae1ddc" category="list-text">在 ONTAP 系统上运行命令 `ssystem cluster-switch show` ，并确保在发现集群交换机时已将受监控字段设置为 "True" 。</block>
   <block id="51a85db8f6aec59d006c765375bbaf00" category="paragraph">在调试输出中检查以下内容：</block>
   <block id="4f48e724e702608d7b36977924dd560d" category="list-text">检查序列号是否匹配： `s序列号 QTCU38290012 匹配。`</block>
   <block id="3414bc6468a1d2264e1c8fd336a50501" category="list-text">检查交换机型号是否匹配： `model BES-53248 matched 。`</block>
@@ -334,21 +333,9 @@
   <block id="470e1e7d03d4911b1e5ad8bf036ca8cb" category="inline-link">NetApp 知识库文章： How to suppress automatic case creation during scheduled maintenance windows.</block>
   <block id="b8d29742df41ef40fca1e44a7b490835" category="cell">部件号</block>
   <block id="3a0aeae8d2331aaa16cf8b013ee0195b" category="paragraph">X190005</block>
-  <block id="1d0e61735e0e8e09d095959b09cdfb61" category="paragraph">BES-53248 ， CLSW ， 16Pt10/25GB ， PTSX ， BRDCM 支持（ PTSX = 端口侧排气）</block>
   <block id="cedf09ac3086a8a21f249827087f6fad" category="paragraph">X190005r</block>
-  <block id="10423b6134c0596831c1217d026117a7" category="paragraph">BES-53248 ， CLSW ， 16Pt10/25GB ， PSIN ， BRDCM 支持（ PSIN = 端口侧进气）</block>
   <block id="58ed1751063f5f79d08b95e0c78237bb" category="paragraph">X-RAIL 4Post-190005</block>
   <block id="26e197685e29b3f6ea5c61a20464ee66" category="paragraph">19 英寸 Ozeki 4 柱机架安装导轨套件</block>
-  <block id="47aa7e8b4b2b7f2529efa5e4716bbdd8" category="paragraph">X-Fan-190005-R</block>
-  <block id="6340613a1b13022e5f4fed31c639404d" category="paragraph">风扇，端口侧进气 X190005</block>
-  <block id="ad439ccfbefbdb29a34f19a94da31301" category="paragraph">X-Fan-190005-F</block>
-  <block id="f973643b15965b5150ad07cee65175d8" category="paragraph">风扇，端口侧排气 X190005</block>
-  <block id="b234a10d56bffab6344a3cd1dd181b4e" category="paragraph">X-PSU-190005-R</block>
-  <block id="87e8525c8d2aeafd7648d58f8610f6e2" category="paragraph">电源，端口侧进气 X190005</block>
-  <block id="8b561f2608f0fdce807d1fcc0e6543af" category="paragraph">X-PSU-190005-F</block>
-  <block id="65e5c871ec7e036e5a539406da60f09e" category="paragraph">电源，端口侧排气 X190005</block>
-  <block id="303593f84fec47f3a4eba6f5b11c2a9c" category="list-text">端口端排气气流（标准空气）：冷空气通过冷通道中的风扇和电源模块进入机箱，并通过热通道中的机箱端口端进行排气。蓝色颜色表示端口端的排气气流。这是最常见的选项。</block>
-  <block id="f1de0d38246c0ccc0320480848ef1258" category="list-text">端口侧进气气流（反向空气）：冷空气通过冷通道的端口端进入机箱，并通过热通道中的风扇和电源模块进行排气。</block>
   <block id="088d99e43c55d66d91452773ea081e66" category="inline-link">Broadcom 集群交换机</block>
   <block id="8e4984bab9d1ed958d954b97ee853c52" category="summary">您可以参考 BES-53248 集群交换机端口分配表来配置集群。</block>
   <block id="dc3310fe82b8aa736508dff9756c1c6a" category="cell">交换机端口</block>
@@ -2240,7 +2227,6 @@
   <block id="1f3f639615a80a1684771c8c14152509" category="paragraph">17-48</block>
   <block id="187c30e211ba48efba7ee0554dccaf17" category="paragraph">10/25GbE集群端口节点、带许可证</block>
   <block id="e911666173c65a9be604d165f8bfca24" category="paragraph">49-54</block>
-  <block id="61dd5044a608adf035955ab327098b7f" category="paragraph">100GbE集群端口节点、含许可证、从右向左添加</block>
   <block id="87c5a8a002c26c3c0f3324085542275a" category="paragraph">55-56</block>
   <block id="cd7d89f0423765df2ea4dd61283f22c1" category="admonition">在调用脚本之前，必须将 ` .scr` 扩展名设置为文件名的一部分。此扩展是 EFOS 操作系统的扩展。将脚本下载到交换机后，交换机会自动验证该脚本，并将输出传输到控制台。此外、您还可以更改`.scr`的名称以适应控制台屏幕、以便于阅读、例如：`+copy sftp：//172.19.2.1/tmp/BES-53248_RCF_v1.6-Cluster-HA.txt nvram：script RCF_v1.6-Cluster-HA.SCR+`。</block>
   <block id="2f5b29dae6c40626ef71ff19914284d2" category="paragraph">要使用的调试命令：`debug transfer`和`debug license`</block>
@@ -2815,7 +2801,6 @@
   <block id="81155cb9ee8ef1aa07c8376e201715db" category="paragraph">交换机将下载ONIE映像安装程序并启动。安装完成后、终端窗口将显示Cumulus Linux登录提示。</block>
   <block id="b53f6b592c12fd5937d7b72a3bcbfcfb" category="list-text">在GNU Grub屏幕上按* Esc *键以中断正常启动过程、选择* ONIE*、然后按* Enter键。</block>
   <block id="bb8165c1c0d8416da1e318e1c0f54603" category="list-text">在下一个屏幕上、选择*。onIE：install OS*。</block>
-  <block id="3b007ae6a2ced467726b9f5c7c59ffb0" category="list-text">安装完成后、登录到交换机。</block>
   <block id="673b183eae1d985d3373995f15978e5b" category="inline-link-macro">安装参考配置文件(Reference Configuration File、RCF)脚本</block>
   <block id="8dcb8ce87423e2f4276589483a457d92" category="paragraph"><block ref="464fe9c0adfef54cfb4c6fe21ef12b08" category="inline-link-macro-rx"></block>。</block>
   <block id="2eb103c9e878418bac314f3d0a12d9a6" category="paragraph">下表列出了SN2100交换机和导轨套件的部件号和问题描述 ：</block>
@@ -2825,7 +2810,6 @@
   <block id="793086ebaed916943ac8fc5f192a1679" category="paragraph"><block ref="770c77dd441cd3adc4139ccb3c0d491b" category="inline-link-macro-rx"></block> 或 <block ref="28a30a7b340666b28d9a4222e714aaf7" category="inline-link-macro-rx"></block>。</block>
   <block id="e4476de08c6bf6f2b86938c20b3510bf" category="summary">在安装RCF脚本之前、请确保交换机上具有以下配置</block>
   <block id="144a8e89f9c38ca949aede4fe56c2cb7" category="list-text">将RCF python脚本复制到交换机。</block>
-  <block id="2240e6e4afefbb052da898cb451c9d1e" category="list-text">应用RCF python脚本*。MSN2100-RCF-v1.8-Cluster*。</block>
   <block id="39e77b4f608ccea6c3163df34d07da19" category="paragraph">RCF脚本将完成上述示例中列出的步骤。</block>
   <block id="58706c101ce23f0143df35c3d5877993" category="paragraph"><block ref="792bc5f76cd953c88762d75870189559" category="inline-link-macro-rx"></block>。</block>
   <block id="1a8981f50831032975e7c7ab919cf671" category="list-text">查看 <block ref="d6c0afb29fcb19bc79e093e82e35e6bb" category="inline-link-macro-rx"></block>。</block>
@@ -3543,7 +3527,6 @@
   <block id="c1321e94fa70c8284c7eb8048b1e5076" category="paragraph">按照以下说明安装软件。</block>
   <block id="6e542d7f228623e0d93cb14b578964d6" category="summary">对于BES-53248交换机安装和维护、请务必查看组件列表和部件号。</block>
   <block id="d243834ab21b34f6cc60b0c0c7b6ef45" category="doc">BES-53248集群交换机的组件和部件号</block>
-  <block id="2ba75e7c8c0701784776f8d546f84c5f" category="paragraph">下表列出了BES-53248集群交换机组件的部件号和问题描述 、包括机架安装导轨套件、风扇和电源。</block>
   <block id="2e251bbc5cf5abac11349f16ad8e95e7" category="summary">您可以安装集群交换机运行状况监控器(Cluster Switch Health Monitor、CSHM)配置文件、该文件可监控BES-53248集群交换机。</block>
   <block id="4db171b1958310050d33a6161ba14156" category="paragraph">在ONTAP 9.5P7及更早版本以及9.6P2及更早版本中、您必须单独下载CSHM文件。在ONTAP 9.5P8及更高版本、9.6P3及更高版本以及9.7及更高版本中、CSHM文件与ONTAP 捆绑在一起。</block>
   <block id="294206f940bbd4f3ec7f79996b76c616" category="paragraph">确保ONTAP 集群已启动且正在运行。</block>
@@ -3557,7 +3540,6 @@
   <block id="108fad13cb4557ce639ff2d509f833b5" category="paragraph">对于内部Web服务器IP地址192.168.2.2、如果存在/usr/download目录、则可以使用将zip文件上传到Web服务器<block ref="8a444a43bdf534c0c6338bb7809659b3" prefix=" " category="inline-code"></block>：</block>
   <block id="add89e2862924c702a738f3d2a28fa51" category="list-text">运行switch health monitor configure命令：</block>
   <block id="57dedb9cbe459a7c90ef4837093192ae" category="paragraph"><block ref="2f9091db6d94c377cc0c7e2fbd67bc1a" prefix="" category="inline-code"></block></block>
-  <block id="4a650fa31d16f24e5851848df6d16828" category="list-text">验证命令输出是否包含文本字符串：<block ref="bb932139b2106289945776f4f81d066a" prefix=" " category="inline-code"></block>。如果发生错误，请联系 NetApp 支持部门。</block>
   <block id="edcd33ebd5d3817ccdc17b64134c7ec8" category="admonition">如果您随时还原到早期版本的ONTAP 、则必须重新安装CSHM配置文件、以便对BES-53248集群交换机启用交换机运行状况监控。</block>
   <block id="914288f821c5d88db21f926b4e94b1b3" category="paragraph">要使用CSHM中提供的所有功能、请按中所述启用SSH <block ref="e2b4c4f5313b05dff7c4a02a4e9e0df6" category="inline-link-macro-rx"></block>。</block>
   <block id="4cf79f99b322552a5fe0fadeb4c0ae5b" category="doc">更换要求</block>
@@ -3569,11 +3551,6 @@
   <block id="27baa83a95dd19a6f10228564787bf14" category="list-text">所需的参考配置文件(Reference Configuration File、RCF)和EFOS操作系统交换机映像将加载到交换机上。</block>
   <block id="5074769eeb418122757e7c8d01cb673f" category="list-text">交换机的初始自定义已完成、如中所述 <block ref="5d9dfcd78fc81899f18975b4b56b3ae1" category="inline-link-macro-rx"></block>。</block>
   <block id="b5a925fc7db2ad87d052b8e842aaca5c" category="doc">BES-53248集群交换机的配置要求</block>
-  <block id="b9bbf7b388d20cc7c0c5f0d49ac0837e" category="paragraph">对于BES-53248交换机安装和维护、请务必查看操作系统支持和配置要求。</block>
-  <block id="c2e8359468a81351d78337f472618a06" category="section-title">操作系统(OS)支持</block>
-  <block id="bdd5d839ce68a4aef1b3862a3a83e388" category="paragraph">BES-53248交换机支持以下功能：</block>
-  <block id="c0f4e19130e2592110e94db5ecec1cf4" category="list-text">* EFOS固件3.4.4.6及更高版本*。BES-53248交换机运行在Broadcom嵌入式操作系统上、称为以太网阵列操作系统(EFOS)。从 EFOS 固件版本 3.4.4.6 及更高版本开始，支持 40/100 GbE 集群端口。</block>
-  <block id="e9ba6fb0647a0e3943ac863a298769f5" category="list-text">* ONTAP 9.5P8及更高版本*。在ONTAP 9.5P8及更高版本中、支持Broadcom的BES-53248集群交换机可在2到24个节点的大小范围内工作。</block>
   <block id="794a085de55fb93282159bfe457b5455" category="paragraph">要配置集群、您需要为集群交换机提供适当数量和类型的缆线和缆线连接器。根据您最初配置的集群交换机类型、您需要使用随附的控制台缆线连接到交换机控制台端口。</block>
   <block id="2bd5eb99d9f67d841743740c2c9e58fc" category="section-title">集群交换机端口分配</block>
   <block id="1e398c47e90911cdd18c0dcb654a78a1" category="paragraph">在BES-53248集群交换机上、48个10/25GbE (SFP28/SFP+)端口组合为12个4端口组、如下所示：端口1-4、5-8、9-12、13-16、17-20、21-24、25-28、29-32、33-36、37-40、41-44和45-48。</block>
@@ -4274,26 +4251,129 @@
   <block id="d8c8c02df74538b604d42f3f6d992c40" category="paragraph">4个10GbE分支集群端口节点</block>
   <block id="331bcd76038fdc1605be4c587c56294c" category="paragraph">4个25GbE分支集群端口节点</block>
   <block id="e451d063f2ca2617078b2305ef087f02" category="paragraph">swp3-14</block>
-  <block id="0d60da82680f3305621fd4472d897e3b" category="paragraph">40/100集群端口节点</block>
   <block id="044141a7c2076e2a8d84961a043b480a" category="paragraph">swp15-16</block>
-  <block id="cab42d967475ecc877f819cc849c3392" category="paragraph">40/100交换机间链路(ISL)端口</block>
   <block id="c462eb588f6f13a8e04bee80aae30ba8" category="paragraph">请参见<block ref="c043e01cdc55399f824e6d1e4eb8a5b5" category="inline-link-rx"></block> 有关交换机端口的详细信息。</block>
-  <block id="e7af52912cd69e9bf38776786cbca8a3" category="paragraph">对于Cumulus Linux 4.4.2、使用X1151A NIC、X1146A NIC或板载100GbE端口的SN2100交换机仅支持光纤连接。例如：</block>
-  <block id="85a0e57a29218d20a48e10c13bdf7cb6" category="paragraph">对于Cumulus Linux 4.4.3及更高版本、需要进行以下配置更改才能修复此问题描述。</block>
-  <block id="f3f1289d53f31212ba6b49b341ffc7e6" category="list-text">将以下两行添加到<block ref="d4b3c0affe66439bbee012d30e38441b" prefix=" " category="inline-code"></block> 使用40/100GbE铜缆的每个端口(swp &lt;n&gt;)的文件：</block>
   <block id="69cf9ddd2a167644a30a59dda49e0f6a" category="list-text"><block ref="0babc1daa70cf30fe3f5ad4e3e07fab2" prefix="" category="inline-code"></block></block>
   <block id="7ecf603eb76daba643481182546f4e38" category="list-text"><block ref="a0ce25310d7a8e2527bb141f43700add" prefix="" category="inline-code"></block></block>
-  <block id="6ec72ecd2f587c249b56c3e03401ecae" category="list-text">重新启动switchd守护进程：<block ref="2b526042e0b783c1b2eb28b0ef5623de" prefix=" " category="inline-code"></block></block>
-  <block id="ab57fd0432e25d5b3013133a1c910d56" category="inline-link">知识库</block>
-  <block id="d1230bc869b84c83439b8c8e7519dde2" category="paragraph">请参见以下内容<block ref="a885142d9d0638feca0ff8bbde23eb83" category="inline-link-rx"></block> 了解更多详细信息。</block>
-  <block id="7fa926cf10e568e38d190fa4bb643575" category="paragraph">使用QSA适配器连接到平台上的板载集群端口时、链路可能无法启动。</block>
-  <block id="3ff6d247db095566d17ccb43d3672576" category="list-text">对于10G、请手动将swp1s0-3链路速度设置为10000、并将自动协商设置为off。</block>
-  <block id="7884c7a18dfb8ee5902cac6f25fd2535" category="list-text">对于25G、手动将swp2s0-3链路速度设置为25000、并将自动协商设置为off。</block>
-  <block id="6b7eaec843bb5fcdab1371328ab1e94c" category="admonition">使用10G/25G QSA时、请将其插入非分支40/100G端口。请勿将QSA适配器插入为分支配置的端口。</block>
   <block id="92f8e266fe70da4f6717e931d81faa46" category="section-title">设置分支端口上的接口速度</block>
-  <block id="577c386d1bb7bbffa59ac5c15182ada1" category="paragraph">根据交换机端口中的收发器、您可能需要将交换机接口上的速度设置为固定速度。如果使用10G和25G分支端口、请确保自动协商已关闭、并在交换机上硬设置接口速度。例如：</block>
   <block id="5501293605b4b8c8957b68e1854b0f11" category="doc">Cisco Nexus 92300YC交换机安装和配置概述</block>
   <block id="c5fed3189b0ec4237029df463c0c1f64" category="paragraph">在配置Cisco Nexus 92300YC交换机之前、请查看操作步骤 概述。</block>
   <block id="109e216a5aa6e526f504483738dabc7b" category="paragraph">要在运行ONTAP 的系统上初始配置Cisco Nexus 92300YC交换机、请执行以下步骤：</block>
   <block id="ed6ae629414abab8b0e9b2e8deadb8c2" category="paragraph">对于Cisco Nexus 92300YC交换机安装和维护、请务必查看所有交换机组件和部件号。请参见<block ref="cd25cbe53f0a314145c84729c6ce2c78" category="inline-link-rx"></block> 了解详细信息。</block>
+  <block id="647742b7ed5a74255a1cd295f9fd2fc9" category="paragraph">对于BES-53248交换机安装和维护、请务必查看EFOS和ONTAP 支持和配置要求。</block>
+  <block id="553524d0c0ef22a471e2424d00a09694" category="section-title">EFOS和ONTAP 支持</block>
+  <block id="738451c0daa7cff3a610bea3abfefaf0" category="inline-link">Broadcom交换机兼容性列表</block>
+  <block id="c7c51b6011824439212ed43b1a65c583" category="paragraph">请参见<block ref="341c1c8afc925d24c41903215e7d4958" category="inline-link-rx"></block> 和<block ref="019bec57a33f30d395c26e4eab684618" category="inline-link-rx"></block> 了解与BES-53248交换机的EFOS和ONTAP 兼容性信息。EFOS和ONTAP 支持可能因BES-53248交换机的特定计算机类型而异。有关所有BES-52348交换机类型的详细信息、请参阅 <block ref="18673e02a37b64215efc2503c4149ac9" category="inline-link-macro-rx"></block>。</block>
+  <block id="e23ae5f8811df200956902ae1686a7f0" category="paragraph">从右到左添加了40/100GbE集群端口节点和许可证</block>
+  <block id="024464eb7b3fd909a9746dff88c6b9c9" category="section-title">其他要求</block>
+  <block id="0367a2a79bd73fd44da88774641890f6" category="inline-link-macro">激活新的许可证端口</block>
+  <block id="9c561ca9ef6d5814e15c1944c030d12d" category="list-text">如果您购买了其他许可证、请参见 <block ref="78172331b9d74469f8abaa21c5813f50" category="inline-link-macro-rx"></block> 有关如何激活它们的详细信息。</block>
+  <block id="1ad4f5dc9889f4859c43a213e21f389c" category="list-text">如果SSH处于活动状态、则必须在运行命令后手动重新启用它<block ref="1fb554759d9d32d450daa4da09330114" prefix=" " category="inline-code"></block> 并重新启动交换机。</block>
+  <block id="fa29548058837254e54c0910a42e81ed" category="paragraph"><block ref="7d77b5b7ecc6e91232de4d87c6f561de" prefix="" category="inline-code"></block></block>
+  <block id="25e09b4fadd3fa8202fa95ea688667c1" category="list-text">[[STEP5]]验证命令输出是否包含文本字符串：<block ref="bb932139b2106289945776f4f81d066a" prefix=" " category="inline-code"></block>。如果发生错误、请联系NetApp支持部门。</block>
+  <block id="d28bbd717c002acf43e747edb594c750" category="list-text">在ONTAP 系统上运行命令、并验证是否已发现集群交换机且监控字段设置为"True"：</block>
+  <block id="0b2982341db4239f887933204ca7720d" category="paragraph"><block ref="b4720f8aa09f4e4b3a04e78c558b6c90" prefix="" category="inline-code"></block></block>
+  <block id="4e4f70ba52e8cb595faa069991c5a9f4" category="list-text">[[STEP5]]如果禁止自动创建案例、请通过调用AutoSupport 消息重新启用：</block>
+  <block id="1ad47980611dd1ee749c3478e99b4edd" category="paragraph">下表列出了BES-53248集群交换机组件的部件号、问题描述 以及最低EFOS和ONTAP 版本、包括机架安装导轨套件详细信息。</block>
+  <block id="4a47a181e94c352883a8741b3ec5e291" category="admonition">对于部件号*X190005-B*和*X190005R-B*，至少需要EFOS版本*3.10.0.3*。</block>
+  <block id="c37b8196896554a6da47b74fe6581c98" category="cell">最低EFOS版本</block>
+  <block id="7fa0305f8af6535ab7e968300969da78" category="cell">最低ONTAP 版本</block>
+  <block id="1bc55f822ecf1e2d3fb5e4e9edcbbea1" category="paragraph">X190005-B</block>
+  <block id="c38694b655b760c0d1690bd1652f4a6b" category="paragraph">BES-53248-B/IX8、CLSW、16PT10/C5GB、PTSX (PTSX =端口侧排气)</block>
+  <block id="7be91793dbca44b8b32bc51b1fbb6a91" category="paragraph">3.10.0.3.</block>
+  <block id="4f7dd0fe0940df4a5fda327a4ee4ddbd" category="paragraph">9.8</block>
+  <block id="36279773f041040d825a3034566a30e6" category="paragraph">X190005R-B</block>
+  <block id="e5a686994274838fad6d941211e8a0c1" category="paragraph">BES-53248-B/IX8、CLSW、16PT10/C5GB、PSIN (PSIN =端口侧进气)</block>
+  <block id="8c398f37fcd837194e4ece5fd5553d32" category="paragraph">BES-53248，CLSW，16Pt1025GB，PTSX，BRDCM支持</block>
+  <block id="5b3c421126de8f671e6c7e0dd2070405" category="paragraph">3.4.4.6.</block>
+  <block id="7501a55d10f73fc1f4d1a99887dad17c" category="paragraph">9.5P8.</block>
+  <block id="51911b92d595d53b83df3e0bc419b628" category="paragraph">BES-53248，CLSW，16Pt1025GB，PSIN，BRDCM支持</block>
+  <block id="382b0f5185773fa0f67a8ed8056c7759" category="paragraph">不适用</block>
+  <block id="4f4750a84cf4db2252cb74295c5da46c" category="admonition">请注意以下有关机器类型的信息：</block>
+  <block id="3ea4bf9da7622edeeae1bf80e9c5cded" category="cell">计算机类型</block>
+  <block id="c98b57720d007eea3bac1ec42393b6b2" category="cell">EFOS 版本</block>
+  <block id="0455dc0ebc07890a363b2b109cd487c0" category="paragraph">BES-53248A1</block>
+  <block id="f9f7608c20cdacdffa7dd544e72cdb37" category="paragraph">BES-53248A2</block>
+  <block id="ed69a268691ed57ce7cc6feb524edfde" category="paragraph">BES-53248A3</block>
+  <block id="8e3cd01999a868b5f7d077cc81d41b25" category="paragraph">您可以使用命令确定特定计算机类型：<block ref="48f6d03db0af7dafae461857e48942d9" prefix=" " category="inline-code"></block></block>
+  <block id="2498349a1561db3b82a697aa132adac5" category="open-title">Cumulus Linux 4.4.3</block>
+  <block id="481b5c6e7efa133e1b6e24e6aa57e7b9" category="list-text">安装完成后、登录到交换机。</block>
+  <block id="73256464033866019c0ab71a474924d7" category="list-text">验证Cumulus Linux版本：<block ref="98f5dff8534e8c39673b544f567273e7" prefix=" " category="inline-code"></block></block>
+  <block id="7eb75e0ba4663fc1aeea935cb2011f2c" category="open-title">Cumulus Linux 5.x</block>
+  <block id="2db9ca8bc5738dadc7b583c360d7d75f" category="list-text">在GNU GRUB屏幕上按Esc键中断正常的引导过程，选择ONIE，然后按Enter键。</block>
+  <block id="0232feb830d6d5aad9aa07258e622649" category="paragraph">选择ONIE：*安装操作系统。*</block>
+  <block id="f341013c06c8fd055eeee7b2fb35f9ce" category="list-text">ONIE安装程序发现过程将运行搜索自动安装。按*输入*以临时停止此过程。</block>
+  <block id="478fe67982f230b9dd6b03b6118c1014" category="list-text">配置IP地址、子网掩码和默认网关：</block>
+  <block id="6fff52725ef1db2558a657c2f9a4a4c8" category="list-text">安装Cumulus Linux 5.4：</block>
+  <block id="1b5baeeb29c57782394d9d7fe2316752" category="paragraph"><block ref="654e7566133dd316a7bccb8c83aae59b" prefix="" category="inline-code"></block></block>
+  <block id="8b0f0a4cede7fca6e2706f18eebf2e92" category="list-text">验证Cumulus Linux版本：<block ref="9fcc1ae85aac3dbd490f575cf5eb3d52" prefix=" " category="inline-code"></block></block>
+  <block id="711762c3f710af6cfac64233e6c1db32" category="list-text">创建新用户并将此用户添加到<block ref="d338b3f0f405eb5e51c8cc1e5ca66f02" prefix=" " category="inline-code"></block> 组。只有在重新启动控制台/SSH会话后、此用户才会生效。</block>
+  <block id="b190a0c0112c1b7ed7c1fe82d8072aa4" category="list-text">添加供管理员用户访问的其他用户组<block ref="f9eab7a52fbda6f4788f438ba1a8da94" prefix=" " category="inline-code"></block> 命令：</block>
+  <block id="b2fa408052dc67c0683eaf90858b073f" category="inline-link">NVIDIA用户帐户</block>
+  <block id="9fce5f0b8e1dcabf168f42a400a2d10d" category="paragraph">请参见<block ref="2d38cb404d4e76c701a1714802ee2c54" category="inline-link-rx"></block> 有关详细信息 ...</block>
+  <block id="be8d2db807f6ccc0599691b80f14b976" category="list-text">安装了Cumulus Linux。请参见<block ref="c043e01cdc55399f824e6d1e4eb8a5b5" category="inline-link-rx"></block> 支持的版本。</block>
+  <block id="6c92285fa6d3e827b198d120ea3ac674" category="inline-link">此处</block>
+  <block id="b6a9bacb15977dcaaa1e05f20cc4d13b" category="paragraph">集群和存储应用程序可以使用两个RC框架 脚本。从下载RCF<block ref="89efcd657168a1e707caf54da1923871" category="inline-link-rx"></block>。每个的操作步骤 是相同的。</block>
+  <block id="54d4022f2a747cb4974fcf06961bdb21" category="list-text">集群：* MSN2100-RCP-v1._x--cluster-HA-Breakout—LCDP*</block>
+  <block id="eac7436c884133e6b945a51430510a32" category="list-text">存储：* MSN2100-RFP-v1._x_-Storage*</block>
+  <block id="196428336c87b3c0c9bf24432335bd6f" category="list-text">应用RCF python脚本*MSN2100-RCP-v1.x-Cluster-HA-Breakout LCDP*。</block>
+  <block id="b9dfe38b5e91454220a6cd1f3cfb9ac8" category="admonition">在步骤3*更新上面的MOTD文件*中，命令<block ref="900d965bd90d181d344d976a0e3093d8" prefix=" " category="inline-code"></block> 已运行。这样、您可以验证RCV文件名、RCV版本、要使用的端口以及RCV横幅中的其他重要信息。</block>
+  <block id="0440c59cc67785ca7939ff4e3eba86ed" category="admonition">在步骤3*更新上面的MOTD文件*中，命令<block ref="79a5f2bb850da898bd092e3a61bda06c" prefix=" " category="inline-code"></block> 已运行。这样、您可以验证RCV文件名、RCV版本、要使用的端口以及RCV横幅中的其他重要信息。</block>
+  <block id="506c2c0c7f5b70af3df68c45c46f45a7" category="paragraph">例如：</block>
+  <block id="c8d246332e46cb12e9f724a357ad817f" category="paragraph"><block ref="770c77dd441cd3adc4139ccb3c0d491b" category="inline-link-macro-rx"></block> 或 <block ref="bba3ec5e6ca5e4f48b010488a5229b2c" category="inline-link-macro-rx"></block>。</block>
+  <block id="bd399ae0cf713e575ca26baedc0a896c" category="paragraph">使用NVIDIA SN2100交换机(X190006)随附的标准支架安装在NVIDIA双/单交换机机柜中。</block>
+  <block id="1e247ada2e98c5879849d746a52a4241" category="paragraph">NVIDIA SN2100交换机是运行Cumulus Linux的10/C5/40/100GbE交换机。交换机支持以下功能：</block>
+  <block id="f555c61f64386d2582939da4025ebe47" category="list-text">ONTAP 9.10.1P3。SN2100交换机通过不同的交换机对为ONTAP 9.10.1P3中的集群和存储应用程序提供服务。</block>
+  <block id="d40bf069d92679bf05879cf7f6cbe2cd" category="inline-link">NVIDIA企业支持门户</block>
+  <block id="cb8e85c2970ddd5692a09be2e61dcc13" category="list-text">Cumulus Linux (CL)操作系统版本。要下载SN2100 Cumulus软件、请登录<block ref="778b7445002ab4132f3edc7cada5c78a" category="inline-link-rx"></block>。请注意、您必须拥有登录凭据才能访问Cumulus软件。有关当前兼容性信息、请参见<block ref="f6aa36fb7711a9179cbd2c4c52b8d6ef" category="inline-link-rx"></block> 信息页面。</block>
+  <block id="c19b9518d51b517376f0fe9109f66e90" category="paragraph">40/100GbE集群端口节点</block>
+  <block id="45a21206fd2396fdd6a59132a2a6d3a7" category="paragraph">40/100GbE交换机间链路(ISL)端口</block>
+  <block id="509e4d6df8b93cb5deb86271a6326df2" category="section-title">光纤连接的链路连接延迟</block>
+  <block id="50137c9f3120823f7ba1d1983c48e011" category="paragraph">如果链接延迟超过五秒、则Cumulus Linux 5.4及更高版本支持快速链接。您可以使用配置链接<block ref="0c14f6e7a82b0926c666f7fac383436a" prefix=" " category="inline-code"></block> 命令、如下所示：</block>
+  <block id="68a8de419a9558e300d05a15cc5b2aec" category="section-title">支持铜缆连接</block>
+  <block id="5a6f42c8f3d33107177157ef7008dfe2" category="paragraph">要修复此问题描述 、需要进行以下配置更改。</block>
+  <block id="5dfb78a5909646d153e9d260981232b4" category="list-text">确定使用40GE/100GbE铜缆的每个接口的名称：</block>
+  <block id="17f9698fd9a933aea82b9498c3cf5318" category="list-text">将以下两行添加到<block ref="d4b3c0affe66439bbee012d30e38441b" prefix=" " category="inline-code"></block> 使用40GE/100GbE铜缆的每个端口(swp &lt;n&gt;)的文件：</block>
+  <block id="0b17b874fe78bf6ab3bb2937838f8df1" category="list-text">重新启动<block ref="b0df6da856b1d2d594adfbdfe27a1336" prefix=" " category="inline-code"></block> 服务：</block>
+  <block id="b1d96c90c61dd718b6a805eb818961c4" category="list-text">确认端口已启动：</block>
+  <block id="9d018838c5ab5975b4e472fee2f89455" category="list-text">使用配置链路<block ref="0c14f6e7a82b0926c666f7fac383436a" prefix=" " category="inline-code"></block> 命令、如下所示：</block>
+  <block id="4db57c36adcedbf3d48c546b8a964490" category="list-text"><block ref="4d9dc029304fd2614ef7b9bca43ee36d" prefix="" category="inline-code"></block></block>
+  <block id="6d882d10695e4f3595987a4c3fc3b0d4" category="list-text"><block ref="2aa6f22da2ac5e9b2e1e6d3643ea273e" prefix="" category="inline-code"></block></block>
+  <block id="9c1398e0fe6bc7229e870295da6e50f0" category="list-text">重新加载<block ref="b0df6da856b1d2d594adfbdfe27a1336" prefix=" " category="inline-code"></block> 服务</block>
+  <block id="1892645d2782c9bf9dc34851d08c3fc0" category="inline-link">此知识库文章</block>
+  <block id="3415ad7957144776adc29fe727ecd053" category="paragraph">请参见<block ref="5f1cba074f9c9f92027bd9e16fc96408" category="inline-link-rx"></block> 了解更多详细信息。</block>
+  <block id="45ac1916de26f6f51168dd562a7dfba5" category="paragraph">在Cumulus Linux 4.4.2上、使用X1151A NIC、X1146A NIC或板载100GbE端口的SN2100交换机不支持铜缆连接。例如：</block>
+  <block id="4038c0e6561afda23a992fb3c5771bed" category="paragraph">在使用QSA适配器连接到平台上的10GbE/25GbE集群端口时、链路可能无法启动。</block>
+  <block id="65a7722b91e57b456663ad9dfbce3756" category="list-text">对于10GbE、手动将swp1s0-3链路速度设置为10000、并将自动协商设置为关闭。</block>
+  <block id="db2ee086523acdbe77c0655e5b34e140" category="list-text">对于25GbE、手动将swp2s0-3链路速度设置为25000、并将自动协商设置为Off。</block>
+  <block id="a4776f8907c629282806882eea5abb7c" category="admonition">使用10GbE/C5GbE QSA适配器时、请将其插入非分支40GbE/100GbE端口(swp3-swp14)。请勿将QSA适配器插入配置为分支的端口。</block>
+  <block id="e7e44cf1f6086f5ec92a0b659ae4c9a3" category="paragraph">根据交换机端口中的收发器、您可能需要将交换机接口上的速度设置为固定速度。如果使用10GbE和25GbE分支端口、请验证自动协商是否已关闭并设置交换机上的接口速度。</block>
+  <block id="0f08aaa10ce68f7f905212dc1aab73b3" category="paragraph">检查接口和端口状态以验证是否已应用这些设置：</block>
+  <block id="9742e43179b451c849ed088319254cd9" category="summary">完成以下步骤以升级您的Cumulus Linux版本。</block>
+  <block id="9d021cb22b9c9afdaa65e8cfcee560c5" category="doc">升级Cumulus Linux版本</block>
+  <block id="d62448073473e6946178f647bcbfbf0e" category="paragraph">完成以下操作步骤 以根据需要升级您的Cumulus Linux版本。</block>
+  <block id="0fc8a779fbe2ae3a05240b53435f18cf" category="admonition">每次升级Cumulus Linux时、都会擦除并重建整个文件系统结构。现有配置将被擦除。在更新Cumulus Linux之前、您必须保存并记录交换机配置。</block>
+  <block id="0d151e82f107d3039ec4952c010d46c4" category="admonition">累积用户帐户的默认密码为*累积用户*。首次登录到Cumulus Linux时、必须更改此默认密码。在安装新映像之前、您必须更新所有自动化脚本。Cumulus Linux提供了命令行选项、用于在安装过程中自动更改默认密码。</block>
+  <block id="324fe5adbd1d84e1635133b2f3572f6d" category="open-title">从Cumulus Linux 4.4.x到Cumulus Linux 5.x</block>
+  <block id="6e86c333c0b662bb6dee3495ec26ec21" category="list-text">检查当前的Cumulus Linux版本和连接的端口：</block>
+  <block id="698eeac576f2a03927debdd14725ba5e" category="list-text">下载Cumulux Linux 5.x映像：</block>
+  <block id="a034a19ca9c1623f94c8f52b386d5a41" category="list-text">更改密码：</block>
+  <block id="d853eef2a857cbfcf5b1ef1abe8db17e" category="list-text">检查Cumulus Linux版本：<block ref="9fcc1ae85aac3dbd490f575cf5eb3d52" prefix=" " category="inline-code"></block></block>
+  <block id="985599684d8f5a06353d35110138f1b2" category="list-text">更改主机名：</block>
+  <block id="0e991c1ef237b6e2304639c4e67230ec" category="list-text">注销并再次登录到交换机、以便在提示符处查看更新后的交换机名称：</block>
+  <block id="9452c986bddec0ffc4c1e4393d954d4a" category="list-text">设置IP地址：</block>
+  <block id="b0255cc355effdccf079c37dfed7930c" category="open-title">从Cumulus Linux 5.x到Cumulus Linux 5.x</block>
+  <block id="65a9f174ce483d8b53a1a174dc734625" category="list-text">下载Cumulux Linux 5.4.0映像：</block>
+  <block id="ae9c690e9fad2f5c57259599dd4505b1" category="list-text">注销并重新登录到交换机、以便在提示符处查看更新后的交换机名称：</block>
+  <block id="db20376829e65eac071b27b68736377d" category="paragraph">集群交换机、NVIDIA SN2100、16端口100GbE、PTSX</block>
+  <block id="d2eaff24ce79ed3c374a5a2090d168b1" category="paragraph">集群交换机、NVIDIA SN2100、16端口100GbE、PSIN</block>
+  <block id="001d5d8be5c2b491c0e7502d149d957d" category="paragraph">交换机、NVIDIA SN2100、16端口100GbE、PTSX、前端</block>
+  <block id="e41188b1210c6535f254eaa7b5dbd046" category="paragraph">交换机、NVIDIA SN2100、16端口100GbE、PSIN、前端</block>
+  <block id="eef96d02de8bddc099677ad1d3ec3385" category="list-text">检查Cumulus Linux版本：<block ref="518227d11c3d0b4ad2468e4272be661a" prefix=" " category="inline-code"></block></block>
+  <block id="5e7f834bb6ce37fe7786c30951681705" category="list-text">验证Cumulus Linux版本是否为4.5.3：<block ref="98f5dff8534e8c39673b544f567273e7" prefix=" " category="inline-code"></block></block>
+  <block id="d3197ab8aed6376fa7796149e9bb5d76" category="paragraph">安装程序将开始下载。出现提示时、键入*。</block>
+  <block id="0d5b4669d0f67490dffe38df0a47c207" category="list-text">安装将自动启动、并显示以下Grub屏幕选项。请勿*选择*。</block>
+  <block id="caf789a40cb327fa8f64258a010c13e0" category="list-text">验证Cumulus Linux版本是否为5.4：<block ref="9fcc1ae85aac3dbd490f575cf5eb3d52" prefix=" " category="inline-code"></block></block>
+  <block id="ebf243f9c791c52799ecfef9dba7e609" category="doc">将NetApp CN1610集群交换机更换为无交换机连接</block>
+  <block id="261de3e636d4ab259e73f4993ea87a6a" category="sidebar">升级Cumulus Linux版本</block>
 </blocks>

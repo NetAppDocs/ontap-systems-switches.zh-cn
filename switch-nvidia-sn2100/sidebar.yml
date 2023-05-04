@@ -34,6 +34,8 @@ entries:
     url: "/switch-nvidia-sn2100/install-rcf-sn2100-cluster.html"
   - title: 配置交换机日志收集
     url: "/switch-nvidia-sn2100/install-snmpv3-sn2100-cluster.html"
+  - title: 升级Cumulus Linux版本
+    url: "/switch-nvidia-sn2100/upgrade-cl-version.html"
 - title: 迁移交换机
   entries:
   - title: 从Cisco集群交换机迁移

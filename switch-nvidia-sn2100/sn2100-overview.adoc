@@ -19,7 +19,7 @@ summary: 如果要使用两个以上的节点构建 ONTAP 集群，则需要两�
 
 == 支持ONTAP 和Linux
 
-NVIDIA SN2100交换机是一款运行Cumulus Linux的10/25/40/100 Gb以太网交换机。交换机支持以下功能：
+NVIDIA SN2100交换机是运行Cumulus Linux的10/C5/40/100GbE交换机。交换机支持以下功能：
 
 * ONTAP 9.10.1P3。SN2100交换机通过不同的交换机对为ONTAP 9.10.1P3中的集群和存储应用程序提供服务。从ONTAP 9.10.1P3开始、您可以使用NVIDIA SN2100交换机将存储和集群功能组合到共享交换机配置中。
 * Cumulus Linux (CL)操作系统4.5.3版。有关当前兼容性信息、请参见 https://mysupport.netapp.com/site/info/nvidia-cluster-switch["NVIDIA以太网交换机"^] 信息页面。
@@ -42,28 +42,28 @@ NVIDIA SN2100交换机是一款运行Cumulus Linux的10/25/40/100 Gb以太网交
  a| 
 X190006-PE
  a| 
-集群交换机、NVIDIA SN2100、16磅100G、PTSX
+集群交换机、NVIDIA SN2100、16端口100GbE、PTSX
 
 
 
  a| 
 X190006-PI
  a| 
-集群交换机、NVIDIA SN2100、16磅100G、PSIN
+集群交换机、NVIDIA SN2100、16端口100GbE、PSIN
 
 
 
  a| 
 X190106-FE-PE
  a| 
-交换机、NVIDIA SN2100、16磅100G、PTSX、前端
+交换机、NVIDIA SN2100、16端口100GbE、PTSX、前端
 
 
 
  a| 
 X190106-FE-PI
  a| 
-交换机、NVIDIA SN2100、16磅100G、PSIN、前端
+交换机、NVIDIA SN2100、16端口100GbE、PSIN、前端
 
 
 
