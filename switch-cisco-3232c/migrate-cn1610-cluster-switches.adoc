@@ -24,9 +24,9 @@ NOTE: 操作步骤 要求同时使用 ONTAP 命令和 Cisco Nexus 3000 系列交
 
 如有必要、请参见以下内容了解详细信息：
 
-* http://support.netapp.com/NOW/download/software/cm_switches_ntap/["NetApp CN1601 和 CN1610 问题描述 页面"^]
-* http://support.netapp.com/NOW/download/software/cm_switches/["Cisco 以太网交换机问题描述 页面"^]
-* http://hwu.netapp.com["Hardware Universe"^]
+* http://["NetApp CN1601 和 CN1610 问题描述 页面"^]
+* http://["Cisco 以太网交换机问题描述 页面"^]
+* http://["Hardware Universe"^]
 
 
 
@@ -46,7 +46,7 @@ NOTE: 操作步骤 要求同时使用 ONTAP 命令和 Cisco Nexus 3000 系列交
 * N1_clus2 是连接到节点 n1 的集群交换机 2 （ CL2 或 C2 ）的第一个集群 LIF 。
 * N1_clus3 是连接到节点 n1 的集群交换机 2 （ CL2 或 C2 ）的第二个 LIF 。
 * N1_clus4 是连接到节点 n1 的集群交换机 1 （ CL1 或 C1 ）的第二个 LIF 。
-* 10 GbE 和 40/100 GbE 端口的数量在上提供的参考配置文件（ RCF ）中定义 https://mysupport.netapp.com/NOW/download/software/sanswitch/fcp/Cisco/netapp_cnmn/download.shtml["Cisco ® 集群网络交换机参考配置文件下载"^] 页面。
+* 10 GbE 和 40/100 GbE 端口的数量在上提供的参考配置文件（ RCF ）中定义 https://["Cisco ® 集群网络交换机参考配置文件下载"^] 页面。
 
 
 
@@ -332,7 +332,7 @@ RPC status:
 ====
 . 使用相应的命令关闭活动 CN1610 交换机 CL1 上的 ISL 端口 13 到 16 。
 +
-有关 Cisco 命令的详细信息，请参见中列出的指南 https://www.cisco.com/c/en/us/support/switches/nexus-3000-series-switches/products-command-reference-list.html["Cisco Nexus 3000 系列 NX-OS 命令参考"^]。
+有关 Cisco 命令的详细信息，请参见中列出的指南 https://["Cisco Nexus 3000 系列 NX-OS 命令参考"^]。
 
 +
 .显示示例
@@ -351,7 +351,7 @@ RPC status:
 ====
 . 在 CL1 和 C2 之间构建临时 ISL ：
 +
-有关 Cisco 命令的详细信息，请参见中列出的指南 https://www.cisco.com/c/en/us/support/switches/nexus-3000-series-switches/products-command-reference-list.html["Cisco Nexus 3000 系列 NX-OS 命令参考"^]。
+有关 Cisco 命令的详细信息，请参见中列出的指南 https://["Cisco Nexus 3000 系列 NX-OS 命令参考"^]。
 
 +
 .显示示例
@@ -394,7 +394,7 @@ C2(config-if)# exit
 当这两台交换机上启动ISL时、此配置与3232C交换机C2上的ISL配置匹配。
 
 +
-有关 Cisco 命令的详细信息，请参见中列出的指南 https://www.cisco.com/c/en/us/support/switches/nexus-3000-series-switches/products-command-reference-list.html["Cisco Nexus 3000 系列 NX-OS 命令参考"^]。
+有关 Cisco 命令的详细信息，请参见中列出的指南 https://["Cisco Nexus 3000 系列 NX-OS 命令参考"^]。
 
 +
 .显示示例
@@ -414,7 +414,7 @@ C2(config-if)# exit
 ====
 . 在活动的 CN1610 交换机 CL1 上启动 ISL 13 到 16 。
 +
-有关 Cisco 命令的详细信息，请参见中列出的指南 https://www.cisco.com/c/en/us/support/switches/nexus-3000-series-switches/products-command-reference-list.html["Cisco Nexus 3000 系列 NX-OS 命令参考"^]。
+有关 Cisco 命令的详细信息，请参见中列出的指南 https://["Cisco Nexus 3000 系列 NX-OS 命令参考"^]。
 
 +
 .显示示例
@@ -470,7 +470,7 @@ Ports  Timeout       Speed       Active
 `s如何执行端口通道摘要`
 
 +
-有关 Cisco 命令的详细信息，请参见中列出的指南 https://www.cisco.com/c/en/us/support/switches/nexus-3000-series-switches/products-command-reference-list.html["Cisco Nexus 3000 系列 NX-OS 命令参考"^]。
+有关 Cisco 命令的详细信息，请参见中列出的指南 https://["Cisco Nexus 3000 系列 NX-OS 命令参考"^]。
 
 +
 端口 Eth1/24/1 到 Eth1/24/4 应指示 ` （ P ）` ，表示端口通道中的所有四个 ISL 端口均已启动。Eth1/31 和 Eth1/32 应指示 ` （ D ）` ，因为它们未连接。
@@ -733,7 +733,7 @@ cluster::*> network port modify -node n2 -port e0d -up-admin false
 ====
 . 关闭活动 3232C 交换机 C2 上的 ISL 端口 24 ， 31 和 32 。
 +
-有关 Cisco 命令的详细信息，请参见中列出的指南 https://www.cisco.com/c/en/us/support/switches/nexus-3000-series-switches/products-command-reference-list.html["Cisco Nexus 3000 系列 NX-OS 命令参考"^]。
+有关 Cisco 命令的详细信息，请参见中列出的指南 https://["Cisco Nexus 3000 系列 NX-OS 命令参考"^]。
 
 +
 .显示示例
@@ -764,7 +764,7 @@ C2#
 
 . 还原端口 24 上的配置并删除 C2 上的临时端口通道 2 ：
 +
-有关 Cisco 命令的详细信息，请参见中列出的指南 https://www.cisco.com/c/en/us/support/switches/nexus-3000-series-switches/products-command-reference-list.html["Cisco Nexus 3000 系列 NX-OS 命令参考"^]。
+有关 Cisco 命令的详细信息，请参见中列出的指南 https://["Cisco Nexus 3000 系列 NX-OS 命令参考"^]。
 
 +
 .显示示例
@@ -799,7 +799,7 @@ Copy Complete.
 ====
 . 启动 C2 上的 ISL 端口 31 和 32 ，这是活动的 3232C 交换机。
 +
-有关 Cisco 命令的详细信息，请参见中列出的指南 https://www.cisco.com/c/en/us/support/switches/nexus-3000-series-switches/products-command-reference-list.html["Cisco Nexus 3000 系列 NX-OS 命令参考"^]。
+有关 Cisco 命令的详细信息，请参见中列出的指南 https://["Cisco Nexus 3000 系列 NX-OS 命令参考"^]。
 
 +
 .显示示例
@@ -821,7 +821,7 @@ Copy Complete.
 ====
 . 验证 3232C 交换机 C2 上的 ISL 连接是否为 `up` 。
 +
-有关 Cisco 命令的详细信息，请参见中列出的指南 https://www.cisco.com/c/en/us/support/switches/nexus-3000-series-switches/products-command-reference-list.html["Cisco Nexus 3000 系列 NX-OS 命令参考"^]。
+有关 Cisco 命令的详细信息，请参见中列出的指南 https://["Cisco Nexus 3000 系列 NX-OS 命令参考"^]。
 
 +
 .显示示例

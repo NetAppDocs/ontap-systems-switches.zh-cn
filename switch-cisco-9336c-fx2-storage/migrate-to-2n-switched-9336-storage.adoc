@@ -34,7 +34,7 @@ summary: 如果您现有的双节点无交换机集群环境，则可以使用 C
 ** 可以通过控制台访问集群交换机。
 ** Nexus 9336C-f2节点到节点交换机和交换机到交换机连接使用双轴电缆或光缆。
 +
-请参见 https://hwu.netapp.com/SWITCH/INDEX["Hardware Universe —交换机"^] 有关布线的详细信息。
+请参见 https://["Hardware Universe —交换机"^] 有关布线的详细信息。
 
 
 
@@ -57,7 +57,7 @@ summary: 如果您现有的双节点无交换机集群环境，则可以使用 C
 * 此操作步骤中使用的集群端口为 e0a 和 e0b 。
 
 
-请参见 https://hwu.netapp.com["Hardware Universe"^] 有关平台的集群端口的信息。
+请参见 https://["Hardware Universe"^] 有关平台的集群端口的信息。
 
 
 
@@ -290,7 +290,7 @@ Cluster
 ====
 . 从 node1 上的集群端口 e0a 断开缆线连接，然后使用 9336C-x2 交换机支持的相应布线方式将 e0a 连接到集群交换机 CS1 上的端口 1 。
 +
-。 https://hwu.netapp.com/SWITCH/INDEX["Hardware Universe —交换机"^] 包含有关布线的详细信息。
+。 https://["Hardware Universe —交换机"^] 包含有关布线的详细信息。
 
 . 断开节点 2 上集群端口 e0a 的缆线连接，然后使用 9336C-x2 交换机支持的相应布线方式将 e0a 连接到集群交换机 CS1 上的端口 2 。
 . 启用集群交换机 CS1 上面向节点的所有端口。

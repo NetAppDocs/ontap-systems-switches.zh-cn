@@ -43,7 +43,7 @@ swp3-14 40/100集群端口节点
 swp15-16 40/100交换机间链路(ISL)端口
 
 |===
-请参见 https://hwu.netapp.com/Switch/Index["Hardware Universe"] 有关交换机端口的详细信息。
+请参见 https://["Hardware Universe"] 有关交换机端口的详细信息。
 
 
 

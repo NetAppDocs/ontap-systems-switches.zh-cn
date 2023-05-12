@@ -58,7 +58,7 @@ summary: 更换 Cisco Nexus 3132Q-V 集群交换机时，您必须了解某些�
 ** Nexus 3132Q-V
 
 
-* 10 GbE 和 40/100 GbE 端口的数量在上提供的参考配置文件（ RCF ）中定义 https://mysupport.netapp.com/NOW/download/software/sanswitch/fcp/Cisco/netapp_cnmn/download.shtml["Cisco ® 集群网络交换机参考配置文件下载"^] 页面。
+* 10 GbE 和 40/100 GbE 端口的数量在上提供的参考配置文件（ RCF ）中定义 https://["Cisco ® 集群网络交换机参考配置文件下载"^] 页面。
 * 集群交换机使用以下端口连接到节点：
 +
 ** 端口 E1/1-40 （ 10 GbE ）： Nexus 5596

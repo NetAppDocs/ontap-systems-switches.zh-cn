@@ -12,11 +12,11 @@ summary: 您可以将这些链接用于其他交换机型号。
 
 您可以使用这些链接查找早期型号的集群和配置交换机的文档。通过这些链接，您可以访问其他文档站点。
 
-* https://mysupport.netapp.com/documentation/docweb/index.html?productID=62376&language=en-US["Cisco Nexus 5596"]
-* https://mysupport.netapp.com/documentation/docweb/index.html?productID=62373&language=en-USNetApp["CN1601"]
+* https://["Cisco Nexus 5596"]
+* https://["CN1601"]
 
 
 
 NOTE: NetApp不再提供Nexus 5596UP/5596T集群交换机、但Cisco仅支持有限的Tim。
 
-有关硬件支持已结束的AFF 和FAS 交换机型号的文档、可在中供客户使用 https://mysupport.netapp.com/documentation/productsatoz/index.html?archive=true["归档"]。
+有关硬件支持已结束的AFF 和FAS 交换机型号的文档、可在中供客户使用 https://["归档"]。

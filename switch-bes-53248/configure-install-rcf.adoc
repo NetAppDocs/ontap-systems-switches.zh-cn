@@ -13,65 +13,419 @@ summary: '您可以在配置BES-53248集群交换机后以及应用新许可证�
 [role="lead"]
 您可以在配置BES-53248集群交换机后以及应用新许可证后安装参考配置文件(Reference Configuration File、RCF)。
 
-如果要从旧版本升级 RCF ，则必须重置 Broadcom 交换机设置并执行基本配置以重新应用 RCF 。每次要升级或更改 RCF 时，都必须执行此操作。请参见 https://kb.netapp.com/Advice_and_Troubleshooting/Data_Storage_Systems/Fabric%2C_Interconnect_and_Management_Switches/Error!_in_configuration_script_file_at_line_number_XX_when_applying_a_new_RCF["知识库文章"^] 了解详细信息。
+如果要从旧版本升级 RCF ，则必须重置 Broadcom 交换机设置并执行基本配置以重新应用 RCF 。每次要升级或更改 RCF 时，都必须执行此操作。请参见 https://["知识库文章"^] 了解详细信息。
 
-.步骤
-. 将集群交换机连接到管理网络。
-. 使用 `ping` 命令验证与托管 EFOS ，许可证和 RCF 的服务器的连接。
+
+
+== 查看要求
+
+.开始之前
+* 交换机配置的当前备份。
+* 一个完全正常运行的集群(日志中没有错误或类似问题)。
+* 可从获取的当前RCF文件 https://["Broadcom 集群交换机"^] 页面。
+* RC框架 中反映所需启动映像的启动配置、如果您仅安装EFOS并保留当前RC框架 版本、则需要此配置。如果您需要更改启动配置以反映当前启动映像，则必须在重新应用 RCF 之前进行更改，以便在将来重新启动时实例化正确的版本。
+* 从出厂默认状态安装RC框架 时需要与交换机建立控制台连接。如果您已使用知识库文章、则此要求是可选的  https://["如何在保持远程连接的同时清除Broadcom互连交换机上的配置"^] 要清除配置、请事先清除。
+
+
+.建议的文档
+* 有关支持的ONTAP 和RCF版本、请参见交换机兼容性表。请参见 https://["EFOS软件下载"^] 页面。请注意、RC框架 中的命令语法与EFOS版本中的命令语法之间可能存在命令依赖关系。
+* 请参阅上提供的相应软件和升级指南 https://["Broadcom"^] 有关BES-53248交换机升级和降级过程的完整文档的站点。
+
+
+
+
+== 安装配置文件
+
+.关于示例
+此操作步骤中的示例使用以下交换机和节点命名：
+
+* 两个BES-53248交换机的名称是CS1和CS2。
+* 节点名称包括cluster1-01、cluster1-02、cluster1-03和cluster1-04。
+* 集群LIF名称是"cluster-01_clus1"、"cluster-01_clus2"、"cluster-02_clus1"、"cluster-02_clus2"、"cluster-03_clus1"、 cluster-03_clus2、cluster-04_clus1和cluster-04_clus2。
+* `cluster1 ：：： * >` 提示符指示集群的名称。
+* 此操作步骤 中的示例使用四个节点。这些节点使用两个10GbE集群互连端口 `e0a` 和 `e0b`。请参见 https://["Hardware Universe"^] 验证平台上的集群端口是否正确。
+
+
+
+NOTE: 根据不同版本的 ONTAP ，命令输出可能会有所不同。
+
+.关于此任务
+操作步骤 要求同时使用ONTAP 命令和Broadcom交换机命令；除非另有说明、否则将使用ONTAP 命令。
+
+在此操作步骤 期间、不需要可操作的交换机间链路(ISL)。这是设计上的原因、因为RCF版本更改可能会暂时影响ISL连接。为确保集群无中断运行、以下操作步骤 会在对目标交换机执行步骤时将所有集群LIFs迁移到正常运行的配对交换机。
+
+
+CAUTION: 在安装新交换机软件版本和RCF之前、请使用 https://["知识库文章：如何在保持远程连接的同时清除Broadcom互连交换机上的配置"^]。如果您必须完全擦除交换机设置、则需要重新执行基本配置。您必须使用串行控制台连接到交换机、因为完整的配置清除会重置管理网络的配置。
+
+
+
+== 第1步：准备安装
+
+. 如果在此集群上启用了 AutoSupport ，则通过调用 AutoSupport 消息禁止自动创建案例：
 +
-如果连接为问题描述，请使用非路由网络并使用 IP 地址 192.168.8.x 或 172.19.x 配置服务端口您可以稍后将服务端口重新配置为生产管理 IP 地址。
+`ssystem node AutoSupport invoke -node * -type all -message MAINT=xh`
+
++
+其中 _x_ 是维护时段的持续时间，以小时为单位。
+
++
+
+NOTE: AutoSupport 消息会通知技术支持此维护任务，以便在维护窗口期间禁止自动创建案例。
+
++
+以下命令将禁止自动创建案例 2 小时：
+
++
+[listing]
+----
+cluster1::*> system node autosupport invoke -node \* -type all -message MAINT=2h
+----
+. 将权限级别更改为高级，在系统提示您继续时输入 * y * ：
++
+`set -privilege advanced`
+
++
+此时将显示高级提示符（ * > ）。
+
+. 显示连接到集群交换机的每个节点上的集群端口： `network device-discovery show`
++
+.显示示例
+[%collapsible]
+====
+[listing, subs="+quotes"]
+----
+cluster1::*> *network device-discovery show*
+Node/       Local  Discovered
+Protocol    Port   Device (LLDP: ChassisID)  Interface         Platform
+----------- ------ ------------------------- ----------------  --------
+cluster1-01/cdp
+            e0a    cs1                       0/2               BES-53248
+            e0b    cs2                       0/2               BES-53248
+cluster1-02/cdp
+            e0a    cs1                       0/1               BES-53248
+            e0b    cs2                       0/1               BES-53248
+cluster1-03/cdp
+            e0a    cs1                       0/4               BES-53248
+            e0b    cs2                       0/4               BES-53248
+cluster1-04/cdp
+            e0a    cs1                       0/3               BES-53248
+            e0b    cs2                       0/3               BES-53248
+cluster1::*>
+----
+====
+. 检查每个集群端口的管理和运行状态。
++
+.. 验证所有集群端口是否均已启动且状态正常： `network port show –role cluster`
++
+.显示示例
+[%collapsible]
+====
+[listing, subs="+quotes"]
+----
+cluster1::*> *network port show -role cluster*
+
+Node: cluster1-01
+                                                                       Ignore
+                                                  Speed(Mbps) Health   Health
+Port      IPspace      Broadcast Domain Link MTU  Admin/Oper  Status   Status
+--------- ------------ ---------------- ---- ---- ----------- -------- ------
+e0a       Cluster      Cluster          up   9000  auto/100000 healthy false
+e0b       Cluster      Cluster          up   9000  auto/100000 healthy false
+
+Node: cluster1-02
+                                                                       Ignore
+                                                  Speed(Mbps) Health   Health
+Port      IPspace      Broadcast Domain Link MTU  Admin/Oper  Status   Status
+--------- ------------ ---------------- ---- ---- ----------- -------- ------
+e0a       Cluster      Cluster          up   9000  auto/100000 healthy false
+e0b       Cluster      Cluster          up   9000  auto/100000 healthy false
+8 entries were displayed.
+
+Node: cluster1-03
+
+   Ignore
+                                                  Speed(Mbps) Health   Health
+Port      IPspace      Broadcast Domain Link MTU  Admin/Oper  Status   Status
+--------- ------------ ---------------- ---- ---- ----------- -------- ------
+e0a       Cluster      Cluster          up   9000  auto/10000 healthy  false
+e0b       Cluster      Cluster          up   9000  auto/10000 healthy  false
+
+Node: cluster1-04
+                                                                       Ignore
+                                                  Speed(Mbps) Health   Health
+Port      IPspace      Broadcast Domain Link MTU  Admin/Oper  Status   Status
+--------- ------------ ---------------- ---- ---- ----------- -------- ------
+e0a       Cluster      Cluster          up   9000  auto/10000 healthy  false
+e0b       Cluster      Cluster          up   9000  auto/10000 healthy  false
+cluster1::*>
+----
+====
+.. 验证所有集群接口（ LIF ）是否均位于主端口上： `network interface show -role cluster`
++
+.显示示例
+[%collapsible]
+====
+[listing, subs="+quotes"]
+----
+cluster1::*> *network interface show -role cluster*
+            Logical            Status     Network           Current      Current Is
+Vserver     Interface          Admin/Oper Address/Mask      Node         Port    Home
+----------- ------------------ ---------- ----------------- ------------ ------- ----
+Cluster
+            cluster1-01_clus1  up/up     169.254.3.4/23     cluster1-01  e0a     true
+            cluster1-01_clus2  up/up     169.254.3.5/23     cluster1-01  e0b     true
+            cluster1-02_clus1  up/up     169.254.3.8/23     cluster1-02  e0a     true
+            cluster1-02_clus2  up/up     169.254.3.9/23     cluster1-02  e0b     true
+            cluster1-03_clus1  up/up     169.254.1.3/23     cluster1-03  e0a     true
+            cluster1-03_clus2  up/up     169.254.1.1/23     cluster1-03  e0b     true
+            cluster1-04_clus1  up/up     169.254.1.6/23     cluster1-04  e0a     true
+            cluster1-04_clus2  up/up     169.254.1.7/23     cluster1-04  e0b     true
+----
+====
+
+
+. 验证集群是否显示两个集群交换机的信息。
+
+
+[role="tabbed-block"]
+====
+.ONTAP 9.8 及更高版本
+--
+从ONTAP 9.8开始、请使用以下命令： `system switch ethernet show -is-monitoring-enabled-operational true`
+
+[listing, subs="+quotes"]
+----
+cluster1::*> *system switch ethernet show -is-monitoring-enabled-operational true*
+Switch                      Type               Address          Model
+--------------------------- ------------------ ---------------- ---------------
+cs1                         cluster-network    10.228.143.200   BES-53248
+           Serial Number: QTWCU22510008
+            Is Monitored: true
+                  Reason: None
+        Software Version: 3.10.0.3
+          Version Source: CDP/ISDP
+
+cs2                         cluster-network    10.228.143.202   BES-53248
+           Serial Number: QTWCU22510009
+            Is Monitored: true
+                  Reason: None
+        Software Version: 3.10.0.3
+          Version Source: CDP/ISDP
+cluster1::*>
+----
+--
+.ONTAP 9.7 及更早版本
+--
+对于ONTAP 9.7及更早版本、请使用命令： `system cluster-switch show -is-monitoring-enabled-operational true`
+
+[listing, subs="+quotes"]
+----
+cluster1::*> *system cluster-switch show -is-monitoring-enabled-operational true*
+Switch                      Type               Address          Model
+--------------------------- ------------------ ---------------- ---------------
+cs1                         cluster-network    10.228.143.200   BES-53248
+           Serial Number: QTWCU22510008
+            Is Monitored: true
+                  Reason: None
+        Software Version: 3.10.0.3
+          Version Source: CDP/ISDP
+
+cs2                         cluster-network    10.228.143.202   BES-53248
+           Serial Number: QTWCU22510009
+            Is Monitored: true
+                  Reason: None
+        Software Version: 3.10.0.3
+          Version Source: CDP/ISDP
+cluster1::*>
+----
+--
+====
+. 【第 6 步】在集群 LIF 上禁用自动还原。
++
+[listing]
+----
+cluster1::*> network interface modify -vserver Cluster -lif * -auto-revert false
+----
+
+
+
+
+== 第2步：配置端口
+
+. 在集群交换机 CS2 上，关闭连接到节点集群端口的端口。
++
+[listing, subs="+quotes"]
+----
+(cs2)(Config)# *interface 0/1-0/16*
+(cs2)(Interface 0/1-0/16)# *shutdown*
+----
+. 验证集群 LIF 是否已迁移到集群交换机 CS1 上托管的端口。这可能需要几秒钟的时间。
++
+`network interface show -role cluster`
 
 +
 .显示示例
 [%collapsible]
 ====
-此示例验证交换机是否已连接到 IP 地址为 172.19.2.1 的服务器：
-
 [listing, subs="+quotes"]
 ----
-(cs2)# *ping 172.19.2.1*
-Pinging 172.19.2.1 with 0 bytes of data:
-
-Reply From 172.19.2.1: icmp_seq = 0. time= 5910 usec.
+cluster1::*> *network interface show -role cluster*
+            Logical           Status     Network            Current       Current Is
+Vserver     Interface         Admin/Oper Address/Mask       Node          Port    Home
+----------- ----------------- ---------- ------------------ ------------- ------- ----
+Cluster
+            cluster1-01_clus1 up/up      169.254.3.4/23     cluster1-01   e0a     true
+            cluster1-01_clus2 up/up      169.254.3.5/23     cluster1-01   e0a     false
+            cluster1-02_clus1 up/up      169.254.3.8/23     cluster1-02   e0a     true
+            cluster1-02_clus2 up/up      169.254.3.9/23     cluster1-02   e0a     false
+            cluster1-03_clus1 up/up      169.254.1.3/23     cluster1-03   e0a     true
+            cluster1-03_clus2 up/up      169.254.1.1/23     cluster1-03   e0a     false
+            cluster1-04_clus1 up/up      169.254.1.6/23     cluster1-04   e0a     true
+            cluster1-04_clus2 up/up      169.254.1.7/23     cluster1-04   e0a     false
+cluster1::*>
 ----
 ====
-. 使用 `copy` 命令在 BES-53248 集群交换机上安装 RCF 。
+. 验证集群是否运行正常： `cluster show`
 +
 .显示示例
 [%collapsible]
 ====
 [listing, subs="+quotes"]
 ----
-(cs2)# *copy sftp://172.19.2.1/tmp/BES-53248_RCF_v1.6-Cluster-HA.txt nvram:script BES-53248_RCF_v1.6-Cluster-HA.scr*
+cluster1::*> *cluster show*
+Node                 Health  Eligibility   Epsilon
+-------------------- ------- ------------  -------
+cluster1-01          true    true          false
+cluster1-02          true    true          false
+cluster1-03          true    true          true
+cluster1-04          true    true          false
+----
+====
+. 如果您尚未保存当前交换机配置、请将以下命令的输出复制到日志文件中以保存此配置： `show running-config`
+. 清理交换机 CS2 上的配置并执行基本设置。
++
 
-Remote Password:********
+CAUTION: 更新或应用新 RCF 时，必须擦除交换机设置并执行基本配置。您必须使用串行控制台连接到交换机，才能擦除交换机设置。
 
++
+.. 通过SSH连接到交换机。
++
+只有在从交换机上的端口中删除了所有集群的集群生命周期、并且交换机已准备好清除配置后、才能继续操作。
+
+.. 进入权限模式：
++
+[listing]
+----
+(cs2)> enable
+
+(cs2)#
+----
+.. 复制并粘贴以下命令以删除先前的RCIF配置(根据所使用的先前RCIF版本、如果不存在特定设置、某些命令可能会生成错误)：
++
+.显示示例
+[%collapsible]
+====
+[listing, subs="+quotes"]
+----
+clear config interface 0/1-0/56
+y
+clear config interface lag 1
+y
+configure
+deleteport 1/1 all
+no policy-map CLUSTER
+no policy-map WRED_25G
+no policy-map WRED_100G
+no class-map CLUSTER
+no class-map HA
+no class-map RDMA
+no classofservice dot1p-mapping
+no random-detect queue-parms 0
+no random-detect queue-parms 1
+no random-detect queue-parms 2
+no random-detect queue-parms 3
+no random-detect queue-parms 4
+no random-detect queue-parms 5
+no random-detect queue-parms 6
+no random-detect queue-parms 7
+no cos-queue min-bandwidth
+no cos-queue random-detect 0
+no cos-queue random-detect 1
+no cos-queue random-detect 2
+no cos-queue random-detect 3
+no cos-queue random-detect 4
+no cos-queue random-detect 5
+no cos-queue random-detect 6
+no cos-queue random-detect 7
+exit
+vlan database
+no vlan 17
+no vlan 18
+exit
+----
+====
+.. 将运行配置保存到启动配置：
++
+.显示示例
+[%collapsible]
+====
+[listing, subs="+quotes"]
+----
+(cs2)# *write memory*
+
+This operation may take a few minutes.
+Management interfaces will not be available during this time.
+
+Are you sure you want to save? (y/n) *y*
+
+Config file 'startup-config' created successfully .
+
+
+Configuration Saved!
+----
+====
+.. 重新启动交换机：
++
+.显示示例
+[%collapsible]
+====
+[listing, subs="+quotes"]
+----
+(cs2)# *reload*
+
+Are you sure you would like to reset the system? (y/n) *y*
+
+----
+====
+.. 使用SSH再次登录到交换机以完成RC框架 安装。
+
+
+. 如果交换机上安装了其他端口许可证、则必须修改RCIF以配置其他获得许可的端口。请参见 link:configure-licenses.html#activate-newly-licensed-ports["激活新许可的端口"^] 了解详细信息。
+. 使用以下传输协议之一将 RCF 复制到交换机 CS2 的启动闪存： FTP ， TFTP ， SFTP 或 SCP 。
++
+此示例显示了使用SFTP将RCC复制到交换机CS2上的bootflash：
+
++
+.显示示例
+[%collapsible]
+====
+[listing, subs="+quotes"]
+----
+(cs2)# *copy sftp://172.19.2.1/tmp/BES-53248_RCF_v1.9-Cluster-HA.txt
+nvram:script BES-53248_RCF_v1.6-Cluster-HA.scr*
+Remote Password:**
 Mode........................................... SFTP
 Set Server IP.................................. 172.19.2.1
 Path........................................... //tmp/
-Filename....................................... BES-53248_RCF_v1.6-Cluster-HA.txt
+Filename....................................... BES-53248_RCF_v1.9-Cluster-HA.txt
 Data Type...................................... Config Script
-Destination Filename........................... BES-53248_RCF_v1.6-Cluster-HA.scr
-
+Destination Filename........................... BES-53248_RCF_v1.9-Cluster-HA.scr
 Management access will be blocked for the duration of the transfer
 Are you sure you want to start? (y/n) *y*
 SFTP Code transfer starting...
-
 File transfer operation completed successfully.
 ----
 ====
-+
-
-NOTE: 根据您的环境、您可能需要在`copy`命令中使用双斜杠、例如：`+copy sftp：//172.19.2.1//tmp/BES-53248_RCF_v1.6-Cluster-HA.txt NVRAM：脚本BES-53248_RCF_v1.6-Cluser-HA.SCR+`。
-
-+
-
-NOTE: 在调用脚本之前，必须将 ` .scr` 扩展名设置为文件名的一部分。此扩展是 EFOS 操作系统的扩展。将脚本下载到交换机后，交换机会自动验证该脚本，并将输出传输到控制台。此外、您还可以更改`.scr`的名称以适应控制台屏幕、以便于阅读、例如：`+copy sftp：//172.19.2.1/tmp/BES-53248_RCF_v1.6-Cluster-HA.txt nvram：script RCF_v1.6-Cluster-HA.SCR+`。
-
-+
-
-NOTE: 文件名不能包含符号 `\/:*?"<>|` 允许的最大长度为32个字符。
-
 . 验证脚本是否已下载并保存到您为其指定的文件名中：
 +
 `s记录列表`
@@ -86,7 +440,7 @@ NOTE: 文件名不能包含符号 `\/:*?"<>|` 允许的最大长度为32个字�
 
 Configuration Script Name                  Size(Bytes)  Date of Modification
 -----------------------------------------  -----------  --------------------
-BES-53248_RCF_v1.6-Cluster-HA.scr        2241         2020 09 30 05:41:00
+BES-53248_RCF_v1.9-Cluster-HA.scr          2241         2020 09 30 05:41:00
 
 1 configuration script(s) found.
 ----
@@ -101,19 +455,55 @@ BES-53248_RCF_v1.6-Cluster-HA.scr        2241         2020 09 30 05:41:00
 ====
 [listing, subs="+quotes"]
 ----
-(cs2)# *script apply BES-53248_RCF_v1.6-Cluster-HA.scr*
+(cs2)# *script apply BES-53248_RCF_v1.9-Cluster-HA.scr*
 
 Are you sure you want to apply the configuration script? (y/n) *y*
 
 The system has unsaved changes.
 Would you like to save them now? (y/n) *y*
-Config file 'startup-config' created successfully .
+Config file 'startup-config' created successfully.
 Configuration Saved!
 
-Configuration script 'BES-53248_RCF_v1.6-Cluster-HA.scr' applied.
+Configuration script 'BES-53248_RCF_v1.9-Cluster-HA.scr' applied.
 ----
 ====
-. 应用 RCF 后，请验证用于附加许可证的端口：
+. 检查中的横幅输出 `show clibanner` 命令：您必须阅读并遵循这些说明，以确保交换机的配置和操作正确。
++
+.显示示例
+[%collapsible]
+====
+[listing, subs="+quotes"]
+----
+(cs2)# *show clibanner*
+
+Banner Message configured :
+=========================
+BES-53248 Reference Configuration File v1.9 for Cluster/HA/RDMA
+
+Switch   : BES-53248
+Filename : BES-53248-RCF-v1.9-Cluster.txt
+Date     : 10-26-2022
+Version  : v1.9
+Port Usage:
+Ports 01 - 16: 10/25GbE Cluster Node Ports, base config
+Ports 17 - 48: 10/25GbE Cluster Node Ports, with licenses
+Ports 49 - 54: 40/100GbE Cluster Node Ports, with licenses, added right to left
+Ports 55 - 56: 100GbE Cluster ISL Ports, base config
+NOTE:
+- The 48 SFP28/SFP+ ports are organized into 4-port groups in terms of port
+speed:
+Ports 1-4, 5-8, 9-12, 13-16, 17-20, 21-24, 25-28, 29-32, 33-36, 37-40, 41-44,
+45-48
+The port speed should be the same (10GbE or 25GbE) across all ports in a 4-port
+group
+- If additional licenses are purchased, follow the 'Additional Node Ports
+activated with Licenses' section for instructions
+- If SSH is active, it will have to be re-enabled manually after 'erase
+startup-config'
+command has been executed and the switch rebooted
+----
+====
+. 在交换机上、验证在应用RC框架 后是否显示其他已获得许可的端口：
 +
 `s如何全部端口 | 排除断开`
 
@@ -123,11 +513,11 @@ Configuration script 'BES-53248_RCF_v1.6-Cluster-HA.scr' applied.
 ====
 [listing, subs="+quotes"]
 ----
-(cs2)# *show port all \| exclude Detach*
+(cs2)# *show port all | exclude Detach*
 
                  Admin     Physical     Physical   Link   Link    LACP   Actor
 Intf      Type   Mode      Mode         Status     Status Trap    Mode   Timeout
---------- ------ --------- ---------- ---------- ------ ------- ------ --------
+--------- ------ --------- ------------ ---------- ------ ------- ------ --------
 0/1              Enable    Auto                    Down   Enable  Enable long
 0/2              Enable    Auto                    Down   Enable  Enable long
 0/3              Enable    Auto                    Down   Enable  Enable long
@@ -201,6 +591,385 @@ Are you sure you would like to reset the system? (y/n) *y*
 System will now restart!
 ----
 ====
+. 验证交换机CS2上的端口： `show interfaces status all | exclude Detach`
++
+.显示示例
+[%collapsible]
+====
+[listing, subs="+quotes"]
+----
+(cs1)# show interfaces status all | exclude Detach
+
+                                Link    Physical    Physical    Media       Flow
+Port       Name                 State   Mode        Status      Type        Control     VLAN
+---------  -------------------  ------  ----------  ----------  ----------  ----------  ------
+.
+.
+.
+0/16       10/25GbE Node Port   Down    Auto                                Inactive    Trunk
+0/17       10/25GbE Node Port   Down    Auto                                Inactive    Trunk
+0/18       10/25GbE Node Port   Up      25G Full    25G Full    25GBase-SR  Inactive    Trunk
+0/19       10/25GbE Node Port   Up      25G Full    25G Full    25GBase-SR  Inactive    Trunk
+.
+.
+.
+0/50       40/100GbE Node Port  Down    Auto                                Inactive    Trunk
+0/51       40/100GbE Node Port  Down    Auto                                Inactive    Trunk
+0/52       40/100GbE Node Port  Down    Auto                                Inactive    Trunk
+0/53       40/100GbE Node Port  Down    Auto                                Inactive    Trunk
+0/54       40/100GbE Node Port  Down    Auto                                Inactive    Trunk
+0/55       Cluster   ISL Port   Up      Auto        100G Full   Copper      Inactive    Trunk
+0/56       Cluster   ISL Port   Up      Auto        100G Full   Copper      Inactive    Trunk
+----
+====
+. 验证集群上集群端口的运行状况。
++
+.. 验证集群中所有节点上的e0b端口是否均已启动且运行正常： `network port show -role cluster`
++
+.显示示例
+[%collapsible]
+====
+[listing, subs="+quotes"]
+----
+cluster1::*> *network port show -role cluster*
+
+Node: cluster1-01
+                                                                      Ignore
+                                                  Speed(Mbps) Health  Health
+Port      IPspace      Broadcast Domain Link MTU  Admin/Oper  Status  Status
+--------- ------------ ---------------- ---- ---- ----------- -------- -----
+e0a       Cluster      Cluster          up   9000  auto/10000 healthy  false
+e0b       Cluster      Cluster          up   9000  auto/10000 healthy  false
+
+Node: cluster1-02
+
+                                                                      Ignore
+                                                  Speed(Mbps) Health  Health
+Port      IPspace      Broadcast Domain Link MTU  Admin/Oper  Status  Status
+--------- ------------ ---------------- ---- ---- ----------- -------- -----
+e0a       Cluster      Cluster          up   9000  auto/10000 healthy  false
+e0b       Cluster      Cluster          up   9000  auto/10000 healthy  false
+
+Node: cluster1-03
+                                                                      Ignore
+                                                  Speed(Mbps) Health  Health
+Port      IPspace      Broadcast Domain Link MTU  Admin/Oper  Status  Status
+--------- ------------ ---------------- ---- ---- ----------- -------- -----
+e0a       Cluster      Cluster          up   9000  auto/100000 healthy false
+e0b       Cluster      Cluster          up   9000  auto/100000 healthy false
+
+Node: cluster1-04
+                                                                      Ignore
+                                                  Speed(Mbps) Health  Health
+Port      IPspace      Broadcast Domain Link MTU  Admin/Oper  Status  Status
+--------- ------------ ---------------- ---- ---- ----------- -------- -----
+e0a       Cluster      Cluster          up   9000  auto/100000 healthy false
+e0b       Cluster      Cluster          up   9000  auto/100000 healthy false
+----
+====
+.. 从集群验证交换机运行状况。
++
+.显示示例
+[%collapsible]
+====
+[listing, subs="+quotes"]
+----
+cluster1::*> *network device-discovery show -protocol cdp*
+Node/       Local  Discovered
+Protocol    Port   Device (LLDP: ChassisID)  Interface         Platform
+----------- ------ ------------------------- ----------------- --------
+cluster1-01/cdp
+            e0a    cs1                       0/2               BES-53248
+            e0b    cs2                       0/2               BES-53248
+cluster01-2/cdp
+            e0a    cs1                       0/1               BES-53248
+            e0b    cs2                       0/1               BES-53248
+cluster01-3/cdp
+            e0a    cs1                       0/4               BES-53248
+            e0b    cs2                       0/4               BES-53248
+cluster1-04/cdp
+            e0a    cs1                       0/3               BES-53248
+            e0b    cs2                       0/2               BES-53248
+----
+====
+
+
+
+
+[role="tabbed-block"]
+====
+.ONTAP 9.8 及更高版本
+--
+从ONTAP 9.8开始、请使用以下命令： `system switch ethernet show -is-monitoring-enabled-operational true`
+
+[listing, subs="+quotes"]
+----
+cluster1::*> *system switch ethernet show -is-monitoring-enabled-operational true*
+Switch                      Type               Address          Model
+--------------------------- ------------------ ---------------- ---------------
+cs1                         cluster-network    10.228.143.200   BES-53248
+           Serial Number: QTWCU22510008
+            Is Monitored: true
+                  Reason: None
+        Software Version: 3.10.0.3
+          Version Source: CDP/ISDP
+
+cs2                         cluster-network    10.228.143.202   BES-53248
+           Serial Number: QTWCU22510009
+            Is Monitored: true
+                  Reason: None
+        Software Version: 3.10.0.3
+          Version Source: CDP/ISDP
+cluster1::*>
+----
+--
+.ONTAP 9.7 及更早版本
+--
+对于ONTAP 9.7及更早版本、请使用命令： `system cluster-switch show -is-monitoring-enabled-operational true`
+
+[listing, subs="+quotes"]
+----
+cluster1::*> *system cluster-switch show -is-monitoring-enabled-operational true*
+Switch                      Type               Address          Model
+--------------------------- ------------------ ---------------- ---------------
+cs1                         cluster-network    10.228.143.200   BES-53248
+           Serial Number: QTWCU22510008
+            Is Monitored: true
+                  Reason: None
+        Software Version: 3.10.0.3
+          Version Source: CDP/ISDP
+
+cs2                         cluster-network    10.228.143.202   BES-53248
+           Serial Number: QTWCU22510009
+            Is Monitored: true
+                  Reason: None
+        Software Version: 3.10.0.3
+          Version Source: CDP/ISDP
+cluster1::*>
+----
+--
+====
+. [[Step17]]在集群交换机CS1上、关闭连接到节点集群端口的端口。
++
+以下示例使用接口示例输出：
+
++
+[listing, subs="+quotes"]
+----
+(cs1)# *configure*
+(cs1)(Config)# *interface 0/1-0/16*
+(cs1)(Interface 0/1-0/16)# *shutdown*
+----
+. 验证集群 LIF 是否已迁移到交换机 CS2 上托管的端口。这可能需要几秒钟的时间。
+`network interface show -role cluster`
++
+.显示示例
+[%collapsible]
+====
+[listing, subs="+quotes"]
+----
+cluster1::*> *network interface show -role cluster*
+            Logical            Status     Network            Current            Current  Is
+Vserver     Interface          Admin/Oper Address/Mask       Node               Port     Home
+----------- ------------------ ---------- ------------------ ------------------ -------- ----
+Cluster
+            cluster1-01_clus1  up/up      169.254.3.4/23     cluster1-01        e0a      false
+            cluster1-01_clus2  up/up      169.254.3.5/23     cluster1-01        e0b      true
+            cluster1-02_clus1  up/up      169.254.3.8/23     cluster1-02        e0a      false
+            cluster1-02_clus2  up/up      169.254.3.9/23     cluster1-02        e0b      true
+            cluster1-03_clus1  up/up      169.254.1.3/23     cluster1-03        e0a      false
+            cluster1-03_clus2  up/up      169.254.1.1/23     cluster1-03        e0b      true
+            cluster1-04_clus1  up/up      169.254.1.6/23     cluster1-04        e0a      false
+            cluster1-04_clus2  up/up      169.254.1.7/23     cluster1-04        e0b      true
+cluster1::*>
+----
+====
+. 验证集群是否运行正常： `cluster show`
++
+.显示示例
+[%collapsible]
+====
+[listing, subs="+quotes"]
+----
+cluster1::*> *cluster show*
+Node                 Health   Eligibility   Epsilon
+-------------------- -------- ------------- -------
+cluster1-01          true     true          false
+cluster1-02          true     true          false
+cluster1-03          true     true          true
+cluster1-04          true     true          false
+----
+====
+. 对交换机CS1重复步骤4至14。
+. 在集群 LIF 上启用自动还原：
+`cluster1::*> network interface modify -vserver Cluster -lif * -auto-revert true`
+. 重新启动交换机 CS1 。执行此操作可触发集群 LIF 还原到其主端口。您可以忽略在交换机重新启动时报告的节点上的 " 集群端口关闭 " 事件。
++
+.显示示例
+[%collapsible]
+====
+[listing, subs="+quotes"]
+----
+(cs1)# *reload*
+The system has unsaved changes.
+Would you like to save them now? (y/n) *y*
+Config file 'startup-config' created successfully.
+Configuration Saved! System will now restart!
+----
+====
+
+
+
+
+== 第3步：验证配置
+
+. 在交换机CS1上、验证连接到集群端口的交换机端口是否为*已启动*。
++
+.显示示例
+[%collapsible]
+====
+[listing, subs="+quotes"]
+----
+(cs1)# show interfaces status all | exclude Detach
+
+                                Link    Physical    Physical    Media       Flow
+Port       Name                 State   Mode        Status      Type        Control     VLAN
+---------  -------------------  ------  ----------  ----------  ----------  ----------  ------
+.
+.
+.
+0/16       10/25GbE Node Port   Down    Auto                                Inactive    Trunk
+0/17       10/25GbE Node Port   Down    Auto                                Inactive    Trunk
+0/18       10/25GbE Node Port   Up      25G Full    25G Full    25GBase-SR  Inactive    Trunk
+0/19       10/25GbE Node Port   Up      25G Full    25G Full    25GBase-SR  Inactive    Trunk
+.
+.
+.
+0/50       40/100GbE Node Port  Down    Auto                                Inactive    Trunk
+0/51       40/100GbE Node Port  Down    Auto                                Inactive    Trunk
+0/52       40/100GbE Node Port  Down    Auto                                Inactive    Trunk
+0/53       40/100GbE Node Port  Down    Auto                                Inactive    Trunk
+0/54       40/100GbE Node Port  Down    Auto                                Inactive    Trunk
+0/55       Cluster   ISL Port   Up      Auto        100G Full   Copper      Inactive    Trunk
+0/56       Cluster   ISL Port   Up      Auto        100G Full   Copper      Inactive    Trunk
+----
+====
+. 验证交换机CS1和CS2之间的ISL是否正常运行： `show port-channel 1/1`
++
+.显示示例
+[%collapsible]
+====
+[listing, subs="+quotes"]
+----
+(cs1)# *show port-channel 1/1*
+Local Interface................................ 1/1
+Channel Name................................... Cluster-ISL
+Link State..................................... Up
+Admin Mode..................................... Enabled
+Type........................................... Dynamic
+Port-channel Min-links......................... 1
+Load Balance Option............................ 7
+(Enhanced hashing mode)
+Mbr     Device/       Port      Port
+Ports   Timeout       Speed     Active
+------- ------------- --------- -------
+0/55    actor/long    Auto      True
+        partner/long
+0/56    actor/long    Auto      True
+        partner/long
+----
+====
+. 验证集群 LIF 是否已还原到其主端口： `network interface show -role cluster`
++
+.显示示例
+[%collapsible]
+====
+[listing, subs="+quotes"]
+----
+cluster1::*> network interface show -role cluster
+            Logical            Status     Network            Current             Current Is
+Vserver     Interface          Admin/Oper Address/Mask       Node                Port    Home
+----------- ------------------ ---------- ------------------ ------------------- ------- ----
+Cluster
+            cluster1-01_clus1  up/up      169.254.3.4/23     cluster1-01         e0a     true
+            cluster1-01_clus2  up/up      169.254.3.5/23     cluster1-01         e0b     true
+            cluster1-02_clus1  up/up      169.254.3.8/23     cluster1-02         e0a     true
+            cluster1-02_clus2  up/up      169.254.3.9/23     cluster1-02         e0b     true
+            cluster1-03_clus1  up/up      169.254.1.3/23     cluster1-03         e0a     true
+            cluster1-03_clus2  up/up      169.254.1.1/23     cluster1-03         e0b     true
+            cluster1-04_clus1  up/up      169.254.1.6/23     cluster1-04         e0a     true
+            cluster1-04_clus2  up/up      169.254.1.7/23     cluster1-04         e0b     true
+----
+====
+. 验证集群是否运行正常： `cluster show`
++
+.显示示例
+[%collapsible]
+====
+[listing, subs="+quotes"]
+----
+cluster1::*> *cluster show*
+Node                 Health  Eligibility   Epsilon
+-------------------- ------- ------------- -------
+cluster1-01          true    true          false
+cluster1-02          true    true          false
+cluster1-03          true    true          true
+cluster1-04          true    true          false
+----
+====
+. 对远程集群接口执行 Ping 操作以验证连接： `cluster ping-cluster -node local`
++
+.显示示例
+[%collapsible]
+====
+[listing, subs="+quotes"]
+----
+cluster1::*> *cluster ping-cluster -node local*
+Host is cluster1-03
+Getting addresses from network interface table...
+Cluster cluster1-03_clus1 169.254.1.3 cluster1-03 e0a
+Cluster cluster1-03_clus2 169.254.1.1 cluster1-03 e0b
+Cluster cluster1-04_clus1 169.254.1.6 cluster1-04 e0a
+Cluster cluster1-04_clus2 169.254.1.7 cluster1-04 e0b
+Cluster cluster1-01_clus1 169.254.3.4 cluster1-01 e0a
+Cluster cluster1-01_clus2 169.254.3.5 cluster1-01 e0b
+Cluster cluster1-02_clus1 169.254.3.8 cluster1-02 e0a
+Cluster cluster1-02_clus2 169.254.3.9 cluster1-02 e0b
+Local = 169.254.1.3 169.254.1.1
+Remote = 169.254.1.6 169.254.1.7 169.254.3.4 169.254.3.5 169.254.3.8 169.254.3.9
+Cluster Vserver Id = 4294967293
+Ping status:
+............
+Basic connectivity succeeds on 12 path(s)
+Basic connectivity fails on 0 path(s)
+................................................
+Detected 9000 byte MTU on 12 path(s):
+    Local 169.254.1.3 to Remote 169.254.1.6
+    Local 169.254.1.3 to Remote 169.254.1.7
+    Local 169.254.1.3 to Remote 169.254.3.4
+    Local 169.254.1.3 to Remote 169.254.3.5
+    Local 169.254.1.3 to Remote 169.254.3.8
+    Local 169.254.1.3 to Remote 169.254.3.9
+    Local 169.254.1.1 to Remote 169.254.1.6
+    Local 169.254.1.1 to Remote 169.254.1.7
+    Local 169.254.1.1 to Remote 169.254.3.4
+    Local 169.254.1.1 to Remote 169.254.3.5
+    Local 169.254.1.1 to Remote 169.254.3.8
+    Local 169.254.1.1 to Remote 169.254.3.9
+Larger than PMTU communication succeeds on 12 path(s)
+RPC status:
+6 paths up, 0 paths down (tcp check)
+6 paths up, 0 paths down (udp check)
+----
+====
+. 将权限级别重新更改为 admin ：
++
+`set -privilege admin`
+
+. 如果禁止自动创建案例，请通过调用 AutoSupport 消息重新启用它：
++
+`ssystem node AutoSupport invoke -node * -type all -message MAINT=end`
+
 
 
 .下一步是什么？

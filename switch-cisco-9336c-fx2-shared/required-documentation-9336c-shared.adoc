@@ -16,7 +16,7 @@ summary: 对于Cisco Nexus 9336C-x2交换机安装和维护、请务必查看特
 [role="lead"]
 对于Cisco Nexus 9336C-x2交换机安装和维护、请务必查看特定的交换机和控制器文档、以设置Cisco 93336-x2交换机和ONTAP 集群。
 
-要设置 Cisco Nexus 9336C-x2 共享交换机，请参见 https://www.cisco.com/c/en/us/support/switches/nexus-9000-series-switches/series.html["Cisco Nexus 9000 系列交换机支持"] 页面。
+要设置 Cisco Nexus 9336C-x2 共享交换机，请参见 https://["Cisco Nexus 9000 系列交换机支持"] 页面。
 
 |===
 | 文档标题 | Description 

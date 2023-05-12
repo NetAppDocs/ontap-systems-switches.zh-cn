@@ -22,7 +22,7 @@ summary: 您可以将 Cisco Nexus 9336C-FX2 交换机和直通面板安装在 Ne
 NOTE: 跳线不随直通套件提供，应随交换机一起提供。如果这些交换机未随附，您可以从 NetApp （部件号 X1558A-R6 ）订购它们。
 
 .所需文档
-查看中的初始准备要求、套件内容和安全预防措施 https://www.cisco.com/c/en/us/td/docs/switches/datacenter/nexus9000/hw/aci_9336cfx2_hig/guide/b_n9336cFX2_aci_hardware_installation_guide.html["《 Cisco Nexus 9000 系列硬件安装指南》"^]。
+查看中的初始准备要求、套件内容和安全预防措施 https://["《 Cisco Nexus 9000 系列硬件安装指南》"^]。
 
 .步骤
 . 将直通空白面板安装在 NetApp 机柜中。

@@ -17,18 +17,18 @@ summary:
 按照以下说明配置Cisco Nexus 9336C-x2共享交换机。
 
 .您需要的内容
-* 所需的共享交换机文档、控制器文档和ONTAP 文档。请参见 link:required-documentation-9336c-shared.html["Cisco Nexus 9336C-x2共享交换机的文档要求"] 和 https://docs.netapp.com/us-en/ontap/index.html["NetApp ONTAP 文档"^]。
+* 所需的共享交换机文档、控制器文档和ONTAP 文档。请参见 link:required-documentation-9336c-shared.html["Cisco Nexus 9336C-x2共享交换机的文档要求"] 和 https://["NetApp ONTAP 文档"^]。
 * 适用的许可证、网络和配置信息以及缆线。
-* 已完成布线工作表。请参见 link:cable-9336c-shared.html["填写Cisco Nexus 9336C-x2布线工作表"]。有关布线的详细信息、请参见 https://hwu.netapp.com["Hardware Universe"]。
+* 已完成布线工作表。请参见 link:cable-9336c-shared.html["填写Cisco Nexus 9336C-x2布线工作表"]。有关布线的详细信息、请参见 https://["Hardware Universe"]。
 
 
 .步骤
 . 将交换机，控制器和 NS224 NVMe 存储架装入机架。
 +
-请参见 https://docs.netapp.com/platstor/topic/com.netapp.doc.hw-sw-9336c-install-cabinet/GUID-92287262-E7A6-4A62-B159-7F148097B33B.html["机架安装说明"] 了解如何将交换机装入NetApp机柜。
+请参见 https://["机架安装说明"] 了解如何将交换机装入NetApp机柜。
 
 . 打开交换机，控制器和 NS224 NVMe 存储架的电源。
 
 
 .下一步是什么？
-转至 https://docs.netapp.com/us-en/ontap-systems-switches/switch-cisco-9336c-fx2-shared/setup-and-configure-9336c-shared.html["配置Cisco Nexus 9336C-x2共享交换机"]。
+转至 https://["配置Cisco Nexus 9336C-x2共享交换机"]。

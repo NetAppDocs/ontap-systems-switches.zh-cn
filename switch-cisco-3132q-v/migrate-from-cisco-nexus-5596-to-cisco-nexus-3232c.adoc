@@ -21,8 +21,8 @@ summary: 要将现有 Nexus 5596 集群交换机更换为 Nexus 3132Q-V 集群�
 
 有关详细信息，请参见
 
-* http://support.netapp.com/NOW/download/software/cm_switches/["Cisco 以太网交换机问题描述 页面"^]
-* http://hwu.netapp.com["Hardware Universe"^]
+* http://["Cisco 以太网交换机问题描述 页面"^]
+* http://["Hardware Universe"^]
 
 
 
@@ -43,7 +43,7 @@ summary: 要将现有 Nexus 5596 集群交换机更换为 Nexus 3132Q-V 集群�
 * N1_clus4 是连接到节点 n1 的集群交换机 1 （ CL1 或 C1 ）的第二个 LIF 。
 * 节点为 n1 ， n2 ， n3 和 n4 。
 * 此操作步骤 中的示例使用四个节点：两个节点使用四个 10 GbE 集群互连端口： e0a ， e0b ， e0c 和 e0d 。其他两个节点使用两个 40/100 GbE 集群互连端口： E4A ， e4e 。。 link:https://hwu.netapp.com/["Hardware Universe"^] 列出了平台上的实际集群端口。
-* 10 GbE 和 40/100 GbE 端口的数量在上提供的参考配置文件（ RCF ）中定义 https://mysupport.netapp.com/NOW/download/software/sanswitch/fcp/Cisco/netapp_cnmn/download.shtml["Cisco ® 集群网络交换机参考配置文件下载"^] 页面。
+* 10 GbE 和 40/100 GbE 端口的数量在上提供的参考配置文件（ RCF ）中定义 https://["Cisco ® 集群网络交换机参考配置文件下载"^] 页面。
 +
 
 NOTE: 操作步骤 要求同时使用 ONTAP 命令和 Cisco Nexus 3000 系列交换机命令；除非另有说明，否则使用 ONTAP 命令。

@@ -13,4 +13,4 @@
 * 要注册设备，必须已安装 Cisco SMARTnet 服务。
 
 
-。 http://www.cisco.com/c/en/us/products/switches/index.html["Cisco 支持站点"^] 包含有关用于配置智能自动通报的命令的信息。
+。 http://["Cisco 支持站点"^] 包含有关用于配置智能自动通报的命令的信息。

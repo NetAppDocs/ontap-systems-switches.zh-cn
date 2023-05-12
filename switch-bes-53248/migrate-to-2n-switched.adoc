@@ -38,7 +38,7 @@ summary: 如果您使用双节点无交换机集群、则可以无中断地迁�
 ** 可以通过控制台访问集群交换机。
 ** BES-53248节点到节点交换机和交换机到交换机连接使用双轴电缆或光缆。
 +
-。 https://hwu.netapp.com/Home/Index["_NetApp Hardware Universe"^] 包含有关ONTAP 兼容性、支持的EFOS固件以及连接到BES-53248交换机的布线的信息。
+。 https://["_NetApp Hardware Universe"^] 包含有关ONTAP 兼容性、支持的EFOS固件以及连接到BES-53248交换机的布线的信息。
 
 
 
@@ -66,7 +66,7 @@ summary: 如果您使用双节点无交换机集群、则可以无中断地迁�
 * `cluster1 ：：： * >` 提示符指示集群的名称。
 * 此操作步骤中使用的集群端口为 `e0a` 和 `e0b` 。
 +
-。 https://hwu.netapp.com/Home/Index["_NetApp Hardware Universe"^] 包含有关平台的实际集群端口的最新信息。
+。 https://["_NetApp Hardware Universe"^] 包含有关平台的实际集群端口的最新信息。
 
 
 
@@ -293,7 +293,7 @@ Cluster
 ====
 . 从 node1 上的集群端口 e0a 断开缆线连接，然后使用 BES-53248 交换机支持的相应布线方式将 e0a 连接到集群交换机 CS1 上的端口 1 。
 +
-。 https://hwu.netapp.com/Home/Index["_NetApp Hardware Universe"^] 包含有关布线的详细信息。
+。 https://["_NetApp Hardware Universe"^] 包含有关布线的详细信息。
 
 . 从节点 2 上的集群端口 e0a 断开缆线连接，然后使用 BES-53248 交换机支持的相应布线方式将 e0a 连接到集群交换机 CS1 上的端口 2 。
 . 启用集群交换机 CS1 上面向节点的所有端口。
@@ -589,7 +589,7 @@ cluster1::*> system node autosupport invoke -node \* -type all -message MAINT=EN
 ----
 ====
 +
-有关详细信息，请参见 https://kb.netapp.com/Advice_and_Troubleshooting/Data_Storage_Software/ONTAP_OS/How_to_suppress_automatic_case_creation_during_scheduled_maintenance_windows["NetApp 知识库文章： How to suppress automatic case creation during scheduled maintenance windows."^]
+有关详细信息，请参见 https://["NetApp 知识库文章： How to suppress automatic case creation during scheduled maintenance windows."^]
 
 
 

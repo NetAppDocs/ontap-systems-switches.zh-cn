@@ -29,7 +29,7 @@ summary: 首次设置 Nexus 92300YC 交换机后，您可以安装 RCF 。
 .支持的端口和节点连接
 * Nexus 92300YC 交换机支持的交换机间链路（ ISL ）为端口 1/65 和 1/66 。
 * Nexus 92300YC 交换机支持的节点连接为端口 1/1 到 1/66 。
-* 此操作步骤中的示例使用两个节点。这些节点使用两个10GbE集群互连端口 `e0a` 和 `e0b`。请参见 https://hwu.netapp.com/SWITCH/INDEX["Hardware Universe"^] 验证平台上的集群端口是否正确。
+* 此操作步骤中的示例使用两个节点。这些节点使用两个10GbE集群互连端口 `e0a` 和 `e0b`。请参见 https://["Hardware Universe"^] 验证平台上的集群端口是否正确。
 
 
 .开始之前
@@ -37,7 +37,7 @@ summary: 首次设置 Nexus 92300YC 交换机后，您可以安装 RCF 。
 * 集群必须完全正常运行（日志中不应有任何错误或类似问题）。
 * 如果您仅安装 NX-OS 并保留当前 RCF 版本，则必须在 RCF 中检查或设置所需的启动配置，以反映所需的启动映像。
 * 如果您需要更改启动配置以反映当前启动映像，则必须在重新应用 RCF 之前进行更改，以便在将来重新启动时实例化正确的版本。
-* 您必须已查看上的交换机兼容性表 https://support.netapp.com/NOW/download/software/cm_switches/["Cisco 以太网交换机"^] 页面上显示了受支持的 ONTAP ， NX-OS 和 RCF 版本。
+* 您必须已查看上的交换机兼容性表 https://["Cisco 以太网交换机"^] 页面上显示了受支持的 ONTAP ， NX-OS 和 RCF 版本。
 * RCF 中的命令语法与 NX-OS 版本中的命令语法之间可能存在命令依赖关系。
 
 

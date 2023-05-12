@@ -11,20 +11,23 @@ summary: 集群交换机运行状况监控器日志收集功能用于在 ONTAP �
 
 
 [role="lead"]
-您可以启用日志收集功能、该功能用于在ONTAP 中收集交换机相关的日志文件。
-
-确保已使用BES-53248集群交换机CLI设置环境。
+您可以使用日志收集功能在ONTAP 中收集与交换机相关的日志文件。
 
 
+IMPORTANT: 要启用日志收集功能、必须运行ONTAP 9.12.1及更高版本以及EFOS 3.8.0.2及更高版本。
 
-== 适用于ONTAP 9.8及更高版本
-
-使用以下命令启用日志收集功能：
-
-`ssystem switch Ethernet log setup-password`和`ssystem switch Ethernet log enable-Collection`
+确保已使用BES-53248集群交换机*CLI*设置环境。
 
 .步骤
-. 输入： `ssystem switch Ethernet log setup-password`
+. 使用以下命令启用以太网交换机运行状况监控器日志收集功能以收集与交换机相关的日志文件：
++
+`ssystem switch Ethernet log setup-password`和
+
++
+`s系统交换机以太网日志 enable-Collection`
+
++
+.. 输入： `ssystem switch Ethernet log setup-password`
 +
 .显示示例
 [%collapsible]
@@ -32,7 +35,7 @@ summary: 集群交换机运行状况监控器日志收集功能用于在 ONTAP �
 [listing, subs="+quotes"]
 ----
 cluster1::*> *system switch ethernet log setup-password*
-Enter the switch name: <return>
+Enter the switch name: *<return>*
 The switch name entered is not recognized.
 Choose from the following list:
 *cs1*
@@ -44,26 +47,27 @@ Enter the switch name: *cs1*
 RSA key fingerprint is e5:8b:c6:dc:e2:18:18:09:36:63:d9:63:dd:03:d9:cc
 Do you want to continue? {y|n}::[n] *y*
 
-Enter the password: <enter switch password>
-Enter the password again: <enter switch password>
+Enter the password: *<enter switch password>*
+Enter the password again: *<enter switch password>*
 
 cluster1::*> *system switch ethernet log setup-password*
+
 Enter the switch name: *cs2*
 RSA key fingerprint is 57:49:86:a1:b9:80:6a:61:9a:86:8e:3c:e3:b7:1f:b1
 Do you want to continue? {y|n}:: [n] *y*
 
-Enter the password: <enter switch password>
-Enter the password again: <enter switch password>
+Enter the password: *<enter switch password>*
+Enter the password again: *<enter switch password>*
 ----
 ====
-. 输入 ... `system switch ethernet log enable-collection`
+.. 输入 ... `system switch ethernet log enable-collection`
 +
 .显示示例
 [%collapsible]
 ====
 [listing, subs="+quotes"]
 ----
-cluster1::*> *system switch ethernet log enable-collection*
+cluster1::*> *system  switch ethernet log enable-collection*
 
 Do you want to enable cluster log collection for all nodes in the cluster?
 {y|n}: [n] *y*
@@ -75,70 +79,35 @@ cluster1::*>
 ====
 
 
+. 启动交换机日志收集功能：
++
+`system switch ethernet log collect -device *`
 
++
+等待10分钟、然后使用命令检查日志收集是否成功：
 
-== 适用于ONTAP 9.5P15、9.6P11、9.7P8及更高版本的修补程序版本
++
+`system switch ethernet log show`
 
-使用以下命令启用日志收集功能：
-
-`ssystem cluster-switch log setup-password` 和 `ssystem cluster-switch log enable-Collection`
-
-.步骤
-. 输入： `ssystem cluster-switch log setup-password`
 +
 .显示示例
 [%collapsible]
 ====
 [listing, subs="+quotes"]
 ----
-cluster1::*> *system cluster-switch log setup-password*
-Enter the switch name: <return>
-The switch name entered is not recognized.
-Choose from the following list:
-*cs1*
-*cs2*
+cluster1::*> system switch ethernet log show
+Log Collection Enabled: true
 
-cluster1::*> *system cluster-switch log setup-password*
-
-Enter the switch name: *cs1*
-RSA key fingerprint is e5:8b:c6:dc:e2:18:18:09:36:63:d9:63:dd:03:d9:cc
-Do you want to continue? {y|n}::[n] *y*
-
-Enter the password: <enter switch password>
-Enter the password again: <enter switch password>
-
-cluster1::*> *system cluster-switch log setup-password*
-
-Enter the switch name: *cs2*
-RSA key fingerprint is 57:49:86:a1:b9:80:6a:61:9a:86:8e:3c:e3:b7:1f:b1
-Do you want to continue? {y|n}:: [n] *y*
-
-Enter the password: <enter switch password>
-Enter the password again: <enter switch password>
+Index  Switch                       Log Timestamp        Status
+------ ---------------------------- -------------------  ---------
+1      cs1 (b8:ce:f6:19:1b:42)      4/29/2022 03:05:25   complete
+2      cs2 (b8:ce:f6:19:1b:96)      4/29/2022 03:07:42   complete
 ----
-====
-. 输入 ... `system cluster-switch log enable-collection`
-+
-.显示示例
-[%collapsible]
-====
-[listing, subs="+quotes"]
-----
-cluster1::*> *system cluster-switch log enable-collection*
-
-Do you want to enable cluster log collection for all nodes in the cluster?
-{y|n}: [n] *y*
-
-Enabling cluster switch log collection.
-----
-====
-
-
-
-NOTE: 此时、log Collect命令不可用。请参见 link:https://mysupport.netapp.com/site/bugs-online/product/ONTAP/BURT/1225042["错误1225042"^] 了解更多详细信息。
-
 
 CAUTION: 如果其中任何一个命令返回错误，请联系 NetApp 支持部门。
 
 .下一步是什么？
 如果要升级交换机、请转至 link:replace-verify.html["验证升级配置"]。
+
+====
+

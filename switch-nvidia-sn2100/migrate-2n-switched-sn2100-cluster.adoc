@@ -36,7 +36,7 @@ summary: 如果您有一个现有的双节点无交换机集群环境、则可�
 * NVIDIA SN2100节点到节点交换机和交换机到交换机连接使用双轴电缆或光缆。
 +
 
-IMPORTANT: 请参见 link:cabling-considerations-sn2100-cluster.html["查看布线和配置注意事项"] 了解注意事项和更多详细信息。。 https://hwu.netapp.com/SWITCH/INDEX["Hardware Universe —交换机"^] 还包含有关布线的详细信息。
+IMPORTANT: 请参见 link:cabling-considerations-sn2100-cluster.html["查看布线和配置注意事项"] 了解注意事项和更多详细信息。。 https://["Hardware Universe —交换机"^] 还包含有关布线的详细信息。
 
 * 交换机间链路(ISL)缆线连接到两个NVIDIA SN2100交换机上的端口swp15和swp16。
 * 两个SN2100交换机的初始自定义已完成、以便：
@@ -45,7 +45,7 @@ IMPORTANT: 请参见 link:cabling-considerations-sn2100-cluster.html["查看布�
 ** 参考配置文件(Reference Configuration Files、RCF)将应用于交换机
 ** 新交换机上会配置任何站点自定义、例如SMTP、SNMP和SSH。
 +
-。 https://hwu.netapp.com["Hardware Universe"^] 包含有关平台的实际集群端口的最新信息。
+。 https://["Hardware Universe"^] 包含有关平台的实际集群端口的最新信息。
 
 
 
@@ -227,7 +227,7 @@ Cluster
 ====
 . 从节点1上的集群端口E3A断开缆线连接、然后使用SN2100交换机支持的相应布线方式将E3A连接到集群交换机sw1上的端口3。
 +
-。 https://hwu.netapp.com/SWITCH/INDEX["Hardware Universe —交换机"^] 包含有关布线的详细信息。
+。 https://["Hardware Universe —交换机"^] 包含有关布线的详细信息。
 
 . 从节点2上的集群端口E3A断开缆线连接、然后使用SN2100交换机支持的相应布线方式将E3A连接到集群交换机sw1上的端口4。
 . 在交换机sw1上、启用所有面向节点的端口。

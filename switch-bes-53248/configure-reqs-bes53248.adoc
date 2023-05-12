@@ -17,7 +17,7 @@ summary: 您可以参考 BES-53248 集群交换机端口分配表来配置集群
 
 == EFOS和ONTAP 支持
 
-请参见 https://hwu.netapp.com/Switch/Index["NetApp Hardware Universe"^] 和 https://mysupport.netapp.com/site/info/broadcom-cluster-switch["Broadcom交换机兼容性列表"^] 了解与BES-53248交换机的EFOS和ONTAP 兼容性信息。EFOS和ONTAP 支持可能因BES-53248交换机的特定计算机类型而异。有关所有BES-52348交换机类型的详细信息、请参阅 link:components-bes53248.html["BES-53248集群交换机的组件和部件号"]。
+请参见 https://["NetApp Hardware Universe"^] 和 https://["Broadcom交换机兼容性列表"^] 了解与BES-53248交换机的EFOS和ONTAP 兼容性信息。EFOS和ONTAP 支持可能因BES-53248交换机的特定计算机类型而异。有关所有BES-52348交换机类型的详细信息、请参阅 link:components-bes53248.html["BES-53248集群交换机的组件和部件号"]。
 
 
 
@@ -63,7 +63,7 @@ summary: 您可以参考 BES-53248 集群交换机端口分配表来配置集群
 100GbE 集群交换机间链路（ ISL ）端口，基本配置
 
 |===
-请参见 https://hwu.netapp.com/Switch/Index["Hardware Universe"] 有关交换机端口的详细信息。
+请参见 https://["Hardware Universe"] 有关交换机端口的详细信息。
 
 
 

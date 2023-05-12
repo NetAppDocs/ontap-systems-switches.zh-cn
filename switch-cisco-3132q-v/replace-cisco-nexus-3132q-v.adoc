@@ -40,7 +40,7 @@ summary: 更换集群网络中有故障的 Cisco Nexus 3132Q-V 交换机是一�
 ** 交换机的初始自定义已完成。
 
 
-* http://hwu.netapp.com["Hardware Universe"^]
+* http://["Hardware Universe"^]
 
 
 

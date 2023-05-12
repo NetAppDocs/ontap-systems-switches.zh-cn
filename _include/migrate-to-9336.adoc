@@ -18,8 +18,8 @@
 ** 任何站点自定义、例如DNS、NTP、SMTP、SNMP、和SSH。
 
 
-* 您可以访问上的交换机兼容性表 https://mysupport.netapp.com/site/info/cisco-ethernet-switch["Cisco 以太网交换机"^] 页面上显示了受支持的 ONTAP ， NX-OS 和 RCF 版本。
-* 您已查看Cisco网站上有关Cisco交换机升级和降级过程的相应软件和升级指南、网址为 https://www.cisco.com/c/en/us/support/switches/nexus-9000-series-switches/series.html["Cisco Nexus 9000 系列交换机支持"^] 页面。
+* 您可以访问上的交换机兼容性表 https://["Cisco 以太网交换机"^] 页面上显示了受支持的 ONTAP ， NX-OS 和 RCF 版本。
+* 您已查看Cisco网站上有关Cisco交换机升级和降级过程的相应软件和升级指南、网址为 https://["Cisco Nexus 9000 系列交换机支持"^] 页面。
 
 
 
@@ -27,7 +27,7 @@
 == 迁移交换机
 
 .关于示例
-此操作步骤中的示例使用两个节点。这些节点使用两个 10GbE 集群互连端口 e0a 和 e0b 。请参见 https://hwu.netapp.com/["Hardware Universe"^] 验证平台上的集群端口是否正确。
+此操作步骤中的示例使用两个节点。这些节点使用两个 10GbE 集群互连端口 e0a 和 e0b 。请参见 https://["Hardware Universe"^] 验证平台上的集群端口是否正确。
 
 
 NOTE: 根据不同版本的ONTAP 、命令输出可能会有所不同。
@@ -46,7 +46,9 @@ NOTE: 根据不同版本的ONTAP 、命令输出可能会有所不同。
 image::../media/Initial_setup.png[初始交换机设置]
 
 .关于此任务
-操作步骤 需要同时使用ONTAP 命令和 https://www.cisco.com/c/en/us/support/switches/nexus-9000-series-switches/series.html["Nexus 9000系列交换机"^] 命令；除非另有说明、否则使用ONTAP 命令。
+操作步骤 需要同时使用ONTAP 命令和 https://["Nexus 9000系列交换机"^] 命令；除非另有说明、否则使用ONTAP 命令。
+
+在此操作步骤 期间、不需要可操作的交换机间链路(ISL)。这是设计上的原因、因为RCF版本更改可能会暂时影响ISL连接。为了确保集群无中断运行、以下操作步骤 会在对目标交换机执行步骤时将所有集群LIF迁移到运行中的配对交换机。
 
 
 
@@ -280,12 +282,12 @@ node1      true    true          false
 node2      true    true          false
 ----
 ====
-. 将所有集群节点连接从旧CS2交换机移至新CS2-new交换机。
+. 将所有集群节点连接缆线从旧CS2交换机移至新的CS2交换机。
 +
-*集群节点连接已移至CS2-new交换机*
+*集群节点连接电缆已移至CS2-new交换机*
 
 +
-image::../media/new_switch_cs1.png[集群节点连接已移至CS2-new交换机]
+image::../media/new_switch_cs1.png[已将集群节点连接缆线移至CS2新交换机]
 
 . 确认已移至CS2-NEW的网络连接的运行状况：
 +
@@ -401,12 +403,12 @@ node1      true    true          false
 node2      true    true          false
 ----
 ====
-. 将连接从CS1移动到新的CS1-new交换机。
+. 将集群节点连接缆线从CS1移至新的CS1新交换机。
 +
-*集群节点连接已移至CS1-new交换机*
+*集群节点连接电缆已移至CS1-new交换机*
 
 +
-image::../media/new_switch_cs2.png[集群节点连接已移至CS1-new交换机]
+image::../media/new_switch_cs2.png[集群节点连接缆线移至CS1新交换机]
 
 . 确认已移至CS1-NEW的网络连接的运行状况：
 +
@@ -692,4 +694,5 @@ cluster1::*>
 
 --
 ====
-如果禁止自动创建案例，请通过调用 AutoSupport 消息重新启用该功能： `ssystem node AutoSupport invoke -node * -type all -message MAINT=end`
+. [[STEP6]]如果禁止自动创建案例、请通过调用AutoSupport 消息重新启用： `system node autosupport invoke -node * -type all -message MAINT=END`
+

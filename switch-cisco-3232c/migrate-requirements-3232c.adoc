@@ -66,7 +66,7 @@ CN1610 到 3232C （ QSFP 到 SFP+ ）
 2 根 QSFP 光纤或铜缆直连缆线
 
 |===
-您必须已下载适用的参考配置文件（ Reference Configuration Files ， RCF ）。10 GbE 和 40/100 GbE 端口的数量在上提供的 RCF 中定义 https://mysupport.netapp.com/NOW/download/software/sanswitch/fcp/Cisco/netapp_cnmn/download.shtml["Cisco ® 集群网络交换机参考配置文件下载"^] 页面。
+您必须已下载适用的参考配置文件（ Reference Configuration Files ， RCF ）。10 GbE 和 40/100 GbE 端口的数量在上提供的 RCF 中定义 https://["Cisco ® 集群网络交换机参考配置文件下载"^] 页面。
 
 上列出了此操作步骤 支持的 ONTAP 和 NX-OS 版本 link:https://mysupport.netapp.com/NOW/download/software/cm_switches/.html["Cisco 以太网交换机页面"^]。
 

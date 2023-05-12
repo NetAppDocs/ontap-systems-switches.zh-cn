@@ -22,7 +22,7 @@ summary: 如果要使用两个以上的节点构建 ONTAP 集群，则需要两�
 NVIDIA SN2100交换机是运行Cumulus Linux的10/C5/40/100GbE交换机。交换机支持以下功能：
 
 * ONTAP 9.10.1P3。SN2100交换机通过不同的交换机对为ONTAP 9.10.1P3中的集群和存储应用程序提供服务。从ONTAP 9.10.1P3开始、您可以使用NVIDIA SN2100交换机将存储和集群功能组合到共享交换机配置中。
-* Cumulus Linux (CL)操作系统4.5.3版。有关当前兼容性信息、请参见 https://mysupport.netapp.com/site/info/nvidia-cluster-switch["NVIDIA以太网交换机"^] 信息页面。
+* Cumulus Linux (CL)操作系统4.5.3版。有关当前兼容性信息、请参见 https://["NVIDIA以太网交换机"^] 信息页面。
 * 当交换机运行的是Cumulus Linux或ONIE时、您可以安装Cumulus Linux。
 
 
@@ -81,7 +81,7 @@ X-MTEF-KIT-E
 
 |===
 
-NOTE: 有关详细信息、请参见NVIDIA文档 https://docs.nvidia.com/networking/display/sn2000pub/Installation["安装SN2100交换机和导轨套件"^]。
+NOTE: 有关详细信息、请参见NVIDIA文档 https://["安装SN2100交换机和导轨套件"^]。
 
 
 
@@ -95,42 +95,42 @@ NOTE: 有关详细信息、请参见NVIDIA文档 https://docs.nvidia.com/network
 
 
  a| 
-https://docs.netapp.com/us-en/ontap-systems-switches/switch-nvidia-sn2100/install-hardware-sn2100-cluster.html["设置和配置NVIDIA SN2100交换机_"^]
+https://["设置和配置NVIDIA SN2100交换机_"^]
  a| 
 介绍如何设置和配置NVIDIA SN2100交换机、包括安装Cumulus Linux和适用的RCF。
 
 
 
  a| 
-https://docs.netapp.com/us-en/ontap-systems-switches/switch-nvidia-sn2100/migrate-cisco-sn2100-cluster-switch.html["_从Cisco集群交换机迁移到NVIDIA SN2100集群交换机_"^]
+https://["_从Cisco集群交换机迁移到NVIDIA SN2100集群交换机_"^]
  a| 
 介绍如何从使用Cisco集群交换机的环境迁移到使用NVIDIA SN2100集群交换机的环境。
 
 
 
  a| 
-https://docs.netapp.com/us-en/ontap-systems-switches/switch-nvidia-sn2100/migrate-cisco-storage-switch-sn2100-storage.html["_从Cisco存储交换机迁移到NVIDIA存储交换机_"^]
+https://["_从Cisco存储交换机迁移到NVIDIA存储交换机_"^]
  a| 
 介绍如何从使用Cisco存储交换机的环境迁移到使用NVIDIA SN2100存储交换机的环境。
 
 
 
  a| 
-https://docs.netapp.com/us-en/ontap-systems-switches/switch-nvidia-sn2100/migrate-2n-switched-sn2100-cluster.html["_迁移到使用NVIDIA SN2100集群交换机的双节点交换集群_"^]
+https://["_迁移到使用NVIDIA SN2100集群交换机的双节点交换集群_"^]
  a| 
 介绍如何使用NVIDIA SN2100集群交换机迁移到双节点交换环境。
 
 
 
  a| 
-https://docs.netapp.com/us-en/ontap-systems-switches/switch-nvidia-sn2100/replace-sn2100-switch-cluster.html["_更换NVIDIA SN2100集群交换机_"^]
+https://["_更换NVIDIA SN2100集群交换机_"^]
  a| 
 介绍用于更换集群中有缺陷的NVIDIA SN2100交换机以及下载Cumulus Linux和参考配置文件的操作步骤。
 
 
 
  a| 
-https://docs.netapp.com/us-en/ontap-systems-switches/switch-nvidia-sn2100/replace-sn2100-switch-storage.html["_更换NVIDIA SN2100存储交换机_"^]
+https://["_更换NVIDIA SN2100存储交换机_"^]
  a| 
 介绍用于更换有缺陷的NVIDIA SN2100存储交换机以及下载Cumulus Linux和参考配置文件的操作步骤。
 

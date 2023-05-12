@@ -13,11 +13,11 @@ summary: 要安装NetApp CN1610硬件、请参见NetApp文档。
 [role="lead"]
 要安装NetApp CN1610交换机硬件、请按照以下指南之一中的说明进行操作。
 
-* https://library.netapp.com/ecm/ecm_download_file/ECMP1117853["1G 安装指南"^]。
+* https://["1G 安装指南"^]。
 +
 概述 CN1601 交换机硬件和软件功能以及安装过程。
 
-* https://library.netapp.com/ecm/ecm_download_file/ECMP1117824["10G 安装指南"^]
+* https://["10G 安装指南"^]
 +
 概述 CN1610 交换机的硬件和软件功能，并介绍安装交换机和访问 CLI 的功能。
 

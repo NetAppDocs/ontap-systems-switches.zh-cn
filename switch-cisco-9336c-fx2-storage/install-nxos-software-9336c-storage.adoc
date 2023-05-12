@@ -23,7 +23,7 @@ summary: 您可以使用此操作步骤在 Nexus 9336C-x2 集群交换机上安�
 * 交换机配置的当前备份。
 * 一个完全正常运行的集群(日志中没有错误或类似问题)。
 * link:https://mysupport.netapp.com/site/info/cisco-ethernet-switch["Cisco 以太网交换机页面"^]。有关支持的ONTAP 和NX-OS版本、请参见交换机兼容性表。
-* Cisco网站上提供了适用于Cisco交换机升级和降级过程的相应软件和升级指南。请参见 https://www.cisco.com/c/en/us/support/switches/nexus-9336c-fx2-switch/model.html#CommandReferences["Cisco Nexus 9000 系列交换机"^]。
+* Cisco网站上提供了适用于Cisco交换机升级和降级过程的相应软件和升级指南。请参见 https://["Cisco Nexus 9000 系列交换机"^]。
 
 
 .关于示例

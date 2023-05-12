@@ -39,7 +39,7 @@ NOTE: 迁移完成后，您可能需要安装所需的配置文件，以支持 9
 * 可以通过控制台访问集群交换机。
 * Nexus 92300YC节点到节点交换机和交换机到交换机连接使用双轴或光缆。
 +
-https://hwu.netapp.com/SWITCH/INDEX["Hardware Universe —交换机"^] 包含有关布线的详细信息。
+https://["Hardware Universe —交换机"^] 包含有关布线的详细信息。
 
 * 交换机间链路(ISL)缆线连接到两个92300YC交换机上的端口1/65和1/66。
 * 两个92300YC交换机的初始自定义均已完成。这样：
@@ -63,7 +63,7 @@ https://hwu.netapp.com/SWITCH/INDEX["Hardware Universe —交换机"^] 包含有
 * `cluster1 ：：： * >` 提示符指示集群的名称。
 * 此操作步骤中使用的集群端口为 e0a 和 e0b 。
 +
-https://hwu.netapp.com["Hardware Universe"^] 包含有关平台的实际集群端口的最新信息。
+https://["Hardware Universe"^] 包含有关平台的实际集群端口的最新信息。
 
 
 
@@ -309,7 +309,7 @@ Cluster
 ====
 . 从 node1 上的集群端口 e0a 断开缆线连接，然后使用 923300 YC 交换机支持的相应布线方式将 e0a 连接到集群交换机 CS1 上的端口 1 。
 +
-。 https://hwu.netapp.com/SWITCH/INDEX["Hardware Universe - 交换机 _"^] 包含有关布线的详细信息。
+。 https://["Hardware Universe - 交换机 _"^] 包含有关布线的详细信息。
 
 . 从节点 2 上的集群端口 e0a 断开缆线连接，然后使用 923300 YC 交换机支持的相应布线方式将 e0a 连接到集群交换机 CS1 上的端口 2 。
 . 启用集群交换机 CS1 上面向节点的所有端口。

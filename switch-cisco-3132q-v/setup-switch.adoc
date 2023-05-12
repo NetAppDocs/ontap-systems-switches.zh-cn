@@ -15,11 +15,11 @@ summary: 如果您还没有所需的配置信息和文档，则需要在设置�
 
 .您需要的内容
 * 访问安装站点上的HTTP、FTP或TFTP服务器、以下载适用的NX-OS和参考配置文件(RCF)版本。
-* 适用的NX-OS版本、从下载 https://software.cisco.com/download/home["Cisco软件下载"^] 页面。
+* 适用的NX-OS版本、从下载 https://["Cisco软件下载"^] 页面。
 * 所需的网络交换机文档、控制器文档和ONTAP 文档。有关详细信息，请参见 link:required-documentation-3132q.html["所需文档"]。
 * 适用的许可证、网络和配置信息以及缆线。
 * 已完成布线工作表。请参见 link:setup_worksheet_3132q.html["完整的Cisco Nexus 3132Q-V布线工作表"]。
-* 适用的NetApp集群网络和管理网络RCF、从NetApp 支持站点 下载、网址为 http://mysupport.netapp.com/["mysupport.netapp.com"^] 用于接收的交换机。所有 Cisco 集群网络和管理网络交换机均采用标准的 Cisco 出厂默认配置。这些交换机还具有最新版本的NX-OS软件、但未加载RCF。
+* 适用的NetApp集群网络和管理网络RCF、从NetApp 支持站点 下载、网址为 http://["mysupport.netapp.com"^] 用于接收的交换机。所有 Cisco 集群网络和管理网络交换机均采用标准的 Cisco 出厂默认配置。这些交换机还具有最新版本的NX-OS软件、但未加载RCF。
 
 
 .步骤
@@ -208,7 +208,7 @@ NOTE: 如果您在此阶段未保存配置，则下次重新启动交换机时�
 
 |===
 . 验证您在设置结束时显示的屏幕中所做的配置选择，并确保保存此配置。
-. 检查集群网络交换机上的版本、如有必要、从将NetApp支持的软件版本下载到交换机 https://software.cisco.com/download/home["Cisco软件下载"^] 页面。
+. 检查集群网络交换机上的版本、如有必要、从将NetApp支持的软件版本下载到交换机 https://["Cisco软件下载"^] 页面。
 
 
 .下一步是什么？

@@ -26,8 +26,8 @@ summary: 要将集群中的现有 Cisco Nexus 5596 集群交换机更换为 Nexu
 ====
 有关详细信息，请参见
 
-* http://support.netapp.com/NOW/download/software/cm_switches/["Cisco 以太网交换机问题描述 页面"^]
-* http://hwu.netapp.com["Hardware Universe"^]
+* http://["Cisco 以太网交换机问题描述 页面"^]
+* http://["Hardware Universe"^]
 
 
 
@@ -46,7 +46,7 @@ summary: 要将集群中的现有 Cisco Nexus 5596 集群交换机更换为 Nexu
 * N1_clus2 是连接到节点 n1 的集群交换机 2 （ CL2 或 C2 ）的第一个集群 LIF 。
 * n1_clus3 是连接到节点 n1 的集群交换机 2 （ CL2 或 C2 ）的第二个 LIF 。
 * N1_clus4 是连接到节点 n1 的集群交换机 1 （ CL1 或 C1 ）的第二个 LIF 。 -
-* 10 GbE 和 40/100 GbE 端口的数量在上提供的参考配置文件（ RCF ）中定义 https://mysupport.netapp.com/NOW/download/software/sanswitch/fcp/Cisco/netapp_cnmn/download.shtml["Cisco ® 集群网络交换机参考配置文件下载"^] 页面。
+* 10 GbE 和 40/100 GbE 端口的数量在上提供的参考配置文件（ RCF ）中定义 https://["Cisco ® 集群网络交换机参考配置文件下载"^] 页面。
 * 节点为 n1 ， n2 ， n3 和 n4 。
 
 
@@ -241,7 +241,7 @@ CL2                           cluster-network    10.10.1.102     NX5596
 +
 .. 转到 NetApp 支持站点上的 _Cisco 以太网交换机 _ 页面。
 +
-http://support.netapp.com/NOW/download/software/cm_switches/["Cisco 以太网交换机"^]
+http://["Cisco 以太网交换机"^]
 
 .. 请记下该页面上的表中的交换机和所需的软件版本。
 .. 下载适当版本的 RCF 。
@@ -388,7 +388,7 @@ RPC status:
 ====
 . 使用 Cisco `shutdown` 命令关闭活动 Nexus 5596 交换机 CL1 上的 ISL 41 到 48 。
 +
-有关 Cisco 命令的详细信息，请参见中的相应指南 https://www.cisco.com/c/en/us/support/switches/nexus-3000-series-switches/products-command-reference-list.html["Cisco Nexus 3000 系列 NX-OS 命令参考"^]。
+有关 Cisco 命令的详细信息，请参见中的相应指南 https://["Cisco Nexus 3000 系列 NX-OS 命令参考"^]。
 
 +
 .显示示例
@@ -408,7 +408,7 @@ RPC status:
 ====
 . 使用相应的 Cisco 命令在 CL1 和 C2 之间构建临时 ISL 。
 +
-有关 Cisco 命令的详细信息，请参见中的相应指南 https://www.cisco.com/c/en/us/support/switches/nexus-3000-series-switches/products-command-reference-list.html["Cisco Nexus 3000 系列 NX-OS 命令参考"^]。
+有关 Cisco 命令的详细信息，请参见中的相应指南 https://["Cisco Nexus 3000 系列 NX-OS 命令参考"^]。
 
 +
 .显示示例
@@ -443,7 +443,7 @@ C2(config-if)# exit
 
 . 启动活动 Nexus 5596 交换机 CL1 上的 ISL 端口 45 到 48 。
 +
-有关 Cisco 命令的详细信息，请参见中的相应指南 https://www.cisco.com/c/en/us/support/switches/nexus-3000-series-switches/products-command-reference-list.html["Cisco Nexus 3000 系列 NX-OS 命令参考"^]。
+有关 Cisco 命令的详细信息，请参见中的相应指南 https://["Cisco Nexus 3000 系列 NX-OS 命令参考"^]。
 
 +
 .显示示例
@@ -463,7 +463,7 @@ C2(config-if)# exit
 ====
 . 验证 Nexus 5596 交换机 CL1 上的 ISL 是否为 `up` 。
 +
-有关 Cisco 命令的详细信息，请参见中的相应指南 https://www.cisco.com/c/en/us/support/switches/nexus-3000-series-switches/products-command-reference-list.html["Cisco Nexus 3000 系列 NX-OS 命令参考"^]。
+有关 Cisco 命令的详细信息，请参见中的相应指南 https://["Cisco Nexus 3000 系列 NX-OS 命令参考"^]。
 
 +
 .显示示例
@@ -722,7 +722,7 @@ cluster::*> network port modify -node n2 -port e0d -up-admin false
 ====
 . 关闭处于活动状态的 3232C 交换机 C2 上的 ISL 24 ， 31 和 32 。
 +
-有关 Cisco 命令的详细信息，请参见中的相应指南 https://www.cisco.com/c/en/us/support/switches/nexus-3000-series-switches/products-command-reference-list.html["Cisco Nexus 3000 系列 NX-OS 命令参考"^]。
+有关 Cisco 命令的详细信息，请参见中的相应指南 https://["Cisco Nexus 3000 系列 NX-OS 命令参考"^]。
 
 +
 .显示示例
@@ -754,7 +754,7 @@ C2#
 
 . 还原端口 24 上的配置并删除 C2 上的临时端口通道 2 。
 +
-有关 Cisco 命令的详细信息，请参见中的相应指南 https://www.cisco.com/c/en/us/support/switches/nexus-3000-series-switches/products-command-reference-list.html["Cisco Nexus 3000 系列 NX-OS 命令参考"^]。
+有关 Cisco 命令的详细信息，请参见中的相应指南 https://["Cisco Nexus 3000 系列 NX-OS 命令参考"^]。
 
 +
 .显示示例
@@ -782,7 +782,7 @@ Copy Complete.
 ====
 . 输入以下 Cisco 命令，启动处于活动状态的 3232C 交换机 C2 上的 ISL 端口 31 和 32 ： `no shutdown`
 +
-有关 Cisco 命令的详细信息，请参见中的相应指南 https://www.cisco.com/c/en/us/support/switches/nexus-3000-series-switches/products-command-reference-list.html["Cisco Nexus 3000 系列 NX-OS 命令参考"^]。
+有关 Cisco 命令的详细信息，请参见中的相应指南 https://["Cisco Nexus 3000 系列 NX-OS 命令参考"^]。
 
 +
 .显示示例
@@ -800,7 +800,7 @@ C2(config-if-range)# no shutdown
 ====
 . 验证 3232C 交换机 C2 上的 ISL 连接是否为 `up` 。
 +
-有关 Cisco 命令的详细信息，请参见中的相应指南 https://www.cisco.com/c/en/us/support/switches/nexus-3000-series-switches/products-command-reference-list.html["Cisco Nexus 3000 系列 NX-OS 命令参考"^]。
+有关 Cisco 命令的详细信息，请参见中的相应指南 https://["Cisco Nexus 3000 系列 NX-OS 命令参考"^]。
 
 +
 端口 eth1/31 和 eth1/32 应指示（ P ），表示端口通道中的两个 ISL 端口均已启动

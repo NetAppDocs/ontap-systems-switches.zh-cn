@@ -25,6 +25,43 @@ BES-53248 集群交换机基本型号已获得 16 个 10GbE 或 25GbE 端口和 
 
 
  a| 
+SW-BES-53248A2-8P-2P
+ a| 
+Broadcom 8pt-10G25G + 2pt-40G100G许可密钥、X190005/R
+ a| 
+EFOS 3.4.4.6 及更高版本
+
+
+
+ a| 
+SW-BES-53248A2-8P-1025G
+ a| 
+Broadcom 8端口10G25G许可密钥，X190005/R
+ a| 
+EFOS 3.4.4.6 及更高版本
+
+
+
+ a| 
+SW-BES53248A2-6P-40-100G
+ a| 
+Broadcom 6端口40G100G许可密钥，X190005/R
+ a| 
+EFOS 3.4.4.6 及更高版本
+
+|===
+
+
+== 旧版许可证
+
+下表列出了可在BES-53248集群交换机上使用的原有许可证：
+
+[cols="1,2,3"]
+|===
+| 许可证类型 | 许可证详细信息 | 支持的固件版本 
+
+
+ a| 
 SW-BES-53248A1-G1-8P-LIC
  a| 
 Broadcom 8P 10-25 ， 2P40-100 许可证密钥， X190005/R
@@ -196,7 +233,7 @@ License Index  License Type      Status
 ====
 [listing, subs="+quotes"]
 ----
-(cs2)# *show port all \| exclude Detach*
+(cs2)# *show port all | exclude Detach*
 
                  Admin     Physical   Physical   Link   Link    LACP   Actor
 Intf      Type   Mode      Mode       Status     Status Trap    Mode   Timeout
@@ -274,7 +311,7 @@ License Index  License Type              Status
 ====
 [listing, subs="+quotes"]
 ----
-(cs2)# *show port all \| exclude Detach*
+(cs2)# *show port all | exclude Detach*
 
                  Admin     Physical   Physical   Link   Link    LACP   Actor
 Intf      Type   Mode      Mode       Status     Status Trap    Mode   Timeout

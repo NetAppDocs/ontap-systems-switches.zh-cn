@@ -24,7 +24,7 @@ summary: 使用布线图完成控制器和交换机之间的布线。
 
 image:9336c_image1.jpg["交换机连接"]
 
-请参见 https://hwu.netapp.com/Switch/Index["Hardware Universe"] 有关交换机端口的详细信息。
+请参见 https://["Hardware Universe"] 有关交换机端口的详细信息。
 
 
 
@@ -34,7 +34,7 @@ image:9336c_image1.jpg["交换机连接"]
 
 image:9336c_image2.jpg["直连"]
 
-请参见 https://hwu.netapp.com/Switch/Index["Hardware Universe"] 有关交换机端口的详细信息。
+请参见 https://["Hardware Universe"] 有关交换机端口的详细信息。
 
 
 

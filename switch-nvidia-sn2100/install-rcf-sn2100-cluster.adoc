@@ -16,12 +16,12 @@ summary: 在安装RCF脚本之前、请确保交换机上具有以下配置
 .您需要的内容
 在安装RCF脚本之前、请确保交换机上具有以下配置：
 
-* 安装了Cumulus Linux。请参见 https://hwu.netapp.com/Switch/Index["Hardware Universe"^] 支持的版本。
+* 安装了Cumulus Linux。请参见 https://["Hardware Universe"^] 支持的版本。
 * 通过DHCP定义或手动配置的IP地址、子网掩码和默认网关。
 
 
 .当前RCF脚本版本
-集群和存储应用程序可以使用两个RC框架 脚本。从下载RCF https://mysupport.netapp.com/site/info/nvidia-cluster-switch["此处"^]。每个的操作步骤 是相同的。
+集群和存储应用程序可以使用两个RC框架 脚本。从下载RCF https://["此处"^]。每个的操作步骤 是相同的。
 
 * 集群：* MSN2100-RCP-v1._x--cluster-HA-Breakout—LCDP*
 * 存储：* MSN2100-RFP-v1._x_-Storage*
@@ -104,7 +104,7 @@ NOTE: 在步骤3*更新上面的MOTD文件*中，命令 `cat /etc/motd` 已运�
 
 +
 
-NOTE: 对于无法更正的任何RCF python脚本问题、请联系 https://mysupport.netapp.com/["NetApp 支持"^] 以获得帮助。
+NOTE: 对于无法更正的任何RCF python脚本问题、请联系 https://["NetApp 支持"^] 以获得帮助。
 
 . 重新启动后验证配置：
 +
@@ -357,7 +357,7 @@ admin@sw1:mgmt:~$ cat /etc/issue
 ----
 +
 
-NOTE: 对于无法更正的任何RCF python脚本问题、请联系 https://mysupport.netapp.com/["NetApp 支持"^] 以获得帮助。
+NOTE: 对于无法更正的任何RCF python脚本问题、请联系 https://["NetApp 支持"^] 以获得帮助。
 
 . 重新启动后验证配置：
 +

@@ -20,7 +20,7 @@ EFOS软件包括一组高级网络功能和协议、用于开发以太网和IP�
 == 准备安装
 
 .开始之前
-* 从下载适用于集群交换机的Broadcom EFOS软件 https://www.broadcom.com/support/bes-switch["Broadcom 以太网交换机支持"^] 站点
+* 从下载适用于集群交换机的Broadcom EFOS软件 https://["Broadcom 以太网交换机支持"^] 站点
 * 查看以下有关EFOS版本的注释。
 
 
@@ -100,6 +100,29 @@ EFOS软件包括一组高级网络功能和协议、用于开发以太网和IP�
 不符合 FIPS
 
 |===
+[IMPORTANT]
+====
+要检查您的EFOS版本是否符合FIPS兼容或非FIPS兼容、请使用 `show fips status` 命令：在以下示例中，*IP_switch_A1*正在使用FIPS兼容的EFOS，而*IP_switch_A2*正在使用非FIPS兼容的EFOS。
+
+* 在交换机IP_switch_A1上：
+
+
+[listing]
+----
+IP_switch_a1 # *show fips status*
+
+System running in FIPS mode
+----
+* 在交换机IP_switch_A2上：
+
+
+[listing]
+----
+IP_switch_a2 # *show fips status*
+                     ^
+% Invalid input detected at `^` marker.
+----
+====
 
 
 == 安装软件
@@ -117,7 +140,7 @@ EFOS软件包括一组高级网络功能和协议、用于开发以太网和IP�
 执行以下步骤以安装或升级EFOS软件。
 
 
-IMPORTANT: 请注意，将 BES-53248 集群交换机从 EFOS 3.3.x.x 或 3.4.x.x 升级到 EFOS 3.7.0.4 或 3.8.0.2 后，交换机间链路（ ISL ）和端口通道将标记为 * 关闭 * 状态。请参见此知识库文章： https://kb.netapp.com/Advice_and_Troubleshooting/Data_Storage_Systems/Fabric%2C_Interconnect_and_Management_Switches/BES-53248_Cluster_Switch_NDU_failed_upgrade_to_EFOS_3.7.0.4_and_later["BES-53248集群交换机NDU无法升级到EFOS 3.7.0.4及更高版本"^] 了解更多详细信息。
+IMPORTANT: 请注意，将 BES-53248 集群交换机从 EFOS 3.3.x.x 或 3.4.x.x 升级到 EFOS 3.7.0.4 或 3.8.0.2 后，交换机间链路（ ISL ）和端口通道将标记为 * 关闭 * 状态。请参见此知识库文章： https://["BES-53248集群交换机NDU无法升级到EFOS 3.7.0.4及更高版本"^] 了解更多详细信息。
 
 .步骤
 . 将 BES-53248 集群交换机连接到管理网络。
@@ -192,9 +215,9 @@ Image Descriptions
 
 Switch: 1
 
-System Description............................. Quanta IX8-B 48x25GB SFP 8x100GB QSFP, 3.4.3.3, Linux 4.4.117-ceeeb99d, 2016.05.00.04
-Machine Type................................... Quanta IX8-B 48x25GB SFP 8x100GB QSFP
-Machine Model.................................. IX8-B
+System Description............................. BES-53248A1, 3.4.3.3, Linux 4.4.117-ceeeb99d, 2016.05.00.05
+Machine Type................................... BES-53248A1
+Machine Model.................................. BES-53248
 Serial Number.................................. QTFCU38260014
 Maintenance Level.............................. A
 Manufacturer................................... 0xbc00
@@ -261,9 +284,9 @@ Image Descriptions
 
  Images currently available on Flash
 --------------------------------------------------------------------
- unit      active      backup     current-active        next-active
+ unit     active      backup       current-active        next-active
 --------------------------------------------------------------------
-    1     3.4.3.3     3.4.3.3            3.4.3.3            3.4.4.6
+    1     3.4.3.3     3.4.3.3       3.4.3.3              3.4.4.6
 ----
 ====
 . 重新启动交换机：
@@ -300,8 +323,8 @@ System will now restart!
 
 Switch: 1
 
-System Description............................. x86_64-quanta_common_rglbmc-r0, 3.4.4.6, Linux 4.4.211-28a6fe76, 2016.05.00.04
-Machine Type................................... x86_64-quanta_common_rglbmc-r0
+System Description............................. BES-53248A1, 3.4.4.6, Linux 4.4.211-28a6fe76, 2016.05.00.04
+Machine Type................................... BES-53248A1,
 Machine Model.................................. BES-53248
 Serial Number.................................. QTFCU38260023
 Maintenance Level.............................. A
@@ -445,7 +468,7 @@ ONIE:/ #
 ====
 . 安装新的交换机软件：
 +
-`ONIE:/ # onie-nos-install http:// 50.50.50.50/Software/onie-installer-x86_64`
+`ONIE:/ # onie-nos-install http://50.50.50.50/Software/onie-installer-x86_64`
 
 +
 .显示示例
@@ -453,13 +476,13 @@ ONIE:/ #
 ====
 [listing]
 ----
-ONIE:/ # onie-nos-install http:// 50.50.50.50/Software/onie-installer-x86_64
+ONIE:/ # onie-nos-install http://50.50.50.50/Software/onie-installer-x86_64
 discover: installer mode detected.
 Stopping: discover... done.
-Info: Fetching http:// 50.50.50.50/Software/onie-installer-3.7.0.4 ...
+Info: Fetching http://50.50.50.50/Software/onie-installer-3.7.0.4 ...
 Connecting to 50.50.50.50 (50.50.50.50:80)
 installer            100% |*******************************| 48841k  0:00:00 ETA
-ONIE: Executing installer: http:// 50.50.50.50/Software/onie-installer-3.7.0.4
+ONIE: Executing installer: http://50.50.50.50/Software/onie-installer-3.7.0.4
 Verifying image checksum ... OK.
 Preparing image archive ... OK.
 ----
@@ -485,7 +508,7 @@ Images currently available on Flash
 ---- 	----------- -------- --------------- ------------
 unit 	active 	    backup   current-active  next-active
 ---- 	----------- -------- --------------- ------------
-1 	  3.7.0.4     3.7.0.4  3.7.0.4         3.7.0.4
+1 	    3.7.0.4     3.7.0.4  3.7.0.4         3.7.0.4
 (cs2) #
 ----
 ====

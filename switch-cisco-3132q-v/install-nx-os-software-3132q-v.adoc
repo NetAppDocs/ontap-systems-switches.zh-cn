@@ -24,7 +24,7 @@ summary: 您可以使用此操作步骤 在 Nexus 3132Q-V 集群交换机上安�
 
 .建议的文档
 * link:https://mysupport.netapp.com/site/info/cisco-ethernet-switch["Cisco 以太网交换机"^]。有关支持的ONTAP 和NX-OS版本、请参见交换机兼容性表。
-* https://www.cisco.com/c/en/us/support/switches/nexus-3000-series-switches/products-installation-guides-list.html["Cisco Nexus 3000 系列交换机"^]。有关Cisco交换机升级和降级过程的完整文档、请参见Cisco网站上提供的相应软件和升级指南。
+* https://["Cisco Nexus 3000 系列交换机"^]。有关Cisco交换机升级和降级过程的完整文档、请参见Cisco网站上提供的相应软件和升级指南。
 
 
 
@@ -51,7 +51,7 @@ Pinging 172.19.2.1 with 0 bytes of data:
 Reply From 172.19.2.1: icmp_seq = 0. time= 5910 usec.
 ----
 ====
-. 使用以下传输协议之一将NX-OS软件复制到Nexus 3132Q-V交换机：FTP、TFTP、SFTP或SCP。有关Cisco命令的详细信息、请参见中的相应指南 https://www.cisco.com/c/en/us/support/switches/nexus-3000-series-switches/products-installation-guides-list.html["Cisco Nexus 3000系列NX-OS命令参考指南"^]。
+. 使用以下传输协议之一将NX-OS软件复制到Nexus 3132Q-V交换机：FTP、TFTP、SFTP或SCP。有关Cisco命令的详细信息、请参见中的相应指南 https://["Cisco Nexus 3000系列NX-OS命令参考指南"^]。
 +
 .显示示例
 [%collapsible]

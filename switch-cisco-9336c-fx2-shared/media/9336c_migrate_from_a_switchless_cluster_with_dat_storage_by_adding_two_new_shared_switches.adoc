@@ -19,7 +19,7 @@ summary:
 
 在无中断地将双节点无交换机集群迁移到使用 Cisco Nexus 9336C-x2 集群交换机的集群时，您必须了解某些配置信息，端口连接和布线要求。您使用的操作步骤取决于每个控制器上是有两个专用集群网络端口，还是每个控制器上有一个集群端口。记录的过程适用于使用光纤或双轴端口的所有节点，但如果节点将板载 10 Gb BASE-T RJ45 端口用于集群网络端口，则此交换机不支持此过程。
 
-大多数系统需要在每个控制器上使用两个专用集群网络端口。请参见  https://mysupport.netapp.com/site/info/cisco-ethernet-switch["Cisco 以太网交换机"] 有关详细信息 ...
+大多数系统需要在每个控制器上使用两个专用集群网络端口。请参见  https://["Cisco 以太网交换机"] 有关详细信息 ...
 
 如果您现有的双节点无交换机集群环境，则可以使用 Cisco Nexus 9336C-FX2 交换机迁移到双节点有交换机集群环境，以便可以扩展到集群中的两个节点以上。
 
@@ -37,7 +37,7 @@ summary:
 ** 两台交换机都必须具有管理网络连接。
 ** 必须能够通过控制台访问集群交换机。
 ** Nexus 9336C-f2 节点到节点交换机和交换机到交换机连接必须使用双轴电缆或光缆。
-** NetApp https://hwu.netapp.com["Hardware Universe"] 包含有关布线的详细信息。
+** NetApp https://["Hardware Universe"] 包含有关布线的详细信息。
 ** 交换机间链路（ ISL ）缆线必须连接到两个 9336C-x2 交换机上的端口 1/35 和 1/36 。
 
 
@@ -57,7 +57,7 @@ summary:
 * 集群 SVM 的名称是 _node1_ 和 _node2_ 。
 * LIF 的名称分别是节点 1 上的 _node1_clus1_ 和 _node1_clus2_ 以及节点 2 上的 _node2_clus1_ 和 _node2_clus2_ 。
 * cluster1 ：：： * > 提示符指示集群的名称。
-* 根据 AFF A400 控制器，此操作步骤中使用的集群端口为 _e3A_ 和 _e3b_ 。。 https://hwu.netapp.com["Hardware Universe"] 包含有关平台的实际集群端口的最新信息。
+* 根据 AFF A400 控制器，此操作步骤中使用的集群端口为 _e3A_ 和 _e3b_ 。。 https://["Hardware Universe"] 包含有关平台的实际集群端口的最新信息。
 
 
 .步骤
@@ -224,7 +224,7 @@ Cluster
 ----
 . 【第 9 步】从 node1 上的集群端口 E3A 断开缆线连接，然后使用 9336C-x2 交换机支持的适当布线方式将 E3A 连接到集群交换机 CS1 上的端口 1 。
 +
-NetApp https://hwu.netapp.com["Hardware Universe"] 包含有关布线的详细信息。
+NetApp https://["Hardware Universe"] 包含有关布线的详细信息。
 
 . 从节点 2 上的集群端口 E3A 断开缆线连接，然后使用 9336C-x2 交换机支持的相应布线方式将 E3A 连接到集群交换机 CS1 上的端口 2 。
 . 启用集群交换机 CS1 上面向节点的所有端口。

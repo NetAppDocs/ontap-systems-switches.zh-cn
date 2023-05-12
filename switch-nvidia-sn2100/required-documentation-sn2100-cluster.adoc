@@ -19,21 +19,21 @@ summary: 对于NVIDIA SN2100交换机安装和维护、请务必查看所有建�
 
 
  a| 
-https://docs.nvidia.com/networking/display/sn2000pub/Installation["NVIDIA交换机安装指南"^]
+https://["NVIDIA交换机安装指南"^]
  a| 
 介绍如何安装NVIDIA SN2100交换机。
 
 
 
  a| 
-https://library.netapp.com/ecm/ecm_download_file/ECMLP2876580["《NS224 NVMe驱动器架布线指南》"^]
+https://["《NS224 NVMe驱动器架布线指南》"^]
  a| 
 显示如何为驱动器架配置布线的概述和插图。
 
 
 
  a| 
-https://hwu.netapp.com/["NetApp Hardware Universe"^]
+https://["NetApp Hardware Universe"^]
  a| 
 用于确认您的平台型号支持的硬件、例如存储交换机和缆线。
 

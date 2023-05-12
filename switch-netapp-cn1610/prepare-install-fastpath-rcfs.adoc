@@ -19,14 +19,14 @@ summary: 您必须在 NetApp CN1610 集群交换机上安装 FastPath 软件和�
 * 所有集群端口都必须已启动。
 * 所有集群逻辑接口（ LIF ）都必须已启动，并且尚未迁移。
 * ONTAP （权限：高级） `cluster ping-cluster -node node1` 命令必须指示所有路径上的 `大于 PMTU 通信` 成功。
-* 您必须参考上的交换机兼容性表 http://mysupport.netapp.com/NOW/download/software/cm_switches_ntap/["NetApp CN1601 和 CN1610 交换机"^] 页面上显示了受支持的 FastPath ， RCF 和 ONTAP 版本。
+* 您必须参考上的交换机兼容性表 http://["NetApp CN1601 和 CN1610 交换机"^] 页面上显示了受支持的 FastPath ， RCF 和 ONTAP 版本。
 +
 RCF 和 FastPath 版本中的命令语法之间可能存在命令依赖关系。
 
 
 
 
-NOTE: 在 RCF 1.2 版中，出于安全考虑，已明确禁用对 Telnet 的支持。要在安装 RCF 1.2 时避免连接问题，您必须验证是否已启用安全外壳（ SSH ）。。 https://library.netapp.com/ecm/ecm_get_file/ECMP1117874["《 NetApp ® CN1610 交换机管理员指南》"^] 了解有关 SSH 的详细信息。
+NOTE: 在 RCF 1.2 版中，出于安全考虑，已明确禁用对 Telnet 的支持。要在安装 RCF 1.2 时避免连接问题，您必须验证是否已启用安全外壳（ SSH ）。。 https://["《 NetApp ® CN1610 交换机管理员指南》"^] 了解有关 SSH 的详细信息。
 
 .关于此任务
 此操作步骤中的示例使用以下交换机和节点命名：
@@ -38,7 +38,7 @@ NOTE: 在 RCF 1.2 版中，出于安全考虑，已明确禁用对 Telnet 的支
 * `cluster ：：： * >` 提示符用于指示集群的名称。
 * 每个节点上的集群端口分别命名为 e1a 和 e2a 。
 +
-。 https://hwu.netapp.com/["Hardware Universe"^] 提供有关您的平台支持的实际集群端口的详细信息。
+。 https://["Hardware Universe"^] 提供有关您的平台支持的实际集群端口的详细信息。
 
 * NetApp 集群交换机支持的交换机间链路（ ISL ）为端口 0/13 到 0/16 。
 * NetApp 集群交换机支持的节点连接为端口 0/1 到 0/12 。

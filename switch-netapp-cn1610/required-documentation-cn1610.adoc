@@ -19,21 +19,21 @@ summary: 有关NetApp CN1610交换机的安装和维护、请务必查看所有�
 
 
  a| 
-https://library.netapp.com/ecm/ecm_download_file/ECMP1117853["1G 安装指南"^]
+https://["1G 安装指南"^]
  a| 
 概述 CN1601 交换机硬件和软件功能以及安装过程。
 
 
 
  a| 
-https://library.netapp.com/ecm/ecm_download_file/ECMP1117824["10G 安装指南"^]
+https://["10G 安装指南"^]
  a| 
 概述 CN1610 交换机的硬件和软件功能，并介绍安装交换机和访问 CLI 的功能。
 
 
 
  a| 
-https://library.netapp.com/ecm/ecm_download_file/ECMP1118645["《 CN1601 和 CN1610 交换机设置和配置指南》"^]
+https://["《 CN1601 和 CN1610 交换机设置和配置指南》"^]
  a| 
 详细介绍如何为集群环境配置交换机硬件和软件。
 
@@ -44,9 +44,9 @@ https://library.netapp.com/ecm/ecm_download_file/ECMP1118645["《 CN1601 和 CN1
  a| 
 提供了如何在典型网络中使用CN1601交换机的示例。
 
-* https://library.netapp.com/ecm/ecm_download_file/ECMP1117844["管理员指南"^]
-* https://library.netapp.com/ecm/ecm_download_file/ECMLP2811865["管理员指南、版本1.1.x.x"^]
-* https://library.netapp.com/ecm/ecm_download_file/ECMP1117874["管理员指南、版本1.2.x.x"^]
+* https://["管理员指南"^]
+* https://["管理员指南、版本1.1.x.x"^]
+* https://["管理员指南、版本1.2.x.x"^]
 
 
 
@@ -56,9 +56,9 @@ https://library.netapp.com/ecm/ecm_download_file/ECMP1118645["《 CN1601 和 CN1
  a| 
 提供有关用于配置CN1601软件的命令行界面(CLI)命令的详细信息。
 
-* https://library.netapp.com/ecm/ecm_download_file/ECMP1117834["命令参考"^]
-* https://library.netapp.com/ecm/ecm_download_file/ECMLP2811863["命令参考、版本1.1.x.x"^]
-* https://library.netapp.com/ecm/ecm_download_file/ECMP1117863["命令参考、版本1.2.x.x"^]
+* https://["命令参考"^]
+* https://["命令参考、版本1.1.x.x"^]
+* https://["命令参考、版本1.2.x.x"^]
 
 
 |===

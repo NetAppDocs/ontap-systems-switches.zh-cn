@@ -25,8 +25,8 @@ summary: 可以在 Cisco Nexus 3232C 存储交换机上升级 Cisco NX-OS 软件
 +
 如果您需要更改启动变量以反映当前启动映像，则必须在重新应用 RCF 之前进行更改，以便在未来重新启动时实例化正确的版本。
 
-* 您已参考上提供的相应软件和升级指南 http://www.cisco.com/en/US/products/ps9670/prod_installation_guides_list.html["Cisco Nexus 3000 系列交换机"^] 第页，了解有关 Cisco 存储升级和降级过程的完整文档。
-* 10 GbE 和 40/100 GbE 端口的数量在上提供的参考配置文件（ RCF ）中定义 https://mysupport.netapp.com/site/info/cisco-ethernet-switch["Cisco ® 以太网交换机"^] 页面。
+* 您已参考上提供的相应软件和升级指南 http://["Cisco Nexus 3000 系列交换机"^] 第页，了解有关 Cisco 存储升级和降级过程的完整文档。
+* 10 GbE 和 40/100 GbE 端口的数量在上提供的参考配置文件（ RCF ）中定义 https://["Cisco ® 以太网交换机"^] 页面。
 
 
 
@@ -140,7 +140,7 @@ There are no entries matching your query.
 
 . 使用以下传输协议之一将交换机 S2 上的 RCF 复制到交换机 bootflash ： FTP ， HTTP ， TFTP ， SFTP 或 SCP 。
 +
-有关 Cisco 命令的详细信息，请参见中的相应指南 https://www.cisco.com/c/en/us/support/switches/nexus-3000-series-switches/products-command-reference-list.html["Cisco Nexus 3000 系列 NX-OS 命令参考"^]。
+有关 Cisco 命令的详细信息，请参见中的相应指南 https://["Cisco Nexus 3000 系列 NX-OS 命令参考"^]。
 
 +
 .显示示例
@@ -244,7 +244,7 @@ NOTE: 首次应用 RCF 时，系统会显示 * 错误：无法写入 VSH 命令 
 
 . 验证软件版本和交换机设置是否正确后、复制 `running-config` 将文件保存到 `startup-config` 交换机S2上的文件。
 +
-有关 Cisco 命令的详细信息，请参见中的相应指南 https://www.cisco.com/c/en/us/support/switches/nexus-3000-series-switches/products-command-reference-list.html["Cisco Nexus 3000 系列 NX-OS 命令参考"^]。
+有关 Cisco 命令的详细信息，请参见中的相应指南 https://["Cisco Nexus 3000 系列 NX-OS 命令参考"^]。
 
 +
 .显示示例
@@ -377,7 +377,7 @@ S2#
 ====
 . 保存配置。
 +
-有关 Cisco 命令的详细信息，请参见中的相应指南 https://www.cisco.com/c/en/us/support/switches/nexus-3000-series-switches/products-command-reference-list.html["Cisco Nexus 3000 系列 NX-OS 命令参考"^]。
+有关 Cisco 命令的详细信息，请参见中的相应指南 https://["Cisco Nexus 3000 系列 NX-OS 命令参考"^]。
 
 +
 系统将提示您重新启动系统。

@@ -59,14 +59,10 @@
   <block id="bcc8af84bc940a8ea99c5dd679fa7016" category="admonition">如果需要将交换机软件从 3.4.4.6 版降级，则许可证将被删除。这是预期行为。</block>
   <block id="aafb1268dadda4c3bd9dd5d8a55b2fa2" category="paragraph">在还原到软件的旧版本之前，您必须安装相应的旧版许可证。</block>
   <block id="2ad05b5c21ff6c71199a379622544a42" category="doc">安装参考配置文件（ RCF ）</block>
-  <block id="c1421c83b1d1a38b2417491ece25b6ef" category="list-text">使用 `ping` 命令验证与托管 EFOS ，许可证和 RCF 的服务器的连接。</block>
-  <block id="cc902b05dea9b78580c439034d034533" category="paragraph">如果连接为问题描述，请使用非路由网络并使用 IP 地址 192.168.8.x 或 172.19.x 配置服务端口您可以稍后将服务端口重新配置为生产管理 IP 地址。</block>
-  <block id="f0e95f5c0e8e4943599aed05c5dcaa5c" category="list-text">使用 `copy` 命令在 BES-53248 集群交换机上安装 RCF 。</block>
   <block id="830bcf54c3049ac10bbbb40fb1258902" category="list-text">验证脚本是否已下载并保存到您为其指定的文件名中：</block>
   <block id="406bb351c55daa6b29920fa6ce644c29" category="paragraph">`s记录列表`</block>
   <block id="c3b43f3c21345191af043e5f0670bf83" category="list-text">将此脚本应用于交换机。</block>
   <block id="02afa83850d1a1e555c0bc75967fef66" category="paragraph">`s记录应用`</block>
-  <block id="c6be61a8840e03c0f7ec854569281fe0" category="list-text">应用 RCF 后，请验证用于附加许可证的端口：</block>
   <block id="44204cecc6038ea77eba4b1c7fdb67ca" category="list-text">在交换机上验证是否已进行更改：</block>
   <block id="2c4752308de3d9f3db61274d3c1d0e24" category="paragraph">`s如何运行配置`</block>
   <block id="3f1cea616a4c65689c504a5493308910" category="list-text">保存正在运行的配置，使其在重新启动交换机时成为启动配置：</block>
@@ -2216,8 +2212,6 @@
   <block id="148a1525f4c4b2d620941031bf03f670" category="inline-link">_NetApp Hardware Universe</block>
   <block id="8761a71b0c01f0356000c0994d4fb203" category="paragraph">`ssystem switch Ethernet log setup-password`和`ssystem switch Ethernet log enable-Collection`</block>
   <block id="c757279318295752ba90c940af04f05e" category="paragraph">后跟： `ssystem switch Ethernet log enable-Collection`</block>
-  <block id="e9e71e2f88e554c14e51453471eb9563" category="inline-link-macro">错误1225042</block>
-  <block id="5a072aaf4668506fc992d2fe4e8eab94" category="admonition">此时、log Collect命令不可用。请参见 <block ref="f0dc05ac25b63ff4a92a1ab0ec233df6" category="inline-link-macro-rx"></block> 了解更多详细信息。</block>
   <block id="def140a135e96c99279be95e1ef70130" category="doc">更换Broadcom支持的BES-53248集群交换机</block>
   <block id="aca231809cb1cd80c1435dd9914b66dd" category="paragraph">然后，您必须将所有节点上已断开连接的端口重新连接到新的 BES-53248 交换机 CS2 。请参见<block ref="141c10db18cf1753fa5fc05f553c33ff" category="inline-link-rx"></block> 用于获得批准的布线选项。</block>
   <block id="cbd2e2da439fbaf2fd95743ddedbb09e" category="paragraph">然后，您必须将所有节点上已断开连接的端口重新连接到新的 BES-53248 交换机 CS1 。请参见<block ref="141c10db18cf1753fa5fc05f553c33ff" category="inline-link-rx"></block> 用于获得批准的布线选项。</block>
@@ -2228,9 +2222,7 @@
   <block id="187c30e211ba48efba7ee0554dccaf17" category="paragraph">10/25GbE集群端口节点、带许可证</block>
   <block id="e911666173c65a9be604d165f8bfca24" category="paragraph">49-54</block>
   <block id="87c5a8a002c26c3c0f3324085542275a" category="paragraph">55-56</block>
-  <block id="cd7d89f0423765df2ea4dd61283f22c1" category="admonition">在调用脚本之前，必须将 ` .scr` 扩展名设置为文件名的一部分。此扩展是 EFOS 操作系统的扩展。将脚本下载到交换机后，交换机会自动验证该脚本，并将输出传输到控制台。此外、您还可以更改`.scr`的名称以适应控制台屏幕、以便于阅读、例如：`+copy sftp：//172.19.2.1/tmp/BES-53248_RCF_v1.6-Cluster-HA.txt nvram：script RCF_v1.6-Cluster-HA.SCR+`。</block>
   <block id="2f5b29dae6c40626ef71ff19914284d2" category="paragraph">要使用的调试命令：`debug transfer`和`debug license`</block>
-  <block id="4d87d0aacff9e4a95b16be27f0f1e89e" category="admonition">根据您的环境、您可能需要在`copy`命令中使用双斜杠、例如：`+copy sftp：//172.19.2.1//tmp/BES-53248_RCF_v1.6-Cluster-HA.txt NVRAM：脚本BES-53248_RCF_v1.6-Cluser-HA.SCR+`。</block>
   <block id="23e7cf6793dbbe3c59640d6ebb6cf4fc" category="list-text">。<block ref="141c10db18cf1753fa5fc05f553c33ff" category="inline-link-rx"></block> 包含有关ONTAP 兼容性、支持的EFOS固件以及BES-53248集群交换机布线的信息。</block>
   <block id="c0be2d74ddb0ea6b8972b9da2fc2c223" category="paragraph">。<block ref="141c10db18cf1753fa5fc05f553c33ff" category="inline-link-rx"></block> 包含有关ONTAP 兼容性、支持的EFOS固件以及连接到BES-53248交换机的布线的信息。</block>
   <block id="91950abebf25a4752db5969582aa4bb7" category="paragraph">。<block ref="141c10db18cf1753fa5fc05f553c33ff" category="inline-link-rx"></block> 包含有关平台的实际集群端口的最新信息。</block>
@@ -2314,13 +2306,11 @@
   <block id="c2bb2ae34a9db0e318c25b32c07dd6d5" category="list-text">cluster1：：：*)*提示符用于指示集群的名称。</block>
   <block id="1a0894513362fda649e11ba9de926b82" category="list-text">确定每个集群端口的管理或运行状态。</block>
   <block id="819ff57f464e039de1c480b406150b87" category="list-text">在集群交换机CS2上、关闭连接到节点集群端口的端口：</block>
-  <block id="c0aae69da186a464bb2e5ce0a8b32451" category="list-text">将所有集群节点连接从旧CS2交换机移至新CS2-new交换机。</block>
   <block id="be6163ad0c362d632b28f98dea1fdaaa" category="paragraph">移动的所有集群端口都应已启动。</block>
   <block id="d0141bcaf704f75f043a7384708a3131" category="paragraph">验证移动的集群端口是否将CS2-new交换机视为邻居。</block>
   <block id="f53f913adacde30730136e7153afce35" category="list-text">从交换机CS2-new的角度确认交换机端口连接：</block>
   <block id="c4fb5fab435d358d1b3a68ec74352416" category="list-text">在集群交换机 CS1 上，关闭连接到节点集群端口的端口。以下示例使用步骤7中的接口示例输出。</block>
   <block id="8c61118abc6e9e30fd4469d362e96e00" category="paragraph">所有集群LIF都将移至CS2-NEW交换机。</block>
-  <block id="494ad00c3b01ee37729fae8f4d4c52c0" category="list-text">将连接从CS1移动到新的CS1-new交换机。</block>
   <block id="2a5fc0afbcb2299e24c73a909b297e93" category="paragraph">验证移动的集群端口是否将CS1-new交换机视为邻居。</block>
   <block id="35d736ae56a7e094d4d2c2786669f8ca" category="list-text">从交换机CS1-new的角度确认交换机端口连接：</block>
   <block id="2a42351fd3a2f7fd74a9510816b9125f" category="list-text">启用以太网交换机运行状况监控器日志收集功能以收集交换机相关的日志文件。</block>
@@ -2333,10 +2323,6 @@
   <block id="bc8a2cd252a5beb1dbf4f209baea67eb" category="sidebar">共享交换机</block>
   <block id="626a7cbe056796bcb1c158b143866230" category="sidebar">《 ONTAP 发行说明》</block>
   <block id="ce4b3e7ecf21d16073d0790ca53a6dd9" category="image-alt">初始交换机设置</block>
-  <block id="ae7b3cb9899d7947e3b5d7996824f062" category="paragraph">*集群节点连接已移至CS2-new交换机*</block>
-  <block id="1f5e0ea57e0f194957353e2db3df4e2d" category="image-alt">集群节点连接已移至CS2-new交换机</block>
-  <block id="3fb38d5aab534a043c30d7f1a3b0a9dd" category="paragraph">*集群节点连接已移至CS1-new交换机*</block>
-  <block id="84532259a7d4acf54c61408e0d42d0ce" category="image-alt">集群节点连接已移至CS1-new交换机</block>
   <block id="9d36413c7ae238ebf79e37939969b9ee" category="summary">您可以将ONTAP 集群中较早的Cisco交换机无中断迁移到NVIDIA SN2100存储交换机。</block>
   <block id="c0e54fd32010cccd4fea353a8f62265e" category="doc">从Cisco存储交换机迁移到NVIDIA SN2100存储交换机</block>
   <block id="bdcdaedb42f04c50f04fe5d093e593c6" category="list-text">支持以下存储交换机：</block>
@@ -3455,10 +3441,6 @@
   <block id="f249686dfa625a48e16b61cc36dc2543" category="inline-link">Broadcom支持的BES-53248集群交换机安装指南</block>
   <block id="9343a353b1f82fabd9ee240e066471c9" category="list-text">按照中的说明进行操作<block ref="2499b40383e5eeae4a8e13c0ef2b5e8c" category="inline-link-rx"></block>。</block>
   <block id="2c313ef83d1daadd03ff286fd1bc25ab" category="paragraph"><block ref="b88c299eeb38820fb709454fcd144438" category="inline-link-macro-rx"></block>。</block>
-  <block id="cae419e0f4ccc97a6a12d463f55b5c3b" category="paragraph">您可以启用日志收集功能、该功能用于在ONTAP 中收集交换机相关的日志文件。</block>
-  <block id="3cad572dfde5fdce5421e54e89062e7b" category="paragraph">确保已使用BES-53248集群交换机CLI设置环境。</block>
-  <block id="c72a86b35a4617dacc0dd7690691bc10" category="paragraph">使用以下命令启用日志收集功能：</block>
-  <block id="2970c748fd66e910b8a8cc8afdfef311" category="section-title">适用于ONTAP 9.5P15、9.6P11、9.7P8及更高版本的修补程序版本</block>
   <block id="4a79c6270afcb7ed4e28cd8c98692b07" category="inline-link-macro">验证升级配置</block>
   <block id="201928a01eb0d8a784dcd677be49e1a6" category="paragraph">如果要升级交换机、请转至 <block ref="4ea612b493226a65342298638fddee90" category="inline-link-macro-rx"></block>。</block>
   <block id="e8ab0c1581dc0dcc64441ffb1b729ce5" category="summary">如果您使用双节点无交换机集群、则可以无中断地迁移到包含Broadcom支持的BES-53248集群交换机的双节点有交换机集群</block>
@@ -3566,8 +3548,6 @@
   <block id="4ce9c3db8b38bb08700bf7d0c8a896a4" category="list-text">验证CN1610交换机CL1上的ISL是否已"启动"：</block>
   <block id="3bc00b87c9d7974628fbaf8aa8779a0c" category="paragraph">。<block ref="2ca384e25ce18ee9f0ef797ddb07553f" prefix=" " category="inline-code"></block> 应为"up"、<block ref="a1fa27779242b4902f7ae3bdd5c6d508" prefix=" " category="inline-code"></block> 应为"静态"、和<block ref="574cf51f989449e27cc737b456360c82" prefix=" " category="inline-code"></block> 端口0/13到0/16应为"True"：</block>
   <block id="245b6d4f01047a24b306b9ff15a6f528" category="summary">您可以在配置BES-53248集群交换机后以及应用新许可证后安装参考配置文件(Reference Configuration File、RCF)。</block>
-  <block id="71288405dcf65a0c34e5f6f072ddacbf" category="paragraph">如果要从旧版本升级 RCF ，则必须重置 Broadcom 交换机设置并执行基本配置以重新应用 RCF 。每次要升级或更改 RCF 时，都必须执行此操作。请参见<block ref="868fcd63f67a83c695a1a52b76012f85" category="inline-link-rx"></block> 了解详细信息。</block>
-  <block id="62f283441d74bc72551cfe8b6031e2e8" category="admonition">文件名不能包含符号<block ref="f7f78177fe7e595a817da2765186a20e" prefix=" " category="inline-code"></block> 允许的最大长度为32个字符。</block>
   <block id="b3d2ab282b59bbaad33610c1e37f6f97" category="list-text">将此脚本应用于交换机。</block>
   <block id="4b3087862136b477f2ba4eb874340862" category="inline-link-macro">安装CSHM配置文件</block>
   <block id="bf45031df0d96fabfb6aa0760a792168" category="paragraph"><block ref="c0636b750594571560d8b9710bfd1581" category="inline-link-macro-rx"></block>。</block>
@@ -3621,7 +3601,6 @@
   <block id="8df73a90ae64cf4b2dc8e1fb3b3f9c01" category="paragraph">出现以下消息时、按*输入*以调用ONIE控制台：</block>
   <block id="8c4811a2e0b8453368548a91bdf17fc9" category="admonition">ONIE发现将继续、并将消息打印到控制台。</block>
   <block id="a16e89a0f24e9a42d02bbe4bb573176b" category="paragraph"><block ref="df911f0151f9ef021d410b4be5060972" prefix="" category="inline-code"></block></block>
-  <block id="830d0d51353cfd443213537734ff2e76" category="paragraph"><block ref="c982fa8ec7bf560015f478ac445de332" prefix="" category="inline-code"></block></block>
   <block id="fead9f0c9e5b3f33cc2bdfbb331d335c" category="paragraph">软件将安装并重新启动交换机。让交换机正常重新启动到新的 EFOS 版本。</block>
   <block id="0deffd557577017ec52052f85fe4ead6" category="list-text">验证是否已安装新的交换机软件：</block>
   <block id="ed0ce277f91d48d895c5e74d2431cf8f" category="summary">了解适用于FAS 和AFF 系统的新交换机。</block>
@@ -4376,4 +4355,78 @@
   <block id="caf789a40cb327fa8f64258a010c13e0" category="list-text">验证Cumulus Linux版本是否为5.4：<block ref="9fcc1ae85aac3dbd490f575cf5eb3d52" prefix=" " category="inline-code"></block></block>
   <block id="ebf243f9c791c52799ecfef9dba7e609" category="doc">将NetApp CN1610集群交换机更换为无交换机连接</block>
   <block id="261de3e636d4ab259e73f4993ea87a6a" category="sidebar">升级Cumulus Linux版本</block>
+  <block id="f854d13ce34c20dd774e2f26c0bcbec7" category="paragraph">要检查您的EFOS版本是否符合FIPS兼容或非FIPS兼容、请使用<block ref="861d2504fbcbe4985de13f1d87bfc483" prefix=" " category="inline-code"></block> 命令：在以下示例中，*IP_switch_A1*正在使用FIPS兼容的EFOS，而*IP_switch_A2*正在使用非FIPS兼容的EFOS。</block>
+  <block id="155fd6818143cef882d5eb7ac134f393" category="list-text">在交换机IP_switch_A1上：</block>
+  <block id="457ab5c73d8f159a9a225c9b9c6605c3" category="list-text">在交换机IP_switch_A2上：</block>
+  <block id="49215cf233256204aa5b6259719da694" category="paragraph"><block ref="6db371c6b710567f9ba5b5a3491f792a" prefix="" category="inline-code"></block></block>
+  <block id="830d0a0665249b8b3b3020695c8b5e4b" category="paragraph">SW-BES-53248A2-8P-2P</block>
+  <block id="29246b22307b855ef04699ca8197dbc2" category="paragraph">Broadcom 8pt-10G25G + 2pt-40G100G许可密钥、X190005/R</block>
+  <block id="0e361df3624bdebcafc621eb4f0786a6" category="paragraph">SW-BES-53248A2-8P-1025G</block>
+  <block id="289a869a94a6cd9561fc4e79cad65152" category="paragraph">Broadcom 8端口10G25G许可密钥，X190005/R</block>
+  <block id="1cf9764233d69f1045190b7401cd7289" category="paragraph">SW-BES53248A2-6P-40-100G</block>
+  <block id="6f8d029e2ec4dbf3007f214f6019e2b5" category="paragraph">Broadcom 6端口40G100G许可密钥，X190005/R</block>
+  <block id="b70d80924ca5c08e45b9b84343687a46" category="section-title">旧版许可证</block>
+  <block id="e6459831eff3ab73436a3472b543daed" category="paragraph">下表列出了可在BES-53248集群交换机上使用的原有许可证：</block>
+  <block id="5c60227e684a42ed2c4295981335965a" category="list-text">验证SSH是否已禁用：</block>
+  <block id="7481f181e296e575db2349974a47cc2c" category="paragraph">按照以下步骤安装集群交换机运行状况监控器(Cluster Switch Health Monitor、CSHM)配置文件。</block>
+  <block id="810bc3d02021061ba2b8f87b703a66dd" category="paragraph">您可以使用日志收集功能在ONTAP 中收集与交换机相关的日志文件。</block>
+  <block id="ee3c886759b6a2517a47e20c04320ed6" category="admonition">要启用日志收集功能、必须运行ONTAP 9.12.1及更高版本以及EFOS 3.8.0.2及更高版本。</block>
+  <block id="ea234103ea5e655162d46327fb979006" category="paragraph">确保已使用BES-53248集群交换机*CLI*设置环境。</block>
+  <block id="f7cbc1a4399eb952f71e7f3276fe30cb" category="list-text">使用以下命令启用以太网交换机运行状况监控器日志收集功能以收集与交换机相关的日志文件：</block>
+  <block id="b8df928a1a67f132ebda54d2c7fee7dc" category="paragraph">如果要从旧版本升级 RCF ，则必须重置 Broadcom 交换机设置并执行基本配置以重新应用 RCF 。每次要升级或更改 RCF 时，都必须执行此操作。请参见<block ref="ca0e22b4f868295e6cf32a824edc5c13" category="inline-link-rx"></block> 了解详细信息。</block>
+  <block id="fecbf70623c5c07c3f3c4c8793d5061b" category="list-text">可从获取的当前RCF文件<block ref="b4c2fb45a290e6214474529bd84dd3bc" category="inline-link-rx"></block> 页面。</block>
+  <block id="23c89511c80ceef00a8d3343b5f08569" category="list-text">RC框架 中反映所需启动映像的启动配置、如果您仅安装EFOS并保留当前RC框架 版本、则需要此配置。如果您需要更改启动配置以反映当前启动映像，则必须在重新应用 RCF 之前进行更改，以便在将来重新启动时实例化正确的版本。</block>
+  <block id="3a6a9877fc8c73a9267914b786517ca9" category="inline-link">如何在保持远程连接的同时清除Broadcom互连交换机上的配置</block>
+  <block id="d814617aab418a35a7ebbe46f6db2549" category="list-text">从出厂默认状态安装RC框架 时需要与交换机建立控制台连接。如果您已使用知识库文章、则此要求是可选的 <block ref="18b4271d2bf70dbfb01e42cb4850cea6" category="inline-link-rx"></block> 要清除配置、请事先清除。</block>
+  <block id="7f3040034b245d1b75afb3699c743540" category="inline-link">EFOS软件下载</block>
+  <block id="d56ac00853938590c6688c295fc4ecaf" category="list-text">有关支持的ONTAP 和RCF版本、请参见交换机兼容性表。请参见<block ref="d105630f090d19d3cb8ede812081d134" category="inline-link-rx"></block> 页面。请注意、RC框架 中的命令语法与EFOS版本中的命令语法之间可能存在命令依赖关系。</block>
+  <block id="93933c6ca68705cf2c6eee19987428b0" category="inline-link">Broadcom</block>
+  <block id="c8225beca732debe3ac01e6db48e30da" category="list-text">请参阅上提供的相应软件和升级指南<block ref="16e70ad0a745fa89b30fcfd59454547f" category="inline-link-rx"></block> 有关BES-53248交换机升级和降级过程的完整文档的站点。</block>
+  <block id="b3c7299de687b34f57bdbef88331d09b" category="section-title">安装配置文件</block>
+  <block id="96645db343acbd79a0ce22b9f8615312" category="list-text">两个BES-53248交换机的名称是CS1和CS2。</block>
+  <block id="020f2efcf6a1d37fe39fcf5ab7cd7681" category="list-text">集群LIF名称是"cluster-01_clus1"、"cluster-01_clus2"、"cluster-02_clus1"、"cluster-02_clus2"、"cluster-03_clus1"、 cluster-03_clus2、cluster-04_clus1和cluster-04_clus2。</block>
+  <block id="735f1f81fce19c6dbd9326c356c42794" category="list-text">此操作步骤 中的示例使用四个节点。这些节点使用两个10GbE集群互连端口<block ref="922c556baf6272bffc4fa28b2e9a0bbc" prefix=" " category="inline-code"></block> 和<block ref="22fe67c2e87caff18249cf1804bbeaad" prefix=" " category="inline-code"></block>。请参见<block ref="e527f95d8e68b368d64d0d2dab643ea1" category="inline-link-rx"></block> 验证平台上的集群端口是否正确。</block>
+  <block id="ce86a637b15bcd24602c029445c6ecb5" category="paragraph">操作步骤 要求同时使用ONTAP 命令和Broadcom交换机命令；除非另有说明、否则将使用ONTAP 命令。</block>
+  <block id="5ea8c6e5f4563fff82293f272dc6f6ed" category="paragraph">在此操作步骤 期间、不需要可操作的交换机间链路(ISL)。这是设计上的原因、因为RCF版本更改可能会暂时影响ISL连接。为确保集群无中断运行、以下操作步骤 会在对目标交换机执行步骤时将所有集群LIFs迁移到正常运行的配对交换机。</block>
+  <block id="331d3619bd86486daa8ae20287b042b0" category="inline-link">知识库文章：如何在保持远程连接的同时清除Broadcom互连交换机上的配置</block>
+  <block id="2ad76ee2dd44393b128aa703e18c0180" category="admonition">在安装新交换机软件版本和RCF之前、请使用<block ref="0dbbaa06eaeff384c85940b756e5a890" category="inline-link-rx"></block>。如果您必须完全擦除交换机设置、则需要重新执行基本配置。您必须使用串行控制台连接到交换机、因为完整的配置清除会重置管理网络的配置。</block>
+  <block id="655ebdf839055b53c81fe98843842372" category="list-text">显示连接到集群交换机的每个节点上的集群端口：<block ref="633709925611b54d23e52bde1cb56811" prefix=" " category="inline-code"></block></block>
+  <block id="9d7316571cefaae2ca32e98fc9e57981" category="list-text">验证所有集群端口是否均已启动且状态正常：<block ref="229e8d1240617e0b97c680c36bbc9564" prefix=" " category="inline-code"></block></block>
+  <block id="404e35375d78f3af8db8d2ab71618ce7" category="list-text">验证所有集群接口（ LIF ）是否均位于主端口上：<block ref="fb5130635551fff679ab6d902eaff8d9" prefix=" " category="inline-code"></block></block>
+  <block id="40bdb15fb49f18cee766c49c83713e34" category="list-text">验证集群是否显示两个集群交换机的信息。</block>
+  <block id="a76ff2554d27751da451d7ba735995b2" category="paragraph">从ONTAP 9.8开始、请使用以下命令：<block ref="c57378c3b3bb81c6b42a2b31a30ddda7" prefix=" " category="inline-code"></block></block>
+  <block id="5a830b76ff5a71db59759b13f383410c" category="open-title">ONTAP 9.7 及更早版本</block>
+  <block id="8db6b188941318108123dd47b9038cf7" category="paragraph">对于ONTAP 9.7及更早版本、请使用命令：<block ref="7ca607e345a217b6fb9148234fe84d0c" prefix=" " category="inline-code"></block></block>
+  <block id="a3b40857ce7fb3046b527517e75db42e" category="list-text">验证集群是否运行正常：<block ref="639161158d7426b3865ce9c5a6f648b3" prefix=" " category="inline-code"></block></block>
+  <block id="7da2d511ceda949386786cd3a9b0904c" category="list-text">如果您尚未保存当前交换机配置、请将以下命令的输出复制到日志文件中以保存此配置：<block ref="d064a73c32d00bf384204782a696a298" prefix=" " category="inline-code"></block></block>
+  <block id="044db7e4b2e2480e0b918af88e09b16c" category="list-text">通过SSH连接到交换机。</block>
+  <block id="b216a46caec0572ad44c6c3b8b20e09c" category="paragraph">只有在从交换机上的端口中删除了所有集群的集群生命周期、并且交换机已准备好清除配置后、才能继续操作。</block>
+  <block id="48ca6f7074b4cd6ad17a0b10e124e059" category="list-text">进入权限模式：</block>
+  <block id="3085a2f68e00244f5ad273171421c4a3" category="list-text">复制并粘贴以下命令以删除先前的RCIF配置(根据所使用的先前RCIF版本、如果不存在特定设置、某些命令可能会生成错误)：</block>
+  <block id="3dcdf9c7761ce642c5fe2fe73d425b75" category="list-text">将运行配置保存到启动配置：</block>
+  <block id="b48ffac2fb8952951818ab2ce539c1d3" category="list-text">重新启动交换机：</block>
+  <block id="d03fee12ab01ee4f556908abcba26347" category="list-text">使用SSH再次登录到交换机以完成RC框架 安装。</block>
+  <block id="a8935c8fdc41e9990bb4a300a40c1700" category="list-text">如果交换机上安装了其他端口许可证、则必须修改RCIF以配置其他获得许可的端口。请参见 <block ref="4d3fc05ce7b1ba9afd520aecf6c7f3bb" category="inline-link-macro-rx"></block> 了解详细信息。</block>
+  <block id="63f7338fc9ee539e34242e8d03110038" category="list-text">使用以下传输协议之一将 RCF 复制到交换机 CS2 的启动闪存： FTP ， TFTP ， SFTP 或 SCP 。</block>
+  <block id="b211f67e6e9195c32683368a53542802" category="paragraph">此示例显示了使用SFTP将RCC复制到交换机CS2上的bootflash：</block>
+  <block id="c77174e35b7f7fc235a87561809ad614" category="list-text">检查中的横幅输出<block ref="db837131dc56fab41bddc52d5aff8865" prefix=" " category="inline-code"></block> 命令：您必须阅读并遵循这些说明，以确保交换机的配置和操作正确。</block>
+  <block id="420b545896cb1c9b03dbccd44bf33f86" category="list-text">在交换机上、验证在应用RC框架 后是否显示其他已获得许可的端口：</block>
+  <block id="2a886bfc4f98f8b2263d47853859d640" category="list-text">验证交换机CS2上的端口：<block ref="3ecfeafb159bbded4fdecd6f5a860f4a" prefix=" " category="inline-code"></block></block>
+  <block id="818dbe7dc43a870c6906959f7d426ba7" category="list-text">验证集群中所有节点上的e0b端口是否均已启动且运行正常：<block ref="856f897c52a15ad9c779d1f7b82c2593" prefix=" " category="inline-code"></block></block>
+  <block id="7780adb3deb169c3e834888c0fec0145" category="list-text">[[Step17]]在集群交换机CS1上、关闭连接到节点集群端口的端口。</block>
+  <block id="7fc0653470d537d0d0fc3997f25d581b" category="list-text">验证集群 LIF 是否已迁移到交换机 CS2 上托管的端口。这可能需要几秒钟的时间。<block ref="fb5130635551fff679ab6d902eaff8d9" prefix=" " category="inline-code"></block></block>
+  <block id="b0553791d0540be1d52514a1a47621f6" category="list-text">对交换机CS1重复步骤4至14。</block>
+  <block id="9cb99e0cdd58aac4297608fa8d8ef89b" category="list-text">在集群 LIF 上启用自动还原：<block ref="478474aa0db28144d5db02c478cd5215" prefix=" " category="inline-code"></block></block>
+  <block id="e23c199f14d9e7bf9dbb9da03bf726a2" category="list-text">重新启动交换机 CS1 。执行此操作可触发集群 LIF 还原到其主端口。您可以忽略在交换机重新启动时报告的节点上的 " 集群端口关闭 " 事件。</block>
+  <block id="d9c15a3fe5ea0c8a95b7c30c068a97e8" category="list-text">在交换机CS1上、验证连接到集群端口的交换机端口是否为*已启动*。</block>
+  <block id="5f424e43ea12971db12c054ce8992c88" category="list-text">验证交换机CS1和CS2之间的ISL是否正常运行：<block ref="f366ffdad905090c14aaf5084fbd75f1" prefix=" " category="inline-code"></block></block>
+  <block id="f688ff7107bf9d836f9cd01490f96a85" category="list-text">验证集群 LIF 是否已还原到其主端口：<block ref="fb5130635551fff679ab6d902eaff8d9" prefix=" " category="inline-code"></block></block>
+  <block id="c1d6313b7fd8031407df0653209f4d42" category="list-text">对远程集群接口执行 Ping 操作以验证连接：<block ref="6d931e460f3e419ca5bc874e47132b6d" prefix=" " category="inline-code"></block></block>
+  <block id="6285269d7b8b003aed53cad1f3d13717" category="list-text">将所有集群节点连接缆线从旧CS2交换机移至新的CS2交换机。</block>
+  <block id="f8e1e48a80ce2fac4d53a95f1f1ffd18" category="paragraph">*集群节点连接电缆已移至CS2-new交换机*</block>
+  <block id="e07ca5d2322ee212c9dcb668e9db443a" category="image-alt">已将集群节点连接缆线移至CS2新交换机</block>
+  <block id="604d674dc95a98cb2db636e889289949" category="list-text">将集群节点连接缆线从CS1移至新的CS1新交换机。</block>
+  <block id="2e58f874fe5dd7ef46fee2c92b1e77eb" category="paragraph">*集群节点连接电缆已移至CS1-new交换机*</block>
+  <block id="7d829570fe05df690649474b2bb97a3b" category="image-alt">集群节点连接缆线移至CS1新交换机</block>
+  <block id="ec5ea2f0318e4d906c296f5576b9c026" category="list-text">[[STEP6]]如果禁止自动创建案例、请通过调用AutoSupport 消息重新启用：<block ref="9ac424c0d7b432975df36a19daf50c9c" prefix=" " category="inline-code"></block></block>
 </blocks>

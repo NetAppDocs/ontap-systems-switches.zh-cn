@@ -24,7 +24,7 @@ summary: 首次设置 Nexus 3132Q-V 交换机后，您可以安装 RCF 。您也
 * RCF中反映所需启动映像的启动配置、如果仅安装NX-OS并保留当前RCF版本、则需要此配置。如果您需要更改启动配置以反映当前启动映像，则必须在重新应用 RCF 之前进行更改，以便在将来重新启动时实例化正确的版本。
 * 安装RCF时需要与交换机建立控制台连接。
 * link:https://mysupport.netapp.com/site/info/cisco-ethernet-switch["Cisco 以太网交换机"^]。有关支持的ONTAP 和RCF版本、请参见交换机兼容性表。请注意、RCF中的命令语法与NX-OS版本中的命令语法之间可能存在命令依赖关系。
-* https://www.cisco.com/c/en/us/support/switches/nexus-3000-series-switches/products-installation-guides-list.html["Cisco Nexus 3000 系列交换机"^]。有关Cisco交换机升级和降级过程的完整文档、请参见Cisco网站上提供的相应软件和升级指南。
+* https://["Cisco Nexus 3000 系列交换机"^]。有关Cisco交换机升级和降级过程的完整文档、请参见Cisco网站上提供的相应软件和升级指南。
 
 
 
@@ -293,7 +293,7 @@ cs2#
 .. 对交换机执行基本设置。
 
 
-. 使用以下传输协议之一将 RCF 复制到交换机 CS2 的启动闪存： FTP ， TFTP ， SFTP 或 SCP 。有关 Cisco 命令的详细信息，请参见中的相应指南 https://www.cisco.com/c/en/us/support/switches/nexus-3000-series-switches/products-installation-guides-list.html["《 Cisco Nexus 3000 系列 NX-OS 命令参考》"^] 指南。
+. 使用以下传输协议之一将 RCF 复制到交换机 CS2 的启动闪存： FTP ， TFTP ， SFTP 或 SCP 。有关 Cisco 命令的详细信息，请参见中的相应指南 https://["《 Cisco Nexus 3000 系列 NX-OS 命令参考》"^] 指南。
 +
 .显示示例
 [%collapsible]
@@ -310,7 +310,7 @@ Copy complete, now saving to disk (please wait)...
 ====
 . 将先前下载的 RCF 应用于 bootflash 。
 +
-有关 Cisco 命令的详细信息，请参见中的相应指南 https://www.cisco.com/c/en/us/support/switches/nexus-3000-series-switches/products-installation-guides-list.html["《 Cisco Nexus 3000 系列 NX-OS 命令参考》"^] 指南。
+有关 Cisco 命令的详细信息，请参见中的相应指南 https://["《 Cisco Nexus 3000 系列 NX-OS 命令参考》"^] 指南。
 
 +
 .显示示例
@@ -377,7 +377,7 @@ cs2# show banner motd
 
 . 验证 RCF 版本和交换机设置是否正确后，将 running-config 文件复制到 startup-config 文件。
 +
-有关 Cisco 命令的详细信息，请参见中的相应指南 https://www.cisco.com/c/en/us/support/switches/nexus-3000-series-switches/products-installation-guides-list.html["《 Cisco Nexus 3000 系列 NX-OS 命令参考》"] 指南。
+有关 Cisco 命令的详细信息，请参见中的相应指南 https://["《 Cisco Nexus 3000 系列 NX-OS 命令参考》"] 指南。
 
 +
 .显示示例

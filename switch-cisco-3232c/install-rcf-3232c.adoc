@@ -281,7 +281,7 @@ cs2#
 .. 对交换机执行基本设置。
 
 
-. 使用以下传输协议之一将 RCF 复制到交换机 CS2 的启动闪存： FTP ， TFTP ， SFTP 或 SCP 。有关 Cisco 命令的详细信息，请参见中的相应指南 https://www.cisco.com/c/en/us/support/switches/nexus-3000-series-switches/products-installation-guides-list.html["《 Cisco Nexus 3000 系列 NX-OS 命令参考》"^] 指南。
+. 使用以下传输协议之一将 RCF 复制到交换机 CS2 的启动闪存： FTP ， TFTP ， SFTP 或 SCP 。有关 Cisco 命令的详细信息，请参见中的相应指南 https://["《 Cisco Nexus 3000 系列 NX-OS 命令参考》"^] 指南。
 +
 .显示示例
 [%collapsible]
@@ -300,7 +300,7 @@ Copy complete, now saving to disk (please wait)...
 ====
 . 将先前下载的 RCF 应用于 bootflash 。
 +
-有关 Cisco 命令的详细信息，请参见中的相应指南 https://www.cisco.com/c/en/us/support/switches/nexus-3000-series-switches/products-installation-guides-list.html["《 Cisco Nexus 3000 系列 NX-OS 命令参考》"^] 指南。
+有关 Cisco 命令的详细信息，请参见中的相应指南 https://["《 Cisco Nexus 3000 系列 NX-OS 命令参考》"^] 指南。
 
 +
 .显示示例
@@ -384,7 +384,7 @@ NOTE: 首次应用 RCF 时，系统会显示 * 错误：无法写入 VSH 命令 
 
 . 验证 RCF 版本和交换机设置是否正确后，将 running-config 文件复制到 startup-config 文件。
 +
-有关 Cisco 命令的详细信息，请参见中的相应指南 https://www.cisco.com/c/en/us/support/switches/nexus-3000-series-switches/products-installation-guides-list.html["《 Cisco Nexus 3000 系列 NX-OS 命令参考》"^] 指南。
+有关 Cisco 命令的详细信息，请参见中的相应指南 https://["《 Cisco Nexus 3000 系列 NX-OS 命令参考》"^] 指南。
 
 +
 [listing]

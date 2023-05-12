@@ -15,10 +15,10 @@ summary: 如果您还没有所需的配置信息和文档，则需要在设置�
 
 .您需要的内容
 * 访问安装站点上的HTTP、FTP或TFTP服务器、以下载适用的NX-OS和参考配置文件(RCF)版本。
-* 适用的NX-OS版本、从下载 https://software.cisco.com/download/home["Cisco 软件下载"^] 页面。
+* 适用的NX-OS版本、从下载 https://["Cisco 软件下载"^] 页面。
 * 适用的许可证、网络和配置信息以及缆线。
 * 已完成 link:setup-worksheet-9336c-storage.html["布线工作表"]。
-* 从NetApp 支持站点 下载的适用NetApp集群网络和管理网络RCF、网址为 http://mysupport.netapp.com/["mysupport.netapp.com"^]。所有 Cisco 集群网络和管理网络交换机均采用标准的 Cisco 出厂默认配置。这些交换机还具有最新版本的 NX-OS 软件，但未加载 RCF 。
+* 从NetApp 支持站点 下载的适用NetApp集群网络和管理网络RCF、网址为 http://["mysupport.netapp.com"^]。所有 Cisco 集群网络和管理网络交换机均采用标准的 Cisco 出厂默认配置。这些交换机还具有最新版本的 NX-OS 软件，但未加载 RCF 。
 * 所需的交换机文档。请参见 link:required-documentation-9336c-storage.html["所需文档"] 有关详细信息 ...
 
 

@@ -31,7 +31,7 @@ NetApp 直通面板套件包含以下硬件：
 
 NOTE: 跳线不随直通套件提供，应随交换机一起提供。如果这些交换机未随附，您可以从 NetApp （部件号 X1558A-R6 ）订购它们。
 
-* 有关初始准备要求、套件内容和安全预防措施、请参见 https://www.cisco.com/c/en/us/td/docs/switches/datacenter/nexus9000/hw/aci_9336cfx2_hig/guide/b_n9336cFX2_aci_hardware_installation_guide.html["《 Cisco Nexus 9000 系列硬件安装指南》"^]。
+* 有关初始准备要求、套件内容和安全预防措施、请参见 https://["《 Cisco Nexus 9000 系列硬件安装指南》"^]。
 
 
 .步骤
