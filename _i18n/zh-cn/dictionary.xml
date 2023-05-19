@@ -357,7 +357,6 @@
   <block id="47c173b91782927bfc36acfeeaec5f9f" category="paragraph">在检查输出以确认您的 RCF 正确无误时，请确保以下信息正确无误：</block>
   <block id="2a4c49daad6f24fc930342baa230202a" category="list-text">RCF 横幅</block>
   <block id="f867470f4d681a0d1ba65ec5afb71681" category="list-text">节点和端口设置</block>
-  <block id="52ffc473f824bd729618f53fb6d14415" category="list-text">自定义输出因站点配置而异。检查端口设置，并参阅发行说明，了解您安装的 RCF 的任何特定更改。</block>
   <block id="f84dbe517c4cab37d96220b08c6a7430" category="list-text">验证 RCF 版本和交换机设置是否正确后，将 running-config 文件复制到 startup-config 文件。</block>
   <block id="751ae8e5b1f665d84208a0d929c57d52" category="list-text">重新启动交换机 CS2 。在交换机重新启动时，您可以忽略节点上报告的 "`cluster ports down` " 事件。</block>
   <block id="05287537d898f5a1b2d701a759380d28" category="list-text">应用相同的 RCF 并再次保存运行配置。</block>
@@ -2206,8 +2205,6 @@
   <block id="fc248f74f5e36542f7f5627b8610e9a3" category="paragraph"><block ref="fc248f74f5e36542f7f5627b8610e9a3" category="inline-link-rx"></block></block>
   <block id="c0227cef6f07a8cd2ac72f2945b031aa" category="section-title">开放源代码</block>
   <block id="9b73989307c1975dfa4d5e1581e4afe8" category="paragraph">通知文件提供有关 NetApp 软件中使用的第三方版权和许可证的信息。</block>
-  <block id="8a69d7327337bf7d6152482b16e42f84" category="list-text">清理配置。</block>
-  <block id="88b2ab3c3baa9b0c5faeb2e8a0fec98a" category="admonition">此步骤需要与交换机建立控制台连接。</block>
   <block id="9a75d8eb81c880a703c72f7186f35288" category="doc">升级BES-53248集群交换机后验证配置</block>
   <block id="148a1525f4c4b2d620941031bf03f670" category="inline-link">_NetApp Hardware Universe</block>
   <block id="8761a71b0c01f0356000c0994d4fb203" category="paragraph">`ssystem switch Ethernet log setup-password`和`ssystem switch Ethernet log enable-Collection`</block>
@@ -2230,7 +2227,6 @@
   <block id="1d70d7c880f9a4b8e9ccbd4cbaeefcd8" category="list-text">在执行此操作步骤 之前、请确保已为交换机配置创建备份。</block>
   <block id="c291fea66565616d9e881666325c1ee2" category="list-text">如果您还没有交换机的当前备份、则可以通过将以下命令的输出复制到日志文件来保存当前交换机配置：</block>
   <block id="3f8f6d237f18036be3a3fb24642d16ba" category="list-text">如果您尚未保存当前交换机配置、请将以下命令的输出复制到日志文件中以保存此配置：</block>
-  <block id="d4d708e45e34a1416e859c8024a9e7c1" category="admonition">对于ONTAP 9.8及更高版本、请使用命令`ssystem Ethernet switch show -is-monitoring-enableed-Operational true`。</block>
   <block id="8fdae5a227344a83423005f83a057331" category="list-text">验证集群中所有节点上的集群端口是否均已启动且运行正常：</block>
   <block id="5d1ccfeff69430937e33ed02e46dbd94" category="list-text">从集群验证交换机运行状况。</block>
   <block id="53a0bfa393247902d9ea8fedde7e8132" category="list-text">重新启动交换机 CS1 。执行此操作可触发集群 LIF 还原到其主端口。您可以忽略交换机重新启动时在节点上报告的 " 集群端口关闭 " 事件。</block>
@@ -3024,7 +3020,6 @@
   <block id="1238025070f42c2c91970d4a31d2a5c4" category="paragraph"><block ref="229e8d1240617e0b97c680c36bbc9564" prefix="" category="inline-code"></block></block>
   <block id="80ab93e3822e7ed7a0bd76c9ee9103bb" category="section-title">第2步：配置端口</block>
   <block id="ef1ee64e66c476fc0def572853f98a6d" category="paragraph">以下示例使用接口示例输出：</block>
-  <block id="0d338ee833fbd097dbf87aa3c232f048" category="list-text">对交换机CS1重复上述步骤。</block>
   <block id="28f363620ef0b78f100aebcc28cca7da" category="list-text">验证连接到集群端口的交换机端口是否为*已启动*。</block>
   <block id="5a60cb8f615fe52bbea3a0ce20d7cbf3" category="paragraph">要使用智能自动通报功能、请查看以下准则。</block>
   <block id="196735c2e16dea95e9e52940e995e4d3" category="paragraph">智能自动通报功能可监控网络上的硬件和软件组件。发生关键系统配置时、它会生成基于电子邮件的通知、并向目标配置文件中配置的所有收件人发出警报。要使用智能自动通报、您必须将集群网络交换机配置为使用电子邮件与智能自动通报系统进行通信。此外、您还可以选择设置集群网络交换机、以利用Cisco的嵌入式智能自动通报支持功能。</block>
@@ -3134,7 +3129,6 @@
   <block id="f85e9af89252fc6fd85cfbb4e0aa1add" category="section-title">第1步：检查端口状态</block>
   <block id="c35204e874fcafc94c7c67e31162e966" category="paragraph">确保在运行此命令后禁用自动还原。</block>
   <block id="d08074ca4afc3cad1b1b41c1134b3f1e" category="section-title">第2步：配置并验证设置</block>
-  <block id="0c0b4ff8f510dfc18a7d95bef227ea58" category="paragraph"><block ref="ed3fe2a45ef033acf306fc90fbafdd66" prefix="" category="inline-code"></block></block>
   <block id="b6ec5ccd50e4a92a636c1dc432c89581" category="admonition">集群节点报告运行状况可能需要长达5分钟的时间。</block>
   <block id="442f3bc68fd4ab1c760b482d02f7ca71" category="list-text">对交换机CS1重复步骤1到10。</block>
   <block id="06e9c44ff7df8ac56c0fec0f8ded0121" category="section-title">第3步：重新启动并验证配置</block>
@@ -4429,4 +4423,13 @@
   <block id="2e58f874fe5dd7ef46fee2c92b1e77eb" category="paragraph">*集群节点连接电缆已移至CS1-new交换机*</block>
   <block id="7d829570fe05df690649474b2bb97a3b" category="image-alt">集群节点连接缆线移至CS1新交换机</block>
   <block id="ec5ea2f0318e4d906c296f5576b9c026" category="list-text">[[STEP6]]如果禁止自动创建案例、请通过调用AutoSupport 消息重新启用：<block ref="9ac424c0d7b432975df36a19daf50c9c" prefix=" " category="inline-code"></block></block>
+  <block id="0429fa776d68090e46718ac7e32390ef" category="admonition">对于EFOS 3.10.0.3及更高版本、请使用命令<block ref="c09633a606c51a161b16f8bf38f5ebb1" prefix=" " category="inline-code"></block>。</block>
+  <block id="455129a1d85d80f79e8d763a25910c74" category="admonition">更新或应用新 RCF 时，必须擦除交换机设置并执行基本配置。如果可以禁用PowerOn自动配置(POAP)、则会保留SSH交换机访问权限(需要NX-OS 9.2P1或更高版本)。作为额外的预防措施、如果交换机重新启动后无法进行SSH访问、请使用串行控制台连接到交换机。</block>
+  <block id="2df26e386d021172b261bcb47e157019" category="list-text">清理配置：</block>
+  <block id="a5247127c3e0a3fcdf9f80746c33cb54" category="list-text">禁用POAP：</block>
+  <block id="b64ae68f672b168b4456ea13b494a759" category="inline-link">使用PowerOn自动配置</block>
+  <block id="01197fee3250d671fd8c51972b5f4745" category="paragraph">请参见<block ref="ff53901c2c0b0d51a17df0925879b1a5" category="inline-link-rx"></block> 了解更多详细信息。</block>
+  <block id="b8363a3557b5e1732a20eb45a96853b7" category="list-text">确认在下次重新加载时已禁用POAP：</block>
+  <block id="f306e2be0abd8aabfa0b014c372bbac8" category="list-text">对交换机CS1重复步骤4至11。</block>
+  <block id="256be937ef390f7d6dd71ad092869119" category="admonition">对于ONTAP 9.8及更高版本、请使用命令<block ref="c57378c3b3bb81c6b42a2b31a30ddda7" prefix=" " category="inline-code"></block>。</block>
 </blocks>
