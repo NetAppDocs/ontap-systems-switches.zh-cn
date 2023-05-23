@@ -40,7 +40,7 @@ summary: 首次设置 Nexus 92300YC 交换机后，您可以安装 RCF 。
 
 
 .关于此任务
-操作步骤 需要同时使用ONTAP 命令和 https://["Cisco Nexus 9000 系列交换机"^]；除非另有说明、否则使用ONTAP 命令。
+操作步骤 需要同时使用ONTAP 命令和 https://www.cisco.com/c/en/us/support/switches/nexus-9000-series-switches/series.html#InstallandUpgrade["Cisco Nexus 9000 系列交换机"^]；除非另有说明、否则使用ONTAP 命令。
 
 .步骤
 . 显示连接到集群交换机的每个节点上的集群端口：
@@ -227,7 +227,7 @@ cs2#
 .. 对交换机执行基本设置。
 
 
-. 使用以下传输协议之一将 RCF 复制到交换机 CS2 的启动闪存： FTP ， TFTP ， SFTP 或 SCP 。有关 Cisco 命令的详细信息，请参见中的相应指南 https://["Cisco Nexus 9000 系列交换机"^] 指南。
+. 使用以下传输协议之一将 RCF 复制到交换机 CS2 的启动闪存： FTP ， TFTP ， SFTP 或 SCP 。有关 Cisco 命令的详细信息，请参见中的相应指南 https://www.cisco.com/c/en/us/support/switches/nexus-9000-series-switches/series.html#InstallandUpgrade["Cisco Nexus 9000 系列交换机"^] 指南。
 +
 .显示示例
 [%collapsible]
@@ -255,7 +255,7 @@ Copy complete.
 ====
 . 将先前下载的 RCF 应用于 bootflash 。
 +
-有关 Cisco 命令的详细信息，请参见中的相应指南 https://["Cisco Nexus 9000 系列交换机"^] 指南。
+有关 Cisco 命令的详细信息，请参见中的相应指南 https://www.cisco.com/c/en/us/support/switches/nexus-9000-series-switches/series.html#InstallandUpgrade["Cisco Nexus 9000 系列交换机"^] 指南。
 
 +
 .显示示例
@@ -358,7 +358,7 @@ NOTE: 首次应用 RCF 时，系统会显示 * 错误：无法写入 VSH 命令 
 
 . 验证 RCF 版本和交换机设置是否正确后，将 running-config 文件复制到 startup-config 文件。
 +
-有关 Cisco 命令的详细信息，请参见中的相应指南 https://["Cisco Nexus 9000 系列交换机"^] 指南。
+有关 Cisco 命令的详细信息，请参见中的相应指南 https://www.cisco.com/c/en/us/support/switches/nexus-9000-series-switches/series.html#InstallandUpgrade["Cisco Nexus 9000 系列交换机"^] 指南。
 
 +
 [listing, subs="+quotes"]

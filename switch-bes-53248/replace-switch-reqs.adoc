@@ -45,6 +45,6 @@ summary: 在集群网络中更换 Broadcom 支持的故障 BES-53248 集群交�
 
 == 有关详细信息 ...
 
-* https://["NetApp 支持站点"^]
-* https://["NetApp Hardware Universe"^]
+* https://mysupport.netapp.com/["NetApp 支持站点"^]
+* https://hwu.netapp.com/Home/Index["NetApp Hardware Universe"^]
 

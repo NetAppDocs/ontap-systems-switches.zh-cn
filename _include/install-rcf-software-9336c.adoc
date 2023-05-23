@@ -32,7 +32,7 @@
 * `cluster1 ：：： * >` 提示符指示集群的名称。
 
 
-此操作步骤中的示例使用两个节点。这些节点使用两个 10GbE 集群互连端口 e0a 和 e0b 。请参见 https://["Hardware Universe"] 验证平台上的集群端口是否正确。
+此操作步骤中的示例使用两个节点。这些节点使用两个 10GbE 集群互连端口 e0a 和 e0b 。请参见 https://hwu.netapp.com/SWITCH/INDEX["Hardware Universe"] 验证平台上的集群端口是否正确。
 
 
 NOTE: 根据不同版本的 ONTAP ，命令输出可能会有所不同。
@@ -314,7 +314,7 @@ Do you wish to proceed anyway? (y/n)  [n]  *y*
 ----
 ====
 +
-请参见 https://["使用PowerOn自动配置"^] 了解更多详细信息。
+请参见 https://www.cisco.com/c/en/us/td/docs/dcn/nx-os/nexus9000/103x/configuration/fundamentals/cisco-nexus-9000-nx-os-fundamentals-configuration-guide-103x/m-using-poap.html?bookSearch=true#id_85315["使用PowerOn自动配置"^] 了解更多详细信息。
 
 .. 确认在下次重新加载时已禁用POAP：
 +
@@ -348,7 +348,7 @@ Are you sure you would like to reset the system? (y/n) *y*
 .. 使用SSH再次登录到交换机以完成RC框架 安装。
 
 
-. 使用以下传输协议之一将 RCF 复制到交换机 CS2 的启动闪存： FTP ， TFTP ， SFTP 或 SCP 。有关 Cisco 命令的详细信息，请参见中的相应指南 https://["《 Cisco Nexus 9000 系列 NX-OS 命令参考》"^] 指南。
+. 使用以下传输协议之一将 RCF 复制到交换机 CS2 的启动闪存： FTP ， TFTP ， SFTP 或 SCP 。有关 Cisco 命令的详细信息，请参见中的相应指南 https://www.cisco.com/c/en/us/support/switches/nexus-9336c-fx2-switch/model.html#CommandReferences["《 Cisco Nexus 9000 系列 NX-OS 命令参考》"^] 指南。
 +
 .显示示例
 [%collapsible]
@@ -367,7 +367,7 @@ Copy complete, now saving to disk (please wait)...
 ====
 . 将先前下载的 RCF 应用于 bootflash 。
 +
-有关 Cisco 命令的详细信息，请参见中的相应指南 https://["《 Cisco Nexus 9000 系列 NX-OS 命令参考》"^] 指南。
+有关 Cisco 命令的详细信息，请参见中的相应指南 https://www.cisco.com/c/en/us/support/switches/nexus-9336c-fx2-switch/model.html#CommandReferences["《 Cisco Nexus 9000 系列 NX-OS 命令参考》"^] 指南。
 
 +
 .显示示例
@@ -440,7 +440,7 @@ g mode:
 
 . 验证 RCF 版本和交换机设置是否正确后，将 running-config 文件复制到 startup-config 文件。
 +
-有关 Cisco 命令的详细信息，请参见中的相应指南 https://["《 Cisco Nexus 9000 系列 NX-OS 命令参考》"^] 指南。
+有关 Cisco 命令的详细信息，请参见中的相应指南 https://www.cisco.com/c/en/us/support/switches/nexus-9336c-fx2-switch/model.html#CommandReferences["《 Cisco Nexus 9000 系列 NX-OS 命令参考》"^] 指南。
 
 +
 .显示示例

@@ -43,7 +43,7 @@ summary: 如果您使用双节点无交换机集群，则可以无中断地迁�
 +
 您可以使用 `interface breakout module 1 port 1-6 map 10g-4x` 命令将前六个端口细分为 4x10 GbE 模式。同样，您也可以使用 `no interface breakout module 1 port 1-6 map 10g-4x` 命令对分支配置中的前六个 QSFP + 端口进行重新分组。
 
-* 10 GbE 和 40/100 GbE 端口的数量在上提供的参考配置文件（ RCF ）中定义 https://["Cisco ® 集群网络交换机参考配置文件下载"^] 页面。
+* 10 GbE 和 40/100 GbE 端口的数量在上提供的参考配置文件（ RCF ）中定义 https://mysupport.netapp.com/NOW/download/software/sanswitch/fcp/Cisco/netapp_cnmn/download.shtml["Cisco ® 集群网络交换机参考配置文件下载"^] 页面。
 
 
 .您需要的内容
@@ -92,7 +92,7 @@ summary: 如果您使用双节点无交换机集群，则可以无中断地迁�
 * n1_clus2 是第一个连接到节点 n1 的集群交换机 C2 的集群 LIF 。
 * n2_clus1 是连接到节点 n2 的集群交换机 C1 的第一个集群 LIF 。
 * n2_clus2 是要连接到节点 n2 的集群交换机 C2 的第二个集群 LIF 。
-* 10 GbE 和 40/100 GbE 端口的数量在上提供的参考配置文件（ RCF ）中定义 https://["Cisco ® 集群网络交换机参考配置文件下载"^] 页面。
+* 10 GbE 和 40/100 GbE 端口的数量在上提供的参考配置文件（ RCF ）中定义 https://mysupport.netapp.com/NOW/download/software/sanswitch/fcp/Cisco/netapp_cnmn/download.shtml["Cisco ® 集群网络交换机参考配置文件下载"^] 页面。
 
 
 [NOTE]

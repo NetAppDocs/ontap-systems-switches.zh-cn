@@ -20,7 +20,7 @@ summary: 对于Cisco Nexus 9336C-x2交换机安装和维护、请务必查看特
 
 == 交换机文档
 
-要设置Cisco Nexus 9336C-FX2交换机、您需要中的以下文档 https://["Cisco Nexus 9000 系列交换机支持"^] 页面。
+要设置Cisco Nexus 9336C-FX2交换机、您需要中的以下文档 https://www.cisco.com/c/en/us/support/switches/nexus-9000-series-switches/series.html["Cisco Nexus 9000 系列交换机支持"^] 页面。
 
 [cols="1,2"]
 |===
@@ -86,7 +86,7 @@ Cisco Nexus 9000 系列的合规性和安全信息
 
 == ONTAP 系统文档
 
-要设置 ONTAP 系统，您需要在中为您的操作系统版本提供以下文档 https://["ONTAP 9 文档中心"^]。
+要设置 ONTAP 系统，您需要在中为您的操作系统版本提供以下文档 https://docs.netapp.com/ontap-9/index.jsp["ONTAP 9 文档中心"^]。
 
 [cols="1,2"]
 |===
@@ -108,7 +108,7 @@ ONTAP 文档
 
 
  a| 
-https://["Hardware Universe"^]
+https://hwu.netapp.com["Hardware Universe"^]
  a| 
 提供 NetApp 硬件配置和兼容性信息。
 
@@ -125,7 +125,7 @@ https://["Hardware Universe"^]
 
 
  a| 
-https://["42U 系统机柜，深度指南"^]
+https://library.netapp.com/ecm/ecm_download_file/ECMM1280394["42U 系统机柜，深度指南"^]
  a| 
 介绍与 42U 系统机柜关联的 FRU ，并提供维护和 FRU 更换说明。
 

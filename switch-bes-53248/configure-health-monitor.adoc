@@ -21,7 +21,7 @@ summary: '您可以安装集群交换机运行状况监控器(Cluster Switch Hea
 按照以下步骤安装集群交换机运行状况监控器(Cluster Switch Health Monitor、CSHM)配置文件。
 
 .步骤
-. 根据相应的ONTAP 版本下载CSHM zip文件。此文件可从页面获得： https://["NetApp 软件下载"^]
+. 根据相应的ONTAP 版本下载CSHM zip文件。此文件可从页面获得： https://mysupport.netapp.com/NOW/cgi-bin/software/["NetApp 软件下载"^]
 +
 .. 在软件下载页面上、选择*交换机运行状况监控器配置文件*。
 .. 选择平台=* ONTAP *、然后单击*执行！*。

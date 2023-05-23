@@ -20,7 +20,7 @@ summary: '更换无中断操作步骤 中存在故障的NVIDIA SN2100存储交�
 * 您已下载适用的RCF。
 
 
-。 http://["Hardware Universe"^] 提供支持的端口及其配置的完整详细信息。
+。 http://hwu.netapp.com["Hardware Universe"^] 提供支持的端口及其配置的完整详细信息。
 
 现有网络配置必须具有以下特征：
 

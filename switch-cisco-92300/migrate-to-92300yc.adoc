@@ -70,8 +70,8 @@ NOTE: 迁移完成后，您可能需要安装所需的配置文件，以支持 9
 ** 端口 E1/13-20 （ 10 GbE ）： Nexus 5010
 
 
-* https://["Hardware Universe —交换机"^] 包含有关所有集群交换机支持的布线的信息。
-* 此操作步骤 支持的 ONTAP 和 NX-OS 版本位于上 https://["Cisco 以太网交换机"^] 页面。
+* https://hwu.netapp.com/SWITCH/INDEX["Hardware Universe —交换机"^] 包含有关所有集群交换机支持的布线的信息。
+* 此操作步骤 支持的 ONTAP 和 NX-OS 版本位于上 https://support.netapp.com/NOW/download/software/cm_switches/["Cisco 以太网交换机"^] 页面。
 
 
 

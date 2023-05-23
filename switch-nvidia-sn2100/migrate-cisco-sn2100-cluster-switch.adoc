@@ -29,7 +29,7 @@ summary: 您可以将ONTAP 集群中较早的Cisco集群交换机无中断迁移
 * Nexus 3132Q-V
 
 
-有关支持的端口及其配置的详细信息、请参见 https://["Hardware Universe"^] 。
+有关支持的端口及其配置的详细信息、请参见 https://hwu.netapp.com/["Hardware Universe"^] 。
 
 .您需要的内容
 确保：

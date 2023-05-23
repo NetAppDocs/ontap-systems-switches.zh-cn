@@ -34,7 +34,7 @@ summary: 升级 BES-53248 集群交换机首先需要准备要升级的控制器
 NOTE: RCF 和 EFOS 版本中的命令语法之间可能存在命令依赖关系。
 
 
-NOTE: 有关交换机兼容性、请参见上的兼容性表 https://["Broadcom 集群交换机"^] 页面上显示了受支持的EFOS、RCF和ONTAP 版本。
+NOTE: 有关交换机兼容性、请参见上的兼容性表 https://mysupport.netapp.com/site/products/all/details/broadcom-cluster-switches/downloads-tab["Broadcom 集群交换机"^] 页面上显示了受支持的EFOS、RCF和ONTAP 版本。
 
 
 

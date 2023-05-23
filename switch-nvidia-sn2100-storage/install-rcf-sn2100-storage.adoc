@@ -104,7 +104,7 @@ RCF脚本将完成上述步骤。
 
 +
 
-NOTE: 对于无法更正的任何RCF python脚本问题、请联系 https://["NetApp 支持"^] 以获得帮助。
+NOTE: 对于无法更正的任何RCF python脚本问题、请联系 https://mysupport.netapp.com/["NetApp 支持"^] 以获得帮助。
 
 . 重新启动后验证配置：
 +

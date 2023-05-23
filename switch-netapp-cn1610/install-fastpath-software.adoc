@@ -26,7 +26,7 @@ summary: 在 NetApp 交换机上安装 FastPath 软件时，必须从第二个�
 * 成功的通信路径：ONTAP (权限：高级) `cluster ping-cluster -node node1` 命令必须指明这一点 `larger than PMTU communication` 在所有路径上均成功。
 * 支持的FastPath和ONTAP 版本。
 +
-请务必参考上的交换机兼容性表 http://["NetApp CN1601 和 CN1610 交换机"^] 页面上显示了支持的快速路径和ONTAP 版本。
+请务必参考上的交换机兼容性表 http://mysupport.netapp.com/NOW/download/software/cm_switches_ntap/["NetApp CN1601 和 CN1610 交换机"^] 页面上显示了支持的快速路径和ONTAP 版本。
 
 
 
@@ -47,7 +47,7 @@ RCF 和 FastPath 版本中的命令语法之间可能存在命令依赖关系。
 * `cluster ：：： * >` 提示符用于指示集群的名称。
 * 每个节点上的集群端口分别命名为 e1a 和 e2a 。
 +
-https://["Hardware Universe"^] 提供有关您的平台支持的实际集群端口的详细信息。
+https://hwu.netapp.com/["Hardware Universe"^] 提供有关您的平台支持的实际集群端口的详细信息。
 
 * 支持的交换机间链路(ISL)为端口0/13到0/16。
 * 支持的节点连接为端口0/1到0/12。

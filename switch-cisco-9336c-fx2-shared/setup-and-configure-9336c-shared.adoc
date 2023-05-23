@@ -17,9 +17,9 @@ summary:
 按照以下说明配置Cisco Nexus 9336C-x2共享交换机。
 
 .您需要的内容
-* 所需的共享交换机文档、控制器文档和ONTAP 文档。请参见 link:required-documentation-9336c-shared.html["Cisco Nexus 9336C-x2共享交换机的文档要求"] 和 https://["NetApp ONTAP 文档"^]。
+* 所需的共享交换机文档、控制器文档和ONTAP 文档。请参见 link:required-documentation-9336c-shared.html["Cisco Nexus 9336C-x2共享交换机的文档要求"] 和 https://docs.netapp.com/us-en/ontap/index.html["NetApp ONTAP 文档"^]。
 * 适用的许可证、网络和配置信息以及缆线。
-* 已完成布线工作表。请参见 link:cable-9336c-shared.html["填写Cisco Nexus 9336C-x2布线工作表"]。有关布线的详细信息、请参见 https://["Hardware Universe"]。
+* 已完成布线工作表。请参见 link:cable-9336c-shared.html["填写Cisco Nexus 9336C-x2布线工作表"]。有关布线的详细信息、请参见 https://hwu.netapp.com["Hardware Universe"]。
 
 
 .步骤
@@ -130,7 +130,7 @@ NOTE: 使用集群交换机运行状况监控器（ CSHM ）收集日志功能�
 
 NOTE: 如果您在此阶段未保存配置，则下次重新启动交换机时，所有更改都不会生效。
 
-. 检查集群网络交换机上的版本、如有必要、从将NetApp支持的软件版本下载到交换机 https://["Cisco软件下载"^] 页面。
+. 检查集群网络交换机上的版本、如有必要、从将NetApp支持的软件版本下载到交换机 https://software.cisco.com/download/home["Cisco软件下载"^] 页面。
 
 
 .下一步是什么？

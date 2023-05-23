@@ -15,7 +15,7 @@ summary: 要安装SN2100硬件、请参阅NVIDIA的文档。
 
 .步骤
 . 查看 link:configure-reqs-sn2100-cluster.html["配置要求"]。
-. 按照中的说明进行操作 https://["NVIDIA交换机安装指南"^]。
+. 按照中的说明进行操作 https://docs.nvidia.com/networking/display/sn2000pub/Installation["NVIDIA交换机安装指南"^]。
 
 
 .下一步是什么？

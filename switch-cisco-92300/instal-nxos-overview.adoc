@@ -15,11 +15,11 @@ summary: Cisco Nexus 92300YC 集群交换机上必须安装 Cisco NX-OS 软件�
 
 .您需要的内容
 * 一个完全正常运行的集群(日志中没有错误或类似问题)。
-* 可从获取相应的软件和升级指南 https://["Cisco Nexus 9000 系列交换机"^]。
+* 可从获取相应的软件和升级指南 https://www.cisco.com/c/en/us/support/switches/nexus-9000-series-switches/series.html#InstallandUpgrade["Cisco Nexus 9000 系列交换机"^]。
 
 
 .关于示例
-此操作步骤中的示例使用两个节点。这些节点使用两个10GbE集群互连端口 `e0a` 和 `e0b`。请参见 https://["Hardware Universe"^] 验证平台上的集群端口是否正确。
+此操作步骤中的示例使用两个节点。这些节点使用两个10GbE集群互连端口 `e0a` 和 `e0b`。请参见 https://hwu.netapp.com/SWITCH/INDEX["Hardware Universe"^] 验证平台上的集群端口是否正确。
 
 此操作步骤中的示例使用以下交换机和节点命名：
 

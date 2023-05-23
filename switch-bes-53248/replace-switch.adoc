@@ -120,8 +120,8 @@ NOTE: AutoSupport 消息会通知技术支持此维护任务，以便在维护�
 如有必要，请验证，下载并安装适用于新交换机的 RCF 和 EFOS 软件的相应版本。如果您已确认新交换机设置正确，并且不需要更新 RCF 和 EFOS 软件，请继续执行步骤 2 。
 
 +
-.. 您可以从下载适用于集群交换机的 Broadcom EFOS 软件 https://["Broadcom 以太网交换机支持"^] 站点按照下载页面上的步骤下载要安装的 ONTAP 软件版本的 EFOS 文件。
-.. 可从获取相应的 RCF https://["Broadcom 集群交换机"^] 页面。按照下载页面上的步骤下载适用于您要安装的 ONTAP 软件版本的正确 RCF 。
+.. 您可以从下载适用于集群交换机的 Broadcom EFOS 软件 https://www.broadcom.com/support/bes-switch["Broadcom 以太网交换机支持"^] 站点按照下载页面上的步骤下载要安装的 ONTAP 软件版本的 EFOS 文件。
+.. 可从获取相应的 RCF https://mysupport.netapp.com/site/products/all/details/broadcom-cluster-switches/downloads-tab["Broadcom 集群交换机"^] 页面。按照下载页面上的步骤下载适用于您要安装的 ONTAP 软件版本的正确 RCF 。
 
 
 . 在新交换机上、以身份登录 `admin` 并关闭将连接到节点集群接口的所有端口(端口1到16)。

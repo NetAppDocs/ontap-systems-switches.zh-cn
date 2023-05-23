@@ -37,10 +37,10 @@ summary: 在将某些旧的 Cisco Nexus 集群交换机更换为 Cisco Nexus 923
 ** 端口 E1/13-20 （ 10 GbE ）： Nexus 5010
 
 
-* 。 https://["_SIL_ Hardware Universe"^] 包含有关所有集群交换机支持的布线的信息。
+* 。 https://hwu.netapp.com/SWITCH/INDEX["_SIL_ Hardware Universe"^] 包含有关所有集群交换机支持的布线的信息。
 * 您已将 Nexus 92300YC 交换机上的某些端口配置为以 10 GbE 或 40 GbE 运行。
 * 您已规划，迁移并记录从节点到 Nexus 92300YC 集群交换机的 10 GbE 和 40 GbE 连接。
-* 此操作步骤 支持的 ONTAP 和 NX-OS 版本位于上 https://["Cisco 以太网交换机"^] 页面。
+* 此操作步骤 支持的 ONTAP 和 NX-OS 版本位于上 https://mysupport.netapp.com/site/info/cisco-ethernet-switch["Cisco 以太网交换机"^] 页面。
 +
 
 NOTE: 迁移完成后，您可能需要安装所需的配置文件，以支持 923300 YC 集群交换机的集群交换机运行状况监控器（ Cluster Switch Health Monitor ， CSHM ）。请参见 link:setup-install-cshm-file.html["安装集群交换机运行状况监控器（ CSHM ）配置文件"] 了解详细信息。

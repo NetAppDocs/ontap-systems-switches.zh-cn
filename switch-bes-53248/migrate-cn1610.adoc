@@ -49,7 +49,7 @@ NOTE: 可以通过购买端口许可证来激活其他端口。
 * BES-53248 ：端口 0/55-0/56 （ 100 GbE ）
 
 
-。 https://["_NetApp Hardware Universe"^] 包含有关ONTAP 兼容性、支持的EFOS固件以及BES-53248集群交换机布线的信息。
+。 https://hwu.netapp.com/Home/Index["_NetApp Hardware Universe"^] 包含有关ONTAP 兼容性、支持的EFOS固件以及BES-53248集群交换机布线的信息。
 
 
 
@@ -343,7 +343,7 @@ Ports   Timeout        Speed     Active
 ====
 . 在所有节点上，拔下连接到 CN1610 交换机 CL2 的缆线。
 +
-然后，您必须将所有节点上已断开连接的端口重新连接到新的 BES-53248 交换机 CS2 。请参见 https://["_NetApp Hardware Universe"^] 用于获得批准的布线选项。
+然后，您必须将所有节点上已断开连接的端口重新连接到新的 BES-53248 交换机 CS2 。请参见 https://hwu.netapp.com/Home/Index["_NetApp Hardware Universe"^] 用于获得批准的布线选项。
 
 . 从 CN1610 交换机 CL2 上的端口 13 到 16 拔下四根 ISL 缆线。
 +
@@ -529,7 +529,7 @@ RPC status:
 ====
 . 在所有节点上，拔下连接到 CN1610 交换机 CL1 的缆线。
 +
-然后，您必须将所有节点上已断开连接的端口重新连接到新的 BES-53248 交换机 CS1 。请参见 https://["_NetApp Hardware Universe"^] 用于获得批准的布线选项。
+然后，您必须将所有节点上已断开连接的端口重新连接到新的 BES-53248 交换机 CS1 。请参见 https://hwu.netapp.com/Home/Index["_NetApp Hardware Universe"^] 用于获得批准的布线选项。
 
 . 拔下 BES-53248 交换机 CS2 上端口 13 到 16 的四根 ISL 缆线。
 . 删除 CS2 上的临时端口通道 2 。

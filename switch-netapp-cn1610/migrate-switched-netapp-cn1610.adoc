@@ -33,7 +33,7 @@ summary: 如果您有一个现有的双节点无交换机集群环境，则可�
 * 可以通过控制台访问集群交换机。
 * CN1610节点到节点交换机和交换机到交换机连接使用双轴或光缆。
 +
-。 https://["Hardware Universe"^] 包含有关布线的详细信息。
+。 https://hwu.netapp.com/["Hardware Universe"^] 包含有关布线的详细信息。
 
 * 交换机间链路(ISL)缆线连接到两个CN1610交换机上的端口13到16。
 * 两个CN1610交换机的初始自定义均已完成。
@@ -43,10 +43,10 @@ summary: 如果您有一个现有的双节点无交换机集群环境，则可�
 
 
 .相关信息
-* http://["Hardware Universe"^]
-* http://["NetApp CN1601 和 CN1610 问题描述 页面"^]
-* https://["《 CN1601 和 CN1610 交换机设置和配置指南》"^]
-* https://["NetApp 知识库文章 1010449 ： How to suppress automatic case creation during scheduled maintenance windows."^]
+* http://hwu.netapp.com["Hardware Universe"^]
+* http://support.netapp.com/NOW/download/software/cm_switches_ntap/["NetApp CN1601 和 CN1610 问题描述 页面"^]
+* https://library.netapp.com/ecm/ecm_download_file/ECMP1118645["《 CN1601 和 CN1610 交换机设置和配置指南》"^]
+* https://kb.netapp.com/Advice_and_Troubleshooting/Data_Storage_Software/ONTAP_OS/How_to_suppress_automatic_case_creation_during_scheduled_maintenance_windows["NetApp 知识库文章 1010449 ： How to suppress automatic case creation during scheduled maintenance windows."^]
 
 
 
@@ -62,7 +62,7 @@ summary: 如果您有一个现有的双节点无交换机集群环境，则可�
 * `cluster ：：： * >` 提示符用于指示集群的名称。
 * 此操作步骤 中使用的集群端口为 e1a 和 e2a 。
 +
-。 https://["Hardware Universe"^] 包含有关平台的实际集群端口的最新信息。
+。 https://hwu.netapp.com/["Hardware Universe"^] 包含有关平台的实际集群端口的最新信息。
 
 
 

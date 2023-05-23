@@ -30,7 +30,7 @@ summary: 从 ONTAP 9.1.1 开始，您可以使用 Cisco Nexus 9336C-f2 交换机
 
 请确保：
 
-* 您的交换机具有适当数量和类型的缆线和缆线连接器。请参见 https://["Hardware Universe"^]。
+* 您的交换机具有适当数量和类型的缆线和缆线连接器。请参见 https://hwu.netapp.com["Hardware Universe"^]。
 * 根据您最初配置的交换机类型、您需要使用随附的控制台缆线连接到交换机控制台端口。
 
 
@@ -43,7 +43,7 @@ summary: 从 ONTAP 9.1.1 开始，您可以使用 Cisco Nexus 9336C-f2 交换机
 * 用于管理网络流量的 IP 子网
 * 每个存储系统控制器和所有适用交换机的主机名和 IP 地址
 * 大多数存储系统控制器通过 e0M 接口连接到以太网服务端口（扳手图标）进行管理。在 AFF A800 和 AFF A700s 系统上， e0M 接口使用专用以太网端口。
-* 请参见 https://["Hardware Universe"^] 以获取最新信息。
+* 请参见 https://hwu.netapp.com["Hardware Universe"^] 以获取最新信息。
 
 
-有关交换机初始配置的详细信息，请参见以下指南： https://["《 Cisco Nexus 9336C-x2 安装和升级指南》"^]。
+有关交换机初始配置的详细信息，请参见以下指南： https://www.cisco.com/c/en/us/td/docs/dcn/hw/nx-os/nexus9000/9336c-fx2-e/cisco-nexus-9336c-fx2-e-nx-os-mode-switch-hardware-installation-guide.html["《 Cisco Nexus 9336C-x2 安装和升级指南》"^]。

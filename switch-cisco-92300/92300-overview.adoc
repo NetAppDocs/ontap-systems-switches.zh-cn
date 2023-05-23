@@ -79,42 +79,42 @@ Cisco Nexus 92300YC 交换机气流详细信息：
 
 
  a| 
-https://["设置 Cisco ® Nexus 92300YC 集群交换机 _"^]
+https://docs.netapp.com/us-en/ontap-systems-switches/switch-cisco-92300/install-overview-cisco-92300.html["设置 Cisco ® Nexus 92300YC 集群交换机 _"^]
  a| 
 介绍如何设置和配置 Cisco Nexus 92300YC 集群交换机。
 
 
 
  a| 
-https://["安装 NX-OS 和参考配置文件（ RCF ） _"^]
+https://docs.netapp.com/us-en/ontap-systems-switches/switch-cisco-92300/install-nxos-overview.html["安装 NX-OS 和参考配置文件（ RCF ） _"^]
  a| 
 介绍如何在 Nexus 92300YC 集群交换机上安装 NX-OS 和参考配置文件（ RCF ）。
 
 
 
  a| 
-https://["配置新的 Cisco Nexus 92300YC 交换机 _"^]
+https://docs.netapp.com/us-en/ontap-systems-switches/switch-cisco-92300/configure-install-initial.html["配置新的 Cisco Nexus 92300YC 交换机 _"^]
  a| 
 介绍如何从使用旧版 Cisco 交换机的环境迁移到使用 Cisco 92300YC 交换机的环境。
 
 
 
  a| 
-https://["_ 从旧版 Cisco 交换机迁移到 Cisco Nexus 92300YC 交换机 _"^]
+https://docs.netapp.com/us-en/ontap-systems-switches/switch-cisco-92300/migrate-to-92300yc-overview.html["_ 从旧版 Cisco 交换机迁移到 Cisco Nexus 92300YC 交换机 _"^]
  a| 
 介绍将旧版 Cisco 交换机更换为 Cisco Nexus 92300YC 集群交换机的操作步骤 。
 
 
 
  a| 
-https://["_ 从双节点无交换机集群迁移 _"^]
+https://docs.netapp.com/us-en/ontap-systems-switches/switch-cisco-92300/migrate-to-2n-switched.html["_ 从双节点无交换机集群迁移 _"^]
  a| 
 介绍如何使用 Cisco Nexus 92300YC 集群交换机从双节点无交换机集群环境迁移到双节点有交换机环境。
 
 
 
  a| 
-https://["更换 Cisco Nexus 92300YC 集群交换机 _"^]
+https://docs.netapp.com/us-en/ontap-systems-switches/switch-cisco-92300/replace-92300yc.html["更换 Cisco Nexus 92300YC 集群交换机 _"^]
  a| 
 介绍用于更换集群中有故障的 Cisco Nexus 92300YC 交换机以及下载交换机操作系统和参考配置文件的操作步骤 。
 

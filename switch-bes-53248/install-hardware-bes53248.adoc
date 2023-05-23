@@ -15,7 +15,7 @@ summary: 要安装BES-53248硬件、请参见Broadcom文档。
 
 .步骤
 . 查看 link:configure-reqs-bes53248.html["配置要求"]。
-. 按照中的说明进行操作 https://["Broadcom支持的BES-53248集群交换机安装指南"^]。
+. 按照中的说明进行操作 https://library.netapp.com/ecm/ecm_download_file/ECMLP2864537["Broadcom支持的BES-53248集群交换机安装指南"^]。
 
 
 .下一步是什么？

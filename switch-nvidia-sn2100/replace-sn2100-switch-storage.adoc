@@ -18,7 +18,7 @@ summary: '更换无中断操作步骤 中存在故障的NVIDIA SN2100存储交�
 
 * 您的系统可以支持NVIDIA SN2100存储交换机。
 * 您必须已下载适用的 RCF 。
-* 。 http://["Hardware Universe"^] 提供支持的端口及其配置的完整详细信息。
+* 。 http://hwu.netapp.com["Hardware Universe"^] 提供支持的端口及其配置的完整详细信息。
 
 
 .关于此任务

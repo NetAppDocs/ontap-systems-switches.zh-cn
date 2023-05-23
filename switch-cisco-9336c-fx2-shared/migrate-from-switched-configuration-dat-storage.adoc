@@ -23,7 +23,7 @@ summary:
 * Nexus 3232C
 
 
-此操作步骤中支持的 ONTAP 和 NX-OS 版本位于 Cisco 以太网交换机页面上。请参见 https://["Cisco 以太网交换机"]。
+此操作步骤中支持的 ONTAP 和 NX-OS 版本位于 Cisco 以太网交换机页面上。请参见 https://mysupport.netapp.com/site/info/cisco-ethernet-switch["Cisco 以太网交换机"]。
 
 .连接端口
 交换机使用以下端口连接到节点：
@@ -48,7 +48,7 @@ summary:
 
 
 
-。 https://["Hardware Universe"] 包含有关所有集群交换机支持的布线的信息。
+。 https://hwu.netapp.com["Hardware Universe"] 包含有关所有集群交换机支持的布线的信息。
 
 .您需要的内容
 * 确保您已完成以下任务：

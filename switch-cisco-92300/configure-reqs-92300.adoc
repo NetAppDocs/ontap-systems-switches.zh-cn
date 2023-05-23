@@ -32,4 +32,4 @@ summary: 如果要使用两个以上的节点构建 ONTAP 集群，则需要两�
 * 大多数存储系统控制器通过 e0M 接口连接到以太网服务端口（扳手图标）进行管理。在 AFF A800 和 AFF A700 系统上， e0M 接口使用专用以太网端口。
 
 
-请参见 https://["Hardware Universe"^] 了解最新信息。
+请参见 https://hwu.netapp.com["Hardware Universe"^] 了解最新信息。

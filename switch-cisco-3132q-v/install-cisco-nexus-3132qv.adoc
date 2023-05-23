@@ -14,7 +14,7 @@ summary: 您可以将 Cisco Nexus 3132Q-V 交换机和直通面板安装在 NetA
 根据您的配置、您可能需要将Cisco Nexus 3132Q-V交换机和直通面板安装在NetApp机柜中、并使用交换机附带的标准支架。
 
 .您需要的内容
-* 中的初始准备要求、套件内容和安全预防措施 http://["《 Cisco Nexus 3000 系列硬件安装指南》"^]。开始操作步骤 之前、请查看这些文档。
+* 中的初始准备要求、套件内容和安全预防措施 http://www.cisco.com/c/en/us/td/docs/switches/datacenter/nexus3000/hw/installation/guide/b_n3000_hardware_install_guide.html["《 Cisco Nexus 3000 系列硬件安装指南》"^]。开始操作步骤 之前、请查看这些文档。
 * 直通面板套件、可从NetApp获得(部件号X8784-R6)。NetApp 直通面板套件包含以下硬件：
 +
 ** 一个直通空白面板

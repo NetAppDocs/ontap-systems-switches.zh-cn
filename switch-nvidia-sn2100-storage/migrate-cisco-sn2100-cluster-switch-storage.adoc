@@ -36,7 +36,7 @@ summary: 您可以将ONTAP 集群中较早的Cisco集群交换机无中断迁移
 ** ISL 端口已启用，并已在旧的 Cisco 交换机之间以及新交换机之间进行布线。
 
 
-* 请参见 https://["Hardware Universe"^] 有关支持的端口及其配置的完整详细信息。
+* 请参见 https://hwu.netapp.com/["Hardware Universe"^] 有关支持的端口及其配置的完整详细信息。
 * 您已将NVIDIA SN2100交换机上的某些端口配置为以40 GbE或100 GbE运行。
 * 您已规划、迁移并记录了从节点到NVIDIA SN2100集群交换机的40 GbE和100 GbE连接。
 +

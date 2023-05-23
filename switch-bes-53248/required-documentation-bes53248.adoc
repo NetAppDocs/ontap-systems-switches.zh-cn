@@ -17,7 +17,7 @@ summary: 要设置集群模式配置，您需要特定的交换机和控制器�
 
 == Broadcom文档
 
-要设置 BES-53248 集群交换机，您需要从 Broadcom 支持站点获取以下文档： https://["Broadcom 以太网交换机产品线"^]
+要设置 BES-53248 集群交换机，您需要从 Broadcom 支持站点获取以下文档： https://www.broadcom.com/support/bes-switch["Broadcom 以太网交换机产品线"^]
 
 [cols="1,2"]
 |===
@@ -76,14 +76,14 @@ _EFOS 发行说明 v3.4.3_
  a| 
 _Cluster网络和管理网络兼容性表_
  a| 
-提供有关网络兼容性的信息。此表可从BES-53248交换机下载站点获得、网址为 https://["Broadcom 集群交换机"^]。
+提供有关网络兼容性的信息。此表可从BES-53248交换机下载站点获得、网址为 https://mysupport.netapp.com/site/products/all/details/broadcom-cluster-switches/downloads-tab["Broadcom 集群交换机"^]。
 
 |===
 
 
 == ONTAP 系统文档和知识库文章
 
-要设置 ONTAP 系统，您需要从 NetApp 支持站点获取以下文档，网址为 http://["mysupport.netapp.com"^] 或知识库(KB)站点、网址为 https://["kb.netapp.com"^]。
+要设置 ONTAP 系统，您需要从 NetApp 支持站点获取以下文档，网址为 http://mysupport.netapp.com/["mysupport.netapp.com"^] 或知识库(KB)站点、网址为 https://kb.netapp.com/["kb.netapp.com"^]。
 
 [cols="1,2"]
 |===
@@ -91,7 +91,7 @@ _Cluster网络和管理网络兼容性表_
 
 
  a| 
-https://["NetApp Hardware Universe"^]
+https://hwu.netapp.com/Home/Index["NetApp Hardware Universe"^]
  a| 
 介绍包括系统机柜在内的所有NetApp硬件的电源和站点要求、并提供有关要使用的相关连接器和缆线选项及其部件号的信息。
 
@@ -114,6 +114,6 @@ ONTAP 9.
  a| 
 _How to add additional port licensing for the Broadcom-supported BES-53248 switch_
  a| 
-提供有关添加端口许可证的详细信息。转至 https://["知识库文章"^]。
+提供有关添加端口许可证的详细信息。转至 https://kb.netapp.com/Advice_and_Troubleshooting/Data_Protection_and_Security/MetroCluster/How_to_add_Additional_Port_Licensing_for_the_Broadcom-Supported_BES-53248_Switch["知识库文章"^]。
 
 |===

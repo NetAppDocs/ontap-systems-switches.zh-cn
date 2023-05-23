@@ -67,7 +67,7 @@ summary: 如果您使用双节点无交换机集群，则可以无中断地迁�
 * n1_clus2 是第一个连接到节点 n1 的集群交换机 C2 的集群 LIF 。
 * n2_clus1 是连接到节点 n2 的集群交换机 C1 的第一个集群 LIF 。
 * n2_clus2 是要连接到节点 n2 的集群交换机 C2 的第二个集群 LIF 。
-* 10 GbE 和 40/100 GbE 端口的数量在上提供的参考配置文件（ RCF ）中定义 https://["Cisco ® 集群网络交换机参考配置文件下载"^] 页面。
+* 10 GbE 和 40/100 GbE 端口的数量在上提供的参考配置文件（ RCF ）中定义 https://mysupport.netapp.com/NOW/download/software/sanswitch/fcp/Cisco/netapp_cnmn/download.shtml["Cisco ® 集群网络交换机参考配置文件下载"^] 页面。
 
 
 [NOTE]
@@ -172,21 +172,21 @@ Enable Switchless Cluster Detection: true
 +
 .. 转到 NetApp 支持站点上的 _Cisco 以太网交换机 _ 页面。
 +
-http://["Cisco 以太网交换机"^]
+http://support.netapp.com/NOW/download/software/cm_switches/["Cisco 以太网交换机"^]
 
 .. 请记下该页面上的表中的交换机和所需的软件版本。
 .. 下载适当版本的 RCF 。
 .. 单击 * RCF* 页面上的 * 继续 * ，接受许可协议，然后按照 * 下载 * 页面上的说明下载问题描述 。
 .. 下载相应版本的映像软件。
 +
-https://["Cisco 集群和管理网络交换机参考配置文件下载页面"^]
+https://mysupport.netapp.com/NOW/download/software/sanswitch/fcp/Cisco/netapp_cnmn/download.shtml["Cisco 集群和管理网络交换机参考配置文件下载页面"^]
 
 
 
 . 单击 * RCF* 页面上的 * 继续 * ，接受许可协议，然后按照 * 下载 * 页面上的说明下载问题描述 。
 . 在 Nexus 3232C 交换机 C1 和 C2 上，禁用所有面向节点的端口 C1 和 C2 ，但不要禁用 ISL 端口 E1/31 - 32 。
 +
-有关 Cisco 命令的详细信息，请参见中列出的指南 https://["Cisco Nexus 3000 系列 NX-OS 命令参考"^]。
+有关 Cisco 命令的详细信息，请参见中列出的指南 https://www.cisco.com/c/en/us/support/switches/nexus-3000-series-switches/products-command-reference-list.html["Cisco Nexus 3000 系列 NX-OS 命令参考"^]。
 
 +
 .显示示例
@@ -218,7 +218,7 @@ C2(config)# exit
 `s如何执行端口通道摘要`
 
 +
-有关 Cisco 命令的详细信息，请参见中列出的指南 https://["Cisco Nexus 3000 系列 NX-OS 命令参考"^]。
+有关 Cisco 命令的详细信息，请参见中列出的指南 https://www.cisco.com/c/en/us/support/switches/nexus-3000-series-switches/products-command-reference-list.html["Cisco Nexus 3000 系列 NX-OS 命令参考"^]。
 
 +
 .显示示例
@@ -256,7 +256,7 @@ Group Port-        Type   Protocol  Member Ports
 ====
 . 显示交换机上相邻设备的列表。
 +
-有关 Cisco 命令的详细信息，请参见中列出的指南 https://["Cisco Nexus 3000 系列 NX-OS 命令参考"^]。
+有关 Cisco 命令的详细信息，请参见中列出的指南 https://www.cisco.com/c/en/us/support/switches/nexus-3000-series-switches/products-command-reference-list.html["Cisco Nexus 3000 系列 NX-OS 命令参考"^]。
 
 +
 .显示示例
@@ -424,7 +424,7 @@ Larger than PMTU communication succeeds on 4 path(s) RPC status:
 
 . 启用 C1 上面向节点的所有端口。
 +
-有关 Cisco 命令的详细信息，请参见中列出的指南 https://["Cisco Nexus 3000 系列 NX-OS 命令参考"^]。
+有关 Cisco 命令的详细信息，请参见中列出的指南 https://www.cisco.com/c/en/us/support/switches/nexus-3000-series-switches/products-command-reference-list.html["Cisco Nexus 3000 系列 NX-OS 命令参考"^]。
 
 +
 .显示示例

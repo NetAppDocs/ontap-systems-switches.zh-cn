@@ -40,8 +40,8 @@ Cisco 以太网交换机页面会为您的交换机提供最新的 RCF 和 NX-OS
 .有关详细信息 ...
 请参见以下内容：
 
-* http://["Cisco 以太网交换机问题描述 页面"^]
-* http://["Hardware Universe"^]
+* http://support.netapp.com/NOW/download/software/cm_switches/["Cisco 以太网交换机问题描述 页面"^]
+* http://hwu.netapp.com["Hardware Universe"^]
 
 
 
@@ -73,7 +73,7 @@ Cisco 以太网交换机页面会为您的交换机提供最新的 RCF 和 NX-OS
 * n1_clus4 是连接到节点 n1 的集群交换机 CL1 的第二个 LIF 。
 
 
-10 GbE 和 40/100 GbE 端口的数量在上提供的参考配置文件（ RCF ）中定义 https://["Cisco ® 集群网络交换机参考配置文件下载"^] 页面。
+10 GbE 和 40/100 GbE 端口的数量在上提供的参考配置文件（ RCF ）中定义 https://mysupport.netapp.com/NOW/download/software/sanswitch/fcp/Cisco/netapp_cnmn/download.shtml["Cisco ® 集群网络交换机参考配置文件下载"^] 页面。
 
 此替代操作步骤 中的示例使用四个节点。其中两个节点使用四个 10 Gb 集群互连端口： e0a ， e0b ， e0c 和 e0d 。其他两个节点使用两个 40 Gb 集群互连端口： E4A 和 e4e 。请参见 link:https://hwu.netapp.com["Hardware Universe"^] 验证适用于您的平台的集群端口是否正确。
 
@@ -255,17 +255,17 @@ Version Source: CDP
 +
 .. 转到 NetApp 支持站点。
 +
-http://["mysupport.netapp.com"^]
+http://mysupport.netapp.com/["mysupport.netapp.com"^]
 
 .. 转到 * Cisco 以太网交换机 * 页面，并记下表中所需的软件版本。
 +
-https://["Cisco 以太网交换机"^]
+https://mysupport.netapp.com/NOW/download/software/cm_switches/["Cisco 以太网交换机"^]
 
 .. 下载适当版本的 RCF 。
 .. 单击 * 问题描述 * 页面上的 * 继续 * ，接受许可协议，然后导航到 * 下载 * 页面。
 .. 从 * Cisco ® 集群和管理网络交换机参考配置文件下载 * 页面下载正确版本的映像软件。
 +
-http://["Cisco ® 集群和管理网络交换机参考配置文件下载"^]
+http://mysupport.netapp.com/NOW/download/software/sanswitch/fcp/Cisco/netapp_cnmn/download.shtml["Cisco ® 集群和管理网络交换机参考配置文件下载"^]
 
 
 
@@ -424,7 +424,7 @@ Larger than PMTU communication succeeds on 32 path(s) RPC status:
 
 . 关闭集群交换机 CL1 上的端口 1/31 和 1/32 。
 +
-有关 Cisco 命令的详细信息，请参见中列出的指南 https://["Cisco Nexus 3000 系列 NX-OS 命令参考"^]。
+有关 Cisco 命令的详细信息，请参见中列出的指南 https://www.cisco.com/c/en/us/support/switches/nexus-3000-series-switches/products-command-reference-list.html["Cisco Nexus 3000 系列 NX-OS 命令参考"^]。
 
 +
 .显示示例
@@ -443,7 +443,7 @@ Larger than PMTU communication succeeds on 32 path(s) RPC status:
 . 从集群交换机 CL2 上的端口 E1/31 和 E1/32 中拔下交换机间链路（ ISL ）缆线，然后将其重新连接到替代交换机 C2 上的相同端口。
 . 启动集群交换机 CL1 上的 ISL 端口 1/31 和 1/32 。
 +
-有关 Cisco 命令的详细信息，请参见中列出的指南 https://["Cisco Nexus 3000 系列 NX-OS 命令参考"^]。
+有关 Cisco 命令的详细信息，请参见中列出的指南 https://www.cisco.com/c/en/us/support/switches/nexus-3000-series-switches/products-command-reference-list.html["Cisco Nexus 3000 系列 NX-OS 命令参考"^]。
 
 +
 .显示示例
@@ -461,7 +461,7 @@ Larger than PMTU communication succeeds on 32 path(s) RPC status:
 ====
 . 验证 ISL 在 CL1 上是否已启动。
 +
-有关 Cisco 命令的详细信息，请参见中列出的指南 https://["Cisco Nexus 3000 系列 NX-OS 命令参考"^]。
+有关 Cisco 命令的详细信息，请参见中列出的指南 https://www.cisco.com/c/en/us/support/switches/nexus-3000-series-switches/products-command-reference-list.html["Cisco Nexus 3000 系列 NX-OS 命令参考"^]。
 
 +
 端口 Eth1/31 和 Eth1/32 应指示 ` （ P ）` ，这意味着 ISL 端口在端口通道中已启动：
@@ -488,7 +488,7 @@ Group Port-        Type   Protocol  Member Ports
 ====
 . 验证集群交换机 C2 上的 ISL 是否已启动。
 +
-有关 Cisco 命令的详细信息，请参见中列出的指南 https://["Cisco Nexus 3000 系列 NX-OS 命令参考"^]。
+有关 Cisco 命令的详细信息，请参见中列出的指南 https://www.cisco.com/c/en/us/support/switches/nexus-3000-series-switches/products-command-reference-list.html["Cisco Nexus 3000 系列 NX-OS 命令参考"^]。
 
 +
 .显示示例

@@ -60,5 +60,5 @@ NVIDIA SN2100是一款集群交换机、可用于构建具有两个以上节点�
 * link:configure-reqs-sn2100-cluster.html["配置要求"]
 * link:components-sn2100-cluster.html["组件和部件号"]
 * link:required-documentation-sn2100-cluster.html["所需文档"]
-* https://["Hardware Universe"^] 所有受支持的ONTAP 版本。
+* https://hwu.netapp.com["Hardware Universe"^] 所有受支持的ONTAP 版本。
 
