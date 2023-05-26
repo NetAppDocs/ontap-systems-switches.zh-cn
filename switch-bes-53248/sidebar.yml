@@ -54,3 +54,5 @@ entries:
     url: "/switch-bes-53248/replace-switch-reqs.html"
   - title: 更换BES-53248交换机
     url: "/switch-bes-53248/replace-switch.html"
+  - title: 将集群交换机更换为无交换机连接
+    url: "/switch-bes-53248/migrate-to-switchless-interconnect-bes-53248.html"

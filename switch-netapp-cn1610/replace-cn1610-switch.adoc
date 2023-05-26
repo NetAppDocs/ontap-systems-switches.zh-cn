@@ -1,0 +1,477 @@
+---
+permalink: switch-netapp-cn1610/replace-cn1610-switch.html 
+sidebar: sidebar 
+keywords: replace, netapp cn1610, cluster switch 
+summary: 您可以通过执行一系列特定任务来无系统地更换出现故障的NetApp CN1610集群交换机。 
+---
+= 更换NetApp CN1610集群交换机
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+按照以下步骤更换集群网络中有故障的NetApp CN1610交换机。这是无中断操作步骤(NDU)。
+
+.您需要的内容
+在执行交换机更换之前、在当前环境中以及在现有集群和网络基础架构的替代交换机上执行交换机更换之前、必须满足以下条件：
+
+* 必须使用至少一个完全连接的集群交换机验证现有集群是否完全正常运行。
+* 所有集群端口都必须为*已启动*。
+* 所有集群逻辑接口(Logical Interface、)都必须已启动且尚未迁移。
+* ONTAP集群 `ping-cluster -node node1` 命令必须指示所有路径上的基本连接和大于PTU的通信均已成功。
+
+
+.关于此任务
+您必须执行命令，从托管集群 LIF 的节点迁移集群 LIF 。
+
+此操作步骤中的示例使用以下集群交换机和节点命名：
+
+* 两个CN1610集群交换机的名称是 `cs1` 和 `cs2`。
+* 要更换的CN1610交换机(故障交换机)的名称是 `old_cs1`。
+* 新CN1610交换机(替代交换机)的名称为 `new_cs1`。
+* 未被替换的配对交换机的名称是 `cs2`。
+
+
+.步骤
+. 确认启动配置文件与正在运行的配置文件匹配。您必须将这些文件保存在本地、以便在替换期间使用。
++
+以下示例中的配置命令适用于FastPath 1.2.0.7：
+
++
+.显示示例
+[%collapsible]
+====
+[listing, subs="+quotes"]
+----
+(old_cs1) *>enable*
+(old_cs1) *#show running-config*
+(old_cs1) *#show startup-config*
+----
+====
+. 创建运行配置文件的副本。
++
+以下示例中的命令适用于FastPath 1.2.0.7：
+
++
+.显示示例
+[%collapsible]
+====
+[listing, subs="+quotes"]
+----
+(old_cs1) *#show running-config filename.scr*
+Config script created successfully.
+----
+====
+
+
+
+NOTE: 您可以使用除以外的任何文件名 `CN1610_CS_RCF_v1.2.scr`。文件名的扩展名必须为*.scR*。
+
+. [[STEP3]]将交换机的运行配置文件保存到外部主机、以便为更换做好准备。
++
+.显示示例
+[%collapsible]
+====
+[listing, subs="+quotes"]
+----
+(old_cs1) #*copy nvram:script filename.scr scp://<Username>@<remote_IP_address>/path_to_file/filename.scr*
+----
+====
+. 确认交换机和ONTAP版本在兼容性列表中匹配。请参见 https://mysupport.netapp.com/site/info/netapp-cluster-switch["NetApp CN1601 和 CN1610 交换机"^] 页面以了解详细信息。
+. 从 https://mysupport.netapp.com/site/products/all/details/netapp-cluster-switches/downloads-tab["软件下载页面"^] 在NetApp 支持站点 上、选择NetApp集群交换机以下载相应的RC框架 和快速路径版本。
+. 使用FastPath、RCF和已保存配置设置简单文件传输协议(TFTP)服务器 `.scr` 文件、以便与新交换机一起使用。
+. 将串行端口(交换机右侧标有"IOIOI"的RJ-45连接器)连接到具有终端仿真的可用主机。
+. 在主机上、设置串行终端连接设置：
++
+.. 9600 波特
+.. 8 个数据位
+.. 1 个停止位
+.. 奇偶校验：无
+.. 流量控制：无
+
+
+. 将管理端口（交换机左侧的 RJ-45 扳手端口）连接到 TFTP 服务器所在的同一网络。
+. 准备使用TFTP服务器连接到网络。
++
+如果您使用的是动态主机配置协议(DHCP)、则此时不必为交换机配置IP地址。默认情况下、服务端口设置为使用DHCP。对于IPv4和IPv6协议设置、网络管理端口设置为none。如果扳手端口连接到具有DHCP服务器的网络、则会自动配置服务器设置。
+
++
+要设置静态IP地址、应使用serviceport协议、网络协议和serviceport IP命令。
+
++
+.显示示例
+[%collapsible]
+====
+[listing, subs="+quotes"]
+----
+(new_cs1) #*serviceport ip <ipaddr> <netmask> <gateway>*
+----
+====
+. (可选)如果TFTP服务器位于笔记本电脑上、则使用标准以太网缆线将CN1610交换机连接到笔记本电脑、然后使用备用IP地址在同一网络中配置其网络端口。
++
+您可以使用 `ping` 命令以验证地址。如果无法建立连接、则应使用非路由网络、并使用IP 192.168.x或172.16.x配置服务端口您可以稍后将服务端口重新配置为生产管理IP地址。
+
+. (可选)验证并安装适用于新交换机的RCN和FastPath软件版本。如果您已确认新交换机设置正确、并且不需要更新RCIF和FastPath软件、则应转至步骤13。
++
+.. 验证新交换机设置。
++
+.显示示例
+[%collapsible]
+====
+[listing, subs="+quotes"]
+----
+(new_cs1) >*enable*
+(new_cs1) #*show version*
+----
+====
+.. 将RC框架 下载到新交换机。
++
+.显示示例
+[%collapsible]
+====
+[listing, subs="+quotes"]
+----
+(new_cs1) #*copy tftp://<server_ip_address>/CN1610_CS_RCF_v1.2.txt nvram:script CN1610_CS_RCF_v1.2.scr*
+Mode.	TFTP
+Set Server IP.	172.22.201.50
+Path.	/
+Filename....................................... CN1610_CS_RCF_v1.2.txt
+Data Type...................................... Config Script
+Destination Filename........................... CN1610_CS_RCF_v1.2.scr
+File with same name already exists.
+WARNING:Continuing with this command will overwrite the existing file.
+
+Management access will be blocked for the duration of the transfer Are you sure you want to start? (y/n) y
+
+File transfer in progress. Management access will be blocked for the duration of the transfer. please wait...
+Validating configuration script...
+(the entire script is displayed line by line)
+...
+description "NetApp CN1610 Cluster Switch RCF v1.2 - 2015-01-13"
+...
+Configuration script validated.
+File transfer operation completed successfully.
+----
+====
+.. 验证RC框架 是否已下载到交换机。
++
+.显示示例
+[%collapsible]
+====
+[listing, subs="+quotes"]
+----
+(new_cs1) #*script list*
+Configuration Script Nam   Size(Bytes)
+-------------------------- -----------
+CN1610_CS_RCF_v1.1.scr            2191
+CN1610_CS_RCF_v1.2.scr            2240
+latest_config.scr                 2356
+
+4 configuration script(s) found.
+2039 Kbytes free.
+----
+====
+
+
+. 将RC框架 应用于CN1610交换机。
++
+.显示示例
+[%collapsible]
+====
+[listing, subs="+quotes"]
+----
+(new_cs1) #*script apply CN1610_CS_RCF_v1.2.scr*
+Are you sure you want to apply the configuration script? (y/n) *y*
+...
+(the entire script is displayed line by line)
+...
+description "NetApp CN1610 Cluster Switch RCF v1.2 - 2015-01-13"
+...
+Configuration script 'CN1610_CS_RCF_v1.2.scr' applied. Note that the script output will go to the console.
+After the script is applied, those settings will be active in the running-config file. To save them to the startup-config file, you must use the write memory command, or if you used the reload answer yes when asked if you want to save the changes.
+----
+====
++
+.. 保存运行配置文件、以便在重新启动交换机时将其作为启动配置文件。
++
+.显示示例
+[%collapsible]
+====
+[listing, subs="+quotes"]
+----
+(new_cs1) #*write memory*
+This operation may take a few minutes.
+Management interfaces will not be available during this time.
+
+Are you sure you want to save? (y/n) *y*
+
+Config file 'startup-config' created successfully.
+
+Configuration Saved!
+----
+====
+.. 将映像下载到CN1610交换机。
++
+.显示示例
+[%collapsible]
+====
+[listing, subs="+quotes"]
+----
+(new_cs1) #*copy tftp://<server_ip_address>/NetApp_CN1610_1.2.0.7.stk active*
+Mode.	TFTP
+Set Server IP.	tftp_server_ip_address
+Path.	/
+Filename....................................... NetApp_CN1610_1.2.0.7.stk
+Data Type.	Code
+Destination Filename.	active
+
+Management access will be blocked for the duration of the transfer
+
+Are you sure you want to start? (y/n) *y*
+
+TFTP Code transfer starting...
+
+File transfer operation completed successfully.
+----
+====
+.. 重新启动交换机以运行新的活动启动映像。
++
+必须为步骤6中的命令重新启动交换机、以反映新映像。输入reLoad命令后、您可能会看到两个可能的响应视图。
+
++
+.显示示例
+[%collapsible]
+====
+[listing, subs="+quotes"]
+----
+(new_cs1) #*reload*
+The system has unsaved changes.
+Would you like to save them now? (y/n) *y*
+
+Config file 'startup-config' created successfully.
+
+Configuration Saved! System will now restart!
+.
+.
+.
+Cluster Interconnect Infrastructure
+
+User:admin Password: (new_cs1) >*enable*
+----
+====
+.. 将保存的配置文件从旧交换机复制到新交换机。
++
+.显示示例
+[%collapsible]
+====
+[listing, subs="+quotes"]
+----
+(new_cs1) #*copy tftp://<server_ip_address>/<filename>.scr nvram:script <filename>.scr*
+----
+====
+.. 将先前保存的配置应用于新交换机。
++
+.显示示例
+[%collapsible]
+====
+[listing, subs="+quotes"]
+----
+(new_cs1) #*script apply <filename>.scr*
+Are you sure you want to apply the configuration script? (y/n) *y*
+
+The system has unsaved changes.
+Would you like to save them now? (y/n) *y*
+
+Config file 'startup-config' created successfully.
+
+Configuration Saved!
+----
+====
+.. 将运行配置文件保存到启动配置文件。
++
+.显示示例
+[%collapsible]
+====
+[listing, subs="+quotes"]
+----
+(new_cs1) #*write memory*
+----
+====
+
+
+. 如果在此集群上启用了 AutoSupport ，请通过调用 AutoSupport 消息来禁止自动创建案例： `ssystem node AutoSupport invoke -node * -type all - message MAINT=xh`
++
+_x_ 是维护时段的持续时间，以小时为单位。
+
++
+[NOTE]
+====
+AutoSupport 消息会通知技术支持此维护任务，以便在维护窗口期间禁止自动创建案例。
+
+====
+. 在新交换机new_cs1上、以管理员用户身份登录、然后关闭连接到节点集群接口的所有端口(端口1到12)。
++
+.显示示例
+[%collapsible]
+====
+[listing, subs="+quotes"]
+----
+User:*admin*
+Password:
+(new_cs1) >*enable*
+(new_cs1) #
+
+(new_cs1) #*config*
+(new_cs1)(config)#*interface 0/1-0/12*
+(new_cs1)(interface 0/1-0/12)#*shutdown*
+(new_cs1)(interface 0/1-0/12)#*exit*
+(new_cs1) #*write memory*
+----
+====
+. 从连接到old_CS1交换机的端口迁移集群的集群的Sifs。
++
+您必须将每个集群LIF从其当前节点的管理界面进行迁移。
+
++
+.显示示例
+[%collapsible]
+====
+[listing, subs="+quotes"]
+----
+cluster::> *set -privilege advanced*
+cluster::> *network interface migrate -vserver <vserver_name> -lif <Cluster_LIF_to_be_moved> - sourcenode <current_node> -dest-node <current_node> -dest-port <cluster_port_that_is_UP>*
+----
+====
+. 验证所有集群SIFs是否均已移至每个节点上的相应集群端口。
++
+.显示示例
+[%collapsible]
+====
+[listing, subs="+quotes"]
+----
+cluster::> *network interface show -role cluster*
+----
+====
+. 关闭连接到更换的交换机的集群端口。
++
+.显示示例
+[%collapsible]
+====
+[listing, subs="+quotes"]
+----
+cluster::*> *network port modify -node <node_name> -port <port_to_admin_down> -up-admin false*
+----
+====
+. 验证集群的运行状况。
++
+.显示示例
+[%collapsible]
+====
+[listing, subs="+quotes"]
+----
+cluster::*> *cluster show*
+----
+====
+. 验证端口是否已关闭。
++
+.显示示例
+[%collapsible]
+====
+[listing, subs="+quotes"]
+----
+cluster::*> *cluster ping-cluster -node <node_name>*
+----
+====
+. 在交换机CS2上、关闭ISL端口13到16。
++
+.显示示例
+[%collapsible]
+====
+[listing, subs="+quotes"]
+----
+(cs2) #*config*
+(cs2)(config)#*interface 0/13-0/16*
+(cs2)(interface 0/13-0/16)#*shutdown*
+(cs2) #*show port-channel 3/1*
+----
+====
+. 验证存储管理员是否已准备好更换交换机。
+. 拔下old_CS1交换机上的所有缆线、然后将这些缆线连接到new_CS1交换机上的相同端口。
+. 在CS2交换机上、打开ISL端口13到16。
++
+.显示示例
+[%collapsible]
+====
+[listing, subs="+quotes"]
+----
+(cs2) #*config*
+(cs2)(config)#*interface 0/13-0/16*
+(cs2)(interface 0/13-0/16)#*no shutdown*
+----
+====
+. 启动新交换机上与集群节点关联的端口。
++
+.显示示例
+[%collapsible]
+====
+[listing, subs="+quotes"]
+----
+(cs2) #*config*
+(cs2)(config)#*interface 0/1-0/12*
+(cs2)(interface 0/13-0/16)#*no shutdown*
+----
+====
+. 在单个节点上、启动连接到更换的交换机的集群节点端口、然后确认链路已启动。
++
+.显示示例
+[%collapsible]
+====
+[listing, subs="+quotes"]
+----
+cluster::*> *network port modify -node node1 -port <port_to_be_onlined> -up-admin true*
+cluster::*> *network port show -role cluster*
+----
+====
+. 在同一节点上还原步骤25中与该端口关联的集群生命周期。
++
+在此示例中、如果"Is Home"列为true、则会成功还原node1上的SIF。
+
++
+.显示示例
+[%collapsible]
+====
+[listing, subs="+quotes"]
+----
+cluster::*> *network interface revert -vserver node1 -lif <cluster_lif_to_be_reverted>*
+cluster::*> *network interface show -role cluster*
+----
+====
+. 如果第一个节点的集群LIF已启动并还原到其主端口、请重复步骤25和26以启动集群端口并还原集群中其他节点上的集群LIF。
+. 显示有关集群中节点的信息。
++
+.显示示例
+[%collapsible]
+====
+[listing, subs="+quotes"]
+----
+cluster::*> *cluster show*
+----
+====
+. 确认更换的交换机上的启动配置文件和运行配置文件正确无误。此配置文件应与步骤1中的输出一致。
++
+.显示示例
+[%collapsible]
+====
+[listing, subs="+quotes"]
+----
+(new_cs1) >*enable*
+(new_cs1) #*show running-config*
+(new_cs1) #*show startup-config*
+----
+====
+. 如果禁止自动创建案例，请通过调用 AutoSupport 消息重新启用它：
++
+`ssystem node AutoSupport invoke -node * -type all -message MAINT=end`
+
+

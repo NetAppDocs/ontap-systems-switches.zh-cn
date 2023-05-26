@@ -2724,7 +2724,6 @@
   <block id="4752e78bc698f54fab2873241037c39c" category="paragraph"><block ref="fcc881d4787d31c185b073346f97b823" prefix="" category="inline-code"></block></block>
   <block id="70b9e8739fd0230a7cd09ad6e9a66421" category="list-text">重新检查存储节点端口的运行状况：</block>
   <block id="1baf7c89328f1d71632e29ad4a2dd59d" category="list-text">验证两个交换机是否均可用：</block>
-  <block id="b19d86e3bcfd68004760a31aa0fc60dc" category="paragraph"><block ref="fe962342e77ec6978df73d7fb900c057" prefix="" category="inline-code"></block></block>
   <block id="27803f93d64ef714eff37b87b316c9a1" category="paragraph">您使用的操作步骤取决于每个控制器上是有两个专用集群网络端口，还是每个控制器上有一个集群端口。记录的过程适用于使用光纤或双轴端口的所有节点、但如果节点使用板载10GBASE-T RJ45端口作为集群网络端口、则此交换机不支持此过程。</block>
   <block id="4e0b0c304729caba210b437f828a40e7" category="paragraph">对于双节点无交换机配置、请确保：</block>
   <block id="7933d62e23b62e3165a85bc092d5b0d4" category="list-text">双节点无交换机配置已正确设置并正常运行。</block>
@@ -4432,4 +4431,64 @@
   <block id="b8363a3557b5e1732a20eb45a96853b7" category="list-text">确认在下次重新加载时已禁用POAP：</block>
   <block id="f306e2be0abd8aabfa0b014c372bbac8" category="list-text">对交换机CS1重复步骤4至11。</block>
   <block id="256be937ef390f7d6dd71ad092869119" category="admonition">对于ONTAP 9.8及更高版本、请使用命令<block ref="c57378c3b3bb81c6b42a2b31a30ddda7" prefix=" " category="inline-code"></block>。</block>
+  <block id="393a5f0f5f1f070aac964741815cca76" category="doc">将Broadcom BES-53248集群交换机更换为无交换机连接</block>
+  <block id="a2ba7bf1b1a10d50fd13725865eabc47" category="list-text">测试交换机日志收集功能：</block>
+  <block id="10b9ce0440e39e291f451f5b535309cd" category="summary">您可以通过执行一系列特定任务来无系统地更换出现故障的NetApp CN1610集群交换机。</block>
+  <block id="a1e78a31e3c2a02f46648b1bf5b89e82" category="doc">更换NetApp CN1610集群交换机</block>
+  <block id="66683ae2f7c6fa1c2c22df9a8db5475e" category="paragraph">按照以下步骤更换集群网络中有故障的NetApp CN1610交换机。这是无中断操作步骤(NDU)。</block>
+  <block id="1f5b80c6e2ed11c7bd8290ed613ae1a2" category="paragraph">在执行交换机更换之前、在当前环境中以及在现有集群和网络基础架构的替代交换机上执行交换机更换之前、必须满足以下条件：</block>
+  <block id="18277bdc1890285661ff31218ab7b9aa" category="list-text">所有集群端口都必须为*已启动*。</block>
+  <block id="f98de8b264564fc8efac53d61616a3a6" category="list-text">所有集群逻辑接口(Logical Interface、)都必须已启动且尚未迁移。</block>
+  <block id="83ef6b033ea6f10bf71f6382d94020d8" category="list-text">ONTAP集群<block ref="21228022de91fd069639d941562e2965" prefix=" " category="inline-code"></block> 命令必须指示所有路径上的基本连接和大于PTU的通信均已成功。</block>
+  <block id="40432eff026ac452f4c464796c22cad2" category="list-text">两个CN1610集群交换机的名称是<block ref="b12efe4e2b53de51a261421f77a3cbef" prefix=" " category="inline-code"></block> 和<block ref="43c8ce94d81492e62c60092a3664a65f" prefix=" " category="inline-code"></block>。</block>
+  <block id="a3f821e3cd7f17533bef9e520ea14552" category="list-text">要更换的CN1610交换机(故障交换机)的名称是<block ref="a86ae6152b2b202f86bf7a5980821925" prefix=" " category="inline-code"></block>。</block>
+  <block id="70a4fcd6859b5065af184b992f2a90b5" category="list-text">新CN1610交换机(替代交换机)的名称为<block ref="3e9b9ae819a46f5f7f886bfb01bfafc3" prefix=" " category="inline-code"></block>。</block>
+  <block id="42791710cd5232be1ed51712d657545b" category="list-text">未被替换的配对交换机的名称是<block ref="43c8ce94d81492e62c60092a3664a65f" prefix=" " category="inline-code"></block>。</block>
+  <block id="cd831af3a25c38b31f51ceb27d65111f" category="list-text">确认启动配置文件与正在运行的配置文件匹配。您必须将这些文件保存在本地、以便在替换期间使用。</block>
+  <block id="c4264c3f14ebe6d8561e3cf5acc1d741" category="paragraph">以下示例中的配置命令适用于FastPath 1.2.0.7：</block>
+  <block id="45826415166a6e211a2acb28e84357a9" category="list-text">创建运行配置文件的副本。</block>
+  <block id="c048a33c156955dc46f6908ab7d1b4d8" category="paragraph">以下示例中的命令适用于FastPath 1.2.0.7：</block>
+  <block id="de99beb6ca92a5a94725134af11c8df3" category="admonition">您可以使用除以外的任何文件名<block ref="269125eef7a6ed8a576f381402d71c00" prefix=" " category="inline-code"></block>。文件名的扩展名必须为*.scR*。</block>
+  <block id="c3e4e0f5814f326b33a9db1d9a1860c0" category="list-text">[[STEP3]]将交换机的运行配置文件保存到外部主机、以便为更换做好准备。</block>
+  <block id="d8442364ffcbb22977e4d9c52e73b57a" category="list-text">确认交换机和ONTAP版本在兼容性列表中匹配。请参见<block ref="fbc4dc59d397fb80fe60d1631a99b30c" category="inline-link-rx"></block> 页面以了解详细信息。</block>
+  <block id="8b0dd634e752838755fd13d129cbf10e" category="inline-link">软件下载页面</block>
+  <block id="b597e505404c69895e6ae5d6c947f299" category="list-text">从<block ref="3785e6528c27a2098021814637bc462a" category="inline-link-rx"></block> 在NetApp 支持站点 上、选择NetApp集群交换机以下载相应的RC框架 和快速路径版本。</block>
+  <block id="543af457f6c3336d817218e084e17ad6" category="list-text">使用FastPath、RCF和已保存配置设置简单文件传输协议(TFTP)服务器<block ref="e9f6316b4b0161f7581dee64491a28dd" prefix=" " category="inline-code"></block> 文件、以便与新交换机一起使用。</block>
+  <block id="0b370ae1e85c411b2432a8dd68539928" category="list-text">将串行端口(交换机右侧标有"IOIOI"的RJ-45连接器)连接到具有终端仿真的可用主机。</block>
+  <block id="fdc083ea424ff6a805eb16cc6278c425" category="list-text">在主机上、设置串行终端连接设置：</block>
+  <block id="653e244c5d7d92e4099ddeea36e49c83" category="list-text">准备使用TFTP服务器连接到网络。</block>
+  <block id="eced0a01e57d421422879b818ddbc655" category="paragraph">如果您使用的是动态主机配置协议(DHCP)、则此时不必为交换机配置IP地址。默认情况下、服务端口设置为使用DHCP。对于IPv4和IPv6协议设置、网络管理端口设置为none。如果扳手端口连接到具有DHCP服务器的网络、则会自动配置服务器设置。</block>
+  <block id="044ec168f671f2601806847445bfa01f" category="paragraph">要设置静态IP地址、应使用serviceport协议、网络协议和serviceport IP命令。</block>
+  <block id="dc293c5866c77ae15aca96b85fcb77e6" category="list-text">(可选)如果TFTP服务器位于笔记本电脑上、则使用标准以太网缆线将CN1610交换机连接到笔记本电脑、然后使用备用IP地址在同一网络中配置其网络端口。</block>
+  <block id="b89dbda9007c12ba6185e044bc81949f" category="paragraph">您可以使用<block ref="df911f0151f9ef021d410b4be5060972" prefix=" " category="inline-code"></block> 命令以验证地址。如果无法建立连接、则应使用非路由网络、并使用IP 192.168.x或172.16.x配置服务端口您可以稍后将服务端口重新配置为生产管理IP地址。</block>
+  <block id="b6254715be58b48ae4db50dd9fc31130" category="list-text">(可选)验证并安装适用于新交换机的RCN和FastPath软件版本。如果您已确认新交换机设置正确、并且不需要更新RCIF和FastPath软件、则应转至步骤13。</block>
+  <block id="7a1bfd4690df6818c8dc387281d627ed" category="list-text">验证新交换机设置。</block>
+  <block id="3ead3b3c8f520426f6d28b91165e4d04" category="list-text">将RC框架 下载到新交换机。</block>
+  <block id="72825f9b72f9339979ca72becca7f71a" category="list-text">验证RC框架 是否已下载到交换机。</block>
+  <block id="999d6ca910b9a02c83e6b39776ceedec" category="list-text">将RC框架 应用于CN1610交换机。</block>
+  <block id="026fe9123f8f00bf5dbeb680d5c7798a" category="list-text">保存运行配置文件、以便在重新启动交换机时将其作为启动配置文件。</block>
+  <block id="97e20e2f0ef3427615572f54f429eddf" category="list-text">将映像下载到CN1610交换机。</block>
+  <block id="3624b5e5cc6ddec75e62434e2a31ad65" category="list-text">重新启动交换机以运行新的活动启动映像。</block>
+  <block id="5e5e17a51764aae8ce901f8404dfc149" category="paragraph">必须为步骤6中的命令重新启动交换机、以反映新映像。输入reLoad命令后、您可能会看到两个可能的响应视图。</block>
+  <block id="62692b2ca653dbb46bb2be739ec25eca" category="list-text">将保存的配置文件从旧交换机复制到新交换机。</block>
+  <block id="de9c3c21ee744efbe0e9dc92d2f3f8fa" category="list-text">将先前保存的配置应用于新交换机。</block>
+  <block id="19f3f611402ea405c73eff978db54c04" category="list-text">将运行配置文件保存到启动配置文件。</block>
+  <block id="e34c68a3be46c36d4217182cacd9c5ed" category="list-text">在新交换机new_cs1上、以管理员用户身份登录、然后关闭连接到节点集群接口的所有端口(端口1到12)。</block>
+  <block id="c941b6ce2e4c24df909851b245a02a61" category="list-text">从连接到old_CS1交换机的端口迁移集群的集群的Sifs。</block>
+  <block id="4b1a908211784f472e4bd00126eca670" category="paragraph">您必须将每个集群LIF从其当前节点的管理界面进行迁移。</block>
+  <block id="86549eb17e74fde8019bc78ee455f2f9" category="list-text">验证所有集群SIFs是否均已移至每个节点上的相应集群端口。</block>
+  <block id="6699d1ca219ee05fb31767f9ee4390f7" category="list-text">关闭连接到更换的交换机的集群端口。</block>
+  <block id="3733adcf3b4da74ba9d591ecbad96807" category="list-text">验证集群的运行状况。</block>
+  <block id="37d0e47b916b9fc27dd90cc97fc17772" category="list-text">验证端口是否已关闭。</block>
+  <block id="bad00619b1d5dd1b493aa019cb159e27" category="list-text">在交换机CS2上、关闭ISL端口13到16。</block>
+  <block id="15eb5a489e20c8cf8725dc5b810b0c97" category="list-text">验证存储管理员是否已准备好更换交换机。</block>
+  <block id="e1d368bc1401944984beccd9e88393a4" category="list-text">拔下old_CS1交换机上的所有缆线、然后将这些缆线连接到new_CS1交换机上的相同端口。</block>
+  <block id="6e37f912363babbe2006b55d57ad6d78" category="list-text">在CS2交换机上、打开ISL端口13到16。</block>
+  <block id="6ce486621cb8c46471908d6225196077" category="list-text">启动新交换机上与集群节点关联的端口。</block>
+  <block id="68399f85a753831d967234dab3cd5b35" category="list-text">在单个节点上、启动连接到更换的交换机的集群节点端口、然后确认链路已启动。</block>
+  <block id="b19024cd31c9de6e6498dddd23993117" category="list-text">在同一节点上还原步骤25中与该端口关联的集群生命周期。</block>
+  <block id="1a087f1b105982e5c8b2694ba1b674f3" category="paragraph">在此示例中、如果"Is Home"列为true、则会成功还原node1上的SIF。</block>
+  <block id="b047f062da383f17811a9e72a79d23f4" category="list-text">如果第一个节点的集群LIF已启动并还原到其主端口、请重复步骤25和26以启动集群端口并还原集群中其他节点上的集群LIF。</block>
+  <block id="31c3fc1c4fe98b31f2904808ddd9be0b" category="list-text">显示有关集群中节点的信息。</block>
+  <block id="bf1b3c61d401b2f6c4dbbf5853555319" category="list-text">确认更换的交换机上的启动配置文件和运行配置文件正确无误。此配置文件应与步骤1中的输出一致。</block>
 </blocks>
