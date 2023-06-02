@@ -2226,7 +2226,6 @@
   <block id="b2ca5d9b00c09954ba621c25b7a4bdbf" category="paragraph">。<block ref="141c10db18cf1753fa5fc05f553c33ff" category="inline-link-rx"></block> 包含有关布线的详细信息。</block>
   <block id="1d70d7c880f9a4b8e9ccbd4cbaeefcd8" category="list-text">在执行此操作步骤 之前、请确保已为交换机配置创建备份。</block>
   <block id="c291fea66565616d9e881666325c1ee2" category="list-text">如果您还没有交换机的当前备份、则可以通过将以下命令的输出复制到日志文件来保存当前交换机配置：</block>
-  <block id="3f8f6d237f18036be3a3fb24642d16ba" category="list-text">如果您尚未保存当前交换机配置、请将以下命令的输出复制到日志文件中以保存此配置：</block>
   <block id="8fdae5a227344a83423005f83a057331" category="list-text">验证集群中所有节点上的集群端口是否均已启动且运行正常：</block>
   <block id="5d1ccfeff69430937e33ed02e46dbd94" category="list-text">从集群验证交换机运行状况。</block>
   <block id="53a0bfa393247902d9ea8fedde7e8132" category="list-text">重新启动交换机 CS1 。执行此操作可触发集群 LIF 还原到其主端口。您可以忽略交换机重新启动时在节点上报告的 " 集群端口关闭 " 事件。</block>
@@ -4423,12 +4422,7 @@
   <block id="7d829570fe05df690649474b2bb97a3b" category="image-alt">集群节点连接缆线移至CS1新交换机</block>
   <block id="ec5ea2f0318e4d906c296f5576b9c026" category="list-text">[[STEP6]]如果禁止自动创建案例、请通过调用AutoSupport 消息重新启用：<block ref="9ac424c0d7b432975df36a19daf50c9c" prefix=" " category="inline-code"></block></block>
   <block id="0429fa776d68090e46718ac7e32390ef" category="admonition">对于EFOS 3.10.0.3及更高版本、请使用命令<block ref="c09633a606c51a161b16f8bf38f5ebb1" prefix=" " category="inline-code"></block>。</block>
-  <block id="455129a1d85d80f79e8d763a25910c74" category="admonition">更新或应用新 RCF 时，必须擦除交换机设置并执行基本配置。如果可以禁用PowerOn自动配置(POAP)、则会保留SSH交换机访问权限(需要NX-OS 9.2P1或更高版本)。作为额外的预防措施、如果交换机重新启动后无法进行SSH访问、请使用串行控制台连接到交换机。</block>
   <block id="2df26e386d021172b261bcb47e157019" category="list-text">清理配置：</block>
-  <block id="a5247127c3e0a3fcdf9f80746c33cb54" category="list-text">禁用POAP：</block>
-  <block id="b64ae68f672b168b4456ea13b494a759" category="inline-link">使用PowerOn自动配置</block>
-  <block id="01197fee3250d671fd8c51972b5f4745" category="paragraph">请参见<block ref="ff53901c2c0b0d51a17df0925879b1a5" category="inline-link-rx"></block> 了解更多详细信息。</block>
-  <block id="b8363a3557b5e1732a20eb45a96853b7" category="list-text">确认在下次重新加载时已禁用POAP：</block>
   <block id="f306e2be0abd8aabfa0b014c372bbac8" category="list-text">对交换机CS1重复步骤4至11。</block>
   <block id="256be937ef390f7d6dd71ad092869119" category="admonition">对于ONTAP 9.8及更高版本、请使用命令<block ref="c57378c3b3bb81c6b42a2b31a30ddda7" prefix=" " category="inline-code"></block>。</block>
   <block id="393a5f0f5f1f070aac964741815cca76" category="doc">将Broadcom BES-53248集群交换机更换为无交换机连接</block>
@@ -4491,4 +4485,7 @@
   <block id="b047f062da383f17811a9e72a79d23f4" category="list-text">如果第一个节点的集群LIF已启动并还原到其主端口、请重复步骤25和26以启动集群端口并还原集群中其他节点上的集群LIF。</block>
   <block id="31c3fc1c4fe98b31f2904808ddd9be0b" category="list-text">显示有关集群中节点的信息。</block>
   <block id="bf1b3c61d401b2f6c4dbbf5853555319" category="list-text">确认更换的交换机上的启动配置文件和运行配置文件正确无误。此配置文件应与步骤1中的输出一致。</block>
+  <block id="d23e0ef648ea8ae58d49d4170d37c221" category="list-text">如果尚未保存当前交换机配置的副本、请将以下命令的输出复制到文本文件中：</block>
+  <block id="0fb51802ddab454289d99db889475b22" category="admonition">更新或应用新 RCF 时，必须擦除交换机设置并执行基本配置。您必须连接到交换机串行控制台端口才能重新设置交换机。</block>
+  <block id="a91911d2b8a6bd2699aa77eb38d533f1" category="paragraph">要安装BES-53248硬件、请参阅Broadcom文档。</block>
 </blocks>

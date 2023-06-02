@@ -11,7 +11,7 @@ summary: 要安装BES-53248硬件、请参见Broadcom文档。
 
 
 [role="lead"]
-要安装BES-53248硬件、请参见Broadcom文档。
+要安装BES-53248硬件、请参阅Broadcom文档。
 
 .步骤
 . 查看 link:configure-reqs-bes53248.html["配置要求"]。
