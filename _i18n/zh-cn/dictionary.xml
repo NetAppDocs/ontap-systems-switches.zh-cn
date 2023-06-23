@@ -3645,22 +3645,15 @@
   <block id="8e4eec704f9a8706e1a3cf96accb2c17" category="list-text"><block ref="8e4eec704f9a8706e1a3cf96accb2c17" category="inline-link-rx"></block></block>
   <block id="8fd3ca5f66dff5be16e79560dd28171e" category="inline-link">AFF A220</block>
   <block id="68b23d3f7da36f1f08be0727f515bcb1" category="inline-link">AFF A250</block>
-  <block id="5173935e91aef44c51b8afd57f32f13f" category="list-text"><block ref="5173935e91aef44c51b8afd57f32f13f" category="inline-link-rx"></block></block>
   <block id="540dacfeb5577ce4282c41e9c7518680" category="inline-link">AFF A400</block>
-  <block id="e06ad9290eff5c16396920aafb75091e" category="list-text"><block ref="e06ad9290eff5c16396920aafb75091e" category="inline-link-rx"></block></block>
   <block id="56c7968a1d140906ab8313162854322d" category="inline-link">AFF A700</block>
   <block id="53270fbfda62583949b287e08ae3d063" category="inline-link">AFF A800</block>
-  <block id="2f143cdae4fee80d6697460e215b8a02" category="list-text"><block ref="2f143cdae4fee80d6697460e215b8a02" category="inline-link-rx"></block></block>
   <block id="ec5e81cea4c5ee83d635778e86350e80" category="inline-link">AFF A900</block>
-  <block id="5ac126eccd9cedace8ba8c1ea4723760" category="list-text"><block ref="5ac126eccd9cedace8ba8c1ea4723760" category="inline-link-rx"></block></block>
   <block id="d5d4923aa83e46af2152de920946ba41" category="example-title">FAS 系统</block>
   <block id="9cce52969ddef317310e7d9d1c259895" category="inline-link">FAS500f</block>
-  <block id="266197ce8fb9d3417e159a8b375e04ef" category="list-text"><block ref="266197ce8fb9d3417e159a8b375e04ef" category="inline-link-rx"></block></block>
   <block id="1752b126dd5e4219fbf53c09ee63d51e" category="inline-link">FAS8300</block>
-  <block id="9832cac218f9fee6c6d44a9f9b5e7d76" category="list-text"><block ref="9832cac218f9fee6c6d44a9f9b5e7d76" category="inline-link-rx"></block></block>
   <block id="0588c4f1b58eac9f5062dc1da6e8435a" category="inline-link">FAS8700</block>
   <block id="ec5c696a4bc57321a5a79c91b886d5ff" category="inline-link">FAS9000</block>
-  <block id="6cfed826aaeccc59ecbf1bef0c41c6b6" category="list-text"><block ref="6cfed826aaeccc59ecbf1bef0c41c6b6" category="inline-link-rx"></block></block>
   <block id="756d409209ace98589705774b5011aa0" category="inline-link">FAS9500</block>
   <block id="26d2e0bd267361cc8916e7e16faebcbb" category="paragraph">将交换机安装在机架或机柜中。根据您的交换机型号访问以下说明。</block>
   <block id="8821c03ea98d1edaf4b4b82c0aaf59dc" category="inline-link-macro">安装BES-53248交换机</block>
@@ -3704,9 +3697,7 @@
   <block id="8a19d1619bb8803d8a6b5d21556d87ad" category="paragraph">配置交换机并安装所需软件后、请访问适用于AFF/FAS平台型号的安装和设置说明以完成系统设置。</block>
   <block id="f0a39bebe9f0d59f6fc97c14de8b2a1a" category="paragraph">安装并设置AFF/FAS控制器和交换机后、必须在ONTAP 中完成存储配置。根据您的部署配置访问以下说明。</block>
   <block id="549f827e07761bafef053e8ca7564a39" category="inline-link">配置 ONTAP</block>
-  <block id="8849c41092b79554e9b7f3a213d25622" category="list-text">有关ONTAP 部署、请参见<block ref="a9c0083f0559526553eb5b29452926d5" category="inline-link-rx"></block>。</block>
   <block id="10775dd39d5bac0a859a7c2aa804576e" category="inline-link">使用ONTAP 配置MetroCluster</block>
-  <block id="cd0ac8ac6ae100c0f56d712237ad4aea" category="list-text">有关采用MetroCluster 的ONTAP 部署、请参见<block ref="725c74f5b5396d66bd86e73daf02329b" category="inline-link-rx"></block>。</block>
   <block id="1e672cb0691529b9dab89394f7a5f58c" category="paragraph"><block ref="f9b2ed845567b21857ae5d0479088ab0" category="inline-link-macro-rx"></block>。</block>
   <block id="21f31f792b72c310b4fd5aa9c2e35835" category="paragraph">按照此操作步骤 在Nexus 9336C-x2共享交换机上安装NX-OS软件。</block>
   <block id="3353682bf555dc374d0a35c53f69888f" category="paragraph">您可以更换有故障的Nexus 9336C-x2共享交换机。这是无中断操作步骤 (NDU)。</block>
@@ -4191,9 +4182,6 @@
   <block id="a3eb3beddbb43f454ab9432019c1c2ba" category="paragraph"><block ref="a3eb3beddbb43f454ab9432019c1c2ba" category="inline-link-macro-rx"></block></block>
   <block id="9461b7a834c383c5538d97f8a173943a" category="paragraph"><block ref="9461b7a834c383c5538d97f8a173943a" category="inline-link-macro-rx"></block></block>
   <block id="7f8ff44cf8415837b6ddd0f6cfbf3f5a" category="list-text"><block ref="7f8ff44cf8415837b6ddd0f6cfbf3f5a" category="inline-link-macro-rx"></block></block>
-  <block id="564ec135f22614fd51e7ace4addc3c82" category="list-text"><block ref="564ec135f22614fd51e7ace4addc3c82" category="inline-link-rx"></block></block>
-  <block id="5cebcc95a2116e4839d188e34a24089c" category="list-text"><block ref="5cebcc95a2116e4839d188e34a24089c" category="inline-link-rx"></block></block>
-  <block id="4cd32923632a1028f1e64fee85335b39" category="list-text"><block ref="4cd32923632a1028f1e64fee85335b39" category="inline-link-rx"></block></block>
   <block id="2bf999bae7084da5db26c6b483ac44f0" category="list-text"><block ref="2bf999bae7084da5db26c6b483ac44f0" category="inline-link-rx"></block></block>
   <block id="17467de5e625043cda6499d3541a20d4" category="list-text">【第 7 步】将共享交换机 A 上的存储 RCF 替换为共享 RCF 文件。请参见 <block ref="2f595b9f03c1eca7e988cc615d685264" category="inline-link-macro-rx"></block> 了解更多详细信息。</block>
   <block id="636bbeffec3fc87e3384d539d543afee" category="list-text">【第 13 步】将共享交换机 B 上的存储 RCF 文件替换为共享 RCF 文件。请参见 <block ref="2f595b9f03c1eca7e988cc615d685264" category="inline-link-macro-rx"></block> 了解更多详细信息。</block>
@@ -4488,4 +4476,18 @@
   <block id="d23e0ef648ea8ae58d49d4170d37c221" category="list-text">如果尚未保存当前交换机配置的副本、请将以下命令的输出复制到文本文件中：</block>
   <block id="0fb51802ddab454289d99db889475b22" category="admonition">更新或应用新 RCF 时，必须擦除交换机设置并执行基本配置。您必须连接到交换机串行控制台端口才能重新设置交换机。</block>
   <block id="a91911d2b8a6bd2699aa77eb38d533f1" category="paragraph">要安装BES-53248硬件、请参阅Broadcom文档。</block>
+  <block id="3c8201758b6615445685550102a5ff2e" category="list-text"><block ref="3c8201758b6615445685550102a5ff2e" category="inline-link-rx"></block></block>
+  <block id="0c07f07bcba8b53ce2dde87f64978389" category="list-text"><block ref="0c07f07bcba8b53ce2dde87f64978389" category="inline-link-rx"></block></block>
+  <block id="ea4884694087f97f1414ff33591a92f4" category="list-text"><block ref="ea4884694087f97f1414ff33591a92f4" category="inline-link-rx"></block></block>
+  <block id="70784375dfee5175e8d1aff452c387bb" category="list-text"><block ref="70784375dfee5175e8d1aff452c387bb" category="inline-link-rx"></block></block>
+  <block id="9944f9622785dbcdc4d7ccd16c885446" category="list-text"><block ref="9944f9622785dbcdc4d7ccd16c885446" category="inline-link-rx"></block></block>
+  <block id="fe633e6d1d2b0e6ce4fb655cc1484ce6" category="list-text"><block ref="fe633e6d1d2b0e6ce4fb655cc1484ce6" category="inline-link-rx"></block></block>
+  <block id="53fcc9e92ee66f98454a4faa4f513b0f" category="list-text"><block ref="53fcc9e92ee66f98454a4faa4f513b0f" category="inline-link-rx"></block></block>
+  <block id="78863e0132385416cfd531211fd33ae2" category="list-text"><block ref="78863e0132385416cfd531211fd33ae2" category="inline-link-rx"></block></block>
+  <block id="94c4252b087ab60f8a4a9ffa3f5a1e59" category="list-text"><block ref="94c4252b087ab60f8a4a9ffa3f5a1e59" category="inline-link-rx"></block></block>
+  <block id="98d2b525bd9f4cea6db9ab1194e60210" category="list-text"><block ref="98d2b525bd9f4cea6db9ab1194e60210" category="inline-link-rx"></block></block>
+  <block id="85dbe4f93e89fc6f3ee146ffd5687c67" category="list-text"><block ref="85dbe4f93e89fc6f3ee146ffd5687c67" category="inline-link-rx"></block></block>
+  <block id="85d166e992ca6f11afb6f8661ce70bf4" category="list-text"><block ref="85d166e992ca6f11afb6f8661ce70bf4" category="inline-link-rx"></block></block>
+  <block id="b54483c149c4951b43214e0e419d0882" category="list-text">有关ONTAP 部署、请参见<block ref="daad8f612ac7448a64fdb14518a581cb" category="inline-link-rx"></block>。</block>
+  <block id="aeaeb10b6f9fde2ae4de6c336b6e2a09" category="list-text">有关采用MetroCluster 的ONTAP 部署、请参见<block ref="63d00fc18e84d6621c63394dbe0320b4" category="inline-link-rx"></block>。</block>
 </blocks>
