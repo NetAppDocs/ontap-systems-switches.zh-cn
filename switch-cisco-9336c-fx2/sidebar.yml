@@ -36,6 +36,8 @@ entries:
     url: "/switch-cisco-9336c-fx2/install-nxos-rcf-9336c-cluster.html"
 - title: 迁移交换机
   entries:
+  - title: 从CN1610集群交换机迁移
+    url: "/switch-cisco-9336c-fx2/migrate-cn1610-9336c-cluster.html"
   - title: 从旧版Cisco交换机迁移
     url: "/switch-cisco-9336c-fx2/migrate-to-9336-cluster.html"
   - title: 迁移到双节点交换集群
