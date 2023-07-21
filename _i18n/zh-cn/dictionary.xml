@@ -135,10 +135,8 @@
   <block id="fcaf9f39a9df76762021c3d64f44d4fe" category="list-text">集群从两个节点连接到两个 CN1610 集群交换机开始。</block>
   <block id="27697f6512c7b96a98d841d32af1d8b1" category="list-text">CN1610 交换机 CL2 由 BES-53248 交换机 CS2 取代：</block>
   <block id="7752aa18c591e37c0a0acd3fb6e4a122" category="list-text">从连接到 CL2 的所有节点上的所有集群端口断开缆线连接，然后使用支持的缆线将端口重新连接到新的集群交换机 CS2 。</block>
-  <block id="c012a6d3633646a8c68fc6402458aceb" category="list-text">断开 ISL 端口 CL1 和 CL2 之间的缆线，然后使用支持的缆线将端口从 CL1 重新连接到 CS2 。</block>
   <block id="834f4154e00d9ca11a81ff42577b0608" category="list-text">CN1610 交换机 CL1 由 BES-53248 交换机 CS1 取代：</block>
   <block id="2f90e3f924637cb7efc034159b2c9a25" category="list-text">从连接到 CL1 的所有节点上的所有集群端口断开缆线连接，然后使用支持的缆线将端口重新连接到新的集群交换机 CS1 。</block>
-  <block id="1821b2575dd0c2fdaceab059a46c61d1" category="list-text">断开 ISL 端口 CL1 和 CS2 之间的缆线，然后使用支持的缆线将端口从 CS1 重新连接到 CS2 。</block>
   <block id="b43ea0ccb4dd445b99351ed6c76677e8" category="list-text">如果在此集群上启用了 AutoSupport ，则通过调用 AutoSupport 消息禁止自动创建案例：</block>
   <block id="a242b8161e04fdba4909ddd9abab1d4b" category="paragraph">`ssystem node AutoSupport invoke -node * -type all -message MAINT=xh`</block>
   <block id="6ffe43c64e0e1693bc8124a4c0c9e1bc" category="paragraph">其中 x 是维护时段的持续时间，以小时为单位。</block>
@@ -154,38 +152,22 @@
   <block id="5c68722501def32a551a736611dc6d8d" category="list-text">确定每个集群接口的管理或运行状态。</block>
   <block id="2e729d790188b76f9ff137fba89a9db0" category="list-text">显示集群网络端口属性：</block>
   <block id="52e7ec4aaac1e1a0a07e63f3d7eb9c16" category="list-text">显示有关逻辑接口的信息：</block>
-  <block id="00719eb4831e293ceb7b2b270145824c" category="list-text">根据需要，验证新 BES-53248 交换机上是否安装了适当的端口许可证， RCF 和 EFOS 映像，并进行任何必要的站点自定义，例如用户和密码，网络地址等。</block>
-  <block id="d8ec26620645f03028b1af11475624ff" category="list-text">对远程集群接口执行 Ping 操作：</block>
   <block id="35f01ed40b6310feec062211ce126c2d" category="paragraph">`cluster ping-cluster -node node-name`</block>
   <block id="85c96d16aebcae293f2d70dbbf9cb1d0" category="paragraph">以下示例显示了如何对远程集群接口执行 ping 操作：</block>
   <block id="82214ffaae0abeffe761517344159444" category="list-text">关闭活动 CN1610 交换机 CL1 上的 ISL 端口 13 到 16 ：</block>
   <block id="1136531f8e26fab6ed3aa68ddd63c6cf" category="paragraph">`s下行`</block>
   <block id="20fca188f9df647063b0798615526c99" category="paragraph">以下示例显示了如何关闭 CN1610 交换机 CL1 上的 ISL 端口 13 到 16 ：</block>
-  <block id="a4a74e31e717c4b6fc3b7ad6012d0349" category="list-text">在 CN1610 CL1 和新的 BES-53248 CS2 之间构建临时 ISL 。ISL 只能在 CS2 上定义，因为 CL1 上的现有 ISL 可以重复使用。</block>
   <block id="3fe7956fd750714f32d9b6e932832821" category="list-text">在所有节点上，拔下连接到 CN1610 交换机 CL2 的缆线。</block>
-  <block id="5d280863fd236cda52f2708226ba8a5e" category="list-text">从 CN1610 交换机 CL2 上的端口 13 到 16 拔下四根 ISL 缆线。</block>
-  <block id="38ca1adf59b8ce9e6c4f44159a40f5be" category="paragraph">您必须使用适当的布线方式将新 BES-53248 交换机 CS2 上的端口 0/13 连接到 0/16 ，并将其连接到现有 CN1610 交换机 CL1 上的端口 13 到 16 。</block>
   <block id="bc184e6696a5706a12239ac0612dda19" category="list-text">在活动的 CN1610 交换机 CL1 上启动 ISL 13 到 16 。</block>
-  <block id="38e3ae6448f367edbd7386f2cb6d360c" category="paragraph">以下示例说明了在 CL1 上启动 ISL 端口 13 到 16 的过程：</block>
   <block id="44f09f8a90367de97a8162e8b26612c2" category="paragraph">`s如何使用端口通道`</block>
-  <block id="293d91afee246f200d1ae69d1b103a92" category="list-text">验证 BES-53248 交换机上的 ISL 端口是否已启动：</block>
   <block id="210c72bbad8c8bc1c0de6bc95f64dff9" category="list-text">验证所有集群互连端口是否均已还原到其主端口：</block>
   <block id="f9d6a6a75483c0ffe08b0dea9565ef0c" category="list-text">验证所有集群端口是否均已连接：</block>
-  <block id="271a2364104a3bfd1eed9bb3610457ca" category="paragraph">以下示例显示了上一个命令的结果，用于验证所有集群互连是否均已启动：</block>
   <block id="c08886eaed359b5e123b95c056c6e19b" category="paragraph">`cluster ping-cluster -node _node-name_`</block>
-  <block id="2eaa23d19c9d0d8b99dd3aebe2821a47" category="list-text">在所有节点上，拔下连接到 CN1610 交换机 CL1 的缆线。</block>
-  <block id="cf23dc9a349b2b2b24b965ca1b5ee780" category="list-text">拔下 BES-53248 交换机 CS2 上端口 13 到 16 的四根 ISL 缆线。</block>
-  <block id="7949279a511393a80732a0badf33762b" category="list-text">删除 CS2 上的临时端口通道 2 。</block>
-  <block id="26bf31952ecce194df04b0049b809e81" category="paragraph">以下示例将删除 port-channel 2 并将运行配置文件复制到启动配置文件：</block>
   <block id="02e93bb0f25246e056d6a7dc767926d0" category="list-text">验证集群节点端口的状态：</block>
-  <block id="230ee507b1c1c7034ad032da25076f9f" category="paragraph">以下示例验证 node1 和 node2 上的所有集群互连端口是否均为 `up` ：</block>
   <block id="48080b25b0f8ce17d4598aea7dbbc6cb" category="list-text">验证接口现在是否为主：</block>
-  <block id="5fd0551e41d9e31f886e46cd4cffc6fa" category="paragraph">以下示例显示了 node1 和 node2 的集群互连接口状态为 `up` 和 `is home` ：</block>
   <block id="c88bbeb32e8a86a6536b0c77fe7f1ec8" category="list-text">对远程集群接口执行 Ping 操作，然后执行远程操作步骤调用服务器检查：</block>
   <block id="25ea268f832f9b1eec50e6576dee1fa5" category="list-text">显示有关配置中的设备的信息：</block>
-  <block id="b7dbe83a33dd014817344e36d5873787" category="paragraph">以下示例显示 node1 和 node2 已从 CN1610 CL2 和 CL1 迁移到 BES-53248 CS2 和 CS1 ：</block>
   <block id="7600489ac65e7f2d69df5731f63b9999" category="list-text">如果未自动删除更换的 CN1610 交换机，请将其卸下：</block>
-  <block id="10b31128e5e49951f428b70d16fffeef" category="paragraph">`ssystem cluster-switch delete -device _device-name_`</block>
   <block id="7e742ccdfe23c1184022b4bc3a971881" category="paragraph">以下示例显示了如何删除 CN1610 交换机：</block>
   <block id="c13ce4df5a94da696d7e37e246e6fb8a" category="list-text">如果禁止自动创建案例，请通过调用 AutoSupport 消息重新启用它：</block>
   <block id="824a761c1584c25f025a384b7b387c56" category="paragraph">`ssystem node AutoSupport invoke -node * -type all -message MAINT=end`</block>
@@ -261,14 +243,11 @@
   <block id="6db27f68adde7b6578b513891108402f" category="list-text">BES-53248</block>
   <block id="be79d4cfffc9aeffda76a33e5f7732d1" category="list-text">集群交换机支持以下节点连接：</block>
   <block id="59f69cc7526dca532d61c11acf92ab1b" category="list-text">NetApp CN1610 ：端口 0/1 到 0/12 （ 10 GbE ）</block>
-  <block id="660b0f9ffb8f8576ba98663a59024584" category="list-text">BES-53248 ：端口 0/1-0/16 （ 10/25 GbE ）</block>
   <block id="c8be55cbfb0716be35dee2453296d010" category="admonition">可以通过购买端口许可证来激活其他端口。</block>
   <block id="c7dda80893d9ac37909769fa7d2fe963" category="list-text">集群交换机使用以下交换机间链路（ ISL ）端口：</block>
   <block id="d85b5de5ebd96ca279df638f293965ec" category="list-text">NetApp CN1610 ：端口 0/13 至 0/16 （ 10 GbE ）</block>
-  <block id="7e87662569383e326538e5d26beb6a08" category="list-text">BES-53248 ：端口 0/55-0/56 （ 100 GbE ）</block>
   <block id="1dd482f318ebf3baf239afefb0c0756b" category="list-text">相应的 ISL 布线如下所示：</block>
   <block id="0770c9d05dca95d3cdebb78f361ae6e8" category="list-text">* 起始： * 对于 CN1610 到 CN1610 （ SFP+ 到 SFP+ ），需要四根 SFP+ 光纤或铜缆直连缆线。</block>
-  <block id="2a5de425b9976b085fa03aa8c0bb83af" category="list-text">* 临时： * 对于 CN1610 到 BES-53248 （ SFP+ 到 SFP28 ），使用四根 10G SFP+ 光纤收发器 / 光纤或铜缆直连。</block>
   <block id="320ed3c6eb6c5ab11253b5afc742dec7" category="list-text">* 最终版本： * 对于 BES-53248 到 BES-53248 （ QSFP28 到 QSFP28 ），需要两根 QSFP28 光纤收发器 / 光纤或铜缆直连缆线。</block>
   <block id="c04ce9c1c44c5e07bf7a73e79811a429" category="list-text">要设置静态 IP 地址，请使用 `serviceport protocol` ， `network protocol` 和 `serviceport ip` 命令，如示例所示。</block>
   <block id="0fd8ea58e8899f870165c3b59ed22856" category="paragraph">双节点无交换机配置：</block>
@@ -2210,8 +2189,6 @@
   <block id="8761a71b0c01f0356000c0994d4fb203" category="paragraph">`ssystem switch Ethernet log setup-password`和`ssystem switch Ethernet log enable-Collection`</block>
   <block id="c757279318295752ba90c940af04f05e" category="paragraph">后跟： `ssystem switch Ethernet log enable-Collection`</block>
   <block id="def140a135e96c99279be95e1ef70130" category="doc">更换Broadcom支持的BES-53248集群交换机</block>
-  <block id="aca231809cb1cd80c1435dd9914b66dd" category="paragraph">然后，您必须将所有节点上已断开连接的端口重新连接到新的 BES-53248 交换机 CS2 。请参见<block ref="141c10db18cf1753fa5fc05f553c33ff" category="inline-link-rx"></block> 用于获得批准的布线选项。</block>
-  <block id="cbd2e2da439fbaf2fd95743ddedbb09e" category="paragraph">然后，您必须将所有节点上已断开连接的端口重新连接到新的 BES-53248 交换机 CS1 。请参见<block ref="141c10db18cf1753fa5fc05f553c33ff" category="inline-link-rx"></block> 用于获得批准的布线选项。</block>
   <block id="16c3e502f28be460a987ad28ccd36874" category="paragraph">您可以参考Broadcom支持的BES-53248集群交换机端口分配表来配置集群。</block>
   <block id="fa4755458f8910a0033438b214e14730" category="paragraph">01-16</block>
   <block id="72361095902a3b782c7c383d3a813fcf" category="paragraph">10/25GbE集群端口节点、基本配置</block>
@@ -2308,7 +2285,6 @@
   <block id="8c61118abc6e9e30fd4469d362e96e00" category="paragraph">所有集群LIF都将移至CS2-NEW交换机。</block>
   <block id="2a5fc0afbcb2299e24c73a909b297e93" category="paragraph">验证移动的集群端口是否将CS1-new交换机视为邻居。</block>
   <block id="35d736ae56a7e094d4d2c2786669f8ca" category="list-text">从交换机CS1-new的角度确认交换机端口连接：</block>
-  <block id="2a42351fd3a2f7fd74a9510816b9125f" category="list-text">启用以太网交换机运行状况监控器日志收集功能以收集交换机相关的日志文件。</block>
   <block id="9e25219bfef39dc2d94805b599244f8d" category="open-title">ONTAP 9.8 及更高版本</block>
   <block id="c341f6ea60d7e8508c7d6cd8d529fd71" category="paragraph">使用以下两个命令启用以太网交换机运行状况监控器日志收集功能以收集交换机相关的日志文件：`ssystem switch Ethernet log setup-password`和`ssystem switch Ethernet log enable-Collection`</block>
   <block id="372aff3164b35ebb97a99a633d4262a4" category="paragraph">*注：*您需要交换机上*管理员*用户的密码。</block>
@@ -2983,8 +2959,6 @@
   <block id="bc0630b5ddba535ff747f33d931d3694" category="inline-link-macro">配置Cisco Nexus 9336C-x2存储交换机</block>
   <block id="72ebeb1eaefeb8dcaddced548aa138a6" category="paragraph">转至 <block ref="dbe1537ab2448f7ffd0bedd5a713fbd6" category="inline-link-macro-rx"></block>。</block>
   <block id="5d9de0e2f02eef0f18faf016853f64f1" category="paragraph">您可以将ONTAP 集群的旧版Cisco集群交换机迁移到Cisco Nexus 9336C-x2存储网络交换机。这是一个无中断操作步骤。</block>
-  <block id="f9d2ab9ba492f39945871f6a528883ed" category="list-text">Nexus 9336C-x2交换机上的某些端口配置为以10 GbE或40 GbE运行。</block>
-  <block id="c6449cd5583d11e13492975c270966b3" category="list-text">已规划、迁移和记录从节点到Nexus 9336C-FX2集群交换机的10 GbE和40 GbE连接。</block>
   <block id="168e6c74ccda1fafcc71e6c7735ab151" category="list-text">集群完全正常运行(日志中不应出现任何错误或类似问题)。</block>
   <block id="9a09d8e2d5f6e06a696dfad8eb5b3787" category="list-text">Cisco Nexus 9336C-x2交换机的初始自定义已完成、以便：</block>
   <block id="df5367038bd60876796bcfd577caafc0" category="list-text">9336C-FX2交换机正在运行建议的最新软件版本。</block>
@@ -3530,15 +3504,11 @@
   <block id="1e398c47e90911cdd18c0dcb654a78a1" category="paragraph">在BES-53248集群交换机上、48个10/25GbE (SFP28/SFP+)端口组合为12个4端口组、如下所示：端口1-4、5-8、9-12、13-16、17-20、21-24、25-28、29-32、33-36、37-40、41-44和45-48。</block>
   <block id="e1eb24039435030db0d5dbc4456a9bd9" category="doc">将CN1610集群交换机迁移到BES-53248集群交换机</block>
   <block id="88f0acfafa549f0c5c14861dac821fdd" category="paragraph">要将集群中的CN1610集群交换机迁移到受Broadcom支持的BES-53248集群交换机、请查看迁移要求、然后按照迁移操作步骤 进行操作。</block>
-  <block id="1380e851ffb255b46dfcc6fc2d4a81af" category="paragraph">查看配置信息、端口连接和布线要求。</block>
   <block id="cd6ffc68dd2e79ef0626cbab7223057e" category="section-title">节点连接</block>
   <block id="84a71a9e63ead8784cd365088a3be8c4" category="section-title">ISL 端口</block>
   <block id="0f92a7d54d19ea727ff8ed91081b5563" category="section-title">ISL布线</block>
   <block id="3ad14aa63328fe46434a4528efd17f3e" category="paragraph">按照此操作步骤 将CN1610集群交换机迁移到BES-53248集群交换机。</block>
   <block id="07fee47f3ffbc5ef72724836369779da" category="list-text">这些示例使用两个节点、每个节点部署两个10 GbE集群互连端口：<block ref="922c556baf6272bffc4fa28b2e9a0bbc" prefix=" " category="inline-code"></block> 和<block ref="22fe67c2e87caff18249cf1804bbeaad" prefix=" " category="inline-code"></block>。</block>
-  <block id="ffc84dedc07b568ca791adb72bcc8d61" category="paragraph">以下示例将在CS2上构建一个临时ISL (端口13-16)、以连接到CL1上的现有ISL (端口13-16)。</block>
-  <block id="4ce9c3db8b38bb08700bf7d0c8a896a4" category="list-text">验证CN1610交换机CL1上的ISL是否已"启动"：</block>
-  <block id="3bc00b87c9d7974628fbaf8aa8779a0c" category="paragraph">。<block ref="2ca384e25ce18ee9f0ef797ddb07553f" prefix=" " category="inline-code"></block> 应为"up"、<block ref="a1fa27779242b4902f7ae3bdd5c6d508" prefix=" " category="inline-code"></block> 应为"静态"、和<block ref="574cf51f989449e27cc737b456360c82" prefix=" " category="inline-code"></block> 端口0/13到0/16应为"True"：</block>
   <block id="245b6d4f01047a24b306b9ff15a6f528" category="summary">您可以在配置BES-53248集群交换机后以及应用新许可证后安装参考配置文件(Reference Configuration File、RCF)。</block>
   <block id="b3d2ab282b59bbaad33610c1e37f6f97" category="list-text">将此脚本应用于交换机。</block>
   <block id="4b3087862136b477f2ba4eb874340862" category="inline-link-macro">安装CSHM配置文件</block>
@@ -4231,8 +4201,6 @@
   <block id="fa29548058837254e54c0910a42e81ed" category="paragraph"><block ref="7d77b5b7ecc6e91232de4d87c6f561de" prefix="" category="inline-code"></block></block>
   <block id="25e09b4fadd3fa8202fa95ea688667c1" category="list-text">[[STEP5]]验证命令输出是否包含文本字符串：<block ref="bb932139b2106289945776f4f81d066a" prefix=" " category="inline-code"></block>。如果发生错误、请联系NetApp支持部门。</block>
   <block id="d28bbd717c002acf43e747edb594c750" category="list-text">在ONTAP 系统上运行命令、并验证是否已发现集群交换机且监控字段设置为"True"：</block>
-  <block id="0b2982341db4239f887933204ca7720d" category="paragraph"><block ref="b4720f8aa09f4e4b3a04e78c558b6c90" prefix="" category="inline-code"></block></block>
-  <block id="4e4f70ba52e8cb595faa069991c5a9f4" category="list-text">[[STEP5]]如果禁止自动创建案例、请通过调用AutoSupport 消息重新启用：</block>
   <block id="1ad47980611dd1ee749c3478e99b4edd" category="paragraph">下表列出了BES-53248集群交换机组件的部件号、问题描述 以及最低EFOS和ONTAP 版本、包括机架安装导轨套件详细信息。</block>
   <block id="4a47a181e94c352883a8741b3ec5e291" category="admonition">对于部件号*X190005-B*和*X190005R-B*，至少需要EFOS版本*3.10.0.3*。</block>
   <block id="c37b8196896554a6da47b74fe6581c98" category="cell">最低EFOS版本</block>
@@ -4351,8 +4319,6 @@
   <block id="7481f181e296e575db2349974a47cc2c" category="paragraph">按照以下步骤安装集群交换机运行状况监控器(Cluster Switch Health Monitor、CSHM)配置文件。</block>
   <block id="810bc3d02021061ba2b8f87b703a66dd" category="paragraph">您可以使用日志收集功能在ONTAP 中收集与交换机相关的日志文件。</block>
   <block id="ee3c886759b6a2517a47e20c04320ed6" category="admonition">要启用日志收集功能、必须运行ONTAP 9.12.1及更高版本以及EFOS 3.8.0.2及更高版本。</block>
-  <block id="ea234103ea5e655162d46327fb979006" category="paragraph">确保已使用BES-53248集群交换机*CLI*设置环境。</block>
-  <block id="f7cbc1a4399eb952f71e7f3276fe30cb" category="list-text">使用以下命令启用以太网交换机运行状况监控器日志收集功能以收集与交换机相关的日志文件：</block>
   <block id="b8df928a1a67f132ebda54d2c7fee7dc" category="paragraph">如果要从旧版本升级 RCF ，则必须重置 Broadcom 交换机设置并执行基本配置以重新应用 RCF 。每次要升级或更改 RCF 时，都必须执行此操作。请参见<block ref="ca0e22b4f868295e6cf32a824edc5c13" category="inline-link-rx"></block> 了解详细信息。</block>
   <block id="fecbf70623c5c07c3f3c4c8793d5061b" category="list-text">可从获取的当前RCF文件<block ref="b4c2fb45a290e6214474529bd84dd3bc" category="inline-link-rx"></block> 页面。</block>
   <block id="23c89511c80ceef00a8d3343b5f08569" category="list-text">RC框架 中反映所需启动映像的启动配置、如果您仅安装EFOS并保留当前RC框架 版本、则需要此配置。如果您需要更改启动配置以反映当前启动映像，则必须在重新应用 RCF 之前进行更改，以便在将来重新启动时实例化正确的版本。</block>
@@ -4533,4 +4499,55 @@
   <block id="cc0c96fa4e2abab8a22a057701a64895" category="list-text">使用Cisco 9336C -FX2支持的适当布线方法、将节点集群端口从旧交换机C1移动到新交换机CS1。</block>
   <block id="ba04a36ca69927056bab3bba36362e9b" category="list-text">在交换机CS1和CS2上、验证所有节点集群端口是否均已启动：</block>
   <block id="d9dbaab2b13b33007de8325a401de04b" category="sidebar">从CN1610集群交换机迁移</block>
+  <block id="6c174914ef0e9418a778018f9f416565" category="paragraph">验证是否已使用BES-53248集群交换机*CLI*设置环境。</block>
+  <block id="f82e463abb944d54e7eb997507aada97" category="list-text">为以太网交换机运行状况监控器日志收集功能创建密码：<block ref="36ac3c1f3bae8142b5d110fb906ba03e" prefix=" " category="inline-code"></block></block>
+  <block id="3da8b58ec29508478eb281950ce7a85f" category="list-text">启用以太网交换机运行状况监控器日志收集功能。</block>
+  <block id="55c09ca9257750665c75e5b587165519" category="paragraph"><block ref="e802bd77f148cffa22d9aa9e7d79d65d" prefix="" category="inline-code"></block></block>
+  <block id="e1d0dd82b8f2058c2b4c4d59c2f80125" category="paragraph">等待10分钟、然后使用命令检查日志收集是否已完成：</block>
+  <block id="0eedc6e86bf0684694a5f74d12cd17d7" category="admonition">如果其中任一命令返回错误或日志收集未完成、请联系NetApp支持部门。</block>
+  <block id="cada8434ff5f9181d7ae07ce2a2c1336" category="list-text">BES-53248交换机上的某些端口配置为以10GbE或40GbE速度运行。</block>
+  <block id="9b8afb051b3fda2a9f3dcd0edcc95d79" category="list-text">从节点到BES-53248集群交换机的10GbE和40GbE连接已进行规划、迁移和记录。</block>
+  <block id="df3b6dd54dfaeb972568b29147c67103" category="list-text">BES-53248交换机的初始自定义完成、以便：</block>
+  <block id="8f7a04d5740dbba56b463f7bc775e27a" category="list-text">BES-53248交换机正在运行建议的最新版本的EFOS软件。</block>
+  <block id="2f16d56c4dbd9373c09b2be5c94c8c4a" category="list-text">NetApp CN1610：端口0/1到0/12 (10GbE)</block>
+  <block id="6eba55dd02cfc9051346620e14eff928" category="list-text">BES-53248：端口0/1-0/16 (10GbE/25GbE)</block>
+  <block id="cf5d4db6cebbe371c7454d022aa56dd3" category="list-text">NetApp CN1610：端口0/13到0/16 (10GbE)</block>
+  <block id="8f74ad2c7978b9cd5864f853839e8666" category="list-text">BES-53248：端口0/55-0/56 (100GbE)</block>
+  <block id="0909c64ff9f7c500cad4de512cc64f31" category="list-text">在新交换机上、确认交换机CS1和CS2之间的ISL已布线且运行状况良好：</block>
+  <block id="10eb67b70ef8150836466766bdd3f2f8" category="list-text">显示连接到现有集群交换机的每个节点上的集群端口：</block>
+  <block id="fc7a60af0bed9304a4ca478877f91450" category="list-text">验证所有集群端口是否均为<block ref="46c48bec0d282018b9d167eef7711b2c" prefix=" " category="inline-code"></block> 使用<block ref="741839f346d6e8126ae38ee76a96fd12" prefix=" " category="inline-code"></block> 状态：</block>
+  <block id="0be9e89f86499b3770f2ce9bad1ba0eb" category="list-text">[[STEP5]]对集群Lifs禁用自动还原。</block>
+  <block id="04b62972586827d401a3dea129d172c9" category="list-text">在集群交换机CL1上、关闭连接到节点集群端口的端口：</block>
+  <block id="d9f832c61b11e8d4b59ef0ae25ac9dd6" category="list-text">验证集群LIFs是否已迁移到集群交换机CL1上托管的端口。这可能需要几秒钟的时间。</block>
+  <block id="eba3ff5e6602b380a875b5adacf6e6fd" category="list-text">将旧CS2交换机上的所有集群节点连接缆线移至新CS2交换机。</block>
+  <block id="8884e29d4b490f2084dae5227ca847a4" category="list-text">确认已移至CS2的网络连接的运行状况：</block>
+  <block id="308cecb0e156959b9d08b434ef110588" category="paragraph">已移动的所有集群端口均应为<block ref="46c48bec0d282018b9d167eef7711b2c" prefix=" " category="inline-code"></block>。</block>
+  <block id="e2a6925a1c6094f573b02dac570783d1" category="list-text">使用命令从交换机CS2的角度确认交换机端口连接：</block>
+  <block id="ad38a12ff64b2cba000c16daea86aee6" category="list-text">在集群交换机CL2上、关闭连接到节点的集群端口的端口。</block>
+  <block id="48281ee704bfb0f055c15fe754705f5a" category="paragraph">所有集群的LUN都会移至CS2交换机。</block>
+  <block id="18a308037b50cae9759f1f49af5aed58" category="list-text">验证集群 LIF 是否已迁移到交换机 CS2 上托管的端口。这可能需要几秒钟的时间：</block>
+  <block id="f20b906cc8acf5d97550e7a24fd7c69b" category="list-text">将集群节点连接缆线从CL1移至新的CS1交换机。</block>
+  <block id="b7557e0e7f48313d82756b7481c1b1f6" category="list-text">确认已移至CS1的网络连接的运行状况：</block>
+  <block id="a19beb91ec2195c2db049b5e003334f4" category="list-text">使用命令从交换机CS1的角度确认交换机端口连接：</block>
+  <block id="ce16551695d7120d532abead22bee8c2" category="list-text">验证CS1和CS2之间的ISL是否仍正常运行：</block>
+  <block id="b48ac462b57bcb2860eecd434bd2c80f" category="paragraph">从ONTAP 9.8开始、请使用以下命令：<block ref="b4720f8aa09f4e4b3a04e78c558b6c90" prefix=" " category="inline-code"></block></block>
+  <block id="4ae8d24c72dd765a4920ac53c2dafe90" category="open-title">ONTAP 9.4及更早版本</block>
+  <block id="7c0f7899f6a5609732991b637b6b77d8" category="paragraph">对于ONTAP 9.4及更早版本、请使用命令：<block ref="f055904a9fc3a4f0bc33aca13ecd2b2d" prefix=" " category="inline-code"></block></block>
+  <block id="3e1fd1b016d89d236712e513bee2a170" category="list-text">为以太网交换机运行状况监控器日志收集功能创建密码。</block>
+  <block id="300c1f24adf38203b39051c2816bed96" category="admonition">要启用日志收集功能、必须运行ONTAP 9.12.1及更高版本以及EFOS 3.8.0.2及更高版本。</block>
+  <block id="079e7a1f80c26ff7b477dcbf014e4e70" category="list-text">启用以太网交换机运行状况监控器日志收集功能：</block>
+  <block id="aae263170b5a7f23d3045f8a2b09091f" category="paragraph">等待10分钟、然后检查日志收集是否完成：</block>
+  <block id="c9a1a82d3af3d53e5132a5ce6181fc18" category="list-text">Nexus 9336C -FX2交换机上的某些端口配置为以10GbE或40GbE速度运行。</block>
+  <block id="e91ad171943f09dacfa36533932bac00" category="list-text">已规划、迁移和记录从节点到Nexus 9336C -FX2集群交换机的10GbE和40GbE连接。</block>
+  <block id="0c0168daa801acef2533722b72cd3dc2" category="list-text">验证远程集群接口的连接：</block>
+  <block id="1ff96f961a0386158191fbc0f4fb218b" category="open-title">ONTAP 9.9.1及更高版本</block>
+  <block id="1f17d0411deacae1bc52455afcc80c64" category="paragraph">您可以使用<block ref="27ef00bd0eeb78214f4636adfe0cfe59" prefix=" " category="inline-code"></block> 命令启动集群连接的可访问性检查、然后显示详细信息：</block>
+  <block id="8aaafad190a8d987431739ec77af6bce" category="paragraph"><block ref="79ca324fd00eadc332828cf274c18782" prefix="" category="inline-code"></block> 和<block ref="349936611c6519c48a39cbd40f1f907a" prefix=" " category="inline-code"></block></block>
+  <block id="69989c059c3ab289002892286db94917" category="paragraph">*注：*请等待几秒钟、然后再运行show命令显示详细信息。</block>
+  <block id="03021eec65c2df0065e1ad1083de7525" category="open-title">所有ONTAP版本</block>
+  <block id="d576f6342b019a4a22e71708ae81b0d9" category="paragraph">对于所有ONTAP版本、您还可以使用<block ref="7eaac8e45910aa8bf3a06f6966ab0656" prefix=" " category="inline-code"></block> 用于检查连接的命令：</block>
+  <block id="090015dd47b4cd238b646c5f1dbc231d" category="list-text">[[Step5]]启用以太网交换机运行状况监控器日志收集功能以收集与交换机相关的日志文件。</block>
+  <block id="079555d3c02274a2f31c4ed0065d657e" category="doc">配置SNMPv3</block>
+  <block id="75e0b0aa735bcccb4bf1267f69cc872e" category="paragraph">按照此操作步骤配置SNMPv3、此SNMPv3支持交换机运行状况监控(CSHM)。</block>
+  <block id="1bd553f48f18f76a761092d0bebbe5a4" category="paragraph">以下命令将使用CSHM建立SNMPv3用户名：<block ref="bc0f2549b8e026bfa298fbc575ba6020" prefix=" " category="inline-code"></block></block>
 </blocks>

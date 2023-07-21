@@ -16,18 +16,11 @@ summary: 集群交换机运行状况监控器日志收集功能用于在 ONTAP �
 
 IMPORTANT: 要启用日志收集功能、必须运行ONTAP 9.12.1及更高版本以及EFOS 3.8.0.2及更高版本。
 
-确保已使用BES-53248集群交换机*CLI*设置环境。
+验证是否已使用BES-53248集群交换机*CLI*设置环境。
 
 .步骤
-. 使用以下命令启用以太网交换机运行状况监控器日志收集功能以收集与交换机相关的日志文件：
-+
-`ssystem switch Ethernet log setup-password`和
-
-+
-`s系统交换机以太网日志 enable-Collection`
-
-+
-.. 输入： `ssystem switch Ethernet log setup-password`
+. 为以太网交换机运行状况监控器日志收集功能创建密码：
+`system switch ethernet log setup-password`
 +
 .显示示例
 [%collapsible]
@@ -44,8 +37,7 @@ Choose from the following list:
 cluster1::*> *system switch ethernet log setup-password*
 
 Enter the switch name: *cs1*
-RSA key fingerprint is e5:8b:c6:dc:e2:18:18:09:36:63:d9:63:dd:03:d9:cc
-Do you want to continue? {y|n}::[n] *y*
+Would you like to specify a user other than admin for log collection? {y|n}: *n*
 
 Enter the password: *<enter switch password>*
 Enter the password again: *<enter switch password>*
@@ -53,61 +45,46 @@ Enter the password again: *<enter switch password>*
 cluster1::*> *system switch ethernet log setup-password*
 
 Enter the switch name: *cs2*
-RSA key fingerprint is 57:49:86:a1:b9:80:6a:61:9a:86:8e:3c:e3:b7:1f:b1
-Do you want to continue? {y|n}:: [n] *y*
+Would you like to specify a user other than admin for log collection? {y|n}: *n*
 
 Enter the password: *<enter switch password>*
 Enter the password again: *<enter switch password>*
 ----
 ====
-.. 输入 ... `system switch ethernet log enable-collection`
+. 启用以太网交换机运行状况监控器日志收集功能。
++
+`system switch ethernet log modify -device _<switch-name>_ -log-request true`
+
 +
 .显示示例
 [%collapsible]
 ====
 [listing, subs="+quotes"]
 ----
-cluster1::*> *system  switch ethernet log enable-collection*
+cluster1::*> *system switch ethernet log modify -device cs1 -log-request true*
 
-Do you want to enable cluster log collection for all nodes in the cluster?
-{y|n}: [n] *y*
+Do you want to modify the cluster switch log collection configuration? {y|n}: [n] *y*
 
 Enabling cluster switch log collection.
 
-cluster1::*>
+cluster1::*> *system switch ethernet log modify -device cs2 -log-request true*
+
+Do you want to modify the cluster switch log collection configuration? {y|n}: [n] *y*
+
+Enabling cluster switch log collection.
 ----
 ====
-
-
-. 启动交换机日志收集功能：
 +
-`system switch ethernet log collect -device *`
-
-+
-等待10分钟、然后使用命令检查日志收集是否成功：
+等待10分钟、然后使用命令检查日志收集是否已完成：
 
 +
 `system switch ethernet log show`
 
 +
-.显示示例
-[%collapsible]
-====
-[listing, subs="+quotes"]
-----
-cluster1::*> system switch ethernet log show
-Log Collection Enabled: true
 
-Index  Switch                       Log Timestamp        Status
------- ---------------------------- -------------------  ---------
-1      cs1 (b8:ce:f6:19:1b:42)      4/29/2022 03:05:25   complete
-2      cs2 (b8:ce:f6:19:1b:96)      4/29/2022 03:07:42   complete
-----
+CAUTION: 如果其中任一命令返回错误或日志收集未完成、请联系NetApp支持部门。
 
-CAUTION: 如果其中任何一个命令返回错误，请联系 NetApp 支持部门。
+
 
 .下一步是什么？
 如果要升级交换机、请转至 link:replace-verify.html["验证升级配置"]。
-
-====
-

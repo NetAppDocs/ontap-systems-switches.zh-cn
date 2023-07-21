@@ -8,8 +8,8 @@
 
 确保：
 
-* Nexus 9336C-x2交换机上的某些端口配置为以10 GbE或40 GbE运行。
-* 已规划、迁移和记录从节点到Nexus 9336C-FX2集群交换机的10 GbE和40 GbE连接。
+* Nexus 9336C -FX2交换机上的某些端口配置为以10GbE或40GbE速度运行。
+* 已规划、迁移和记录从节点到Nexus 9336C -FX2集群交换机的10GbE和40GbE连接。
 * 集群完全正常运行(日志中不应出现任何错误或类似问题)。
 * Cisco Nexus 9336C-x2交换机的初始自定义已完成、以便：
 +
@@ -550,14 +550,44 @@ cluster1::*> *network interface modify -vserver Cluster -lif * -auto-revert true
 +
 `cluster show`
 
-. 对远程集群接口执行 Ping 操作以验证连接：
-+
+. 验证远程集群接口的连接：
+
+
+[role="tabbed-block"]
+====
+.ONTAP 9.9.1及更高版本
+--
+您可以使用 `network interface check cluster-connectivity` 命令启动集群连接的可访问性检查、然后显示详细信息：
+
+`network interface check cluster-connectivity start` 和 `network interface check cluster-connectivity show`
+
+[listing, subs="+quotes"]
+----
+cluster1::*> *network interface check cluster-connectivity start*
+----
+*注：*请等待几秒钟、然后再运行show命令显示详细信息。
+
+[listing, subs="+quotes"]
+----
+cluster1::*> *network interface check cluster-connectivity show*
+                                  Source          Destination       Packet
+Node   Date                       LIF             LIF               Loss
+------ -------------------------- --------------- ----------------- -----------
+node1
+       3/5/2022 19:21:18 -06:00   node1_clus2      node2_clus1      none
+       3/5/2022 19:21:20 -06:00   node1_clus2      node2_clus2      none
+
+node2
+       3/5/2022 19:21:18 -06:00   node2_clus2      node1_clus1      none
+       3/5/2022 19:21:20 -06:00   node2_clus2      node1_clus2      none
+----
+--
+.所有ONTAP版本
+--
+对于所有ONTAP版本、您还可以使用 `cluster ping-cluster -node <name>` 用于检查连接的命令：
+
 `cluster ping-cluster -node <name>`
 
-+
-.显示示例
-[%collapsible]
-====
 [listing, subs="+quotes"]
 ----
 cluster1::*> *cluster ping-cluster -node node2*
@@ -585,8 +615,9 @@ RPC status:
 2 paths up, 0 paths down (tcp check)
 2 paths up, 0 paths down (udp check)
 ----
+--
 ====
-. 启用以太网交换机运行状况监控器日志收集功能以收集交换机相关的日志文件。
+. [[Step5]]启用以太网交换机运行状况监控器日志收集功能以收集与交换机相关的日志文件。
 
 
 [role="tabbed-block"]
