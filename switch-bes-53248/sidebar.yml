@@ -3,6 +3,7 @@ section: switch-bes-53248
 title: Broadcom 支持的 BES-53248
 entries:
 - title: 概述
+  pdf-filename: 概述_bes53248
   entries:
   - title: 配置概述
     url: "/switch-bes-53248/configure-new-switch-overview.html"
@@ -13,12 +14,14 @@ entries:
   - title: 所需文档
     url: "/switch-bes-53248/required-documentation-bes53248.html"
 - title: 安装硬件
+  pdf-filename: install_hardhardware _bes53248
   entries:
   - title: 安装交换机
     url: "/switch-bes-53248/install-hardware-bes53248.html"
   - title: 配置交换机
     url: "/switch-bes-53248/configure-install-initial.html"
 - title: 配置软件
+  pdf-filename: 配置软件_bes53248
   entries:
   - title: 软件安装工作流
     url: "/switch-bes-53248/configure-software-overview-bes53248.html"
@@ -35,6 +38,7 @@ entries:
   - title: 启用日志收集
     url: "/switch-bes-53248/configure-log-collection.html"
 - title: 升级交换机
+  pdf-filename: 升级交换机_bes53248
   entries:
   - title: 升级概述
     url: "/switch-bes-53248/upgrade-switch-overview.html"
@@ -43,12 +47,14 @@ entries:
   - title: 验证升级配置
     url: "/switch-bes-53248/replace-verify.html"
 - title: 迁移交换机
+  pdf-filename: migration_switchs_bes53248
   entries:
   - title: 从CN1610交换机迁移
     url: "/switch-bes-53248/migrate-cn1610.html"
   - title: 迁移到双节点交换机
     url: "/switch-bes-53248/migrate-to-2n-switched.html"
 - title: 更换交换机
+  pdf-filename: Replace _switchs_bes53248
   entries:
   - title: 更换要求
     url: "/switch-bes-53248/replace-switch-reqs.html"

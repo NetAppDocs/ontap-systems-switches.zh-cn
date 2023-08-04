@@ -3,6 +3,7 @@ section: switch-nvidia-sn2100-storage
 title: NVIDIA SN2100
 entries:
 - title: 概述
+  pdf-filename: Overview _sn2100-storage
   entries:
   - title: 配置概述
     url: "/switch-nvidia-sn2100/configure-overview-sn2100-storage.html"
@@ -13,6 +14,7 @@ entries:
   - title: 所需文档
     url: "/switch-nvidia-sn2100/required-documentation-sn2100-storage.html"
 - title: 安装硬件
+  pdf-filename: install_hardhardware sn2100-storage
   entries:
   - title: 安装交换机
     url: "/switch-nvidia-sn2100/install-hardware-sn2100-storage.html"
@@ -23,6 +25,7 @@ entries:
   - title: 为NS224磁盘架布线
     url: "/switch-nvidia-sn2100/install-cable-shelves-sn2100-storage.html"
 - title: 配置软件
+  pdf-filename: 配置软件sn2100-storage
   entries:
   - title: 软件安装工作流
     url: "/switch-nvidia-sn2100/configure-software-sn2100-storage.html"
@@ -35,8 +38,10 @@ entries:
   - title: 配置交换机日志收集
     url: "/switch-nvidia-sn2100/install-snmpv3-sn2100-storage.html"
 - title: 迁移交换机
+  pdf-filename: migration_switchs_sn2100-storage
   entries:
   - title: 从Cisco存储交换机迁移
     url: "/switch-nvidia-sn2100/migrate-cisco-storage-switch-sn2100-storage.html"
 - title: 更换交换机
+  pdf-filename: 替换switch_sn2100-storage
   url: "/switch-nvidia-sn2100/replace-sn2100-switch-storage.html"

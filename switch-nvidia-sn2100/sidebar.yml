@@ -3,6 +3,7 @@ section: switch-nvidia-sn2100
 title: NVIDIA SN2100
 entries:
 - title: 概述
+  pdf-filename: 概述_sn2100
   entries:
   - title: 配置概述
     url: "/switch-nvidia-sn2100/configure-overview-sn2100-cluster.html"
@@ -13,6 +14,7 @@ entries:
   - title: 所需文档
     url: "/switch-nvidia-sn2100/required-documentation-sn2100-cluster.html"
 - title: 安装硬件
+  pdf-filename: install_hardhardware sn2100
   entries:
   - title: 安装交换机
     url: "/switch-nvidia-sn2100/install-hardware-sn2100-cluster.html"
@@ -23,6 +25,7 @@ entries:
   - title: 为NS224磁盘架布线
     url: "/switch-nvidia-sn2100/install-cable-shelves-sn2100-cluster.html"
 - title: 配置软件
+  pdf-filename: 配置软件sn2100
   entries:
   - title: 软件安装工作流
     url: "/switch-nvidia-sn2100/configure-software-overview-sn2100-cluster.html"
@@ -37,6 +40,7 @@ entries:
   - title: 升级Cumulus Linux版本
     url: "/switch-nvidia-sn2100/upgrade-cl-version.html"
 - title: 迁移交换机
+  pdf-filename: migration_switchs_sn2100
   entries:
   - title: 从CN1610集群交换机迁移
     url: "/switch-nvidia-sn2100/migrate-cn1610-sn2100-cluster-switch.html"
@@ -45,6 +49,7 @@ entries:
   - title: 迁移到双节点交换集群
     url: "/switch-nvidia-sn2100/migrate-2n-switched-sn2100-cluster.html"
 - title: 更换交换机
+  pdf-filename: REPLACE switches sn2100
   entries:
   - title: 更换集群交换机
     url: "/switch-nvidia-sn2100/replace-sn2100-switch-cluster.html"

@@ -353,4 +353,5 @@ GEM  FPGA                        0x2
 GEM  FPGA                        0x2
 ----
 ====
+. 重复步骤1至8、在交换机CS1上安装NX-OS软件。
 
