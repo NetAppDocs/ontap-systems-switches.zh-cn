@@ -1,6 +1,7 @@
 ---
 section: switch-cisco-9336c-fx2
 title: Cisco Nexus 9336C-x2
+pdf-filename: cisco-9336c-902-cluster
 entries:
 - title: 概述
   pdf-filename: 概述_9336c-FX2

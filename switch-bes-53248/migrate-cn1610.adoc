@@ -25,8 +25,8 @@ summary: 要将集群中的现有 CN1610 集群交换机更换为支持 Broadcom
 
 验证您的配置是否满足以下要求：
 
-* BES-53248交换机上的某些端口配置为以10GbE或40GbE速度运行。
-* 从节点到BES-53248集群交换机的10GbE和40GbE连接已进行规划、迁移和记录。
+* BES-53248交换机上的某些端口配置为以10GbE运行。
+* 已规划、迁移和记录从节点到BES-53248集群交换机的10GbE连接。
 * 集群完全正常运行(日志中不应出现任何错误或类似问题)。
 * BES-53248交换机的初始自定义完成、以便：
 +
@@ -205,11 +205,11 @@ Node/       Local  Discovered
 Protocol    Port   Device (LLDP: ChassisID)  Interface         Platform
 ----------- ------ ------------------------- ----------------  ----------------
 node2      /cdp
-            e0a    CL2                       0/2               CN1610
-            e0b    CL1                       0/2               CN1610
+            e0a    CL1                       0/2               CN1610
+            e0b    CL2                       0/2               CN1610
 node1      /cdp
-            e0a    CL2                       0/1               CN1610
-            e0b    CL1                       0/1               CN1610
+            e0a    CL1                       0/1               CN1610
+            e0b    CL2                       0/1               CN1610
 ----
 ====
 . 确定每个集群接口的管理或运行状态。
@@ -279,21 +279,21 @@ Cluster
 [listing, subs="+quotes"]
 ----
 cluster1::*> *system switch ethernet show -is-monitoring-enabled-operational true*
-Switch                      Type               Address          Model
---------------------------- ------------------ ---------------- ---------------
-cs1                         cluster-network    10.228.143.200   BES-53248
-           Serial Number: QTWCU22510008
-            Is Monitored: true
-                  Reason: None
-        Software Version: 3.10.0.3
-          Version Source: CDP/ISDP
+Switch                        Type             Address       Model
+----------------------------- ---------------- ------------- --------
+CL1                           cluster-network  10.10.1.101   CN1610
+     Serial Number: 01234567
+      Is Monitored: true
+            Reason:
+  Software Version: 1.3.0.3
+    Version Source: ISDP
 
-cs2                         cluster-network    10.228.143.202   BES-53248
-           Serial Number: QTWCU22510009
-            Is Monitored: true
-                  Reason: None
-        Software Version: 3.10.0.3
-          Version Source: CDP/ISDP
+CL2                           cluster-network  10.10.1.102   CN1610
+     Serial Number: 01234568
+      Is Monitored: true
+            Reason:
+  Software Version: 1.3.0.3
+    Version Source: ISDP
 cluster1::*>
 ----
 --
@@ -304,21 +304,21 @@ cluster1::*>
 [listing, subs="+quotes"]
 ----
 cluster1::*> *system cluster-switch show -is-monitoring-enabled-operational true*
-Switch                      Type               Address          Model
---------------------------- ------------------ ---------------- ---------------
-cs1                         cluster-network    10.228.143.200   BES-53248
-           Serial Number: QTWCU22510008
-            Is Monitored: true
-                  Reason: None
-        Software Version: 3.10.0.3
-          Version Source: CDP/ISDP
+Switch                        Type             Address       Model
+----------------------------- ---------------- ------------- --------
+CL1                           cluster-network  10.10.1.101   CN1610
+     Serial Number: 01234567
+      Is Monitored: true
+            Reason:
+  Software Version: 1.3.0.3
+    Version Source: ISDP
 
-cs2                         cluster-network    10.228.143.202   BES-53248
-           Serial Number: QTWCU22510009
-            Is Monitored: true
-                  Reason: None
-        Software Version: 3.10.0.3
-          Version Source: CDP/ISDP
+CL2                           cluster-network  10.10.1.102   CN1610
+     Serial Number: 01234568
+      Is Monitored: true
+            Reason:
+  Software Version: 1.3.0.3
+    Version Source: ISDP
 cluster1::*>
 ----
 --
@@ -329,19 +329,19 @@ cluster1::*>
 ----
 cluster1::*> *network interface modify -vserver Cluster -lif * -auto-revert false*
 ----
-. 在集群交换机CL1上、关闭连接到节点集群端口的端口：
+. 在集群交换机CL2上、关闭连接到节点集群端口的端口：
 +
 .显示示例
 [%collapsible]
 ====
 [listing, subs="+quotes"]
 ----
-(CL1)# *configure*
-(CL1)(Config)# *interface 0/13-0/16*
-(CL1)(Interface 0/13-0/16)# *shutdown*
-(CL1)(Interface 0/13-0/16)# *exit*
-(CL1)(Config)# *exit*
-(CL1)#
+(CL2)# *configure*
+(CL2)(Config)# *interface 0/1-0/16*
+(CL2)(Interface 0/1-0/16)# *shutdown*
+(CL2)(Interface 0/1-0/16)# *exit*
+(CL2)(Config)# *exit*
+(CL2)#
 ----
 ====
 . 验证集群LIFs是否已迁移到集群交换机CL1上托管的端口。这可能需要几秒钟的时间。
@@ -360,9 +360,9 @@ Vserver     Interface    Admin/Oper Address/Mask       Node          Port    Hom
 ----------- ------------ ---------- ------------------ ------------- ------- ----
 Cluster
             node1_clus1  up/up      169.254.209.69/16  node1         e0a     true
-            node1_clus2  up/up      169.254.49.125/16  node1         e0b     false
+            node1_clus2  up/up      169.254.49.125/16  node1         e0a     false
             node2_clus1  up/up      169.254.47.194/16  node2         e0a     true
-            node2_clus2  up/up      169.254.19.183/16  node2         e0b     false
+            node2_clus2  up/up      169.254.19.183/16  node2         e0a     false
 ----
 ====
 . 验证集群是否运行正常：
@@ -382,7 +382,7 @@ node1      true    true          false
 node2      true    true          false
 ----
 ====
-. 将旧CS2交换机上的所有集群节点连接缆线移至新CS2交换机。
+. 将所有集群节点连接缆线从旧的CL2交换机移至新的CS2交换机。
 . 确认已移至CS2的网络连接的运行状况：
 +
 `network port show -ipspace cluster`
@@ -431,29 +431,29 @@ Protocol    Port   Device (LLDP: ChassisID)  Interface         Platform
 ----------- ------ ------------------------- ----------------  ----------------
 node2      /cdp
             e0a    CL1                       0/2               CN1610
-            e0b    cs1                       0/2               BES-53248
+            e0b    cs2                       0/2               BES-53248
 node1      /cdp
             e0a    CL1                       0/1               CN1610
-            e0b    cs1                       0/1               BES-53248
+            e0b    cs2                       0/1               BES-53248
 ----
 ====
-. 使用命令从交换机CS2的角度确认交换机端口连接：
+. 使用命令从交换机CS2的角度确认交换机端口连接运行状况良好：
 +
 [listing, subs="+quotes"]
 ----
 cs2# *show interface brief*
 cs2# *show cdp neighbors*
 ----
-. 在集群交换机CL2上、关闭连接到节点的集群端口的端口。
+. 在集群交换机CL1上、关闭连接到节点的集群端口的端口。
 +
 [listing, subs="+quotes"]
 ----
-(CL2)# *configure*
-(CL2)(Config)# *interface 0/1-0/16*
-(CL2)(Interface 0/1-0/16)# *shutdown*
-(CL2)(Interface 0/13-0/16)# *exit*
-(CL2)(Config)# *exit*
-(CL2)#
+(CL1)# *configure*
+(CL1)(Config)# *interface 0/1-0/16*
+(CL1)(Interface 0/1-0/16)# *shutdown*
+(CL1)(Interface 0/13-0/16)# *exit*
+(CL1)(Config)# *exit*
+(CL1)#
 ----
 +
 所有集群的LUN都会移至CS2交换机。
@@ -473,9 +473,9 @@ cluster1::*> *network interface show -vserver Cluster*
 Vserver     Interface    Admin/Oper Address/Mask       Node          Port    Home
 ----------- ------------ ---------- ------------------ ------------- ------- ----
 Cluster
-            node1_clus1  up/up      169.254.209.69/16  node1         e0a     true
+            node1_clus1  up/up      169.254.209.69/16  node1         e0b     false
             node1_clus2  up/up      169.254.49.125/16  node1         e0b     true
-            node2_clus1  up/up      169.254.47.194/16  node2         e0a     true
+            node2_clus1  up/up      169.254.47.194/16  node2         e0b     false
             node2_clus2  up/up      169.254.19.183/16  node2         e0b     true
 ----
 ====
@@ -544,14 +544,14 @@ Node/       Local  Discovered
 Protocol    Port   Device (LLDP: ChassisID)  Interface         Platform
 ----------- ------ ------------------------- ----------------  ----------------
 node1      /cdp
-            e0a    cs2                       0/1               BES-53248
-            e0b    cs1                       0/1               BES-53248
+            e0a    cs1                       0/1               BES-53248
+            e0b    cs2                       0/1               BES-53248
 node2      /cdp
-            e0a    cs2                       0/2               BES-53248
-            e0b    cs1                       0/2               BES-53248
+            e0a    cs1                       0/2               BES-53248
+            e0b    cs2                       0/2               BES-53248
 ----
 ====
-. 使用命令从交换机CS1的角度确认交换机端口连接：
+. 使用命令从交换机CS1的角度确认交换机端口连接运行状况良好：
 +
 [listing, subs="+quotes"]
 ----
@@ -599,7 +599,7 @@ Group Port-       Type     Protocol  Member Ports
 1     Po1(SU)     Eth      LACP      Eth1/55(P)   Eth1/56(P)
 ----
 ====
-. 如果未自动删除更换的 CN1610 交换机，请将其卸下：
+. 如果更换后的CN1610交换机未自动删除、请从集群的交换机表中删除这些交换机：
 
 
 [role="tabbed-block"]
@@ -610,18 +610,18 @@ Group Port-       Type     Protocol  Member Ports
 
 [listing]
 ----
-cluster::*> system switch ethernet delete -device CL2
 cluster::*> system switch ethernet delete -device CL1
+cluster::*> system switch ethernet delete -device CL2
 ----
 --
-.ONTAP 9.4及更早版本
+.ONTAP 9.7 及更早版本
 --
-对于ONTAP 9.4及更早版本、请使用命令： `system cluster-switch delete -device _device-name_`
+对于ONTAP 9.7及更早版本、请使用命令： `system cluster-switch delete -device _device-name_`
 
 [listing]
 ----
-cluster::*> system cluster-switch delete -device CL2
 cluster::*> system cluster-switch delete -device CL1
+cluster::*> system cluster-switch delete -device CL2
 ----
 --
 ====
@@ -688,7 +688,7 @@ RPC status:
 . 为以太网交换机运行状况监控器日志收集功能创建密码。
 +
 
-IMPORTANT: 要启用日志收集功能、必须运行ONTAP 9.12.1及更高版本以及EFOS 3.8.0.2及更高版本。
+IMPORTANT: 要启用日志收集功能、必须运行ONTAP 9.10.1P15、9.11.1P12或9.12.1及更高版本以及EFOS 3.8.0.2及更高版本。
 
 +
 `s系统交换机以太网日志设置密码`
@@ -768,6 +768,3 @@ CAUTION: 如果其中任一命令返回错误或日志收集未完成、请联�
 cluster::*> system node autosupport invoke -node * -type all -message MAINT=END
 ----
 
-
-.下一步是什么？
-迁移完成后，您可能需要安装所需的配置文件，以支持 BES-53248 集群交换机的集群交换机运行状况监控器（ Cluster Switch Health Monitor ， CSHM ）。请参见 link:configure-health-monitor.html["安装集群交换机运行状况监控器（ CSHM ）配置文件"] 和 link:configure-log-collection.html["启用日志收集功能"]。

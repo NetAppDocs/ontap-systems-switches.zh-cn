@@ -1,6 +1,7 @@
 ---
 section: switch-nvidia-sn2100-storage
 title: NVIDIA SN2100
+pdf-filename: switch-nidia-sn2100-storage
 entries:
 - title: 概述
   pdf-filename: Overview _sn2100-storage

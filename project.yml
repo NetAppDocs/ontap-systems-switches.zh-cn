@@ -27,14 +27,19 @@ sidebar:
     entries:
     - section: switch-bes-53248
     - section: switch-cisco-9336c-fx2
+      pdf-filename: switch-cisco-9336c-902-cluster
     - section: switch-nvidia-sn2100
+      pdf-filename: switch-nidia-sn2100-cluster
   - title: 存储交换机
     entries:
     - section: switch-cisco-9336c-fx2-storage
+      pdf-filename: switch-cisco-9336c-902-storage
     - section: switch-nvidia-sn2100-storage
+      pdf-filename: switch-nidia-sn2100-storage
   - title: 共享交换机
     entries:
     - section: switch-cisco-9336c-fx2-shared
+      pdf-filename: switch-cisco-9336c-902-storage
   - title: 可用性终止的交换机
     entries:
     - title: 概述
