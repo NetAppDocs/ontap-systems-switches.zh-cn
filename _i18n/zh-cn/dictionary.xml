@@ -4612,4 +4612,5 @@
   <block id="701d9aab459b808d17f39aa5c50f97df" category="sidebar">switch-nidia-sn2100-storage</block>
   <block id="a5f4f9ed92853ea6128046eb985ff5a7" category="sidebar">cisco-9336c-602-shared</block>
   <block id="759d203c3eb13a684379c7413a7ea760" category="sidebar">cisco-9336c-902-cluster</block>
+  <block id="111cada5d22121a7e11aef39f4aca355" category="list-text">在集群交换机CS2上、启动连接到节点的集群端口的端口。</block>
 </blocks>
