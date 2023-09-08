@@ -274,7 +274,6 @@
   <block id="9dd93934cbc2b0e8bd1558fefdba5ef1" category="paragraph">以下示例列出了交换机 CS1 上的相邻设备：</block>
   <block id="1b6af97ed2dc264f0a8d2be382e6228a" category="paragraph">以下示例列出了交换机 CS2 上的相邻设备：</block>
   <block id="341290705782dd24b9948684702337d7" category="list-text">验证所有集群端口是否均为 `up` ：</block>
-  <block id="09b4c6d12807ef628dddcedb95f59fba" category="list-text">验证是否已在所有集群 LIF 上启用 `auto-revert` ： `network interface show -vserver cluster -fields auto-revert`</block>
   <block id="49de00b8e8c6586fcca9fad09c76b9ed" category="list-text">从 node1 上的集群端口 e0a 断开缆线连接，然后使用 BES-53248 交换机支持的相应布线方式将 e0a 连接到集群交换机 CS1 上的端口 1 。</block>
   <block id="4117e035e1d5632e3f6a3311cd104041" category="list-text">从节点 2 上的集群端口 e0a 断开缆线连接，然后使用 BES-53248 交换机支持的相应布线方式将 e0a 连接到集群交换机 CS1 上的端口 2 。</block>
   <block id="13926c16a2339f39a7e2d4218d47d10b" category="list-text">启用集群交换机 CS1 上面向节点的所有端口。</block>
@@ -4050,8 +4049,6 @@
   <block id="9f1444ca3aac0720c37a8103593b319f" category="sidebar">安装和配置</block>
   <block id="354a428ae5bd694cfeccb15e5faecafb" category="sidebar">安装RCF</block>
   <block id="c13171629fe31c1238a32f1e3650b982" category="sidebar">安装适用于ONTAP 8.3.1及更高版本的FastPath和RCF</block>
-  <block id="c728d9401bdb127c12220b6c83da42da" category="sidebar">迁移选项</block>
-  <block id="dddf7ccc3477ae39c351d20ccb2691ab" category="sidebar">从无交换机集群迁移</block>
   <block id="a8bb0b5314965a8ac1d110202d7aae1f" category="sidebar">安装NX-OS</block>
   <block id="72f2a813dae956304645ec60ccd278dd" category="sidebar">安装CSHM</block>
   <block id="9c065304d8a82e97da8536d4c7484ee2" category="sidebar">从旧版Cisco交换机迁移</block>
@@ -4355,7 +4352,6 @@
   <block id="420b545896cb1c9b03dbccd44bf33f86" category="list-text">在交换机上、验证在应用RC框架 后是否显示其他已获得许可的端口：</block>
   <block id="2a886bfc4f98f8b2263d47853859d640" category="list-text">验证交换机CS2上的端口：<block ref="3ecfeafb159bbded4fdecd6f5a860f4a" prefix=" " category="inline-code"></block></block>
   <block id="818dbe7dc43a870c6906959f7d426ba7" category="list-text">验证集群中所有节点上的e0b端口是否均已启动且运行正常：<block ref="856f897c52a15ad9c779d1f7b82c2593" prefix=" " category="inline-code"></block></block>
-  <block id="7780adb3deb169c3e834888c0fec0145" category="list-text">[[Step17]]在集群交换机CS1上、关闭连接到节点集群端口的端口。</block>
   <block id="7fc0653470d537d0d0fc3997f25d581b" category="list-text">验证集群 LIF 是否已迁移到交换机 CS2 上托管的端口。这可能需要几秒钟的时间。<block ref="fb5130635551fff679ab6d902eaff8d9" prefix=" " category="inline-code"></block></block>
   <block id="b0553791d0540be1d52514a1a47621f6" category="list-text">对交换机CS1重复步骤4至14。</block>
   <block id="9cb99e0cdd58aac4297608fa8d8ef89b" category="list-text">在集群 LIF 上启用自动还原：<block ref="478474aa0db28144d5db02c478cd5215" prefix=" " category="inline-code"></block></block>
@@ -4613,4 +4609,5 @@
   <block id="a5f4f9ed92853ea6128046eb985ff5a7" category="sidebar">cisco-9336c-602-shared</block>
   <block id="759d203c3eb13a684379c7413a7ea760" category="sidebar">cisco-9336c-902-cluster</block>
   <block id="111cada5d22121a7e11aef39f4aca355" category="list-text">在集群交换机CS2上、启动连接到节点的集群端口的端口。</block>
+  <block id="325c324b922ed6e1b216f99766068e43" category="list-text">[[Step18]]在集群交换机CS1上、关闭连接到节点集群端口的端口。</block>
 </blocks>

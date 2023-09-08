@@ -272,25 +272,12 @@ Cluster
             node2_clus2  up/up    169.254.19.183/16  node2         e0b     true
 ----
 ====
-. 验证是否已在所有集群 LIF 上启用 `auto-revert` ： `network interface show -vserver cluster -fields auto-revert`
+. 在集群 LIF 上禁用自动还原。
 +
-.显示示例
-[%collapsible]
-====
 [listing, subs="+quotes"]
 ----
-cluster1::*> *network interface show -vserver Cluster -fields auto-revert*
-
-          Logical
-Vserver   Interface     Auto-revert
---------- ------------- ------------
-Cluster
-          node1_clus1   true
-          node1_clus2   true
-          node2_clus1   true
-          node2_clus2   true
+cluster1::*> *network interface modify -vserver Cluster -lif * -auto-revert false*
 ----
-====
 . 从 node1 上的集群端口 e0a 断开缆线连接，然后使用 BES-53248 交换机支持的相应布线方式将 e0a 连接到集群交换机 CS1 上的端口 1 。
 +
 。 https://hwu.netapp.com/Home/Index["_NetApp Hardware Universe"^] 包含有关布线的详细信息。
@@ -410,6 +397,22 @@ e0b       Cluster      Cluster          up   9000  auto/10000 healthy  false
 
 
 === 第3步：验证配置
+
+. 在集群 LIF 上启用自动还原。
++
+[listing, subs="+quotes"]
+----
+cluster1::*> *network interface modify -vserver Cluster -lif * -auto-revert true*
+----
+. 验证集群LIF是否已还原到其主端口(这可能需要一分钟时间)：
++
+`network interface show -vserver cluster`
+
++
+如果集群LIF尚未还原到其主端口、请手动还原它们：
+
++
+`network interface revert -vserver cluster -lif *`
 
 . 验证所有接口是否显示 `true` for `is Home` ：
 +
