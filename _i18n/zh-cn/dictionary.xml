@@ -1443,7 +1443,6 @@
   <block id="f1e487b54b162363f351d5d209fc59ac" category="paragraph">有关 Cisco 命令的详细信息，请参见中的相应指南<block ref="a793a8dbe6bab2f66743aaacba3b8ce6" category="inline-link-rx"></block> 指南。</block>
   <block id="b1d94c7c371efbe2b9e14f1fcde6d912" category="list-text">重新启动交换机 CS2 。您可以忽略交换机重新启动时在节点上报告的 " 集群端口关闭 " 事件。</block>
   <block id="50f3bfc2fb822fc9657969a594a33322" category="list-text">验证集群 LIF 是否已迁移到交换机 CS2 上托管的端口。这可能需要几秒钟的时间。</block>
-  <block id="01d6ab89c082cff9a22a80f6236ceceb" category="list-text">重新启动交换机 CS1 。执行此操作可触发集群 LIF 还原到其主端口。您可以忽略交换机重新启动时在节点上报告的 " 集群端口关闭 " 事件。</block>
   <block id="ed34b4f07dbb9044c4aec48959bb5c98" category="list-text">验证 CS1 和 CS2 之间的 ISL 是否正常运行：</block>
   <block id="3b531e8aedc797f24eddd25bc7833fc7" category="list-text">验证集群 LIF 是否已还原到其主端口：</block>
   <block id="267f1ed8b151f71d65617eef7427084e" category="list-text">对远程集群接口执行 Ping 操作以验证连接：</block>
@@ -1828,7 +1827,6 @@
   <block id="666408bd4fda7729282db455e2ef1d9c" category="list-text">显示交换机上相邻设备的列表。</block>
   <block id="23e1b64b8c8851cef7b50ef569617b78" category="paragraph">以下示例显示了 Cisco 命令 `s如何使用 cdp neighbors` 显示交换机上的相邻设备：</block>
   <block id="07045e09dc5220012b124c8d76ed9e95" category="paragraph">以下示例显示了为双节点无交换机集群配置显示的集群端口连接：</block>
-  <block id="addd737ab6a0a43417b329262c42d3d2" category="paragraph">`network interface migrate -vserver cluster -lif _lif-name_ source-node _source-node-name_ -destination-port _destination-port-name_`</block>
   <block id="d72fef4ab8d9db529856e27c2fa2cd10" category="paragraph">您必须对每个本地节点执行命令，如以下示例所示：</block>
   <block id="caa91255e9217c5daf23b979a945b884" category="paragraph">以下示例显示了 n1_clus1 的 "Is Home" 状态，而 n2_clus1 LIF 在迁移完成后变为 "false" ：</block>
   <block id="0f717d9f0cdccd54283a68290db5a062" category="list-text">关闭在步骤 9 中迁移的 n1_clus1 和 n2_clus1 LIF 的集群端口：</block>
@@ -1858,7 +1856,6 @@
   <block id="51b92e50103faa05aefa082268abbfd6" category="paragraph">以下示例显示了集群已知的集群交换机及其管理 IP 地址：</block>
   <block id="6864fdd0f6ad89e3fc724deeacd7576c" category="list-text">根据您的需求，验证是否在新的 3232C 交换机上安装了适当的 RCF 和映像，并进行任何必要的站点自定义。</block>
   <block id="bd8bc538541d81e289ef66a8873145af" category="paragraph">此时应准备好两个交换机。如果需要升级 RCF 和映像，必须完成以下操作步骤 ：</block>
-  <block id="593eea095fb5f0ea1367821afa7c0fe4" category="list-text">迁移与计划替换的第二个 CN1610 交换机关联的 LIF ： `network interface migrate -verser cluster -lif _lif-name_ -source-node _source-node-name_ destination-node _destination-node-name_ -destination-port _destination-port-name_`</block>
   <block id="98eb99fcc0ed94997a2ab2be00fd87f8" category="paragraph">您必须分别迁移每个 LIF ，如以下示例所示：</block>
   <block id="58e4c812934a7909bf27428e713ee5c1" category="paragraph">以下示例显示了关闭节点 n1 和节点 n2 的四个集群互连端口：</block>
   <block id="1951e47d1525c6b1dfbe9f52df91cc7f" category="list-text">对远程集群接口执行 Ping 操作，然后执行远程操作步骤 调用服务器检查：</block>
@@ -1927,7 +1924,6 @@
   <block id="ea16f59475ba6ef1a59120a74b6ab323" category="list-text">根据您的需要，验证是否在新的 3232C 交换机上安装了适当的 RCF 和映像，并进行必要的站点自定义，例如用户和密码，网络地址以及其他自定义设置。</block>
   <block id="db39960670bd5a0afd6aa3f81f3ba73d" category="paragraph">此时必须准备两个交换机。</block>
   <block id="1e59f27afab544486b3444c5591d4f53" category="paragraph">如果需要升级 RCF 和映像，必须完成以下步骤：</block>
-  <block id="94969cbe0be7342cddbd9e412401c429" category="paragraph">`network interface migrate -vserver cluster -lif _lif-name_ -source-node _source-node-name_ – destination-node _node-name_ -destination-port _destination-port-name_`</block>
   <block id="23cd51d657266665ae8f8c9d2a2ae14f" category="paragraph">以下示例显示了要为节点 n1 和 n2 迁移的 LIF ；必须在所有节点上执行 LIF 迁移：</block>
   <block id="fb0f753ded9498a080196f8272f79423" category="paragraph">以下示例显示了每个集群的当前状态：</block>
   <block id="72611877ce7fbffb44381c1c62a69cd8" category="list-text">使用 Cisco `shutdown` 命令关闭活动 Nexus 5596 交换机 CL1 上的 ISL 41 到 48 。</block>
@@ -1942,7 +1938,6 @@
   <block id="fa5346f0c58f4b1b5012fffb9f4934d6" category="list-text">在所有节点上，启动连接到 3232C 交换机 C2 的所有集群互连端口：</block>
   <block id="817ba5eed7e8835e787f89e547717b05" category="paragraph">`network interface revert -vserver cluster -lif _lif-name_`</block>
   <block id="71629f00b9c8bfbcf145893027b00d78" category="paragraph">以下示例显示了要还原到其主端口的已迁移集群 LIF ：</block>
-  <block id="4bb0a806c923415aa07fe9a1803d503f" category="paragraph">`network interface migrate -vserver cluster -lif _lif-name_ -source-node _source-node-name_ - destination-node _destination-node-name_ -destination-port _destination-port-name_`</block>
   <block id="2f7e0ef82095fa5dae5874a5e402a389" category="list-text">验证集群的状态：</block>
   <block id="73610b963ec877545620c671a3e11854" category="paragraph">以下示例显示所需的集群 LIF 已迁移到集群交换机 C2 上托管的相应集群端口：</block>
   <block id="aabe8c05986e330ed02f20a2c7d0c4f3" category="list-text">关闭处于活动状态的 3232C 交换机 C2 上的 ISL 24 ， 31 和 32 。</block>
@@ -2020,7 +2015,6 @@
   <block id="4617b3d3dcf4f5abced4e558fa0b277d" category="list-text">单击 * 问题描述 * 页面上的 * 继续 * ，接受许可协议，然后导航到 * 下载 * 页面。</block>
   <block id="61bcf7a5eda4d122b02fd04b33e7755b" category="list-text">从 * Cisco ® 集群和管理网络交换机参考配置文件下载 * 页面下载正确版本的映像软件。</block>
   <block id="3f193f35123de159859633b1b5db0152" category="list-text">将集群 LIF 迁移到连接到替代交换机 C2 的物理节点端口：</block>
-  <block id="2735b3724e74edb6ccb4db8e28ba50da" category="paragraph">`network interface migrate -vserver cluster -lif _lif-name_ -source-node _node-name_ -destination-node _node-name_ -destination-port _port-name_`</block>
   <block id="f81bd0da785b861ef3aa6aff482966d7" category="paragraph">您必须逐个迁移所有集群 LIF ，如以下示例所示：</block>
   <block id="ec6c6d07f8637f08eb764567ffc9140b" category="list-text">验证集群端口的状态及其主端口名称：</block>
   <block id="fc73abe1b93232499d5b58811b19d5bd" category="paragraph">以下示例显示了所有节点上的集群互连端口均已关闭：</block>
@@ -4612,4 +4606,15 @@
   <block id="325c324b922ed6e1b216f99766068e43" category="list-text">[[Step18]]在集群交换机CS1上、关闭连接到节点集群端口的端口。</block>
   <block id="427c15bca394e9d3b5f203c35b96c743" category="inline-link">Cisco 3132Q集群交换机上的10GbE端口未联机</block>
   <block id="20f0f9c709341c54050214259fc6c790" category="admonition">有关在升级RC框架 后如何使10GbE端口联机的步骤、请参见知识库文章<block ref="917fe6fdad3ed920883f4190398d0805" category="inline-link-rx"></block>。</block>
+  <block id="bc2be245d88ec44ff572954ca52f5e47" category="list-text">对交换机CS1重复步骤7至15。</block>
+  <block id="756f5b45c94a8929404edacf08b1bf8c" category="paragraph">如果任何集群LIF未返回到其主端口、请手动还原它们：<block ref="af44897f72b682aae5fc0db1bf98e52d" prefix=" " category="inline-code"></block></block>
+  <block id="e459e50e2d5bebb928139aa0e4ce09ac" category="list-text">验证存储节点端口的运行状况：</block>
+  <block id="266daf0ca11ec57d9d3cb7598fd930b3" category="paragraph"><block ref="d14f00174ffa33ec8f559ffde7a52484" prefix="" category="inline-code"></block></block>
+  <block id="cc689ef0feeba424bc4f0e37875d33b3" category="paragraph"><block ref="364a6d106eff03491354bfdab6856a69" prefix="" category="inline-code"></block></block>
+  <block id="a2d242366fa878251941b37993d9c788" category="list-text">迁移与您计划更换的第二个CN1610交换机关联的Cifs：</block>
+  <block id="bac3eff3de1438929f64e35c9c1d753e" category="paragraph"><block ref="44d01163c6b63fd73868a8216bae200c" prefix="" category="inline-code"></block></block>
+  <block id="bc83504dbf5dda25d37f158b52b6802c" category="paragraph"><block ref="1ae08a2455b8010c97a491c02e58e474" prefix="" category="inline-code"></block></block>
+  <block id="d71c484dda1d9ad3392c9e1a47d3f9d8" category="paragraph">端口Eth1/31和Eth1/32应指示(P)、表示端口通道中的两个ISL端口均已启动。</block>
+  <block id="e2163aa514dd6f969019af7f51eb5403" category="paragraph"><block ref="ba8401ca8d9063944fa4c23801539873" prefix="" category="inline-code"></block></block>
+  <block id="2744015fafc5955101dabee4165aca61" category="admonition">仅支持经过NetApp验证的交换机(从NetApp订购)。</block>
 </blocks>

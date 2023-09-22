@@ -102,9 +102,9 @@ AutoSupport 消息会通知技术支持此维护任务，以便在维护窗口�
 .显示示例
 [%collapsible]
 ====
-[listing]
+[listing, subs="+quotes"]
 ----
-cluster::*> network port show –role cluster
+cluster::*> *network port show -role cluster*
   (network port show)
 Node: n1
                                                                        Ignore
@@ -131,9 +131,9 @@ e4e       Cluster      Cluster          up   9000 auto/40000  -
 .显示示例
 [%collapsible]
 ====
-[listing]
+[listing, subs="+quotes"]
 ----
-cluster::*> network interface show -role cluster
+cluster::*> *network interface show -role cluster*
  (network interface show)
             Logical    Status     Network            Current       Current Is
 Vserver     Interface  Admin/Oper Address/Mask       Node          Port    Home
@@ -157,9 +157,9 @@ Cluster
 ====
 以下示例中的输出显示已启用无交换机集群检测：
 
-[listing]
+[listing, subs="+quotes"]
 ----
-cluster::*> network options detect-switchless-cluster show
+cluster::*> *network options detect-switchless-cluster show*
 Enable Switchless Cluster Detection: true
 ----
 ====
@@ -194,7 +194,7 @@ https://mysupport.netapp.com/NOW/download/software/sanswitch/fcp/Cisco/netapp_cn
 ====
 以下示例显示了在 Nexus 3232C 集群交换机 C1 和 C2 上使用 RCF `NX3232_RCF_v1.0_24p10g_24p100g.txt` 中支持的配置禁用端口 1 到 30 ：
 
-[listing]
+[listing, subs="+quotes"]
 ----
 C1# copy running-config startup-config
 [########################################] 100% Copy complete.
@@ -226,9 +226,9 @@ C2(config)# exit
 ====
 以下示例显示了 Cisco `s如何使用 port-channel summary` 命令来验证 C1 和 C2 上的 ISL 端口是否正常运行：
 
-[listing]
+[listing, subs="+quotes"]
 ----
-C1# show port-channel summary
+C1# *show port-channel summary*
 Flags: D - Down         P - Up in port-channel (members)
        I - Individual   H - Hot-standby (LACP only)        s - Suspended    r - Module-removed
        S - Switched     R - Routed
@@ -264,9 +264,9 @@ Group Port-        Type   Protocol  Member Ports
 ====
 以下示例显示了 Cisco 命令 `s如何使用 cdp neighbors` 显示交换机上的相邻设备：
 
-[listing]
+[listing, subs="+quotes"]
 ----
-C1# show cdp neighbors
+C1# *show cdp neighbors*
 Capability Codes: R - Router, T - Trans-Bridge, B - Source-Route-Bridge
                   S - Switch, H - Host, I - IGMP, r - Repeater,
                   V - VoIP-Phone, D - Remotely-Managed-Device,                   s - Supports-STP-Dispute
@@ -294,9 +294,9 @@ Total entries displayed: 2
 ====
 以下示例显示了为双节点无交换机集群配置显示的集群端口连接：
 
-[listing]
+[listing, subs="+quotes"]
 ----
-cluster::*> network device-discovery show
+cluster::*> *network device-discovery show*
             Local  Discovered
 Node        Port   Device              Interface        Platform
 ----------- ------ ------------------- ---------------- ----------------
@@ -310,7 +310,7 @@ n2         /cdp
 ====
 . 将 n1_clus1 和 n2_clus1 LIF 迁移到其目标节点的物理端口：
 +
-`network interface migrate -vserver cluster -lif _lif-name_ source-node _source-node-name_ -destination-port _destination-port-name_`
+`network interface migrate -vserver _vserver-name_ -lif _lif-name_ source-node _source-node-name_ -destination-port _destination-port-name_`
 
 +
 .显示示例
@@ -318,12 +318,12 @@ n2         /cdp
 ====
 您必须对每个本地节点执行命令，如以下示例所示：
 
-[listing]
+[listing, subs="+quotes"]
 ----
-cluster::*> network interface migrate -vserver cluster -lif n1_clus1 -source-node n1
-–destination-node n1 -destination-port e4e
-cluster::*> network interface migrate -vserver cluster -lif n2_clus1 -source-node n2
-–destination-node n2 -destination-port e4e
+cluster::*> *network interface migrate -vserver cluster -lif n1_clus1 -source-node n1
+-destination-node n1 -destination-port e4e*
+cluster::*> *network interface migrate -vserver cluster -lif n2_clus1 -source-node n2
+-destination-node n2 -destination-port e4e*
 ----
 ====
 
@@ -342,9 +342,9 @@ cluster::*> network interface migrate -vserver cluster -lif n2_clus1 -source-nod
 ====
 以下示例显示了 n1_clus1 的 "Is Home" 状态，而 n2_clus1 LIF 在迁移完成后变为 "false" ：
 
-[listing]
+[listing, subs="+quotes"]
 ----
-cluster::*> network interface show -role cluster
+cluster::*> *network interface show -role cluster*
  (network interface show)
             Logical    Status     Network            Current       Current Is
 Vserver     Interface  Admin/Oper Address/Mask       Node          Port    Home
@@ -367,10 +367,10 @@ Cluster
 ====
 您必须对每个端口执行命令，如以下示例所示：
 
-[listing]
+[listing, subs="+quotes"]
 ----
-cluster::*> network port modify -node n1 -port e4a -up-admin false
-cluster::*> network port modify -node n2 -port e4a -up-admin false
+cluster::*> *network port modify -node n1 -port e4a -up-admin false*
+cluster::*> *network port modify -node n2 -port e4a -up-admin false*
 ----
 ====
 . 对远程集群接口执行 Ping 操作并执行 RPC 服务器检查：
@@ -383,9 +383,9 @@ cluster::*> network port modify -node n2 -port e4a -up-admin false
 ====
 以下示例显示了正在对节点 n1 执行 Ping 操作，之后会指示 RPC 状态：
 
-[listing]
+[listing, subs="+quotes"]
 ----
-cluster::*> cluster ping-cluster -node n1
+cluster::*> *cluster ping-cluster -node n1*
 
 Host is n1 Getting addresses from network interface table...
 Cluster n1_clus1 n1        e4a    10.10.0.1
@@ -432,13 +432,13 @@ Larger than PMTU communication succeeds on 4 path(s) RPC status:
 ====
 以下示例显示了使用 RCF `NX3232_RCF_v1.0_24p10g_26p100g.txt` 中支持的配置在 Nexus 3232C 集群交换机 C1 和 C2 上启用端口 1 到 30 ：
 
-[listing]
+[listing, subs="+quotes"]
 ----
-C1# configure
-C1(config)# int e1/1/1-4,e1/2/1-4,e1/3/1-4,e1/4/1-4,e1/5/1-4,e1/6/1-4,e1/7-30
-C1(config-if-range)# no shutdown
-C1(config-if-range)# exit
-C1(config)# exit
+C1# *configure*
+C1(config)# *int e1/1/1-4,e1/2/1-4,e1/3/1-4,e1/4/1-4,e1/5/1-4,e1/6/1-4,e1/7-30*
+C1(config-if-range)# *no shutdown*
+C1(config-if-range)# *exit*
+C1(config)# *exit*
 ----
 ====
 . 在每个节点上启用第一个集群端口 E4A ：
@@ -449,10 +449,10 @@ C1(config)# exit
 .显示示例
 [%collapsible]
 ====
-[listing]
+[listing, subs="+quotes"]
 ----
-cluster::*> network port modify -node n1 -port e4a -up-admin true
-cluster::*> network port modify -node n2 -port e4a -up-admin true
+cluster::*> *network port modify -node n1 -port e4a -up-admin true*
+cluster::*> *network port modify -node n2 -port e4a -up-admin true*
 ----
 ====
 . 验证两个节点上的集群是否均已启动：
@@ -463,9 +463,9 @@ cluster::*> network port modify -node n2 -port e4a -up-admin true
 .显示示例
 [%collapsible]
 ====
-[listing]
+[listing, subs="+quotes"]
 ----
-cluster::*> network port show –role cluster
+cluster::*> *network port show -role cluster*
   (network port show)
 Node: n1
                                                                        Ignore
@@ -496,10 +496,10 @@ e4e       Cluster      Cluster          up   9000 auto/40000  -
 ====
 您必须分别将每个 LIF 还原到其主端口，如以下示例所示：
 
-[listing]
+[listing, subs="+quotes"]
 ----
-cluster::*> network interface revert -vserver cluster -lif n1_clus1
-cluster::*> network interface revert -vserver cluster -lif n2_clus1
+cluster::*> *network interface revert -vserver cluster -lif n1_clus1*
+cluster::*> *network interface revert -vserver cluster -lif n2_clus1*
 ----
 ====
 . 验证所有 LIF 现在是否均已还原到其主端口：
@@ -513,9 +513,9 @@ cluster::*> network interface revert -vserver cluster -lif n2_clus1
 .显示示例
 [%collapsible]
 ====
-[listing]
+[listing, subs="+quotes"]
 ----
-cluster::*> network interface show -role cluster
+cluster::*> *network interface show -role cluster*
  (network interface show)
             Logical    Status     Network            Current       Current Is
 Vserver     Interface  Admin/Oper Address/Mask       Node          Port    Home
@@ -542,9 +542,9 @@ Cluster
 .显示示例
 [%collapsible]
 ====
-[listing]
+[listing, subs="+quotes"]
 ----
-cluster::*> network device-discovery show
+cluster::*> *network device-discovery show*
             Local  Discovered
 Node        Port   Device              Interface        Platform
 ----------- ------ ------------------- ---------------- ----------------
@@ -566,11 +566,12 @@ n2         /cdp
 ====
 您必须将每个 LIF 单独迁移到其主端口，如以下示例所示：
 
-[listing]
+[listing, subs="+quotes"]
 ----
-cluster::*> network interface migrate -vserver cluster -lif n1_clus2 -source-node n1
-–destination-node n1 -destination-port e4a
-cluster::*> network interface migrate -vserver cluster -lif n2_clus2 -source-node n2 –destination-node n2 -destination-port e4a
+cluster::*> *network interface migrate -vserver cluster -lif n1_clus2 -source-node n1
+-destination-node n1 -destination-port e4a*
+cluster::*> *network interface migrate -vserver cluster -lif n2_clus2 -source-node n2
+-destination-node n2 -destination-port e4a*
 ----
 ====
 . 关闭两个节点上的集群端口 clus2 LIF ：
@@ -583,10 +584,10 @@ cluster::*> network interface migrate -vserver cluster -lif n2_clus2 -source-nod
 ====
 以下示例显示了将指定端口设置为 `false` 将关闭两个节点上的端口：
 
-[listing]
+[listing, subs="+quotes"]
 ----
-cluster::*> network port modify -node n1 -port e4e -up-admin false
-cluster::*> network port modify -node n2 -port e4e -up-admin false
+cluster::*> *network port modify -node n1 -port e4e -up-admin false*
+cluster::*> *network port modify -node n2 -port e4e -up-admin false*
 ----
 ====
 . 验证集群 LIF 状态：
@@ -597,9 +598,9 @@ cluster::*> network port modify -node n2 -port e4e -up-admin false
 .显示示例
 [%collapsible]
 ====
-[listing]
+[listing, subs="+quotes"]
 ----
-cluster::*> network interface show -role cluster
+cluster::*> *network interface show -role cluster*
  (network interface show)
             Logical    Status     Network            Current       Current Is
 Vserver     Interface  Admin/Oper Address/Mask       Node          Port    Home
@@ -627,13 +628,13 @@ Cluster
 ====
 以下示例显示了在 Nexus 3132Q-V 集群交换机 C1 和 C2 上使用 RCF `NX32C_RCF_v1.0_24p10g_26p100g.txt` 中支持的配置启用端口 1 到 30 ：
 
-[listing]
+[listing, subs="+quotes"]
 ----
-C2# configure
-C2(config)# int e1/1/1-4,e1/2/1-4,e1/3/1-4,e1/4/1-4,e1/5/1-4,e1/6/1-4,e1/7-30
-C2(config-if-range)# no shutdown
-C2(config-if-range)# exit
-C2(config)# exit
+C2# *configure*
+C2(config)# *int e1/1/1-4,e1/2/1-4,e1/3/1-4,e1/4/1-4,e1/5/1-4,e1/6/1-4,e1/7-30*
+C2(config-if-range)# *no shutdown*
+C2(config-if-range)# *exit*
+C2(config)# *exit*
 ----
 ====
 . 在每个节点上启用第二个集群端口 e4e ：
@@ -646,10 +647,10 @@ C2(config)# exit
 ====
 以下示例显示了每个节点上启动的第二个集群端口 e4e ：
 
-[listing]
+[listing, subs="+quotes"]
 ----
-cluster::*> network port modify -node n1 -port e4e -up-admin true
-cluster::*> network port modify -node n2 -port e4e -up-admin true
+cluster::*> *network port modify -node n1 -port e4e -up-admin true*
+cluster::*> *network port modify -node n2 -port e4e -up-admin true*s
 ----
 ====
 . 对于每个节点，还原所有迁移的集群互连 LIF ： `network interface revert`
@@ -659,10 +660,10 @@ cluster::*> network port modify -node n2 -port e4e -up-admin true
 ====
 以下示例显示了要还原到其主端口的已迁移 LIF 。
 
-[listing]
+[listing, subs="+quotes"]
 ----
-cluster::*> network interface revert -vserver Cluster -lif n1_clus2
-cluster::*> network interface revert -vserver Cluster -lif n2_clus2
+cluster::*> *network interface revert -vserver Cluster -lif n1_clus2*
+cluster::*> *network interface revert -vserver Cluster -lif n2_clus2*
 ----
 ====
 . 验证所有集群互连端口现在是否均已还原到其主端口：
@@ -676,9 +677,9 @@ cluster::*> network interface revert -vserver Cluster -lif n2_clus2
 .显示示例
 [%collapsible]
 ====
-[listing]
+[listing, subs="+quotes"]
 ----
-cluster::*> network interface show -role cluster
+cluster::*> *network interface show -role cluster*
  (network interface show)
             Logical    Status     Network            Current       Current Is
 Vserver     Interface  Admin/Oper Address/Mask       Node          Port    Home
@@ -700,9 +701,9 @@ Cluster
 .显示示例
 [%collapsible]
 ====
-[listing]
+[listing, subs="+quotes"]
 ----
-cluster::*> network device-discovery show
+cluster::*> *network device-discovery show*
             Local  Discovered
 Node        Port   Device              Interface        Platform
 ----------- ------ ------------------- ---------------- ----------------
@@ -722,9 +723,9 @@ n2          /cdp
 .显示示例
 [%collapsible]
 ====
-[listing]
+[listing, subs="+quotes"]
 ----
-cluster::*> system cluster-switch show
+cluster::*> *system cluster-switch show*
 
 Switch                      Type               Address          Model
 --------------------------- ------------------ ---------------- ---------------
@@ -755,9 +756,9 @@ Version Source: CDP 2 entries were displayed.
 .显示示例
 [%collapsible]
 ====
-[listing]
+[listing, subs="+quotes"]
 ----
-cluster::*> cluster ping-cluster -node n1
+cluster::*> *cluster ping-cluster -node n1*
 Host is n1 Getting addresses from network interface table...
 Cluster n1_clus1 n1        e4a    10.10.0.1
 Cluster n1_clus2 n1        e4e    10.10.0.2
@@ -791,37 +792,37 @@ Larger than PMTU communication succeeds on 4 path(s) RPC status:
 .显示示例
 [%collapsible]
 ====
-[listing]
+[listing, subs="+quotes"]
 ----
-cluster::*> system cluster-switch log setup-password
+cluster::*> *system cluster-switch log setup-password*
 Enter the switch name: <return>
 The switch name entered is not recognized.
 Choose from the following list:
 C1
 C2
 
-cluster::*> system cluster-switch log setup-password
+cluster::*> *system cluster-switch log setup-password*
 
-Enter the switch name: C1
+Enter the switch name: *C1*
 RSA key fingerprint is e5:8b:c6:dc:e2:18:18:09:36:63:d9:63:dd:03:d9:cc
-Do you want to continue? {y|n}::[n] y
+Do you want to continue? {y|n}::[n] *y*
 
 Enter the password: <enter switch password>
 Enter the password again: <enter switch password>
 
-cluster::*> system cluster-switch log setup-password
+cluster::*> *system cluster-switch log setup-password*
 
-Enter the switch name: C2
+Enter the switch name: *C2*
 RSA key fingerprint is 57:49:86:a1:b9:80:6a:61:9a:86:8e:3c:e3:b7:1f:b1
-Do you want to continue? {y|n}:: [n] y
+Do you want to continue? {y|n}:: [n] *y*
 
 Enter the password: <enter switch password>
 Enter the password again: <enter switch password>
 
-cluster::*> system cluster-switch log enable-collection
+cluster::*> *system cluster-switch log enable-collection*
 
 Do you want to enable cluster log collection for all nodes in the cluster?
-{y|n}: [n] y
+{y|n}: [n] *y*
 
 Enabling cluster switch log collection.
 

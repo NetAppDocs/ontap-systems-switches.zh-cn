@@ -65,9 +65,9 @@ NOTE: AutoSupport 消息会通知技术支持此维护任务，以便在维护�
 .显示示例
 [%collapsible]
 ====
-[listing]
+[listing, subs="+quotes"]
 ----
-storage::*> system switch ethernet show
+storage::*> *system switch ethernet show*
 Switch                      Type               Address          Model
 --------------------------- ------------------ ---------------- ---------------
 S1
@@ -100,9 +100,9 @@ storage::*>
 .显示示例
 [%collapsible]
 ====
-[listing]
+[listing, subs="+quotes"]
 ----
-storage::*> storage port show -port-type ENET
+storage::*> *storage port show -port-type ENET*
                                       Speed                       VLAN
 Node               Port Type  Mode    (Gb/s) State    Status        ID
 ------------------ ---- ----- ------- ------ -------- ----------- ----
@@ -126,9 +126,9 @@ node2
 .显示示例
 [%collapsible]
 ====
-[listing]
+[listing, subs="+quotes"]
 ----
-storage::*> system health alert show -instance
+storage::*> *system health alert show -instance*
 There are no entries matching your query.
 ----
 ====
@@ -148,12 +148,12 @@ There are no entries matching your query.
 ====
 以下示例显示了用于将 RCF 复制到交换机 S2 上的 bootflash 的 HTTP ：
 
-[listing]
+[listing, subs="+quotes"]
 ----
-S2# copy http://172.16.10.1//cfg/Nexus_3232C_RCF_v1.6-Storage.txt bootflash: vrf management
+S2# *copy http://172.16.10.1//cfg/Nexus_3232C_RCF_v1.6-Storage.txt bootflash: vrf management*
 % Total    % Received % Xferd  Average  Speed   Time    Time     Time                          Current
                                Dload    Upload  Total   Spent    Left                          Speed
-  100        3254       100    3254     0       0       8175     0 --:--:-- --:--:-- --:--:–   8301
+  100        3254       100    3254     0       0       8175     0 --:--:-- --:--:-- --:--:-   8301
 Copy complete, now saving to disk (please wait)...
 Copy complete.
 S2#
@@ -169,9 +169,9 @@ S2#
 ====
 以下示例显示了正在交换机 S2 上安装的 RCF 文件 `Nexus 3232C_RCF_v1.6-Storage.txt` ：
 
-[listing]
+[listing, subs="+quotes"]
 ----
-S2# copy Nexus_3232C_RCF_v1.6-Storage.txt running-config echo-commands
+S2# *copy Nexus_3232C_RCF_v1.6-Storage.txt running-config echo-commands*
 ----
 ====
 . 验证 RCF 文件是否为正确的较新版本：
@@ -269,12 +269,12 @@ S2# copy running-config startup-config
 .显示示例
 [%collapsible]
 ====
-[listing]
+[listing, subs="+quotes"]
 ----
-S2# copy sftp: bootflash: vrf management
-Enter source filename: /code/nxos.9.3.4.bin
-Enter hostname for the sftp server: 172.19.2.1
-Enter username: user1
+S2# *copy sftp: bootflash: vrf management*
+Enter source filename: */code/nxos.9.3.4.bin*
+Enter hostname for the sftp server: *172.19.2.1*
+Enter username: *user1*
 
 Outbound-ReKey for 172.19.2.1:22
 Inbound-ReKey for 172.19.2.1:22
@@ -287,10 +287,10 @@ sftp> exit
 Copy complete, now saving to disk (please wait)...
 Copy complete.
 
-cs2# copy sftp: bootflash: vrf management
-Enter source filename: /code/n9000-epld.9.3.4.img
-Enter hostname for the sftp server: 172.19.2.1
-Enter username: user1
+cs2# *copy sftp: bootflash: vrf management*
+Enter source filename: */code/n9000-epld.9.3.4.img*
+Enter hostname for the sftp server: *172.19.2.1*
+Enter username: *user1*
 
 Outbound-ReKey for 172.19.2.1:22
 Inbound-ReKey for 172.19.2.1:22
@@ -312,9 +312,9 @@ Copy complete.
 .显示示例
 [%collapsible]
 ====
-[listing]
+[listing, subs="+quotes"]
 ----
-S2# install all nxos bootflash:nxos.9.3.4.bin
+S2# *install all nxos bootflash:nxos.9.3.4.bin*
 Installer will perform compatibility check first. Please wait.
 Installer is forced disruptive
 
@@ -322,7 +322,7 @@ Verifying image bootflash:/nxos.9.3.4.bin for boot variable "nxos".
 [####################] 100% -- SUCCESS
 
 Verifying image type.
-[[####################] 100% -- SUCCESS
+[####################] 100% -- SUCCESS
 
 Preparing "nxos" version info using image bootflash:/nxos.9.3.4.bin.
 [####################] 100% -- SUCCESS
@@ -386,12 +386,12 @@ S2#
 .显示示例
 [%collapsible]
 ====
-[listing]
+[listing, subs="+quotes"]
 ----
-S2# copy running-config startup-config
+S2# *copy running-config startup-config*
 [########################################] 100% Copy complete.
-S2# reload
-This command will reboot the system. (y/n)?  [n] y
+S2# *reload*
+This command will reboot the system. (y/n)?  [n] *y*
 ----
 ====
 . 确认交换机上已有新的 NX-OS 版本号：
@@ -399,9 +399,9 @@ This command will reboot the system. (y/n)?  [n] y
 .显示示例
 [%collapsible]
 ====
-[listing]
+[listing, subs="+quotes"]
 ----
-S2# show version
+S2# *show version*
 Cisco Nexus Operating System (NX-OS) Software
 TAC support: http://www.cisco.com/tac
 Copyright (C) 2002-2020, Cisco and/or its affiliates.
@@ -466,9 +466,9 @@ S2#
 .显示示例
 [%collapsible]
 ====
-[listing]
+[listing, subs="+quotes"]
 ----
-storage::*> system switch ethernet show
+storage::*> *system switch ethernet show*
 Switch                      Type               Address          Model
 --------------------------- ------------------ ---------------- ---------------
 S1
@@ -501,9 +501,9 @@ storage::*>
 .显示示例
 [%collapsible]
 ====
-[listing]
+[listing, subs="+quotes"]
 ----
-storage::*> storage port show -port-type ENET
+storage::*> *storage port show -port-type ENET*
                                       Speed                       VLAN
 Node               Port Type  Mode    (Gb/s) State    Status        ID
 ------------------ ---- ----- ------- ------ -------- ----------- ----
@@ -527,9 +527,9 @@ node2
 .显示示例
 [%collapsible]
 ====
-[listing]
+[listing, subs="+quotes"]
 ----
-storage::*> system health alert show -instance
+storage::*> *system health alert show -instance*
 There are no entries matching your query.
 ----
 ====

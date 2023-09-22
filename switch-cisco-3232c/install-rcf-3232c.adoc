@@ -55,9 +55,9 @@ summary: 您可以在首次设置 Nexus 3232C 交换机后安装 RCF 。您也�
 .显示示例
 [%collapsible]
 ====
-[listing]
+[listing, subs="+quotes"]
 ----
-cluster1::*> network device-discovery show
+cluster1::*> *network device-discovery show*
 Node/       Local  Discovered
 Protocol    Port   Device (LLDP: ChassisID)  Interface         Platform
 ----------- ------ ------------------------- ----------------  --------
@@ -86,9 +86,9 @@ cluster1::*>
 .显示示例
 [%collapsible]
 ====
-[listing]
+[listing, subs="+quotes"]
 ----
-cluster1::*> network port show -role cluster
+cluster1::*> *network port show -role cluster*
 
 Node: cluster1-01
                                                                        Ignore
@@ -134,9 +134,9 @@ cluster1::*>
 .显示示例
 [%collapsible]
 ====
-[listing]
+[listing, subs="+quotes"]
 ----
-cluster1::*> network interface show -role cluster
+cluster1::*> *network interface show -role cluster*
             Logical            Status     Network           Current      Current Is
 Vserver     Interface          Admin/Oper Address/Mask      Node         Port    Home
 ----------- ------------------ ---------- ----------------- ------------ ------- ----
@@ -161,9 +161,9 @@ cluster1::*>
 .显示示例
 [%collapsible]
 ====
-[listing]
+[listing, subs="+quotes"]
 ----
-cluster1::*> system cluster-switch show -is-monitoring-enabled-operational true
+cluster1::*> *system cluster-switch show -is-monitoring-enabled-operational true*
 Switch                      Type               Address          Model
 --------------------------- ------------------ ---------------- ---------------
 cs1                         cluster-network    10.233.205.92    NX3232C
@@ -192,9 +192,9 @@ cs2                         cluster-network    10.233.205.93    NX3232C
 .显示示例
 [%collapsible]
 ====
-[listing]
+[listing, subs="+quotes"]
 ----
-cluster1::*> network interface modify -vserver Cluster -lif \* -auto-revert false
+cluster1::*> *network interface modify -vserver Cluster -lif * -auto-revert false*
 ----
 ====
 . 在集群交换机 CS2 上，关闭连接到节点集群端口的端口。
@@ -202,10 +202,10 @@ cluster1::*> network interface modify -vserver Cluster -lif \* -auto-revert fals
 .显示示例
 [%collapsible]
 ====
-[listing]
+[listing, subs="+quotes"]
 ----
-cs2(config)# interface eth1/1/1-2,eth1/7-8
-cs2(config-if-range)# shutdown
+cs2(config)# *interface eth1/1/1-2,eth1/7-8*
+cs2(config-if-range)# *shutdown*
 ----
 ====
 . 验证集群端口是否已迁移到集群交换机 CS1 上托管的端口。这可能需要几秒钟的时间。
@@ -216,9 +216,9 @@ cs2(config-if-range)# shutdown
 .显示示例
 [%collapsible]
 ====
-[listing]
+[listing, subs="+quotes"]
 ----
-cluster1::*> network interface show -role cluster
+cluster1::*> *network interface show -role cluster*
             Logical           Status     Network            Current       Current Is
 Vserver     Interface         Admin/Oper Address/Mask       Node          Port    Home
 ----------- ----------------- ---------- ------------------ ------------- ------- ----
@@ -243,9 +243,9 @@ cluster1::*>
 .显示示例
 [%collapsible]
 ====
-[listing]
+[listing, subs="+quotes"]
 ----
-cluster1::*> cluster show
+cluster1::*> *cluster show*
 Node                 Health  Eligibility   Epsilon
 -------------------- ------- ------------  -------
 cluster1-01          true    true          false
@@ -302,11 +302,11 @@ Are you sure you would like to reset the system? (y/n) *y*
 ====
 此示例显示了使用 TFTP 将 RCF 复制到交换机 CS2 上的 bootflash 。
 
-[listing]
+[listing, subs="+quotes"]
 ----
-cs2# copy tftp: bootflash: vrf management
-Enter source filename: Nexus_3232C_RCF_v1.6-Cluster-HA-Breakout.txt
-Enter hostname for the tftp server: 172.22.201.50
+cs2# *copy tftp: bootflash: vrf management*
+Enter source filename: *Nexus_3232C_RCF_v1.6-Cluster-HA-Breakout.txt*
+Enter hostname for the tftp server: *172.22.201.50*
 Trying to connect to tftp server......Connection to Server Established.
 TFTP get operation was successful
 Copy complete, now saving to disk (please wait)...
@@ -322,9 +322,9 @@ Copy complete, now saving to disk (please wait)...
 ====
 此示例显示了正在交换机 CS2 上安装的 RCF 文件 `Nexus 3232C_RCF_v1.6-Cluster-HA-Breakout 。 txt` ：
 
-[listing]
+[listing, subs="+quotes"]
 ----
-cs2# copy Nexus_3232C_RCF_v1.6-Cluster-HA-Breakout.txt running-config echo-commands
+cs2# *copy Nexus_3232C_RCF_v1.6-Cluster-HA-Breakout.txt running-config echo-commands*
 ----
 ====
 . 检查中的横幅输出 `show banner motd` 命令：您必须阅读并按照*重要说明*中的说明进行操作、以确保交换机的配置和操作正确无误。
@@ -407,10 +407,10 @@ cs2# copy running-config startup-config [#######################################
 ----
 . 重新启动交换机 CS2 。您可以忽略交换机重新启动时在节点上报告的 " 集群端口关闭 " 事件。
 +
-[listing]
+[listing, subs="+quotes"]
 ----
-cs2# reload
-This command will reboot the system. (y/n)?  [n] y
+cs2# *reload*
+This command will reboot the system. (y/n)?  [n] *y*
 ----
 . 应用相同的 RCF 并再次保存运行配置。
 +
@@ -433,9 +433,9 @@ cs2# copy running-config startup-config [#######################################
 .显示示例
 [%collapsible]
 ====
-[listing]
+[listing, subs="+quotes"]
 ----
-cluster1::*> network port show -role cluster
+cluster1::*> *network port show -role cluster*
 
 Node: cluster1-01
                                                                        Ignore
@@ -476,9 +476,9 @@ e0d       Cluster      Cluster          up   9000  auto/100000 healthy false
 .显示示例
 [%collapsible]
 ====
-[listing]
+[listing, subs="+quotes"]
 ----
-cluster1::*> network device-discovery show -protocol cdp
+cluster1::*> *network device-discovery show -protocol cdp*
 Node/       Local  Discovered
 Protocol    Port   Device (LLDP: ChassisID)  Interface         Platform
 ----------- ------ ------------------------- ----------------- --------
@@ -541,10 +541,10 @@ NOTE: 集群节点报告运行状况可能需要长达5分钟的时间。
 ====
 以下示例使用步骤 1 中的接口示例输出：
 
-[listing]
+[listing, subs="+quotes"]
 ----
-cs1(config)# interface eth1/1/1-2,eth1/7-8
-cs1(config-if-range)# shutdown
+cs1(config)# *interface eth1/1/1-2,eth1/7-8*
+cs1(config-if-range)# *shutdown*
 ----
 ====
 . 验证集群 LIF 是否已迁移到交换机 CS2 上托管的端口。这可能需要几秒钟的时间。
@@ -555,9 +555,9 @@ cs1(config-if-range)# shutdown
 .显示示例
 [%collapsible]
 ====
-[listing]
+[listing, subs="+quotes"]
 ----
-cluster1::*> network interface show -role cluster
+cluster1::*> *network interface show -role cluster*
             Logical            Status     Network            Current             Current Is
 Vserver     Interface          Admin/Oper Address/Mask       Node                Port    Home
 ----------- ------------------ ---------- ------------------ ------------------- ------- ----
@@ -582,9 +582,9 @@ cluster1::*>
 .显示示例
 [%collapsible]
 ====
-[listing]
+[listing, subs="+quotes"]
 ----
-cluster1::*> cluster show
+cluster1::*> *cluster show*
 Node                 Health   Eligibility   Epsilon
 -------------------- -------- ------------- -------
 cluster1-01          true     true          false
@@ -595,32 +595,23 @@ cluster1-04          true     true          false
 cluster1::*>
 ----
 ====
-. 对交换机 CS1 重复步骤 7 至 14 。
+. 对交换机CS1重复步骤7至15。
 . 在集群 LIF 上启用自动还原。
 +
-[listing]
+[listing, subs="+quotes"]
 ----
-cluster1::*> network interface modify -vserver Cluster -lif \* -auto-revert True
+cluster1::*> *network interface modify -vserver Cluster -lif * -auto-revert true*
 ----
-. 重新启动交换机 CS1 。执行此操作可触发集群 LIF 还原到其主端口。您可以忽略交换机重新启动时在节点上报告的 " 集群端口关闭 " 事件。
-+
-.显示示例
-[%collapsible]
-====
-[listing]
-----
-cs1# reload
-This command will reboot the system. (y/n)?  [n] y
-----
-====
+
+
 . 验证连接到集群端口的交换机端口是否已启动。
 +
 .显示示例
 [%collapsible]
 ====
-[listing]
+[listing, subs="+quotes"]
 ----
-cs1# show interface brief \| grep up
+cs1# *show interface brief | grep up*
 .
 .
 Eth1/1/1      1       eth  access up      none                    10G(D) --
@@ -639,9 +630,9 @@ Eth1/8        1       eth  trunk  up      none                   100G(D) --
 .显示示例
 [%collapsible]
 ====
-[listing]
+[listing, subs="+quotes"]
 ----
-cs1# show port-channel summary
+cs1# *show port-channel summary*
 Flags:  D - Down        P - Up in port-channel (members)
         I - Individual  H - Hot-standby (LACP only)
         s - Suspended   r - Module-removed
@@ -666,9 +657,9 @@ cs1#
 .显示示例
 [%collapsible]
 ====
-[listing]
+[listing, subs="+quotes"]
 ----
-cluster1::*> **network interface show -role cluster**
+cluster1::*> *network interface show -role cluster*
             Logical            Status     Network            Current             Current Is
 Vserver     Interface          Admin/Oper Address/Mask       Node                Port    Home
 ----------- ------------------ ---------- ------------------ ------------------- ------- ----
@@ -685,6 +676,10 @@ Cluster
 cluster1::*>
 ----
 ====
++
+如果任何集群LIF未返回到其主端口、请手动还原它们：
+`network interface revert -vserver _vserver_name_ -lif _lif_name_`
+
 . 验证集群是否运行正常：
 +
 `cluster show`
@@ -693,9 +688,9 @@ cluster1::*>
 .显示示例
 [%collapsible]
 ====
-[listing]
+[listing, subs="+quotes"]
 ----
-cluster1::*> cluster show
+cluster1::*> *cluster show*
 Node                 Health  Eligibility   Epsilon
 -------------------- ------- ------------- -------
 cluster1-01          true    true          false
@@ -714,9 +709,9 @@ cluster1::*>
 .显示示例
 [%collapsible]
 ====
-[listing]
+[listing, subs="+quotes"]
 ----
-cluster1::*> cluster ping-cluster -node local
+cluster1::*> *cluster ping-cluster -node local*
 Host is cluster1-03
 Getting addresses from network interface table...
 Cluster cluster1-03_clus1 169.254.1.3 cluster1-03 e0a
