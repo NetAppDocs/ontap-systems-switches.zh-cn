@@ -2,8 +2,6 @@
 <blocks>
   <block id="d41d8cd98f00b204e9800998ecf8427e" category="summary"></block>
   <block id="30d965eef5ba25c6b9998ae38270b43e" category="doc">法律声明</block>
-  <block id="27e4f654e31a54c18c3f94846eb8fcc2" category="inline-link">磁盘架注意事项</block>
-  <block id="0c8d7a4e0e5ab5d34b549a9af84add17" category="paragraph"><block ref="0c8d7a4e0e5ab5d34b549a9af84add17" category="inline-link-rx"></block></block>
   <block id="68efadf789b6df34a4650ac3b889f341" category="summary">BES-53248 集群交换机基本型号已获得 16 个 10GbE 或 25GbE 端口和 2 个 100GbE 端口的许可。可以通过购买更多许可证来添加新端口。</block>
   <block id="1c0b21766338d196381807883549559b" category="doc">安装 BES-53248 集群交换机的许可证</block>
   <block id="864fbeb16a7aa4d19b4af1c685979a8c" category="paragraph">以下许可证可用于 BES-53248 集群交换机：</block>
@@ -2171,8 +2169,6 @@
   <block id="be89498d2f8a22ce47c02ba9795fe2af" category="section-title">专利</block>
   <block id="d0b19d36be2c5f16e9aef46c8a452d3d" category="paragraph">有关 NetApp 拥有的专利的最新列表，请访问：</block>
   <block id="56c34c6410dd45c5cec44149ad0ce037" category="section-title">隐私政策</block>
-  <block id="c0227cef6f07a8cd2ac72f2945b031aa" category="section-title">开放源代码</block>
-  <block id="9b73989307c1975dfa4d5e1581e4afe8" category="paragraph">通知文件提供有关 NetApp 软件中使用的第三方版权和许可证的信息。</block>
   <block id="9a75d8eb81c880a703c72f7186f35288" category="doc">升级BES-53248集群交换机后验证配置</block>
   <block id="148a1525f4c4b2d620941031bf03f670" category="inline-link">_NetApp Hardware Universe</block>
   <block id="8761a71b0c01f0356000c0994d4fb203" category="paragraph">`ssystem switch Ethernet log setup-password`和`ssystem switch Ethernet log enable-Collection`</block>
@@ -4569,7 +4565,6 @@
   <block id="5fa4d790df53a4c6278c546dd028ec83" category="sidebar">OVERVIEW _9336c-FX2存储</block>
   <block id="0275375be59b49b4671d6f7352eb43f8" category="sidebar">install_hardhardware _9336c-FX2存储</block>
   <block id="2ef21067889d74c595764cb0c5f14087" category="sidebar">configure软件_9336c-FX2存储</block>
-  <block id="b1c691c0067b2d09bed76ad1a1477b3b" category="sidebar">migration_switchs_9336c-FX2存储</block>
   <block id="a40501f53136e1fad14756d37734123e" category="sidebar">REPLACE switch_9336c-FX2存储</block>
   <block id="35a987323fcb5fdbbb175c9114601182" category="sidebar">概述_cn1610</block>
   <block id="d736a39071e873d48143d93c0bf1e23d" category="sidebar">install_configure_cn1610</block>
@@ -4616,5 +4611,5 @@
   <block id="bc83504dbf5dda25d37f158b52b6802c" category="paragraph"><block ref="1ae08a2455b8010c97a491c02e58e474" prefix="" category="inline-code"></block></block>
   <block id="d71c484dda1d9ad3392c9e1a47d3f9d8" category="paragraph">端口Eth1/31和Eth1/32应指示(P)、表示端口通道中的两个ISL端口均已启动。</block>
   <block id="e2163aa514dd6f969019af7f51eb5403" category="paragraph"><block ref="ba8401ca8d9063944fa4c23801539873" prefix="" category="inline-code"></block></block>
-  <block id="2744015fafc5955101dabee4165aca61" category="admonition">仅支持经过NetApp验证的交换机(从NetApp订购)。</block>
+  <block id="2bc32577d8d84ba98d84472c4916dd0f" category="admonition">仅支持经过NetApp验证的后端交换机(从NetApp订购)。</block>
 </blocks>
