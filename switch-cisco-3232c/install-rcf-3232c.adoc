@@ -260,7 +260,7 @@ cluster1::*>
 +
 `s如何运行配置`
 
-. 清理交换机 CS2 上的配置并执行基本设置。
+. 清理交换机CS2上的配置并重新启动交换机。
 +
 
 CAUTION: 更新或应用新 RCF 时，必须擦除交换机设置并执行基本配置。您必须连接到交换机串行控制台端口才能重新设置交换机。
@@ -295,6 +295,7 @@ Are you sure you would like to reset the system? (y/n) *y*
 ====
 
 
+. 对交换机执行基本设置。请参见 link:setup-switch.html["配置3232C集群交换机"] 了解详细信息。
 . 使用以下传输协议之一将 RCF 复制到交换机 CS2 的启动闪存： FTP ， TFTP ， SFTP 或 SCP 。有关 Cisco 命令的详细信息，请参见中的相应指南 https://www.cisco.com/c/en/us/support/switches/nexus-3000-series-switches/products-installation-guides-list.html["《 Cisco Nexus 3000 系列 NX-OS 命令参考》"^] 指南。
 +
 .显示示例
@@ -602,8 +603,6 @@ cluster1::*>
 ----
 cluster1::*> *network interface modify -vserver Cluster -lif * -auto-revert true*
 ----
-
-
 . 验证连接到集群端口的交换机端口是否已启动。
 +
 .显示示例
