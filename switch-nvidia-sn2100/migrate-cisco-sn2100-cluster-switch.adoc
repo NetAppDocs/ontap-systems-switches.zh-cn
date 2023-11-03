@@ -50,6 +50,9 @@ summary: 您可以将ONTAP 集群中较早的Cisco集群交换机无中断迁移
 
 
 
+NOTE: 如果要更改AFF A800或AFF C800系统上e0a和e1a集群端口的端口速度、则可能会在速度转换后看到接收到格式错误的数据包。请参见 https://mysupport.netapp.com/site/bugs-online/product/ONTAP/BURT/1570339["错误1570339"^] 和知识库文章 https://kb.netapp.com/onprem/ontap/hardware/CRC_errors_on_T6_ports_after_converting_from_40GbE_to_100GbE["从40GbE转换到100GbE后、在调整端口配置为36的端口上出现CRC错误"^] 以获得指导。
+
+
 
 == 迁移交换机
 

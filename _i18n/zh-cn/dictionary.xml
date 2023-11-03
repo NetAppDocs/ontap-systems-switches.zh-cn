@@ -4636,4 +4636,8 @@
   <block id="669c1a3fa77bc8a049e5cd4a16e5cff8" category="paragraph">验证是否已使用9335C-查 验机集群交换机*CLI*设置您的环境。</block>
   <block id="680284a2e0d6a86aafc85099ca58d7af" category="list-text">为以太网交换机运行状况监控器日志收集功能创建密码：</block>
   <block id="1f40996ca4617ab17127143171aa4ea4" category="sidebar">安装SHM配置文件</block>
+  <block id="3fc74bed2ec666d227e966120d5c4160" category="inline-link">错误1570339</block>
+  <block id="a9881d2bc89c135aee3c1490acc55259" category="inline-link">从40GbE转换到100GbE后、在调整端口配置为36的端口上出现CRC错误</block>
+  <block id="835174c5c468acf2b423cff0eb23994f" category="admonition">如果要更改AFF A800或AFF C800系统上e0a和e1a集群端口的端口速度、则可能会在速度转换后看到接收到格式错误的数据包。请参见 <block ref="f867b947e44d8d6bccd25f3219f3d6d9" category="inline-link-rx"></block> 和知识库文章<block ref="2a93cc61bbc3892324bc1b6369d71212" category="inline-link-rx"></block> 以获得指导。</block>
+  <block id="5958c0f6bda471fafb31ea3acb4b20da" category="admonition">如果要更改AFF A800或AFF C800系统上e0a和e1a集群端口的端口速度、则可能会在速度转换后看到接收到格式错误的数据包。请参见<block ref="f867b947e44d8d6bccd25f3219f3d6d9" category="inline-link-rx"></block> 和知识库文章<block ref="2a93cc61bbc3892324bc1b6369d71212" category="inline-link-rx"></block> 以获得指导。</block>
 </blocks>
