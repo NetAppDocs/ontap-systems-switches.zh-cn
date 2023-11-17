@@ -29,7 +29,14 @@ summary: 对于NVIDIA SN2100交换机安装和维护、请务必查看所有要�
 
 NVIDIA SN2100交换机是运行Cumulus Linux的10/C5/40/100GbE交换机。交换机支持以下功能：
 
-* ONTAP 9.10.1P3。SN2100交换机通过不同的交换机对为ONTAP 9.10.1P3中的集群和存储应用程序提供服务。
-* Cumulus Linux (CL)操作系统版本。要下载SN2100 Cumulus软件、请登录 https://enterprise-support.nvidia.com/s/["NVIDIA企业支持门户"^]。请注意、您必须拥有登录凭据才能访问Cumulus软件。有关当前兼容性信息、请参见 https://mysupport.netapp.com/site/info/nvidia-cluster-switch["NVIDIA以太网交换机"^] 信息页面。
+* ONTAP 9.10.1P3。
++
+SN2100交换机通过不同的交换机对为ONTAP 9.10.1P3中的集群和存储应用程序提供服务。
+
+* Cumulus Linux (CL)操作系统版本。
++
+要从NVIDIA下载SN2100 Cumulus软件、您必须具有登录凭据才能访问NVIDIA的企业支持门户。请参见知识库文章 https://kb.netapp.com/onprem/Switches/Nvidia/How_To_Register_With_NVIDIA_For_Enterprise_Support_Portal_Access["如何向NVIDIA注册企业支持门户访问"^]。
+有关当前兼容性信息、请参见 https://mysupport.netapp.com/site/info/nvidia-cluster-switch["NVIDIA以太网交换机"^] 信息页面。
+
 * 当交换机运行的是Cumulus Linux或ONIE时、您可以安装Cumulus Linux。
 

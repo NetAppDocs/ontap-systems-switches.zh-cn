@@ -74,6 +74,10 @@ cumulus@cumulus:mgmt: */tmp$ scp _<user>@<host:/<path>_/MSN2100-RCF-v1.x-Cluster
 ssologin@10.233.204.71's password:
 MSN2100-RCF-v1.x-Cluster-HA-Breakout-LLDP         100% 8607   111.2KB/s         00:00
 ----
++
+
+NOTE: 同时 `scp` 在本示例中、您可以使用首选的文件传输方法。
+
 . 应用RCF python脚本*MSN2100-RCP-v1.x-Cluster-HA-Breakout LCDP*。
 +
 [listing, subs="+quotes"]
@@ -291,6 +295,10 @@ cumulus@cumulus:mgmt: */tmp$ scp _<user>@<host:/<path>_/MSN2100-RCF-v1.x-Cluster
 ssologin@10.233.204.71's password:
 MSN2100-RCF-v1.x-Cluster-HA-Breakout-LLDP          100% 8607   111.2KB/s         00:00
 ----
++
+
+NOTE: 同时 `scp` 在本示例中、您可以使用首选的文件传输方法。
+
 . 应用RCF python脚本*MSN2100-RCP-v1.x-Cluster-HA-Breakout LCDP*。
 +
 [listing, subs="+quotes"]
