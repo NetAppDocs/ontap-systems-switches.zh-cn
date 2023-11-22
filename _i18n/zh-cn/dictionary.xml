@@ -4644,4 +4644,28 @@
   <block id="fdb970c02e151be8ab0a83ca880cb56a" category="inline-link">如何向NVIDIA注册企业支持门户访问</block>
   <block id="e524be73a3787217a070c244dbdccb8e" category="paragraph">要从NVIDIA下载SN2100 Cumulus软件、您必须具有登录凭据才能访问NVIDIA的企业支持门户。请参见知识库文章<block ref="d8e3d3a02615584c2a7ac4c59cc440b8" category="inline-link-rx"></block>。
 有关当前兼容性信息、请参见<block ref="f6aa36fb7711a9179cbd2c4c52b8d6ef" category="inline-link-rx"></block> 信息页面。</block>
+  <block id="db3af2b70c973de4437c254b7d216816" category="paragraph-title">可用的RC框架 配置</block>
+  <block id="befc06ea45891beb4f36157b08754476" category="paragraph">下表介绍了可用于不同配置的RCF。选择适用于您的配置的RC框架。</block>
+  <block id="422d547a919ce56042b89a80c5d53dc8" category="paragraph">有关特定端口和VLAN使用情况的详细信息、请参阅RC框架 中的横幅和重要说明部分。</block>
+  <block id="59c42d9289518207f0e6b1663d576298" category="cell">RC框架 名称</block>
+  <block id="737cac36105716296fdb972979a60c19" category="paragraph">2-cluster-ha-Breakout</block>
+  <block id="fbad7a3e9d1c3be9344866d5d8095541" category="paragraph">支持两个ONTAP集群、其中至少包含八个节点、包括使用共享集群+HA端口的节点。</block>
+  <block id="db759bcb99e3ec070d51357815ec0db6" category="paragraph">4-Cluster-HA-Breakout</block>
+  <block id="df501bed190c2e9d513b2f1fb0598e17" category="paragraph">支持四个ONTAP集群、其中至少包含四个节点、包括使用共享集群+HA端口的节点。</block>
+  <block id="15dc418f7827e448caec965c8d6899ee" category="paragraph">1-Cluster-HA</block>
+  <block id="382d5fb25026bcec237a7db7751b765b" category="paragraph">所有端口均配置为40/100GbE。支持端口上的共享集群/HA流量。AFF A320、AFF A250和FAS500f系统需要。此外、所有端口均可用作专用集群端口。</block>
+  <block id="c940238f4423743995b99e3d47cec744" category="paragraph">1-Cluster-HA-Breakout</block>
+  <block id="65ca7d1055bbc5c2afaa8f8db0fbaae3" category="paragraph">端口配置为4个10GbE分支端口、4个25GbE分支端口(100GbE交换机上的RCF1.6以上)和40/100GbE端口。支持在使用共享集群/HA端口的节点的端口上传输共享集群/HA流量：AFF A320、AFF A250和FAS500f系统。此外、所有端口均可用作专用集群端口。</block>
+  <block id="ef6ec6c3227d99b527b0f12e8d83330e" category="paragraph">集群-高可用性-存储</block>
+  <block id="4538da9d5a0e6ade8902da0c6cb04eaf" category="paragraph">端口配置为40/100GbE用于集群+HA、4x10GbE分支用于集群、4x25GbE分支用于集群+HA、100GbE用于每个存储HA对。</block>
+  <block id="249694a485fc5d3289c38986b4f8e887" category="paragraph">集群</block>
+  <block id="b9e95d5844128e0ae9ee0ab6e4e048ec" category="paragraph">具有4个10GbE端口(分支)和40/100GbE端口的不同分配的两种RC框架。除AFF A320、AFF A250和FAS500f系统外、所有FAS/AFA节点均受支持。</block>
+  <block id="8c4aa541ee911e8d80451ef8cc304806" category="paragraph">存储</block>
+  <block id="f75b5ab79be24a496ce9f3eb45e23937" category="paragraph">所有端口均配置为使用100GbE NVMe存储连接。</block>
+  <block id="7abab77cb8cac2636cdea1300fe00dc4" category="paragraph">有关可用RC框架 配置的详细信息、请参见 <block ref="eec33f028810711693e15987e41f3b2a" category="inline-link-macro-rx"></block>。</block>
+  <block id="44ff10d140597f1cb51bd7445d226660" category="paragraph"><block ref="9bacb249b0368cefba275373cd07ba98" prefix="" category="inline-code"></block></block>
+  <block id="332a7a8d77748a421e7945cefc8ccf89" category="list-text">验证所需节点是否仍处于连接状态：</block>
+  <block id="2672a0c9ba5986c403c26e013c160859" category="list-text">使用以下命令验证集群节点是否位于正确的集群VLAN中：</block>
+  <block id="89706bbdab62cd83048f38305d846f95" category="paragraph"><block ref="7d4adecb4116bbfb7ed1130103f872a7" prefix="" category="inline-code"></block></block>
+  <block id="12bc122b0d9a4c902fdf52bfcc13ddc2" category="paragraph"><block ref="c01eca2c804c6a35b8aa8d87eceefe5d" prefix="" category="inline-code"></block></block>
 </blocks>
