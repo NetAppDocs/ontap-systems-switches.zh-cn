@@ -2054,7 +2054,6 @@
   <block id="dbdb6843e5b760ab5949d0e9950c5750" category="admonition">在 RCF 1.2 版中，出于安全考虑，已明确禁用对 Telnet 的支持。要在安装 RCF 1.2 时避免连接问题，您必须验证是否已启用安全外壳（ SSH ）。。<block ref="7b6e686f3f2fcbc80901a914fb158c31" category="inline-link-rx"></block> 了解有关 SSH 的详细信息。</block>
   <block id="df7d4ea20d01aeb64702dc4294dc6436" category="paragraph">。<block ref="a9613e1dbacf145285c45df4264fe797" category="inline-link-rx"></block> 提供有关您的平台支持的实际集群端口的详细信息。</block>
   <block id="bc01d49ccd216cbb296208344af71590" category="list-text">用于更换 CN1610 交换机的 Nexus 3132Q-V 交换机为 C1 和 C2 。</block>
-  <block id="eb29e2026f68e263827bc6648e470d91" category="list-text">N1_clus4 是连接到节点 n1 的集群交换机 1 （ CL1 或 C1 ）的第二个 LIF 。节点为 n1 ， n2 ， n3 和 n4 。</block>
   <block id="5f6af1e958a3701a7602a4d2261afe6d" category="list-text">请参见 <block ref="bea6a113c7846200412c9ca0694f7009" category="inline-link-macro-rx"></block> 页面。</block>
   <block id="d472e6c72465c08732a77102922a611d" category="paragraph">请参见 <block ref="34774b6dc875898cd8aa59f7081c068c" category="inline-link-macro-rx"></block> 验证平台上的集群端口是否正确。</block>
   <block id="5fe6445fb6ef9ed5befc4ee396bb9ea8" category="list-text">对于 ONTAP 9.8 及更高版本，请使用以下命令启用以太网交换机运行状况监控器日志收集功能以收集交换机相关的日志文件：</block>
@@ -3249,7 +3248,6 @@
   <block id="779fc6b934d55dc10ca87329087b2008" category="list-text">【五】验证存储系统中的磁盘架端口：</block>
   <block id="d97a5e4575ee30a387104386bf3f240b" category="section-title">第3步：验证交换机NS2上的所有设备配置</block>
   <block id="cb90078e1ca3fab95e047ce21d18bdc0" category="paragraph">每个交换机均可配置为一个 100GbE ， 40GbE 端口或 4 个 10GbE 端口。</block>
-  <block id="5a5a12d4dbaeac060e4d6b7c5760ca7c" category="paragraph">首次设置Nexus 3232C交换机后、按照此操作步骤 安装RCF。您也可以使用此操作步骤升级 RCF 版本。</block>
   <block id="319869b1ac41d35b8bb0654bf94a816d" category="list-text">检查中的横幅输出<block ref="6d53824b9996e36fd31937e922967215" prefix=" " category="inline-code"></block> 命令：您必须阅读并按照*重要说明*中的说明进行操作、以确保交换机的配置和操作正确无误。</block>
   <block id="aaee942f01ab7b858b2f2b63c62fe972" category="paragraph">按照以下步骤升级Cisco Nexus 3232C交换机上的Cisco NX-OS软件和参考配置文件(RCF)。</block>
   <block id="ee01b78d6cadb3e6f6a563b8d4eb8dee" category="paragraph">在升级存储交换机上的NX-OS软件和RCF之前、请确保满足以下条件：</block>
@@ -3446,7 +3444,6 @@
   <block id="6dd4b5e58bd32b079e19b1dda5c2f1bc" category="paragraph">要为BES-53248集群交换机初始安装和配置软件、请执行以下步骤：</block>
   <block id="9302ce88c481ebfe72d64373c7b0d0e5" category="doc">升级BES-53248集群交换机</block>
   <block id="db3a43c92e9a5ccc39b5fabb1bd97719" category="paragraph">按照以下步骤升级BES-53248集群交换机。</block>
-  <block id="ca46577f8687df3ceb14eb4b66cfa89e" category="paragraph">此 操作步骤 适用场景 是一个正常运行的集群、支持无中断升级(NDU)和无中断运行(NDO)环境。</block>
   <block id="8ac36f1d8b0fc917225a100d2cd4a4c3" category="paragraph">在现有NetApp BES-53248集群交换机上安装EFOS软件、许可证和RCF文件之前、请确保：</block>
   <block id="8e95d65cfa987ac59e9edd2e01c3a5f8" category="list-text">集群是一个功能完备的集群(无错误日志消息或其他问题)。</block>
   <block id="39268a4fe5b4dbf6e58a5a1147276955" category="list-text">集群不包含任何有故障的集群网络接口卡(NIC)。</block>
@@ -4668,4 +4665,9 @@
   <block id="2672a0c9ba5986c403c26e013c160859" category="list-text">使用以下命令验证集群节点是否位于正确的集群VLAN中：</block>
   <block id="89706bbdab62cd83048f38305d846f95" category="paragraph"><block ref="7d4adecb4116bbfb7ed1130103f872a7" prefix="" category="inline-code"></block></block>
   <block id="12bc122b0d9a4c902fdf52bfcc13ddc2" category="paragraph"><block ref="c01eca2c804c6a35b8aa8d87eceefe5d" prefix="" category="inline-code"></block></block>
+  <block id="5cb232b7121572a8cd994eb78f5bf42e" category="inline-link">如何准备ONTAP以进行集群交换机升级</block>
+  <block id="2c6ae2b5ab15a868c020423af475ce29" category="paragraph">此 操作步骤 适用场景 是一个正常运行的集群、支持无中断升级(NDU)和无中断运行(NDO)环境。请参见知识库文章<block ref="af19c072276b7cd7ef0c29b032a9fe34" category="inline-link-rx"></block>。</block>
+  <block id="3bf967e4da79afd8ac10997dbbfb40be" category="paragraph">首次设置Nexus 3232C交换机后、请按照此操作步骤安装RCC。</block>
+  <block id="ce8d24a452c1c94c4680d7ce098325a9" category="inline-link">如何在保持远程连接的同时清除Cisco互连交换机上的配置</block>
+  <block id="e5f3c3d2c754cc48938d50b1782093ac" category="paragraph">您也可以使用此操作步骤升级 RCF 版本。请参见知识库文章<block ref="c3cf8dee5fd4e009c0e2b38bfb97fe4d" category="inline-link-rx"></block> 有关升级RC框架 的详细信息、请参见。</block>
 </blocks>

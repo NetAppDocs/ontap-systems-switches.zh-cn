@@ -13,7 +13,7 @@ summary: 升级 BES-53248 集群交换机首先需要准备要升级的控制器
 [role="lead"]
 按照以下步骤升级BES-53248集群交换机。
 
-此 操作步骤 适用场景 是一个正常运行的集群、支持无中断升级(NDU)和无中断运行(NDO)环境。
+此 操作步骤 适用场景 是一个正常运行的集群、支持无中断升级(NDU)和无中断运行(NDO)环境。请参见知识库文章 https://kb.netapp.com/onprem/ontap/hardware/How_to_prepare_ONTAP_for_a_cluster_switch_upgrade["如何准备ONTAP以进行集群交换机升级"^]。
 
 
 
