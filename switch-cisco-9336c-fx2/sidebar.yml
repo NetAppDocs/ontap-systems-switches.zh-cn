@@ -38,8 +38,6 @@ entries:
     url: "/switch-cisco-9336c-fx2/install-nxos-software-9336c-cluster.html"
   - title: 安装RCF配置文件
     url: "/switch-cisco-9336c-fx2/install-nxos-rcf-9336c-cluster.html"
-  - title: 安装SHM配置文件
-    url: "/switch-cisco-9336c-fx2/setup-install-cshm-file.html"
   - title: 启用日志收集
     url: "/switch-cisco-9336c-fx2/configure-log-collection.html"
 - title: 迁移交换机
