@@ -673,18 +673,6 @@
   <block id="5b1c58aff8e7e4b9950fac4fb9b4f420" category="list-text">运行 switch health monitor configure 命令 system cluster-switch configure-health-monitor -node * -package-url X.x.X/location_to_download_zip 文件：</block>
   <block id="56900e070e593f86cfcbc92add3c9eda" category="admonition">如果您随时还原到早期版本的 ONTAP ，则需要重新安装 CSHM 配置文件，以便对 923300 YC 集群交换机启用交换机运行状况监控。</block>
   <block id="645b50612eedcb03bdeff0f4c9f4de12" category="summary">如果要记录受支持的平台，则必须参考填写好的示例布线工作表来完成空白布线工作表。每个交换机均可配置为一个 100GbE ， 40GbE 端口或 4 个 10GbE 端口。</block>
-  <block id="ed549d19dafed0e7ab290c80a631336d" category="paragraph">4 个 10G/40G/100G 节点</block>
-  <block id="333383cad18ed1288df7f6e7b55bb269" category="paragraph">4 个 10G/40G/100Gnode</block>
-  <block id="1286cbe7601f965189bedc2e531693fe" category="paragraph">40G/100G 节点 19</block>
-  <block id="3cdb72203b05b99dff9c7e8fe12d3297" category="paragraph">40G/100G 节点 20</block>
-  <block id="7f63ff950e3e5909f605081e8a040c35" category="paragraph">40G/100G 节点 21</block>
-  <block id="b031f52ea292595722079873eb50ac47" category="paragraph">40G/100G 节点 22</block>
-  <block id="fb81c88eb2bc7e3c494e5e649e59bcb0" category="paragraph">40G/100G 节点 23</block>
-  <block id="a3f6a2babb0d59c8269007c11baa9f0e" category="paragraph">40G/100G 节点 24</block>
-  <block id="55eca0e94ad3924173aada9f3d092018" category="paragraph">100 G ISL 连接到交换机 B 端口 31</block>
-  <block id="d01adcc41847caac4aa8fdfe85b60992" category="paragraph">100 G ISL 连接到交换机 A 端口 31</block>
-  <block id="66b48416af1e682679b1391bc16602fd" category="paragraph">100 G ISL 连接到交换机 B 端口 32</block>
-  <block id="1ffe31824d782f0a845f2d0960162e5c" category="paragraph">100 G ISL 连接到交换机 A 端口 32</block>
   <block id="a4514f98af1e4526e3b8ea633ec10c2c" category="summary">如果要使用两个以上的节点构建 ONTAP 集群，则需要两个受支持的集群网络交换机。您可以使用其他管理交换机，这些交换机是可选的。</block>
   <block id="f0936c8d947d6fc9958bb86b9f3f74f8" category="list-text">Nexus 9336C-x2</block>
   <block id="7a132c4084cb90373827f0625aad2cb0" category="paragraph">您可以将 Cisco Nexus 9336C-x2 交换机（ X190200/X190210 ）安装在 NetApp 系统机柜或第三方机柜中，并使用交换机附带的标准支架。</block>
@@ -4585,7 +4573,6 @@
   <block id="dae02701a0a247e1012b9b2832c32464" category="list-text">如果更换后的CN1610交换机未自动删除、请从集群的交换机表中删除这些交换机：</block>
   <block id="c8b9229aed88be3704b6c26029b7ae94" category="paragraph">对于ONTAP 9.7及更早版本、请使用命令：<block ref="f055904a9fc3a4f0bc33aca13ecd2b2d" prefix=" " category="inline-code"></block></block>
   <block id="b8590eb7d6b7365e1a0bee47b03d5b4f" category="admonition">要启用日志收集功能、必须运行ONTAP 9.10.1P15、9.11.1P12或9.12.1及更高版本以及EFOS 3.8.0.2及更高版本。</block>
-  <block id="e88b6a67743cc664a0a237ba8d94eefc" category="sidebar">switch-cisco-9336c-902-cluster</block>
   <block id="517242a1c337699950aef05a38af45a0" category="sidebar">switch-nidia-sn2100-cluster</block>
   <block id="3ed3b1cc0917edd8fddcdd478bb581fb" category="sidebar">switch-cisco-9336c-902-storage</block>
   <block id="701d9aab459b808d17f39aa5c50f97df" category="sidebar">switch-nidia-sn2100-storage</block>
@@ -4629,7 +4616,6 @@
   <block id="c94eee10204c293e476c9b772d10ddfe" category="admonition">如果在任何时候还原到早期版本的ONTAP、则需要重新安装SHM配置文件以启用9334C-查 尔特克集群交换机的SHM。</block>
   <block id="669c1a3fa77bc8a049e5cd4a16e5cff8" category="paragraph">验证是否已使用9335C-查 验机集群交换机*CLI*设置您的环境。</block>
   <block id="680284a2e0d6a86aafc85099ca58d7af" category="list-text">为以太网交换机运行状况监控器日志收集功能创建密码：</block>
-  <block id="1f40996ca4617ab17127143171aa4ea4" category="sidebar">安装SHM配置文件</block>
   <block id="3fc74bed2ec666d227e966120d5c4160" category="inline-link">错误1570339</block>
   <block id="a9881d2bc89c135aee3c1490acc55259" category="inline-link">从40GbE转换到100GbE后、在调整端口配置为36的端口上出现CRC错误</block>
   <block id="835174c5c468acf2b423cff0eb23994f" category="admonition">如果要更改AFF A800或AFF C800系统上e0a和e1a集群端口的端口速度、则可能会在速度转换后看到接收到格式错误的数据包。请参见 <block ref="f867b947e44d8d6bccd25f3219f3d6d9" category="inline-link-rx"></block> 和知识库文章<block ref="2a93cc61bbc3892324bc1b6369d71212" category="inline-link-rx"></block> 以获得指导。</block>
@@ -4670,4 +4656,37 @@
   <block id="3bf967e4da79afd8ac10997dbbfb40be" category="paragraph">首次设置Nexus 3232C交换机后、请按照此操作步骤安装RCC。</block>
   <block id="ce8d24a452c1c94c4680d7ce098325a9" category="inline-link">如何在保持远程连接的同时清除Cisco互连交换机上的配置</block>
   <block id="e5f3c3d2c754cc48938d50b1782093ac" category="paragraph">您也可以使用此操作步骤升级 RCF 版本。请参见知识库文章<block ref="c3cf8dee5fd4e009c0e2b38bfb97fe4d" category="inline-link-rx"></block> 有关升级RC框架 的详细信息、请参见。</block>
+  <block id="42f74bee479f7bfeefb9fd7d2c20b356" category="paragraph">4个10GbE/4个25GbE或40/100GbE节点</block>
+  <block id="ee064ffc6832da9230d1d423e3a1c01a" category="paragraph">40G/100GbE节点19</block>
+  <block id="30fed60c2f664b1e620b396ee7590025" category="paragraph">40G/100GbE节点20</block>
+  <block id="e868dd91c84b5ff315dc3636c26ec593" category="paragraph">40G/100GbE节点21</block>
+  <block id="14735a659a0e84d3aeb4a50b5d38fdd8" category="paragraph">40G/100GbE节点22</block>
+  <block id="f46e9d50d3e035a2a9cfc49b0d4ff926" category="paragraph">40G/100GbE节点23</block>
+  <block id="7d3c40714541505308e8aeda185028a5" category="paragraph">40G/100GbE节点24</block>
+  <block id="d92e2d02199d759e2cbe8d9b461557fc" category="paragraph">100GbE ISL连接到交换机B端口31</block>
+  <block id="202f974033cf1161982db034d23ab80c" category="paragraph">100GbE ISL连接到交换机A端口31</block>
+  <block id="0e799942e6eaaf5fb0e0990b9cff01d0" category="paragraph">100GbE ISL连接到交换机B端口32</block>
+  <block id="ef3ddd21da594e200a83e463425ee831" category="paragraph">100GbE ISL连接到交换机A端口32</block>
+  <block id="7da7e93935b02de70a378c0e3bc0915f" category="paragraph">100GbE节点7</block>
+  <block id="b06ad32bc262994927467145fa685077" category="paragraph">100GbE节点8</block>
+  <block id="bfd0f53dcd1c0732244c879c71816d76" category="paragraph">100GbE节点9</block>
+  <block id="bc335a1aa76d7bee7d077931c80ff362" category="paragraph">100GbE节点10</block>
+  <block id="8e98a1d2b82cc51b09a6f6f6150e6ea9" category="paragraph">100GbE节点11</block>
+  <block id="ca1e7465e63d54d410d96ad74bc6ad9c" category="paragraph">100GbE节点12</block>
+  <block id="dc3e73458f3b06d9f45967a4ee2eb062" category="paragraph">100GbE节点13</block>
+  <block id="58a544d323832dc62d0f7dbf25fce76c" category="paragraph">100GbE节点14</block>
+  <block id="f91030d6cc1c0d743dd19bdf834808b4" category="paragraph">100GbE节点15</block>
+  <block id="429c661f8ba4e683c488a3a16eb65450" category="paragraph">100GbE节点16</block>
+  <block id="5ac313785ff16b543307f7a2f0562c65" category="paragraph">100GbE节点17</block>
+  <block id="2badabc63a001442bc883dd04d8cd5bd" category="paragraph">100GbE节点18</block>
+  <block id="a6812bb55d441274f894ae9d2fc8c853" category="paragraph">100GbE节点19</block>
+  <block id="f81493fb0626cf611fb3d0da0abfd2fc" category="paragraph">100GbE节点20</block>
+  <block id="8ec0b4b065f720abd158003e297fd666" category="paragraph">100GbE节点21</block>
+  <block id="17267202d9429f033060c241eb243b66" category="paragraph">100GbE节点22</block>
+  <block id="6566d42cadb266b4dda1e35c1d8431b8" category="paragraph">100GbE节点23</block>
+  <block id="b0f08b7da859e9b27be7eba076cbd7c7" category="paragraph">100GbE节点24</block>
+  <block id="cfdc5fc6e4f0420a87977f2a10a74eb5" category="paragraph">100GbE ISL连接到交换机B端口35</block>
+  <block id="88948f2b657a3c9e5eec3736dcca6cdf" category="paragraph">100GbE ISL连接到交换机A端口35</block>
+  <block id="56299051abd1af0cbe5dbee773fed3d5" category="paragraph">100GbE ISL连接到交换机B端口36</block>
+  <block id="5e596a6e5f0ffe0604d651cde90e34f0" category="paragraph">100GbE ISL连接到交换机A端口36</block>
 </blocks>

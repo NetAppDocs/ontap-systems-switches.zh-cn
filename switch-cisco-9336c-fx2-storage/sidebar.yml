@@ -19,8 +19,6 @@ entries:
 - title: 安装硬件
   pdf-filename: install_hardhardware _9336c-FX2存储
   entries:
-  - title: 完成布线工作表
-    url: "/switch-cisco-9336c-fx2-storage/setup-worksheet-9336c-storage.html"
   - title: 安装交换机
     url: "/switch-cisco-9336c-fx2-storage/install-9336c-storage.html"
   - title: 配置交换机
