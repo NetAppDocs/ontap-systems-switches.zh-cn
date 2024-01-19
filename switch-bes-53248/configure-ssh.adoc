@@ -82,6 +82,10 @@ Config file 'startup-config' created successfully.
 Configuration Saved!
 ----
 ====
++
+
+WARNING: 请确保在修改密钥之前禁用SSH、否则交换机上会报告警告。
+
 . 重新启动交换机：
 +
 `re负载`
