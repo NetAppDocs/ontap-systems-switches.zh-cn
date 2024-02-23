@@ -591,12 +591,10 @@ RPC status:
 2 paths up, 0 paths down (udp check)
 ----
 ====
-. 使用以下命令启用以太网交换机运行状况监控器日志收集功能，以收集交换机相关的日志文件：
+. 为以太网交换机运行状况监控器日志收集功能创建密码：
 +
-`ssystem switch Ethernet log setup-password`和`ssystem switch Ethernet log enable-Collection`
+`s系统交换机以太网日志设置密码`
 
-+
-.. 输入： `ssystem switch Ethernet log setup-password`
 +
 .显示示例
 [%collapsible]
@@ -604,60 +602,54 @@ RPC status:
 [listing, subs="+quotes"]
 ----
 cluster1::*> *system switch ethernet log setup-password*
-Enter the switch name: <return>
+Enter the switch name: *<return>*
 The switch name entered is not recognized.
 Choose from the following list:
-*sw1*
-*sw2*
+*cs1*
+*cs2*
 
 cluster1::*> *system switch ethernet log setup-password*
 
-Enter the switch name: *sw1*
-RSA key fingerprint is e5:8b:c6:dc:e2:18:18:09:36:63:d9:63:dd:03:d9:cc
-Do you want to continue? {y|n}::[n] *y*
+Enter the switch name: *cs1*
+Would you like to specify a user other than admin for log collection? {y|n}: *n*
 
-Enter the password: <enter switch password>
-Enter the password again: <enter switch password>
+Enter the password: *<enter switch password>*
+Enter the password again: *<enter switch password>*
 
 cluster1::*> *system switch ethernet log setup-password*
 
-Enter the switch name: *sw2*
-RSA key fingerprint is 57:49:86:a1:b9:80:6a:61:9a:86:8e:3c:e3:b7:1f:b1
-Do you want to continue? {y|n}:: [n] *y*
+Enter the switch name: *cs2*
+Would you like to specify a user other than admin for log collection? {y|n}: *n*
 
-Enter the password: <enter switch password>
-Enter the password again: <enter switch password>
+Enter the password: *<enter switch password>*
+Enter the password again: *<enter switch password>*
 ----
 ====
-.. 后跟： `ssystem switch Ethernet log enable-Collection`
+. 启用以太网交换机运行状况监控器日志收集功能。
++
+`system switch ethernet log modify -device _<switch-name>_ -log-request true`
+
 +
 .显示示例
 [%collapsible]
 ====
 [listing, subs="+quotes"]
 ----
-cluster1::*> *system switch ethernet log enable-collection*
+cluster1::*> *system switch ethernet log modify -device cs1 -log-request true*
 
-Do you want to enable cluster log collection for all nodes in the cluster?
-{y|n}: [n] *y*
+Do you want to modify the cluster switch log collection configuration? {y|n}: [n] *y*
 
 Enabling cluster switch log collection.
 
-cluster1::*>
+cluster1::*> *system switch ethernet log modify -device cs2 -log-request true*
+
+Do you want to modify the cluster switch log collection configuration? {y|n}: [n] *y*
+
+Enabling cluster switch log collection.
 ----
 ====
-
-
 +
-
-NOTE: 如果其中任何一个命令返回错误，请联系 NetApp 支持部门。
-
-. 启动交换机日志收集功能：
-+
-`system switch ethernet log collect -device *`
-
-+
-等待10分钟、然后使用命令检查日志收集是否成功：
+等待10分钟、然后检查日志收集是否完成：
 
 +
 `system switch ethernet log show`
@@ -668,15 +660,19 @@ NOTE: 如果其中任何一个命令返回错误，请联系 NetApp 支持部门
 ====
 [listing, subs="+quotes"]
 ----
-cluster1::*> *system switch ethernet log show*
+cluster1::*> system switch ethernet log show
 Log Collection Enabled: true
 
 Index  Switch                       Log Timestamp        Status
 ------ ---------------------------- -------------------  ---------    
-1      sw1 (b8:ce:f6:19:1b:42)      4/29/2022 03:05:25   complete   
-2      sw2 (b8:ce:f6:19:1b:96)      4/29/2022 03:07:42   complete
+1      cs1 (b8:ce:f6:19:1b:42)      4/29/2022 03:05:25   complete   
+2      cs2 (b8:ce:f6:19:1b:96)      4/29/2022 03:07:42   complete
 ----
 ====
++
+
+CAUTION: 如果其中任一命令返回错误或日志收集未完成、请联系NetApp支持部门。
+
 . 将权限级别重新更改为 admin ：
 +
 `set -privilege admin`

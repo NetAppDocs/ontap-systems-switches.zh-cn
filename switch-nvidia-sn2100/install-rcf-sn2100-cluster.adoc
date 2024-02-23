@@ -20,6 +20,9 @@ summary: 在安装RCF脚本之前、请确保交换机上具有以下配置
 * 通过DHCP定义或手动配置的IP地址、子网掩码和默认网关。
 
 
+
+NOTE: 除了管理员用户之外、您还必须在RC框架 中指定一个用户、以专门用于收集日志。
+
 .当前RCF脚本版本
 集群和存储应用程序可以使用两个RC框架 脚本。从下载RCF https://mysupport.netapp.com/site/info/nvidia-cluster-switch["此处"^]。每个的操作步骤 是相同的。
 
