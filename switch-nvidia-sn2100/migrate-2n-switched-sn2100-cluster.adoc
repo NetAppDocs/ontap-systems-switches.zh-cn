@@ -84,16 +84,18 @@ IMPORTANT: 请参见 link:cabling-considerations-sn2100-cluster.html["查看布�
 
 === 第2步：配置端口和布线
 
+[role="tabbed-block"]
+====
+.CUMULUS Linux 4.4.x
+--
 . 在新集群交换机sw1和SW2上禁用所有面向节点的端口(而不是ISL端口)。
 +
 不得禁用 ISL 端口。
 
 +
-.显示示例
-[%collapsible]
-====
 以下命令可禁用交换机sw1和SW2上面向节点的端口：
 
++
 [listing, subs="+quotes"]
 ----
 cumulus@sw1:~$ *net add interface swp1s0-3, swp2s0-3, swp3-14 link down*
@@ -104,17 +106,14 @@ cumulus@sw2:~$ *net add interface swp1s0-3, swp2s0-3, swp3-14 link down*
 cumulus@sw2:~$ *net pending*
 cumulus@sw2:~$ *net commit*
 ----
-====
 . 验证端口swp15和swp16上的ISL和两个SN2100交换机sw1和SW2之间的ISL上的物理端口是否已启动：
 +
 `net show interface`
 
 +
-.显示示例
-[%collapsible]
-====
-以下示例显示交换机sw1上的ISL端口已启动：
+以下命令显示交换机sw1和sw2上的ISL端口已启动：
 
++
 [listing, subs="+quotes"]
 ----
 cumulus@sw1:~$ *net show interface*
@@ -125,13 +124,7 @@ State  Name       Spd   MTU    Mode        LLDP         Summary
 ...
 UP     swp15      100G  9216   BondMember  sw2 (swp15)  Master: cluster_isl(UP)
 UP     swp16      100G  9216   BondMember  sw2 (swp16)  Master: cluster_isl(UP)
-----
-+以下示例显示交换机SW2上的ISL端口已启动：
 
-+
-
-[listing, subs="+quotes"]
-----
 cumulus@sw2:~$ *net show interface*
 
 State  Name       Spd   MTU    Mode        LLDP         Summary
@@ -141,8 +134,65 @@ State  Name       Spd   MTU    Mode        LLDP         Summary
 UP     swp15      100G  9216   BondMember  sw1 (swp15)  Master: cluster_isl(UP)
 UP     swp16      100G  9216   BondMember  sw1 (swp16)  Master: cluster_isl(UP)
 ----
+
+
+--
+.Cumulus Linux 5.x
+--
+. 禁用新集群交换机sw1和sw2上所有面向节点的端口(而不是ISL端口)。
++
+不得禁用 ISL 端口。
+
++
+以下命令可禁用交换机sw1和SW2上面向节点的端口：
+
++
+[listing, subs="+quotes"]
+----
+cumulus@sw1:~$ *nv set interface swp1s0-3,swp2s0-3,swp3-14 link state down*
+cumulus@sw1:~$ *nv config apply*
+cumulus@sw1:~$ *nv save*
+
+cumulus@sw2:~$ *nv set interface swp1s0-3,swp2s0-3,swp3-14 link state down*
+cumulus@sw2:~$ *nv config apply*
+cumulus@sw2:~$ *nv save*
+----
+. 验证端口swp15和swp16上的ISL和两个SN2100交换机sw1和SW2之间的ISL上的物理端口是否已启动：
++
+`nv show interface`
+
++
+以下示例显示交换机sw1和sw2上的ISL端口已启动：
+
++
+[listing, subs="+quotes"]
+----
+cumulus@sw1:~$ *nv show interface*
+
+Interface     MTU    Speed  State  Remote Host  Remote Port                          Type    Summary
+------------- ------ -----  ------ ------------ ------------------------------------ ------- -------
+...
+...
++ swp14       9216          down                                                     swp
++ swp15       9216   100G   up     ossg-rcf1    Intra-Cluster Switch ISL Port swp15  swp
++ swp16       9216   100G   up     ossg-rcf2    Intra-Cluster Switch ISL Port swp16  swp
+
+
+cumulus@sw2:~$ *nv show interface*
+
+Interface     MTU    Speed  State  Remote Host  Remote Port                          Type    Summary
+------------- ------ -----  ------ ------------ ------------------------------------ ------- -------
+...
+...
++ swp14       9216          down                                                     swp
++ swp15       9216   100G   up     ossg-rcf1    Intra-Cluster Switch ISL Port swp15  swp
++ swp16       9216   100G   up     ossg-rcf2    Intra-Cluster Switch ISL Port swp16  swp
+----
+
+
+--
 ====
-. 验证所有集群端口是否均已启动：
+. [[STEP3]]验证所有集群端口是否均已启动：
 +
 `network port show`
 
@@ -230,28 +280,30 @@ Cluster
 。 https://hwu.netapp.com/SWITCH/INDEX["Hardware Universe —交换机"^] 包含有关布线的详细信息。
 
 . 从节点2上的集群端口E3A断开缆线连接、然后使用SN2100交换机支持的相应布线方式将E3A连接到集群交换机sw1上的端口4。
-. 在交换机sw1上、启用所有面向节点的端口。
-+
-.显示示例
-[%collapsible]
-====
-以下命令将启用交换机sw1上面向节点的所有端口：
 
+
+[role="tabbed-block"]
+====
+.CUMULUS Linux 4.4.x
+--
+. [[STEP8]]在交换机sw1上、启用所有面向节点的端口。
++
+以下命令将启用交换机sw1上所有面向节点的端口。
+
++
 [listing, subs="+quotes"]
 ----
 cumulus@sw1:~$ *net del interface swp1s0-3, swp2s0-3, swp3-14 link down*
 cumulus@sw1:~$ *net pending*
 cumulus@sw1:~$ *net commit*
 ----
-====
-. 在交换机sw1上、验证所有端口是否均已启动：
+
+
+. [[step ]]在交换机sw1上、验证所有端口是否均已启动：
 +
 `net show interface all`
 
 +
-.显示示例
-[%collapsible]
-====
 [listing, subs="+quotes"]
 ----
 cumulus@sw1:~$ *net show interface all*
@@ -275,8 +327,58 @@ UP     swp15     100G  9216   BondMember  swp15          Master: cluster_isl(UP)
 UP     swp16     100G  9216   BondMember  swp16          Master: cluster_isl(UP)
 ...
 ----
+
+
+--
+.Cumulus Linux 5.x
+--
+. [[STEP8]]在交换机sw1上、启用所有面向节点的端口。
++
+以下命令将启用交换机sw1上所有面向节点的端口。
+
++
+[listing, subs="+quotes"]
+----
+cumulus@sw1:~$ *nv unset interface swp1s0-3,swp2s0-3,swp3-14 link state down*
+cumulus@sw1:~$ *nv config apply*
+cumulus@sw1:~$ *nv config save*
+----
+
+
+. [[STEP9]]在交换机sw1上、验证所有端口是否均已启动：
++
+`nv show interface`
+
++
+[listing, subs="+quotes"]
+----
+cumulus@sw1:~$ *nv show interface*
+
+Interface    State  Speed  MTU    Type      Remote Host                 Remote Port  Summary
+-----------  -----  -----  -----  --------  --------------------------  -----------  ----------
+...
+...
+swp1s0       up     10G    9216   swp       odq-a300-1a                         e0a
+swp1s1       up     10G    9216   swp       odq-a300-1b                         e0a
+swp1s2       down   10G    9216   swp
+swp1s3       down   10G    9216   swp
+swp2s0       down   25G    9216   swp
+swp2s1       down   25G    9216   swp
+swp2s2       down   25G    9216   swp
+swp2s3       down   25G    9216   swp
+swp3         down          9216   swp
+swp4         down          9216   swp
+...
+...
+swp14        down          9216   swp
+swp15        up     100G   9216   swp       ossg-int-rcf10                    swp15
+swp16        up     100G   9216   swp       ossg-int-rcf10                    swp16
+----
+
+
+--
 ====
-. 验证所有集群端口是否均已启动：
+. [[STEP10]]验证所有集群端口是否均已启动：
 +
 `network port show -ipspace cluster`
 
@@ -331,28 +433,28 @@ node2                true    true          false
 ====
 . 断开缆线与node1上的集群端口e3b的连接、然后使用SN2100交换机支持的相应布线方式将e3b连接到集群交换机SW2上的端口3。
 . 断开缆线与node2上的集群端口e3b的连接、然后使用SN2100交换机支持的相应布线方式将e3b连接到集群交换机SW2上的端口4。
-. 在交换机SW2上、启用所有面向节点的端口。
-+
-.显示示例
-[%collapsible]
+
+
+[role="tabbed-block"]
 ====
+.CUMULUS Linux 4.4.x
+--
+. [[Step14]]在交换机SW2上、启用所有面向节点的端口。
++
 以下命令可在交换机SW2上启用面向节点的端口：
 
++
 [listing, subs="+quotes"]
 ----
 cumulus@sw2:~$ *net del interface swp1s0-3, swp2s0-3, swp3-14 link down*
 cumulus@sw2:~$ *net pending*
 cumulus@sw2:~$ *net commit*
 ----
-====
-. 在交换机SW2上、验证所有端口是否均已启动：
+. [[Step15]]在交换机SW2上、验证所有端口是否均已启动：
 +
 `net show interface all`
 
 +
-.显示示例
-[%collapsible]
-====
 [listing, subs="+quotes"]
 ----
 cumulus@sw2:~$ *net show interface all*
@@ -376,16 +478,16 @@ UP     swp15     100G  9216   BondMember  swp15          Master: cluster_isl(UP)
 UP     swp16     100G  9216   BondMember  swp16          Master: cluster_isl(UP)
 ...
 ----
-====
-. 在两个交换机sw1和SW2上、验证两个节点与每个交换机都有一个连接：
+
+
+. [[Step16]]在交换机sw1和sw2上、验证两个节点是否都与每个交换机建立了一个连接：
 +
 `net show lldp`
 
 +
-.显示示例
-[%collapsible]
-====
 以下示例显示了交换机sw1和SW2的相应结果：
+
+
 
 [listing, subs="+quotes"]
 ----
@@ -407,10 +509,112 @@ swp4       100G   Trunk/L2    node2              e3b
 swp15      100G   BondMember  sw1                swp15
 swp16      100G   BondMember  sw1                swp16
 ----
-====
-. 显示有关集群中发现的网络设备的信息：
+--
+.Cumulus Linux 5.x
+--
+. [[Step14]]在交换机SW2上、启用所有面向节点的端口。
 +
-`net device-discovery show -protocol lldp`
+以下命令可在交换机SW2上启用面向节点的端口：
+
++
+[listing, subs="+quotes"]
+----
+cumulus@sw2:~$ *nv unset interface swp1s0-3,swp2s0-3,swp3-14 link state down*
+cumulus@sw2:~$ *nv config apply*
+cumulus@sw2:~$ *nv config save*
+----
+. [[Step15]]在交换机SW2上、验证所有端口是否均已启动：
++
+`nv show interface`
+
++
+[listing, subs="+quotes"]
+----
+cumulus@sw2:~$ *nv show interface*
+
+Interface    State  Speed  MTU    Type      Remote Host                 Remote Port  Summary
+-----------  -----  -----  -----  --------  --------------------------  -----------  ----------
+...
+...
+swp1s0       up     10G    9216   swp       odq-a300-1a                         e0a
+swp1s1       up     10G    9216   swp       odq-a300-1b                         e0a
+swp1s2       down   10G    9216   swp
+swp1s3       down   10G    9216   swp
+swp2s0       down   25G    9216   swp
+swp2s1       down   25G    9216   swp
+swp2s2       down   25G    9216   swp
+swp2s3       down   25G    9216   swp
+swp3         down          9216   swp
+swp4         down          9216   swp
+...
+...
+swp14        down          9216   swp
+swp15        up     100G   9216   swp       ossg-int-rcf10                    swp15
+swp16        up     100G   9216   swp       ossg-int-rcf10                    swp16
+----
+
+
+. [[Step16]]在交换机sw1和sw2上、验证两个节点是否都与每个交换机建立了一个连接：
++
+`nv show interface --view=lldp`
+
++
+以下示例显示了交换机sw1和sw2的相应结果：
+
++
+[listing, subs="+quotes"]
+----
+cumulus@sw1:~$ *nv show interface --view=lldp*
+
+Interface    Speed  Type      Remote Host                         Remote Port
+-----------  -----  --------  ----------------------------------  -----------
+...
+...
+swp1s0       10G    swp       odq-a300-1a                         e0a
+swp1s1       10G    swp       odq-a300-1b                         e0a
+swp1s2       10G    swp
+swp1s3       10G    swp
+swp2s0       25G    swp
+swp2s1       25G    swp
+swp2s2       25G    swp
+swp2s3       25G    swp
+swp3                swp
+swp4                swp
+...
+...
+swp14               swp
+swp15        100G   swp       ossg-int-rcf10                      swp15
+swp16        100G   swp       ossg-int-rcf10                      swp16
+
+cumulus@sw2:~$ *nv show interface --view=lldp*
+
+Interface    Speed  Type      Remote Host                         Remote Port
+-----------  -----  --------  ----------------------------------  -----------
+...
+...
+swp1s0       10G    swp       odq-a300-1a                         e0a
+swp1s1       10G    swp       odq-a300-1b                         e0a
+swp1s2       10G    swp
+swp1s3       10G    swp
+swp2s0       25G    swp
+swp2s1       25G    swp
+swp2s2       25G    swp
+swp2s3       25G    swp
+swp3                swp
+swp4                swp
+...
+...
+swp14               swp
+swp15        100G   swp       ossg-int-rcf10                      swp15
+swp16        100G   swp       ossg-int-rcf10                      swp16
+----
+
+
+--
+====
+. [[STEP17]]显示有关集群中已发现网络设备的信息：
++
+`network device-discovery show -protocol lldp`
 
 +
 .显示示例
@@ -591,7 +795,7 @@ RPC status:
 2 paths up, 0 paths down (udp check)
 ----
 ====
-. 为以太网交换机运行状况监控器日志收集功能创建密码：
+. 要设置日志收集、请对每个交换机运行以下命令。系统会提示您输入交换机名称、用户名和密码以收集日志。
 +
 `s系统交换机以太网日志设置密码`
 
@@ -625,7 +829,7 @@ Enter the password: *<enter switch password>*
 Enter the password again: *<enter switch password>*
 ----
 ====
-. 启用以太网交换机运行状况监控器日志收集功能。
+. 要开始收集日志、请运行以下命令、将device替换为上一命令中使用的交换机。这将开始两种类型的日志收集：详细的*Support*日志和每小时收集*定期*数据。
 +
 `system switch ethernet log modify -device _<switch-name>_ -log-request true`
 
@@ -635,13 +839,13 @@ Enter the password again: *<enter switch password>*
 ====
 [listing, subs="+quotes"]
 ----
-cluster1::*> *system switch ethernet log modify -device cs1 -log-request true*
+cluster1::*> *system switch ethernet log modify -device sw1 -log-request true*
 
 Do you want to modify the cluster switch log collection configuration? {y|n}: [n] *y*
 
 Enabling cluster switch log collection.
 
-cluster1::*> *system switch ethernet log modify -device cs2 -log-request true*
+cluster1::*> *system switch ethernet log modify -device sw2 -log-request true*
 
 Do you want to modify the cluster switch log collection configuration? {y|n}: [n] *y*
 
@@ -663,15 +867,15 @@ Enabling cluster switch log collection.
 cluster1::*> system switch ethernet log show
 Log Collection Enabled: true
 
-Index  Switch                       Log Timestamp        Status
------- ---------------------------- -------------------  ---------    
-1      cs1 (b8:ce:f6:19:1b:42)      4/29/2022 03:05:25   complete   
-2      cs2 (b8:ce:f6:19:1b:96)      4/29/2022 03:07:42   complete
+Index  Switch                       Log Timestamp        Status
+------ ---------------------------- -------------------- ---------
+1      sw1 (b8:ce:f6:19:1b:42)      4/29/2022 03:05:25   complete
+2      sw2 (b8:ce:f6:19:1b:96)      4/29/2022 03:07:42   complete
 ----
 ====
 +
 
-CAUTION: 如果其中任一命令返回错误或日志收集未完成、请联系NetApp支持部门。
+CAUTION: 如果其中任何一个命令返回错误，请联系 NetApp 支持部门。
 
 . 将权限级别重新更改为 admin ：
 +
