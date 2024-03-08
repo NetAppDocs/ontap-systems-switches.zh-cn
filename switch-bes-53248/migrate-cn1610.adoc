@@ -98,11 +98,13 @@ NOTE: 可以通过购买端口许可证来激活其他端口。
 * 集群从两个节点连接到两个 CN1610 集群交换机开始。
 * CN1610 交换机 CL2 由 BES-53248 交换机 CS2 取代：
 +
+** 关闭集群节点的端口。必须同时关闭所有端口、以避免集群不稳定。
 ** 从连接到 CL2 的所有节点上的所有集群端口断开缆线连接，然后使用支持的缆线将端口重新连接到新的集群交换机 CS2 。
 
 
 * CN1610 交换机 CL1 由 BES-53248 交换机 CS1 取代：
 +
+** 关闭集群节点的端口。必须同时关闭所有端口、以避免集群不稳定。
 ** 从连接到 CL1 的所有节点上的所有集群端口断开缆线连接，然后使用支持的缆线将端口重新连接到新的集群交换机 CS1 。
 
 
@@ -342,11 +344,8 @@ cluster1::*>
 ----
 cluster1::*> *network interface modify -vserver Cluster -lif * -auto-revert false*
 ----
-. 在集群交换机CL2上、关闭连接到节点集群端口的端口：
+. 在集群交换机CL2上、关闭连接到节点集群端口的端口、以便对集群LI进行故障转移：
 +
-.显示示例
-[%collapsible]
-====
 [listing, subs="+quotes"]
 ----
 (CL2)# *configure*
@@ -356,8 +355,7 @@ cluster1::*> *network interface modify -vserver Cluster -lif * -auto-revert fals
 (CL2)(Config)# *exit*
 (CL2)#
 ----
-====
-. 验证集群LIFs是否已迁移到集群交换机CL1上托管的端口。这可能需要几秒钟的时间。
+. 验证集群LIFs是否已故障转移到集群交换机CL1上托管的端口。这可能需要几秒钟的时间。
 +
 `network interface show -vserver cluster`
 
@@ -450,14 +448,14 @@ node1      /cdp
             e0b    cs2                       0/1               BES-53248
 ----
 ====
-. 使用命令从交换机CS2的角度确认交换机端口连接运行状况良好：
+. 从交换机CS2的角度确认交换机端口连接运行状况良好：
 +
 [listing, subs="+quotes"]
 ----
 cs2# *show port all*
 cs2# *show isdp neighbors*
 ----
-. 在集群交换机CL1上、关闭连接到节点的集群端口的端口。
+. 在集群交换机CL1上、关闭连接到节点集群端口的端口、以便对集群LI进行故障转移：
 +
 [listing, subs="+quotes"]
 ----
@@ -469,9 +467,9 @@ cs2# *show isdp neighbors*
 (CL1)#
 ----
 +
-所有集群的LUN都会移至CS2交换机。
+所有集群的集群Sifs都会故障转移到CS2交换机。
 
-. 验证集群 LIF 是否已迁移到交换机 CS2 上托管的端口。这可能需要几秒钟的时间：
+. 验证集群SIFs是否已故障转移到交换机CS2上托管的端口。这可能需要几秒钟的时间：
 +
 `network interface show -vserver cluster`
 
@@ -564,7 +562,7 @@ node2      /cdp
             e0b    cs2                       0/2               BES-53248
 ----
 ====
-. 使用命令从交换机CS1的角度确认交换机端口连接运行状况良好：
+. 从交换机CS1的角度确认交换机端口连接运行状况良好：
 +
 [listing, subs="+quotes"]
 ----
@@ -711,11 +709,7 @@ RPC status:
 2 paths up, 0 paths down (udp check)
 ----
 ====
-. 为以太网交换机运行状况监控器日志收集功能创建密码。
-+
-
-IMPORTANT: 要启用日志收集功能、必须运行ONTAP 9.10.1P15、9.11.1P12或9.12.1及更高版本以及EFOS 3.8.0.2及更高版本。
-
+. 要设置日志收集、请对每个交换机运行以下命令。系统会提示您输入交换机名称、用户名和密码以收集日志。
 +
 `s系统交换机以太网日志设置密码`
 
@@ -749,7 +743,7 @@ Enter the password: *<enter switch password>*
 Enter the password again: *<enter switch password>*
 ----
 ====
-. 启用以太网交换机运行状况监控器日志收集功能：
+. 要开始收集日志、请运行以下命令、将device替换为上一命令中使用的交换机。这将开始两种类型的日志收集：详细的*Support*日志和每小时收集*定期*数据。
 +
 `system switch ethernet log modify -device _<switch-name>_ -log-request true`
 

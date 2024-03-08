@@ -31,6 +31,10 @@ entries:
     url: "/switch-cisco-3232c/install-nx-os-software-3232c.html"
   - title: 安装RCF配置文件
     url: "/switch-cisco-3232c/install-rcf-3232c.html"
+  - title: 启用日志收集
+    url: "/switch-cisco-3232c/CSHM_log_collection.html"
+  - title: 配置SNMPv3以进行监控
+    url: "/switch-cisco-3232c/CSHM_snmpv3.html"
 - title: 迁移交换机
   pdf-filename: migration_switchs_3232c
   entries:

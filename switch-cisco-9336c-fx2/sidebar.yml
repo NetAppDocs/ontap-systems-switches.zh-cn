@@ -39,7 +39,9 @@ entries:
   - title: 安装RCF配置文件
     url: "/switch-cisco-9336c-fx2/install-nxos-rcf-9336c-cluster.html"
   - title: 启用日志收集
-    url: "/switch-cisco-9336c-fx2/configure-log-collection.html"
+    url: "/switch-cisco-9336c-fx2/CSHM_log_collection.html"
+  - title: 配置SNMPv3以进行监控
+    url: "/switch-cisco-9336c-fx2/CSHM_snmpv3.html"
 - title: 迁移交换机
   pdf-filename: migration_switchs_9336c-FX2
   entries:

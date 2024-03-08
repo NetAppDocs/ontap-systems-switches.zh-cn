@@ -112,11 +112,9 @@ cluster1::*> system node autosupport invoke -node \* -type all -message MAINT=2h
 NOTE: 不得禁用 ISL 端口。
 
 +
-.显示示例
-[%collapsible]
-====
 以下示例显示了交换机 CS1 上面向节点的端口 1 到 16 已禁用：
 
++
 [listing, subs="+quotes"]
 ----
 (cs1)# *configure*
@@ -125,7 +123,6 @@ NOTE: 不得禁用 ISL 端口。
 (cs1)(Interface 0/1-0/16)# *exit*
 (cs1)(Config)# *exit*
 ----
-====
 . 验证两个BES-53248交换机CS1和CS2之间的ISL和ISL上的物理端口是否为*已启动*：
 +
 `s如何使用端口通道`
@@ -285,11 +282,9 @@ cluster1::*> *network interface modify -vserver Cluster -lif * -auto-revert fals
 . 从节点 2 上的集群端口 e0a 断开缆线连接，然后使用 BES-53248 交换机支持的相应布线方式将 e0a 连接到集群交换机 CS1 上的端口 2 。
 . 启用集群交换机 CS1 上面向节点的所有端口。
 +
-.显示示例
-[%collapsible]
-====
 以下示例显示交换机 CS1 上的端口 1 到 16 已启用：
 
++
 [listing, subs="+quotes"]
 ----
 (cs1)# *configure*
@@ -298,7 +293,6 @@ cluster1::*> *network interface modify -vserver Cluster -lif * -auto-revert fals
 (cs1)(Interface 0/1-0/16)# *exit*
 (cs1)(Config)# *exit*
 ----
-====
 . 验证所有集群 LIF 是否均已启动，正常运行并显示为 `true` for `is Home` ：
 +
 `network interface show -vserver cluster`
@@ -347,11 +341,9 @@ node2                true    true          false
 . 从节点 2 上的集群端口 e0b 断开缆线连接，然后使用 BES-53248 交换机支持的相应布线方式将 e0b 连接到集群交换机 CS2 上的端口 2 。
 . 启用集群交换机 CS2 上面向节点的所有端口。
 +
-.显示示例
-[%collapsible]
-====
 以下示例显示交换机 CS2 上的端口 1 到 16 已启用：
 
++
 [listing, subs="+quotes"]
 ----
 (cs2)# *configure*
@@ -360,7 +352,6 @@ node2                true    true          false
 (cs2)(Interface 0/1-0/16)# *exit*
 (cs2)(Config)# *exit*
 ----
-====
 . 验证所有集群端口是否均为*已启动*：
 +
 `network port show -ipspace cluster`

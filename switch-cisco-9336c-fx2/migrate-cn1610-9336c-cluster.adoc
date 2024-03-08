@@ -58,9 +58,20 @@ summary: 您可以将ONTAP集群的NetApp CN1610集群交换机无故障迁移�
 * 集群 LIF 分别是节点 1 上的 _node1_clus1_ 和 _node1_clus2_ 以及节点 2 上的 _node2_clus1_ 和 _node2_clus2_ 。
 * `cluster1 ：：： * >` 提示符指示集群的名称。
 * 此操作步骤 中使用的集群端口为_e3A_和_e3b_。
-* 交换机C2首先由交换机CS2取代、然后交换机C1由交换机CS1取代。
+
+
+.关于此任务
+此操作步骤包括以下情形：
+
+* 交换机C2首先被交换机CS2取代。
 +
-** 然后、节点和C2之间的布线从C2断开、并重新连接到CS2
+** 关闭集群节点的端口。必须同时关闭所有端口、以避免集群不稳定。
+** 然后、节点和C2之间的布线从C2断开、并重新连接到CS2。
+
+
+* 交换机C1由交换机CS1取代。
++
+** 关闭集群节点的端口。必须同时关闭所有端口、以避免集群不稳定。
 ** 然后、节点和C1之间的布线从C1断开、并重新连接到CS1。
 
 
@@ -91,17 +102,6 @@ NOTE: 在此操作步骤 期间、不需要可操作的交换机间链路(ISL)�
 +
 `network interface modify -vserver cluster -lif *-auto-revert false`
 
-+
-.显示示例
-[%collapsible]
-====
-[listing, subs="+quotes"]
-----
-cluster1::*> *network interface modify -vserver Cluster -lif * -auto-revert false*
-
-Warning: Disabling the auto-revert feature of the cluster logical interface may effect the availability of your cluster network. Are you sure you want to continue? {y|n}: *y*
-----
-====
 
 
 
@@ -271,11 +271,8 @@ RPC status:
 2 paths up, 0 paths down (udp check)
 ----
 ====
-. 在交换机C2上、关闭连接到节点集群端口的端口。
+. 在交换机C2上、关闭连接到节点的集群端口的端口、以便对集群的生命周期进行故障转移。
 +
-.显示示例
-[%collapsible]
-====
 [listing, subs="+quotes"]
 ----
 (C2)# *configure*
@@ -284,7 +281,6 @@ RPC status:
 (C2)(Interface 0/1-0/12)# *exit*
 (C2)(Config)# *exit*
 ----
-====
 . 使用Cisco 9336C -FX2支持的适当布线方法、将节点集群端口从旧交换机C2移至新交换机CS2。
 . 显示网络端口属性：
 +
@@ -359,11 +355,8 @@ Cluster
             node2_clus2  up/up      169.254.3.9/16     node2       e0b     true
 ----
 ====
-. 在交换机C1上、关闭连接到节点集群端口的端口。
+. 在交换机C1上、关闭连接到节点的集群端口的端口、以便对集群生命周期进行故障转移。
 +
-.显示示例
-[%collapsible]
-====
 [listing, subs="+quotes"]
 ----
 (C1)# *configure*
@@ -372,7 +365,6 @@ Cluster
 (C1)(Interface 0/1-0/12)# *exit*
 (C1)(Config)# *exit*
 ----
-====
 . 使用Cisco 9336C -FX2支持的适当布线方法、将节点集群端口从旧交换机C1移动到新交换机CS1。
 . 验证集群的最终配置：
 +
@@ -515,12 +507,10 @@ Cluster
             node2_clus2  up/up    169.254.19.183/16  node2         e3b     true
 ----
 ====
-. 使用以下两个命令启用以太网交换机运行状况监控器日志收集功能、以收集交换机相关的日志文件：
+. 要设置日志收集、请对每个交换机运行以下命令。系统会提示您输入交换机名称、用户名和密码以收集日志。
 +
-`ssystem switch Ethernet log setup-password`和`ssystem switch Ethernet log enable-Collection`
+`s系统交换机以太网日志设置密码`
 
-+
-.. 输入： `ssystem switch Ethernet log setup-password`
 +
 .显示示例
 [%collapsible]
@@ -553,33 +543,30 @@ Enter the password: <enter switch password>
 Enter the password again: <enter switch password>
 ----
 ====
-.. 后跟： `ssystem switch Ethernet log enable-Collection`
+. 要开始收集日志、请运行以下命令、将device替换为上一命令中使用的交换机。这将开始两种类型的日志收集：详细的*Support*日志和每小时收集*定期*数据。
++
+`system switch ethernet log modify -device _<switch-name>_ -log-request true`
+
 +
 .显示示例
 [%collapsible]
 ====
 [listing, subs="+quotes"]
 ----
-cluster1::*> *system  switch ethernet log enable-collection*
+cluster1::*> *system switch ethernet log modify -device cs1 -log-request true*
 
-Do you want to enable cluster log collection for all nodes in the cluster?
-{y|n}: [n] *y*
+Do you want to modify the cluster switch log collection configuration? {y|n}: [n] *y*
 
 Enabling cluster switch log collection.
 
+cluster1::*> *system switch ethernet log modify -device cs2 -log-request true*
+
+Do you want to modify the cluster switch log collection configuration? {y|n}: [n] *y*
+
+Enabling cluster switch log collection.
 cluster1::*>
 ----
 ====
-+
-
-NOTE: 如果其中任何一个命令返回错误，请联系 NetApp 支持部门。
-
-
-
-. 启动交换机日志收集功能：
-+
-`system switch ethernet log collect -device *`
-
 +
 等待10分钟、然后使用命令检查日志收集是否成功：
 
@@ -587,20 +574,9 @@ NOTE: 如果其中任何一个命令返回错误，请联系 NetApp 支持部门
 `system switch ethernet log show`
 
 +
-.显示示例
-[%collapsible]
-====
-[listing, subs="+quotes"]
-----
-cluster1::*> system switch ethernet log show
-Log Collection Enabled: true
 
-Index  Switch                       Log Timestamp        Status
------- ---------------------------- -------------------  ---------    
-1      cs1 (b8:ce:f6:19:1b:42)      4/29/2022 03:05:25   complete   
-2      cs2 (b8:ce:f6:19:1b:96)      4/29/2022 03:07:42   complete
-----
-====
+NOTE: 如果其中任何一个命令返回错误，请联系 NetApp 支持部门。
+
 . 将权限级别重新更改为 admin ：
 +
 `set -privilege admin`

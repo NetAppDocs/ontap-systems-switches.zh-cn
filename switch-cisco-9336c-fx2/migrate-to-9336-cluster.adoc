@@ -62,7 +62,24 @@ image::../media/Initial_setup.png[初始交换机设置]
 .关于此任务
 操作步骤 需要同时使用ONTAP 命令和 https://www.cisco.com/c/en/us/support/switches/nexus-9000-series-switches/series.html["Nexus 9000系列交换机"^] 命令；除非另有说明、否则使用ONTAP 命令。
 
-在此操作步骤 期间、不需要可操作的交换机间链路(ISL)。这是设计上的原因、因为RCF版本更改可能会暂时影响ISL连接。为了确保集群无中断运行、以下操作步骤 会在对目标交换机执行步骤时将所有集群LIF迁移到运行中的配对交换机。
+此操作步骤包括以下情形：
+
+* 交换机CS2将首先替换为交换机CS2-new。
++
+** 关闭集群节点的端口。必须同时关闭所有端口、以避免集群不稳定。
+** 然后、从CS2断开节点和CS2之间的布线、并重新连接到CS2-new。
+
+
+* 交换机CS1由交换机CS1-new取代。
++
+** 关闭集群节点的端口。必须同时关闭所有端口、以避免集群不稳定。
+** 然后、从CS1断开节点和CS1之间的布线、并重新连接到CS1-new。
+
+
+
+
+
+NOTE: 在此操作步骤 期间、不需要可操作的交换机间链路(ISL)。这是设计上的原因、因为RCF版本更改可能会暂时影响ISL连接。为了确保集群无中断运行、以下操作步骤 会在对目标交换机执行步骤时将所有集群LIF迁移到运行中的配对交换机。
 
 
 
@@ -239,26 +256,16 @@ cs2                         cluster-network     10.233.205.93   N5K-C5596UP
 
 . 在集群 LIF 上禁用自动还原。
 +
-.显示示例
-[%collapsible]
-====
-[listing, subs="+quotes"]
-----
-cluster1::*> *network interface modify -vserver Cluster -lif * -auto-revert false*
-----
-====
-. 在集群交换机CS2上、关闭连接到节点集群端口的端口：
+`network interface modify -vserver cluster -lif *-auto-revert false`
+
+. 在集群交换机CS2上、关闭连接到节点的集群端口的端口、以便对集群生命周期进行故障转移：
 +
-.显示示例
-[%collapsible]
-====
 [listing, subs="+quotes"]
 ----
 cs2(config)# *interface eth1/1-1/2*
 cs2(config-if-range)# *shutdown*
 ----
-====
-. 验证集群 LIF 是否已迁移到集群交换机 CS1 上托管的端口。这可能需要几秒钟的时间。
+. 验证集群SIFs是否已故障转移到集群交换机CS1上托管的端口。这可能需要几秒钟的时间。
 +
 `network interface show -vserver cluster`
 
@@ -362,14 +369,14 @@ node2      /cdp
 +
 验证移动的集群端口是否将CS2-new交换机视为邻居。
 
-. 从交换机CS2-new的角度确认交换机端口连接：
+. 从交换机CS2-NEW的角度确认交换机端口连接：
 +
 [listing, subs="+quotes"]
 ----
 cs2-new# *show interface brief*
 cs2-new# *show cdp neighbors*
 ----
-. 在集群交换机 CS1 上，关闭连接到节点集群端口的端口。以下示例使用步骤7中的接口示例输出。
+. 在集群交换机CS1上、关闭连接到节点的集群端口的端口、以便对集群的生命周期进行故障转移。以下示例使用步骤7中的接口示例输出。
 +
 [listing, subs="+quotes"]
 ----
@@ -379,7 +386,7 @@ cs1(config-if-range)# *shutdown*
 +
 所有集群LIF都将移至CS2-NEW交换机。
 
-. 验证集群LIF是否已迁移到交换机CS2-new上托管的端口。这可能需要几秒钟的时间：
+. 验证集群SIFs是否已故障转移到交换机CS2-NEW上托管的端口。这可能需要几秒钟的时间：
 +
 `network interface show -vserver cluster`
 
@@ -482,17 +489,13 @@ node2      /cdp
 +
 验证移动的集群端口是否将CS1-new交换机视为邻居。
 
-. 从交换机CS1-new的角度确认交换机端口连接：
+. 从交换机CS1-NEW的角度确认交换机端口连接：
 +
-.显示示例
-[%collapsible]
-====
 [listing, subs="+quotes"]
 ----
 cs1-new# *show interface brief*
 cs1-new# *show cdp neighbors*
 ----
-====
 . 验证CS1-NEW和CS2-NEW之间的ISL是否仍正常运行：
 +
 `s如何执行端口通道摘要`
@@ -542,14 +545,8 @@ Group Port-       Type     Protocol  Member Ports
 
 . 在集群 LIF 上启用自动还原。
 +
-.显示示例
-[%collapsible]
-====
-[listing, subs="+quotes"]
-----
-cluster1::*> *network interface modify -vserver Cluster -lif * -auto-revert true*
-----
-====
+`network interface modify -vserver cluster -lif *-auto-revert true`
+
 . 验证集群LIF是否已还原到其主端口(这可能需要一分钟时间)：
 +
 `network interface show -vserver cluster`
