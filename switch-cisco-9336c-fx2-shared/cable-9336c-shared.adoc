@@ -10,7 +10,7 @@ summary: 使用布线图完成控制器和交换机之间的布线。
 :nofooter: 
 :icons: font
 :linkattrs: 
-:imagesdir: ./media/
+:imagesdir: ../media/
 
 
 [role="lead"]
@@ -42,7 +42,9 @@ image:9336c_image2.jpg["直连"]
 
 如果要记录受支持的平台，则必须参考填写好的布线工作表示例，填写空布线工作表。
 
-每对交换机上的端口定义示例如下：image:cabling_worksheet.jpg["布线工作表"]
+每对交换机上的端口定义示例如下：
+
+image:cabling_worksheet.jpg["布线工作表"]
 
 其中：
 

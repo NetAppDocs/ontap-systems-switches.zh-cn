@@ -10,14 +10,17 @@ summary:
 :nofooter: 
 :icons: font
 :linkattrs: 
-:imagesdir: ./media/
+:imagesdir: ../media/
 
 
 
 
 == 迁移存储交换机
 
-通过重复使用存储交换机， HA 对 1 的存储交换机将成为共享交换机。* 交换机连接的布线图 *image:9336c_image1.jpg["交换机连接"]
+通过重复使用存储交换机， HA 对 1 的存储交换机将成为共享交换机。
+* 交换机连接的布线图 *
+
+image:9336c_image1.jpg["交换机连接"]
 
 .步骤
 . 验证 HA 对 1 （和 HA 对 2 ）的存储配置是否正确且无错误： `ssystem switch Ethernet show`
@@ -80,7 +83,7 @@ node2
 storage::*> system health alert show -instance
 There are no entries matching your query.
 ----
-. 【第 7 步】将共享交换机 A 上的存储 RCF 替换为共享 RCF 文件。请参见 http://9336c_install_nx-os_software_and_reference_configuration_files_@rcfs@.html#install-the-rcf-on-a-cisco-nexus-9336c-fx2-shared-switch["在 Cisco Nexus 9336C-x2 共享交换机上安装 RCF"] 了解更多详细信息。
+. 【第 7 步】将共享交换机 A 上的存储 RCF 替换为共享 RCF 文件。请参见 link:9336c_install_nx-os_software_and_reference_configuration_files_rcfs.html#install-the-rcf-on-a-cisco-nexus-9336c-fx2-shared-switch["在 Cisco Nexus 9336C-x2 共享交换机上安装 RCF"] 了解更多详细信息。
 . 确认连接到 HA 对 1 存储交换机 B 的存储运行状况良好： `ssystem health alert show -instance`
 
 
@@ -100,7 +103,7 @@ There are no entries matching your query.
 storage::*> system health alert show -instance
 There are no entries matching your query.
 ----
-. 【第 13 步】将共享交换机 B 上的存储 RCF 文件替换为共享 RCF 文件。请参见 link:9336c_install_nx-os_software_and_reference_configuration_files_@rcfs@.html#install-the-rcf-on-a-cisco-nexus-9336c-fx2-shared-switch["在 Cisco Nexus 9336C-x2 共享交换机上安装 RCF"] 了解更多详细信息。
+. 【第 13 步】将共享交换机 B 上的存储 RCF 文件替换为共享 RCF 文件。请参见 link:9336c_install_nx-os_software_and_reference_configuration_files_rcfs.html#install-the-rcf-on-a-cisco-nexus-9336c-fx2-shared-switch["在 Cisco Nexus 9336C-x2 共享交换机上安装 RCF"] 了解更多详细信息。
 . 确认连接到 HA 对 1 存储交换机 B 的存储运行状况良好： `ssystem health alert show -instance`
 
 
@@ -129,6 +132,6 @@ sh1 (config-if)# spanning-tree port type network
 sh1 (config-if)# exit
 sh1 (config)# exit
 ----
-. 【第 16 步】将 HA 对 1 从无交换机集群转换为有交换机集群。使用共享 RCF 定义的集群端口分配。请参见 link:9336c_install_nx-os_software_and_reference_configuration_files_@rcfs@.html["安装 NX-OS 软件和参考配置文件（ Reference Configuration Files ， RCF ）"]了解更多详细信息。
+. 【第 16 步】将 HA 对 1 从无交换机集群转换为有交换机集群。使用共享 RCF 定义的集群端口分配。请参见 link:9336c_install_nx-os_software_and_reference_configuration_files_rcfs.html["安装 NX-OS 软件和参考配置文件（ Reference Configuration Files ， RCF ）"]了解更多详细信息。
 . 验证交换网络配置是否有效： `network port show`
 
