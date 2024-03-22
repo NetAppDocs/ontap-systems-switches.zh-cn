@@ -1,7 +1,7 @@
 ---
 permalink: switch-cisco-3232c/CSHM_snmpv3.html 
 sidebar: sidebar 
-keywords: SNMP,SNMPv3,SNMPv3 setup,BES-53248 Broadcom setup,BES-3248 switches configuration,EFOS 
+keywords: SNMP,SNMPv3,SNMPv3 setup,Cisco setup,Cisco switches configuration,NX-OS 
 summary: 'SNMPv3可与以太网交换机运行状况监控器(CSHM)结合使用。' 
 ---
 = 配置SNMPv3

@@ -1,7 +1,7 @@
 ---
-permalink: switch-cisco-3132q-v/CSHM_snmpv3.html 
+permalink: switch-cisco-92300/CSHM_snmpv3.html 
 sidebar: sidebar 
-keywords: SNMP,SNMPv3,SNMPv3 setup,Cisco setup,3132q-v switches configuration,NX-OS 
+keywords: SNMP,SNMPv3,SNMPv3 setup,Cisco setup,Cisco switches configuration,NX-OS 
 summary: 'SNMPv3可与以太网交换机运行状况监控器(CSHM)结合使用。' 
 ---
 = 配置SNMPv3
@@ -14,7 +14,7 @@ summary: 'SNMPv3可与以太网交换机运行状况监控器(CSHM)结合使用�
 按照此操作步骤配置SNMPv3、此SNMPv3支持以太网交换机运行状况监控(CSHM)。
 
 .关于此任务
-以下命令可在Cisco 3132Q-V交换机上配置SNMPv3用户名：
+以下命令可在Cisco 92300YC交换机上配置SNMPv3用户名：
 
 * 对于*no authentication (无身份验证)*：
 `snmp-server user _SNMPv3_USER_ NoAuth`
@@ -109,7 +109,7 @@ cluster1::*> *system switch ethernet show-all -device "sw1" -instance*
                                   SNMP Version: SNMPv2c
                                  Is Discovered: true
    SNMPv2c Community String or SNMPv3 Username: cshm1!
-                                  Model Number: N3K-C3132Q-V
+                                  Model Number: N9K-C92300YC
                                 Switch Network: cluster-network
                               Software Version: Cisco Nexus Operating System (NX-OS) Software, Version 9.3(7)
                      Reason For Not Monitoring: None  *<---- displays when SNMP settings are valid*
@@ -143,7 +143,7 @@ cluster1::*> *system switch ethernet show-all -device "sw1" -instance*
                                   SNMP Version: SNMPv3
                                  Is Discovered: true
    SNMPv2c Community String or SNMPv3 Username: SNMPv3User
-                                  Model Number: N3K-C3132Q-V
+                                  Model Number: N9K-C92300YC
                                 Switch Network: cluster-network
                               Software Version: Cisco Nexus Operating System (NX-OS) Software, Version 9.3(7)
                      Reason For Not Monitoring: None  *<---- displays when SNMP settings are valid*

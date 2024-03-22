@@ -16,9 +16,12 @@ summary: 'SNMPv3可与以太网交换机运行状况监控器(CSHM)结合使用�
 .关于此任务
 以下命令可在Broadcom BES-53248交换机上配置SNMPv3用户名：
 
-* 对于*无身份验证*：`net add snmp-server username _SNMPv3用户_ auth-none`
-* 对于* MD5/SHA身份验证*：`net add snmp-server username _SNMPv3用户_[auth-md5_auth-sha]_AUTH-password_`
-* 对于采用AES/DES加密的* MD5/SHA身份验证*：`net add snmp-server username _SNMPv3用户_[auth-md5_auth-sha]_AUTH-password_[encrypt-AES_encrypt-des]_PRIV-password_`
+* 对于*no authentication (无身份验证)*：
+`snmp-server user SNMPv3UserNoAuth NETWORK-OPERATOR noauth`
+* 对于*MD5/SHA身份验证*：
+`snmp-server user SNMPv3UserAuth NETWORK-OPERATOR [auth-md5|auth-sha]`
+* 对于采用AES/DES加密的*MD5/SHA身份验证*：
+`snmp-server user SNMPv3UserAuthEncrypt NETWORK-OPERATOR [auth-md5|auth-sha] [priv-aes128|priv-des]`
 
 
 以下命令会在ONTAP 端配置SNMPv3用户名：`cluster1：：：*> security login create -user-or-group-name _SNMPv3用户_-application snmp -authentication-method USM -remote-switch-ipaddress _address_`
@@ -29,7 +32,7 @@ summary: 'SNMPv3可与以太网交换机运行状况监控器(CSHM)结合使用�
 .步骤
 . 在交换机上设置SNMPv3用户以使用身份验证和加密：
 +
-`net show snmp status`
+`show snmp status`
 
 +
 .显示示例

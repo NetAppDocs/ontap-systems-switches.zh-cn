@@ -1,8 +1,8 @@
 ---
-permalink: switch-cisco-3132q-v/CSHM_log_collection.html 
+permalink: switch-cisco-92300/CSHM_log_collection.html 
 sidebar: sidebar 
-keywords: log collection feature,collect switch-related log files,SSh key,crypto key generation 
-summary: 集群交换机运行状况监控器日志收集功能用于在 ONTAP 中收集交换机相关的日志文件。您必须确保已使用92300YC集群交换机命令行界面设置环境、详细信息请参见。 
+keywords: log collection feature,collect switch-related log files,SSh key,crypto key generation,92300YC Cisco setup,92300YC switches configuration,NX-OS 
+summary: '以太网交换机运行状况监控器(CSHM)日志收集功能用于从ONTAP中的集群或存储网络交换机收集日志。' 
 ---
 = 以太网交换机运行状况监控日志收集
 :allow-uri-read: 
@@ -11,17 +11,10 @@ summary: 集群交换机运行状况监控器日志收集功能用于在 ONTAP �
 
 
 [role="lead"]
-您可以使用日志收集功能在ONTAP 中收集与交换机相关的日志文件。
-
 以太网交换机运行状况监控器(CSHM)负责确保集群和存储网络交换机的运行状况、并收集交换机日志以进行调试。此操作步骤将引导您完成设置和开始从交换机收集详细的*Support*日志的过程，并开始每小时收集由AutoSupport收集的*定期*数据。
 
-.开始之前
-* 验证是否已使用Cisco 3132Q-V集群交换机*CLI*设置环境。
-* 必须为交换机启用交换机运行状况监控。通过确保进行验证 `Is Monitored:` 字段在的输出中设置为*TRUE* `system switch ethernet show` 命令：
-
-
 .步骤
-. 为以太网交换机运行状况监控器日志收集功能创建密码：
+. 要设置日志收集、请对每个交换机运行以下命令。系统会提示您输入交换机名称、用户名和密码以收集日志。
 +
 `s系统交换机以太网日志设置密码`
 
