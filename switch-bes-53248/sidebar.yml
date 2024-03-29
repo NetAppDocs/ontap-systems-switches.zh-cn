@@ -51,7 +51,7 @@ entries:
   entries:
   - title: 从CN1610交换机迁移
     url: "/switch-bes-53248/migrate-cn1610.html"
-  - title: 迁移到双节点交换机
+  - title: 迁移到双节点交换节点
     url: "/switch-bes-53248/migrate-to-2n-switched.html"
 - title: 更换交换机
   pdf-filename: Replace _switchs_bes53248

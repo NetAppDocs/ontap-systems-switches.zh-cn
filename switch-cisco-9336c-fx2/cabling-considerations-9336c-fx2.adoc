@@ -1,0 +1,56 @@
+---
+permalink: switch-cisco-9336c-fx2/cabling-considerations-9336c-fx2.html 
+sidebar: sidebar 
+keywords: 9336c-fx2 cabling setup, 9336c-fx2 switches configuration, nx-os 
+summary: 在配置Cisco 9334c-查 对交换机之前、请查看以下信息。 
+---
+= 查看布线和配置注意事项
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+在配置Cisco 9334c-查 对交换机之前、请查看以下注意事项。
+
+
+
+== 支持NVIDIA CX6、CX6-DX和CX7以太网端口
+
+如果使用NVIDIA ConnectX-6 (CX6)、ConnectX-6 Dx (CX6-DX)或ConnectX-7 (CX7) NIC端口将交换机端口连接到ONTAP控制器、则必须对交换机端口速度进行硬编码。
+
+[listing, subs="+quotes"]
+----
+(cs1)(config)# interface Ethernet1/19
+*For 100GbE speed:*
+(cs1)(config-if)# *speed 100000*
+*For 40GbE speed:*
+(cs1)(config-if)# *speed 40000*
+(cs1)(config-if)# no negotiate auto
+(cs1)(config-if)# exit
+(cs1)(config)# exit
+*Save the changes:*
+(cs1)# *copy running-config startup-config*
+----
+请参见 https://hwu.netapp.com/Switch/Index["Hardware Universe"^] 有关交换机端口的详细信息。
+
+
+
+== 25GbE FEC要求
+
+
+
+=== FAS2820 e0a/e0b端口
+
+FAS2820 e0a和e0b端口需要更改FEC配置、才能与9336 C至FX2交换机端口建立链路。
+对于交换机端口e0a和e0b、FEC设置设置为 `rs-cons16`。
+
+[listing, subs="+quotes"]
+----
+(cs1)(config)# interface Ethernet1/8-9
+(cs1)(config-if-range)# *fec rs-cons16*
+(cs1)(config-if-range)# exit
+(cs1)(config)# exit
+*Save the changes:*
+(cs1)# *copy running-config startup-config*
+----

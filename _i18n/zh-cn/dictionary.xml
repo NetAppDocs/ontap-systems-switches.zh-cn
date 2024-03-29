@@ -275,7 +275,6 @@
   <block id="13926c16a2339f39a7e2d4218d47d10b" category="list-text">启用集群交换机 CS1 上面向节点的所有端口。</block>
   <block id="a2c09169aae3d453a5de75708a6aea92" category="paragraph">以下示例显示交换机 CS1 上的端口 1 到 16 已启用：</block>
   <block id="1cd3efec31f045ffb5449349f414844d" category="list-text">验证所有集群 LIF 是否均已启动，正常运行并显示为 `true` for `is Home` ：</block>
-  <block id="fcad649cb098b84dccd4a01a3b2eaa7f" category="paragraph">以下示例显示 node1 和 node2 上的所有 LIF 均已启动，并且 `为 Home` Results 为 `true` ：</block>
   <block id="37389337e6e35d88b5139f8a3c830f35" category="list-text">显示有关集群中节点状态的信息：</block>
   <block id="494cb4f7976c64f111b74e9089d5bbd5" category="paragraph">`cluster show`</block>
   <block id="dbae8c204d7835be187f0c26e601f21a" category="paragraph">以下示例显示了有关集群中节点的运行状况和资格的信息：</block>
@@ -286,7 +285,6 @@
   <block id="a0408f8d378bcb6403d9ed2ec21db42f" category="paragraph">以下示例显示 node1 和 node2 上的所有集群端口均已启动：</block>
   <block id="30530896511238b69b0e6acc7e04d6ce" category="list-text">验证所有接口是否显示 `true` for `is Home` ：</block>
   <block id="d674fde4628671c3e1078935d12e7997" category="admonition">完成此操作可能需要几分钟时间。</block>
-  <block id="920dd0f6e71089afe68eba9aa2f22c90" category="paragraph">以下示例显示 node1 和 node2 上的所有 LIF 均已启动，并且 `为 Home` Results 为 `true` ：</block>
   <block id="90c03200b8f85b5e421787d5bb39a45c" category="list-text">验证两个节点与每个交换机之间是否有一个连接：</block>
   <block id="1464260572606bd5f01302103114d67a" category="paragraph">以下示例显示了这两个交换机的相应结果：</block>
   <block id="34898bfa473a2408e3c8f536845f48e5" category="list-text">显示有关集群中发现的网络设备的信息：</block>
@@ -2021,7 +2019,6 @@
   <block id="8cd379638fc4ccb9fe87c298fc5389eb" category="paragraph">交换机支持通过控制台端口进行本地管理，或者通过网络连接使用 Telnet 或 SSH 进行远程管理。CN1610 包括一个专用的千兆以太网 RJ45 管理端口，用于带外交换机管理。您可以通过在命令行界面（ CLI ）中输入命令或使用基于 SNMP 的网络管理系统（ NMS ）来管理交换机。</block>
   <block id="863521236411601eb091fc20202c6aaf" category="list-text">N1_clus4 是连接到节点 n1 的集群交换机 1 （ CL1 或 C1 ）的第二个 LIF 。 -</block>
   <block id="33813b05f223e9025627eaf85a7f8eaa" category="list-text">n1_clus3 是连接到节点 n1 的集群交换机 C2 的第二个 LIF 。 -</block>
-  <block id="831835779ddae8b680a8580d383f130b" category="sidebar">AFF 和 FAS 交换机文档</block>
   <block id="37fed156054fea8c26c972e349998cf7" category="paragraph">详细介绍如何为集群环境配置交换机硬件和软件。</block>
   <block id="07681dab39c1e1030eba7eb43c51f01f" category="paragraph">概述 CN1601 交换机硬件和软件功能以及安装过程。</block>
   <block id="d53f278b262fe510c209b77f0fbcca0e" category="paragraph">。<block ref="a9613e1dbacf145285c45df4264fe797" category="inline-link-rx"></block> 包含有关布线的详细信息。</block>
@@ -3383,18 +3380,10 @@
   <block id="d1f4afd8356da4e0148299e8020db15b" category="list-text">参考配置文件(Reference Configuration Files、RCF)将应用于交换机。</block>
   <block id="3162ac93186b03e54de9e68256dbb924" category="list-text">所有站点自定义(SMTP、SNMP和SSH)均在新交换机上配置。</block>
   <block id="f0b02a6a42b62e57a146137078a39635" category="section-title">迁移到集群环境</block>
-  <block id="af0f02b80aaae2d29a88a56209cd3dd0" category="list-text">验证两个BES-53248交换机CS1和CS2之间的ISL和ISL上的物理端口是否为*已启动*：</block>
   <block id="09a5fb271719ecae04d6c0f573fa3099" category="paragraph">以下示例显示交换机CS1上的ISL端口为*上*：</block>
   <block id="f9431300de8d1a48bf2e554ad1605071" category="paragraph">以下示例显示交换机CS2上的ISL端口为*上*：</block>
-  <block id="96725f7c30dba4b02784c4f6b22b76f2" category="list-text">验证所有集群端口是否均已启动：</block>
-  <block id="711d7f6899df1dfa47e13a5fbedae706" category="paragraph">对于、每个端口都应显示"up"<block ref="97e7c9a7d06eac006a28bf05467fcc8b" prefix=" " category="inline-code"></block> 和"运行状况良好"<block ref="fbcf0d1f787c74663ca9dc925ebf5f0c" prefix=" " category="inline-code"></block>。</block>
-  <block id="b9342006c263bb81a72635a40bccef85" category="list-text">验证所有集群LIF是否均已"启动"且正常运行：<block ref="7af866342cc7e87972580d7b709d8820" prefix=" " category="inline-code"></block></block>
-  <block id="a5d7c0c5e08447fc2eab20dfb2acee00" category="paragraph">对于、每个集群LIF都应显示"true"<block ref="53db3ce0fe0e71f06b3beb0b676b806c" prefix=" " category="inline-code"></block> 并具有<block ref="4f21ee5a18672b60f4c01e94e6be9c79" prefix=" " category="inline-code"></block> "启动/启动"</block>
-  <block id="cd6df0359bdf1ee77a48901029c8c000" category="list-text">验证所有集群端口是否均为*已启动*：</block>
-  <block id="9f7da2912010ab11954f77bf548cc0d8" category="paragraph">以下示例显示node1和node2上的所有集群端口均为*启动*：</block>
   <block id="99905a9acf063a85c4bbaa70f4455984" category="list-text">使用命令验证集群网络是否已完全连接：</block>
   <block id="1e44ccea9f1ae385026deb840bc9b5f4" category="paragraph">有关详细信息，请参见<block ref="780f810d0519883e7efdd6ef45cf51ed" category="inline-link-rx"></block></block>
-  <block id="291315307e480f559eb88bb2d33ce0be" category="paragraph">迁移完成后，您可能需要安装所需的配置文件，以支持 BES-53248 集群交换机的集群交换机运行状况监控器（ Cluster Switch Health Monitor ， CSHM ）。请参见 <block ref="22274518ab78de16bd162dd23a69479d" category="inline-link-macro-rx"></block> 和 <block ref="42a9a40a2570039f7bbb890cc28e41e6" category="inline-link-macro-rx"></block>。</block>
   <block id="77d285017f370185656b54b03d5b5a16" category="paragraph">BES-53248 集群交换机基本型号已获得 16 个 10GbE 或 25GbE 端口和 2 个 100GbE 端口的许可。您可以通过购买更多许可证来添加新端口。</block>
   <block id="f95b7ecd3b114623b8699a07a36fd860" category="section-title">查看可用许可证</block>
   <block id="d0b4658a7d84a9eac4898488fcaa5c83" category="admonition">基本配置不需要许可证。</block>
@@ -3942,12 +3931,10 @@
   <block id="b41c4700bab043f1f20ef00a3ca30550" category="admonition">NetApp不再提供Nexus 5596UP/5596T集群交换机、但Cisco仅支持有限的Tim。</block>
   <block id="e727b00944f81e1d0a95c12886ac4641" category="inline-link">归档</block>
   <block id="43700a28b6a0a6d22cee566cf110c1ac" category="paragraph">有关硬件支持已结束的AFF 和FAS 交换机型号的文档、可在中供客户使用<block ref="e7b678559b63d2ae51b0bdc075b51522" category="inline-link-rx"></block>。</block>
-  <block id="3190ff33d621d64996efea42085e5a0e" category="sidebar">NetApp提供集群、存储和共享交换机、可在主机存储与两个或更多AFF/FAS控制器之间提供连接、从而使您能够在存储基础架构中无中断地移动数据和网络接口。</block>
   <block id="be11c74c1dd7f307bb80183a90dc2067" category="sidebar">入门</block>
   <block id="33871b6190a8d5adbe8b15282054766c" category="sidebar">新增功能</block>
   <block id="06ad314b340900d226b1196e1fe289e9" category="sidebar">快速入门</block>
   <block id="732eab758bc032e5cc4992b97650c69b" category="sidebar">相关ONTAP 文档</block>
-  <block id="495d87219d733f7402b03ba10a7576fc" category="sidebar">AFF/FAS硬件系统</block>
   <block id="efd44736fee0b29831bc101f834f9425" category="sidebar">ONTAP 软件</block>
   <block id="974ad78dc53c253ebfe5b2b8b376f353" category="sidebar">工具支持</block>
   <block id="668e2078ef1b1722c77cdb5c523a4463" category="sidebar">NetApp 知识库</block>
@@ -3983,7 +3970,6 @@
   <block id="037fd3285f5414c76c57c401fbc5603c" category="sidebar">启用日志收集</block>
   <block id="71f5771dab663d80ba4dad1627e3386a" category="sidebar">升级概述</block>
   <block id="1f23e03e99812c23b47ad60d475647df" category="sidebar">升级交换机</block>
-  <block id="2707e98202897bbf6d508b6f4c5232cc" category="sidebar">迁移到双节点交换机</block>
   <block id="90f9408edf534ae6691bfa241e3cef32" category="sidebar">更换BES-53248交换机</block>
   <block id="c4767bb3bd142c908fcfd8a9e5fab38c" category="sidebar">从无交换机DAS集群迁移</block>
   <block id="3c0c4451f5d8950dc9b9a962b87ff4ae" category="sidebar">从切换的DAS配置迁移</block>
@@ -4747,4 +4733,44 @@
   <block id="7733a6a16b4fa24d09c107d2b3eefb78" category="summary">集群交换机运行状况监控器日志收集功能用于在 ONTAP 中收集交换机相关的日志文件。您必须确保已使用92300YC集群交换机命令行界面设置环境、详细信息请参见。</block>
   <block id="e7c823ebcf9c688c2043749093639ce5" category="paragraph">以下命令可在Cisco 92300YC交换机上配置SNMPv3用户名：</block>
   <block id="d60c463bb4096f3ed4bd1618626dfe10" category="paragraph-title">故障排除</block>
+  <block id="3e7c0049318f1d54d121bd59293ae3f8" category="summary">在配置Cisco 9334c-查 对交换机之前、请查看以下信息。</block>
+  <block id="6f46a467644090d99e7affb0172248d7" category="paragraph">在配置Cisco 9334c-查 对交换机之前、请查看以下注意事项。</block>
+  <block id="4c53e24e451af6129456f6303c30d40c" category="section-title">支持NVIDIA CX6、CX6-DX和CX7以太网端口</block>
+  <block id="9631cf0fb6580db66010faf0ddf48e5a" category="paragraph">如果使用NVIDIA ConnectX-6 (CX6)、ConnectX-6 Dx (CX6-DX)或ConnectX-7 (CX7) NIC端口将交换机端口连接到ONTAP控制器、则必须对交换机端口速度进行硬编码。</block>
+  <block id="814d720814ffd5b1d8710ed1cff64233" category="section-title">25GbE FEC要求</block>
+  <block id="5179acf3e9761e0b0a93230fb2e3563e" category="section-title">FAS2820 e0a/e0b端口</block>
+  <block id="16492a28b092a6c397b2ace11004d3ae" category="paragraph">FAS2820 e0a和e0b端口需要更改FEC配置、才能与9336 C至FX2交换机端口建立链路。
+对于交换机端口e0a和e0b、FEC设置设置为<block ref="49bb002a2d60e4cc69c3dc5b31861c1e" prefix=" " category="inline-code"></block>。</block>
+  <block id="4f87522819ea00e934b0a0922889948b" category="list-title">端口组速度限制</block>
+  <block id="ffb3876ecec1241eb99eed3e2c199c30" category="list-text">48个10/C5GbE (SFP28/SFP+)端口组合为12个4端口组、如下所示：端口1-4、5-8、9-12、13-16、17-20、 21-24、25-28、29-32、33-36、37-40、 41-44和45-48。</block>
+  <block id="3262b02fba07b6c88ff94cf729a2d880" category="list-text">如果4端口组中的速度不同、则交换机端口将无法正常运行。</block>
+  <block id="44419445a2db4f385ef269ec6901c6f0" category="list-text">验证两个BES-53248交换机CS1和CS2之间的ISL和ISL上的物理端口是否已启动：</block>
+  <block id="d3ca9236c4922d1ced4f46317b142939" category="paragraph">迁移完成后、您可能需要安装所需的配置文件、以支持BES-53248集群交换机的以太网交换机运行状况监控器(CSHM)。请参见 <block ref="69a3b5b5b3e87ce1bcae2811d815d9de" category="inline-link-macro-rx"></block>。</block>
+  <block id="884341494cf0683252982193822b1820" category="summary">在配置Broadcom BES-53248交换机之前、请查看以下信息。</block>
+  <block id="07da2741be958e9f66a97df92910bd8a" category="paragraph">在配置Broadcom BES-53248交换机之前、请查看以下注意事项。</block>
+  <block id="5ff0ed2baf5dbbaa7302070081cdcb21" category="section-title">集群端口交换机分配</block>
+  <block id="6d2daece992ad0842c43707d5f1dd7e0" category="paragraph">您可以使用Broadcom支持的BES-53248集群交换机端口分配表作为配置集群的指南。</block>
+  <block id="8a97863dc2bb67b8312833e0e1177b9a" category="paragraph">0-16</block>
+  <block id="8f165dca42f321f16043254a0b0519b2" category="section-title">FEC要求</block>
+  <block id="c54cb1d1758401e3642d17bb93a69d93" category="list-text">对于使用铜缆的25G端口、请参见下表以了解详细信息。</block>
+  <block id="195cd18c7f8998650d35b4c351942586" category="paragraph">如果控制器端为<block ref="9df22f196a33acd0b372fe502de51211" prefix=" " category="inline-code"></block>，开关端设置为FEC 25G。</block>
+  <block id="a00291ce16531c65ee398b6881feea1f" category="paragraph">+
+图像：./media/FEC_copper_table.jpg[25G端口(使用铜缆)</block>
+  <block id="4acde917814132a561bfa4351ff46435" category="list-text">对于使用光纤/光缆的25G端口、请参见下表以了解详细信息：</block>
+  <block id="c6539246443696c8a670f430b739b72e" category="image-alt">使用光纤/光缆的25G端口</block>
+  <block id="6e780ba970adeac360d7606298c46e9e" category="section-title">Bootarg实施</block>
+  <block id="128b15f7c069993f4d8608bed503593c" category="paragraph">使用以下命令将25G端口FEC设置为任一<block ref="9df22f196a33acd0b372fe502de51211" prefix=" " category="inline-code"></block> 或<block ref="e05fe30750d3ea262a610d17ebc07019" prefix=" " category="inline-code"></block>根据需要：</block>
+  <block id="82f8a8d293c0abf4e508fba4f90f77de" category="list-text">设置为时 <block ref="9df22f196a33acd0b372fe502de51211" prefix="*" category="inline-code"></block>*：</block>
+  <block id="a2db881e6e788aef3d98248893ac183d" category="list-text">。<block ref="9df22f196a33acd0b372fe502de51211" prefix=" " category="inline-code"></block> 设置会立即将设置传播到硬件、无需重新启动。</block>
+  <block id="69c272de4bab8db62256f54da8bcde70" category="list-text">条件<block ref="ec0f1fb6d4ad0a1c5956dbfae578b508" prefix=" " category="inline-code"></block>，它将从布塔格存储中删除。</block>
+  <block id="e36b105e2f0954e014a0653c4237275f" category="list-text">重新启动后、<block ref="9df22f196a33acd0b372fe502de51211" prefix=" " category="inline-code"></block> 设置自起一直保持不变<block ref="9df22f196a33acd0b372fe502de51211" prefix=" " category="inline-code"></block> 是默认FEC设置。</block>
+  <block id="4cf5b76257838a13f7eaf6e128780b63" category="list-text">设置为时 <block ref="e05fe30750d3ea262a610d17ebc07019" prefix="*" category="inline-code"></block>*：</block>
+  <block id="33374324ada2340989bc045d67e0bc1e" category="list-text">。<block ref="e0a64c365feb7b2f913e6a4048472af6" prefix=" " category="inline-code"></block> 设置会立即将设置传播到硬件、无需重新启动。</block>
+  <block id="c5a74ce2f4585cd46c311a5822607b9f" category="list-text">新的<block ref="4b077bb4cc781686a7abd72c8354ba70" prefix=" " category="inline-code"></block> 创建时、值设置为"TRUE"。</block>
+  <block id="72477c9fa5c7321db80c98ce8db97acf" category="list-text">重新启动后、<block ref="e0a64c365feb7b2f913e6a4048472af6" prefix=" " category="inline-code"></block> 设置保持不变，以便使用驱动程序代码。</block>
+  <block id="6015ba5fcef1f3caa77869608d6c2789" category="doc">ONTAP硬件系统的交换机文档</block>
+  <block id="25cb4346e07d274b036816fdb6e793af" category="sidebar">NetApp提供集群、存储和共享交换机、可在主机存储与两个或更多NetApp控制器之间建立连接、从而使您能够在存储基础架构中无中断地移动数据和网络接口。</block>
+  <block id="e039aa1be61543fd84f1c4eb5d3e9f6b" category="sidebar">ONTAP硬件系统</block>
+  <block id="9d07d8327ebc12554e974699f677fdb7" category="sidebar">切换ONTAP硬件文档</block>
+  <block id="1be807f8d70b208f4d04b385b1c81765" category="sidebar">迁移到双节点交换节点</block>
 </blocks>

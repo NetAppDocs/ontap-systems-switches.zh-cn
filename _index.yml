@@ -1,6 +1,6 @@
 ---
 indexpage:
-  lead: NetApp提供集群、存储和共享交换机、可在主机存储与两个或更多AFF/FAS控制器之间提供连接、从而使您能够在存储基础架构中无中断地移动数据和网络接口。
+  lead: NetApp提供集群、存储和共享交换机、可在主机存储与两个或更多NetApp控制器之间建立连接、从而使您能够在存储基础架构中无中断地移动数据和网络接口。
   tiles:
   - title: 入门
     links:
@@ -22,7 +22,7 @@ indexpage:
       url: "/overview-eod.html"
   - title: 相关ONTAP 文档
     links:
-    - title: AFF/FAS硬件系统
+    - title: ONTAP硬件系统
       url: https://docs.netapp.com/us-en/ontap-systems/index.html
     - title: ONTAP 软件
       url: https://docs.netapp.com/us-en/ontap/index.html

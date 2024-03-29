@@ -6,7 +6,7 @@ keywords: switches
 lead: Use the docs on this site to install, upgrade and maintain your cluster, shared storage and MetroCluster switches. 
 summary: 使用此站点上的文档安装，升级和维护集群，共享存储和 MetroCluster 交换机。 
 ---
-= AFF 和 FAS 交换机文档
+= ONTAP硬件系统的交换机文档
 :hardbreaks:
 :allow-uri-read: 
 :nofooter: 

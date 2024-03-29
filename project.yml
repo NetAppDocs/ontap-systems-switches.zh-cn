@@ -12,7 +12,7 @@ settings:
   langs: zh-cn,us-en,ja-jp,ko-kr,zh-tw,de-de,es-es,fr-fr,it-it
 sidebar:
   entries:
-  - title: AFF 和 FAS 交换机文档
+  - title: 切换ONTAP硬件文档
     url: "/index.html"
   - title: 入门
     entries:
