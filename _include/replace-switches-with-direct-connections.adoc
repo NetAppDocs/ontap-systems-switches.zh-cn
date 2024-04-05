@@ -335,7 +335,7 @@ Cluster  node2_clus2   e0b       true
 ----
 ====
 +
-如果任何集群LIF未返回到其主端口、请手动还原它们：
+如果任何集群LUN尚未返回其主端口、请从本地节点手动还原它们：
 
 +
 `network interface revert -vserver cluster -lif _lif_name_`

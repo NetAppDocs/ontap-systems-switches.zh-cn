@@ -22,6 +22,8 @@ entries:
     url: "/switch-cisco-3232c/setup-switch.html"
   - title: 将交换机安装在NetApp机柜中
     url: "/switch-cisco-3232c/install-cisco-nexus-3232c.html"
+  - title: 查看布线和配置
+    url: "/switch-cisco-3232c/cabling-considerations-3232c.html"
 - title: 配置软件
   pdf-filename: CONFIG_SOFTWARE_3232c
   entries:

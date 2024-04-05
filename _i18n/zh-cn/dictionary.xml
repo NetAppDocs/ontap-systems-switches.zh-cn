@@ -2221,7 +2221,6 @@
   <block id="2c70d9b6ebd85a5ee2fff0f363a115ac" category="paragraph">`network interface modify -vserver cluster -lif *-auto-revert true`</block>
   <block id="e602723d0e5f9bdd1222eae8ea457289" category="paragraph">`network interface show -vserver cluster -lif _lif_name_`</block>
   <block id="038dfaef435585ad7a241ece49eb90ca" category="paragraph">如果"Is Home"列为`true`、则已还原LIF、如以下示例中的`node1_clus2`和`node2_clus2`所示：</block>
-  <block id="ca781b2f6ba431222707604fe0989dc1" category="paragraph">如果任何集群LIF未返回到其主端口、请手动还原它们：</block>
   <block id="31d2e20cefb76721dace23dfd9a35896" category="paragraph">`network interface revert -vserver cluster -lif _lif_name_`</block>
   <block id="aeb90980ffc18e4c949766c382d409d4" category="list-text">从任一节点的系统控制台检查节点的集群状态：</block>
   <block id="90d334e25f499d80506823cb341c39d7" category="paragraph">以下示例显示了两个节点上的epsilon均为`false`：</block>
@@ -4773,4 +4772,11 @@
   <block id="e039aa1be61543fd84f1c4eb5d3e9f6b" category="sidebar">ONTAP硬件系统</block>
   <block id="9d07d8327ebc12554e974699f677fdb7" category="sidebar">切换ONTAP硬件文档</block>
   <block id="1be807f8d70b208f4d04b385b1c81765" category="sidebar">迁移到双节点交换节点</block>
+  <block id="baeb2b9edd2060971ec4838ea0641d18" category="paragraph">如果任何集群LUN尚未返回其主端口、请从本地节点手动还原它们：</block>
+  <block id="b6dd8221599de3110a6be11272b8d643" category="summary">在配置Cisco 3232C交换机之前、请查看以下信息。</block>
+  <block id="855541c4370cb556c283600de9f0d1df" category="paragraph">在配置Cisco 3232C交换机之前、请查看以下注意事项。</block>
+  <block id="249c296c1de730eddbe0ead3fe930200" category="summary">在配置Cisco 92300YC交换机之前、请查看以下信息。</block>
+  <block id="709ea8965bb4964023cd6e82df0d3c62" category="paragraph">在配置Cisco 92300YC交换机之前、请查看以下注意事项。</block>
+  <block id="ae721238017915904e94acd87eddf78c" category="summary">在配置Cisco 3132Q-V交换机之前、请查看以下信息。</block>
+  <block id="eae32a8cbb7853bbc6b25138f2911afa" category="paragraph">在配置Cisco 3132Q-V交换机之前、请查看以下注意事项。</block>
 </blocks>

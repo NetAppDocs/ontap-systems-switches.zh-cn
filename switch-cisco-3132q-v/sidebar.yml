@@ -22,6 +22,8 @@ entries:
     url: "/switch-cisco-3132q-v/setup-switch.html"
   - title: 将交换机安装在NetApp机柜中
     url: "/switch-cisco-3132q-v/install-cisco-nexus-3132qv.html"
+  - title: 查看布线和配置
+    url: "/switch-cisco-3132q-v/cabling-considerations-3132q-v.html"
 - title: 配置软件
   pdf-filename: CONFIG_SOFTWARE_3132q-v
   entries:
