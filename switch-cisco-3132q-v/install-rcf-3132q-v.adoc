@@ -621,12 +621,6 @@ cluster1::*>
 ----
 ====
 . 对交换机CS1重复步骤1到10。
-
-
-
-
-=== 第3步：重新启动并验证配置
-
 . 在集群 LIF 上启用自动还原。
 +
 .显示示例
@@ -639,15 +633,17 @@ cluster1::*> network interface modify -vserver Cluster -lif * -auto-revert True
 ====
 . 重新启动交换机 CS1 。执行此操作可触发集群 LIF 还原到其主端口。您可以忽略交换机重新启动时在节点上报告的 " 集群端口关闭 " 事件。
 +
-.显示示例
-[%collapsible]
-====
 [listing, subs="+quotes"]
 ----
 cs1# *reload*
 This command will reboot the system. (y/n)?  [n] *y*
 ----
-====
+
+
+
+
+=== 第3步：验证配置
+
 . 验证连接到集群端口的交换机端口是否已启动。
 +
 `show interface brief | grep up`
