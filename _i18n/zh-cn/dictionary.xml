@@ -2239,7 +2239,6 @@
   <block id="1a0894513362fda649e11ba9de926b82" category="list-text">确定每个集群端口的管理或运行状态。</block>
   <block id="be6163ad0c362d632b28f98dea1fdaaa" category="paragraph">移动的所有集群端口都应已启动。</block>
   <block id="d0141bcaf704f75f043a7384708a3131" category="paragraph">验证移动的集群端口是否将CS2-new交换机视为邻居。</block>
-  <block id="8c61118abc6e9e30fd4469d362e96e00" category="paragraph">所有集群LIF都将移至CS2-NEW交换机。</block>
   <block id="2a5fc0afbcb2299e24c73a909b297e93" category="paragraph">验证移动的集群端口是否将CS1-new交换机视为邻居。</block>
   <block id="9e25219bfef39dc2d94805b599244f8d" category="open-title">ONTAP 9.8 及更高版本</block>
   <block id="c341f6ea60d7e8508c7d6cd8d529fd71" category="paragraph">使用以下两个命令启用以太网交换机运行状况监控器日志收集功能以收集交换机相关的日志文件：`ssystem switch Ethernet log setup-password`和`ssystem switch Ethernet log enable-Collection`</block>
@@ -4695,10 +4694,8 @@
   <block id="415f7d338cb2daf9bc58ecb9861e7a38" category="list-text">然后、从CS2断开节点和CS2之间的布线、并重新连接到CS2-new。</block>
   <block id="4c583a66e2c7985bcc194e39f55ceea5" category="list-text">交换机CS1由交换机CS1-new取代。</block>
   <block id="e36cd913095fb9e4f8b81c803f89930b" category="list-text">然后、从CS1断开节点和CS1之间的布线、并重新连接到CS1-new。</block>
-  <block id="c541a676ea1012971e3e092cd0c456bb" category="list-text">在集群交换机CS2上、关闭连接到节点的集群端口的端口、以便对集群生命周期进行故障转移：</block>
   <block id="3e504b88532082c592970766665ca3a1" category="list-text">验证集群SIFs是否已故障转移到集群交换机CS1上托管的端口。这可能需要几秒钟的时间。</block>
   <block id="501db48c47898b7316de60a2bcbe9a16" category="list-text">从交换机CS2-NEW的角度确认交换机端口连接：</block>
-  <block id="4b9f132828deb041b404e712b378ac77" category="list-text">在集群交换机CS1上、关闭连接到节点的集群端口的端口、以便对集群的生命周期进行故障转移。以下示例使用步骤7中的接口示例输出。</block>
   <block id="32172ed3b8d9ced5da325e5230b7981b" category="list-text">验证集群SIFs是否已故障转移到交换机CS2-NEW上托管的端口。这可能需要几秒钟的时间：</block>
   <block id="85e04ff5dd770cff5dbbe435ea94a7dd" category="list-text">从交换机CS1-NEW的角度确认交换机端口连接：</block>
   <block id="784542320767d69b7e7fc2bfeb64a5b4" category="list-text">在集群交换机CL2上、关闭连接到节点集群端口的端口、以便对集群LI进行故障转移：</block>
@@ -4780,4 +4777,11 @@
   <block id="eae32a8cbb7853bbc6b25138f2911afa" category="paragraph">在配置Cisco 3132Q-V交换机之前、请查看以下注意事项。</block>
   <block id="e3e32349be8562dbe95d6af1fcba4bbe" category="list-text">如果启用了AutoSupport 、则通过调用AutoSupport 消息禁止自动创建案例：<block ref="80cae18d0d871afff6b1bcabf727d6da" prefix=" " category="inline-code"></block></block>
   <block id="abd1e059b59ee3b3be9267c9c1319923" category="list-text">检查是否不存在存储交换机或布线问题：</block>
+  <block id="54be17cb6ddfe931b6d4ca0454c7bcc8" category="admonition">禁用自动还原可确保ONTAP仅在交换机端口稍后关闭时对集群LUN进行故障转移。</block>
+  <block id="3947ff32e82f86e7176dc28b3ee33db0" category="list-text">在集群交换机CS2上、关闭连接到*所有*节点的集群端口的端口、以便对集群Lifs进行故障转移：</block>
+  <block id="022c00ee7f7e6672d82cc079623d6e22" category="list-text">在集群交换机CS1上、关闭连接到*所有*节点的集群端口的端口、以便对集群LI进行故障转移。</block>
+  <block id="e6eb1709bc8131372d63990293ab75f8" category="paragraph">所有集群的Sifs都会故障转移到CS2新交换机。</block>
+  <block id="af7a19b4dbadf7641102bf88598cfd8b" category="paragraph">+
+以太网交换机运行状况监控器(CSHM)负责确保集群和存储网络交换机的运行状况、并收集交换机日志以进行调试。此操作步骤将引导您完成设置和开始从交换机收集详细的*Support*日志的过程，并开始每小时收集由AutoSupport收集的*定期*数据。</block>
+  <block id="a13c9d4c750715a8b993a3fec916189f" category="list-text">应用参考配置文件(Reference Configuration File、RCF)时、必须指定用于收集日志的用户。默认情况下、此用户设置为_admin_。如果要使用其他用户、则必须在RC框架 的*# SHM用户部分中指定此用户。</block>
 </blocks>
