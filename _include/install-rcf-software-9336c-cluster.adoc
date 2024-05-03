@@ -1,0 +1,358 @@
+= 第1步：在交换机上安装RC框架
+:allow-uri-read: 
+
+
+.开始之前
+确保满足以下要求：
+
+* 与交换机的控制台连接。如果您可以远程访问交换机、则可以选择控制台连接。
+* 交换机CS1和交换机CS2已启动、并且初始交换机设置已完成(已设置管理IP地址和SSH)
+* 已安装所需的NX-OS版本。
+* 交换机之间的ISL连接已连接。
+* 未连接ONTAP节点集群端口。
+
+
+
+
+=== 第1步：在交换机上安装RC框架
+
+. 使用SSH或串行控制台登录到交换机CS1。
+. 使用以下传输协议之一将RCC复制到交换机CS1的bootflash：FTP、TFTP、SFTP或SCP。
++
+有关 Cisco 命令的详细信息，请参见中的相应指南 https://www.cisco.com/c/en/us/support/switches/nexus-9336c-fx2-switch/model.html#CommandReferences["《 Cisco Nexus 9000 系列 NX-OS 命令参考》"^] 指南。
+
++
+.显示示例
+[%collapsible]
+====
+此示例显示了使用TFTP将RCC复制到交换机CS1上的bootflash：
+
+[listing, subs="+quotes"]
+----
+cs1# *copy tftp: bootflash: vrf management*
+Enter source filename: *Nexus_9336C_RCF_v1.6-Cluster-HA-Breakout.txt*
+Enter hostname for the tftp server: *172.22.201.50*
+Trying to connect to tftp server......Connection to Server Established.
+TFTP get operation was successful
+Copy complete, now saving to disk (please wait)...
+----
+====
+. 将先前下载的 RCF 应用于 bootflash 。
++
+有关 Cisco 命令的详细信息，请参见中的相应指南 https://www.cisco.com/c/en/us/support/switches/nexus-9336c-fx2-switch/model.html#CommandReferences["《 Cisco Nexus 9000 系列 NX-OS 命令参考》"^] 指南。
+
++
+.显示示例
+[%collapsible]
+====
+此示例显示了RCF文件 `Nexus_9336C_RCF_v1.6-Cluster-HA-Breakout.txt` 正在安装在交换机CS1上：
+
+[listing]
+----
+cs1# copy Nexus_9336C_RCF_v1.6-Cluster-HA-Breakout.txt running-config echo-commands
+----
+====
+. 检查 `show banner motd` 命令的横幅输出。您必须阅读并遵循这些说明，以确保交换机的配置和操作正确。
++
+.显示示例
+[%collapsible]
+====
+[listing]
+----
+cs1# show banner motd
+
+******************************************************************************
+* NetApp Reference Configuration File (RCF)
+*
+* Switch   : Nexus N9K-C9336C-FX2
+* Filename : Nexus_9336C_RCF_v1.6-Cluster-HA-Breakout.txt
+* Date     : 10-23-2020
+* Version  : v1.6
+*
+* Port Usage:
+* Ports  1- 3: Breakout mode (4x10G) Intra-Cluster Ports, int e1/1/1-4, e1/2/1-4
+, e1/3/1-4
+* Ports  4- 6: Breakout mode (4x25G) Intra-Cluster/HA Ports, int e1/4/1-4, e1/5/
+1-4, e1/6/1-4
+* Ports  7-34: 40/100GbE Intra-Cluster/HA Ports, int e1/7-34
+* Ports 35-36: Intra-Cluster ISL Ports, int e1/35-36
+*
+* Dynamic breakout commands:
+* 10G: interface breakout module 1 port <range> map 10g-4x
+* 25G: interface breakout module 1 port <range> map 25g-4x
+*
+* Undo breakout commands and return interfaces to 40/100G configuration in confi
+g mode:
+* no interface breakout module 1 port <range> map 10g-4x
+* no interface breakout module 1 port <range> map 25g-4x
+* interface Ethernet <interfaces taken out of breakout mode>
+* inherit port-profile 40-100G
+* priority-flow-control mode auto
+* service-policy input HA
+* exit
+*
+******************************************************************************
+----
+====
+. 验证 RCF 文件是否为正确的较新版本：
++
+`s如何运行配置`
+
++
+在检查输出以确认您的 RCF 正确无误时，请确保以下信息正确无误：
+
++
+** RCF 横幅
+** 节点和端口设置
+** 自定义
++
+输出因站点配置而异。检查端口设置，并参阅发行说明，了解您安装的 RCF 的任何特定更改。
+
+
+
+. 验证 RCF 版本和交换机设置是否正确后，将 running-config 文件复制到 startup-config 文件。
++
+`copy running-config startup-config`
+
++
+.显示示例
+[%collapsible]
+====
+[listing]
+----
+cs1# copy running-config startup-config [########################################] 100% Copy complete
+----
+====
++
+有关 Cisco 命令的详细信息，请参见中的相应指南 https://www.cisco.com/c/en/us/support/switches/nexus-9336c-fx2-switch/model.html#CommandReferences["《 Cisco Nexus 9000 系列 NX-OS 命令参考》"^]。
+
+. 重新启动交换机 CS1 。
++
+`cs1# *reload*`
+
++
+`This command will reboot the system. (y/n)?  [n] *y*`
+
+. 在交换机CS2上重复步骤1至7。
+. 将ONTAP集群中所有节点的集群端口连接到交换机CS1和CS2。
+
+
+
+
+=== 第2步：验证交换机连接
+
+. 验证连接到集群端口的交换机端口是否为*已启动*。
++
+`show interface brief`
+
++
+.显示示例
+[%collapsible]
+====
+[listing, subs="+quotes"]
+----
+cs1# *show interface brief | grep up*
+.
+.
+Eth1/1/1      1       eth  access up      none                    10G(D) --
+Eth1/1/2      1       eth  access up      none                    10G(D) --
+Eth1/7        1       eth  trunk  up      none                   100G(D) --
+Eth1/8        1       eth  trunk  up      none                   100G(D) --
+.
+.
+----
+====
+. 使用以下命令验证集群节点是否位于正确的集群VLAN中：
++
+`show vlan brief`
+
++
+`show interface trunk`
+
++
+.显示示例
+[%collapsible]
+====
+[listing, subs="+quotes"]
+----
+cs1# *show vlan brief*
+
+VLAN Name                             Status    Ports
+---- -------------------------------- --------- -------------------------------
+1    default                          active    Po1, Eth1/1, Eth1/2, Eth1/3
+                                                Eth1/4, Eth1/5, Eth1/6, Eth1/7
+                                                Eth1/8, Eth1/35, Eth1/36
+                                                Eth1/9/1, Eth1/9/2, Eth1/9/3
+                                                Eth1/9/4, Eth1/10/1, Eth1/10/2
+                                                Eth1/10/3, Eth1/10/4
+17   VLAN0017                         active    Eth1/1, Eth1/2, Eth1/3, Eth1/4
+                                                Eth1/5, Eth1/6, Eth1/7, Eth1/8
+                                                Eth1/9/1, Eth1/9/2, Eth1/9/3
+                                                Eth1/9/4, Eth1/10/1, Eth1/10/2
+                                                Eth1/10/3, Eth1/10/4
+18   VLAN0018                         active    Eth1/1, Eth1/2, Eth1/3, Eth1/4
+                                                Eth1/5, Eth1/6, Eth1/7, Eth1/8
+                                                Eth1/9/1, Eth1/9/2, Eth1/9/3
+                                                Eth1/9/4, Eth1/10/1, Eth1/10/2
+                                                Eth1/10/3, Eth1/10/4
+31   VLAN0031                         active    Eth1/11, Eth1/12, Eth1/13
+                                                Eth1/14, Eth1/15, Eth1/16
+                                                Eth1/17, Eth1/18, Eth1/19
+                                                Eth1/20, Eth1/21, Eth1/22
+32   VLAN0032                         active    Eth1/23, Eth1/24, Eth1/25
+                                                Eth1/26, Eth1/27, Eth1/28
+                                                Eth1/29, Eth1/30, Eth1/31
+                                                Eth1/32, Eth1/33, Eth1/34
+33   VLAN0033                         active    Eth1/11, Eth1/12, Eth1/13
+                                                Eth1/14, Eth1/15, Eth1/16
+                                                Eth1/17, Eth1/18, Eth1/19
+                                                Eth1/20, Eth1/21, Eth1/22
+34   VLAN0034                         active    Eth1/23, Eth1/24, Eth1/25
+                                                Eth1/26, Eth1/27, Eth1/28
+                                                Eth1/29, Eth1/30, Eth1/31
+                                                Eth1/32, Eth1/33, Eth1/34
+
+cs1# *show interface trunk*
+
+-----------------------------------------------------
+Port          Native  Status        Port
+              Vlan                  Channel
+-----------------------------------------------------
+Eth1/1        1       trunking      --
+Eth1/2        1       trunking      --
+Eth1/3        1       trunking      --
+Eth1/4        1       trunking      --
+Eth1/5        1       trunking      --
+Eth1/6        1       trunking      --
+Eth1/7        1       trunking      --
+Eth1/8        1       trunking      --
+Eth1/9/1      1       trunking      --
+Eth1/9/2      1       trunking      --
+Eth1/9/3      1       trunking      --
+Eth1/9/4      1       trunking      --
+Eth1/10/1     1       trunking      --
+Eth1/10/2     1       trunking      --
+Eth1/10/3     1       trunking      --
+Eth1/10/4     1       trunking      --
+Eth1/11       33      trunking      --
+Eth1/12       33      trunking      --
+Eth1/13       33      trunking      --
+Eth1/14       33      trunking      --
+Eth1/15       33      trunking      --
+Eth1/16       33      trunking      --
+Eth1/17       33      trunking      --
+Eth1/18       33      trunking      --
+Eth1/19       33      trunking      --
+Eth1/20       33      trunking      --
+Eth1/21       33      trunking      --
+Eth1/22       33      trunking      --
+Eth1/23       34      trunking      --
+Eth1/24       34      trunking      --
+Eth1/25       34      trunking      --
+Eth1/26       34      trunking      --
+Eth1/27       34      trunking      --
+Eth1/28       34      trunking      --
+Eth1/29       34      trunking      --
+Eth1/30       34      trunking      --
+Eth1/31       34      trunking      --
+Eth1/32       34      trunking      --
+Eth1/33       34      trunking      --
+Eth1/34       34      trunking      --
+Eth1/35       1       trnk-bndl     Po1
+Eth1/36       1       trnk-bndl     Po1
+Po1           1       trunking      --
+
+------------------------------------------------------
+Port          Vlans Allowed on Trunk
+------------------------------------------------------
+Eth1/1        1,17-18
+Eth1/2        1,17-18
+Eth1/3        1,17-18
+Eth1/4        1,17-18
+Eth1/5        1,17-18
+Eth1/6        1,17-18
+Eth1/7        1,17-18
+Eth1/8        1,17-18
+Eth1/9/1      1,17-18
+Eth1/9/2      1,17-18
+Eth1/9/3      1,17-18
+Eth1/9/4      1,17-18
+Eth1/10/1     1,17-18
+Eth1/10/2     1,17-18
+Eth1/10/3     1,17-18
+Eth1/10/4     1,17-18
+Eth1/11       31,33
+Eth1/12       31,33
+Eth1/13       31,33
+Eth1/14       31,33
+Eth1/15       31,33
+Eth1/16       31,33
+Eth1/17       31,33
+Eth1/18       31,33
+Eth1/19       31,33
+Eth1/20       31,33
+Eth1/21       31,33
+Eth1/22       31,33
+Eth1/23       32,34
+Eth1/24       32,34
+Eth1/25       32,34
+Eth1/26       32,34
+Eth1/27       32,34
+Eth1/28       32,34
+Eth1/29       32,34
+Eth1/30       32,34
+Eth1/31       32,34
+Eth1/32       32,34
+Eth1/33       32,34
+Eth1/34       32,34
+Eth1/35       1
+Eth1/36       1
+Po1           1
+..
+..
+..
+..
+..
+----
+====
++
+
+NOTE: 有关特定端口和VLAN使用情况的详细信息、请参阅RC框架 中的横幅和重要说明部分。
+
+. 验证 CS1 和 CS2 之间的 ISL 是否正常运行：
++
+`s如何执行端口通道摘要`
+
++
+.显示示例
+[%collapsible]
+====
+[listing, subs="+quotes"]
+----
+cs1# *show port-channel summary*
+Flags:  D - Down        P - Up in port-channel (members)
+        I - Individual  H - Hot-standby (LACP only)
+        s - Suspended   r - Module-removed
+        b - BFD Session Wait
+        S - Switched    R - Routed
+        U - Up (port-channel)
+        p - Up in delay-lacp mode (member)
+        M - Not in use. Min-links not met
+--------------------------------------------------------------------------------
+Group Port-       Type     Protocol  Member Ports      Channel
+--------------------------------------------------------------------------------
+1     Po1(SU)     Eth      LACP      Eth1/35(P)        Eth1/36(P)
+cs1#
+----
+====
+
+
+
+
+=== 第3步：设置ONTAP集群
+
+NetApp建议您使用System Manager设置新集群。
+
+System Manager为集群设置和配置提供了一个简单易行的工作流、其中包括分配节点管理IP地址、初始化集群、创建本地层、配置协议以及配置初始存储。
+
+转至 https://docs.netapp.com/us-en/ontap/task_configure_ontap.html["使用System Manager在新集群上配置ONTAP"] 有关设置说明、请参见。

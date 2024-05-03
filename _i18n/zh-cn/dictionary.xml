@@ -323,13 +323,11 @@
   <block id="ace72d025aa2c5badb322c055f22cb6b" category="inline-link">《 Cisco Nexus 9000 系列 NX-OS 命令参考》</block>
   <block id="eb22df33c22805be63e48e35c956a5be" category="paragraph">此示例显示了使用 TFTP 将 RCF 复制到交换机 CS2 上的 bootflash 。</block>
   <block id="659367eff111e1369afd80610db2fa16" category="list-text">将先前下载的 RCF 应用于 bootflash 。</block>
-  <block id="3c136715e1c82a016578b9b336ea8ac1" category="paragraph">此示例显示了正在交换机 CS2 上安装的 RCF 文件 `Nexus 9336C_RCF_v1.6-Cluster-HA-Breakout 。 txt` 。</block>
   <block id="1eeb76faaf7865130ddbd3d06c8e02d0" category="list-text">检查 `show banner motd` 命令的横幅输出。您必须阅读并遵循这些说明，以确保交换机的配置和操作正确。</block>
   <block id="47c173b91782927bfc36acfeeaec5f9f" category="paragraph">在检查输出以确认您的 RCF 正确无误时，请确保以下信息正确无误：</block>
   <block id="2a4c49daad6f24fc930342baa230202a" category="list-text">RCF 横幅</block>
   <block id="f867470f4d681a0d1ba65ec5afb71681" category="list-text">节点和端口设置</block>
   <block id="f84dbe517c4cab37d96220b08c6a7430" category="list-text">验证 RCF 版本和交换机设置是否正确后，将 running-config 文件复制到 startup-config 文件。</block>
-  <block id="751ae8e5b1f665d84208a0d929c57d52" category="list-text">重新启动交换机 CS2 。在交换机重新启动时，您可以忽略节点上报告的 "`cluster ports down` " 事件。</block>
   <block id="05287537d898f5a1b2d701a759380d28" category="list-text">应用相同的 RCF 并再次保存运行配置。</block>
   <block id="bc18114517d63d4db943371546b0e1ae" category="list-text">验证集群上集群端口的运行状况。</block>
   <block id="a8b215fa6b6d814a7e68d02c02b35409" category="list-text">从集群验证交换机运行状况（此操作可能不会显示交换机 CS2 ，因为 LIF 不驻留在 e0d 上）。</block>
@@ -601,7 +599,6 @@
   <block id="a8f8edb7442235385b4a149af7d45b04" category="list-text">RCF 中的命令语法与 NX-OS 版本中的命令语法之间可能存在命令依赖关系。</block>
   <block id="454d8bacc17503d670940b88fdf44b2a" category="inline-link">Cisco Nexus 9000 系列交换机</block>
   <block id="0e9e9e2c6f88c5f4c53342802b95a81a" category="list-text">您必须具有当前 RCF 。</block>
-  <block id="440845b85a76fb369b328d5783d80025" category="admonition">在安装新的交换机软件版本和 RCF 之前，您必须擦除交换机设置并执行基本配置。您必须使用串行控制台连接到交换机。此任务将重置管理网络的配置。</block>
   <block id="1a5fbb9c78227a044a7d11a646c64e2a" category="admonition">根据不同版本的 ONTAP ，命令输出可能会有所不同。</block>
   <block id="75f5ca2695f30fa3987540c3aa6c3b02" category="list-text">节点名称为 cluster1-01 和 cluster1-02 。</block>
   <block id="9ffdf3ff45071667f2b0aadc7de3c8d9" category="list-text">集群 LIF 名称分别为 cluster1-01 和 cluster1-01 的 cluster1-01_clus1 和 cluster1-01_clus2 以及 cluster1-02 的 cluster1-02_clus1 和 cluster1-02_clus2 。</block>
@@ -1241,7 +1238,6 @@
   <block id="364f99cfe2038dfe0da4fa1818e4ea8a" category="list-text">重新检查存储节点端口的运行状况： `storage port show -port-type ENET`</block>
   <block id="dc6d63cd7343677c50d9571794ed38e4" category="paragraph">要设置 ONTAP 系统，您需要在中为您的操作系统版本提供以下文档<block ref="eb1214e3900207403ada8715d3d4c764" category="inline-link-rx"></block>。</block>
   <block id="ca9760b6b9ea432ebfe16433e11f6e87" category="paragraph"><block ref="ca9760b6b9ea432ebfe16433e11f6e87" category="inline-link-rx"></block></block>
-  <block id="280f0e29cdb68937737865cc2fb4331a" category="list-text">使用以下传输协议之一将 RCF 复制到交换机 CS2 的启动闪存： FTP ， TFTP ， SFTP 或 SCP 。有关 Cisco 命令的详细信息，请参见中的相应指南<block ref="dba0e49fdfeab9433bb71da6c505aa34" category="inline-link-rx"></block> 指南。</block>
   <block id="3f6787ea7175edfe255a564e4a1b6b07" category="paragraph">有关 Cisco 命令的详细信息，请参见中的相应指南<block ref="dba0e49fdfeab9433bb71da6c505aa34" category="inline-link-rx"></block> 指南。</block>
   <block id="28b6f527828834555fd57d7fa75b77dc" category="paragraph"><block ref="28b6f527828834555fd57d7fa75b77dc" category="inline-link-rx"></block></block>
   <block id="737342a20357f18d3845f3010879136d" category="paragraph"><block ref="737342a20357f18d3845f3010879136d" category="inline-link-rx"></block></block>
@@ -1255,7 +1251,6 @@
   <block id="99a7972582192a91deb8b3b7e9d90036" category="paragraph">。<block ref="16a6d09025d51cb8dd3516798b3fee8a" category="inline-link-rx"></block> 包含有关平台的实际集群端口的最新信息。</block>
   <block id="4d828a1e41bcb63a1848cf4d73b10ce0" category="list-text">对于 ONTAP 9.8 及更高版本，请使用以下命令启用以太网交换机运行状况监控器日志收集功能以收集交换机相关的日志文件： `ssystem switch Ethernet log setup-password` 和 `ssystem switch Ethernet log enable-Collection`</block>
   <block id="4aba6d241d93fefaee83fcbcb1bcdd18" category="list-text">对于 ONTAP 9.5P16 ， 9.6P12 和 9.7P10 及更高版本的修补程序，请使用以下命令启用以太网交换机运行状况监控器日志收集功能以收集交换机相关的日志文件： `ssystem cluster-switch log setup-password` 和 `ssystem cluster-switch log enable-Collection`</block>
-  <block id="31ec2342f350b363afaee03f3ba95d8b" category="list-text">重新启动交换机 CS1 。执行此操作可触发集群 LIF 还原到其主端口。在交换机重新启动时，您可以忽略节点上报告的 "`cluster ports down` " 事件。</block>
   <block id="2db039ebbdf49e3bdc8288c26bc1ec4b" category="paragraph">请参见<block ref="16a6d09025d51cb8dd3516798b3fee8a" category="inline-link-rx"></block> 了解最新信息。</block>
   <block id="1bd4e627bdcd975837dafe72c76e0de5" category="paragraph">您的问题解答取决于站点的策略，取决于备用管理员。默认值为 * 否 * 。</block>
   <block id="824559f340eccd5b94597b7096f1753e" category="paragraph">在该提示符处，使用 * 是 * （默认值）进行响应。在 mgmt0 IPv4 address ：提示符处，输入 IP 地址： ip_address</block>
@@ -2721,7 +2716,6 @@
   <block id="e4476de08c6bf6f2b86938c20b3510bf" category="summary">在安装RCF脚本之前、请确保交换机上具有以下配置</block>
   <block id="144a8e89f9c38ca949aede4fe56c2cb7" category="list-text">将RCF python脚本复制到交换机。</block>
   <block id="39e77b4f608ccea6c3163df34d07da19" category="paragraph">RCF脚本将完成上述示例中列出的步骤。</block>
-  <block id="58706c101ce23f0143df35c3d5877993" category="paragraph"><block ref="792bc5f76cd953c88762d75870189559" category="inline-link-macro-rx"></block>。</block>
   <block id="1a8981f50831032975e7c7ab919cf671" category="list-text">查看 <block ref="d6c0afb29fcb19bc79e093e82e35e6bb" category="inline-link-macro-rx"></block>。</block>
   <block id="0575b6ffe3df5337cb3759f533fd3151" category="paragraph"><block ref="00e0372232f46e972c663d4404b271c3" category="inline-link-macro-rx"></block>。</block>
   <block id="845296543f4c0f8578120a5e5c4e09f2" category="paragraph"><block ref="845296543f4c0f8578120a5e5c4e09f2" category="inline-link-rx"></block></block>
@@ -2939,7 +2933,6 @@
   <block id="adbc02a7e46081db3727786cb62cdc0f" category="list-title">建议的文档</block>
   <block id="10d146c112c5b50595149d6af52fe222" category="list-text"><block ref="f29158c7335be7b7fe0a46dd82de6ed4" category="inline-link-macro-rx"></block> 有关支持的ONTAP 和RCF版本、请参见交换机兼容性表。请注意、RCF中的命令语法与NX-OS版本中的命令语法之间可能存在命令依赖关系。</block>
   <block id="62a6080939e22aeda3281430c2563f03" category="list-text"><block ref="ad0d19783ccfa19f931108b838e4b7e4" category="inline-link-macro-rx"></block>。有关Cisco交换机升级和降级过程的完整文档、请参见Cisco网站上提供的相应软件和升级指南。</block>
-  <block id="37470b1d6f660940951d8750617086de" category="paragraph">此操作步骤中的示例使用两个节点。这些节点使用两个 10GbE 集群互连端口 e0a 和 e0b 。请参见<block ref="e98f5e4074ae8b028a5791870586403d" category="inline-link-rx"></block> 验证平台上的集群端口是否正确。</block>
   <block id="2d0ac6e4c3a1c97979e887d423ec0f95" category="section-title">第1步：准备安装</block>
   <block id="4877628f2f5c2ea44515bef28ca09a0b" category="list-text">验证所有集群端口是否均为*已启动*且运行状况良好：</block>
   <block id="1238025070f42c2c91970d4a31d2a5c4" category="paragraph"><block ref="229e8d1240617e0b97c680c36bbc9564" prefix="" category="inline-code"></block></block>
@@ -3287,10 +3280,8 @@
   <block id="922e0472f9731d915fa1e9d3a596e9cf" category="list-text">根据您最初配置的交换机类型、您需要使用随附的控制台缆线连接到交换机控制台端口。</block>
   <block id="541fb7ba8b8b8df9c175d1695f706597" category="list-text">请参见<block ref="16a6d09025d51cb8dd3516798b3fee8a" category="inline-link-rx"></block> 以获取最新信息。</block>
   <block id="27261319977efbc3c013b30ed0fd35b8" category="paragraph">有关交换机初始配置的详细信息，请参见以下指南：<block ref="79f039529d1e022f29fed5c2eaec0b69" category="inline-link-rx"></block>。</block>
-  <block id="af9a958e62c3b5f2c0fb3c441adc9b39" category="paragraph">首次设置Nexus 9336C-x2交换机后、您可以安装参考配置文件(Reference Configuration File、RCF)。您也可以使用此操作步骤升级 RCF 版本。</block>
   <block id="515ffb6be2470ab747f049a501eb9867" category="summary">Cisco Nexus 9336C-x2集群交换机软件配置概述</block>
   <block id="516362c97fc00136adc7a7ad2b7ad6da" category="doc">Cisco Nexus 9336C-x2集群交换机的软件安装工作流</block>
-  <block id="2ba90e9a33582c6d96c2d00c0ddf0ea5" category="paragraph">要为Cisco Nexus 9336C-FX2交换机安装和配置软件、请执行以下步骤：</block>
   <block id="7abb8bc9df6ce2c7758d9b3973b94f9a" category="summary">按照此操作步骤 安装Cisco Nexus 9336C-x2交换机。</block>
   <block id="c213d054028b0669b85c103892e81993" category="doc">安装9336C-x2集群交换机</block>
   <block id="fb7e85c23a22dc9f90f04d9cf46a95e6" category="paragraph">按照此操作步骤 设置和配置Cisco Nexus 9336C-x2交换机。</block>
@@ -3993,7 +3984,6 @@
   <block id="2764c65a7d4c079147d8cf98e461cb33" category="paragraph">此版本支持使用SNMPv3收集交换机日志和使用交换机运行状况监控(SHM)。</block>
   <block id="aa0ae6c76f83fc6d32395967e66e1a57" category="list-text"><block ref="eb6455edffdd82039a8793f500a86be5" category="inline-link-macro-rx"></block>。</block>
   <block id="78a3145f7f81ea095cdce342b0eeb83a" category="list-text"><block ref="d4a90f7cd2b65eac1430336cfe2ee64b" category="inline-link-macro-rx"></block>。</block>
-  <block id="730c2f2b2335ad619f1d2f8616c9d744" category="paragraph">有关说明、请参见NVIDIA的文档。</block>
   <block id="280f95118eded8b0219c276178c30e97" category="list-text"><block ref="5e0473d3f7899dd064d2b0943ad87ca5" category="inline-link-macro-rx"></block>。</block>
   <block id="b8cd88654eafece50754fca964cba8a1" category="paragraph">如果您的系统需要将NS224驱动器架作为交换机连接存储(而不是直连存储)进行布线、请按照布线过程进行操作。</block>
   <block id="f652bccf577477735d669989c28905ac" category="list-text"><block ref="ec4312d0db3bce928129e7e5c3a58d73" category="inline-link-rx"></block> 所有受支持的ONTAP 版本。</block>
@@ -4287,7 +4277,6 @@
   <block id="ec5ea2f0318e4d906c296f5576b9c026" category="list-text">[[STEP6]]如果禁止自动创建案例、请通过调用AutoSupport 消息重新启用：<block ref="9ac424c0d7b432975df36a19daf50c9c" prefix=" " category="inline-code"></block></block>
   <block id="0429fa776d68090e46718ac7e32390ef" category="admonition">对于EFOS 3.10.0.3及更高版本、请使用命令<block ref="c09633a606c51a161b16f8bf38f5ebb1" prefix=" " category="inline-code"></block>。</block>
   <block id="2df26e386d021172b261bcb47e157019" category="list-text">清理配置：</block>
-  <block id="f306e2be0abd8aabfa0b014c372bbac8" category="list-text">对交换机CS1重复步骤4至11。</block>
   <block id="256be937ef390f7d6dd71ad092869119" category="admonition">对于ONTAP 9.8及更高版本、请使用命令<block ref="c57378c3b3bb81c6b42a2b31a30ddda7" prefix=" " category="inline-code"></block>。</block>
   <block id="393a5f0f5f1f070aac964741815cca76" category="doc">将Broadcom BES-53248集群交换机更换为无交换机连接</block>
   <block id="a2ba7bf1b1a10d50fd13725865eabc47" category="list-text">测试交换机日志收集功能：</block>
@@ -4784,4 +4773,92 @@
   <block id="af7a19b4dbadf7641102bf88598cfd8b" category="paragraph">+
 以太网交换机运行状况监控器(CSHM)负责确保集群和存储网络交换机的运行状况、并收集交换机日志以进行调试。此操作步骤将引导您完成设置和开始从交换机收集详细的*Support*日志的过程，并开始每小时收集由AutoSupport收集的*定期*数据。</block>
   <block id="a13c9d4c750715a8b993a3fec916189f" category="list-text">应用参考配置文件(Reference Configuration File、RCF)时、必须指定用于收集日志的用户。默认情况下、此用户设置为_admin_。如果要使用其他用户、则必须在RC框架 的*# SHM用户部分中指定此用户。</block>
+  <block id="11a42d3d6a2e579a381b3f9fcb7ec792" category="paragraph">&lt;stdin&gt;中未解析的指令-包括：..//_include/install-rc0-soft-9336c.adoc[]</block>
+  <block id="69a3b5b5b3e87ce1bcae2811d815d9de" category="paragraph"><block ref="69a3b5b5b3e87ce1bcae2811d815d9de" category="inline-link-macro-rx"></block></block>
+  <block id="7091e2c750a185300a6b16e37ae123f6" category="paragraph">有关说明、请参见NVIDIA文档。</block>
+  <block id="894989f86e54fb4105389f59b2f248db" category="list-text"><block ref="c4cd7ec23f215e2259f91b6eb6e7cbc1" category="inline-link-macro-rx"></block>。</block>
+  <block id="537e4a57b26f325406ead3c055f368d4" category="doc">第1步：在交换机上安装RC框架</block>
+  <block id="64375c1eb0a39c01e2fa4b38e4b977d5" category="paragraph">确保满足以下要求：</block>
+  <block id="88c6fb51a79a63370991d585551ed93a" category="list-text">与交换机的控制台连接。如果您可以远程访问交换机、则可以选择控制台连接。</block>
+  <block id="348c7d4dfd461435fb7a2de071510321" category="list-text">交换机CS1和交换机CS2已启动、并且初始交换机设置已完成(已设置管理IP地址和SSH)</block>
+  <block id="5ca63eb3f2c620d1c6aec7910b16345c" category="list-text">已安装所需的NX-OS版本。</block>
+  <block id="02253812baf9079d763add569de5466d" category="list-text">交换机之间的ISL连接已连接。</block>
+  <block id="4f9d99e1896d0aa94a4ea56a61e0b5d7" category="list-text">未连接ONTAP节点集群端口。</block>
+  <block id="0563712f84d63c04e1bcecca2a31a5df" category="list-text">使用SSH或串行控制台登录到交换机CS1。</block>
+  <block id="5bbf59ef7905b487a457d2cb4ffc731b" category="list-text">使用以下传输协议之一将RCC复制到交换机CS1的bootflash：FTP、TFTP、SFTP或SCP。</block>
+  <block id="e50ba1fce28410003473ea665c3f69a1" category="paragraph">此示例显示了使用TFTP将RCC复制到交换机CS1上的bootflash：</block>
+  <block id="7dd3ebbd2a9cb0ef43e6dfe425bf3368" category="paragraph">此示例显示了RCF文件<block ref="5f4fa6cd54278b4d7a194c1bbdef65ea" prefix=" " category="inline-code"></block> 正在安装在交换机CS1上：</block>
+  <block id="1d46b4d726541133306aadb791fbac06" category="paragraph"><block ref="dfc31c90abcf8c7a53e718b270cdf0aa" prefix="" category="inline-code"></block></block>
+  <block id="b49fe5d89ca32aff6d41fc29d768d68c" category="paragraph">有关 Cisco 命令的详细信息，请参见中的相应指南<block ref="dba0e49fdfeab9433bb71da6c505aa34" category="inline-link-rx"></block>。</block>
+  <block id="758d64d19fd5c7f49ed73e0b94a6f13f" category="list-text">重新启动交换机 CS1 。</block>
+  <block id="c55a2ac1185a6d9fa389abde666b6620" category="paragraph"><block ref="47b50d91942746c6b7da7bcb3a3898ea" prefix="" category="inline-code"></block></block>
+  <block id="d692b83806892fb177d501de252dd5bc" category="paragraph"><block ref="b62877e87bc2393ec2c608f3105d0333" prefix="" category="inline-code"></block></block>
+  <block id="b1c7d54c4a64389501f56df63a9cb2b8" category="list-text">在交换机CS2上重复步骤1至7。</block>
+  <block id="bdd2caa835c08370cb1ccd414ffee5e1" category="list-text">将ONTAP集群中所有节点的集群端口连接到交换机CS1和CS2。</block>
+  <block id="40a4ddeef3e9ca8e912f65eb91474da3" category="section-title">第2步：验证交换机连接</block>
+  <block id="1f541b542b1e6f49a912e719b1269f20" category="section-title">第3步：设置ONTAP集群</block>
+  <block id="3bd6c54403c6b14aa833a5e72558854a" category="paragraph">NetApp建议您使用System Manager设置新集群。</block>
+  <block id="20cc4823ea421f18257cd7f8c12d50c2" category="paragraph">System Manager为集群设置和配置提供了一个简单易行的工作流、其中包括分配节点管理IP地址、初始化集群、创建本地层、配置协议以及配置初始存储。</block>
+  <block id="16b35791c547ec7b12d2d1bc88d72f59" category="inline-link">使用System Manager在新集群上配置ONTAP</block>
+  <block id="bf9a81b7716182f88d21f381e05dfa63" category="paragraph">转至<block ref="76a0ad9e6d9605be893ded0930762dd1" category="inline-link-rx"></block> 有关设置说明、请参见。</block>
+  <block id="728be2ff473fb0f0109742292ad9a016" category="doc">第1步：准备升级</block>
+  <block id="41fa1e8e8b44ea8a5d6403825283c468" category="paragraph"><block ref="1c2a7e67f41c6ed8d176dc6eb8a9860b" prefix="" category="inline-code"></block></block>
+  <block id="01331faa5c7b890e3c1d22c8c90bb876" category="paragraph"><block ref="b9c7d20b5ee27c55a47abaa412f881aa" prefix="" category="inline-code"></block></block>
+  <block id="01943746f8e7d79449be6fd0bb7a8f46" category="paragraph"><block ref="ecb8ddb693785da7c0a1c7f456dde5ea" prefix="" category="inline-code"></block></block>
+  <block id="b77c6d3e350c043b8f790e806e7bc521" category="list-text">记录当前运行配置与正在使用的RCF文件之间的任何自定义添加内容(例如组织的SNMP配置)。</block>
+  <block id="085ebea59269f171d2893f7c9fd27a56" category="list-text">对于NX-OS 10.2及更高版本、请使用<block ref="9c370f72db0e0d920841657ac5268365" prefix=" " category="inline-code"></block> 命令以与bootflash中保存的RCF文件进行比较。  否则、请使用第三部分的比较/比较工具。</block>
+  <block id="7a1b725f171ccc55c2b6a943c968b20f" category="list-text">将基本配置详细信息保存到bootflash上的write_erase.cfg文件中。</block>
+  <block id="39a62c1e7dfb4ebb50f79d526c4b3b41" category="paragraph"><block ref="a21819917a390159ce4a3fc4cabe324f" prefix="" category="inline-code"></block></block>
+  <block id="e08fd1b6e2dcb2a7248eed4e8ddd7c7b" category="paragraph"><block ref="29620a94cb1ba65f2a65d98c6830535b" prefix="" category="inline-code"></block></block>
+  <block id="6f88c4f0ef85a211d5223ff2604d28e0" category="paragraph"><block ref="39e41c7158b7217359d1d024d442d826" prefix="" category="inline-code"></block></block>
+  <block id="eaa6f7b071ff32e6edcef64256d0871f" category="paragraph"><block ref="ad01ff5bd18b23321f4a5f80b714f692" prefix="" category="inline-code"></block></block>
+  <block id="62fcaa3e0af91f6b966bcf398e3e6086" category="list-text">使用问题描述the write erase命令擦除当前保存的配置：</block>
+  <block id="dc6fc35df489bd6bb938c2c7b2d410c5" category="paragraph"><block ref="8b6d14a918e69565b7089260305efbc6" prefix="" category="inline-code"></block></block>
+  <block id="f455f9d17674cb5efba0664c003ad484" category="paragraph"><block ref="7812e68ffa4111ad9046c1ab43dcaf2c" prefix="" category="inline-code"></block></block>
+  <block id="e2288282565e302230f8a37041768ed2" category="paragraph"><block ref="a8fd1d47e1eed37a3bc905f1c0e383a9" prefix="" category="inline-code"></block></block>
+  <block id="459d1bc967bf4f56f677e29979bb87fd" category="list-text">将先前保存的基本配置复制到启动配置中。</block>
+  <block id="e2409a8cab7026a9fcbcf9839a3cf49d" category="paragraph"><block ref="eb00d852fdfa84462bda944d2348d9a5" prefix="" category="inline-code"></block></block>
+  <block id="1691d1c0e9b3cc92b3ba388f00d859e2" category="paragraph"><block ref="2dde6c3abd7b2f462a4f2162fae48851" prefix="" category="inline-code"></block></block>
+  <block id="cd05c6b0946147cbb3f39299b8dcdeed" category="paragraph"><block ref="320348c7039a92322f8ae8aa6b9548b3" prefix="" category="inline-code"></block></block>
+  <block id="e90414dab5eca6b338b4136c697db6b5" category="list-text">再次访问管理IP地址后、通过SSH登录到交换机。</block>
+  <block id="c91e8b7706844bcabdc205a7e43be636" category="paragraph">您可能需要更新与SSH密钥相关的主机文件条目。</block>
+  <block id="22ce77808f11e6ab0287a2c388f17c20" category="list-text">将先前确定的任何自定义添加项重新应用于交换机配置。</block>
+  <block id="75d60e24abda3d2be5719b222283e4ab" category="list-text">验证RCF版本、自定义添加项和交换机设置是否正确后、请将running-config文件复制到startup-config文件。</block>
+  <block id="59a8406e97bc3122bcc4f9fec1cab7c9" category="paragraph"><block ref="e1e291973b667f98a077e4eb6f5aa9ac" prefix="" category="inline-code"></block></block>
+  <block id="a899bc4bde195885d1d8f64046805509" category="paragraph"><block ref="f09b6decdfbfa4d8cb5b241722b9a9e6" prefix="" category="inline-code"></block></block>
+  <block id="c6a89cc6a58761d5abcb1b9cf05f3b99" category="list-text">重新启动交换机 CS1 。您可以在交换机重新启动时忽略节点上报告的"` cluster switch Health monitor`"警报和"`cluster ports down`"事件。</block>
+  <block id="9743e816fbdd9c60a2c9c6f91cbe208b" category="list-text">对交换机CS2重复步骤1至18。</block>
+  <block id="8e74fc1d82f0252ff302e728b8ef84b7" category="paragraph"><block ref="fefdb12e2547581b07493ad4416e36ba" prefix="" category="inline-code"></block></block>
+  <block id="47de5e0c657f20c6f281aea421f423db" category="section-title">第3步：验证集群网络配置和集群运行状况</block>
+  <block id="bf7f666145d20a64bc0df89aff1412b4" category="paragraph">如果任何集群LUN尚未返回其主端口、请从本地节点手动还原它们：</block>
+  <block id="0ce224cf5d247a74b5df5578645cdfb1" category="paragraph"><block ref="33701a452aed8ed903e7f7050b36c9ad" prefix="" category="inline-code"></block></block>
+  <block id="8413afd23c9d43c590d477ddf9c3812c" category="doc">安装或升级参考配置文件(RCF)</block>
+  <block id="00e3af2dfc61e6af58ff8e0002338734" category="paragraph">首次设置Nexus 9334C)交换机后，您可以安装参考配置文件(RF)。如果交换机上安装了现有版本的RCF文件、则可以升级RCF版本。</block>
+  <block id="6d641e461440ab5c02bc387dd8f88790" category="inline-link-macro">Cisco以太网交换机(NSS)</block>
+  <block id="7e857aa8a0b068cc27d4b48a1e11e878" category="list-text"><block ref="7e857aa8a0b068cc27d4b48a1e11e878" category="inline-link-macro-rx"></block></block>
+  <block id="32559ee483b61b36141f9b9e0f4bbfff" category="paragraph">有关NetApp 支持站点 上支持的ONTAP和RC框架 版本、请参见交换机兼容性表。请注意、RC框架 中的命令语法与特定NX-OS版本中的语法之间可能存在命令相关性。</block>
+  <block id="ad0d19783ccfa19f931108b838e4b7e4" category="list-text"><block ref="ad0d19783ccfa19f931108b838e4b7e4" category="inline-link-macro-rx"></block></block>
+  <block id="6b76d59cad5464650213d5b0a1dd84d7" category="paragraph">有关Cisco交换机升级和降级过程的完整文档、请参阅Cisco网站上提供的相应软件和升级指南。</block>
+  <block id="8fa9b99093c5cdfb4cebad0008ba3e8d" category="paragraph">此操作步骤 中的示例使用四个节点。这些节点使用两个 10GbE 集群互连端口 e0a 和 e0b 。请参见<block ref="e98f5e4074ae8b028a5791870586403d" category="inline-link-rx"></block> 验证平台上的集群端口是否正确。</block>
+  <block id="79509ba15c2970f327dd8610e3b4628c" category="paragraph-title">使用的命令</block>
+  <block id="1ad593dd61af4356ce9ba12d276c4336" category="section-title">选项1：在新交换机上安装RCF文件</block>
+  <block id="d061b4842fee7f503446ba29253d182f" category="paragraph">首次设置Nexus 9334C)交换机后，您可以安装参考配置文件(RF)。</block>
+  <block id="121f18688d36f2438eb17eb52e61e7e8" category="section-title">选项2：使用新的RC框架 版本升级现有交换机</block>
+  <block id="eba0713505eba2aab08d4d6fa9ca2cf7" category="paragraph">如果操作交换机上安装了现有版本的RCF文件、则可以升级RCF版本。</block>
+  <block id="ddd0020a0684c14dbd50622f84d8917a" category="paragraph">确保您已具备以下条件：</block>
+  <block id="28dbd722b252673fdce3f809670e34b8" category="list-text">如果要更新RC框架 版本、则需要在RCIF中配置一个能够反映所需启动映像的启动配置。</block>
+  <block id="5640915560bc663196a684ebfc6fa2ec" category="admonition">在安装新的交换机软件版本和 RCF 之前，您必须擦除交换机设置并执行基本配置。您必须使用串行控制台连接到交换机、或者在擦除交换机设置之前保留了基本配置信息。</block>
+  <block id="1b49e113d2db8aa6503efc6ca4257925" category="paragraph">要为Cisco Nexus 9334C)交换机安装和配置软件以及安装或升级参考配置文件(RF)，请执行以下步骤：</block>
+  <block id="814af3441f904c14570759e7e53a2eac" category="list-text"><block ref="103347887335950e25df4c7b93bdd950" category="inline-link-macro-rx"></block>。</block>
+  <block id="2d667925d48008850336e0d43e4d4306" category="sidebar">集群交换机- Broadcom BES-53248</block>
+  <block id="9013a0f95a05b68811cef544c6eea37b" category="sidebar">集群交换机—Cisco Nexus 9336-拧 动</block>
+  <block id="ed3dd7f516f69cf573ae79a1781bbcbf" category="sidebar">集群交换机—NVIDIA SN2100集群交换机</block>
+  <block id="fc01f4074d379d0722eb2fa3b21e6af4" category="sidebar">存储交换机—Cisco Nexus 9336-拧 动</block>
+  <block id="caf5170cbc1f4850f6d380c982fa61f9" category="sidebar">存储交换机- NVIDIA SN2100</block>
+  <block id="6f738209e5071a9c22c8d336c6dec7a1" category="sidebar">共享交换机—Cisco Nexus 9336-拧 动</block>
+  <block id="a306bc0f90914bd9715854d664b6505a" category="sidebar">集群交换机—Cisco Nexus 3232c</block>
+  <block id="2dc82baa4aac6df7519361c705672faa" category="sidebar">集群交换机—Cisco Nexus 3132Q-V</block>
+  <block id="29f6f46414f36869e8e3f9f19d16b6db" category="sidebar">集群交换机—Cisco Nexus 92300YC</block>
+  <block id="22daf846f579c427af282aa33d7c2a7b" category="sidebar">集群交换机—NetApp CN1610</block>
+  <block id="c6244de2d0f92f3ce9f4386189743190" category="sidebar">安装或升级RCF配置文件</block>
 </blocks>

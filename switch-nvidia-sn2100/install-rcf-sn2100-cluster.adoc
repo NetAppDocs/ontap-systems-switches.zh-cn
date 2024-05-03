@@ -605,4 +605,4 @@ sw2                         cluster-network    10.233.205.91    MSN2100-CB2RC
 --
 ====
 .下一步是什么？
-link:install-snmpv3-sn2100-cluster.html["配置交换机日志收集"]。
+link:CSHM_log_collection.html["启用日志收集"]

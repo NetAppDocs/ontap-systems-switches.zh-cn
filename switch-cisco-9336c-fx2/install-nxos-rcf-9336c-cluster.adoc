@@ -4,38 +4,25 @@ sidebar: sidebar
 keywords: install rcf, cisco switches 
 summary: 您可以在首次设置 Nexus 9336C-fx2 交换机后安装 RCF 。您也可以使用此操作步骤升级 RCF 版本。 
 ---
-= 安装参考配置文件（ RCF ）
+= 安装或升级参考配置文件(RCF)
 :allow-uri-read: 
 :icons: font
 :imagesdir: ../media/
 
 
 [role="lead"]
-首次设置Nexus 9336C-x2交换机后、您可以安装参考配置文件(Reference Configuration File、RCF)。您也可以使用此操作步骤升级 RCF 版本。
-
-开始之前、请填写中的操作步骤 link:install-nxos-overview-9336c-cluster.html["准备安装NX-OS和RCF"]。
-
-有关可用RC框架 配置的详细信息、请参见 link:configure-software-overview-9336c-cluster.html["软件安装工作流"]。
-
-
-
-== 查看要求
-
-.您需要的内容
-* 交换机配置的当前备份。
-* 一个完全正常运行的集群(日志中没有错误或类似问题)。
-* 当前RCF文件。
-* 安装RCF时需要与交换机建立控制台连接。
-
+首次设置Nexus 9334C)交换机后，您可以安装参考配置文件(RF)。如果交换机上安装了现有版本的RCF文件、则可以升级RCF版本。
 
 .建议的文档
-* link:https://mysupport.netapp.com/site/info/cisco-ethernet-switch["Cisco 以太网交换机页面"^] 有关支持的ONTAP 和RCF版本、请参见交换机兼容性表。请注意、RCF中的命令语法与NX-OS版本中的命令语法之间可能存在命令依赖关系。
-* link:https://www.cisco.com/c/en/us/support/switches/nexus-3000-series-switches/products-installation-guides-list.html["Cisco Nexus 3000 系列交换机"^]。有关Cisco交换机升级和降级过程的完整文档、请参见Cisco网站上提供的相应软件和升级指南。
+* link:https://mysupport.netapp.com/site/info/cisco-ethernet-switch["Cisco以太网交换机(NSS)"^]
++
+有关NetApp 支持站点 上支持的ONTAP和RC框架 版本、请参见交换机兼容性表。请注意、RC框架 中的命令语法与特定NX-OS版本中的语法之间可能存在命令相关性。
+
+* link:https://www.cisco.com/c/en/us/support/switches/nexus-3000-series-switches/products-installation-guides-list.html["Cisco Nexus 3000 系列交换机"^]
++
+有关Cisco交换机升级和降级过程的完整文档、请参阅Cisco网站上提供的相应软件和升级指南。
 
 
-
-
-== 安装RCF
 
 .关于示例
 此操作步骤中的示例使用以下交换机和节点命名：
@@ -46,22 +33,404 @@ summary: 您可以在首次设置 Nexus 9336C-fx2 交换机后安装 RCF 。您�
 * `cluster1 ：：： * >` 提示符指示集群的名称。
 
 
-此操作步骤中的示例使用两个节点。这些节点使用两个 10GbE 集群互连端口 e0a 和 e0b 。请参见 https://hwu.netapp.com/SWITCH/INDEX["Hardware Universe"] 验证平台上的集群端口是否正确。
+此操作步骤 中的示例使用四个节点。这些节点使用两个 10GbE 集群互连端口 e0a 和 e0b 。请参见 https://hwu.netapp.com/SWITCH/INDEX["Hardware Universe"] 验证平台上的集群端口是否正确。
 
 
 NOTE: 根据不同版本的 ONTAP ，命令输出可能会有所不同。
 
-.关于此任务
+有关可用RC框架 配置的详细信息、请参见 link:configure-software-overview-9336c-cluster.html["软件安装工作流"]。
+
+.使用的命令
 操作步骤要求同时使用 ONTAP 命令和 Cisco Nexus 9000 系列交换机命令；除非另有说明，否则使用 ONTAP 命令。
 
-在此操作步骤 期间、不需要可操作的交换机间链路(ISL)。这是设计上的原因、因为RCF版本更改可能会暂时影响ISL连接。为了确保集群无中断运行、以下操作步骤 会在对目标交换机执行步骤时将所有集群LIF迁移到运行中的配对交换机。
 
 
-CAUTION: 在安装新的交换机软件版本和 RCF 之前，您必须擦除交换机设置并执行基本配置。您必须使用串行控制台连接到交换机。此任务将重置管理网络的配置。
+== 选项1：在新交换机上安装RCF文件
+
+首次设置Nexus 9334C)交换机后，您可以安装参考配置文件(RF)。
+
+.开始之前
+确保满足以下要求：
+
+* 与交换机的控制台连接。如果您可以远程访问交换机、则可以选择控制台连接。
+* 交换机CS1和交换机CS2已启动、并且初始交换机设置已完成(已设置管理IP地址和SSH)
+* 已安装所需的NX-OS版本。
+* 交换机之间的ISL连接已连接。
+* 未连接ONTAP节点集群端口。
 
 
 
-=== 第1步：准备安装
+
+=== 第1步：在交换机上安装RC框架
+
+. 使用SSH或串行控制台登录到交换机CS1。
+. 使用以下传输协议之一将RCC复制到交换机CS1的bootflash：FTP、TFTP、SFTP或SCP。
++
+有关 Cisco 命令的详细信息，请参见中的相应指南 https://www.cisco.com/c/en/us/support/switches/nexus-9336c-fx2-switch/model.html#CommandReferences["《 Cisco Nexus 9000 系列 NX-OS 命令参考》"^] 指南。
+
++
+.显示示例
+[%collapsible]
+====
+此示例显示了使用TFTP将RCC复制到交换机CS1上的bootflash：
+
+[listing, subs="+quotes"]
+----
+cs1# *copy tftp: bootflash: vrf management*
+Enter source filename: *Nexus_9336C_RCF_v1.6-Cluster-HA-Breakout.txt*
+Enter hostname for the tftp server: *172.22.201.50*
+Trying to connect to tftp server......Connection to Server Established.
+TFTP get operation was successful
+Copy complete, now saving to disk (please wait)...
+----
+====
+. 将先前下载的 RCF 应用于 bootflash 。
++
+有关 Cisco 命令的详细信息，请参见中的相应指南 https://www.cisco.com/c/en/us/support/switches/nexus-9336c-fx2-switch/model.html#CommandReferences["《 Cisco Nexus 9000 系列 NX-OS 命令参考》"^] 指南。
+
++
+.显示示例
+[%collapsible]
+====
+此示例显示了RCF文件 `Nexus_9336C_RCF_v1.6-Cluster-HA-Breakout.txt` 正在安装在交换机CS1上：
+
+[listing]
+----
+cs1# copy Nexus_9336C_RCF_v1.6-Cluster-HA-Breakout.txt running-config echo-commands
+----
+====
+. 检查 `show banner motd` 命令的横幅输出。您必须阅读并遵循这些说明，以确保交换机的配置和操作正确。
++
+.显示示例
+[%collapsible]
+====
+[listing]
+----
+cs1# show banner motd
+
+******************************************************************************
+* NetApp Reference Configuration File (RCF)
+*
+* Switch   : Nexus N9K-C9336C-FX2
+* Filename : Nexus_9336C_RCF_v1.6-Cluster-HA-Breakout.txt
+* Date     : 10-23-2020
+* Version  : v1.6
+*
+* Port Usage:
+* Ports  1- 3: Breakout mode (4x10G) Intra-Cluster Ports, int e1/1/1-4, e1/2/1-4
+, e1/3/1-4
+* Ports  4- 6: Breakout mode (4x25G) Intra-Cluster/HA Ports, int e1/4/1-4, e1/5/
+1-4, e1/6/1-4
+* Ports  7-34: 40/100GbE Intra-Cluster/HA Ports, int e1/7-34
+* Ports 35-36: Intra-Cluster ISL Ports, int e1/35-36
+*
+* Dynamic breakout commands:
+* 10G: interface breakout module 1 port <range> map 10g-4x
+* 25G: interface breakout module 1 port <range> map 25g-4x
+*
+* Undo breakout commands and return interfaces to 40/100G configuration in confi
+g mode:
+* no interface breakout module 1 port <range> map 10g-4x
+* no interface breakout module 1 port <range> map 25g-4x
+* interface Ethernet <interfaces taken out of breakout mode>
+* inherit port-profile 40-100G
+* priority-flow-control mode auto
+* service-policy input HA
+* exit
+*
+******************************************************************************
+----
+====
+. 验证 RCF 文件是否为正确的较新版本：
++
+`s如何运行配置`
+
++
+在检查输出以确认您的 RCF 正确无误时，请确保以下信息正确无误：
+
++
+** RCF 横幅
+** 节点和端口设置
+** 自定义
++
+输出因站点配置而异。检查端口设置，并参阅发行说明，了解您安装的 RCF 的任何特定更改。
+
+
+
+. 验证 RCF 版本和交换机设置是否正确后，将 running-config 文件复制到 startup-config 文件。
++
+`copy running-config startup-config`
+
++
+.显示示例
+[%collapsible]
+====
+[listing]
+----
+cs1# copy running-config startup-config [########################################] 100% Copy complete
+----
+====
++
+有关 Cisco 命令的详细信息，请参见中的相应指南 https://www.cisco.com/c/en/us/support/switches/nexus-9336c-fx2-switch/model.html#CommandReferences["《 Cisco Nexus 9000 系列 NX-OS 命令参考》"^]。
+
+. 重新启动交换机 CS1 。
++
+`cs1# *reload*`
+
++
+`This command will reboot the system. (y/n)?  [n] *y*`
+
+. 在交换机CS2上重复步骤1至7。
+. 将ONTAP集群中所有节点的集群端口连接到交换机CS1和CS2。
+
+
+
+
+=== 第2步：验证交换机连接
+
+. 验证连接到集群端口的交换机端口是否为*已启动*。
++
+`show interface brief`
+
++
+.显示示例
+[%collapsible]
+====
+[listing, subs="+quotes"]
+----
+cs1# *show interface brief | grep up*
+.
+.
+Eth1/1/1      1       eth  access up      none                    10G(D) --
+Eth1/1/2      1       eth  access up      none                    10G(D) --
+Eth1/7        1       eth  trunk  up      none                   100G(D) --
+Eth1/8        1       eth  trunk  up      none                   100G(D) --
+.
+.
+----
+====
+. 使用以下命令验证集群节点是否位于正确的集群VLAN中：
++
+`show vlan brief`
+
++
+`show interface trunk`
+
++
+.显示示例
+[%collapsible]
+====
+[listing, subs="+quotes"]
+----
+cs1# *show vlan brief*
+
+VLAN Name                             Status    Ports
+---- -------------------------------- --------- -------------------------------
+1    default                          active    Po1, Eth1/1, Eth1/2, Eth1/3
+                                                Eth1/4, Eth1/5, Eth1/6, Eth1/7
+                                                Eth1/8, Eth1/35, Eth1/36
+                                                Eth1/9/1, Eth1/9/2, Eth1/9/3
+                                                Eth1/9/4, Eth1/10/1, Eth1/10/2
+                                                Eth1/10/3, Eth1/10/4
+17   VLAN0017                         active    Eth1/1, Eth1/2, Eth1/3, Eth1/4
+                                                Eth1/5, Eth1/6, Eth1/7, Eth1/8
+                                                Eth1/9/1, Eth1/9/2, Eth1/9/3
+                                                Eth1/9/4, Eth1/10/1, Eth1/10/2
+                                                Eth1/10/3, Eth1/10/4
+18   VLAN0018                         active    Eth1/1, Eth1/2, Eth1/3, Eth1/4
+                                                Eth1/5, Eth1/6, Eth1/7, Eth1/8
+                                                Eth1/9/1, Eth1/9/2, Eth1/9/3
+                                                Eth1/9/4, Eth1/10/1, Eth1/10/2
+                                                Eth1/10/3, Eth1/10/4
+31   VLAN0031                         active    Eth1/11, Eth1/12, Eth1/13
+                                                Eth1/14, Eth1/15, Eth1/16
+                                                Eth1/17, Eth1/18, Eth1/19
+                                                Eth1/20, Eth1/21, Eth1/22
+32   VLAN0032                         active    Eth1/23, Eth1/24, Eth1/25
+                                                Eth1/26, Eth1/27, Eth1/28
+                                                Eth1/29, Eth1/30, Eth1/31
+                                                Eth1/32, Eth1/33, Eth1/34
+33   VLAN0033                         active    Eth1/11, Eth1/12, Eth1/13
+                                                Eth1/14, Eth1/15, Eth1/16
+                                                Eth1/17, Eth1/18, Eth1/19
+                                                Eth1/20, Eth1/21, Eth1/22
+34   VLAN0034                         active    Eth1/23, Eth1/24, Eth1/25
+                                                Eth1/26, Eth1/27, Eth1/28
+                                                Eth1/29, Eth1/30, Eth1/31
+                                                Eth1/32, Eth1/33, Eth1/34
+
+cs1# *show interface trunk*
+
+-----------------------------------------------------
+Port          Native  Status        Port
+              Vlan                  Channel
+-----------------------------------------------------
+Eth1/1        1       trunking      --
+Eth1/2        1       trunking      --
+Eth1/3        1       trunking      --
+Eth1/4        1       trunking      --
+Eth1/5        1       trunking      --
+Eth1/6        1       trunking      --
+Eth1/7        1       trunking      --
+Eth1/8        1       trunking      --
+Eth1/9/1      1       trunking      --
+Eth1/9/2      1       trunking      --
+Eth1/9/3      1       trunking      --
+Eth1/9/4      1       trunking      --
+Eth1/10/1     1       trunking      --
+Eth1/10/2     1       trunking      --
+Eth1/10/3     1       trunking      --
+Eth1/10/4     1       trunking      --
+Eth1/11       33      trunking      --
+Eth1/12       33      trunking      --
+Eth1/13       33      trunking      --
+Eth1/14       33      trunking      --
+Eth1/15       33      trunking      --
+Eth1/16       33      trunking      --
+Eth1/17       33      trunking      --
+Eth1/18       33      trunking      --
+Eth1/19       33      trunking      --
+Eth1/20       33      trunking      --
+Eth1/21       33      trunking      --
+Eth1/22       33      trunking      --
+Eth1/23       34      trunking      --
+Eth1/24       34      trunking      --
+Eth1/25       34      trunking      --
+Eth1/26       34      trunking      --
+Eth1/27       34      trunking      --
+Eth1/28       34      trunking      --
+Eth1/29       34      trunking      --
+Eth1/30       34      trunking      --
+Eth1/31       34      trunking      --
+Eth1/32       34      trunking      --
+Eth1/33       34      trunking      --
+Eth1/34       34      trunking      --
+Eth1/35       1       trnk-bndl     Po1
+Eth1/36       1       trnk-bndl     Po1
+Po1           1       trunking      --
+
+------------------------------------------------------
+Port          Vlans Allowed on Trunk
+------------------------------------------------------
+Eth1/1        1,17-18
+Eth1/2        1,17-18
+Eth1/3        1,17-18
+Eth1/4        1,17-18
+Eth1/5        1,17-18
+Eth1/6        1,17-18
+Eth1/7        1,17-18
+Eth1/8        1,17-18
+Eth1/9/1      1,17-18
+Eth1/9/2      1,17-18
+Eth1/9/3      1,17-18
+Eth1/9/4      1,17-18
+Eth1/10/1     1,17-18
+Eth1/10/2     1,17-18
+Eth1/10/3     1,17-18
+Eth1/10/4     1,17-18
+Eth1/11       31,33
+Eth1/12       31,33
+Eth1/13       31,33
+Eth1/14       31,33
+Eth1/15       31,33
+Eth1/16       31,33
+Eth1/17       31,33
+Eth1/18       31,33
+Eth1/19       31,33
+Eth1/20       31,33
+Eth1/21       31,33
+Eth1/22       31,33
+Eth1/23       32,34
+Eth1/24       32,34
+Eth1/25       32,34
+Eth1/26       32,34
+Eth1/27       32,34
+Eth1/28       32,34
+Eth1/29       32,34
+Eth1/30       32,34
+Eth1/31       32,34
+Eth1/32       32,34
+Eth1/33       32,34
+Eth1/34       32,34
+Eth1/35       1
+Eth1/36       1
+Po1           1
+..
+..
+..
+..
+..
+----
+====
++
+
+NOTE: 有关特定端口和VLAN使用情况的详细信息、请参阅RC框架 中的横幅和重要说明部分。
+
+. 验证 CS1 和 CS2 之间的 ISL 是否正常运行：
++
+`s如何执行端口通道摘要`
+
++
+.显示示例
+[%collapsible]
+====
+[listing, subs="+quotes"]
+----
+cs1# *show port-channel summary*
+Flags:  D - Down        P - Up in port-channel (members)
+        I - Individual  H - Hot-standby (LACP only)
+        s - Suspended   r - Module-removed
+        b - BFD Session Wait
+        S - Switched    R - Routed
+        U - Up (port-channel)
+        p - Up in delay-lacp mode (member)
+        M - Not in use. Min-links not met
+--------------------------------------------------------------------------------
+Group Port-       Type     Protocol  Member Ports      Channel
+--------------------------------------------------------------------------------
+1     Po1(SU)     Eth      LACP      Eth1/35(P)        Eth1/36(P)
+cs1#
+----
+====
+
+
+
+
+=== 第3步：设置ONTAP集群
+
+NetApp建议您使用System Manager设置新集群。
+
+System Manager为集群设置和配置提供了一个简单易行的工作流、其中包括分配节点管理IP地址、初始化集群、创建本地层、配置协议以及配置初始存储。
+
+转至 https://docs.netapp.com/us-en/ontap/task_configure_ontap.html["使用System Manager在新集群上配置ONTAP"] 有关设置说明、请参见。
+
+
+
+== 选项2：使用新的RC框架 版本升级现有交换机
+
+如果操作交换机上安装了现有版本的RCF文件、则可以升级RCF版本。
+
+.开始之前
+确保您已具备以下条件：
+
+* 交换机配置的当前备份。
+* 一个完全正常运行的集群(日志中没有错误或类似问题)。
+* 当前RCF文件。
+* 如果要更新RC框架 版本、则需要在RCIF中配置一个能够反映所需启动映像的启动配置。
++
+如果您需要更改启动配置以反映当前启动映像，则必须在重新应用 RCF 之前进行更改，以便在将来重新启动时实例化正确的版本。
+
+
+
+
+NOTE: 在此操作步骤 期间、不需要可操作的交换机间链路(ISL)。这是设计上的原因、因为RCF版本更改可能会暂时影响ISL连接。为了确保集群无中断运行、以下操作步骤 会在对目标交换机执行步骤时将所有集群LIF迁移到运行中的配对交换机。
+
+
+CAUTION: 在安装新的交换机软件版本和 RCF 之前，您必须擦除交换机设置并执行基本配置。您必须使用串行控制台连接到交换机、或者在擦除交换机设置之前保留了基本配置信息。
+
+
+
+=== 第1步：准备升级
 
 . 显示连接到集群交换机的每个节点上的集群端口：
 +
@@ -204,32 +573,22 @@ cluster1::*>
 
 . 在集群 LIF 上禁用自动还原。
 +
-.显示示例
-[%collapsible]
-====
-[listing, subs="+quotes"]
-----
-cluster1::*> *network interface modify -vserver Cluster -lif * -auto-revert false*
-----
-====
+`cluster1::*> *network interface modify -vserver Cluster -lif * -auto-revert false*`
+
 
 
 
 
 === 第2步：配置端口
 
-. 在集群交换机 CS2 上，关闭连接到节点集群端口的端口。
+. 在集群交换机 CS1 上，关闭连接到节点集群端口的端口。
 +
-.显示示例
-[%collapsible]
-====
-[listing, subs="+quotes"]
-----
-cs2(config)# *interface eth1/1/1-2,eth1/7-8*
-cs2(config-if-range)# *shutdown*
-----
-====
-. 验证集群 LIF 是否已迁移到集群交换机 CS1 上托管的端口。这可能需要几秒钟的时间。
+`cs1(config)# *interface eth1/1/1-2,eth1/7-8*`
+
++
+`cs1(config-if-range)# *shutdown*`
+
+. 验证集群SIFs是否已故障转移到集群交换机CS1上托管的端口。这可能需要几秒钟的时间。
 +
 `network interface show -role cluster`
 
@@ -279,55 +638,64 @@ cluster1::*>
 ====
 . 如果尚未保存当前交换机配置的副本、请将以下命令的输出复制到文本文件中：
 +
-[listing]
-----
-show running-config
-----
-. 清理交换机 CS2 上的配置并执行基本设置。
-+
-
-CAUTION: 更新或应用新 RCF 时，必须擦除交换机设置并执行基本配置。您必须连接到交换机串行控制台端口才能重新设置交换机。
+`s如何运行配置`
 
 +
-.. 清理配置：
+.. 记录当前运行配置与正在使用的RCF文件之间的任何自定义添加内容(例如组织的SNMP配置)。
+.. 对于NX-OS 10.2及更高版本、请使用 `show diff running-config` 命令以与bootflash中保存的RCF文件进行比较。  否则、请使用第三部分的比较/比较工具。
+
+
+. 将基本配置详细信息保存到bootflash上的write_erase.cfg文件中。
++
+`switch# show run | i "username admin password" > bootflash:write_erase.cfg`
+
++
+`switch# show run | section "vrf context management" >> bootflash:write_erase.cfg`
+
++
+`switch# show run | section "interface mgmt0" >> bootflash:write_erase.cfg`
+
++
+`switch# show run | section "switchname" >> bootflash:write_erase.cfg`
+
+. 使用问题描述the write erase命令擦除当前保存的配置：
++
+`switch# write erase`
+
++
+`Warning: This command will erase the startup-configuration.`
+
++
+`Do you wish to proceed anyway? (y/n)  [n] y`
+
+. 将先前保存的基本配置复制到启动配置中。
++
+`switch# copy write_erase.cfg startup-config`
+
+. 重新启动交换机：
++
+`switch# reload`
+
++
+`This command will reboot the system. (y/n)?  [n] y`
+
+. 再次访问管理IP地址后、通过SSH登录到交换机。
++
+您可能需要更新与SSH密钥相关的主机文件条目。
+
+. 使用以下传输协议之一将RCC复制到交换机CS1的bootflash：FTP、TFTP、SFTP或SCP。
++
+有关 Cisco 命令的详细信息，请参见中的相应指南 https://www.cisco.com/c/en/us/support/switches/nexus-9336c-fx2-switch/model.html#CommandReferences["《 Cisco Nexus 9000 系列 NX-OS 命令参考》"^] 指南。
+
 +
 .显示示例
 [%collapsible]
 ====
-[listing, subs="+quotes"]
-----
-(cs2)# *write erase*
-
-Warning: This command will erase the startup-configuration.
-
-Do you wish to proceed anyway? (y/n)  [n]  *y*
-----
-====
-.. 重新启动交换机：
-+
-.显示示例
-[%collapsible]
-====
-[listing, subs="+quotes"]
-----
-(cs2)# *reload*
-
-Are you sure you would like to reset the system? (y/n) *y*
-
-----
-====
-
-
-. 使用以下传输协议之一将 RCF 复制到交换机 CS2 的启动闪存： FTP ， TFTP ， SFTP 或 SCP 。有关 Cisco 命令的详细信息，请参见中的相应指南 https://www.cisco.com/c/en/us/support/switches/nexus-9336c-fx2-switch/model.html#CommandReferences["《 Cisco Nexus 9000 系列 NX-OS 命令参考》"^] 指南。
-+
-.显示示例
-[%collapsible]
-====
-此示例显示了使用 TFTP 将 RCF 复制到交换机 CS2 上的 bootflash 。
+此示例显示了使用TFTP将RCC复制到交换机CS1上的bootflash：
 
 [listing, subs="+quotes"]
 ----
-cs2# *copy tftp: bootflash: vrf management*
+cs1# *copy tftp: bootflash: vrf management*
 Enter source filename: *Nexus_9336C_RCF_v1.6-Cluster-HA-Breakout.txt*
 Enter hostname for the tftp server: *172.22.201.50*
 Trying to connect to tftp server......Connection to Server Established.
@@ -343,11 +711,11 @@ Copy complete, now saving to disk (please wait)...
 .显示示例
 [%collapsible]
 ====
-此示例显示了正在交换机 CS2 上安装的 RCF 文件 `Nexus 9336C_RCF_v1.6-Cluster-HA-Breakout 。 txt` 。
+此示例显示了RCF文件 `Nexus_9336C_RCF_v1.6-Cluster-HA-Breakout.txt` 正在安装在交换机CS1上：
 
 [listing]
 ----
-cs2# copy Nexus_9336C_RCF_v1.6-Cluster-HA-Breakout.txt running-config echo-commands
+cs1# copy Nexus_9336C_RCF_v1.6-Cluster-HA-Breakout.txt running-config echo-commands
 ----
 ====
 . 检查 `show banner motd` 命令的横幅输出。您必须阅读并遵循这些说明，以确保交换机的配置和操作正确。
@@ -357,7 +725,7 @@ cs2# copy Nexus_9336C_RCF_v1.6-Cluster-HA-Breakout.txt running-config echo-comma
 ====
 [listing]
 ----
-cs2# show banner motd
+cs1# show banner motd
 
 ******************************************************************************
 * NetApp Reference Configuration File (RCF)
@@ -408,33 +776,27 @@ g mode:
 
 
 
-. 验证 RCF 版本和交换机设置是否正确后，将 running-config 文件复制到 startup-config 文件。
+. 将先前确定的任何自定义添加项重新应用于交换机配置。
+. 验证RCF版本、自定义添加项和交换机设置是否正确后、请将running-config文件复制到startup-config文件。
 +
 有关 Cisco 命令的详细信息，请参见中的相应指南 https://www.cisco.com/c/en/us/support/switches/nexus-9336c-fx2-switch/model.html#CommandReferences["《 Cisco Nexus 9000 系列 NX-OS 命令参考》"^] 指南。
 
 +
-.显示示例
-[%collapsible]
-====
-[listing]
-----
-cs2# copy running-config startup-config [########################################] 100% Copy complete
-----
-====
-. 重新启动交换机 CS2 。在交换机重新启动时，您可以忽略节点上报告的 "`cluster ports down` " 事件。
+`cs1# copy running-config startup-config`
+
 +
-.显示示例
-[%collapsible]
-====
-[listing, subs="+quotes"]
-----
-cs2# *reload*
-This command will reboot the system. (y/n)?  [n] *y*
-----
-====
+`[########################################] 100% Copy complete`
+
+. 重新启动交换机 CS1 。您可以在交换机重新启动时忽略节点上报告的"` cluster switch Health monitor`"警报和"`cluster ports down`"事件。
++
+`cs1# *reload*`
+
++
+`This command will reboot the system. (y/n)?  [n] *y*`
+
 . 验证集群上集群端口的运行状况。
 +
-.. 验证集群中所有节点上的 e0d 端口是否均已启动且运行正常：
+.. 验证集群中所有节点上的集群端口是否均已启动且运行正常：
 +
 `network port show -role cluster`
 
@@ -480,7 +842,10 @@ e0d       Cluster      Cluster          up   9000  auto/100000 healthy false
 8 entries were displayed.
 ----
 ====
-.. 从集群验证交换机运行状况（此操作可能不会显示交换机 CS2 ，因为 LIF 不驻留在 e0d 上）。
+.. 从集群验证交换机运行状况。
++
+`network device-discovery show -protocol cdp`
+
 +
 .显示示例
 [%collapsible]
@@ -536,46 +901,6 @@ cs2                         cluster-network    10.233.205.91    NX9-C9336C
 ====
 
 
-. 在集群交换机 CS1 上，关闭连接到节点集群端口的端口。
-+
-.显示示例
-[%collapsible]
-====
-以下示例使用接口示例输出：
-
-[listing, subs="+quotes"]
-----
-cs1(config)# *interface eth1/1/1-2,eth1/7-8*
-cs1(config-if-range)# *shutdown*
-----
-====
-. 验证集群 LIF 是否已迁移到交换机 CS2 上托管的端口。这可能需要几秒钟的时间。
-+
-`network interface show -role cluster`
-
-+
-.显示示例
-[%collapsible]
-====
-[listing, subs="+quotes"]
-----
-cluster1::*> *network interface show -role cluster*
-            Logical            Status     Network            Current             Current Is
-Vserver     Interface          Admin/Oper Address/Mask       Node                Port    Home
------------ ------------------ ---------- ------------------ ------------------- ------- ----
-Cluster
-            cluster1-01_clus1  up/up      169.254.3.4/23     cluster1-01         e0d     false
-            cluster1-01_clus2  up/up      169.254.3.5/23     cluster1-01         e0d     true
-            cluster1-02_clus1  up/up      169.254.3.8/23     cluster1-02         e0d     false
-            cluster1-02_clus2  up/up      169.254.3.9/23     cluster1-02         e0d     true
-            cluster1-03_clus1  up/up      169.254.1.3/23     cluster1-03         e0b     false
-            cluster1-03_clus2  up/up      169.254.1.1/23     cluster1-03         e0b     true
-            cluster1-04_clus1  up/up      169.254.1.6/23     cluster1-04         e0b     false
-            cluster1-04_clus2  up/up      169.254.1.7/23     cluster1-04         e0b     true
-8 entries were displayed.
-cluster1::*>
-----
-====
 . 验证集群是否运行正常：
 +
 `cluster show`
@@ -597,33 +922,16 @@ cluster1-04          true     true          false
 cluster1::*>
 ----
 ====
-. 对交换机CS1重复步骤4至11。
+. 对交换机CS2重复步骤1至18。
 . 在集群 LIF 上启用自动还原。
 +
-.显示示例
-[%collapsible]
-====
-[listing, subs="+quotes"]
-----
-cluster1::*> *network interface modify -vserver Cluster -lif * -auto-revert True*
-----
-====
-. 重新启动交换机 CS1 。执行此操作可触发集群 LIF 还原到其主端口。在交换机重新启动时，您可以忽略节点上报告的 "`cluster ports down` " 事件。
-+
-.显示示例
-[%collapsible]
-====
-[listing, subs="+quotes"]
-----
-cs1# *reload*
-This command will reboot the system. (y/n)?  [n] *y*
-----
-====
+`cluster1::*> *network interface modify -vserver Cluster -lif * -auto-revert True*`
 
 
 
 
-=== 第3步：验证配置
+
+=== 第3步：验证集群网络配置和集群运行状况
 
 . 验证连接到集群端口的交换机端口是否为*已启动*。
 +
@@ -666,8 +974,8 @@ Capability Codes: R - Router, T - Trans-Bridge, B - Source-Route-Bridge
 Device-ID          Local Intrfce  Hldtme Capability  Platform      Port ID
 node1              Eth1/1         133    H           FAS2980       e0a
 node2              Eth1/2         133    H           FAS2980       e0a
-cs2                Eth1/35        175    R S I s     N9K-C9336C    Eth1/35
-cs2                Eth1/36        175    R S I s     N9K-C9336C    Eth1/36
+cs1                Eth1/35        175    R S I s     N9K-C9336C    Eth1/35
+cs1                Eth1/36        175    R S I s     N9K-C9336C    Eth1/36
 
 Total entries displayed: 4
 ----
@@ -882,6 +1190,12 @@ Cluster
 cluster1::*>
 ----
 ====
++
+如果任何集群LUN尚未返回其主端口、请从本地节点手动还原它们：
+
++
+`network interface revert -vserver vserver_name -lif lif_name`
+
 . 验证集群是否运行正常：
 +
 `cluster show`

@@ -25,7 +25,7 @@ NVIDIA SN2100是一款集群交换机、可用于构建具有两个以上节点�
 
 . link:configure-sn2100-cluster.html["配置交换机"]。
 +
-有关说明、请参见NVIDIA的文档。
+有关说明、请参见NVIDIA文档。
 
 . link:cabling-considerations-sn2100-cluster.html["查看布线和配置注意事项"]。
 +
@@ -43,7 +43,11 @@ NVIDIA SN2100是一款集群交换机、可用于构建具有两个以上节点�
 +
 有两个RCF脚本可用于集群和存储应用程序。每个的操作步骤 是相同的。
 
-. link:install-snmpv3-sn2100-cluster.html["为交换机日志收集配置SNMPv3"]。
+. link:CSHM_log_collection.html["启用日志收集"]。
++
+使用此功能可在ONTAP 中收集与交换机相关的日志文件。
+
+. link:CSHM_snmpv3.html["配置SNMPv3以进行监控"]。
 +
 此版本支持使用SNMPv3收集交换机日志和使用交换机运行状况监控(SHM)。
 
