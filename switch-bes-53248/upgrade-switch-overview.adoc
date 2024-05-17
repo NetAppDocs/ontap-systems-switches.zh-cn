@@ -4,23 +4,25 @@ sidebar: sidebar
 keywords: BES-53248 switches, initial installation, configure new bes-53248 switch 
 summary: 在配置BES-53248集群交换机之前、请查看此过程的概述和术语。 
 ---
-= BES-53248交换机升级过程概述
+= BES-53248集群交换机升级过程概述
 :allow-uri-read: 
 :icons: font
 :imagesdir: ../media/
 
 
 [role="lead"]
-在为BES-53248集群交换机配置升级之前、请查看配置概述。
+按照以下步骤升级Broadcom BES-54328集群交换机上的EFOS软件和参考配置文件(RCF)(如果适用)。
 
-要升级BES-53248集群交换机、请执行以下步骤：
+. link:upgrade-efos-software.html["升级EFOS版本"]
++
+在BES-53248集群交换机上下载并安装以太网阵列操作系统(EFOS)软件。
 
-. link:replace-upgrade.html["准备BES-53248集群交换机以进行升级"]。准备控制器、然后安装EFOS软件、许可证和参考配置文件(RCF)。最后、验证配置。
-. link:configure-efos-software.html["安装 EFOS 软件"]。在BES-53248集群交换机上下载并安装以太网阵列操作系统(EFOS)软件。
-. link:configure-licenses.html["安装 BES-53248 集群交换机的许可证"]。或者、也可以通过购买和安装更多许可证来添加新端口。此交换机基本型号已获得16个10GbE或25GbE端口和两个100GbE端口的许可。
-. link:configure-install-rcf.html["安装参考配置文件（ RCF ）"]。在BES-53248集群交换机上安装或升级RCF、然后在应用RCF后验证端口以获取额外许可证。
-. link:configure-health-monitor.html["安装集群交换机运行状况监控器（ CSHM ）配置文件"]。安装适用于集群交换机运行状况监控的配置文件。
-. link:configure-ssh.html["在 BES-53248 集群交换机上启用 SSH"]。如果使用集群交换机运行状况监控器(Cluster Switch Health Monitor、CSHM)和日志收集功能、请在交换机上启用SSH。
-. link:configure-log-collection.html["启用日志收集功能"]。使用此功能可在ONTAP 中收集与交换机相关的日志文件。
-. link:replace-verify.html["验证配置"]。升级BES-53248集群交换机后、使用建议的命令验证操作。
+. link:upgrade-rcf.html["升级RC框架 版本"]
++
+升级BES-53248集群交换机上的RCN、然后在应用RCN后验证端口是否具有附加许可证。
+
+. link:replace-verify.html["升级后验证ONTAP集群网络"]
++
+升级适用于BES-53248集群交换机的EFOS软件或RCK后、验证ONTAP集群网络的运行状况。
+
 

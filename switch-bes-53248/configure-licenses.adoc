@@ -531,4 +531,4 @@ exit
 NOTE: 对于介于0/49到0/54之间的高速端口、取消对每个端口的注释、但仅对RCF中每个端口的一个*速度*行进行注释、如示例所示：*速度100G全双工*或*速度40G全双工*。对于介于 0/17 到 0/48 之间的低速度端口，激活相应的许可证后，取消对整个 8 端口部分的注释。
 
 .下一步是什么？
-link:configure-install-rcf.html["安装参考配置文件（ RCF ）"]。
+link:configure-install-rcf.html["安装参考配置文件（ RCF ）"] 或 link:upgrade-rcf.html["升级RC框架"]。

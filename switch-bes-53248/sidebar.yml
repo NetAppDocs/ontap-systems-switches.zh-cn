@@ -31,7 +31,7 @@ entries:
     url: "/switch-bes-53248/configure-licenses.html"
   - title: 安装RCF配置文件
     url: "/switch-bes-53248/configure-install-rcf.html"
-  - title: 启用 SSH ：
+  - title: 启用SSH以收集日志
     url: "/switch-bes-53248/configure-ssh.html"
   - title: 启用日志收集
     url: "/switch-bes-53248/CSHM_log_collection.html"
@@ -42,9 +42,11 @@ entries:
   entries:
   - title: 升级概述
     url: "/switch-bes-53248/upgrade-switch-overview.html"
-  - title: 升级交换机
-    url: "/switch-bes-53248/replace-upgrade.html"
-  - title: 验证升级配置
+  - title: 升级EFOS版本
+    url: "/switch-bes-53248/upgrade-efos-software.html"
+  - title: 升级RC框架 版本
+    url: "/switch-bes-53248/upgrade-rcf.html"
+  - title: 升级后验证集群
     url: "/switch-bes-53248/replace-verify.html"
 - title: 迁移交换机
   pdf-filename: migration_switchs_bes53248

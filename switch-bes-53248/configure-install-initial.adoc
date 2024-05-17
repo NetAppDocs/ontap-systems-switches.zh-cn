@@ -51,9 +51,6 @@ summary: 您可以使用此操作步骤执行 BES-53248 集群交换机的初始
 
 . 以身份登录到交换机 `admin` 并在系统提示输入密码时按* Enter *。默认交换机名称为*路由*。在提示符处、输入 `enable`。这样，您就可以访问交换机配置的特权执行模式。
 +
-.显示示例
-[%collapsible]
-====
 [listing, subs="+quotes"]
 ----
 User: *admin*
@@ -62,33 +59,24 @@ Password:
 Password:
 (Routing)#
 ----
-====
 . 将交换机名称更改为*CS2*。
 +
-.显示示例
-[%collapsible]
-====
 [listing, subs="+quotes"]
 ----
 (Routing)# *hostname cs2*
 (cs2)#
 ----
-====
 . 要设置静态 IP 地址，请使用 `serviceport protocol` ， `network protocol` 和 `serviceport ip` 命令，如示例所示。
 +
 默认情况下， serviceport 设置为使用 DHCP 。系统会自动分配 IP 地址，子网掩码和默认网关地址。
 
 +
-.显示示例
-[%collapsible]
-====
 [listing, subs="+quotes"]
 ----
 (cs2)# *serviceport protocol none*
 (cs2)# *network protocol none*
 (cs2)# *serviceport ip ipaddr netmask gateway*
 ----
-====
 . 使用命令验证结果：
 +
 `s如何使用 serviceport`
@@ -115,96 +103,124 @@ Burned In MAC Address.......................... D8:C4:97:71:12:3C
 ====
 . 配置域和名称服务器：
 +
-`配置`
-
+[source, cli]
+----
+ip domain name <domain_name>
+ip name server <server_name>
+----
 +
-.显示示例
-[%collapsible]
-====
 [listing, subs="+quotes"]
 ----
 (cs2)# *configure*
-(cs2) (Config)# *ip domain name company.com*
-(cs2) (Config)# *ip name server 10.10.99.1 10.10.99.2*
-(cs2) (Config)# *exit*
-(cs2) (Config)#
-----
-====
-. 是否配置 NTP 服务器？
-+
-.. 配置时区和时间同步（ SNTP ）：
-+
-`sNTP`
-
-+
-.显示示例
-[%collapsible]
-====
-[listing, subs="+quotes"]
-----
+(cs2)(Config)# *ip domain name company.com*
+(cs2)(Config)# *ip name server 10.10.99.1 10.10.99.2*
+(cs2)(Config)# *exit*
 (cs2)#
-(cs2) (Config)# *sntp client mode unicast*
-(cs2) (Config)# *sntp server 10.99.99.5*
-(cs2) (Config)# *clock timezone -7*
-(cs2) (Config)# *exit*
-(cs2) (Config)#
 ----
-====
-+
-对于EFOS 3.10.0.3及更高版本、请使用命令 `ntp`。
+. 是否配置 NTP 服务器？
 
-+
-`ntp`
 
-+
-.显示示例
-[%collapsible]
+[role="tabbed-block"]
 ====
+.EFOS 3.10.0.3及更高版本
+--
+配置时区和时间同步(NTP)：
+
+[source, cli]
+----
+sntp server <server_name>
+clock
+----
 [listing, subs="+quotes"]
 ----
-(cs2)configure
-(cs2)(Config)# *ntp ?*
-
-authenticate             Enables NTP authentication.
-authentication-key       Configure NTP authentication key.
-broadcast                Enables NTP broadcast mode.
-broadcastdelay           Configure NTP broadcast delay in microseconds.
-server                   Configure NTP server.
-source-interface         Configure the NTP source-interface.
-trusted-key              Configure NTP authentication key number for trusted time source.
-vrf                      Configure the NTP VRF.
-
-(cs2)(Config)# *ntp server ?*
-
-ip-address|ipv6-address|hostname  Enter a valid IPv4/IPv6 address or hostname.
-
+(cs2)# *configure*
 (cs2)(Config)# *ntp server 10.99.99.5*
+(cs2)(Config)# *clock timezone -7*
+(cs2)(Config)# *exit*
+(cs2)#
 ----
+--
+.EFOS 3.9.0.2及更早版本
+--
+配置时区和时间同步（ SNTP ）：
+
+[source, cli]
+----
+sntp client mode <client_mode>
+sntp server <server_name>
+clock
+----
+[listing, subs="+quotes"]
+----
+(cs2)# *configure*
+(cs2)(Config)# *sntp client mode unicast*
+(cs2)(Config)# *sntp server 10.99.99.5*
+(cs2)(Config)# *clock timezone -7*
+(cs2)(Config)# *exit*
+(cs2)#
+----
+--
 ====
-.. 手动配置时间：
-+
+. [[STEP10]]如果未在上一步中配置NTP服务器、请手动配置时间。
+
+
+[role="tabbed-block"]
+====
+.EFOS 3.10.0.3及更高版本
+--
+手动配置时间。
+
 `时钟`
 
-+
-.显示示例
-[%collapsible]
-====
 [listing, subs="+quotes"]
 ----
-(cs2)# *config*
-(cs2) (Config)# *no sntp client mode*
-(cs2) (Config)# *clock summer-time recurring 1 sun mar 02:00 1 sun nov 02:00 offset 60 zone EST*
-(cs2) (Config)# *clock timezone -5 zone EST*
-(cs2) (Config)# *clock set 07:00:00
-(cs2) (Config)# *clock set 10/20/2020*
 
-(cs2) (Config)# *show clock*
+(cs2)# *configure*
+(cs2)(Config)# *clock summer-time recurring 1 sun mar 02:00 1 sun nov 02:00 offset 60 zone EST*
+(cs2)(Config)# *clock timezone -5 zone EST*
+(cs2)(Config)# *clock set 07:00:00*
+(cs2)(Config)# *clock set 10/20/2023*
+(cs2)(Config)# *show clock*
 
-07:00:11 EST(UTC-5:00) Oct 20 2020
+07:00:11 EST(UTC-5:00) Oct 20 2023
 No time source
 
-(cs2) (Config)# *exit*
+(cs2)(Config)# *exit*
+(cs2)#
+----
+--
+.EFOS 3.9.0.2及更早版本
+--
+手动配置时间。
 
+`时钟`
+
+[listing, subs="+quotes"]
+----
+
+(cs2)# *configure*
+(cs2)(Config)# *no sntp client mode*
+(cs2)(Config)# *clock summer-time recurring 1 sun mar 02:00 1 sun nov 02:00 offset 60 zone EST*
+(cs2)(Config)# *clock timezone -5 zone EST*
+(cs2)(Config)# *clock set 07:00:00*
+(cs2)(Config)# *clock set 10/20/2023*
+(cs2)(Config)# *show clock*
+
+07:00:11 EST(UTC-5:00) Oct 20 2023
+No time source
+
+(cs2)(Config)# *exit*
+(cs2)#
+----
+--
+====
+. [[STEP11]]将正在运行的配置保存到启动配置：
++
+`写入内存`
+
++
+[listing, subs="+quotes"]
+----
 (cs2)# *write memory*
 
 This operation may take a few minutes.
@@ -216,10 +232,7 @@ Config file 'startup-config' created successfully.
 
 Configuration Saved!
 ----
-====
-
-
 
 
 .下一步是什么？
-link:configure-efos-software.html["安装 EFOS 软件"]。
+link:configure-efos-software.html["安装 EFOS 软件"]

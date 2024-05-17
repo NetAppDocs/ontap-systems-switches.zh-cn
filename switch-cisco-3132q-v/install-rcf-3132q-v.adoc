@@ -21,7 +21,7 @@ summary: 首次设置 Nexus 3132Q-V 交换机后，您可以安装 RCF 。您也
 * 交换机配置的当前备份。
 * 一个完全正常运行的集群(日志中没有错误或类似问题)。
 * 当前参考配置文件(Reference Configuration File、RCF)。
-* 安装RCF时需要与交换机建立控制台连接。
+* 安装RCF时需要与交换机建立控制台连接。如果您已使用知识库文章、则此要求是可选的 https://kb.netapp.com/on-prem/Switches/Broadcom-KBs/How_to_clear_configuration_on_a_Broadcom_interconnect_switch_while_retaining_remote_connectivity["如何在保持远程连接的同时清除Broadcom互连交换机上的配置"] 要清除配置、请事先清除。
 * link:https://mysupport.netapp.com/site/info/cisco-ethernet-switch["Cisco 以太网交换机"^]。有关支持的ONTAP 和RCF版本、请参见交换机兼容性表。请注意、RCF中的命令语法与NX-OS版本中的命令语法之间可能存在命令依赖关系。
 * https://www.cisco.com/c/en/us/support/switches/nexus-3000-series-switches/products-installation-guides-list.html["Cisco Nexus 3000 系列交换机"^]。有关Cisco交换机升级和降级过程的完整文档、请参见Cisco网站上提供的相应软件和升级指南。
 
@@ -268,7 +268,7 @@ cluster1::*>
 . 清理交换机 CS2 上的配置并执行基本设置。
 +
 
-CAUTION: 更新或应用新 RCF 时，必须擦除交换机设置并执行基本配置。您必须连接到交换机串行控制台端口才能重新设置交换机。
+CAUTION: 更新或应用新 RCF 时，必须擦除交换机设置并执行基本配置。您必须连接到交换机串行控制台端口才能重新设置交换机。如果您已使用知识库文章、则此要求是可选的 https://kb.netapp.com/on-prem/Switches/Broadcom-KBs/How_to_clear_configuration_on_a_Broadcom_interconnect_switch_while_retaining_remote_connectivity["如何在保持远程连接的同时清除Broadcom互连交换机上的配置"] 要清除配置、请事先清除。
 
 +
 .. 清理配置：

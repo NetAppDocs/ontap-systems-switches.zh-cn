@@ -37,19 +37,19 @@ BES-53248是一款裸机交换机、设计用于2到24个节点的ONTAP 集群�
 
 . link:configure-install-rcf.html["安装参考配置文件（ RCF ）"]。
 +
-在BES-53248集群交换机上安装或升级RCF、然后在应用RCF后验证端口以获取额外许可证。
-
-. link:configure-health-monitor.html["安装集群交换机运行状况监控器（ CSHM ）配置文件"]。
-+
-安装适用于集群交换机运行状况监控的配置文件。
+在BES-53248集群交换机上安装RCN、然后在应用RCN后验证端口是否具有附加许可证。
 
 . link:configure-ssh.html["在 BES-53248 集群交换机上启用 SSH"]。
 +
 如果使用集群交换机运行状况监控器(Cluster Switch Health Monitor、CSHM)和日志收集功能、请在交换机上启用SSH。
 
-. link:configure-log-collection.html["启用日志收集功能"]。
+. link:CSHM_log_collection.html["启用日志收集功能"]。
 +
 使用日志收集功能在ONTAP 中收集与交换机相关的日志文件。
+
+. link:CSHM_snmpv3.html["配置SNMPv3以进行监控"]。
++
+如果您使用集群交换机运行状况监控(CSHM)功能、请配置SNMPv3、它支持以太网交换机运行状况监控(CSHM)。
 
 
 
