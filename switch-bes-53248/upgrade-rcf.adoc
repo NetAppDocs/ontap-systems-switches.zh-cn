@@ -427,7 +427,12 @@ Are you sure you would like to reset the system? (y/n) *y*
 ----
 
 
-. 如果交换机上安装了其他端口许可证、则必须修改RCIF以配置其他获得许可的端口。请参见 link:configure-licenses.html#activate-newly-licensed-ports["激活新许可的端口"^] 了解详细信息。
+. 请注意以下事项：
++
+.. 如果交换机上安装了其他端口许可证、则必须修改RCIF以配置其他获得许可的端口。请参见 link:configure-licenses.html#activate-newly-licensed-ports["激活新许可的端口"] 了解详细信息。
+.. 记录在以前的RC框架 中所做的任何自定义设置、并将其应用于新的RC框架。例如、设置端口速度或硬编码FEC模式。
+
+
 . 使用以下传输协议之一将 RCF 复制到交换机 CS2 的启动闪存： FTP ， TFTP ， SFTP 或 SCP 。
 +
 此示例显示了使用SFTP将RCC复制到交换机CS2上的bootflash：

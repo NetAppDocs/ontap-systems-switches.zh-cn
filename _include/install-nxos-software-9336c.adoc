@@ -9,8 +9,25 @@
 .您需要的内容
 * 交换机配置的当前备份。
 * 一个完全正常运行的集群(日志中没有错误或类似问题)。
-* link:https://mysupport.netapp.com/site/info/cisco-ethernet-switch["Cisco 以太网交换机页面"^]。有关支持的ONTAP 和NX-OS版本、请参见交换机兼容性表。
-* Cisco网站上提供了适用于Cisco交换机升级和降级过程的相应软件和升级指南。请参见 https://www.cisco.com/c/en/us/support/switches/nexus-9336c-fx2-switch/model.html#CommandReferences["Cisco Nexus 9000 系列交换机"^]。
+
+
+.建议的文档
+* link:https://mysupport.netapp.com/site/info/cisco-ethernet-switch["Cisco 以太网交换机页面"^]
++
+有关支持的ONTAP 和NX-OS版本、请参见交换机兼容性表。
+
+* link:https://www.cisco.com/c/en/us/support/switches/nexus-9000-series-switches/products-installation-guides-list.html["软件升级和降级指南"^]
++
+有关Cisco交换机升级和降级过程的完整文档、请参阅Cisco网站上提供的相应软件和升级指南。
+
+* link:https://www.cisco.com/c/dam/en/us/td/docs/dcn/tools/nexus-9k3k-issu-matrix/index.html["Cisco Nexus 9000和3000升级和ISSU列表"^]
++
+提供有关在Nexus 9000系列交换机上对Cisco NX-OS软件进行中断升级/降级的信息
+基于您的当前版本和目标版本。
+
++
+在页面上，选择“*中断升级”，然后从下拉列表中选择当前版本和目标版本。
+
 
 
 .关于示例
@@ -32,30 +49,27 @@
 . 将集群交换机连接到管理网络。
 . 使用 ping 命令验证与托管 NX-OS 软件和 RCF 的服务器的连接。
 +
-.显示示例
-[%collapsible]
-====
 此示例验证交换机是否可以通过 IP 地址 172.19.2.1 访问服务器：
 
-[listing]
++
+[listing, subs="+quotes"]
 ----
-cs2# ping 172.19.2.1
+cs2# *ping 172.19.2.1*
 Pinging 172.19.2.1 with 0 bytes of data:
 
 Reply From 172.19.2.1: icmp_seq = 0. time= 5910 usec.
 ----
-====
 . 将 NX-OS 软件和 EPLD 映像复制到 Nexus 9336C-x2 交换机。
 +
 .显示示例
 [%collapsible]
 ====
-[listing]
+[listing, subs="+quotes"]
 ----
-cs2# copy sftp: bootflash: vrf management
-Enter source filename: /code/nxos.9.3.5.bin
-Enter hostname for the sftp server: 172.19.2.1
-Enter username: user1
+cs2# *copy sftp: bootflash: vrf management*
+Enter source filename: */code/nxos.9.3.5.bin*
+Enter hostname for the sftp server: *172.19.2.1*
+Enter username: *user1*
 
 Outbound-ReKey for 172.19.2.1:22
 Inbound-ReKey for 172.19.2.1:22
@@ -69,11 +83,10 @@ Copy complete, now saving to disk (please wait)...
 Copy complete.
 
 
-cs2# copy sftp: bootflash: vrf management
-
-Enter source filename: /code/n9000-epld.9.3.5.img
-Enter hostname for the sftp server: 172.19.2.1
-Enter username: user1
+cs2# *copy sftp: bootflash: vrf management*
+Enter source filename: */code/n9000-epld.9.3.5.img*
+Enter hostname for the sftp server: *172.19.2.1*
+Enter username: *user1*
 
 Outbound-ReKey for 172.19.2.1:22
 Inbound-ReKey for 172.19.2.1:22
@@ -95,9 +108,9 @@ Copy complete.
 .显示示例
 [%collapsible]
 ====
-[listing]
+[listing, subs="+quotes"]
 ----
-cs2# show version
+cs2# *show version*
 Cisco Nexus Operating System (NX-OS) Software
 TAC support: http://www.cisco.com/tac
 Copyright (C) 2002-2020, Cisco and/or its affiliates.
@@ -158,9 +171,9 @@ cs2#
 .显示示例
 [%collapsible]
 ====
-[listing]
+[listing, subs="+quotes"]
 ----
-cs2# install all nxos bootflash:nxos.9.3.5.bin
+cs2# *install all nxos bootflash:nxos.9.3.5.bin*
 
 Installer will perform compatibility check first. Please wait.
 Installer is forced disruptive
@@ -202,7 +215,7 @@ Module   Image    Running-Version(pri:alt                  New-Version         U
 
 Switch will be reloaded for disruptive upgrade.
 
-Do you want to continue with the installation (y/n)? [n] y
+Do you want to continue with the installation (y/n)? [n] *y*
 
 Install is in progress, please wait.
 
@@ -230,9 +243,9 @@ Finishing the upgrade, switch will reboot in 10 seconds.
 .显示示例
 [%collapsible]
 ====
-[listing]
+[listing, subs="+quotes"]
 ----
-cs2# show version
+cs2# *show version*
 
 Cisco Nexus Operating System (NX-OS) Software
 TAC support: http://www.cisco.com/tac
@@ -287,9 +300,9 @@ Active Package(s):
 .显示示例
 [%collapsible]
 ====
-[listing]
+[listing, subs="+quotes"]
 ----
-cs2# show version module 1 epld
+cs2# *show version module 1 epld*
 
 EPLD Device                     Version
 ---------------------------------------
@@ -301,7 +314,7 @@ GEM  FPGA                        0x2
 GEM  FPGA                        0x2
 GEM  FPGA                        0x2
 
-cs2# install epld bootflash:n9000-epld.9.3.5.img module 1
+cs2# *install epld bootflash:n9000-epld.9.3.5.img module 1*
 Compatibility check:
 Module        Type         Upgradable        Impact   Reason
 ------  ------------------ ----------------- --------- -----
@@ -316,7 +329,7 @@ Module  Type   EPLD              Running-Version   New-Version  Upg-Required
      1  SUP    MI FPGA2          0x02              0x02         No
 The above modules require upgrade.
 The switch will be reloaded at the end of the upgrade
-Do you want to continue (y/n) ?  [n] y
+Do you want to continue (y/n) ?  [n] *y*
 
 Proceeding to upgrade Modules.
 
@@ -335,12 +348,9 @@ Module 1 EPLD upgrade is successful.
 ====
 . 交换机重新启动后，重新登录并验证是否已成功加载新版本的 EPLD 。
 +
-.显示示例
-[%collapsible]
-====
-[listing]
+[listing, subs="+quotes"]
 ----
-cs2# show version module 1 epld
+cs2# *show version module 1 epld*
 
 EPLD Device                     Version
 ---------------------------------------
@@ -352,6 +362,5 @@ GEM  FPGA                        0x2
 GEM  FPGA                        0x2
 GEM  FPGA                        0x2
 ----
-====
 . 重复步骤1至8、在交换机CS1上安装NX-OS软件。
 

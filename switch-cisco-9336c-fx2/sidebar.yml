@@ -36,7 +36,7 @@ entries:
     url: "/switch-cisco-9336c-fx2/configure-software-overview-9336c-cluster.html"
   - title: 准备安装NX-OS和RCF
     url: "/switch-cisco-9336c-fx2/install-nxos-overview-9336c-cluster.html"
-  - title: 安装NX-OS软件
+  - title: 安装或升级NX-OS软件
     url: "/switch-cisco-9336c-fx2/install-nxos-software-9336c-cluster.html"
   - title: 安装或升级RCF配置文件
     url: "/switch-cisco-9336c-fx2/install-nxos-rcf-9336c-cluster.html"

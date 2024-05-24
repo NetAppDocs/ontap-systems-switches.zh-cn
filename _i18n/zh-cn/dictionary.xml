@@ -2847,7 +2847,6 @@
   <block id="7b93b1b58c897d187f4ffbd20253248f" category="list-text">交换机配置的当前备份。</block>
   <block id="3f13e146c0acc26cac7163c687a6dcb7" category="list-text">一个完全正常运行的集群(日志中没有错误或类似问题)。</block>
   <block id="0a444d29f1db9e9c818ae5dc2b30ac82" category="list-text"><block ref="f29158c7335be7b7fe0a46dd82de6ed4" category="inline-link-macro-rx"></block>。有关支持的ONTAP 和NX-OS版本、请参见交换机兼容性表。</block>
-  <block id="7314883bd7a56822f06716c652fae68d" category="list-text">Cisco网站上提供了适用于Cisco交换机升级和降级过程的相应软件和升级指南。请参见<block ref="5845557b3f8314af89ad3b7e98ed4cae" category="inline-link-rx"></block>。</block>
   <block id="feb8e402dbfa149a080f8f87ee22069f" category="list-text">节点名称包括cluster1-01、cluster1-02、cluster1-03和cluster1-04。</block>
   <block id="1a4c52cc090c463e0a3949fd93af9ca2" category="section-title">安装软件</block>
   <block id="ec8855627efbb26afaa912164ff82dbd" category="inline-link-macro">安装RCF配置文件</block>
@@ -3235,7 +3234,6 @@
   <block id="236c7e852889b030e9ecc664d388df22" category="paragraph">请参见<block ref="16a6d09025d51cb8dd3516798b3fee8a" category="inline-link-rx"></block> 有关布线的详细信息。</block>
   <block id="ebcf71eb39f7510f62abf6ea769fb245" category="paragraph">应显示每个集群LIF<block ref="b326b5062b2f0e69046810717534cb09" prefix=" " category="inline-code"></block> 适用于<block ref="53db3ce0fe0e71f06b3beb0b676b806c" prefix=" " category="inline-code"></block> 并具有<block ref="4f21ee5a18672b60f4c01e94e6be9c79" prefix=" " category="inline-code"></block> 已启动/已启动。</block>
   <block id="242de61cd0710bcf5f8d68190d392f95" category="paragraph">开始之前、请填写中的操作步骤 <block ref="7be1885a02922674638042ed6280ba6b" category="inline-link-macro-rx"></block>。</block>
-  <block id="10e3581692b8c6e1da3364026ad637f0" category="paragraph"><block ref="1112ea12139746af7574c945e24cdc23" category="inline-link-macro-rx"></block>。</block>
   <block id="1dcfb07dc80ddc7f9df74317a5f57319" category="doc">Cisco Nexus 9336C-x2交换机的文档要求</block>
   <block id="b456d34c399e9d9889e4c0ac830ecb7a" category="summary">Cisco Nexus 9336C-x2集群交换机安装和配置概述</block>
   <block id="a48d2f73b54f1c12d4039724748b5d7a" category="paragraph">Cisco Nexus 9336C-x2集群交换机是Cisco Nexus 9000平台的一部分、可以安装在NetApp系统机柜中。通过集群交换机、您可以使用两个以上的节点构建ONTAP 集群。</block>
@@ -4214,7 +4212,6 @@
   <block id="3dcdf9c7761ce642c5fe2fe73d425b75" category="list-text">将运行配置保存到启动配置：</block>
   <block id="b48ffac2fb8952951818ab2ce539c1d3" category="list-text">重新启动交换机：</block>
   <block id="d03fee12ab01ee4f556908abcba26347" category="list-text">使用SSH再次登录到交换机以完成RC框架 安装。</block>
-  <block id="a8935c8fdc41e9990bb4a300a40c1700" category="list-text">如果交换机上安装了其他端口许可证、则必须修改RCIF以配置其他获得许可的端口。请参见 <block ref="4d3fc05ce7b1ba9afd520aecf6c7f3bb" category="inline-link-macro-rx"></block> 了解详细信息。</block>
   <block id="63f7338fc9ee539e34242e8d03110038" category="list-text">使用以下传输协议之一将 RCF 复制到交换机 CS2 的启动闪存： FTP ， TFTP ， SFTP 或 SCP 。</block>
   <block id="b211f67e6e9195c32683368a53542802" category="paragraph">此示例显示了使用SFTP将RCC复制到交换机CS2上的bootflash：</block>
   <block id="c77174e35b7f7fc235a87561809ad614" category="list-text">检查中的横幅输出<block ref="db837131dc56fab41bddc52d5aff8865" prefix=" " category="inline-code"></block> 命令：您必须阅读并遵循这些说明，以确保交换机的配置和操作正确。</block>
@@ -4786,7 +4783,6 @@
   <block id="7e857aa8a0b068cc27d4b48a1e11e878" category="list-text"><block ref="7e857aa8a0b068cc27d4b48a1e11e878" category="inline-link-macro-rx"></block></block>
   <block id="32559ee483b61b36141f9b9e0f4bbfff" category="paragraph">有关NetApp 支持站点 上支持的ONTAP和RC框架 版本、请参见交换机兼容性表。请注意、RC框架 中的命令语法与特定NX-OS版本中的语法之间可能存在命令相关性。</block>
   <block id="ad0d19783ccfa19f931108b838e4b7e4" category="list-text"><block ref="ad0d19783ccfa19f931108b838e4b7e4" category="inline-link-macro-rx"></block></block>
-  <block id="6b76d59cad5464650213d5b0a1dd84d7" category="paragraph">有关Cisco交换机升级和降级过程的完整文档、请参阅Cisco网站上提供的相应软件和升级指南。</block>
   <block id="8fa9b99093c5cdfb4cebad0008ba3e8d" category="paragraph">此操作步骤 中的示例使用四个节点。这些节点使用两个 10GbE 集群互连端口 e0a 和 e0b 。请参见<block ref="e98f5e4074ae8b028a5791870586403d" category="inline-link-rx"></block> 验证平台上的集群端口是否正确。</block>
   <block id="79509ba15c2970f327dd8610e3b4628c" category="paragraph-title">使用的命令</block>
   <block id="1ad593dd61af4356ce9ba12d276c4336" category="section-title">选项1：在新交换机上安装RCF文件</block>
@@ -4941,4 +4937,22 @@
   <block id="6bdce5afe823363897535ce22aa832a0" category="sidebar">升级EFOS版本</block>
   <block id="4dc6f468164162b89152d6960a79b9d0" category="sidebar">升级RC框架 版本</block>
   <block id="24778145f75ec14966b06f3682e616c4" category="sidebar">升级后验证集群</block>
+  <block id="77486b34dc8c8bacbe90fd1ff1bd8f61" category="inline-link-macro">安装或升级NX-OS软件</block>
+  <block id="0a41823d2a109b5dbd6f2fa1f8fe6689" category="paragraph"><block ref="0a41823d2a109b5dbd6f2fa1f8fe6689" category="inline-link-macro-rx"></block></block>
+  <block id="6b10db39cfed2551fdc8db011f0b1110" category="paragraph">有关Cisco交换机升级和降级过程的完整文档、请参阅Cisco网站上提供的相应软件和升级指南。</block>
+  <block id="893355f35b6d198e6a02f43764951a73" category="paragraph">请按照此操作步骤在Nexus 9335C-NX集群交换机上安装或升级NX-OS软件。</block>
+  <block id="f29158c7335be7b7fe0a46dd82de6ed4" category="list-text"><block ref="f29158c7335be7b7fe0a46dd82de6ed4" category="inline-link-macro-rx"></block></block>
+  <block id="72372752f11bdb84bf66a4ce05081de7" category="paragraph">有关支持的ONTAP 和NX-OS版本、请参见交换机兼容性表。</block>
+  <block id="948f862fde95b79124df1918e756eb9e" category="inline-link-macro">软件升级和降级指南</block>
+  <block id="fb7a0f4817a9ebc7c1050442a67a2dc1" category="list-text"><block ref="fb7a0f4817a9ebc7c1050442a67a2dc1" category="inline-link-macro-rx"></block></block>
+  <block id="cfaaf5dbf06a0559b7026ab59fba9fd1" category="inline-link-macro">Cisco Nexus 9000和3000升级和ISSU列表</block>
+  <block id="a3380d044e745afdb22a3e808fb74586" category="list-text"><block ref="a3380d044e745afdb22a3e808fb74586" category="inline-link-macro-rx"></block></block>
+  <block id="7d48e882dc8cfcd3a44f3f59ba949595" category="paragraph">提供有关在Nexus 9000系列交换机上对Cisco NX-OS软件进行中断升级/降级的信息
+基于您的当前版本和目标版本。</block>
+  <block id="d6221baaf45cc1f4ed9ce13f32541fa8" category="paragraph">在页面上，选择“*中断升级”，然后从下拉列表中选择当前版本和目标版本。</block>
+  <block id="103347887335950e25df4c7b93bdd950" category="paragraph"><block ref="103347887335950e25df4c7b93bdd950" category="inline-link-macro-rx"></block></block>
+  <block id="cf3a2d2c139bf5c9cc87fe714bfff3b1" category="list-text">请注意以下事项：</block>
+  <block id="3ee80345befd8ba67ee5e3200beb2fd8" category="list-text">如果交换机上安装了其他端口许可证、则必须修改RCIF以配置其他获得许可的端口。请参见 <block ref="029ce138066352981401c2da3f4be7ea" category="inline-link-macro-rx"></block> 了解详细信息。</block>
+  <block id="febb316f33bb4f57154038c792c90fc0" category="list-text">记录在以前的RC框架 中所做的任何自定义设置、并将其应用于新的RC框架。例如、设置端口速度或硬编码FEC模式。</block>
+  <block id="888174b5389281588448ee75f7ac8835" category="sidebar">安装或升级NX-OS软件</block>
 </blocks>
