@@ -1407,7 +1407,6 @@
   <block id="f22797e59a4f9df1be6a7bd93495674d" category="paragraph">有关 Cisco 命令的详细信息，请参见中的相应指南<block ref="f93981dab484b88c422e924c27565997" category="inline-link-rx"></block> 指南。</block>
   <block id="3e671871acf365e09e492c2fd833d14f" category="list-text">检查 `show banner motd` 命令的横幅输出。您必须阅读并按照 * 重要说明 * 中的说明进行操作，以确保交换机的配置和操作正确无误。</block>
   <block id="0bdc52e912f1ecc312522eb07e5f2cbb" category="list-text">验证 RCF 文件是否为正确的较新版本：</block>
-  <block id="f1e487b54b162363f351d5d209fc59ac" category="paragraph">有关 Cisco 命令的详细信息，请参见中的相应指南<block ref="a793a8dbe6bab2f66743aaacba3b8ce6" category="inline-link-rx"></block> 指南。</block>
   <block id="b1d94c7c371efbe2b9e14f1fcde6d912" category="list-text">重新启动交换机 CS2 。您可以忽略交换机重新启动时在节点上报告的 " 集群端口关闭 " 事件。</block>
   <block id="50f3bfc2fb822fc9657969a594a33322" category="list-text">验证集群 LIF 是否已迁移到交换机 CS2 上托管的端口。这可能需要几秒钟的时间。</block>
   <block id="ed34b4f07dbb9044c4aec48959bb5c98" category="list-text">验证 CS1 和 CS2 之间的 ISL 是否正常运行：</block>
@@ -4325,7 +4324,6 @@
   <block id="0f2a4526602865cc9158a56028bf97de" category="summary">您可以将ONTAP集群的NetApp CN1610集群交换机无故障迁移到Cisco Nexus 9336C至FX2集群网络交换机。</block>
   <block id="4732368f30b7afd2065dc4cc0c57584f" category="doc">从NetApp CN1610集群交换机迁移到Cisco 9336C - FX2集群交换机</block>
   <block id="c8fc8239bd9ec37b7c36847589d5c8a0" category="paragraph">您可以将ONTAP集群的NetApp CN1610集群交换机迁移到Cisco 9336C至FX2集群交换机。这是一个无中断操作步骤。</block>
-  <block id="b6bd832f0692f49d1480e52df106a51f" category="paragraph">在将NetApp CN1610集群交换机更换为Cisco 9336C - FX2集群交换机时、您必须了解某些配置信息、端口连接和布线要求。</block>
   <block id="059d31543d448499bd1a9c454a8d1ebb" category="list-text">Cisco 9336C-x2</block>
   <block id="3cb2d5707cdf5f5290ac6608ce8b5278" category="paragraph">验证您的配置是否满足以下要求：</block>
   <block id="6195676dbe2277e0d3edb2d8c3a50b2e" category="list-text">Cisco 9335C－FX2集群交换机已配置并在应用了参考配置文件(RCF)的正确NX-OS版本下运行。</block>
@@ -4931,8 +4929,6 @@
   <block id="f35806549fff4250f43cb0acde28b920" category="list-text">重新启动交换机并验证运行配置是否正确。</block>
   <block id="7271f66e0cb527adb71302d7377910b7" category="list-text">[[Step21]]对交换机CS1重复步骤1到20。</block>
   <block id="9b241cba96d2cafd3c0f5c9f7bf12560" category="list-text">。验证集群 LIF 是否已还原到其主端口：</block>
-  <block id="de4042aa676f131e04bcf7d15edc5af9" category="list-text">安装RCF时需要与交换机建立控制台连接。如果您已使用知识库文章、则此要求是可选的<block ref="f179a3654c26841201eb04f568431742" category="inline-link-rx"></block> 要清除配置、请事先清除。</block>
-  <block id="ced0e2e58f0a61a7676c9c092295acb0" category="admonition">更新或应用新 RCF 时，必须擦除交换机设置并执行基本配置。您必须连接到交换机串行控制台端口才能重新设置交换机。如果您已使用知识库文章、则此要求是可选的<block ref="f179a3654c26841201eb04f568431742" category="inline-link-rx"></block> 要清除配置、请事先清除。</block>
   <block id="ae0a7918183889538c2a432f5a54afa6" category="sidebar">升级交换机</block>
   <block id="6bdce5afe823363897535ce22aa832a0" category="sidebar">升级EFOS版本</block>
   <block id="4dc6f468164162b89152d6960a79b9d0" category="sidebar">升级RC框架 版本</block>
@@ -4955,4 +4951,10 @@
   <block id="3ee80345befd8ba67ee5e3200beb2fd8" category="list-text">如果交换机上安装了其他端口许可证、则必须修改RCIF以配置其他获得许可的端口。请参见 <block ref="029ce138066352981401c2da3f4be7ea" category="inline-link-macro-rx"></block> 了解详细信息。</block>
   <block id="febb316f33bb4f57154038c792c90fc0" category="list-text">记录在以前的RC框架 中所做的任何自定义设置、并将其应用于新的RC框架。例如、设置端口速度或硬编码FEC模式。</block>
   <block id="888174b5389281588448ee75f7ac8835" category="sidebar">安装或升级NX-OS软件</block>
+  <block id="a8294f2ff72d57253432505426ab555f" category="list-text">您已验证交换机序列号、以确保迁移的交换机正确无误。</block>
+  <block id="f4212fffa5e0c42b93f12013fbeaaa93" category="paragraph">在将NetApp CN1610集群交换机更换为Cisco 9336C - FX2集群交换机时、您必须了解某些配置信息、端口连接和布线要求。此外、请验证交换机序列号以确保迁移的交换机正确无误。</block>
+  <block id="87a5e94476d6bdcbe9c972165d34090a" category="list-text">您已验证交换机序列号、以确保更换了正确的交换机。</block>
+  <block id="2d6eb81058fa2415eb5247e2c14c5452" category="inline-link">如何在保持远程连接的同时清除Cisco互连交换机上的配置</block>
+  <block id="9fa76c217cee95f26808d0c64f43dcda" category="list-text">安装RC框架 时、需要与交换机建立控制台连接。如果您已使用知识库文章、则此要求是可选的<block ref="3e8c2406d6e0211f305d1081c755846f" category="inline-link-rx"></block> 要清除配置、请事先清除。</block>
+  <block id="83ad3b6efa173a2560e396a36d6ac2f0" category="admonition">更新或应用新 RCF 时，必须擦除交换机设置并执行基本配置。您必须*连接到交换机串行控制台端口才能重新设置交换机。但是、如果您使用了知识库文章、则此要求是可选的<block ref="3e8c2406d6e0211f305d1081c755846f" category="inline-link-rx"></block> 要清除配置、请事先清除。</block>
 </blocks>
