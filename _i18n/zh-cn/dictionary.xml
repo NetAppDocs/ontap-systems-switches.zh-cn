@@ -3921,7 +3921,6 @@
   <block id="ce140d6d1921435e3df40a72b6d032f4" category="sidebar">从CN1610交换机迁移</block>
   <block id="ac0586dfb2126d95d9be6378c5f70512" category="sidebar">从无交换机集群迁移到有交换机集群</block>
   <block id="703c0fedc12db69e340d7c2f3de0d764" category="sidebar">更换交换机</block>
-  <block id="4e8b0737e5a683e7ada812ad2005b768" category="sidebar">更换CN3132Q-V交换机</block>
   <block id="88af8e6a19edbffd16db05ce4d139e3f" category="sidebar">从CN1610集群交换机迁移</block>
   <block id="c40e2faa3e9cd894cbecfcf038ffe999" category="sidebar">从Cisco Nexus 5596集群交换机迁移</block>
   <block id="ae5073b7cedbbc7111f9e806343efc7e" category="sidebar">从双节点无交换机集群迁移</block>
@@ -4957,4 +4956,16 @@
   <block id="2d6eb81058fa2415eb5247e2c14c5452" category="inline-link">如何在保持远程连接的同时清除Cisco互连交换机上的配置</block>
   <block id="9fa76c217cee95f26808d0c64f43dcda" category="list-text">安装RC框架 时、需要与交换机建立控制台连接。如果您已使用知识库文章、则此要求是可选的<block ref="3e8c2406d6e0211f305d1081c755846f" category="inline-link-rx"></block> 要清除配置、请事先清除。</block>
   <block id="83ad3b6efa173a2560e396a36d6ac2f0" category="admonition">更新或应用新 RCF 时，必须擦除交换机设置并执行基本配置。您必须*连接到交换机串行控制台端口才能重新设置交换机。但是、如果您使用了知识库文章、则此要求是可选的<block ref="3e8c2406d6e0211f305d1081c755846f" category="inline-link-rx"></block> 要清除配置、请事先清除。</block>
+  <block id="bf2e41df1fe93346157f93aa59a48dd6" category="section-title">启用控制台日志记录</block>
+  <block id="a1f2e4cbaec8fa16860e427a059b89aa" category="paragraph">NetApp强烈建议您在使用的设备上启用控制台日志记录、并在更换交换机时采取以下措施：</block>
+  <block id="7a15fb36e18a42514f358533c9af4dae" category="list-text">在维护期间保持AutoSupport处于启用状态。</block>
+  <block id="c0aa3599fdcfc9e5e35fab592ea612f0" category="inline-link">SU92：如何禁止在计划维护时段自动创建案例</block>
+  <block id="5c0d62310efa13f4e4c4ae41a7330f95" category="list-text">在维护前后触发维护AutoSupport、以便在维护期间禁用案例创建。请参见此知识库文章<block ref="9889375293ffeecac54c58b8cad125b2" category="inline-link-rx"></block> 了解更多详细信息。</block>
+  <block id="fb42fce84a1f5a648367e2e027a6c941" category="inline-link">如何配置PuTTY以优化与ONTAP系统的连接</block>
+  <block id="1d01c6e5d28fb955441f4f9d1b4678b7" category="list-text">为所有命令行界面会话启用会话日志记录。有关如何启用会话日志记录的说明、请查看此知识库文章中的"记录会话输出"一节<block ref="969f6e4e41456399a13556dea44fc607" category="inline-link-rx"></block>。</block>
+  <block id="05e512c6037fe1bb54e099238cc8ce62" category="section-title">由于TCAM资源问题、端口未链接</block>
+  <block id="f45e0e2e020e174164fe5413760ef4e4" category="paragraph">在9336C)交换机上，在该交换机使用的配置中配置的主内容可存储器(TCAM)资源已用尽。</block>
+  <block id="50c3c6ae36d53e402b88d9a6222029a0" category="inline-link">由于TCAM资源的原因、Cisco Nexus 9334C-算 上的端口未链接</block>
+  <block id="293da448e2520766812e980a00821699" category="paragraph">请参见知识库文章<block ref="882efca0483fcef9d53236590b1d74e9" category="inline-link-rx"></block> 有关如何解决此问题描述的详细信息。</block>
+  <block id="73f7e96895a0ddf72a3e199ac5ae2247" category="sidebar">更换3132Q-V开关</block>
 </blocks>

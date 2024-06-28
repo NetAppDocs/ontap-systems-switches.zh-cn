@@ -43,6 +43,17 @@ summary: 在集群网络中更换 Broadcom 支持的故障 BES-53248 集群交�
 
 
 
+== 启用控制台日志记录
+
+NetApp强烈建议您在使用的设备上启用控制台日志记录、并在更换交换机时采取以下措施：
+
+* 在维护期间保持AutoSupport处于启用状态。
+* 在维护前后触发维护AutoSupport、以便在维护期间禁用案例创建。请参见此知识库文章 https://kb.netapp.com/Support_Bulletins/Customer_Bulletins/SU92["SU92：如何禁止在计划维护时段自动创建案例"^] 了解更多详细信息。
+* 为所有命令行界面会话启用会话日志记录。有关如何启用会话日志记录的说明、请查看此知识库文章中的"记录会话输出"一节 https://kb.netapp.com/on-prem/ontap/Ontap_OS/OS-KBs/How_to_configure_PuTTY_for_optimal_connectivity_to_ONTAP_systems["如何配置PuTTY以优化与ONTAP系统的连接"^]。
+
+
+
+
 == 有关详细信息 ...
 
 * https://mysupport.netapp.com/["NetApp 支持站点"^]

@@ -51,7 +51,7 @@ entries:
   entries:
   - title: 更换要求
     url: "/switch-cisco-3132q-v/switch-requirements.html"
-  - title: 更换CN3132Q-V交换机
+  - title: 更换3132Q-V开关
     url: "/switch-cisco-3132q-v/replace-cisco-nexus-3132q-v.html"
   - title: 将集群交换机更换为无交换机连接
     url: "/switch-cisco-3132q-v/migrate-to-switchless-cluster-interconnect.html"

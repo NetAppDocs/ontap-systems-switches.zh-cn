@@ -13,6 +13,10 @@ summary: 您可以通过执行一系列特定任务来无系统地更换出现�
 [role="lead"]
 按照以下步骤更换集群网络中有故障的NetApp CN1610交换机。这是无中断操作步骤(NDU)。
 
+
+
+== 查看要求
+
 .您需要的内容
 在执行交换机更换之前、在当前环境中以及在现有集群和网络基础架构的替代交换机上执行交换机更换之前、必须满足以下条件：
 
@@ -21,6 +25,21 @@ summary: 您可以通过执行一系列特定任务来无系统地更换出现�
 * 所有集群逻辑接口(Logical Interface、)都必须已启动且尚未迁移。
 * ONTAP集群 `ping-cluster -node node1` 命令必须指示所有路径上的基本连接和大于PTU的通信均已成功。
 
+
+
+
+== 启用控制台日志记录
+
+NetApp强烈建议您在使用的设备上启用控制台日志记录、并在更换交换机时采取以下措施：
+
+* 在维护期间保持AutoSupport处于启用状态。
+* 在维护前后触发维护AutoSupport、以便在维护期间禁用案例创建。请参见此知识库文章 https://kb.netapp.com/Support_Bulletins/Customer_Bulletins/SU92["SU92：如何禁止在计划维护时段自动创建案例"^] 了解更多详细信息。
+* 为所有命令行界面会话启用会话日志记录。有关如何启用会话日志记录的说明、请查看此知识库文章中的"记录会话输出"一节 https://kb.netapp.com/on-prem/ontap/Ontap_OS/OS-KBs/How_to_configure_PuTTY_for_optimal_connectivity_to_ONTAP_systems["如何配置PuTTY以优化与ONTAP系统的连接"^]。
+
+
+
+
+== 更换交换机
 
 .关于此任务
 您必须执行命令，从托管集群 LIF 的节点迁移集群 LIF 。

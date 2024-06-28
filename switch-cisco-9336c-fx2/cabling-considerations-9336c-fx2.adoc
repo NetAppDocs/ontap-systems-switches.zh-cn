@@ -54,3 +54,10 @@ FAS2820 e0a和e0b端口需要更改FEC配置、才能与9336 C至FX2交换机端
 *Save the changes:*
 (cs1)# *copy running-config startup-config*
 ----
+
+
+== 由于TCAM资源问题、端口未链接
+
+在9336C)交换机上，在该交换机使用的配置中配置的主内容可存储器(TCAM)资源已用尽。
+
+请参见知识库文章 https://kb.netapp.com/on-prem/Switches/Cisco-KBs/Ports_do_not_link_up_on_Cisco_Nexus_9336C-FX2_due_to_TCAM_resources["由于TCAM资源的原因、Cisco Nexus 9334C-算 上的端口未链接"^] 有关如何解决此问题描述的详细信息。
