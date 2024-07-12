@@ -4124,7 +4124,6 @@
   <block id="bd399ae0cf713e575ca26baedc0a896c" category="paragraph">使用NVIDIA SN2100交换机(X190006)随附的标准支架安装在NVIDIA双/单交换机机柜中。</block>
   <block id="1e247ada2e98c5879849d746a52a4241" category="paragraph">NVIDIA SN2100交换机是运行Cumulus Linux的10/C5/40/100GbE交换机。交换机支持以下功能：</block>
   <block id="c19b9518d51b517376f0fe9109f66e90" category="paragraph">40/100GbE集群端口节点</block>
-  <block id="45a21206fd2396fdd6a59132a2a6d3a7" category="paragraph">40/100GbE交换机间链路(ISL)端口</block>
   <block id="509e4d6df8b93cb5deb86271a6326df2" category="section-title">光纤连接的链路连接延迟</block>
   <block id="50137c9f3120823f7ba1d1983c48e011" category="paragraph">如果链接延迟超过五秒、则Cumulus Linux 5.4及更高版本支持快速链接。您可以使用配置链接<block ref="0c14f6e7a82b0926c666f7fac383436a" prefix=" " category="inline-code"></block> 命令、如下所示：</block>
   <block id="68a8de419a9558e300d05a15cc5b2aec" category="section-title">支持铜缆连接</block>
@@ -4968,4 +4967,37 @@
   <block id="50c3c6ae36d53e402b88d9a6222029a0" category="inline-link">由于TCAM资源的原因、Cisco Nexus 9334C-算 上的端口未链接</block>
   <block id="293da448e2520766812e980a00821699" category="paragraph">请参见知识库文章<block ref="882efca0483fcef9d53236590b1d74e9" category="inline-link-rx"></block> 有关如何解决此问题描述的详细信息。</block>
   <block id="73f7e96895a0ddf72a3e199ac5ae2247" category="sidebar">更换3132Q-V开关</block>
+  <block id="dd821578b18dec3b3c49fbc2a36950e0" category="paragraph">100GbE交换机间链路(ISL)端口</block>
+  <block id="c2f363b557f11042735dbadbfbd534d3" category="summary">您可以使用此过程为监控NVIDIA SN2100集群交换机的集群交换机运行状况安装适用的配置文件。</block>
+  <block id="1972298f5ec1d5e6b5fe96dd4ba6f4d3" category="doc">安装以太网交换机运行状况监控器配置文件</block>
+  <block id="65c65b976cfab8bcc3a5fa282181ca5b" category="paragraph">按照以下过程安装适用于监控NVIDIA集群交换机以太网交换机运行状况的配置文件。支持的型号包括：</block>
+  <block id="164a0cea1831b06a7fa67aab2e9a5d98" category="admonition">此安装过程适用于ONTAP 9.10.1及更高版本。</block>
+  <block id="dd7fa1380804217cf2f3af00bb585752" category="list-text">运行并检查是否为您的型号显示了*OTER*，以验证您是否需要下载配置文件<block ref="db3929a8e897b02a87f7f4bc42f38fc1" prefix=" " category="inline-code"></block> 。</block>
+  <block id="3953f2c946249817a198b9dd2d604aa4" category="paragraph">如果您的型号在应用配置文件后仍显示*OTA*，请与NetApp支持联系。</block>
+  <block id="294206f940bbd4f3ec7f79996b76c616" category="list-text">确保ONTAP 集群已启动且正在运行。</block>
+  <block id="c2c0a6bc429d35a2d508307c899f4398" category="list-text">启用SSH以使用CSHM中提供的所有功能。</block>
+  <block id="0cfea6e2910f570cd17c24fb74c90378" category="inline-link">NVIDIA以太网交换机</block>
+  <block id="363c0c7cf08dfd2752b66f1fc2506a0a" category="list-text">根据相应的ONTAP版本下载以太网交换机运行状况监控器配置zip文件。此文件可从页面访问<block ref="308b26f7678235b6ac179b42eaa22162" category="inline-link-rx"></block> 。</block>
+  <block id="68de66680b1bf357acb893d8dfe0f0bc" category="list-text">在NVIDIA SN2100软件下载页面上，选择*Nvidia CSHM File*。</block>
+  <block id="6b98b47c20b7ca9e9919fa3a77bf7814" category="list-text">在Cau/必 读页面上、选中复选框以达成一致。</block>
+  <block id="c36caaf00f9a67804cb39871b93b4fb1" category="list-text">在“最终用户许可协议”页面上，选中复选框以同意，然后单击*Accept &amp; Continue*。</block>
+  <block id="e5e0b87b73538c14eb1223ba2685b479" category="list-text">在Nvidia CSHM文件-下载页面上、选择适用的配置文件。可以使用以下文件：</block>
+  <block id="4b96de8aec25594d2021f91d86aa38cb" category="open-title">ONTAP 9.151及更高版本</block>
+  <block id="b834fb250d0f1e06556ff2af9ce370ff" category="list-text">X190006-PE.zip</block>
+  <block id="33ab7322815a985fdb6cbba64b9ffda9" category="list-text">X190006-PI.zip</block>
+  <block id="9fc9e8ea7a5cdfe68b4528fb16936bf1" category="open-title">ONTAP 9.11.1至9.14.1</block>
+  <block id="00032ac6acd20eb8310604aa0ac6a200" category="list-text">X190006-PE_PRIOR_9.15.1.zip</block>
+  <block id="6a9e7f50780a2f2b4e2b5999c1b1ae2b" category="list-text">X190006-PI_PRIOR_9.15.1.zip</block>
+  <block id="3e5315d19591c6790a6c062127cf9a8e" category="list-text">[[STEP2]]将适用的zip文件上传到内部Web服务器。</block>
+  <block id="e319ecf1cb942a0710da7d0d525af1db" category="list-text">从集群中的一个ONTAP系统访问高级模式设置。</block>
+  <block id="4072831dc74599297a173c0e1d86b538" category="list-text">运行交换机运行状况监控器配置命令。</block>
+  <block id="bdfd509ce621aa984c1f0a9cdf92ae88" category="list-text">确认对于您的ONTAP版本、命令输出以以下文本结尾：</block>
+  <block id="ff62e28086747c31b6e4bbd897aaaf54" category="paragraph">以太网交换机运行状况监控已安装配置文件。</block>
+  <block id="3f54ec95c3fc7563a38988f9c2a7a823" category="paragraph">shm已安装配置文件。</block>
+  <block id="ab8296c5ef7a7b056b384680f89a9379" category="open-title">ONTAP 9.10.1.</block>
+  <block id="74d14036e96594d67869316b84c6d566" category="paragraph">已成功处理CSHM下载的软件包。</block>
+  <block id="89c6b3e5f896b8d329ae4e4fe91cc812" category="paragraph">如果发生错误，请联系 NetApp 支持部门。</block>
+  <block id="a6fd16052b19595c024aa4e5bcb0b366" category="list-text">[[step 6]]等待以太网交换机运行状况监控器轮询间隔两次(通过运行找到<block ref="c9e6cd6140c9d8677df821c7cce2aac1" prefix=" " category="inline-code"></block>)，然后再完成下一步。</block>
+  <block id="c947c5faccdddd0a9a87be7895f50511" category="list-text">在ONTAP系统上运行命令<block ref="db3929a8e897b02a87f7f4bc42f38fc1" prefix=" " category="inline-code"></block> 、并确保发现集群交换机时、监控字段设置为*真*、序列号字段未显示*未知*。</block>
+  <block id="b954609be582bc6760c67ae6e58cd7a9" category="sidebar">安装CSHM配置文件</block>
 </blocks>
