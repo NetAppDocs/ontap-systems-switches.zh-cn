@@ -422,7 +422,7 @@ NOTE: 有关在升级RC框架 后如何使10GbE端口联机的步骤、请参见
 cs2# copy running-config startup-config [########################################] 100% Copy complete
 ----
 ====
-. 重新启动交换机 CS2 。您可以忽略交换机重新启动时在节点上报告的 " 集群端口关闭 " 事件。
+. 重新启动交换机 CS2 。您可以忽略交换机重新启动时节点上报告的"集群端口关闭"事件以及错误 `% Invalid command at '^' marker` 输出。
 +
 .显示示例
 [%collapsible]
@@ -433,7 +433,7 @@ cs2# *reload*
 This command will reboot the system. (y/n)?  [n] *y*
 ----
 ====
-. 应用相同的 RCF 并再次保存运行配置。
+. 应用相同的 RCF 并再次保存运行配置。这是必需的、因为RCC利用QoS、并且需要重新配置TCAM、这涉及到加载RCC两次、交换机在这两次之间重新启动。
 +
 .显示示例
 [%collapsible]

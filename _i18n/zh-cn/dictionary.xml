@@ -5000,4 +5000,6 @@
   <block id="a6fd16052b19595c024aa4e5bcb0b366" category="list-text">[[step 6]]等待以太网交换机运行状况监控器轮询间隔两次(通过运行找到<block ref="c9e6cd6140c9d8677df821c7cce2aac1" prefix=" " category="inline-code"></block>)，然后再完成下一步。</block>
   <block id="c947c5faccdddd0a9a87be7895f50511" category="list-text">在ONTAP系统上运行命令<block ref="db3929a8e897b02a87f7f4bc42f38fc1" prefix=" " category="inline-code"></block> 、并确保发现集群交换机时、监控字段设置为*真*、序列号字段未显示*未知*。</block>
   <block id="b954609be582bc6760c67ae6e58cd7a9" category="sidebar">安装CSHM配置文件</block>
+  <block id="31c020d11cc321faf9c0793a662d1e53" category="list-text">重新启动交换机 CS2 。您可以忽略交换机重新启动时节点上报告的"集群端口关闭"事件以及错误<block ref="a9e34a08c2be7359540cbf7337dc5ce9" prefix=" " category="inline-code"></block> 输出。</block>
+  <block id="db82c22b5434946b4bc226a3b9b7888a" category="list-text">应用相同的 RCF 并再次保存运行配置。这是必需的、因为RCC利用QoS、并且需要重新配置TCAM、这涉及到加载RCC两次、交换机在这两次之间重新启动。</block>
 </blocks>
