@@ -833,60 +833,11 @@ RPC status:
 1 paths up, 0 paths down (ucp check)
 ----
 ====
-. 启用集群交换机运行状况监控器日志收集功能以收集交换机相关的日志文件：
-+
-`ssystem cluster-switch log setup-password`
-
-+
-`ssystem cluster-switch log enable-Collection`
-
-+
-.显示示例
-[%collapsible]
-====
-[listing]
-----
-cluster::*> **system cluster-switch log setup-password**
-Enter the switch name: <return>
-The switch name entered is not recognized.
-Choose from the following list:
-C1
-C2
-
-cluster::*> system cluster-switch log setup-password
-
-Enter the switch name: C1
-RSA key fingerprint is e5:8b:c6:dc:e2:18:18:09:36:63:d9:63:dd:03:d9:cc
-Do you want to continue? {y|n}::[n] y
-
-Enter the password: <enter switch password>
-Enter the password again: <enter switch password>
-
-cluster::*> system cluster-switch log setup-password
-
-Enter the switch name: C2
-RSA key fingerprint is 57:49:86:a1:b9:80:6a:61:9a:86:8e:3c:e3:b7:1f:b1
-Do you want to continue? {y|n}:: [n] y
-
-Enter the password: <enter switch password>
-Enter the password again: <enter switch password>
-
-cluster::*> system cluster-switch log enable-collection
-
-Do you want to enable cluster log collection for all nodes in the cluster?
-{y|n}: [n] y
-
-Enabling cluster switch log collection.
-
-cluster::*>
-----
-====
-+
-
-NOTE: 如果其中任何一个命令返回错误，请联系 NetApp 支持部门。
-
 . 如果禁止自动创建案例，请通过调用 AutoSupport 消息重新启用它：
 +
 `ssystem node AutoSupport invoke -node * -type all -message MAINT=end`
 
 
+
+.下一步是什么？
+link:../switch-cshm/config-overview.html["配置交换机运行状况监控"]

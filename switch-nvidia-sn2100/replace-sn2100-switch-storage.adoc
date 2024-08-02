@@ -213,88 +213,12 @@ shelf   id    remote-port     remote-device
 cluster1::*>
 ----
 ====
-. 为以太网交换机运行状况监控器日志收集功能创建密码：
+. 将权限级别重新更改为 admin ：
 +
-`s系统交换机以太网日志设置密码`
+`set -privilege admin`
 
+. 如果禁止自动创建案例，请通过调用 AutoSupport 消息重新启用它：
 +
-.显示示例
-[%collapsible]
-====
-[listing, subs="+quotes"]
-----
-cluster1::*> *system switch ethernet log setup-password*
-Enter the switch name: *<return>*
-The switch name entered is not recognized.
-Choose from the following list:
-*sw1*
-*nsw2*
+`ssystem node AutoSupport invoke -node * -type all -message MAINT=end`
 
-cluster1::*> *system switch ethernet log setup-password*
-
-Enter the switch name: *csw1*
-Would you like to specify a user other than admin for log collection? {y|n}: *n*
-
-Enter the password: *<enter switch password>*
-Enter the password again: *<enter switch password>*
-
-cluster1::*> *system switch ethernet log setup-password*
-
-Enter the switch name: *nsw2*
-Would you like to specify a user other than admin for log collection? {y|n}: *n*
-
-Enter the password: *<enter switch password>*
-Enter the password again: *<enter switch password>*
-----
-====
-. 启用以太网交换机运行状况监控器日志收集功能。
-+
-`system switch ethernet log modify -device _<switch-name>_ -log-request true`
-
-+
-.显示示例
-[%collapsible]
-====
-[listing, subs="+quotes"]
-----
-cluster1::*> *system switch ethernet log modify -device cs1 -log-request true*
-
-Do you want to modify the cluster switch log collection configuration? {y|n}: [n] *y*
-
-Enabling cluster switch log collection.
-
-cluster1::*> *system switch ethernet log modify -device cs2 -log-request true*
-
-Do you want to modify the cluster switch log collection configuration? {y|n}: [n] *y*
-
-Enabling cluster switch log collection.
-----
-====
-+
-等待10分钟、然后检查日志收集是否完成：
-
-+
-`system switch ethernet log show`
-
-+
-.显示示例
-[%collapsible]
-====
-[listing, subs="+quotes"]
-----
-cluster1::*> system switch ethernet log show
-Log Collection Enabled: true
-
-Index  Switch                       Log Timestamp        Status
------- ---------------------------- -------------------  ---------    
-1      sw1  (b8:ce:f6:19:1b:42)     4/29/2022 03:05:25   complete   
-2      nsw2 (b8:ce:f6:19:1b:96)     4/29/2022 03:07:42   complete
-----
-====
-+
-
-CAUTION: 如果其中任一命令返回错误或日志收集未完成、请联系NetApp支持部门。
-
-. 将权限级别重新更改为 admin ： `set -privilege admin`
-. 如果禁止自动创建案例，请通过调用 AutoSupport 消息重新启用此功能： `ssystem node AutoSupport invoke -node * -type all -message MAINT=end`
 

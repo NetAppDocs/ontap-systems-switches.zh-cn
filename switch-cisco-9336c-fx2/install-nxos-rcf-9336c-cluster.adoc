@@ -13,6 +13,64 @@ summary: 您可以在首次设置 Nexus 9336C-fx2 交换机后安装 RCF 。您�
 [role="lead"]
 首次设置Nexus 9334C)交换机后，您可以安装参考配置文件(RF)。如果交换机上安装了现有版本的RCF文件、则可以升级RCF版本。
 
+.可用的RC框架 配置
+下表介绍了可用于不同配置的RCF。选择适用于您的配置的RC框架。
+
+有关特定端口和VLAN使用情况的详细信息、请参阅RC框架 中的横幅和重要说明部分。
+
+[cols="1,2"]
+|===
+| RC框架 名称 | Description 
+
+
+ a| 
+2-cluster-ha-Breakout
+ a| 
+支持两个ONTAP集群、其中至少包含八个节点、包括使用共享集群+HA端口的节点。
+
+
+
+ a| 
+4-Cluster-HA-Breakout
+ a| 
+支持四个ONTAP集群、其中至少包含四个节点、包括使用共享集群+HA端口的节点。
+
+
+
+ a| 
+1-Cluster-HA
+ a| 
+所有端口均配置为40/100GbE。支持端口上的共享集群/HA流量。AFF A320、AFF A250和FAS500f系统需要。此外、所有端口均可用作专用集群端口。
+
+
+
+ a| 
+1-Cluster-HA-Breakout
+ a| 
+端口配置为4个10GbE分支端口、4个25GbE分支端口(100GbE交换机上的RCF1.6以上)和40/100GbE端口。支持在使用共享集群/HA端口的节点的端口上传输共享集群/HA流量：AFF A320、AFF A250和FAS500f系统。此外、所有端口均可用作专用集群端口。
+
+
+
+ a| 
+集群-高可用性-存储
+ a| 
+端口配置为40/100GbE用于集群+HA、4x10GbE分支用于集群、4x25GbE分支用于集群+HA、100GbE用于每个存储HA对。
+
+
+
+ a| 
+集群
+ a| 
+具有4个10GbE端口(分支)和40/100GbE端口的不同分配的两种RC框架。除AFF A320、AFF A250和FAS500f系统外、所有FAS/AFA节点均受支持。
+
+
+
+ a| 
+存储
+ a| 
+所有端口均配置为使用100GbE NVMe存储连接。
+
+|===
 .建议的文档
 * link:https://mysupport.netapp.com/site/info/cisco-ethernet-switch["Cisco以太网交换机(NSS)"^]
 +
@@ -403,6 +461,9 @@ NetApp建议您使用System Manager设置新集群。
 System Manager为集群设置和配置提供了一个简单易行的工作流、其中包括分配节点管理IP地址、初始化集群、创建本地层、配置协议以及配置初始存储。
 
 转至 https://docs.netapp.com/us-en/ontap/task_configure_ontap.html["使用System Manager在新集群上配置ONTAP"] 有关设置说明、请参见。
+
+.下一步是什么？
+link:../switch-cisco-9336c-fx2-storage/configure-ssh.html["启用 SSH ："](英文)
 
 
 
@@ -1266,3 +1327,6 @@ RPC status:
 ----
 ====
 
+
+.下一步是什么？
+link:../switch-cisco-9336c-fx2-storage/configure-ssh.html["启用 SSH ："](英文)

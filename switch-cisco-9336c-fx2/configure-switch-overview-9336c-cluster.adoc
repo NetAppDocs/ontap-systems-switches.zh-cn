@@ -19,13 +19,38 @@ Cisco Nexus 9336C-x2集群交换机是Cisco Nexus 9000平台的一部分、可�
 
 要在运行ONTAP 的系统上初始配置Cisco Nexus 9336C-FX2交换机、请执行以下步骤：
 
-. link:setup-worksheet-9336c-cluster.html["填写Cisco Nexus 9336C-x2布线工作表"]。示例布线工作表提供了从交换机到控制器的建议端口分配示例。空白工作表提供了一个模板、可用于设置集群。
-. link:install-switch-9336c-cluster.html["安装交换机"]。设置交换机硬件。
-. link:setup-switch-9336c-cluster.html["配置9336C-x2集群交换机"]。设置Cisco Nexus 9336C-x2交换机。
-. link:install-switch-and-passthrough-panel-9336c-cluster.html["在NetApp机柜中安装Cisco Nexus 9336C-x2交换机"]。根据您的配置、您可以将Cisco Nexus 9336C-FX2交换机和直通面板安装在NetApp机柜中、并使用交换机附带的标准支架。
-. link:install-nxos-overview-9336c-cluster.html["准备安装NX-OS软件和RCF"]。请按照准备安装Cisco NX-OS软件和参考配置文件(RCF)的初步过程进行操作。
-. link:install-nxos-software-9336c-cluster.html["安装 NX-OS 软件"]。在Nexus 9336C-FX2集群交换机上安装NX-OS软件。
-. link:install-nxos-rcf-9336c-cluster.html["安装参考配置文件（ RCF ）"]。首次设置Nexus 9336C-x2交换机后、安装RCF。您也可以使用此操作步骤升级 RCF 版本。
+. link:setup-worksheet-9336c-cluster.html["填写Cisco Nexus 9336C-x2布线工作表"](英文)
++
+示例布线工作表提供了从交换机到控制器的建议端口分配示例。空白工作表提供了一个模板、可用于设置集群。
+
+. link:install-switch-9336c-cluster.html["安装交换机"](英文)
++
+设置交换机硬件。
+
+. link:setup-switch-9336c-cluster.html["配置9336C-x2集群交换机"](英文)
++
+设置Cisco Nexus 9336C-x2交换机。
+
+. link:install-switch-and-passthrough-panel-9336c-cluster.html["在NetApp机柜中安装Cisco Nexus 9336C-x2交换机"](英文)
++
+根据您的配置、您可以将Cisco Nexus 9336C-FX2交换机和直通面板安装在NetApp机柜中、并使用交换机附带的标准支架。
+
+. link:install-nxos-overview-9336c-cluster.html["准备安装NX-OS软件和RC框架"](英文)
++
+请按照准备安装Cisco NX-OS软件和参考配置文件(RCF)的初步过程进行操作。
+
+. link:install-nxos-software-9336c-cluster.html["安装或升级NX-OS软件"](英文)
++
+在Nexus 9335C-NX集群交换机上安装或升级NX-OS软件。
+
+. link:install-nxos-rcf-9336c-cluster.html["安装或升级RC框架"](英文)
++
+在首次设置Nexus 9334c-拧 动交换机后、安装或升级RC框架。您也可以使用此操作步骤升级 RCF 版本。
+
+. link:configure-ssh.html["在Nexus 9334C-966集群交换机上启用SSH"](英文)
++
+如果使用以太网交换机运行状况监控器(CSHM)和日志收集功能、请在交换机上启用SSH。
+
 
 
 

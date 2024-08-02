@@ -614,4 +614,4 @@ cluster1::*> system node autosupport invoke -node \* -type all -message MAINT=EN
 
 
 .下一步是什么？
-迁移完成后、您可能需要安装所需的配置文件、以支持BES-53248集群交换机的以太网交换机运行状况监控器(CSHM)。请参见 link:CSHM_log_collection.html["启用日志收集"]。
+link:../switch-cshm/config-overview.html["配置交换机运行状况监控"](英文)

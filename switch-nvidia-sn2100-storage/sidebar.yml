@@ -7,44 +7,40 @@ entries:
   pdf-filename: Overview _sn2100-storage
   entries:
   - title: 配置概述
-    url: "/switch-nvidia-sn2100/configure-overview-sn2100-storage.html"
+    url: "/switch-nvidia-sn2100-storage/configure-overview-sn2100-storage.html"
   - title: 配置要求
-    url: "/switch-nvidia-sn2100/configure-reqs-sn2100-storage.html"
+    url: "/switch-nvidia-sn2100-storage/configure-reqs-sn2100-storage.html"
   - title: 组件和部件号
-    url: "/switch-nvidia-sn2100/components-sn2100-storage.html"
+    url: "/switch-nvidia-sn2100-storage/components-sn2100-storage.html"
   - title: 所需文档
-    url: "/switch-nvidia-sn2100/required-documentation-sn2100-storage.html"
+    url: "/switch-nvidia-sn2100-storage/required-documentation-sn2100-storage.html"
 - title: 安装硬件
   pdf-filename: install_hardhardware sn2100-storage
   entries:
   - title: 安装交换机
-    url: "/switch-nvidia-sn2100/install-hardware-sn2100-storage.html"
+    url: "/switch-nvidia-sn2100-storage/install-hardware-sn2100-storage.html"
   - title: 配置交换机
-    url: "/switch-nvidia-sn2100/configure-sn2100-storage.html"
+    url: "/switch-nvidia-sn2100-storage/configure-sn2100-storage.html"
   - title: 查看布线和配置
-    url: "/switch-nvidia-sn2100/cabling-considerations-sn2100-storage.html"
+    url: "/switch-nvidia-sn2100-storage/cabling-considerations-sn2100-storage.html"
   - title: 为NS224磁盘架布线
-    url: "/switch-nvidia-sn2100/install-cable-shelves-sn2100-storage.html"
+    url: "/switch-nvidia-sn2100-storage/install-cable-shelves-sn2100-storage.html"
 - title: 配置软件
   pdf-filename: 配置软件sn2100-storage
   entries:
   - title: 软件安装工作流
-    url: "/switch-nvidia-sn2100/configure-software-sn2100-storage.html"
+    url: "/switch-nvidia-sn2100-storage/configure-software-sn2100-storage.html"
   - title: 在Cumulus模式下安装Cumulus Linux
-    url: "/switch-nvidia-sn2100/install-cumulus-mode-sn2100-storage.html"
+    url: "/switch-nvidia-sn2100-storage/install-cumulus-mode-sn2100-storage.html"
   - title: 在ONIE模式下安装Cumulus Linux
-    url: "/switch-nvidia-sn2100/install-onie-mode-sn2100-storage.html"
+    url: "/switch-nvidia-sn2100-storage/install-onie-mode-sn2100-storage.html"
   - title: 安装RCF脚本
-    url: "/switch-nvidia-sn2100/install-rcf-sn2100-storage.html"
-  - title: 启用日志收集
-    url: "/switch-nvidia-sn2100/CSHM_log_collection.html"
-  - title: 配置SNMPv3以进行监控
-    url: "/switch-nvidia-sn2100/CSHM_snmpv3.html"
+    url: "/switch-nvidia-sn2100-storage/install-rcf-sn2100-storage.html"
 - title: 迁移交换机
   pdf-filename: migration_switchs_sn2100-storage
   entries:
   - title: 从Cisco存储交换机迁移
-    url: "/switch-nvidia-sn2100/migrate-cisco-storage-switch-sn2100-storage.html"
+    url: "/switch-nvidia-sn2100-storage/migrate-cisco-storage-switch-sn2100-storage.html"
 - title: 更换交换机
   pdf-filename: 替换switch_sn2100-storage
-  url: "/switch-nvidia-sn2100/replace-sn2100-switch-storage.html"
+  url: "/switch-nvidia-sn2100-storage/replace-sn2100-switch-storage.html"

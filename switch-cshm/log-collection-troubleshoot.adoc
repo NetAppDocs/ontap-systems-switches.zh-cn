@@ -1,0 +1,57 @@
+---
+permalink: switch-cshm/log-collection-troubleshoot.html 
+sidebar: sidebar 
+keywords: cshm, cluster, storage, switch logs, debugging, collection 
+summary: 您可以使用此处提供的命令来...... 
+---
+= 对日志收集进行故障排除
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+如果遇到日志收集功能报告的以下任一错误状态(显示在命令输出中 `system switch ethernet log show` )、请尝试相应的调试步骤：
+
+|===
+
+
+| *日志收集错误状态* | *分辨率* 
+
+
+ a| 
+*RSA密钥不存在*
+ a| 
+重新生成ONTAP SSH密钥。
+
+
+
+ a| 
+*切换密码错误*
+ a| 
+验证凭据、测试SSH连接并重新生成ONTAP SSH密钥。查看交换机文档或联系NetApp支持部门以获取相关说明。
+
+
+
+ a| 
+*对于FIPS*，ECDSA密钥不存在
+ a| 
+如果启用了FIPS模式、则需要在重试之前在交换机上生成ECDSA密钥。
+
+
+
+ a| 
+*已找到已有日志*
+ a| 
+删除交换机上先前的日志收集文件。
+
+
+
+ a| 
+*交换机转储日志错误*
+ a| 
+确保交换机用户具有日志收集权限。请参阅上述前提条件。
+
+|===
+
+NOTE: 如果解决方案详细信息不起作用、请联系NetApp支持部门。

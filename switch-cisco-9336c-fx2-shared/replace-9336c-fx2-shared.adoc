@@ -506,48 +506,7 @@ Total entries displayed: 4
 ====
 
 
-. 【第 15 步】使用以下命令启用以太网交换机运行状况监控器日志收集功能，以收集交换机相关的日志文件：
-+
-** `s系统交换机以太网日志设置密码`
-** `s系统交换机以太网日志 enable-Collection`
-+
-.显示示例
-[%collapsible]
-====
-[listing, subs="+quotes"]
-----
-cluster1::*> *system switch ethernet log setup-password*
-Enter the switch name: <return>
-The switch name entered is not recognized.
-Choose from the following list:
-*sh1*
-*sh2*
-cluster1::*> *system switch ethernet log setup-password*
-Enter the switch name: *sh1*
-RSA key fingerprint is e5:8b:c6:dc:e2:18:18:09:36:63:d9:63:dd:03:d9:cc
-Do you want to continue? {y|n}::[n] *y*
-Enter the password: <enter switch password>
-Enter the password again: <enter switch password>
-cluster1::*> *system switch ethernet log setup-password*
-Enter the switch name: *sh2*
-RSA key fingerprint is 57:49:86:a1:b9:80:6a:61:9a:86:8e:3c:e3:b7:1f:b1
-Do you want to continue? {y|n}:: [n] *y*
-Enter the password: <enter switch password>
-Enter the password again: <enter switch password>
-cluster1::*> system  switch ethernet log enable-collection
-Do you want to enable cluster log collection for all nodes in the cluster? y|n}: [n] *y*
-Enabling cluster switch log collection.
-cluster1::*>
-----
-====
-
-
-
-
-
-NOTE: 如果其中任何一个命令返回错误，请联系 NetApp 支持部门。
-
-. 【第 16 步】将存储端口从旧交换机 SH2 移动到新交换机 newsh2 。
+. [[Step15]]将存储端口从旧交换机sh2移至新交换机newsh2。
 . 验证连接到 HA 对 1 共享交换机 newsh2 的存储是否运行正常。
 . 验证连接到HA对2共享交换机newsh2的存储是否运行正常：
 +
@@ -578,7 +537,7 @@ node2
 ====
 
 
-. 【第19步】验证磁盘架布线是否正确：
+. [[Step18]]验证磁盘架布线是否正确：
 +
 `storage shelf port show -fields remote- device,remote-port`
 
@@ -604,10 +563,13 @@ shelf id remote-port  remote-device
 ====
 
 
-. 【第 20 步】删除旧交换机 SH2 。
+. [[STEP19]]移除旧交换机SH2。
 . 对交换机 SH1 和新交换机 newsh1 重复上述步骤。
 . 如果禁止自动创建案例，请通过调用 AutoSupport 消息重新启用它：
 +
 `ssystem node AutoSupport invoke -node * -type all -message MAINT=end`
 
 
+
+.下一步是什么？
+link:../switch-cshm/config-overview.html["配置交换机运行状况监控"](英文)

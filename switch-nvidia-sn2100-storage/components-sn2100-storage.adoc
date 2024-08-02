@@ -1,5 +1,5 @@
 ---
-permalink: switch-nvidia-sn2100/components-sn2100-storage.html 
+permalink: switch-nvidia-sn2100-storage/components-sn2100-storage.html 
 sidebar: sidebar 
 keywords: nvidia SN2100 switches 
 summary: 对于NVIDIA SN2100交换机安装和维护、请务必查看机柜和导轨套件的组件列表和部件号。 

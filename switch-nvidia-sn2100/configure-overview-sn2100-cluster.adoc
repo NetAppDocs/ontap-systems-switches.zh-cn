@@ -43,17 +43,7 @@ NVIDIA SN2100是一款集群交换机、可用于构建具有两个以上节点�
 +
 有两个RCF脚本可用于集群和存储应用程序。每个的操作步骤 是相同的。
 
-. link:CSHM_log_collection.html["启用日志收集"]。
-+
-使用此功能可在ONTAP 中收集与交换机相关的日志文件。
 
-. link:CSHM_snmpv3.html["配置SNMPv3以进行监控"]。
-+
-此版本支持使用SNMPv3收集交换机日志和使用交换机运行状况监控(SHM)。
-
-
-
-这些过程使用网络命令行实用程序(Network Command Line Utility、NCLU)、它是一个命令行界面、可确保所有用户均可完全访问Cumulus Linux。net命令是用于从终端执行操作的包装实用程序。
 
 
 

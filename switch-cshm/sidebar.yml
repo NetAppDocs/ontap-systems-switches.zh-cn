@@ -1,0 +1,30 @@
+---
+section: switch-cshm
+title: 监控交换机运行状况
+entries:
+- title: 交换机运行状况监控概述
+  url: "/switch-cshm/cshm-overview.html"
+  pdf-filename: switch_健康cshm
+- title: 配置交换机运行状况监控
+  pdf-filename: 配置交换机运行状况
+  entries:
+  - title: 配置概述
+    url: "/switch-cshm/config-overview.html"
+  - title: 配置日志收集
+    url: "/switch-cshm/config-log-collection.html"
+  - title: 可选-配置SNMPv3
+    url: "/switch-cshm/config-snmpv3.html"
+- title: 检查交换机运行状况
+  pdf-filename: monitor_switch_Health
+  entries:
+  - title: 运行状况检查概述
+    url: "/switch-cshm/monitor-overview.html"
+  - title: 对警报进行故障排除
+    url: "/switch-cshm/monitor-troubleshoot.html"
+- title: 收集日志
+  pdf-filename: log_Collection switch_Health
+  entries:
+  - title: 日志收集概述
+    url: "/switch-cshm/log-collection-overview.html"
+  - title: 故障排除
+    url: "/switch-cshm/log-collection-troubleshoot.html"

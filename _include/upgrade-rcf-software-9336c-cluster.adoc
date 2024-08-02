@@ -840,3 +840,6 @@ RPC status:
 ----
 ====
 
+
+.下一步是什么？
+link:../switch-cisco-9336c-fx2-storage/configure-ssh.html["启用 SSH ："](英文)

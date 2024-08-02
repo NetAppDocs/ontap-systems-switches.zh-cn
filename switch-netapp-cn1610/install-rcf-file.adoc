@@ -472,3 +472,6 @@ Configuration Saved!
 ====
 . 重复上述步骤、在另一台交换机CS1上安装RCF。
 
+
+.下一步是什么？
+link:../switch-cshm/config-overview.html["配置交换机运行状况监控"]

@@ -605,4 +605,4 @@ sw2                         cluster-network    10.233.205.91    MSN2100-CB2RC
 --
 ====
 .下一步是什么？
-link:CSHM_log_collection.html["启用日志收集"]
+link:../switch-cshm/config-overview.html["配置交换机运行状况监控"](英文)

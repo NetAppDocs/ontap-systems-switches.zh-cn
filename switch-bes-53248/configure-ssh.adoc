@@ -11,7 +11,7 @@ summary: 使用集群交换机运行状况监控器（ CSHM ）和日志收集�
 
 
 [role="lead"]
-如果您使用集群交换机运行状况监控器(Cluster Switch Health Monitor、CSHM)和日志收集功能、则必须生成SSH密钥、然后在集群交换机上启用SSH。
+如果要使用以太网交换机运行状况监控器(CSHM)和日志收集功能、则必须生成SSH密钥、然后在集群交换机上启用SSH。
 
 .步骤
 . 验证SSH是否已禁用：
@@ -119,4 +119,4 @@ SCP server Administrative Mode: ............... Enabled
 
 
 .下一步是什么？
-link:CSHM_log_collection.html["启用日志收集"]。
+link:../switch-cshm/config-overview.html["配置交换机运行状况监控"](英文)

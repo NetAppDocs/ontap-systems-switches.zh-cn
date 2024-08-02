@@ -20,21 +20,13 @@ Cisco Nexus 9336C-x2共享交换机是Cisco Nexus 9000平台的一部分、可�
 要在运行ONTAP 的系统上初始配置Cisco Nexus 9336C-FX2交换机、请执行以下步骤：
 
 . link:cable-9336c-shared.html["完成布线工作表"]。
-+
-使用布线图完成控制器和交换机之间的布线。
-
 . link:install-9336c-shared.html["安装交换机"]。
 . link:setup-and-configure-9336c-shared.html["配置交换机"]。
-. link:install-switch-and-passthrough-panel-9336c-shared.html["将交换机安装在NetApp机柜中"]。
-+
-根据您的配置、您可以将Cisco Nexus 9336C-FX2交换机和直通面板安装在NetApp机柜中、并使用交换机附带的标准支架。
-
-. link:prepare-nxos-rcf-9336c-shared.html["准备安装NX-OS和RCF"]。
+. link:install-switch-and-passthrough-panel-9336c-shared.html["将交换机安装到NetApp机柜中"](英文)
+. link:prepare-nxos-rcf-9336c-shared.html["准备安装NX-OS和RC框架"](英文)
 . link:install-nxos-software-9336c-shared.html["安装 NX-OS 软件"]。
 . link:install-nxos-rcf-9336c-shared.html["安装RCF配置文件"]。
-+
-首次设置Nexus 9336C-x2交换机后、安装RCF。您也可以使用此操作步骤升级 RCF 版本。
-
+. link:configure-ssh.html["启用 SSH ："](英文)
 
 
 

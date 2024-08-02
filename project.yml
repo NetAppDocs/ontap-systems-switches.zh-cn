@@ -35,6 +35,7 @@ sidebar:
     entries:
     - section: switch-cisco-9336c-fx2-shared
       pdf-filename: switch-cisco-9336c-902-storage
+  - section: switch-cshm
   - title: 可用性终止的交换机
     entries:
     - title: 概述

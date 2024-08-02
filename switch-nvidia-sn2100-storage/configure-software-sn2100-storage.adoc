@@ -1,5 +1,5 @@
 ---
-permalink: switch-nvidia-sn2100/configure-software-sn2100-storage.html 
+permalink: switch-nvidia-sn2100-storage/configure-software-sn2100-storage.html 
 sidebar: sidebar 
 keywords: sn2100 SN2100 switches setup, sn2100 SN2100 switches install, cumulus linux 
 summary: NVIDIA SN2100存储交换机的软件配置过程概述。 
@@ -21,10 +21,4 @@ summary: NVIDIA SN2100存储交换机的软件配置过程概述。
 +
 有两个RCF脚本可用于集群和存储应用程序。
 
-. link:install-snmpv3-sn2100-storage.html["为交换机日志收集配置SNMPv3"]。
-+
-此版本支持使用SNMPv3收集交换机日志和使用交换机运行状况监控(SHM)。
 
-
-
-这些过程使用网络命令行实用程序(Network Command Line Utility、NCLU)、它是一个命令行界面、可确保所有用户均可完全访问Cumulus Linux。net命令是用于从终端执行操作的包装实用程序。

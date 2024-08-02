@@ -13,71 +13,20 @@ summary: Cisco Nexus 9336C-x2集群交换机软件配置概述
 [role="lead"]
 要为Cisco Nexus 9334C)交换机安装和配置软件以及安装或升级参考配置文件(RF)，请执行以下步骤：
 
-. link:install-nxos-overview-9336c-cluster.html["准备安装NX-OS软件和RCF"]。
-. link:install-nxos-software-9336c-cluster.html["安装 NX-OS 软件"]。
-. link:install-nxos-rcf-9336c-cluster.html["安装或升级参考配置文件(RCF)"]。
+. link:install-nxos-overview-9336c-cluster.html["准备安装NX-OS软件和RC框架"](英文)
 +
-首次设置Nexus 9336C-x2交换机后、安装RCF。您也可以使用此操作步骤升级 RCF 版本。
+Cisco Nexus 9336C-x2 集群交换机上必须安装 Cisco NX-OS 软件和参考配置文件（ RCF ）。
 
+. link:install-nxos-software-9336c-cluster.html["安装或升级NX-OS软件"](英文)
 +
-.可用的RC框架 配置
-下表介绍了可用于不同配置的RCF。选择适用于您的配置的RC框架。
+下载并安装或升级Cisco Nexus 9335C - NX集群交换机上的NX-OS软件。
 
+. link:install-nxos-rcf-9336c-cluster.html["安装或升级RC框架"](英文)
 +
-有关特定端口和VLAN使用情况的详细信息、请参阅RC框架 中的横幅和重要说明部分。
+在首次设置Cisco Nexus 9334C -拧 动交换机后、安装或升级RCC。您也可以使用此操作步骤升级 RCF 版本。
 
+. link:configure-ssh.html["启用 SSH ："](英文)
 +
-[cols="1,2"]
-|===
-| RC框架 名称 | Description 
+如果使用以太网交换机运行状况监控器(CSHM)和日志收集功能、请在交换机上启用SSH。
 
-
- a| 
-2-cluster-ha-Breakout
- a| 
-支持两个ONTAP集群、其中至少包含八个节点、包括使用共享集群+HA端口的节点。
-
-
-
- a| 
-4-Cluster-HA-Breakout
- a| 
-支持四个ONTAP集群、其中至少包含四个节点、包括使用共享集群+HA端口的节点。
-
-
-
- a| 
-1-Cluster-HA
- a| 
-所有端口均配置为40/100GbE。支持端口上的共享集群/HA流量。AFF A320、AFF A250和FAS500f系统需要。此外、所有端口均可用作专用集群端口。
-
-
-
- a| 
-1-Cluster-HA-Breakout
- a| 
-端口配置为4个10GbE分支端口、4个25GbE分支端口(100GbE交换机上的RCF1.6以上)和40/100GbE端口。支持在使用共享集群/HA端口的节点的端口上传输共享集群/HA流量：AFF A320、AFF A250和FAS500f系统。此外、所有端口均可用作专用集群端口。
-
-
-
- a| 
-集群-高可用性-存储
- a| 
-端口配置为40/100GbE用于集群+HA、4x10GbE分支用于集群、4x25GbE分支用于集群+HA、100GbE用于每个存储HA对。
-
-
-
- a| 
-集群
- a| 
-具有4个10GbE端口(分支)和40/100GbE端口的不同分配的两种RC框架。除AFF A320、AFF A250和FAS500f系统外、所有FAS/AFA节点均受支持。
-
-
-
- a| 
-存储
- a| 
-所有端口均配置为使用100GbE NVMe存储连接。
-
-|===
 

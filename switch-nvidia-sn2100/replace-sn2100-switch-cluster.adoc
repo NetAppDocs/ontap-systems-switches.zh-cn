@@ -438,7 +438,7 @@ e3b       Cluster      Cluster          up    9000  auto/10000  healthy  false
 
 
 
-=== 第3步：完成操作步骤
+=== 第3步：验证配置
 
 . 验证集群网络是否运行正常。
 +
@@ -457,88 +457,6 @@ swp15      100G   BondMember  nsw2            swp15
 swp16      100G   BondMember  nsw2            swp16
 ----
 ====
-. 为以太网交换机运行状况监控器日志收集功能创建密码：
-+
-`s系统交换机以太网日志设置密码`
-
-+
-.显示示例
-[%collapsible]
-====
-[listing, subs="+quotes"]
-----
-cluster1::*> *system switch ethernet log setup-password*
-Enter the switch name: *<return>*
-The switch name entered is not recognized.
-Choose from the following list:
-*cs1*
-*cs2*
-
-cluster1::*> *system switch ethernet log setup-password*
-
-Enter the switch name: *cs1*
-Would you like to specify a user other than admin for log collection? {y|n}: *n*
-
-Enter the password: *<enter switch password>*
-Enter the password again: *<enter switch password>*
-
-cluster1::*> *system switch ethernet log setup-password*
-
-Enter the switch name: *cs2*
-Would you like to specify a user other than admin for log collection? {y|n}: *n*
-
-Enter the password: *<enter switch password>*
-Enter the password again: *<enter switch password>*
-----
-====
-. 启用以太网交换机运行状况监控器日志收集功能。
-+
-`system switch ethernet log modify -device _<switch-name>_ -log-request true`
-
-+
-.显示示例
-[%collapsible]
-====
-[listing, subs="+quotes"]
-----
-cluster1::*> *system switch ethernet log modify -device cs1 -log-request true*
-
-Do you want to modify the cluster switch log collection configuration? {y|n}: [n] *y*
-
-Enabling cluster switch log collection.
-
-cluster1::*> *system switch ethernet log modify -device cs2 -log-request true*
-
-Do you want to modify the cluster switch log collection configuration? {y|n}: [n] *y*
-
-Enabling cluster switch log collection.
-----
-====
-+
-等待10分钟、然后检查日志收集是否完成：
-
-+
-`system switch ethernet log show`
-
-+
-.显示示例
-[%collapsible]
-====
-[listing, subs="+quotes"]
-----
-cluster1::*> system switch ethernet log show
-Log Collection Enabled: true
-
-Index  Switch                       Log Timestamp        Status
------- ---------------------------- -------------------  ---------    
-1      cs1 (b8:ce:f6:19:1b:42)      4/29/2022 03:05:25   complete   
-2      cs2 (b8:ce:f6:19:1b:96)      4/29/2022 03:07:42   complete
-----
-====
-+
-
-CAUTION: 如果其中任一命令返回错误或日志收集未完成、请联系NetApp支持部门。
-
 . 将权限级别重新更改为 admin ：
 +
 `set -privilege admin`
@@ -548,3 +466,6 @@ CAUTION: 如果其中任一命令返回错误或日志收集未完成、请联�
 `ssystem node AutoSupport invoke -node * -type all -message MAINT=end`
 
 
+
+.下一步是什么？
+link:../switch-cshm/config-overview.html["配置交换机运行状况监控"](英文)

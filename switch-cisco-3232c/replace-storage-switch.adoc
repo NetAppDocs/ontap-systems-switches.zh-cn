@@ -266,3 +266,6 @@ shelf id remote-port remote-device
 `ssystem node AutoSupport invoke -node * -type all -message MAINT=end`
 
 
+
+.下一步是什么？
+link:../switch-cshm/config-overview.html["配置交换机运行状况监控"]

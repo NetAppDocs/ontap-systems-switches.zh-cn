@@ -11,12 +11,10 @@ summary: Cisco Nexus 9336C-x2共享交换机的软件配置概述
 
 
 [role="lead"]
-要为Cisco Nexus 9336C-FX2交换机安装和配置软件、请执行以下步骤：
+要安装和配置Cisco Nexus 933A国家/地/地/地/分交换机的软件、请按照以下步骤操作：
 
 . link:prepare-nxos-rcf-9336c-shared.html["准备安装NX-OS和RCF"]。
 . link:install-nxos-software-9336c-shared.html["安装 NX-OS 软件"]。
 . link:install-nxos-rcf-9336c-shared.html["安装RCF"]。
-+
-首次设置Nexus 9336C-x2交换机后、安装RCF。您也可以使用此操作步骤升级 RCF 版本。
-
+. link:configure-ssh.html["启用 SSH ："](英文)
 

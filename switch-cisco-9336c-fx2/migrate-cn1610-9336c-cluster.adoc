@@ -479,7 +479,7 @@ node2      /cdp
 
 
 
-=== 第3步：完成操作步骤
+=== 第3步：验证配置
 
 . 在集群 LIF 上启用自动还原：
 +
@@ -507,76 +507,6 @@ Cluster
             node2_clus2  up/up    169.254.19.183/16  node2         e3b     true
 ----
 ====
-. 要设置日志收集、请对每个交换机运行以下命令。系统会提示您输入交换机名称、用户名和密码以收集日志。
-+
-`s系统交换机以太网日志设置密码`
-
-+
-.显示示例
-[%collapsible]
-====
-[listing, subs="+quotes"]
-----
-cluster1::*> *system switch ethernet log setup-password*
-Enter the switch name: <return>
-The switch name entered is not recognized.
-Choose from the following list:
-*cs1*
-*cs2*
-
-cluster1::*> *system switch ethernet log setup-password*
-
-Enter the switch name: *cs1*
-RSA key fingerprint is e5:8b:c6:dc:e2:18:18:09:36:63:d9:63:dd:03:d9:cc
-Do you want to continue? {y|n}::[n] *y*
-
-Enter the password: <enter switch password>
-Enter the password again: <enter switch password>
-
-cluster1::*> *system switch ethernet log setup-password*
-
-Enter the switch name: *cs2*
-RSA key fingerprint is 57:49:86:a1:b9:80:6a:61:9a:86:8e:3c:e3:b7:1f:b1
-Do you want to continue? {y|n}:: [n] *y*
-
-Enter the password: <enter switch password>
-Enter the password again: <enter switch password>
-----
-====
-. 要开始收集日志、请运行以下命令、将device替换为上一命令中使用的交换机。这将开始两种类型的日志收集：详细的*Support*日志和每小时收集*定期*数据。
-+
-`system switch ethernet log modify -device _<switch-name>_ -log-request true`
-
-+
-.显示示例
-[%collapsible]
-====
-[listing, subs="+quotes"]
-----
-cluster1::*> *system switch ethernet log modify -device cs1 -log-request true*
-
-Do you want to modify the cluster switch log collection configuration? {y|n}: [n] *y*
-
-Enabling cluster switch log collection.
-
-cluster1::*> *system switch ethernet log modify -device cs2 -log-request true*
-
-Do you want to modify the cluster switch log collection configuration? {y|n}: [n] *y*
-
-Enabling cluster switch log collection.
-cluster1::*>
-----
-====
-+
-等待10分钟、然后使用命令检查日志收集是否成功：
-
-+
-`system switch ethernet log show`
-
-+
-
-NOTE: 如果其中任何一个命令返回错误，请联系 NetApp 支持部门。
-
 . 将权限级别重新更改为 admin ：
 +
 `set -privilege admin`
@@ -586,3 +516,6 @@ NOTE: 如果其中任何一个命令返回错误，请联系 NetApp 支持部门
 `ssystem node AutoSupport invoke -node * -type all -message MAINT=end`
 
 
+
+.下一步是什么？
+link:../switch-cshm/config-overview.html["配置交换机运行状况监控"](英文)
