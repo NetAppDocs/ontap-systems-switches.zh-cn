@@ -36,6 +36,8 @@ entries:
     url: "/switch-nvidia-sn2100-storage/install-onie-mode-sn2100-storage.html"
   - title: 安装RCF脚本
     url: "/switch-nvidia-sn2100-storage/install-rcf-sn2100-storage.html"
+  - title: 安装CSHM文件
+    url: "/switch-nvidia-sn2100-storage/setup-install-cshm-file.html"
 - title: 迁移交换机
   pdf-filename: migration_switchs_sn2100-storage
   entries:

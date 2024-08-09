@@ -38,6 +38,8 @@ entries:
     url: "/switch-nvidia-sn2100/upgrade-cl-version.html"
   - title: 安装RCF脚本
     url: "/switch-nvidia-sn2100/install-rcf-sn2100-cluster.html"
+  - title: 安装CSHM文件
+    url: "/switch-nvidia-sn2100/setup-install-cshm-file.html"
 - title: 迁移交换机
   pdf-filename: migration_switchs_sn2100
   entries:

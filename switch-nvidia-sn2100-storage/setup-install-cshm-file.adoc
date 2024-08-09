@@ -1,8 +1,8 @@
 ---
-permalink: switch-nvidia-sn2100/setup-install-cshm-file.html 
+permalink: switch-nvidia-sn2100-storage/setup-install-cshm-file.html 
 sidebar: sidebar 
-keywords: 'install, applicable, configuration, file, cluster, switch, health, monitor, ontap, install the cluster switch health monitor (csm) configuration file for SN2100 switches' 
-summary: 您可以使用此过程为监控NVIDIA SN2100集群交换机的集群交换机运行状况安装适用的配置文件。 
+keywords: 'install, applicable, configuration, file, cluster, switch, health, monitor, ontap, install the cluster switch health monitor (csm) configuration file for sn2100 switches' 
+summary: 您可以使用此过程为NVIDIA SN2100存储交换机的集群交换机运行状况监控安装适用的配置文件。 
 ---
 = 安装以太网交换机运行状况监控器配置文件
 :allow-uri-read: 

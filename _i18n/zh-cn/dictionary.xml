@@ -5053,4 +5053,12 @@
   <block id="114c27cb863250ce041d62daae03a69e" category="sidebar">monitor_switch_Health</block>
   <block id="d4a8473f83e1246e0b3ab08e2034db7c" category="sidebar">收集日志</block>
   <block id="75d763e21c6a88838d01217650c14bcb" category="sidebar">log_Collection switch_Health</block>
+  <block id="d9566e63378c0ff8504c903128e5c6f6" category="inline-link-macro">配置SNMPv3 (可选)</block>
+  <block id="e2101619626dc7b8ea25749787797515" category="paragraph"><block ref="a294afff18b68f8c1e4f78aeef5ef294" category="inline-link-macro-rx"></block>(英文)</block>
+  <block id="96a5ba855b4ee3dba60ecf722a706b29" category="inline-link-macro">安装CSHM文件</block>
+  <block id="54f593b53357d530cce6870c293a0379" category="list-text"><block ref="bc8e6b3d8a605e692bda90d2d873314b" category="inline-link-macro-rx"></block>(英文)</block>
+  <block id="446a9723b131c4606a1b6d581fef9f10" category="paragraph">您可以安装相应的配置文件、以便监控NVIDIA集群交换机的以太网交换机运行状况。</block>
+  <block id="2cd1b70f79d5acd7ffb2c204f4069175" category="summary">您可以使用此过程为NVIDIA SN2100存储交换机的集群交换机运行状况监控安装适用的配置文件。</block>
+  <block id="d57382f230671f8cd52f47dc80838934" category="paragraph">如果您的型号在应用配置文件后仍显示*OTA*，请与NetApp支持联系。</block>
+  <block id="762421c7b0a81d02d689a9f2e22ee18d" category="sidebar">安装CSHM文件</block>
 </blocks>

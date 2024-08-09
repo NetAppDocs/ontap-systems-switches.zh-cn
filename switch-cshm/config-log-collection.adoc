@@ -234,5 +234,5 @@ cluster1::*> *system switch ethernet log show -instance*
 
 CAUTION: 如果日志收集功能报告了任何错误状态(在的输出中可见 `system switch ethernet log show`)，请参见以了解更多详细信息。 link:log-collection-troubleshoot.html["对日志收集进行故障排除"]
 
-|===
-|===
+.下一步是什么？
+link:config-snmpv3.html["配置SNMPv3 (可选)"](英文)

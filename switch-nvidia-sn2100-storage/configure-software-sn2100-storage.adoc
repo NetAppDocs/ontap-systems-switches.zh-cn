@@ -21,4 +21,8 @@ summary: NVIDIA SN2100存储交换机的软件配置过程概述。
 +
 有两个RCF脚本可用于集群和存储应用程序。
 
+. link:setup-install-cshm-file.html["安装CSHM文件"](英文)
++
+您可以安装相应的配置文件、以便监控NVIDIA集群交换机的以太网交换机运行状况。
+
 
