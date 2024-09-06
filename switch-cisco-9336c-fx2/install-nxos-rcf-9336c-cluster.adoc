@@ -91,7 +91,7 @@ summary: 您可以在首次设置 Nexus 9336C-fx2 交换机后安装 RCF 。您�
 * `cluster1 ：：： * >` 提示符指示集群的名称。
 
 
-此操作步骤 中的示例使用四个节点。这些节点使用两个 10GbE 集群互连端口 e0a 和 e0b 。请参见 https://hwu.netapp.com/SWITCH/INDEX["Hardware Universe"] 验证平台上的集群端口是否正确。
+此操作步骤 中的示例使用四个节点。这些节点使用两个 10GbE 集群互连端口 e0a 和 e0b 。请参见 https://hwu.netapp.com/SWITCH/INDEX["Hardware Universe"^]以验证平台上的集群端口是否正确。
 
 
 NOTE: 根据不同版本的 ONTAP ，命令输出可能会有所不同。
@@ -215,6 +215,7 @@ g mode:
 
 
 
+. 将先前的所有自定义设置重新应用于交换机配置。link:cabling-considerations-9336c-fx2.html["查看布线和配置注意事项"]有关所需的任何进一步更改的详细信息、请参见。
 . 验证 RCF 版本和交换机设置是否正确后，将 running-config 文件复制到 startup-config 文件。
 +
 `copy running-config startup-config`
@@ -463,7 +464,7 @@ System Manager为集群设置和配置提供了一个简单易行的工作流、
 转至 https://docs.netapp.com/us-en/ontap/task_configure_ontap.html["使用System Manager在新集群上配置ONTAP"] 有关设置说明、请参见。
 
 .下一步是什么？
-link:../switch-cisco-9336c-fx2-storage/configure-ssh.html["启用 SSH ："](英文)
+link:../switch-cshm/config-overview.html["配置交换机运行状况监控"](英文)
 
 
 
@@ -648,6 +649,10 @@ cluster1::*>
 
 +
 `cs1(config-if-range)# *shutdown*`
+
++
+
+CAUTION: 确保关闭*所有*连接的集群端口以避免出现任何网络连接问题。 https://kb.netapp.com/on-prem/ontap/OHW/OHW-KBs/Node_out_of_quorum_when_migrating_cluster_lif_during_switch_OS_upgrade["在交换机操作系统升级期间迁移集群LIF时、节点丢失仲裁"^]有关详细信息、请参见知识库文章。
 
 . 验证集群SIFs是否已故障转移到集群交换机CS1上托管的端口。这可能需要几秒钟的时间。
 +
@@ -837,7 +842,7 @@ g mode:
 
 
 
-. 将先前确定的任何自定义添加项重新应用于交换机配置。
+. 将先前的所有自定义设置重新应用于交换机配置。link:cabling-considerations-9336c-fx2.html["查看布线和配置注意事项"]有关所需的任何进一步更改的详细信息、请参见。
 . 验证RCF版本、自定义添加项和交换机设置是否正确后、请将running-config文件复制到startup-config文件。
 +
 有关 Cisco 命令的详细信息，请参见中的相应指南 https://www.cisco.com/c/en/us/support/switches/nexus-9336c-fx2-switch/model.html#CommandReferences["《 Cisco Nexus 9000 系列 NX-OS 命令参考》"^] 指南。
@@ -1329,4 +1334,4 @@ RPC status:
 
 
 .下一步是什么？
-link:../switch-cisco-9336c-fx2-storage/configure-ssh.html["启用 SSH ："](英文)
+link:../switch-cshm/config-overview.html["配置交换机运行状况监控"](英文)

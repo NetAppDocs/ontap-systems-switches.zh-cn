@@ -399,6 +399,7 @@ NOTE: 首次应用 RCF 时，系统会显示 * 错误：无法写入 VSH 命令 
 
 
 
+. 将先前的所有自定义设置重新应用于交换机配置。link:cabling-considerations-3232c.html["查看布线和配置注意事项"]有关所需的任何进一步更改的详细信息、请参见。
 . 验证 RCF 版本和交换机设置是否正确后，将 running-config 文件复制到 startup-config 文件。
 +
 有关 Cisco 命令的详细信息，请参见中的相应指南 https://www.cisco.com/c/en/us/support/switches/nexus-3000-series-switches/products-installation-guides-list.html["《 Cisco Nexus 3000 系列 NX-OS 命令参考》"^] 指南。

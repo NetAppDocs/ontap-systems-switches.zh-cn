@@ -36,8 +36,6 @@ entries:
     url: "/switch-cisco-9336c-fx2-storage/install-nxos-software-9336c-storage.html"
   - title: 安装RCF配置文件
     url: "/switch-cisco-9336c-fx2-storage/install-nxos-rcf-9336c-storage.html"
-  - title: 启用 SSH ：
-    url: "/switch-cisco-9336c-fx2-storage/configure-ssh.html"
 - title: 更换存储交换机
   pdf-filename: REPLACE switch_9336c-FX2存储
   url: "/switch-cisco-9336c-fx2-storage/replace-storage-switch-9336c-storage.html"

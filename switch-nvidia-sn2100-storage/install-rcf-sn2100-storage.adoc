@@ -106,6 +106,7 @@ RCF脚本将完成上述步骤。
 
 NOTE: 对于无法更正的任何RCF python脚本问题、请联系 https://mysupport.netapp.com/["NetApp 支持"^] 以获得帮助。
 
+. 将先前的所有自定义设置重新应用于交换机配置。link:cabling-considerations-sn2100-storage.html["查看布线和配置注意事项"]有关所需的任何进一步更改的详细信息、请参见。
 . 重新启动后验证配置：
 +
 `net show interface all`

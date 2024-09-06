@@ -113,6 +113,7 @@ NOTE: 在步骤3*更新上面的MOTD文件*中，命令 `cat /etc/motd` 已运�
 
 NOTE: 对于无法更正的任何RCF python脚本问题、请联系 https://mysupport.netapp.com/["NetApp 支持"^] 以获得帮助。
 
+. 将先前的所有自定义设置重新应用于交换机配置。link:cabling-considerations-sn2100-cluster.html["查看布线和配置注意事项"]有关所需的任何进一步更改的详细信息、请参见。
 . 重新启动后验证配置：
 +
 [listing, subs="+quotes"]
@@ -204,7 +205,7 @@ swp16      100G   BondMember  sw14                    swp16
 ----
 . 验证集群上集群端口的运行状况。
 +
-.. 验证集群中所有节点上的 e0d 端口是否均已启动且运行正常：
+.. 验证集群中所有节点上的集群端口是否均已启动且运行正常：
 +
 [listing, subs="+quotes"]
 ----
@@ -370,6 +371,7 @@ admin@sw1:mgmt:~$ cat /etc/issue
 
 NOTE: 对于无法更正的任何RCF python脚本问题、请联系 https://mysupport.netapp.com/["NetApp 支持"^] 以获得帮助。
 
+. 将先前的所有自定义设置重新应用于交换机配置。link:cabling-considerations-sn2100-cluster.html["查看布线和配置注意事项"]有关所需的任何进一步更改的详细信息、请参见。
 . 重新启动后验证配置：
 +
 [listing, subs="+quotes"]
@@ -540,7 +542,7 @@ swp16      100G   BondMember  sw2                      sw
 ----
 . 验证集群上集群端口的运行状况。
 +
-.. 验证集群中所有节点上的 e0d 端口是否均已启动且运行正常：
+.. 验证集群中所有节点上的集群端口是否均已启动且运行正常：
 +
 [listing, subs="+quotes"]
 ----
