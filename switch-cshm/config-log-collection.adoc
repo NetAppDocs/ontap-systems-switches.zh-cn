@@ -17,9 +17,9 @@ summary: '以太网交换机运行状况监控器(CSHM)日志收集功能用于�
 
 [NOTE]
 ====
-. 按照供应商说明在交换机上重新生成ssh密钥。
-. 使用在ONTAP端重新生成ssh密钥 `debug system regenerate-systemshell-key-pair`
-. 使用重新运行日志收集设置例程 `system switch ethernet log setup-password`
+. 按照供应商说明在交换机上重新生成SSH密钥。
+. 使用在ONTAP中重新生成SSH密钥 `debug system regenerate-systemshell-key-pair`
+. 使用 `system switch ethernet log setup-password`命令重新运行日志收集设置例程
 
 
 ====
@@ -29,8 +29,10 @@ summary: '以太网交换机运行状况监控器(CSHM)日志收集功能用于�
 
 * 用户必须能够访问交换机 `show` 命令。如果这些权限不可用、请创建一个新用户并向该用户授予必要的权限。
 * 必须为交换机启用交换机运行状况监控。通过确保进行验证 `Is Monitored:` 字段在的输出中设置为*TRUE* `system switch ethernet show` 命令：
-* 对于NVIDIA交换机、必须允许日志收集用户在不显示密码提示的情况下运行日志收集命令。要允许使用此命令、请运行以下命令：
-`echo '<username> ALL = NOPASSWD: /usr/cumulus/bin/cl-support, /usr/sbin/csmgrctl' | sudo EDITOR='tee -a' visudo -f /etc/sudoers.d/cumulus`
+* 要使用NVIDIA交换机收集支持日志、必须允许用于收集日志的_user_运行 `cl-support`命令、而无需提供密码。要允许使用此命令、请运行以下命令：
++
+`echo '_<user>_ ALL = NOPASSWD: /usr/cumulus/bin/cl-support' | sudo EDITOR='tee -a' visudo -f /etc/sudoers.d/cumulus`
+
 
 
 

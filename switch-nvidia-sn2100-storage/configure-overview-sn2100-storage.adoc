@@ -11,7 +11,7 @@ summary: 在配置NVIDIA SN2100交换机之前、请查看操作步骤 概述。
 
 
 [role="lead"]
-NVIDIA SN2100是一款存储交换机、可用于在存储区域网络(Storage Area Network、SAN)中的服务器和存储阵列之间路由数据。
+NVIDIA SN2100是一款以太网交换机、可用于在控制器和磁盘架之间切换数据。
 
 
 

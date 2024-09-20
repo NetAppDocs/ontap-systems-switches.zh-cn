@@ -2489,7 +2489,6 @@
   <block id="26579e78de73f5546f69f3f79a7b8f48" category="paragraph"><block ref="d639995fde516a3ba2e60963b02aecc1" category="inline-link-macro-rx"></block>。</block>
   <block id="005ec29dde0262dd01b006d4e9c03abf" category="summary">在配置NVIDIA SN2100交换机之前、请查看操作步骤 概述。</block>
   <block id="9aec7a1df32bc7a3da0beba803646322" category="doc">NVIDIA SN2100存储交换机的配置过程概述</block>
-  <block id="12e75289f74531c2e9239c05b88eb32e" category="paragraph">NVIDIA SN2100是一款存储交换机、可用于在存储区域网络(Storage Area Network、SAN)中的服务器和存储阵列之间路由数据。</block>
   <block id="aac9f267bacea6f425f8665241d6901e" category="section-title">初始配置概述</block>
   <block id="2ef7b00479266befed2783905ed9725e" category="paragraph">要在运行ONTAP 的系统上配置NVIDIA SN2100交换机、请执行以下步骤：</block>
   <block id="a194a4ea8dc4dc236627221cad9344d4" category="inline-link-macro">查看布线和配置注意事项</block>
@@ -2751,7 +2750,6 @@
   <block id="d334b073010dc4ca86957c663631fa0b" category="paragraph">对于、每个集群LIF都应显示true<block ref="53db3ce0fe0e71f06b3beb0b676b806c" prefix=" " category="inline-code"></block> 并具有<block ref="4f21ee5a18672b60f4c01e94e6be9c79" prefix=" " category="inline-code"></block> 的<block ref="fc7c1443e5c7b6439706b6132a4c0829" prefix=" " category="inline-code"></block>。</block>
   <block id="9a82d0edb58bbaaf806da2f174490820" category="list-text">验证集群网络是否已完全连接：</block>
   <block id="e64b06ebdf8146ea2bc17ff7d5457eef" category="summary">Cisco Nexus 9336C-x2存储交换机的安装和配置概述</block>
-  <block id="9907ba6708c9ebadda3cca4eb234f091" category="paragraph">Cisco Nexus 9336C-x2存储交换机是Cisco Nexus 9000平台的一部分、可以安装在NetApp系统机柜中。通过存储交换机、您可以在存储区域网络(SAN)中的服务器和存储阵列之间路由数据。</block>
   <block id="be4cd7f1969695f8e6e1f2c8040abcd4" category="paragraph">要在运行ONTAP 的系统上初始配置Cisco Nexus 9336C-FX2交换机、请执行以下步骤：</block>
   <block id="5ac09e984471f320b2e8920ece32b03d" category="inline-link-macro">完成布线工作表</block>
   <block id="ef44963f41cab6cd9db7a1c9e6197076" category="inline-link-macro">安装交换机</block>
@@ -4932,11 +4930,7 @@
   <block id="cb037476ec4486d51b86d5dbeede8008" category="doc">配置日志收集</block>
   <block id="8ac20e3719b6b58e94e5a4385e87b52e" category="paragraph">以太网交换机运行状况监控器(CSHM)负责确保集群和存储网络交换机的运行状况、并收集交换机日志以进行调试。此过程将指导您完成设置收集、请求详细的*Support*日志以及启用每小时收集AutoSupport收集的*定期*数据的过程。</block>
   <block id="2ded3ff3862adfc6f54d2a2f3ebf1147" category="paragraph">*注：*如果启用FIPS模式，则必须完成以下操作：</block>
-  <block id="4d3c86b44351ffae1eca9baf52af2d5a" category="list-text">按照供应商说明在交换机上重新生成ssh密钥。</block>
-  <block id="64e9182ec64ec70301b0218941a9ebd8" category="list-text">使用在ONTAP端重新生成ssh密钥<block ref="c079360670e0f4f9441a54ac1d262788" prefix=" " category="inline-code"></block></block>
-  <block id="6cf5d6e9f6afd78a09fd1d4215def7c4" category="list-text">使用重新运行日志收集设置例程<block ref="36ac3c1f3bae8142b5d110fb906ba03e" prefix=" " category="inline-code"></block></block>
   <block id="ca243f374acfb56a77236e0d30935f7f" category="list-text">用户必须能够访问交换机<block ref="a7dd12b1dab17d25467b0b0a4c8d4a92" prefix=" " category="inline-code"></block> 命令。如果这些权限不可用、请创建一个新用户并向该用户授予必要的权限。</block>
-  <block id="428fd3f400671ac494fc78009abe0ff1" category="list-text">对于NVIDIA交换机、必须允许日志收集用户在不显示密码提示的情况下运行日志收集命令。要允许使用此命令、请运行以下命令：<block ref="35faf9d034bd3280f6d0a63cbb93f5e1" prefix=" " category="inline-code"></block></block>
   <block id="098a6be90d7d0f41999537981c29585d" category="open-title">ONTAP 9.14.1及更早版本</block>
   <block id="bec82052a92013a93a38547be5743fc2" category="list-text">要请求支持日志收集并启用定期收集、请运行以下命令。此时将开始两种类型的日志收集：详细<block ref="db5eb84117d06047c97c9a0191b5fffe" prefix=" " category="inline-code"></block> 日志和每小时数据收集<block ref="cdcc32a064503184053bd2018d1c0e7e" prefix=" " category="inline-code"></block> 。</block>
   <block id="d35634a11eab667045ca1f93a9aae3e4" category="list-text">启用定期日志收集：</block>
@@ -5025,4 +5019,26 @@
   <block id="4af7c647d1c04eb805c9ecbc772595d1" category="list-text">将先前的所有自定义设置重新应用于交换机配置。<block ref="81e27480a79c2bb77194c038c9737157" category="inline-link-macro-rx"></block>有关所需的任何进一步更改的详细信息、请参见。</block>
   <block id="e51054318a8dcf9b707bc011338e9665" category="section-title">设置分支端口上的接口速度</block>
   <block id="e4da4813fef5b96a216a043d594bf245" category="list-text">将先前的所有自定义设置重新应用于交换机配置。<block ref="75ce5666fba6992a0719935651dd5b1b" category="inline-link-macro-rx"></block>有关所需的任何进一步更改的详细信息、请参见。</block>
+  <block id="fc9b57bfb616bf5697d55f4dc656cead" category="inline-link-macro">验证 SSH 配置</block>
+  <block id="1046b0a81eea5dae9091290036b99362" category="paragraph"><block ref="4767a0bcf3ab94aeda87c79dd4096ef4" category="inline-link-macro-rx"></block>(英文)</block>
+  <block id="95baf91c437105360687405b916b57fa" category="list-text">加密SSH密钥(仅限* FIPS模式*)：</block>
+  <block id="50a89ea25c124abad381209f29dd1817" category="admonition">在FIPS模式下、为了安全起见、需要使用密码短语对密钥进行加密。如果没有加密密钥、应用程序将无法启动。可使用以下命令创建和加密密钥：</block>
+  <block id="f68db63213e90f13582fcc01c68930b3" category="summary">使用集群交换机运行状况监控器（ CSHM ）和日志收集功能时需要使用 SSH 。要在Cisco 3132Q-V集群交换机上启用SSH、请先生成SSH密钥、然后再启用SSH。</block>
+  <block id="48c63e1d1783b7749854be6c0e2a3b98" category="doc">验证 SSH 配置</block>
+  <block id="a75620832d0a69ff51b8f472fb723fc0" category="paragraph">如果要使用以太网交换机运行状况监控器(CSHM)和日志收集功能、请验证是否已在集群交换机上启用SSH和SSH密钥。</block>
+  <block id="8b5fc97efb2c8cf5fdcb75b300be917a" category="list-text">验证是否已启用SSH密钥：</block>
+  <block id="720c3ddeb84772ef2bbfeba7b1d17a28" category="paragraph"><block ref="df8bbc4b7a2a07f02d567d56129471ab" prefix="" category="inline-code"></block></block>
+  <block id="3a88a5741f799dc33a61b15c6f06ef77" category="summary">使用集群交换机运行状况监控器（ CSHM ）和日志收集功能时需要使用 SSH 。要在Cisco 3232C集群交换机上启用SSH、请先生成SSH密钥、然后再启用SSH。</block>
+  <block id="1ea468ba4330d1b99a20149c0e78b4ed" category="summary">使用集群交换机运行状况监控器（ CSHM ）和日志收集功能时需要使用 SSH 。要在Cisco 92300YC集群交换机上启用SSH、请先生成SSH密钥、然后再启用SSH。</block>
+  <block id="6740010e0f06e1b4faea70ce1b3a4a76" category="inline-link-macro">生成SSH密钥</block>
+  <block id="c49d0af5a081eb64111a489cb2120d97" category="list-text"><block ref="52338aab140ac2dbc56c2c83d6349939" category="inline-link-macro-rx"></block>(英文)</block>
+  <block id="f12f5027a3dbb2bbb22c5b1ca34d79d7" category="paragraph">如果使用以太网交换机运行状况监控器(CSHM)和日志收集功能、请在交换机上生成SSH密钥。</block>
+  <block id="2e3301a364286013b9b29237fa347bb1" category="summary">使用集群交换机运行状况监控器（ CSHM ）和日志收集功能时需要使用 SSH 。要在Cisco 9336c-613集群交换机上启用SSH、请先生成SSH密钥、然后再启用SSH。</block>
+  <block id="243847a87ff7e0cb67ee578c74d8ad1c" category="paragraph">Cisco Nexus 9334C-拧 动交换机是Cisco Nexus 9000平台的一部分、可安装在NetApp系统机柜中。Nexus 9334E-拧 动是一款以太网交换机、可用于在控制器和磁盘架之间切换数据。</block>
+  <block id="81f0d5b127adfd87f50ce10bc85e1e65" category="list-text">按照供应商说明在交换机上重新生成SSH密钥。</block>
+  <block id="a60a00967db7342947b326a8f7618f52" category="list-text">使用在ONTAP中重新生成SSH密钥<block ref="c079360670e0f4f9441a54ac1d262788" prefix=" " category="inline-code"></block></block>
+  <block id="fe85427bc017f31f0f2b913e65e8d888" category="list-text">使用<block ref="36ac3c1f3bae8142b5d110fb906ba03e" prefix=" " category="inline-code"></block>命令重新运行日志收集设置例程</block>
+  <block id="c1433b541d8d99faed86a93460cb0bad" category="list-text">要使用NVIDIA交换机收集支持日志、必须允许用于收集日志的_user_运行<block ref="c85737d6a0d20328583b59ea7320a5ef" prefix=" " category="inline-code"></block>命令、而无需提供密码。要允许使用此命令、请运行以下命令：</block>
+  <block id="a0379ee208b1ca86b0ce11e60c0e73eb" category="paragraph"><block ref="83e3f80a08612b0113ac48e3b9a3432e" prefix="" category="inline-code"></block></block>
+  <block id="d97cf4e1b3c59ab22fc281643864890d" category="paragraph">NVIDIA SN2100是一款以太网交换机、可用于在控制器和磁盘架之间切换数据。</block>
 </blocks>

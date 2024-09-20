@@ -1,0 +1,64 @@
+---
+permalink: switch-cisco-3232c/configure-ssh-keys.html 
+sidebar: sidebar 
+keywords: ssh, requirement, cluster, switch, health, monitor, cshm, log, collection, feature, cisco 9336c-fx2 
+summary: 使用集群交换机运行状况监控器（ CSHM ）和日志收集功能时需要使用 SSH 。要在Cisco 3232C集群交换机上启用SSH、请先生成SSH密钥、然后再启用SSH。 
+---
+= 验证 SSH 配置
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+如果要使用以太网交换机运行状况监控器(CSHM)和日志收集功能、请验证是否已在集群交换机上启用SSH和SSH密钥。
+
+.步骤
+. 验证是否已启用 SSH ：
++
+[listing, subs="+quotes"]
+----
+(switch) *show ssh server*
+ssh version 2 is enabled
+----
+. 验证是否已启用SSH密钥：
++
+`show ssh key`
+
++
+.显示示例
+[%collapsible]
+====
+[listing, subs="+quotes"]
+----
+(switch)# *show ssh key*
+
+rsa Keys generated:Fri Jun 28 02:16:00 2024
+
+ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAAAgQDiNrD52Q586wTGJjFAbjBlFaA23EpDrZ2sDCewl7nwlioC6HBejxluIObAH8hrW8kR+gj0ZAfPpNeLGTg3APj/yiPTBoIZZxbWRShywAM5PqyxWwRb7kp9Zt1YHzVuHYpSO82KUDowKrL6lox/YtpKoZUDZjrZjAp8hTv3JZsPgQ==
+
+bitcount:1024
+fingerprint:
+SHA256:aHwhpzo7+YCDSrp3isJv2uVGz+mjMMokqdMeXVVXfdo
+
+could not retrieve dsa key information
+
+ecdsa Keys generated:Fri Jun 28 02:30:56 2024
+
+ecdsa-sha2-nistp521 AAAAE2VjZHNhLXNoYTItbmlzdHA1MjEAAAAIbmlzdHA1MjEAAACFBABJ+ZX5SFKhS57evkE273e0VoqZi4/32dt+f14fBuKv80MjMsmLfjKtCWy1wgVt1Zi+C5TIBbugpzez529zkFSF0ADb8JaGCoaAYe2HvWR/f6QLbKbqVIewCdqWgxzrIY5BPP5GBdxQJMBiOwEdnHg1u/9Pzh/Vz9cHDcCW9qGE780QHA==
+
+bitcount:521
+fingerprint:
+SHA256:TFGe2hXn6QIpcs/vyHzftHJ7Dceg0vQaULYRAlZeHwQ
+
+(switch)# *show feature | include scpServer*
+scpServer              1          enabled
+(switch)# *show feature | include ssh*
+sshServer              1          enabled
+(switch)#
+----
+====
+
+
+.下一步是什么？
+link:../switch-cshm/config-overview.html["配置交换机运行状况监控"](英文)

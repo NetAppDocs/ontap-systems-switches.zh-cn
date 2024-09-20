@@ -86,6 +86,54 @@ Configuration Saved!
 
 WARNING: 请确保在修改密钥之前禁用SSH、否则交换机上会报告警告。
 
+. 加密SSH密钥(仅限* FIPS模式*)：
++
+
+CAUTION: 在FIPS模式下、为了安全起见、需要使用密码短语对密钥进行加密。如果没有加密密钥、应用程序将无法启动。可使用以下命令创建和加密密钥：
+
++
+.显示示例
+[%collapsible]
+====
+[listing, subs="+quotes"]
+----
+(switch) *configure*
+(switch) (Config)# *crypto key encrypt write rsa passphrase _<passphase>_*
+
+The key will be encrypted and saved on NVRAM.
+This will result in saving all existing configuration also.
+Do you want to continue? (y/n): *y*
+
+Config file 'startup-config' created successfully.
+
+(switch) (Config)# *crypto key encrypt write dsa passphrase _<passphase>_*
+
+The key will be encrypted and saved on NVRAM.
+This will result in saving all existing configuration also.
+Do you want to continue? (y/n): *y*
+
+Config file 'startup-config' created successfully.
+
+(switch)(Config)# *crypto key encrypt write ecdsa passphrase _<passphase>_*
+
+The key will be encrypted and saved on NVRAM.
+This will result in saving all existing configuration also.
+Do you want to continue? (y/n): *y*
+
+Config file 'startup-config' created successfully.
+
+(switch) (Config)# end
+(switch)# write memory
+
+This operation may take a few minutes.
+Management interfaces will not be available during this time.
+Are you sure you want to save? (y/n) *y*
+
+Config file 'startup-config' created successfully.
+
+Configuration Saved!
+----
+====
 . 重新启动交换机：
 +
 `re负载`

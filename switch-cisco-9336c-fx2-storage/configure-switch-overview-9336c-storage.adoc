@@ -11,7 +11,7 @@ summary: Cisco Nexus 9336C-x2存储交换机的安装和配置概述
 
 
 [role="lead"]
-Cisco Nexus 9336C-x2存储交换机是Cisco Nexus 9000平台的一部分、可以安装在NetApp系统机柜中。通过存储交换机、您可以在存储区域网络(SAN)中的服务器和存储阵列之间路由数据。
+Cisco Nexus 9334C-拧 动交换机是Cisco Nexus 9000平台的一部分、可安装在NetApp系统机柜中。Nexus 9334E-拧 动是一款以太网交换机、可用于在控制器和磁盘架之间切换数据。
 
 
 
