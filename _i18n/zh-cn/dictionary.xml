@@ -5041,4 +5041,6 @@
   <block id="c1433b541d8d99faed86a93460cb0bad" category="list-text">要使用NVIDIA交换机收集支持日志、必须允许用于收集日志的_user_运行<block ref="c85737d6a0d20328583b59ea7320a5ef" prefix=" " category="inline-code"></block>命令、而无需提供密码。要允许使用此命令、请运行以下命令：</block>
   <block id="a0379ee208b1ca86b0ce11e60c0e73eb" category="paragraph"><block ref="83e3f80a08612b0113ac48e3b9a3432e" prefix="" category="inline-code"></block></block>
   <block id="d97cf4e1b3c59ab22fc281643864890d" category="paragraph">NVIDIA SN2100是一款以太网交换机、可用于在控制器和磁盘架之间切换数据。</block>
+  <block id="68cbc1ccd652f8f281a11d07040f5054" category="inline-link">使用 FIPS 配置网络安全性</block>
+  <block id="ee73a5b7bde1ac3826492824ed56415e" category="admonition">启用FIPS时，必须使用命令将交换机上的位数更改为256<block ref="e945b32dfeddd45c02f47f82f234232f" prefix=" " category="inline-code"></block>。有关详细信息、请参见<block ref="4ed77aafc2157fac88ce3125b253884f" category="inline-link-rx"></block>。</block>
 </blocks>
