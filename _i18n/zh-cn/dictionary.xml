@@ -5043,4 +5043,10 @@
   <block id="d97cf4e1b3c59ab22fc281643864890d" category="paragraph">NVIDIA SN2100是一款以太网交换机、可用于在控制器和磁盘架之间切换数据。</block>
   <block id="68cbc1ccd652f8f281a11d07040f5054" category="inline-link">使用 FIPS 配置网络安全性</block>
   <block id="ee73a5b7bde1ac3826492824ed56415e" category="admonition">启用FIPS时，必须使用命令将交换机上的位数更改为256<block ref="e945b32dfeddd45c02f47f82f234232f" prefix=" " category="inline-code"></block>。有关详细信息、请参见<block ref="4ed77aafc2157fac88ce3125b253884f" category="inline-link-rx"></block>。</block>
+  <block id="7a43f267b45d16f3e9b7113b1665a8ef" category="list-text">所有集群的集群Sifs都会故障转移到新交换机CS2-new。</block>
+  <block id="a200958f285bc9634331308217aef6e8" category="list-text">所有集群的集群Sifs都会故障转移到新交换机CS1-new。</block>
+  <block id="866e23be3750652ebc7235f85b035f6b" category="admonition">在此操作步骤 期间、不需要可操作的交换机间链路(ISL)。这是设计上的原因、因为RCF版本更改可能会暂时影响ISL连接。为了确保集群无中断运行、以下过程会在对目标交换机执行步骤时将所有集群LIFs故障转移到正常运行的配对交换机。</block>
+  <block id="936b3180f1af844d99a2935c0f8f1407" category="paragraph">在此过程中禁用自动还原后、集群LUN不会自动移回其主端口。它们会保留在当前端口上、而该端口会继续正常运行。</block>
+  <block id="8cfe0e3d8ad280ac0655595fef97d183" category="list-text">所有集群的集群Sifs都会故障转移到新交换机CS2。</block>
+  <block id="7f59c84a99e8340f8584b604b173e044" category="list-text">所有集群的集群CI都会故障转移到新交换机CS1。</block>
 </blocks>
