@@ -1,7 +1,7 @@
 ---
 permalink: switch-cisco-9336c-fx2/configure-software-overview-9336c-cluster.html 
 sidebar: sidebar 
-keywords: BES-53248 switches, initial installation, configure switch-cisco-9336c-fx2 switch 
+keywords: switches, initial installation, configure switch-cisco-9336c-fx2 switch 
 summary: Cisco Nexus 9336C-x2集群交换机软件配置概述 
 ---
 = Cisco Nexus 9336C-x2集群交换机的软件安装工作流
@@ -25,8 +25,8 @@ Cisco Nexus 9336C-x2 集群交换机上必须安装 Cisco NX-OS 软件和参考�
 +
 在首次设置Cisco Nexus 9334C -拧 动交换机后、安装或升级RCC。您也可以使用此操作步骤升级 RCF 版本。
 
-. link:configure-ssh-keys.html["生成SSH密钥"](英文)
+. link:configure-ssh-keys.html["验证Nexus 9334C-查 验Nexus集群交换机上的SSH配置"](英文)
 +
-如果使用以太网交换机运行状况监控器(CSHM)和日志收集功能、请在交换机上生成SSH密钥。
+如果使用以太网交换机运行状况监控器(CSHM)和日志收集功能、请验证是否已在交换机上启用SSH。
 
 

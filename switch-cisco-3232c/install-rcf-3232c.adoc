@@ -599,7 +599,7 @@ cluster1-04          true     true          false
 cluster1::*>
 ----
 ====
-. 对交换机CS1重复步骤7至15。
+. 对交换机 CS1 重复步骤 7 至 17 。
 . 在集群 LIF 上启用自动还原。
 +
 [listing, subs="+quotes"]
@@ -710,14 +710,57 @@ cluster1-04          true    true          false
 cluster1::*>
 ----
 ====
-. 对远程集群接口执行 Ping 操作以验证连接：
-+
-`cluster ping-cluster -node local`
+. 验证远程集群接口的连接：
 
-+
-.显示示例
-[%collapsible]
+
+[role="tabbed-block"]
 ====
+.ONTAP 9.9.1及更高版本
+--
+您可以使用 `network interface check cluster-connectivity` 命令启动集群连接的可访问性检查、然后显示详细信息：
+
+`network interface check cluster-connectivity start` 和 `network interface check cluster-connectivity show`
+
+[listing, subs="+quotes"]
+----
+cluster1::*> *network interface check cluster-connectivity start*
+----
+*注：*请等待几秒钟、然后再运行 `show`命令以显示详细信息。
+
+[listing, subs="+quotes"]
+----
+cluster1::*> *network interface check cluster-connectivity show*
+                                  Source              Destination         Packet
+Node   Date                       LIF                 LIF                 Loss
+------ -------------------------- ------------------- ------------------- -----------
+cluster1-01
+       3/5/2022 19:21:18 -06:00   cluster1-01_clus2   cluster1-02_clus1   none
+       3/5/2022 19:21:20 -06:00   cluster1-01_clus2   cluster1-02_clus2   none
+.
+.
+cluster1-02
+       3/5/2022 19:21:18 -06:00   cluster1-02_clus2   cluster1-01_clus1   none
+       3/5/2022 19:21:20 -06:00   cluster1-02_clus2   cluster1-01_clus2   none
+.
+.
+cluster1-03
+.
+.
+.
+.
+cluster1-04
+.
+.
+.
+.
+----
+--
+.所有ONTAP版本
+--
+对于所有ONTAP版本、您还可以使用 `cluster ping-cluster -node <name>` 用于检查连接的命令：
+
+`cluster ping-cluster -node <name>`
+
 [listing, subs="+quotes"]
 ----
 cluster1::*> *cluster ping-cluster -node local*
@@ -757,8 +800,7 @@ RPC status:
 6 paths up, 0 paths down (tcp check)
 6 paths up, 0 paths down (udp check)
 ----
+--
 ====
-
-
 .下一步是什么？
 link:configure-ssh-keys.html["验证 SSH 配置"](英文)

@@ -316,19 +316,47 @@ cluster::*> network port modify -node n2 -port e0b -up-admin false
 cluster::*> network port modify -node n2 -port e0c -up-admin false
 ----
 ====
-. 对远程集群接口执行 Ping 操作并执行 RPC 服务器检查：
-+
-`cluster ping-cluster`
+. 验证远程集群接口的连接：
 
-+
-.显示示例
-[%collapsible]
+
+[role="tabbed-block"]
 ====
-以下示例显示了如何对远程集群接口执行 ping 操作：
+.ONTAP 9.9.1及更高版本
+--
+您可以使用 `network interface check cluster-connectivity` 命令启动集群连接的可访问性检查、然后显示详细信息：
 
-[listing]
+`network interface check cluster-connectivity start` 和 `network interface check cluster-connectivity show`
+
+[listing, subs="+quotes"]
 ----
-cluster::*> cluster ping-cluster -node n1
+cluster1::*> *network interface check cluster-connectivity start*
+----
+*注：*请等待几秒钟、然后再运行show命令显示详细信息。
+
+[listing, subs="+quotes"]
+----
+cluster1::*> *network interface check cluster-connectivity show*
+                                  Source          Destination       Packet
+Node   Date                       LIF             LIF               Loss
+------ -------------------------- --------------- ----------------- -----------
+n1
+       3/5/2022 19:21:18 -06:00   n1_clus2        n2_clus1      none
+       3/5/2022 19:21:20 -06:00   n1_clus2        n2_clus2      none
+
+n2
+       3/5/2022 19:21:18 -06:00   n2_clus2        n1_clus1      none
+       3/5/2022 19:21:20 -06:00   n2_clus2        n1_clus2      none
+----
+--
+.所有ONTAP版本
+--
+对于所有ONTAP版本、您还可以使用 `cluster ping-cluster -node <name>` 用于检查连接的命令：
+
+`cluster ping-cluster -node <name>`
+
+[listing, subs="+quotes"]
+----
+cluster::*> *cluster ping-cluster -node n1*
 Host is n1
 Getting addresses from network interface table...
 Cluster n1_clus1 n1		e0a	10.10.0.1
@@ -368,10 +396,11 @@ Detected 1500 byte MTU on 16 path(s):
 Larger than PMTU communication succeeds on 16 path(s)
 RPC status:
 4 paths up, 0 paths down (tcp check)
-4 paths up, 0 paths down (udp check
+4 paths up, 0 paths down (udp check)
 ----
+--
 ====
-. 关闭活动 Nexus 5596 交换机 CL1 上的 ISL 端口 41 到 48 ：
+. [[Step10]]关闭活动Nexus 5596交换机CL1上的ISL端口41到48：
 +
 .显示示例
 [%collapsible]
@@ -604,19 +633,47 @@ e0d       Cluster      Cluster          up   9000  auto/10000 -        -
 8 entries were displayed.
 ----
 ====
-. 对远程集群接口执行 Ping 操作并执行 RPC 服务器检查：
-+
-`cluster ping-cluster`
+. 验证远程集群接口的连接：
 
-+
-.显示示例
-[%collapsible]
+
+[role="tabbed-block"]
 ====
-以下示例显示了如何对远程集群接口执行 ping 操作：
+.ONTAP 9.9.1及更高版本
+--
+您可以使用 `network interface check cluster-connectivity` 命令启动集群连接的可访问性检查、然后显示详细信息：
 
-[listing]
+`network interface check cluster-connectivity start` 和 `network interface check cluster-connectivity show`
+
+[listing, subs="+quotes"]
 ----
-cluster::*> cluster ping-cluster -node n1
+cluster1::*> *network interface check cluster-connectivity start*
+----
+*注：*请等待几秒钟、然后再运行show命令显示详细信息。
+
+[listing, subs="+quotes"]
+----
+cluster1::*> *network interface check cluster-connectivity show*
+                                  Source          Destination       Packet
+Node   Date                       LIF             LIF               Loss
+------ -------------------------- --------------- ----------------- -----------
+n1
+       3/5/2022 19:21:18 -06:00   n1_clus2        n2_clus1      none
+       3/5/2022 19:21:20 -06:00   n1_clus2        n2_clus2      none
+
+n2
+       3/5/2022 19:21:18 -06:00   n2_clus2        n1_clus1      none
+       3/5/2022 19:21:20 -06:00   n2_clus2        n1_clus2      none
+----
+--
+.所有ONTAP版本
+--
+对于所有ONTAP版本、您还可以使用 `cluster ping-cluster -node <name>` 用于检查连接的命令：
+
+`cluster ping-cluster -node <name>`
+
+[listing, subs="+quotes"]
+----
+cluster::*> *cluster ping-cluster -node n1*
 Host is n1
 Getting addresses from network interface table...
 Cluster n1_clus1 n1		e0a	10.10.0.1
@@ -658,8 +715,9 @@ RPC status:
 4 paths up, 0 paths down (tcp check)
 4 paths up, 0 paths down (udp check)
 ----
+--
 ====
-. 在集群中的每个节点上，迁移与要更换的第一个 Nexus 5596 交换机 CL1 关联的接口：
+. [[Step12]]在集群中的每个节点上、迁移与要替换的第一个Nexus 5596交换机CL1关联的接口：
 +
 `网络接口迁移`
 
@@ -859,7 +917,7 @@ cluster::*> network port modify -node n2 -port e0d -up-admin true
 
 [listing]
 ----
-cluster::*> network port show –role cluster
+cluster::*> network port show -role cluster
   (network port show)
 Node: n1
                                                                        Ignore
@@ -930,19 +988,47 @@ Cluster
 8 entries were displayed.
 ----
 ====
-. 对远程集群接口执行 Ping 操作，然后执行远程操作步骤调用服务器检查：
-+
-`cluster ping-cluster`
+. 验证远程集群接口的连接：
 
-+
-.显示示例
-[%collapsible]
+
+[role="tabbed-block"]
 ====
-以下示例显示了如何对远程集群接口执行 ping 操作：
+.ONTAP 9.9.1及更高版本
+--
+您可以使用 `network interface check cluster-connectivity` 命令启动集群连接的可访问性检查、然后显示详细信息：
 
-[listing]
+`network interface check cluster-connectivity start` 和 `network interface check cluster-connectivity show`
+
+[listing, subs="+quotes"]
 ----
-cluster::*> cluster ping-cluster -node n1
+cluster1::*> *network interface check cluster-connectivity start*
+----
+*注：*请等待几秒钟、然后再运行show命令显示详细信息。
+
+[listing, subs="+quotes"]
+----
+cluster1::*> *network interface check cluster-connectivity show*
+                                  Source          Destination       Packet
+Node   Date                       LIF             LIF               Loss
+------ -------------------------- --------------- ----------------- -----------
+n1
+       3/5/2022 19:21:18 -06:00   n1_clus2        n2_clus1      none
+       3/5/2022 19:21:20 -06:00   n1_clus2        n2_clus2      none
+
+n2
+       3/5/2022 19:21:18 -06:00   n2_clus2        n1_clus1      none
+       3/5/2022 19:21:20 -06:00   n2_clus2        n1_clus2      none
+----
+--
+.所有ONTAP版本
+--
+对于所有ONTAP版本、您还可以使用 `cluster ping-cluster -node <name>` 用于检查连接的命令：
+
+`cluster ping-cluster -node <name>`
+
+[listing, subs="+quotes"]
+----
+cluster::*> *cluster ping-cluster -node n1*
 Host is n1
 Getting addresses from network interface table...
 Cluster n1_clus1 n1		e0a	10.10.0.1
@@ -984,8 +1070,9 @@ RPC status:
 4 paths up, 0 paths down (tcp check)
 4 paths up, 0 paths down (udp check)
 ----
+--
 ====
-. 通过向 Nexus 3132Q-V 集群交换机添加节点来扩展集群。
+. [[STEP7]]通过向Nexus 3132Q-V集群交换机添加节点来扩展集群。
 . 显示有关配置中的设备的信息：
 +
 ** `network device-discovery show`
@@ -1024,7 +1111,7 @@ n4         /cdp
 ----
 [listing]
 ----
-cluster::*> network port show –role cluster
+cluster::*> network port show -role cluster
   (network port show)
 Node: n1
                                                                        Ignore
@@ -1140,8 +1227,8 @@ CL2                           cluster-network    10.10.1.102     NX5596
 
 [listing]
 ----
-cluster::> system cluster-switch delete –device CL1
-cluster::> system cluster-switch delete –device CL2
+cluster::> system cluster-switch delete -device CL1
+cluster::> system cluster-switch delete -device CL2
 ----
 ====
 . 将集群clus1和clus2配置为在每个节点上自动还原并确认。

@@ -203,11 +203,73 @@ node2/cdp
 4 entries were displayed.
 ----
 ====
-. 验证集群连接：
-+
-`cluster ping-cluster -node local`
+. 验证远程集群接口的连接：
 
-. 验证集群是否运行正常：
+
+[role="tabbed-block"]
+====
+.ONTAP 9.9.1及更高版本
+--
+您可以使用 `network interface check cluster-connectivity` 命令启动集群连接的可访问性检查、然后显示详细信息：
+
+`network interface check cluster-connectivity start` 和 `network interface check cluster-connectivity show`
+
+[listing, subs="+quotes"]
+----
+cluster1::*> *network interface check cluster-connectivity start*
+----
+*注：*请等待几秒钟、然后再运行 `show`命令以显示详细信息。
+
+[listing, subs="+quotes"]
+----
+cluster1::*> *network interface check cluster-connectivity show*
+                                  Source           Destination      Packet
+Node   Date                       LIF              LIF              Loss
+------ -------------------------- ---------------- ---------------- -----------
+node1
+       3/5/2022 19:21:18 -06:00   node1_clus2      node2-clus1      none
+       3/5/2022 19:21:20 -06:00   node1_clus2      node2_clus2      none
+node2
+       3/5/2022 19:21:18 -06:00   node2_clus2      node1_clus1      none
+       3/5/2022 19:21:20 -06:00   node2_clus2      node1_clus2      none
+----
+--
+.所有ONTAP版本
+--
+对于所有ONTAP版本、您还可以使用 `cluster ping-cluster -node <name>` 用于检查连接的命令：
+
+`cluster ping-cluster -node <name>`
+
+[listing, subs="+quotes"]
+----
+cluster1::*> *cluster ping-cluster -node local*
+Host is node2
+Getting addresses from network interface table...
+Cluster node1_clus1 169.254.209.69 node1 e0a
+Cluster node1_clus2 169.254.49.125 node1 e0b
+Cluster node2_clus1 169.254.47.194 node2 e0a
+Cluster node2_clus2 169.254.19.183 node2 e0b
+Local = 169.254.47.194 169.254.19.183
+Remote = 169.254.209.69 169.254.49.125
+Cluster Vserver Id = 4294967293
+Ping status:
+
+Basic connectivity succeeds on 4 path(s)
+Basic connectivity fails on 0 path(s)
+
+Detected 9000 byte MTU on 4 path(s):
+Local 169.254.47.194 to Remote 169.254.209.69
+Local 169.254.47.194 to Remote 169.254.49.125
+Local 169.254.19.183 to Remote 169.254.209.69
+Local 169.254.19.183 to Remote 169.254.49.125
+Larger than PMTU communication succeeds on 4 path(s)
+RPC status:
+2 paths up, 0 paths down (tcp check)
+2 paths up, 0 paths down (udp check)
+----
+--
+====
+. [[STEP7]]验证集群是否运行正常：
 +
 `集群环显示`
 
@@ -249,15 +311,76 @@ image::../media/tnsc_ports_e0a_direct_connection.PNG[端口"e0a"之间的直接�
 cluster::*> network options switchless-cluster show
 Enable Switchless Cluster: true
 ----
-. 验证集群网络是否未中断：
-+
-`cluster ping-cluster -node local`
+. 验证远程集群接口的连接：
 
-+
+
+[role="tabbed-block"]
+====
+.ONTAP 9.9.1及更高版本
+--
+您可以使用 `network interface check cluster-connectivity` 命令启动集群连接的可访问性检查、然后显示详细信息：
+
+`network interface check cluster-connectivity start` 和 `network interface check cluster-connectivity show`
+
+[listing, subs="+quotes"]
+----
+cluster1::*> *network interface check cluster-connectivity start*
+----
+*注：*请等待几秒钟、然后再运行 `show`命令以显示详细信息。
+
+[listing, subs="+quotes"]
+----
+cluster1::*> *network interface check cluster-connectivity show*
+                                  Source           Destination      Packet
+Node   Date                       LIF              LIF              Loss
+------ -------------------------- ---------------- ---------------- -----------
+node1
+       3/5/2022 19:21:18 -06:00   node1_clus2      node2-clus1      none
+       3/5/2022 19:21:20 -06:00   node1_clus2      node2_clus2      none
+node2
+       3/5/2022 19:21:18 -06:00   node2_clus2      node1_clus1      none
+       3/5/2022 19:21:20 -06:00   node2_clus2      node1_clus2      none
+----
+--
+.所有ONTAP版本
+--
+对于所有ONTAP版本、您还可以使用 `cluster ping-cluster -node <name>` 用于检查连接的命令：
+
+`cluster ping-cluster -node <name>`
+
+[listing, subs="+quotes"]
+----
+cluster1::*> *cluster ping-cluster -node local*
+Host is node2
+Getting addresses from network interface table...
+Cluster node1_clus1 169.254.209.69 node1 e0a
+Cluster node1_clus2 169.254.49.125 node1 e0b
+Cluster node2_clus1 169.254.47.194 node2 e0a
+Cluster node2_clus2 169.254.19.183 node2 e0b
+Local = 169.254.47.194 169.254.19.183
+Remote = 169.254.209.69 169.254.49.125
+Cluster Vserver Id = 4294967293
+Ping status:
+
+Basic connectivity succeeds on 4 path(s)
+Basic connectivity fails on 0 path(s)
+
+Detected 9000 byte MTU on 4 path(s):
+Local 169.254.47.194 to Remote 169.254.209.69
+Local 169.254.47.194 to Remote 169.254.49.125
+Local 169.254.19.183 to Remote 169.254.209.69
+Local 169.254.19.183 to Remote 169.254.49.125
+Larger than PMTU communication succeeds on 4 path(s)
+RPC status:
+2 paths up, 0 paths down (tcp check)
+2 paths up, 0 paths down (udp check)
+----
+--
+====
 
 IMPORTANT: 在继续执行下一步之前、您必须至少等待两分钟、以确认组1上的背对背连接正常工作。
 
-. 为组2中的端口设置无交换机配置。
+. [[STEP11]]为组2中的端口设置无交换机配置。
 +
 
 IMPORTANT: 为了避免潜在的网络连接问题、您必须断开端口与组2的连接、并尽快地将其重新连接起来、例如、*不到20秒*。
@@ -368,11 +491,73 @@ node2 true    true        false
 2 entries were displayed.
 ----
 ====
-. 确认集群端口之间的连接：
-+
-`cluster ping-cluster local`
+. 验证远程集群接口的连接：
 
-. 如果禁止自动创建案例，请通过调用 AutoSupport 消息重新启用它：
+
+[role="tabbed-block"]
+====
+.ONTAP 9.9.1及更高版本
+--
+您可以使用 `network interface check cluster-connectivity` 命令启动集群连接的可访问性检查、然后显示详细信息：
+
+`network interface check cluster-connectivity start` 和 `network interface check cluster-connectivity show`
+
+[listing, subs="+quotes"]
+----
+cluster1::*> *network interface check cluster-connectivity start*
+----
+*注：*请等待几秒钟、然后再运行 `show`命令以显示详细信息。
+
+[listing, subs="+quotes"]
+----
+cluster1::*> *network interface check cluster-connectivity show*
+                                  Source           Destination      Packet
+Node   Date                       LIF              LIF              Loss
+------ -------------------------- ---------------- ---------------- -----------
+node1
+       3/5/2022 19:21:18 -06:00   node1_clus2      node2-clus1      none
+       3/5/2022 19:21:20 -06:00   node1_clus2      node2_clus2      none
+node2
+       3/5/2022 19:21:18 -06:00   node2_clus2      node1_clus1      none
+       3/5/2022 19:21:20 -06:00   node2_clus2      node1_clus2      none
+----
+--
+.所有ONTAP版本
+--
+对于所有ONTAP版本、您还可以使用 `cluster ping-cluster -node <name>` 用于检查连接的命令：
+
+`cluster ping-cluster -node <name>`
+
+[listing, subs="+quotes"]
+----
+cluster1::*> *cluster ping-cluster -node local*
+Host is node2
+Getting addresses from network interface table...
+Cluster node1_clus1 169.254.209.69 node1 e0a
+Cluster node1_clus2 169.254.49.125 node1 e0b
+Cluster node2_clus1 169.254.47.194 node2 e0a
+Cluster node2_clus2 169.254.19.183 node2 e0b
+Local = 169.254.47.194 169.254.19.183
+Remote = 169.254.209.69 169.254.49.125
+Cluster Vserver Id = 4294967293
+Ping status:
+
+Basic connectivity succeeds on 4 path(s)
+Basic connectivity fails on 0 path(s)
+
+Detected 9000 byte MTU on 4 path(s):
+Local 169.254.47.194 to Remote 169.254.209.69
+Local 169.254.47.194 to Remote 169.254.49.125
+Local 169.254.19.183 to Remote 169.254.209.69
+Local 169.254.19.183 to Remote 169.254.49.125
+Larger than PMTU communication succeeds on 4 path(s)
+RPC status:
+2 paths up, 0 paths down (tcp check)
+2 paths up, 0 paths down (udp check)
+----
+--
+====
+. [[STEP6]]如果禁止自动创建案例、请通过调用AutoSupport消息重新启用：
 +
 `ssystem node AutoSupport invoke -node * -type all -message MAINT=end`
 

@@ -279,19 +279,47 @@ cluster::*> *network port modify -node n2 -port e0b -up-admin false*
 cluster::*> *network port modify -node n2 -port e0c -up-admin false*
 ----
 ====
-. 对远程集群接口执行 Ping 操作，然后执行远程操作步骤 调用服务器检查：
-+
-`cluster ping-cluster -node _node-name_`
+. 验证远程集群接口的连接：
 
-+
-.显示示例
-[%collapsible]
+
+[role="tabbed-block"]
 ====
-以下示例显示了正在对节点 n1 执行 Ping 操作，之后会指示 RPC 状态：
+.ONTAP 9.9.1及更高版本
+--
+您可以使用 `network interface check cluster-connectivity` 命令启动集群连接的可访问性检查、然后显示详细信息：
+
+`network interface check cluster-connectivity start` 和 `network interface check cluster-connectivity show`
 
 [listing, subs="+quotes"]
 ----
-cluster::*> *cluster ping-cluster -node n1*
+cluster1::*> *network interface check cluster-connectivity start*
+----
+*注：*请等待几秒钟、然后再运行 `show`命令以显示详细信息。
+
+[listing, subs="+quotes"]
+----
+cluster1::*> *network interface check cluster-connectivity show*
+                                  Source           Destination      Packet
+Node   Date                       LIF              LIF              Loss
+------ -------------------------- ---------------- ---------------- -----------
+n1
+       3/5/2022 19:21:18 -06:00   n1_clus2         n2-clus1         none
+       3/5/2022 19:21:20 -06:00   n1_clus2         n2_clus2         none
+
+n2
+       3/5/2022 19:21:18 -06:00   n2_clus2         n1_clus1         none
+       3/5/2022 19:21:20 -06:00   n2_clus2         n1_clus2         none
+----
+--
+.所有ONTAP版本
+--
+对于所有ONTAP版本、您还可以使用 `cluster ping-cluster -node <name>` 用于检查连接的命令：
+
+`cluster ping-cluster -node <name>`
+
+[listing, subs="+quotes"]
+----
+cluster1::*> *cluster ping-cluster -node local*
 Host is n1
 Getting addresses from network interface table...
 Cluster n1_clus1 n1       e0a    10.10.0.1
@@ -332,8 +360,9 @@ RPC status:
 4 paths up, 0 paths down (tcp check)
 4 paths up, 0 paths down (udp check)
 ----
+--
 ====
-. 使用相应的命令关闭活动 CN1610 交换机 CL1 上的 ISL 端口 13 到 16 。
+. [[STEP3]]使用适当的命令关闭活动CN1610交换机CL1上的ISL端口13到16。
 +
 有关 Cisco 命令的详细信息，请参见中列出的指南 https://www.cisco.com/c/en/us/support/switches/nexus-3000-series-switches/products-command-reference-list.html["Cisco Nexus 3000 系列 NX-OS 命令参考"^]。
 
@@ -605,19 +634,47 @@ e0d   cluster   cluster     up    9000  auto/10000     -
 8 entries were displayed.
 ----
 ====
-. 对远程集群接口执行 Ping 操作，然后执行远程操作步骤调用服务器检查：
-+
-`cluster ping-cluster -node _node-name_`
+. 验证远程集群接口的连接：
 
-+
-.显示示例
-[%collapsible]
+
+[role="tabbed-block"]
 ====
-以下示例显示了正在对节点 n1 执行 Ping 操作，之后会指示 RPC 状态：
+.ONTAP 9.9.1及更高版本
+--
+您可以使用 `network interface check cluster-connectivity` 命令启动集群连接的可访问性检查、然后显示详细信息：
+
+`network interface check cluster-connectivity start` 和 `network interface check cluster-connectivity show`
 
 [listing, subs="+quotes"]
 ----
-cluster::*> *cluster ping-cluster -node n1*
+cluster1::*> *network interface check cluster-connectivity start*
+----
+*注：*请等待几秒钟、然后再运行 `show`命令以显示详细信息。
+
+[listing, subs="+quotes"]
+----
+cluster1::*> *network interface check cluster-connectivity show*
+                                  Source           Destination      Packet
+Node   Date                       LIF              LIF              Loss
+------ -------------------------- ---------------- ---------------- -----------
+n1
+       3/5/2022 19:21:18 -06:00   n1_clus2         n2-clus1         none
+       3/5/2022 19:21:20 -06:00   n1_clus2         n2_clus2         none
+
+n2
+       3/5/2022 19:21:18 -06:00   n2_clus2         n1_clus1         none
+       3/5/2022 19:21:20 -06:00   n2_clus2         n1_clus2         none
+----
+--
+.所有ONTAP版本
+--
+对于所有ONTAP版本、您还可以使用 `cluster ping-cluster -node <name>` 用于检查连接的命令：
+
+`cluster ping-cluster -node <name>`
+
+[listing, subs="+quotes"]
+----
+cluster1::*> *cluster ping-cluster -node local*
 Host is n1
 Getting addresses from network interface table...
 Cluster n1_clus1 n1       e0a    10.10.0.1
@@ -630,13 +687,12 @@ Cluster n2_clus3 n2       e0c    10.10.0.7
 Cluster n2_clus4 n2       e0d    10.10.0.8
 Local = 10.10.0.1 10.10.0.2 10.10.0.3 10.10.0.4
 Remote = 10.10.0.5 10.10.0.6 10.10.0.7 10.10.0.8
-Cluster Vserver Id = 4294967293
-Ping status:
+Cluster Vserver Id = 4294967293 Ping status:
 ....
 Basic connectivity succeeds on 16 path(s)
 Basic connectivity fails on 0 path(s)
 ................
-Detected 1500 byte MTU on 16 path(s):
+Detected 9000 byte MTU on 16 path(s):
     Local 10.10.0.1 to Remote 10.10.0.5
     Local 10.10.0.1 to Remote 10.10.0.6
     Local 10.10.0.1 to Remote 10.10.0.7
@@ -659,8 +715,9 @@ RPC status:
 4 paths up, 0 paths down (tcp check)
 4 paths up, 0 paths down (udp check)
 ----
+--
 ====
-. 迁移与第一个CN1610交换机CL1关联的LIF：
+. [[STEP16]]迁移与第一个CN1610交换机CL1关联的LI：
 +
 `network interface migrate -vserver cluster -lif _lif-name_ -source-node _node-name_`
 
@@ -971,19 +1028,47 @@ Cluster
 8 entries were displayed.
 ----
 ====
-. 对远程集群接口执行 Ping 操作，然后执行远程操作步骤调用服务器检查：
-+
-`cluster ping-cluster -node _host-name_`
+. 验证远程集群接口的连接：
 
-+
-.显示示例
-[%collapsible]
+
+[role="tabbed-block"]
 ====
-以下示例显示了正在对节点 n1 执行 Ping 操作，之后会指示 RPC 状态：
+.ONTAP 9.9.1及更高版本
+--
+您可以使用 `network interface check cluster-connectivity` 命令启动集群连接的可访问性检查、然后显示详细信息：
+
+`network interface check cluster-connectivity start` 和 `network interface check cluster-connectivity show`
 
 [listing, subs="+quotes"]
 ----
-cluster::*> *cluster ping-cluster -node n1*
+cluster1::*> *network interface check cluster-connectivity start*
+----
+*注：*请等待几秒钟、然后再运行 `show`命令以显示详细信息。
+
+[listing, subs="+quotes"]
+----
+cluster1::*> *network interface check cluster-connectivity show*
+                                  Source           Destination      Packet
+Node   Date                       LIF              LIF              Loss
+------ -------------------------- ---------------- ---------------- -----------
+n1
+       3/5/2022 19:21:18 -06:00   n1_clus2         n2-clus1         none
+       3/5/2022 19:21:20 -06:00   n1_clus2         n2_clus2         none
+
+n2
+       3/5/2022 19:21:18 -06:00   n2_clus2         n1_clus1         none
+       3/5/2022 19:21:20 -06:00   n2_clus2         n1_clus2         none
+----
+--
+.所有ONTAP版本
+--
+对于所有ONTAP版本、您还可以使用 `cluster ping-cluster -node <name>` 用于检查连接的命令：
+
+`cluster ping-cluster -node <name>`
+
+[listing, subs="+quotes"]
+----
+cluster1::*> *cluster ping-cluster -node local*
 Host is n1
 Getting addresses from network interface table...
 Cluster n1_clus1 n1       e0a    10.10.0.1
@@ -996,8 +1081,7 @@ Cluster n2_clus3 n2       e0c    10.10.0.7
 Cluster n2_clus4 n2       e0d    10.10.0.8
 Local = 10.10.0.1 10.10.0.2 10.10.0.3 10.10.0.4
 Remote = 10.10.0.5 10.10.0.6 10.10.0.7 10.10.0.8
-Cluster Vserver Id = 4294967293
-Ping status:
+Cluster Vserver Id = 4294967293 Ping status:
 ....
 Basic connectivity succeeds on 16 path(s)
 Basic connectivity fails on 0 path(s)
@@ -1023,10 +1107,11 @@ Detected 9000 byte MTU on 16 path(s):
 Larger than PMTU communication succeeds on 16 path(s)
 RPC status:
 4 paths up, 0 paths down (tcp check)
-3	paths up, 0 paths down (udp check)
+3 paths up, 0 paths down (udp check)
 ----
+--
 ====
-. 通过向 Nexus 3232C 集群交换机添加节点来扩展集群。
+. [[STEP4]]通过向Nexus 3232C集群交换机添加节点来扩展集群。
 . 显示有关配置中的设备的信息：
 +
 ** `network device-discovery show`
@@ -1222,4 +1307,4 @@ C2                          cluster-network    10.10.1.104      NX3232C
 
 
 .下一步是什么？
-link:../switch-cshm/config-overview.html["配置交换机运行状况监控"]
+link:../switch-cshm/config-overview.html["配置交换机运行状况监控"](英文)

@@ -132,14 +132,48 @@ Cluster
 ====
 
 
-. 对远程集群 LIF 执行 Ping 操作： `cluster ping-cluster -node _node-name_`
-+
-.显示示例
-[%collapsible]
+. 验证远程集群接口的连接：
+
+
+[role="tabbed-block"]
 ====
+.ONTAP 9.9.1及更高版本
+--
+您可以使用 `network interface check cluster-connectivity` 命令启动集群连接的可访问性检查、然后显示详细信息：
+
+`network interface check cluster-connectivity start` 和 `network interface check cluster-connectivity show`
+
 [listing, subs="+quotes"]
 ----
-cluster1::*> *cluster ping-cluster -node cluster1-02*
+cluster1::*> *network interface check cluster-connectivity start*
+----
+*注：*请等待几秒钟、然后再运行 `show`命令以显示详细信息。
+
+[listing, subs="+quotes"]
+----
+cluster1::*> *network interface check cluster-connectivity show*
+                                  Source              Destination         Packet
+Node   Date                       LIF                 LIF                 Loss
+------ -------------------------- ------------------- ------------------- -----------
+cluster1-01
+       3/5/2022 19:21:18 -06:00   cluster1-01_clus2   cluster1-02_clus1   none
+       3/5/2022 19:21:20 -06:00   cluster1-01_clus2   cluster1-02_clus2   none
+.
+.
+cluster1-02
+       3/5/2022 19:21:18 -06:00   cluster1-02_clus2   cluster1-01_clus1   none
+       3/5/2022 19:21:20 -06:00   cluster1-02_clus2   cluster1-01_clus2   none
+----
+--
+.所有ONTAP版本
+--
+对于所有ONTAP版本、您还可以使用 `cluster ping-cluster -node <name>` 用于检查连接的命令：
+
+`cluster ping-cluster -node <name>`
+
+[listing, subs="+quotes"]
+----
+cluster1::*> *cluster ping-cluster -node local*
 Host is cluster1-02
 Getting addresses from network interface table...
 Cluster cluster1-01_clus1 169.254.209.69 cluster1-01     e0a
@@ -164,8 +198,10 @@ RPC status:
 2 paths up, 0 paths down (tcp check)
 2 paths up, 0 paths down (udp check)
 ----
+--
 ====
-. 验证是否已在所有集群 LIF 上启用 `auto-revert` 命令： `network interface show -vserver cluster -fields auto-revert`
+. [[STEP6]]验证是否 `auto-revert`已在所有集群Lifs上启用命令：
+`network interface show -vserver Cluster -fields auto-revert`
 +
 .显示示例
 [%collapsible]
@@ -176,7 +212,7 @@ cluster1::*> *network interface show -vserver Cluster -fields auto-revert*
 
           Logical
 Vserver   Interface           Auto-revert
---------- ––––––-------------- ------------
+--------- ------------------- ------------
 Cluster
           cluster1-01_clus1   true
           cluster1-01_clus2   true

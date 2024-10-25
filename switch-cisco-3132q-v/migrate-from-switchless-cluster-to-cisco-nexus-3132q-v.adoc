@@ -377,17 +377,47 @@ Cluster
 cluster::*> network port modify -node n1 -port e4a -up-admin false
 cluster::*> network port modify -node n2 -port e4a -up-admin false
 ----
-. 对远程集群接口执行 Ping 操作并执行 RPC 服务器检查：
-+
-`cluster ping-cluster`
+. 验证远程集群接口的连接：
 
-+
-.显示示例
-[%collapsible]
+
+[role="tabbed-block"]
 ====
-[listing]
+.ONTAP 9.9.1及更高版本
+--
+您可以使用 `network interface check cluster-connectivity` 命令启动集群连接的可访问性检查、然后显示详细信息：
+
+`network interface check cluster-connectivity start` 和 `network interface check cluster-connectivity show`
+
+[listing, subs="+quotes"]
 ----
-cluster::*> cluster ping-cluster -node n1
+cluster1::*> *network interface check cluster-connectivity start*
+----
+*注：*请等待几秒钟、然后再运行show命令显示详细信息。
+
+[listing, subs="+quotes"]
+----
+cluster1::*> *network interface check cluster-connectivity show*
+                                  Source          Destination       Packet
+Node   Date                       LIF             LIF               Loss
+------ -------------------------- --------------- ----------------- -----------
+n1
+       3/5/2022 19:21:18 -06:00   n1_clus2        n2_clus1      none
+       3/5/2022 19:21:20 -06:00   n1_clus2        n2_clus2      none
+
+n2
+       3/5/2022 19:21:18 -06:00   n2_clus2        n1_clus1      none
+       3/5/2022 19:21:20 -06:00   n2_clus2        n1_clus2      none
+----
+--
+.所有ONTAP版本
+--
+对于所有ONTAP版本、您还可以使用 `cluster ping-cluster -node <name>` 用于检查连接的命令：
+
+`cluster ping-cluster -node <name>`
+
+[listing, subs="+quotes"]
+----
+cluster::*> *cluster ping-cluster -node n1*
 Host is n1
 Getting addresses from network interface table...
 Cluster n1_clus1 n1		e4a	10.10.0.1
@@ -413,8 +443,9 @@ RPC status:
 1 paths up, 0 paths down (tcp check)
 1 paths up, 0 paths down (ucp check)
 ----
+--
 ====
-. 断开节点 n1 上 E4A 的缆线。
+. [[Step10]]从节点n1上的e4a中拔下缆线。
 +
 您可以参考正在运行的配置，并使用 Nexus 3132Q-V 上支持的布线方式将交换机 C1 上的第一个 40 GbE 端口（本示例中的端口 1/7 ）连接到 n1 上的 E4A
 
@@ -796,17 +827,47 @@ network options switchless-cluster show
 
 === 第5步：验证配置
 
-. 对远程集群接口执行 Ping 操作并执行 RPC 服务器检查：
-+
-`cluster ping-cluster`
+. 验证远程集群接口的连接：
 
-+
-.显示示例
-[%collapsible]
+
+[role="tabbed-block"]
 ====
-[listing]
+.ONTAP 9.9.1及更高版本
+--
+您可以使用 `network interface check cluster-connectivity` 命令启动集群连接的可访问性检查、然后显示详细信息：
+
+`network interface check cluster-connectivity start` 和 `network interface check cluster-connectivity show`
+
+[listing, subs="+quotes"]
 ----
-cluster::*> cluster ping-cluster -node n1
+cluster1::*> *network interface check cluster-connectivity start*
+----
+*注：*请等待几秒钟、然后再运行show命令显示详细信息。
+
+[listing, subs="+quotes"]
+----
+cluster1::*> *network interface check cluster-connectivity show*
+                                  Source          Destination       Packet
+Node   Date                       LIF             LIF               Loss
+------ -------------------------- --------------- ----------------- -----------
+n1
+       3/5/2022 19:21:18 -06:00   n1_clus2        n2_clus1      none
+       3/5/2022 19:21:20 -06:00   n1_clus2        n2_clus2      none
+
+n2
+       3/5/2022 19:21:18 -06:00   n2_clus2        n1_clus1      none
+       3/5/2022 19:21:20 -06:00   n2_clus2        n1_clus2      none
+----
+--
+.所有ONTAP版本
+--
+对于所有ONTAP版本、您还可以使用 `cluster ping-cluster -node <name>` 用于检查连接的命令：
+
+`cluster ping-cluster -node <name>`
+
+[listing, subs="+quotes"]
+----
+cluster::*> *cluster ping-cluster -node n1*
 Host is n1
 Getting addresses from network interface table...
 Cluster n1_clus1 n1		e4a	10.10.0.1
@@ -832,12 +893,13 @@ RPC status:
 1 paths up, 0 paths down (tcp check)
 1 paths up, 0 paths down (ucp check)
 ----
+--
 ====
-. 如果禁止自动创建案例，请通过调用 AutoSupport 消息重新启用它：
+. [[STEP2]]如果禁止自动创建案例、请通过调用AutoSupport消息重新启用：
 +
 `ssystem node AutoSupport invoke -node * -type all -message MAINT=end`
 
 
 
 .下一步是什么？
-link:../switch-cshm/config-overview.html["配置交换机运行状况监控"]
+link:../switch-cshm/config-overview.html["配置交换机运行状况监控"](英文)

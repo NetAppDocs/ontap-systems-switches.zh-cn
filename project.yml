@@ -9,7 +9,7 @@ settings:
   pdf:
     zip-level: 1
     zip-filename: ontap-systems-switches-pdfs.zip
-  langs: zh-cn,us-en,de-de,es-es,fr-fr,it-it,pt-br,ja-jp,ko-kr,zh-tw
+  langs: zh-cn,us-en,ja-jp,ko-kr,zh-tw,de-de,es-es,fr-fr,it-it
 sidebar:
   entries:
   - title: 切换ONTAP硬件文档

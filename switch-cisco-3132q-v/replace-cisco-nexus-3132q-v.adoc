@@ -341,15 +341,51 @@ cluster::*> network port modify -node n3 -port e4e -up-admin false
 cluster::*> network port modify -node n4 -port e4e -up-admin false
 ----
 ====
-. 对远程集群接口执行 Ping 操作并执行 RPC 服务器检查：
-+
-`cluster ping-cluster`
+. 验证远程集群接口的连接：
 
-+
-.显示示例
-[%collapsible]
+
+[role="tabbed-block"]
 ====
-[listing]
+.ONTAP 9.9.1及更高版本
+--
+您可以使用 `network interface check cluster-connectivity` 命令启动集群连接的可访问性检查、然后显示详细信息：
+
+`network interface check cluster-connectivity start` 和 `network interface check cluster-connectivity show`
+
+[listing, subs="+quotes"]
+----
+cluster1::*> *network interface check cluster-connectivity start*
+----
+*注：*请等待几秒钟、然后再运行show命令显示详细信息。
+
+[listing, subs="+quotes"]
+----
+cluster1::*> *network interface check cluster-connectivity show*
+                                  Source     Destination   Packet
+Node   Date                       LIF        LIF           Loss
+------ -------------------------- ---------- ------------- -----------
+n1
+       3/5/2022 19:21:18 -06:00   n1_clus2   n2_clus1      none
+       3/5/2022 19:21:20 -06:00   n1_clus2   n2_clus2      none
+
+n2
+       3/5/2022 19:21:18 -06:00   n2_clus2   n1_clus1      none
+       3/5/2022 19:21:20 -06:00   n2_clus2   n1_clus2      none
+n3
+...
+...
+n4
+...
+...
+----
+--
+.所有ONTAP版本
+--
+对于所有ONTAP版本、您还可以使用 `cluster ping-cluster -node <name>` 用于检查连接的命令：
+
+`cluster ping-cluster -node <name>`
+
+[listing, subs="+quotes"]
 ----
 cluster::*> cluster ping-cluster -node n1
 Host is n1
@@ -414,8 +450,9 @@ RPC status:
 8 paths up, 0 paths down (tcp check)
 8 paths up, 0 paths down (udp check)
 ----
+--
 ====
-. 关闭 CL1 上的端口 1/31 和 1/32 以及活动 Nexus 3132Q-V 交换机：
+. [[Step9]]关闭CL1上的端口1/31和1/32以及活动Nexus 3132Q-V交换机：
 +
 `s下行`
 
@@ -429,8 +466,8 @@ RPC status:
 ----
 (CL1)# configure
 (CL1)(Config)# interface e1/31-32
-(CL1(config-if-range)# shutdown
-(CL1(config-if-range)# exit
+(CL1)(config-if-range)# shutdown
+(CL1)(config-if-range)# exit
 (CL1)(Config)# exit
 (CL1)#
 ----
@@ -449,8 +486,8 @@ RPC status:
 ----
 (CL1)# configure
 (CL1)(Config)# interface e1/31-32
-(CL1(config-if-range)# no shutdown
-(CL1(config-if-range)# exit
+(CL1)(config-if-range)# no shutdown
+(CL1)(config-if-range)# exit
 (CL1)(Config)# exit
 (CL1)#
 ----
@@ -627,23 +664,57 @@ e4e       Cluster      Cluster          up   9000 auto/40000  -        -
 12 entries were displayed.
 ----
 ====
-. 对远程集群接口执行 Ping 操作并执行 RPC 服务器检查：
-+
-`cluster ping-cluster`
+. 验证远程集群接口的连接：
 
-+
-.显示示例
-[%collapsible]
+
+[role="tabbed-block"]
 ====
-[listing]
+.ONTAP 9.9.1及更高版本
+--
+您可以使用 `network interface check cluster-connectivity` 命令启动集群连接的可访问性检查、然后显示详细信息：
+
+`network interface check cluster-connectivity start` 和 `network interface check cluster-connectivity show`
+
+[listing, subs="+quotes"]
+----
+cluster1::*> *network interface check cluster-connectivity start*
+----
+*注：*请等待几秒钟、然后再运行show命令显示详细信息。
+
+[listing, subs="+quotes"]
+----
+cluster1::*> *network interface check cluster-connectivity show*
+                                  Source     Destination   Packet
+Node   Date                       LIF        LIF           Loss
+------ -------------------------- ---------- ------------- -----------
+n1
+       3/5/2022 19:21:18 -06:00   n1_clus2   n2_clus1      none
+       3/5/2022 19:21:20 -06:00   n1_clus2   n2_clus2      none
+
+n2
+       3/5/2022 19:21:18 -06:00   n2_clus2   n1_clus1      none
+       3/5/2022 19:21:20 -06:00   n2_clus2   n1_clus2      none
+n3
+...
+...
+n4
+...
+...
+----
+--
+.所有ONTAP版本
+--
+对于所有ONTAP版本、您还可以使用 `cluster ping-cluster -node <name>` 用于检查连接的命令：
+
+`cluster ping-cluster -node <name>`
+
+[listing, subs="+quotes"]
 ----
 cluster::*> cluster ping-cluster -node n1
 Host is n1
 Getting addresses from network interface table...
 Cluster n1_clus1 n1		e0a	10.10.0.1
 Cluster n1_clus2 n1		e0b	10.10.0.2
-Cluster n1_clus3 n1		e0c	10.10.0.3
-Cluster n1_clus4 n1		e0d	10.10.0.4
 Cluster n2_clus1 n2		e0a	10.10.0.5
 Cluster n2_clus2 n2		e0b	10.10.0.6
 Cluster n2_clus3 n2		e0c	10.10.0.7
@@ -700,9 +771,8 @@ RPC status:
 8 paths up, 0 paths down (tcp check)
 8 paths up, 0 paths down (udp check)
 ----
+--
 ====
-
-
 
 
 === 第3步：验证配置

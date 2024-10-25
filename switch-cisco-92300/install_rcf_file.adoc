@@ -566,12 +566,44 @@ node1          true    true          false
 node2          true    true          false
 ----
 ====
-. 对远程集群接口执行 Ping 操作以验证连接： `cluster ping-cluster -node local`
-+
-.显示示例
-[%collapsible]
+. 验证远程集群接口的连接：
+
+
+[role="tabbed-block"]
 ====
-[listing]
+.ONTAP 9.9.1及更高版本
+--
+您可以使用 `network interface check cluster-connectivity` 命令启动集群连接的可访问性检查、然后显示详细信息：
+
+`network interface check cluster-connectivity start` 和 `network interface check cluster-connectivity show`
+
+[listing, subs="+quotes"]
+----
+cluster1::*> *network interface check cluster-connectivity start*
+----
+*注：*请等待几秒钟、然后再运行 `show`命令以显示详细信息。
+
+[listing, subs="+quotes"]
+----
+cluster1::*> *network interface check cluster-connectivity show*
+                                  Source           Destination      Packet
+Node   Date                       LIF              LIF              Loss
+------ -------------------------- ---------------- ---------------- -----------
+node1
+       3/5/2022 19:21:18 -06:00   node1_clus2      node2-clus1      none
+       3/5/2022 19:21:20 -06:00   node1_clus2      node2_clus2      none
+node2
+       3/5/2022 19:21:18 -06:00   node2_clus2      node1_clus1      none
+       3/5/2022 19:21:20 -06:00   node2_clus2      node1_clus2      none
+----
+--
+.所有ONTAP版本
+--
+对于所有ONTAP版本、您还可以使用 `cluster ping-cluster -node <name>` 用于检查连接的命令：
+
+`cluster ping-cluster -node <name>`
+
+[listing, subs="+quotes"]
 ----
 cluster1::*> *cluster ping-cluster -node local*
 Host is node1
@@ -606,8 +638,7 @@ RPC status:
 6 paths up, 0 paths down (tcp check)
 6 paths up, 0 paths down (udp check)
 ----
+--
 ====
-
-
 .下一步是什么？
 link:configure-ssh-keys.html["验证 SSH 配置"](英文)

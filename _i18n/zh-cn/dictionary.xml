@@ -148,9 +148,6 @@
   <block id="5c68722501def32a551a736611dc6d8d" category="list-text">确定每个集群接口的管理或运行状态。</block>
   <block id="2e729d790188b76f9ff137fba89a9db0" category="list-text">显示集群网络端口属性：</block>
   <block id="52e7ec4aaac1e1a0a07e63f3d7eb9c16" category="list-text">显示有关逻辑接口的信息：</block>
-  <block id="35f01ed40b6310feec062211ce126c2d" category="paragraph">`cluster ping-cluster -node node-name`</block>
-  <block id="85c96d16aebcae293f2d70dbbf9cb1d0" category="paragraph">以下示例显示了如何对远程集群接口执行 ping 操作：</block>
-  <block id="82214ffaae0abeffe761517344159444" category="list-text">关闭活动 CN1610 交换机 CL1 上的 ISL 端口 13 到 16 ：</block>
   <block id="1136531f8e26fab6ed3aa68ddd63c6cf" category="paragraph">`s下行`</block>
   <block id="20fca188f9df647063b0798615526c99" category="paragraph">以下示例显示了如何关闭 CN1610 交换机 CL1 上的 ISL 端口 13 到 16 ：</block>
   <block id="3fe7956fd750714f32d9b6e932832821" category="list-text">在所有节点上，拔下连接到 CN1610 交换机 CL2 的缆线。</block>
@@ -158,10 +155,8 @@
   <block id="44f09f8a90367de97a8162e8b26612c2" category="paragraph">`s如何使用端口通道`</block>
   <block id="210c72bbad8c8bc1c0de6bc95f64dff9" category="list-text">验证所有集群互连端口是否均已还原到其主端口：</block>
   <block id="f9d6a6a75483c0ffe08b0dea9565ef0c" category="list-text">验证所有集群端口是否均已连接：</block>
-  <block id="c08886eaed359b5e123b95c056c6e19b" category="paragraph">`cluster ping-cluster -node _node-name_`</block>
   <block id="02e93bb0f25246e056d6a7dc767926d0" category="list-text">验证集群节点端口的状态：</block>
   <block id="48080b25b0f8ce17d4598aea7dbbc6cb" category="list-text">验证接口现在是否为主：</block>
-  <block id="c88bbeb32e8a86a6536b0c77fe7f1ec8" category="list-text">对远程集群接口执行 Ping 操作，然后执行远程操作步骤调用服务器检查：</block>
   <block id="25ea268f832f9b1eec50e6576dee1fa5" category="list-text">显示有关配置中的设备的信息：</block>
   <block id="7600489ac65e7f2d69df5731f63b9999" category="list-text">如果未自动删除更换的 CN1610 交换机，请将其卸下：</block>
   <block id="7e742ccdfe23c1184022b4bc3a971881" category="paragraph">以下示例显示了如何删除 CN1610 交换机：</block>
@@ -629,8 +624,6 @@
   <block id="f523377f3be90c9c99ffba49f8f2ce16" category="list-text">在新交换机上，以 admin 身份登录并关闭将连接到节点集群接口的所有端口（端口 1/1 到 1/34 ）。</block>
   <block id="65b12adbef5ea1ca868cfd0f85c4ee86" category="paragraph">如果要更换的交换机无法正常工作并已关闭电源，请转至步骤 4 。集群节点上的 LIF 应已故障转移到每个节点的另一个集群端口。</block>
   <block id="7b5239f3a5575bedd1afcb0d613f5b2d" category="list-text">确认所有集群 LIF 均已启用自动还原： `network interface show -vserver cluster -fields auto-revert`</block>
-  <block id="b20219b8e5862f90d99ed9d31b9cbaf4" category="list-text">验证所有集群 LIF 是否均可通信： `cluster ping-cluster`</block>
-  <block id="2956a3c58e1e9e09d89c37630ad846c1" category="list-text">关闭 Nexus 9336C-FX2 交换机 CS1 上的 ISL 端口 1/35 和 1/36 ：</block>
   <block id="2afc75d42480841e27d9b05235e39cde" category="list-text">拔下 Nexus 9336C-x2 CS2 交换机上的所有缆线，然后将其连接到 Nexus C9336C-x2 newcs2 交换机上的相同端口。</block>
   <block id="78a32e32770c5475ef123676ee445f74" category="list-text">启动 CS1 和 newcs2 交换机之间的 ISL 端口 1/35 和 1/36 ，然后验证端口通道操作状态。</block>
   <block id="9976ce3dd89716631075e314d8369a88" category="paragraph">端口通道应指示 PO1 （ SU ），成员端口应指示 Eth1/35 （ P ）和 Eth1/36 （ P ）。</block>
@@ -641,7 +634,6 @@
   <block id="f33c1f43ae94bca5556a5612cebb3895" category="paragraph">以下命令会将 LIF `node1_clus2` on `node1` 返回到主端口 `e0a` ，并显示有关两个节点上的 LIF 的信息。如果两个集群接口的 is Home 列均为 true 且显示正确的端口分配，则启动第一个节点将成功，此示例中为 node1 上的 `e0a` 和 `e0b` 。</block>
   <block id="08ceb55af9899d85ad284fdb01eb8069" category="paragraph">此示例显示此集群中 node1 和 node2 的节点运行状况为 true ：</block>
   <block id="99a5618d4e7c61c63f6a59744fda19b6" category="list-text">验证所有物理集群端口是否均已启动： `network port show IPSpace Cluster`</block>
-  <block id="b8fcfd0b86837de6abae197ea7ce1e77" category="list-text">确认以下集群网络配置： `network port show`</block>
   <block id="d921e67200afe4871cf4670f84d9ecd6" category="list-text">如果禁止自动创建案例，请通过调用 AutoSupport 消息重新启用此功能： `ssystem node AutoSupport invoke -node * -type all -message MAINT=end`</block>
   <block id="fa21628888ded01ed57a85731476a1fb" category="summary">如果要记录受支持的平台，则必须参考填写好的示例布线工作表来完成空白布线工作表。可以将每个交换机配置为一个 40GbE 端口或 4 个 10GbE 端口。</block>
   <block id="2fab7c7cfe6456a33108d2cdd5b1004a" category="paragraph">4 个 10G/40G 节点</block>
@@ -1113,7 +1105,6 @@
   <block id="a5ba084a16f4288f9dbb11676c16a481" category="list-text">从节点 2 上的集群端口 e0b 断开缆线连接，然后使用 923300 YC 交换机支持的相应布线方式将 e0b 连接到集群交换机 CS2 上的端口 2 。</block>
   <block id="5092d42ca2315a935e2e3c56036b8a27" category="paragraph">以下示例显示交换机 CS2 上的端口 1/1 到 1/64 已启用：</block>
   <block id="9b9b4790983afce9ab4bf2e1e67e9766" category="list-text">验证 `Is Home` 的所有接口是否均显示 true ：</block>
-  <block id="cd21dfc849bb9ea2aa764a739849b964" category="list-text">确保集群网络具有完全连接：</block>
   <block id="0087b0de389e5b9f017430f157337f28" category="summary">您可以将 ONTAP 集群中较早的 Cisco 集群交换机无中断迁移到 Cisco Nexus 92300YC 集群网络交换机。</block>
   <block id="bbe48fb854ea022537208eeeff822f91" category="list-title">关于此任务</block>
   <block id="ee9f18fe03ee9b0dd7c1625d630104b6" category="list-text">所有与集群 LIF 处于 up 状态的集群 LIF 均位于其主端口上。</block>
@@ -1153,8 +1144,6 @@
   <block id="29b5c9f7c3e370b92a6acd04f777cd76" category="paragraph">此操作步骤中的示例使用两个节点。这些节点使用两个 10GbE 集群互连端口 `e0a` 和 `e0b` 。</block>
   <block id="ae51aab75debd2e4f744aa3423ddf6cf" category="list-text">集群 LIF 名称是 node1 的 `node1_clus1` 和 `node1_clus2` ， node2 的 `node2_clus1` 和 `node2_clus2` 。</block>
   <block id="4910851fa218a8942f3c3f40e877fda8" category="paragraph">其中 _x_ 是维护时段的持续时间，以小时为单位。</block>
-  <block id="e73ca78de91a85725d7897c5caaeeb3e" category="list-text">对远程集群 LIF 执行 Ping 操作：</block>
-  <block id="f640804165fe8b3014b443db071bd7c2" category="list-text">验证是否已在所有集群 LIF 上启用 auto-revert 命令：</block>
   <block id="c3fefe6517671336a8a9051770e62e39" category="summary">您可以使用此操作步骤在 Nexus 92300YC 交换机上安装 NX-OS 软件。</block>
   <block id="8c26396db8d0080e37691f8d80525fd2" category="list-text">使用 `ping` 命令验证与托管 NX-OS 软件和 RCF 的服务器的连接。</block>
   <block id="dfd32790423f16dd03c31199222c75e8" category="list-text">将 NX-OS 软件和 EPLD 映像复制到 Nexus 92300YC 交换机。</block>
@@ -1178,8 +1167,6 @@
   <block id="843e8bce6b1f5f343fc75f65042e3608" category="list-text">单击浏览器的后退箭头返回到 * 问题描述 * 页面，单击 * 继续 * ，接受许可协议，然后转到 * 下载 * 页面。</block>
   <block id="110c695d96cf5ad96f14ba25bfd860f2" category="list-text">在新交换机上，以 admin 身份登录并关闭将连接到节点集群接口的所有端口（端口 1/1 到 1/64 ）。</block>
   <block id="09f3237a21e153d832b3546f85186cbc" category="list-text">验证所有集群 LIF 是否均已启用自动还原：</block>
-  <block id="eb7580a8ac3bae2040e96931950a989f" category="list-text">验证所有集群 LIF 是否均可通信：</block>
-  <block id="0c93dd1c3bc740b534dc19a4612c4120" category="paragraph">`cluster ping-cluster`</block>
   <block id="566992671ef338b9a51fdc8643a29803" category="list-text">关闭 Nexus 92300YC 交换机 CS1 上的 ISL 端口 1/65 和 1/66 ：</block>
   <block id="bcdc1c149628bee1646511fc29cd7407" category="list-text">拔下 Nexus 92300YC CS2 交换机上的所有缆线，然后将其连接到 Nexus 92300YC newcs2 交换机上的相同端口。</block>
   <block id="2975370bf83bdfdcc1f7c7bc49f1e4a2" category="list-text">启动 CS1 和 newcs2 交换机之间的 ISL 端口 1/65 和 1/66 ，然后验证端口通道操作状态。</block>
@@ -1288,8 +1275,6 @@
   <block id="3bf33ab1d6946b3f24d2516e6072bbfb" category="list-text">验证集群接口迁移：</block>
   <block id="e43adf663d10e04de01cdb70dba1ea3f" category="list-text">关闭两个节点上的集群端口 clus1 LIF ：</block>
   <block id="b1dfc19976d0fe683db7ddf19294007c" category="paragraph">`network port modify`</block>
-  <block id="6a7c10099f41c6e223cef671ebb76146" category="list-text">对远程集群接口执行 Ping 操作并执行 RPC 服务器检查：</block>
-  <block id="df920baf118cae8ed08bc0e67c930632" category="list-text">断开节点 n1 上 E4A 的缆线。</block>
   <block id="656098cc9fb2598274636e89bfda9deb" category="paragraph">您可以参考正在运行的配置，并使用 Nexus 3132Q-V 上支持的布线方式将交换机 C1 上的第一个 40 GbE 端口（本示例中的端口 1/7 ）连接到 n1 上的 E4A</block>
   <block id="916b11220f3f30d08ed357610e9a0f88" category="paragraph">将任何缆线重新连接到新的 Cisco 集群交换机时，使用的缆线必须为光纤或 Cisco 支持的缆线。</block>
   <block id="1cd2a4b2269a32389e020110b6c528c4" category="list-text">断开节点 n2 上 E4A 的缆线。</block>
@@ -1376,7 +1361,6 @@
   <block id="8fd12ba18f621197ae2f1f7203080e73" category="paragraph">以下示例验证新 3132Q-V 交换机 C1 上 n1 和 n2 上的所有集群互连端口是否均为 `up` ：</block>
   <block id="42f427229de718255616b52d13a2ec50" category="paragraph">以下示例显示了如何将迁移的集群 LIF 还原到其主端口：</block>
   <block id="9fff40b9c7a12070faa3809a040494f9" category="paragraph">以下示例显示了 n1 和 n2 的集群互连接口状态为 `up` 和 `is home` ：</block>
-  <block id="9337d28b60d4b0252c3592ab024c6fc9" category="list-text">通过向 Nexus 3132Q-V 集群交换机添加节点来扩展集群。</block>
   <block id="1998c6d3154f5a2c373da0aeca0fd3ff" category="list-text">`network port show -role cluster`</block>
   <block id="a2d27af8ce0592e36b8a208c0cb93d3e" category="list-text">`network interface show -role cluster`</block>
   <block id="d06b10417bc355c0e14c53d8eae6e76e" category="paragraph">以下示例显示了节点 n3 和 n4 ，其中 40 GbE 集群端口分别连接到两个 Nexus 3132Q-V 集群交换机上的端口 E1/7 和 E1/8 ，并且两个节点均已加入集群。使用的 40 GbE 集群互连端口为 E4A 和 e4e 。</block>
@@ -1412,7 +1396,6 @@
   <block id="071e695f268cd49293774c00613abb17" category="list-text">显示每个集群互连交换机的每个节点中配置的集群互连接口数量：</block>
   <block id="a06f69669c864cc0902a5e544ee247bc" category="paragraph">`network port show – IP 空间集群`</block>
   <block id="8eaf3d59876911ccca6dc5bdc347ee06" category="list-text">显示有关 LIF 的信息：</block>
-  <block id="b28871024a61db436088d8a57f04935d" category="list-text">验证是否已在所有集群 LIF 上启用 `auto-revert` 命令：</block>
   <block id="280107a5f53cc09efecfd6d30a3b7ebc" category="list-text">NetApp CN1610</block>
   <block id="1d8bdbbecd2a7992d9b2c5314cbc8da8" category="list-text">Cisco Nexus 3132Q-V</block>
   <block id="246b4f4943a9ef7d81b1ecb7d14db012" category="list-text">Cisco Nexus 3132Q-V ：端口 E1/1-30 （ 40/100 GbE ）</block>
@@ -1464,7 +1447,6 @@
   <block id="f5532c44fa87b73888e57560b15f09ab" category="paragraph">以下示例显示了 n1 和 n2 ，但必须在所有节点上执行 LIF 迁移：</block>
   <block id="4dcbeb6667fd808ff27ae4150e7a8909" category="list-text">验证集群的运行状况：</block>
   <block id="acd1d1d2ce5a2970e1b46fb53b75ad44" category="list-text">关闭物理连接到交换机 CL2 的集群互连端口：</block>
-  <block id="3deecfe62c85f26f915232658c689130" category="list-text">关闭活动 Nexus 5596 交换机 CL1 上的 ISL 端口 41 到 48 ：</block>
   <block id="609bda8dbabe0a84f343b546e3d7a65a" category="paragraph">以下示例显示了如何关闭 Nexus 5596 交换机 CL1 上的 ISL 端口 41 到 48 ：</block>
   <block id="74bb8188e949e71bcfef0fd8d38fa91b" category="list-text">在 CL1 和 C2 之间构建临时 ISL 。</block>
   <block id="621728c29c88ed3282a78eafc103c550" category="paragraph">以下示例显示了在 CL1 和 C2 之间设置的临时 ISL ：</block>
@@ -1487,7 +1469,6 @@
   <block id="9e34505e95067067c4258419479733a1" category="paragraph">以下示例显示 clus2 上的 LIF 已还原到其主端口，并显示，如果当前端口列中的端口在 `is Home` 列中的状态为 `true` ，则 LIF 已成功还原。如果 `为主页` 值为 `false` ，则表示尚未还原 LIF 。</block>
   <block id="b0522263b2b188ed6c32b8d81c7f9286" category="list-text">验证集群端口是否已连接：</block>
   <block id="14860c40af5b70801e3ca603e17cb1ae" category="paragraph">以下示例显示了上一个 `network port modify` 命令的结果，确认所有集群互连均为 `up` ：</block>
-  <block id="f4df801f902ead90a2bade04e26cac42" category="list-text">在集群中的每个节点上，迁移与要更换的第一个 Nexus 5596 交换机 CL1 关联的接口：</block>
   <block id="0559fa6d8467bdb0870358a693b8fb6a" category="list-text">验证集群状态：</block>
   <block id="29d3d66101e62951d378ea2e5a755eef" category="paragraph">以下示例显示所需的集群 LIF 已迁移到集群交换机 C2 上托管的相应集群端口：</block>
   <block id="b7504e51bec148bae865f23a95894f3d" category="list-text">在所有节点上，关闭连接到 CL1 的节点端口：</block>
@@ -1568,7 +1549,6 @@
   <block id="7fd77ba3dd5e636631a1eb65009f8b8d" category="paragraph">此示例显示 LIF 迁移已在所有节点上完成：</block>
   <block id="43708903ed29a6b8f36b2d2012c5cd07" category="list-text">验证集群的运行状况：</block>
   <block id="74d7543cdff44d4d4d6b9c31a44929fd" category="paragraph">此示例显示了所有节点上正在关闭的指定端口：</block>
-  <block id="4547e743de7a4493e60ec5a14011f213" category="list-text">关闭 CL1 上的端口 1/31 和 1/32 以及活动 Nexus 3132Q-V 交换机：</block>
   <block id="7ed6ad166541eaeed2eb44050a4369b4" category="paragraph">此示例显示了交换机 CL1 上正在关闭的 ISL 端口 1/31 和 1/32 ：</block>
   <block id="4ce7327540877b4c9bb108e79d7ec741" category="list-text">拔下连接到 Nexus 3132Q-V 交换机 CL2 的所有缆线，然后将其重新连接到所有节点上的替代交换机 C2 。</block>
   <block id="e3005fa5d118a1b001d70e796207020b" category="list-text">从 CL2 上的端口 E1/31 和 E1/32 拔下 ISL 缆线，然后将其重新连接到替代交换机 C2 上的相同端口。</block>
@@ -1623,7 +1603,6 @@
   <block id="20fb8dfa050d34e66fdcb88cde52cd39" category="paragraph">每个集群 LIF 应在 "`is Home` " 列中显示 `true` 。</block>
   <block id="a04a550528162e05ce99957d8bcaedf1" category="paragraph">必须从本地节点执行步骤 10 到 13 中的以下修改和迁移命令。</block>
   <block id="e46a14518d3f20a82a8ea86aa3e1a91b" category="paragraph">对于 8.3 及更高版本，请使用以下命令： `network interface modify -vserver cluster -lif * -auto-revert false`</block>
-  <block id="1506e8a32c89125ba0188cab7beb0fb3" category="paragraph">命令输出显示了所有集群端口之间的连接。</block>
   <block id="159ba467749aba2dcf746508bf149877" category="paragraph">以下示例显示了将 clus1 迁移到 node1 和 node2 上的端口 E2A 的过程：</block>
   <block id="a06d76059f0a519a64519b90a1dc32fa" category="paragraph">对于 8.3 及更高版本，请使用以下命令： `network interface migrate -vserver cluster -lif clus1 -destination-node node1 -destination-port e2a`</block>
   <block id="90df6f76d556f5c6f67ea48d18403467" category="paragraph">以下示例验证 clus1 是否已迁移到 node1 和 node2 上的端口 E2A ：</block>
@@ -1678,7 +1657,6 @@
   <block id="03785619d55d01a3d9de759db10a42c2" category="list-text">验证交换机上连接的 10 GbE 集群端口是否已配置为同一 VLAN 的一部分。</block>
   <block id="1935a529661750cc36f5da03c0214edf" category="paragraph">如果您计划将每个控制器模块上的集群端口连接到不同的交换机，则必须验证每个交换机上连接集群端口的端口是否配置为使用相同的 VLAN ，以及是否已在两台交换机上正确配置中继。</block>
   <block id="ad2c2b5612ae219cdefade565a2878a4" category="paragraph">以下示例显示， node1 和 node2 上的 LIF 为 `up` ，并且 "Is Home" 列结果为 `true` ：</block>
-  <block id="a1f783c83c4d98e6eb5a7c79625862d7" category="paragraph">命令输出应显示所有集群端口之间的连接。</block>
   <block id="2f22a515e333c7902fee7e2dd01783af" category="summary">您必须在 NetApp CN1610 集群交换机上安装 FastPath 软件和参考配置文件（ Reference Configuration Files ， RCF ）。</block>
   <block id="031c2af541d8a8eb91a65a87dbae782f" category="list-text">集群必须是一个完全正常运行的集群。</block>
   <block id="a968ac7024ff03437db257f2510e1999" category="list-text">集群网络接口卡（ NIC ）不能出现故障，并且集群交换机上所有已连接的端口都必须正常工作。</block>
@@ -1790,7 +1768,6 @@
   <block id="0f717d9f0cdccd54283a68290db5a062" category="list-text">关闭在步骤 9 中迁移的 n1_clus1 和 n2_clus1 LIF 的集群端口：</block>
   <block id="e95612c7ef671203cc282ce38a48bdb4" category="paragraph">`network port modify -node _node-name_ -port _port-name_ -up-admin false`</block>
   <block id="c2c05b7104e31c97ee9d11ccf7ac3b14" category="paragraph">您必须对每个端口执行命令，如以下示例所示：</block>
-  <block id="9868b1da05b1c2bf12a9e340575945d0" category="paragraph">以下示例显示了正在对节点 n1 执行 Ping 操作，之后会指示 RPC 状态：</block>
   <block id="cfc28d2866c14653d52dc05e54775304" category="paragraph">您可以参考正在运行的配置，并使用 Nexus 3232C 交换机支持的布线方式将交换机 C1 上的第一个 40 GbE 端口（本示例中的端口 1/7 ）连接到 n1 上的 E4A 。</block>
   <block id="4eb5af7feefb21a309fba1c5f8786fbb" category="paragraph">以下示例显示了使用 RCF `NX3232_RCF_v1.0_24p10g_26p100g.txt` 中支持的配置在 Nexus 3232C 集群交换机 C1 和 C2 上启用端口 1 到 30 ：</block>
   <block id="be56b8565c3ff7246400103b874f9821" category="paragraph">`network port modify -node _node-name_ -port _port-name_ -up-admin true`</block>
@@ -1816,8 +1793,6 @@
   <block id="bd8bc538541d81e289ef66a8873145af" category="paragraph">此时应准备好两个交换机。如果需要升级 RCF 和映像，必须完成以下操作步骤 ：</block>
   <block id="98eb99fcc0ed94997a2ab2be00fd87f8" category="paragraph">您必须分别迁移每个 LIF ，如以下示例所示：</block>
   <block id="58e4c812934a7909bf27428e713ee5c1" category="paragraph">以下示例显示了关闭节点 n1 和节点 n2 的四个集群互连端口：</block>
-  <block id="1951e47d1525c6b1dfbe9f52df91cc7f" category="list-text">对远程集群接口执行 Ping 操作，然后执行远程操作步骤 调用服务器检查：</block>
-  <block id="105dcee6d5ae30eca10110db38214b1e" category="list-text">使用相应的命令关闭活动 CN1610 交换机 CL1 上的 ISL 端口 13 到 16 。</block>
   <block id="06b942f634ce75ef69a38ebe9aa1d02c" category="paragraph">以下示例显示 CN1610 交换机 CL1 上的 ISL 端口 13 到 16 将关闭：</block>
   <block id="8b3c83619e5433d40fb01f0c00687515" category="paragraph">以下示例显示了使用 Cisco `sswitching port mode trunk` 命令在 CL1 （端口 13-16 ）和 C2 （端口 E1/24/1-4 ）之间构建的临时 ISL ：</block>
   <block id="1c0cc14668f0cbe36098daedda716952" category="list-text">拔下所有节点上连接到 CN1610 交换机 CL2 的缆线。</block>
@@ -1850,7 +1825,6 @@
   <block id="38eb81980361ccffbcf933498afb8e35" category="paragraph">以下示例显示了连接到要启动的新 3232C 交换机 C1 的所有集群互连端口：</block>
   <block id="647a3a17ca458bfb396ec8a44651ddec" category="paragraph">以下示例显示了验证新 3232C 交换机 C1 上节点 n1 和 n2 上的集群互连端口是否为 `up` 的输出：</block>
   <block id="7bfca154df7416f9baa3531ebe91c06a" category="paragraph">以下示例显示了节点 n1 和 n2 的集群互连接口状态为 `up` 和 "is Home" ：</block>
-  <block id="684b2e790316879de4577bb080c72bf3" category="list-text">通过向 Nexus 3232C 集群交换机添加节点来扩展集群。</block>
   <block id="00145d7363dbe1c988b2f36e4a46e418" category="paragraph">您必须分别删除这两个设备，如以下示例所示：</block>
   <block id="f3a80053e3cfef55fa0b842eef2e42b2" category="paragraph">以下示例显示正在监控集群交换机 C1 和 C2 ：</block>
   <block id="63990467755c5a4c3727faca4f024adb" category="summary">将 CN1610 集群交换机更换为 Cisco Nexus 3232C 集群交换机时，您必须了解某些配置信息，端口连接和布线要求。</block>
@@ -1884,7 +1858,6 @@
   <block id="1e59f27afab544486b3444c5591d4f53" category="paragraph">如果需要升级 RCF 和映像，必须完成以下步骤：</block>
   <block id="23cd51d657266665ae8f8c9d2a2ae14f" category="paragraph">以下示例显示了要为节点 n1 和 n2 迁移的 LIF ；必须在所有节点上执行 LIF 迁移：</block>
   <block id="fb0f753ded9498a080196f8272f79423" category="paragraph">以下示例显示了每个集群的当前状态：</block>
-  <block id="72611877ce7fbffb44381c1c62a69cd8" category="list-text">使用 Cisco `shutdown` 命令关闭活动 Nexus 5596 交换机 CL1 上的 ISL 41 到 48 。</block>
   <block id="df3b3a025572a660a134a45b54c2ec44" category="paragraph">有关 Cisco 命令的详细信息，请参见中的相应指南<block ref="ea38293a052c78dce084d149b79f50b3" category="inline-link-rx"></block>。</block>
   <block id="c66e3aa8ea0ac093e4c0a3cf3a2362e7" category="paragraph">以下示例显示 Nexus 5596 交换机 CL1 上的 ISL 41 到 48 正在关闭：</block>
   <block id="e611d5576e653114c65a96a266ece602" category="list-text">使用相应的 Cisco 命令在 CL1 和 C2 之间构建临时 ISL 。</block>
@@ -1954,7 +1927,6 @@
   <block id="bec2d779818d6e0e0e9ff7a66a88bdcf" category="paragraph">此示例显示了正在交换机 CS2 上安装的 RCF 文件 `Nexus 3232C_RCF_v1.6-Cluster-HA-Breakout 。 txt` ：</block>
   <block id="4b45f9c3c89c6b4fd380706244fef39d" category="paragraph">根据先前加载在 CS1 交换机控制台上的 RCF 版本，您可能会在该交换机控制台上看到以下输出</block>
   <block id="de5961cc4ba4008f669b392dba74a8da" category="list-text">验证 CS1 和 CS2 之间的 ISL 是否正常运行： `s如何执行端口通道摘要`</block>
-  <block id="0ecc223c2f66f6abde60759dd3185d04" category="list-text">对远程集群接口执行 Ping 操作以验证连接： `cluster ping-cluster -node local`</block>
   <block id="dd70194aaae821572e701e183663363b" category="summary">您可以通过执行一系列特定任务无中断地更换集群中有故障的 Cisco Nexus 3232C 交换机。</block>
   <block id="0e3368a8363270e1b5da6c7ff6b307df" category="list-text">四个节点分别为 n1 ， n2 ， n3 和 n4 。</block>
   <block id="7e38d5b2f5b87fc1a22bd8f75f99a2f1" category="list-text">N1_clus2 是连接到节点 n1 的集群交换机 CL2 或 C2 的第一个集群 LIF 。</block>
@@ -1990,8 +1962,6 @@
   <block id="f163f843faddde93ed2caa19f8e0f9fe" category="paragraph">以下示例显示了集群交换机受到监控，因为 `受监控` 状态为 `true` 。</block>
   <block id="f435abab4c17d94cf8603815dbd871f9" category="summary">Cisco Nexus 3232C 集群交换机上必须安装 Cisco NX-OS 软件和参考配置文件（ Reference Configuration Files ， RCF ）。</block>
   <block id="4abcd2a6fe57e9f246dd326cae0ddb1b" category="list-text">显示有关 LIF 的信息： `network interface show - Vserver Cluster`</block>
-  <block id="8e7dcc2f49cf13de0316cb76b4708706" category="list-text">对远程集群 LIF 执行 Ping 操作： `cluster ping-cluster -node _node-name_`</block>
-  <block id="916ba5b1774eaf295926db30f3bad132" category="list-text">验证是否已在所有集群 LIF 上启用 `auto-revert` 命令： `network interface show -vserver cluster -fields auto-revert`</block>
   <block id="9aa8a0ae2c0c1e8fae620818f15e5745" category="sidebar">《 CN1601 交换机管理员指南》</block>
   <block id="0dbd44ca48760058c465f203895f8233" category="summary">Cisco 936-x2` 交换机</block>
   <block id="cc02bee3f16f9cf028c930e3ae85fb8f" category="list-text"><block ref="3ddccd8b1e06c6aa2ada1397d17562ec" category="inline-link-macro-rx"></block> 介绍如何安装 FastPath 软件。</block>
@@ -2165,7 +2135,6 @@
   <block id="b1046cdb57cd97fe9c20f711ba08bed8" category="paragraph">`network interface modify -vserver cluster -lif *-auto-revert false`</block>
   <block id="5509fa38d3415bf6dfbd28918cf766f3" category="list-text">验证上一步中列出的所有端口是否均已连接到网络交换机：</block>
   <block id="101ead84905a0da72281347a2d3e5846" category="paragraph">`network device-discovery show -port _cluster_port_`</block>
-  <block id="fad8bc8bd6f8c2ecbc098cd96431ebde" category="list-text">验证集群连接：</block>
   <block id="e477c0774c6014b5173ffa6810d512ab" category="paragraph">`集群环显示`</block>
   <block id="c992f99b79e71a5eb5127e5f190fab4e" category="paragraph">所有单元都必须为主单元或二级单元。</block>
   <block id="048592cc00af171e1fa6348b090a6c78" category="list-text">为组1中的端口设置无交换机配置。</block>
@@ -2178,8 +2147,6 @@
   <block id="cad47f7ffe7579e68a294494fa25af17" category="image-alt">端口"e0a"之间的直接连接</block>
   <block id="e9ec4835d23694aed9844bcf9e7e87ea" category="list-text">无交换机集群网络选项从`false`过渡到`true`。这可能需要长达45秒。确认无交换机选项设置为`true`：</block>
   <block id="c412aebcb1566f8e5e0323f2afe60d0e" category="paragraph">以下示例显示无交换机集群已启用：</block>
-  <block id="6d1b5eebdb14196ce07c51c623533431" category="list-text">验证集群网络是否未中断：</block>
-  <block id="f643d26da1df28bcffc5c5067726246b" category="list-text">为组2中的端口设置无交换机配置。</block>
   <block id="863e48e1ab590a3004febd635c0c772c" category="admonition">为了避免潜在的网络连接问题、您必须断开端口与组2的连接、并尽快地将其重新连接起来、例如、*不到20秒*。</block>
   <block id="29f9df63556e07a416ddabb7ae9e6ad1" category="list-text">同时断开与组2中端口的所有缆线。</block>
   <block id="f7107cbf076f0517cc09ef7864ab4721" category="paragraph">在以下示例中、缆线与每个节点上的端口"e0b"断开连接、集群流量继续通过"e0a"端口之间的直接连接进行：</block>
@@ -2194,8 +2161,6 @@
   <block id="31d2e20cefb76721dace23dfd9a35896" category="paragraph">`network interface revert -vserver cluster -lif _lif_name_`</block>
   <block id="aeb90980ffc18e4c949766c382d409d4" category="list-text">从任一节点的系统控制台检查节点的集群状态：</block>
   <block id="90d334e25f499d80506823cb341c39d7" category="paragraph">以下示例显示了两个节点上的epsilon均为`false`：</block>
-  <block id="26ba805ccb9566fb36369f48374b79c8" category="list-text">确认集群端口之间的连接：</block>
-  <block id="a76aa36cc43767185eb24bf3e6381bdb" category="paragraph">`cluster ping-cluster local`</block>
   <block id="749e4fff30fa6550a6b7216922e76856" category="paragraph">在以下示例中、node1上的"e0a"连接到node2上的"e0a"、node1上的"e0b"连接到node2上的"e0b"：</block>
   <block id="f9c5b146fb6da165b4c98f09374af2ac" category="doc">从旧版Cisco交换机迁移到Cisco Nexus 9336C-x2集群交换机</block>
   <block id="82aa1ff47d80bf012e412296f6a53469" category="inline-link">Nexus 9000系列交换机</block>
@@ -2323,7 +2288,6 @@
   <block id="3c23423d82deff2c49b1f5a675affe46" category="list-text">显示有关逻辑接口及其指定主节点的信息： `network interface show -vserver Cluster`</block>
   <block id="3dc587636ea58bb39b951053c233b58b" category="list-text">从节点的角度来看、每个节点上的集群端口均使用以下命令连接到现有集群交换机：`network device-discovery show -protocol LLDP`</block>
   <block id="866e9195c3f1e53c818cc1513b132bbc" category="list-text">从交换机角度来看，集群端口和交换机使用以下命令进行连接： `show cdp neighbors`</block>
-  <block id="9e23ccbda503c8dd0fa60d4057a41702" category="list-text">在交换机C2上、关闭连接到节点集群端口的端口。</block>
   <block id="aba8d89ac417a82d843ceaf3c6ac2faa" category="list-text">使用NVIDIA SN2100支持的适当布线将节点集群端口从旧交换机C2移至新交换机SW2。</block>
   <block id="203a7f618c9b080eaa78a5e38ccd907d" category="list-text">在交换机SW2上、验证所有节点集群端口是否均已启动：`net show interface`</block>
   <block id="fb04bba6a926fcde1b4b8e9928fc6c8c" category="list-text">在交换机C1上、关闭连接到节点集群端口的端口。</block>
@@ -2648,7 +2612,6 @@
   <block id="4d76f023f4fff5f776ba26426c03d7a6" category="doc">NVIDIA SN2100交换机的组件和部件号</block>
   <block id="3f9c12e1d0acbeca7bc410db81110a76" category="section-title">机柜详细信息</block>
   <block id="2fca9b848223ad314bfc0417bb307186" category="section-title">导轨套件详细信息</block>
-  <block id="d897cc0b3682ab01fb074cad614e3d87" category="list-text">使用命令验证集群网络是否已完全连接：<block ref="67b370e4ed014395d701d60f8f886608" prefix=" " category="inline-code"></block></block>
   <block id="0fa2182996c829479a17f20108650375" category="admonition">在交换机运行ONIE或Cumulus Linux时、可以安装Cumulus Linux (CL)操作系统(请参见 <block ref="31c7752379437c6abd98c0b1cf8b984b" category="inline-link-macro-rx"></block>）。</block>
   <block id="2a7caab78aad5f1306f0e841c8cc7233" category="paragraph">您可以使用开放网络安装环境(Open Network Install Environment、ONIE)安装Cumulus Linux、以便自动发现网络安装程序映像。这有助于采用可选择的操作系统来保护交换机的系统模式、例如、Cumulus Linux。使用ONIE安装Cumulus Linux的最简单方法是使用本地HTTP发现。</block>
   <block id="86f9e7e4dc0c337b97f8769ea5f62452" category="list-text">将Cumulus Linux安装文件下载到Web服务器的根目录。将此文件重命名为：<block ref="ad3b7e04b0013d13df088435d2fc4760" prefix=" " category="inline-code"></block>。</block>
@@ -2748,7 +2711,6 @@
   <block id="9284b77324fc2073740e195aa4d8c7bc" category="admonition">请参见 <block ref="81e27480a79c2bb77194c038c9737157" category="inline-link-macro-rx"></block> 了解注意事项和更多详细信息。。<block ref="fc1c96ca1130118b28ccd7598f63fe21" category="inline-link-rx"></block> 还包含有关布线的详细信息。</block>
   <block id="73150a01363aed5257939f818ac56b3b" category="list-text">参考配置文件(Reference Configuration Files、RCF)将应用于交换机</block>
   <block id="d334b073010dc4ca86957c663631fa0b" category="paragraph">对于、每个集群LIF都应显示true<block ref="53db3ce0fe0e71f06b3beb0b676b806c" prefix=" " category="inline-code"></block> 并具有<block ref="4f21ee5a18672b60f4c01e94e6be9c79" prefix=" " category="inline-code"></block> 的<block ref="fc7c1443e5c7b6439706b6132a4c0829" prefix=" " category="inline-code"></block>。</block>
-  <block id="9a82d0edb58bbaaf806da2f174490820" category="list-text">验证集群网络是否已完全连接：</block>
   <block id="e64b06ebdf8146ea2bc17ff7d5457eef" category="summary">Cisco Nexus 9336C-x2存储交换机的安装和配置概述</block>
   <block id="be4cd7f1969695f8e6e1f2c8040abcd4" category="paragraph">要在运行ONTAP 的系统上初始配置Cisco Nexus 9336C-FX2交换机、请执行以下步骤：</block>
   <block id="5ac09e984471f320b2e8920ece32b03d" category="inline-link-macro">完成布线工作表</block>
@@ -3029,7 +2991,6 @@
   <block id="1665ddb906f550f2db99dc8dd8ac07cf" category="list-text">验证ISL是否为<block ref="46c48bec0d282018b9d167eef7711b2c" prefix=" " category="inline-code"></block> 在CN1610交换机CL1上：</block>
   <block id="63a080ea10d13b471f345736a9e24da5" category="list-text">启动所有节点上连接到3132Q-V交换机C2的所有集群互连端口：</block>
   <block id="23fff82d9fb02c285b1502faee4ae332" category="list-text">还原所有节点上连接到C2的所有已迁移集群互连LIF：</block>
-  <block id="00327de917059c9e935218cad8596953" category="list-text">在集群中的每个节点上、迁移与要替换的第一个CN1610交换机CL1关联的接口：</block>
   <block id="0a8253221b50cf222a53851a6ddbed1c" category="list-text">关闭所有节点上连接到CL1的节点端口：</block>
   <block id="f5733555ddee6a45ef7d77727a730c77" category="list-text">关闭活动3132Q-V交换机C2上的ISL端口24、31和32：</block>
   <block id="23e226519bad1264ff6720a663714b83" category="list-text">通过复制还原端口24上的配置并删除C2上的临时端口通道2<block ref="8ed2595e258fdd418e60bc54fb8390c0" prefix=" " category="inline-code"></block> 将文件保存到<block ref="811ed34e3f89e27ea59dac8cdeb3c7a1" prefix=" " category="inline-code"></block> 文件</block>
@@ -3076,13 +3037,11 @@
   <block id="a2d66052febf9deb949f7d7e35df53a5" category="paragraph">当这两台交换机上启动ISL时、此配置与3232C交换机C2上的ISL配置匹配。</block>
   <block id="0cc66efb5c8a511b569cd814c99c92d4" category="list-text">验证ISL是否为<block ref="46c48bec0d282018b9d167eef7711b2c" prefix=" " category="inline-code"></block> 在3232C交换机C2上：</block>
   <block id="b16c844dd0cab45182a4d3eae43625b0" category="list-text">启动所有节点上连接到3232C交换机C2的所有集群互连端口：</block>
-  <block id="f8d208c1f437dafdcc22eba9eebccb38" category="list-text">迁移与第一个CN1610交换机CL1关联的LIF：</block>
   <block id="502a7ea7de47db18cb4d391cdc1c745e" category="paragraph"><block ref="e3b59667988659c950426714ec77861c" prefix="" category="inline-code"></block></block>
   <block id="80ba2298ea2e8bd12acd9eb6839d255c" category="section-title">第3步：将集群交换机CL1更换为C1</block>
   <block id="e750586a88360e325f160a338984da3a" category="list-text">启动所有节点上连接到新3232C交换机C1的所有集群互连端口：</block>
   <block id="a200c052ea88ce45ca5da5c961c95cd2" category="section-title">第4步：完成操作步骤</block>
   <block id="53df53d4b9649d9b2a5ab348bc614229" category="paragraph"><block ref="fa6e1d1bde7406e301eb5451453f52d0" prefix="" category="inline-code"></block></block>
-  <block id="c8cd62d32eeff74bd4e4085156642109" category="paragraph"><block ref="9e1fb31e56a5a6b23a53159fb353b6be" prefix="" category="inline-code"></block></block>
   <block id="212c45c6e98833f0aea3bc1164020ecf" category="paragraph">以下示例显示了两个Nexus 3232C集群交换机上分别连接到端口E1/7和E1/8的40 GbE集群端口的节点n3和n4。两个节点均已加入集群。使用的 40 GbE 集群互连端口为 E4A 和 e4e 。</block>
   <block id="26f6491fcc908bd549c7f4064a11e2b0" category="paragraph"><block ref="fa49d5ecd63dc0afeae5cdf40805aaa2" prefix="" category="inline-code"></block></block>
   <block id="8a83614e560d59c264d55e32972bc26c" category="paragraph">如果您使用的是双节点无交换机集群、则可以迁移到包含Cisco Nexus 3232C集群网络交换机的双节点_switched_cluster。这是一个无中断操作步骤。</block>
@@ -3296,7 +3255,6 @@
   <block id="f0b02a6a42b62e57a146137078a39635" category="section-title">迁移到集群环境</block>
   <block id="09a5fb271719ecae04d6c0f573fa3099" category="paragraph">以下示例显示交换机CS1上的ISL端口为*上*：</block>
   <block id="f9431300de8d1a48bf2e554ad1605071" category="paragraph">以下示例显示交换机CS2上的ISL端口为*上*：</block>
-  <block id="99905a9acf063a85c4bbaa70f4455984" category="list-text">使用命令验证集群网络是否已完全连接：</block>
   <block id="1e44ccea9f1ae385026deb840bc9b5f4" category="paragraph">有关详细信息，请参见<block ref="780f810d0519883e7efdd6ef45cf51ed" category="inline-link-rx"></block></block>
   <block id="77d285017f370185656b54b03d5b5a16" category="paragraph">BES-53248 集群交换机基本型号已获得 16 个 10GbE 或 25GbE 端口和 2 个 100GbE 端口的许可。您可以通过购买更多许可证来添加新端口。</block>
   <block id="f95b7ecd3b114623b8699a07a36fd860" category="section-title">查看可用许可证</block>
@@ -3508,12 +3466,9 @@
   <block id="6f48ab02f85ba15c8881b13dfb743c1f" category="list-text">端口1/35和1/36上的所有交换机间链路(ISL)端口均已禁用。</block>
   <block id="2400f4c6ea942e602ee72f34c92149fb" category="list-text">【第 4 步】验证所有集群 LIF 是否均已启用自动还原。</block>
   <block id="77c477176f23eee3a054860c86ade8ee" category="paragraph"><block ref="3dc4656499b962a12e176f61ea51ff38" prefix="" category="inline-code"></block></block>
-  <block id="351f5135225bc1aa8573399c24aaee63" category="list-text">【第5步】验证所有集群LIF是否均可通信：</block>
-  <block id="9a240210c2eead6e36900d78bed7eef4" category="paragraph"><block ref="6719f40a90253c4646383ef86ccea791" prefix="" category="inline-code"></block></block>
   <block id="cdfcdd135ec181475270de06d4e5f91e" category="list-text">【第9步】验证所有节点上的端口e3b是否已启动：</block>
   <block id="1d559f001e58c1d63e11be4f19b5484b" category="list-text">【第11步】显示集群中节点的相关信息：</block>
   <block id="53c275e60a3964cc951d091cfc9d800d" category="list-text">【第12步】验证所有物理集群端口是否均已启动：</block>
-  <block id="d9c7fb52065c9f285a012f315313eb5e" category="list-text">【第13步】验证所有集群LIF是否均可通信：</block>
   <block id="9354d16e8675ab0de41f89b86b5aae21" category="list-text">【第14步】确认以下集群网络配置：</block>
   <block id="c11677f97d3ee2a98d058ccf0190a185" category="list-text">验证连接到HA对2共享交换机newsh2的存储是否运行正常：</block>
   <block id="31fa17eadf22890247f9b117b5591678" category="paragraph"><block ref="2a56be163fc199ace3546fc94a295c05" prefix="" category="inline-code"></block></block>
@@ -3602,8 +3557,6 @@
   <block id="58665a6b8c7ef44525f1c47106f6a5f7" category="list-text">【第21步】验证HA对1 (和HA对2)的存储配置是否正确且无错误：</block>
   <block id="13982e86db6e34f25fefc25b6bdc9157" category="list-text">【第22步】验证这些设置是否已禁用：</block>
   <block id="fc62df36a7229b3d62a69029133e4bad" category="list-text">【第23步】验证集群中节点成员的状态：</block>
-  <block id="424f5bb3c0f9a5e7519b727f4bbfec8a" category="list-text">【第24步】确保集群网络具有完全连接：</block>
-  <block id="57cbdf7660ff8108b68333b5cdd82f80" category="list-text">【第25步】将权限级别改回管理员：</block>
   <block id="8e2930bcf2c872a7120bbe73b8779424" category="section-title">第2步：设置共享交换机</block>
   <block id="cee31e17ff4073484e137ee2159131bd" category="list-text">验证存储节点端口是否运行正常：</block>
   <block id="c7f29a8717b9bbffee0430b5ba54c983" category="list-text">将HA对1的NSM224路径B端口移至SH2端口范围11-22。</block>
@@ -3678,7 +3631,6 @@
   <block id="d9bc9e589852186d0d0f7ee5549d5002" category="list-text">交还操作完成后、确认HA对运行状况良好且可以进行接管：</block>
   <block id="751035e5db88d172e881299c202d9b13" category="paragraph"><block ref="ddf400f1cb6b8b9330ed6c79c508123c" prefix="" category="inline-code"></block></block>
   <block id="7585f91db102237924371a7e706740ac" category="list-text">验证集群端口LIF是否正常运行：</block>
-  <block id="975034487eab4a8e96e8e6d1c65f8552" category="list-text">对集群端口执行Ping操作以验证集群连接：</block>
   <block id="d70fd89df8aeadfc5b92548ac7980d1a" category="doc">安装适用于ONTAP 8.3.1及更高版本的FastPath软件和RCF</block>
   <block id="834cc0a95f99fae146baeb2e09562fa9" category="paragraph">按照此操作步骤 安装适用于ONTAP 8.3.1及更高版本的FastPath软件和RCF。</block>
   <block id="ef07b7e35e16571ab7d77ce32508e689" category="list-text">受支持的FastPath、RCF和ONTAP 版本。</block>
@@ -3702,7 +3654,6 @@
   <block id="e358220f8af8ba071a86497546e7cc33" category="list-text">验证每个集群端口是否均已连接到其配对集群节点上的相应端口：</block>
   <block id="19f96b9a58e58f1d934e5d8f924b7319" category="paragraph"><block ref="f4dd3947e6c3117e547b63d0f46346d0" prefix="" category="inline-code"></block></block>
   <block id="1437945719c1644405e8d8d8dc10b2fe" category="list-text">验证所有集群LIF是否均为<block ref="46c48bec0d282018b9d167eef7711b2c" prefix=" " category="inline-code"></block> 和运营：</block>
-  <block id="a9fdf49653825d5a49c2d40f6431dcad" category="list-text">将clus1迁移到每个节点控制台上的端口E2A：</block>
   <block id="17c163c5f3cf27f9ab7909ef8b7a260f" category="list-text">验证是否已进行迁移：</block>
   <block id="6eb5b9b1a64f0c90925b30b2539544ff" category="list-text">关闭两个节点上的集群端口e1a：</block>
   <block id="142949c61ce1a054812f0cd4f16acd78" category="list-text">验证端口状态：</block>
@@ -3715,7 +3666,6 @@
   <block id="2c7197850ace220e695ad5d7c75a398c" category="list-text">将之前迁移的clus2还原到两个节点上的E2A：</block>
   <block id="7a8f791edf07ab23985fcd68cfdd3ed6" category="section-title">第3步：完成配置</block>
   <block id="0f6a263c930f026250dc80aee9d05738" category="list-text">验证是否显示所有接口<block ref="b326b5062b2f0e69046810717534cb09" prefix=" " category="inline-code"></block> 在"Is Home"列中：</block>
-  <block id="0f8ff5228b430fcf43b89da43ffa7d18" category="list-text">验证两个节点与每个交换机之间是否有两个连接：</block>
   <block id="7d510ed73956b5df449722fc30f548c8" category="paragraph"><block ref="5300819d7d7e3d6993508c34b25e015b" prefix="" category="inline-code"></block></block>
   <block id="4ea8faad6b3f550eb586fe8a6e127d47" category="list-text">使用advanced privilege命令在两个节点上禁用双节点无交换机配置设置：</block>
   <block id="f3bfe82b35272b9d6cd5e99a1930d66a" category="paragraph"><block ref="f4c4b4bcf8fade11f2bb6f27f2086ed6" prefix="" category="inline-code"></block></block>
@@ -4366,7 +4316,6 @@
   <block id="111cada5d22121a7e11aef39f4aca355" category="list-text">在集群交换机CS2上、启动连接到节点的集群端口的端口。</block>
   <block id="427c15bca394e9d3b5f203c35b96c743" category="inline-link">Cisco 3132Q集群交换机上的10GbE端口未联机</block>
   <block id="20f0f9c709341c54050214259fc6c790" category="admonition">有关在升级RC框架 后如何使10GbE端口联机的步骤、请参见知识库文章<block ref="917fe6fdad3ed920883f4190398d0805" category="inline-link-rx"></block>。</block>
-  <block id="bc2be245d88ec44ff572954ca52f5e47" category="list-text">对交换机CS1重复步骤7至15。</block>
   <block id="756f5b45c94a8929404edacf08b1bf8c" category="paragraph">如果任何集群LIF未返回到其主端口、请手动还原它们：<block ref="af44897f72b682aae5fc0db1bf98e52d" prefix=" " category="inline-code"></block></block>
   <block id="e459e50e2d5bebb928139aa0e4ce09ac" category="list-text">验证存储节点端口的运行状况：</block>
   <block id="266daf0ca11ec57d9d3cb7598fd930b3" category="paragraph"><block ref="d14f00174ffa33ec8f559ffde7a52484" prefix="" category="inline-code"></block></block>
@@ -4521,7 +4470,6 @@
   <block id="64ea4acdf8f09e3b62f8764dea1b5bf4" category="list-text">然后、节点和C2之间的布线从C2断开、并重新连接到SW2。</block>
   <block id="5f115706079e667394e9c5fb609142bb" category="list-text">交换机C1由交换机sw1取代。</block>
   <block id="1b42870c5bc0619ec4b57583bfec41e7" category="list-text">然后、节点和C1之间的布线从C1断开、并重新连接到sw1。</block>
-  <block id="9c4f6f5aa4e55eb8ce92eee32e66b7cd" category="list-text">在交换机C2上、关闭连接到节点的集群端口的端口、以便对集群的生命周期进行故障转移。</block>
   <block id="670028f02a4239fb83dfde9087341e1c" category="list-text">在交换机C1上、关闭连接到节点的集群端口的端口、以便对集群生命周期进行故障转移。</block>
   <block id="3e10fab2ffa4ef18685db0df5ee45e84" category="list-text">每个节点上的集群端口通过以下方式连接到现有集群交换机(从节点角度来看)：</block>
   <block id="c51f636604f29f6f814bde48e4fd4671" category="list-text">集群端口和交换机通过以下方式进行连接(从交换机的角度来看)：</block>
@@ -4543,7 +4491,6 @@
   <block id="e9505b73caa990829220fedbb878ef68" category="list-text">交换机C2首先被交换机CS2取代。</block>
   <block id="39bba2bddb2bf527b701828442a18b5e" category="list-text">然后、节点和C2之间的布线从C2断开、并重新连接到CS2。</block>
   <block id="6fa86324fabffaee853e6eeee2824329" category="list-text">交换机C1由交换机CS1取代。</block>
-  <block id="9f4f9b4efa8b2eb74b227e6e2a18f872" category="list-text">在交换机C2上、关闭连接到节点的集群端口的端口、以便对集群的生命周期进行故障转移。</block>
   <block id="54c071b600d8be038e07b18d66329aa7" category="list-text">在交换机C1上、关闭连接到节点的集群端口的端口、以便对集群生命周期进行故障转移。</block>
   <block id="5965a3db7e52c18148f117f0240c1e3f" category="paragraph"><block ref="5965a3db7e52c18148f117f0240c1e3f" category="inline-image-macro-rx" type="image"></block></block>
   <block id="6a5dd15f930e244dadfd412b53dd1ac0" category="paragraph">通过重复使用存储交换机， HA 对 1 的存储交换机将成为共享交换机。
@@ -4913,8 +4860,6 @@
   <block id="0ca3ca41c2905b8f6347613ad99abeda" category="paragraph">请按照准备安装Cisco NX-OS软件和参考配置文件(RCF)的初步过程进行操作。</block>
   <block id="146fe7ba55f154a00f7fdd5bc0bc3b7f" category="paragraph">在Nexus 9335C-NX集群交换机上安装或升级NX-OS软件。</block>
   <block id="c2682a02fa235bb20233662aeba236ad" category="paragraph">在首次设置Nexus 9334c-拧 动交换机后、安装或升级RC框架。您也可以使用此操作步骤升级 RCF 版本。</block>
-  <block id="b98c51d6f722172518f1e38267bc1da4" category="inline-link-macro">在Nexus 9334C-966集群交换机上启用SSH</block>
-  <block id="ec348def7634a5754cf9d62e8bca7f24" category="list-text"><block ref="853bcb6b647712eac9646e8ede049d7b" category="inline-link-macro-rx"></block>(英文)</block>
   <block id="5f7b61b5cf8ee335e4fdf4eb2e2191b2" category="paragraph">端口配置为40/100GbE用于集群+HA、4x10GbE分支用于集群、4x25GbE分支用于集群+HA、100GbE用于每个存储HA对。</block>
   <block id="d30ea82d7096609f0aea87ef848f7ebd" category="paragraph">要安装和配置Cisco Nexus 933A国家/地/地/地/分交换机的软件、请按照以下步骤操作：</block>
   <block id="e495f3ec8dabfce7925d7c5053f55cbb" category="inline-link-macro">将交换机安装到NetApp机柜中</block>
@@ -5030,9 +4975,6 @@
   <block id="720c3ddeb84772ef2bbfeba7b1d17a28" category="paragraph"><block ref="df8bbc4b7a2a07f02d567d56129471ab" prefix="" category="inline-code"></block></block>
   <block id="3a88a5741f799dc33a61b15c6f06ef77" category="summary">使用集群交换机运行状况监控器（ CSHM ）和日志收集功能时需要使用 SSH 。要在Cisco 3232C集群交换机上启用SSH、请先生成SSH密钥、然后再启用SSH。</block>
   <block id="1ea468ba4330d1b99a20149c0e78b4ed" category="summary">使用集群交换机运行状况监控器（ CSHM ）和日志收集功能时需要使用 SSH 。要在Cisco 92300YC集群交换机上启用SSH、请先生成SSH密钥、然后再启用SSH。</block>
-  <block id="6740010e0f06e1b4faea70ce1b3a4a76" category="inline-link-macro">生成SSH密钥</block>
-  <block id="c49d0af5a081eb64111a489cb2120d97" category="list-text"><block ref="52338aab140ac2dbc56c2c83d6349939" category="inline-link-macro-rx"></block>(英文)</block>
-  <block id="f12f5027a3dbb2bbb22c5b1ca34d79d7" category="paragraph">如果使用以太网交换机运行状况监控器(CSHM)和日志收集功能、请在交换机上生成SSH密钥。</block>
   <block id="2e3301a364286013b9b29237fa347bb1" category="summary">使用集群交换机运行状况监控器（ CSHM ）和日志收集功能时需要使用 SSH 。要在Cisco 9336c-613集群交换机上启用SSH、请先生成SSH密钥、然后再启用SSH。</block>
   <block id="243847a87ff7e0cb67ee578c74d8ad1c" category="paragraph">Cisco Nexus 9334C-拧 动交换机是Cisco Nexus 9000平台的一部分、可安装在NetApp系统机柜中。Nexus 9334E-拧 动是一款以太网交换机、可用于在控制器和磁盘架之间切换数据。</block>
   <block id="81f0d5b127adfd87f50ce10bc85e1e65" category="list-text">按照供应商说明在交换机上重新生成SSH密钥。</block>
@@ -5049,4 +4991,51 @@
   <block id="936b3180f1af844d99a2935c0f8f1407" category="paragraph">在此过程中禁用自动还原后、集群LUN不会自动移回其主端口。它们会保留在当前端口上、而该端口会继续正常运行。</block>
   <block id="8cfe0e3d8ad280ac0655595fef97d183" category="list-text">所有集群的集群Sifs都会故障转移到新交换机CS2。</block>
   <block id="7f59c84a99e8340f8584b604b173e044" category="list-text">所有集群的集群CI都会故障转移到新交换机CS1。</block>
+  <block id="450c144a370eb64ad7b2fb87b5e08ccd" category="paragraph">*注：*请等待几秒钟、然后再运行<block ref="a7dd12b1dab17d25467b0b0a4c8d4a92" prefix=" " category="inline-code"></block>命令以显示详细信息。</block>
+  <block id="1abee7895e26b219393999144625cf43" category="list-text">[[STEP7]]将权限级别重新更改为admin：</block>
+  <block id="7a073ea5ec2a763ddf5a0385781ed626" category="list-text">[[STEP6]]验证是否已在所有集群Lifs上启用自动还原命令：</block>
+  <block id="2d7cd36455daea92f172ede16d765aae" category="list-text">[[STEP7]]验证集群是否运行正常：</block>
+  <block id="acdfe379cf0ed5868b119418e7d41b82" category="list-text">[[STEP11]]为组2中的端口设置无交换机配置。</block>
+  <block id="a2f7ec2dd8feebc2c1e30e5f859d4497" category="list-text">[[STEP6]]如果禁止自动创建案例、请通过调用AutoSupport消息重新启用：</block>
+  <block id="2f3040f570b3d77425ad0bf50fc7985c" category="list-text">[[STEP6]]将权限级别重新更改为admin：</block>
+  <block id="4e4f70ba52e8cb595faa069991c5a9f4" category="list-text">[[STEP5]]如果禁止自动创建案例、请通过调用AutoSupport 消息重新启用：</block>
+  <block id="c97fddef37af781b99f2bb564a90861d" category="list-text">[[STEP9]]将权限级别重新更改为admin：</block>
+  <block id="991d705309210a9623a3f1d994c15150" category="list-text">[[Step10]]关闭活动Nexus 5596交换机CL1上的ISL端口41到48：</block>
+  <block id="86134d7d31c06aa0711aee6c64ddd4f3" category="list-text">[[Step12]]在集群中的每个节点上、迁移与要替换的第一个Nexus 5596交换机CL1关联的接口：</block>
+  <block id="bbb276c46604db63ed55340efd9fdca4" category="list-text">[[STEP7]]通过向Nexus 3132Q-V集群交换机添加节点来扩展集群。</block>
+  <block id="5a941b8418c4fe0b34b15c50aa26a877" category="list-text">[[Step10]]从节点n1上的e4a中拔下缆线。</block>
+  <block id="654e3d51643a619895e470f1d55bc3ba" category="list-text">[[STEP2]]如果禁止自动创建案例、请通过调用AutoSupport消息重新启用：</block>
+  <block id="8b7a1c5ca569b4edf87d12744a873c02" category="list-text">[[STEP6]]验证是否<block ref="9f1b7141f09f19c4e33409646aef43cf" prefix=" " category="inline-code"></block>已在所有集群Lifs上启用命令：</block>
+  <block id="2599d5f1ece8078590877d15b717f346" category="list-text">[[Step9]]关闭CL1上的端口1/31和1/32以及活动Nexus 3132Q-V交换机：</block>
+  <block id="e24c0f89ee0b0fb577ecce66e38a9e4d" category="list-text">[[STEP10]]关闭活动CN1610交换机CL1上的ISL端口13到16：</block>
+  <block id="8401a156e54d36682ab941dd51ed3e9d" category="list-text">[[STEP12]]在集群中的每个节点上、迁移与第一个CN1610交换机CL1关联的接口、以进行替换：</block>
+  <block id="a1362b00e7776e62ab541ebf090bf150" category="list-text">对交换机 CS1 重复步骤 7 至 17 。</block>
+  <block id="09c97f0f4f7a646915b2abf749bc1d6f" category="list-text">[[STEP3]]使用适当的命令关闭活动CN1610交换机CL1上的ISL端口13到16。</block>
+  <block id="e2ad2b2cb346f8abd448d557881c7dd5" category="list-text">[[STEP16]]迁移与第一个CN1610交换机CL1关联的LI：</block>
+  <block id="e542ca85e220af35c4b3a82c0642077a" category="list-text">[[STEP4]]通过向Nexus 3232C集群交换机添加节点来扩展集群。</block>
+  <block id="0dee5df137b8161e82554818a557ccc2" category="list-text">[[STEP3]]使用命令关闭活动Nexus 5596交换机CL1上的Cisco 41到48<block ref="5924f03a95ee6f7277e5bdd1e81b8fdc" prefix=" " category="inline-code"></block>。</block>
+  <block id="36cdf08b85e5feb55a70e6066970eb64" category="list-text">[[Step15]]在集群中的每个节点上、迁移与要替换的第一个Nexus 5596交换机CL1关联的接口：</block>
+  <block id="5744be7d661c6ac9679e21ca3f4dfaeb" category="list-text">[[Step29]]通过向Nexus 3232C集群交换机添加节点来扩展集群。</block>
+  <block id="d05ecee4a6b0d861bcd1b9258b8245ca" category="list-text">[[STEP4]]从节点n1上的e4a上拔下缆线。</block>
+  <block id="cc5ebab0ee641c8983f3228b4974ade1" category="list-text">[[STEP16]]如果禁止自动创建案例、请通过调用AutoSupport消息重新启用：</block>
+  <block id="b18c2181f3eba90bca1c7f88f8586e11" category="list-text">[[STEP6]]验证是否<block ref="9f1b7141f09f19c4e33409646aef43cf" prefix=" " category="inline-code"></block>已在所有集群Lifs上启用命令：<block ref="d268e7bf124a9f74e2dbe2e0127d951b" prefix=" " category="inline-code"></block></block>
+  <block id="2ddf49eb6c3fafb7644444a8f6985876" category="list-text">[[STEP8]]如果禁止自动创建案例、请通过调用AutoSupport消息重新启用：</block>
+  <block id="22265ef643cb758bbeafeae6b9005960" category="list-text">[[STEP3]]如果禁止自动创建案例、请通过调用AutoSupport消息重新启用：</block>
+  <block id="f7e86b0278da2d0f23dfd04e64f68478" category="list-text">[[STEP2]]确认以下集群网络配置：</block>
+  <block id="cb9e3eca5ee8f7c34a9beb30eb78e80e" category="inline-link-macro">验证Nexus 9334C-查 验Nexus集群交换机上的SSH配置</block>
+  <block id="9d35e90712940df4e7dd724e3a99eb05" category="list-text"><block ref="174530f10d1b6584efbd4bb64a5325d0" category="inline-link-macro-rx"></block>(英文)</block>
+  <block id="1de33421daf77940fdd8929e277ba937" category="paragraph">如果使用以太网交换机运行状况监控器(CSHM)和日志收集功能、请验证是否已在交换机上启用SSH。</block>
+  <block id="51ad33f87e9af3baac880cb70771fe46" category="list-text">[[STEP5]]在交换机C2上、关闭连接到节点集群端口的端口、以便对集群Lifs进行故障转移。</block>
+  <block id="09b863ebe2485d0260db2694f545c132" category="doc">从较旧的Cisco交换机迁移到Cisco Nexus 933A0-拧 动交换机</block>
+  <block id="52f52fe5595841a94d975238199fecfa" category="list-text">[[STEP25]]将权限级别重新更改为admin：</block>
+  <block id="0804eaf4e04da57f4e0f01d9ed605047" category="list-text">[[STEP5]]验证远程集群接口的连接：</block>
+  <block id="1113f8069f1bf162e58048e7da3b5e76" category="list-text">[[STEP13]]验证远程集群接口的连接：</block>
+  <block id="8024b8439487d862ebc200f269b3fd06" category="list-text">[[STEP6]]关闭Nexus 9336C－0 2交换机CS1上的ISL端口1/35和1/36：</block>
+  <block id="179cedfc35b7060884a77fceb9fb4188" category="list-text">[[STEP14]]确认以下集群网络配置：<block ref="838c4deb1e9c47dcd4c44b6e40276467" prefix=" " category="inline-code"></block></block>
+  <block id="ed6ec01ef9cf24a0e109957a15ef2abc" category="list-text">[[STEP10]]将clus1迁移到每个节点控制台上的端口e2a：</block>
+  <block id="8454a3a0cd1d8a969c0433bdbb3e8b5f" category="list-text">[[STEP3]]验证两个节点与每个交换机之间是否都有两个连接：</block>
+  <block id="0e18e00d28d8ccbabfbea2b32f607774" category="list-text">[[STEP6]]将权限级别重新更改为admin：</block>
+  <block id="ff518749d3663227de48008bfca511bb" category="list-text">[[STEP5]]在交换机C2上、关闭连接到节点集群端口的端口、以便对集群Lifs进行故障转移。</block>
+  <block id="c47f8dc188da37844fcf13bca92e64bd" category="list-text">[[STEP8]]使用以下命令启用以太网交换机运行状况监控器日志收集功能以收集与交换机相关的日志文件：</block>
+  <block id="d2370f0d6957d5e8b2747d5a02f35221" category="list-text">[[STEP8]]在交换机C2上、关闭连接到节点集群端口的端口。</block>
 </blocks>

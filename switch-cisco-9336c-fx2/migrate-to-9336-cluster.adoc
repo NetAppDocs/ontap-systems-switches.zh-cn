@@ -4,7 +4,7 @@ sidebar: sidebar
 keywords: migrating to a cluster with Cisco Nexus 9336C-FX2 cluster switches, how to migrate 
 summary: 您可以将 ONTAP 集群中较早的 Cisco 集群交换机无中断迁移到 Cisco Nexus 9336C-x2 集群网络交换机。 
 ---
-= 从旧版Cisco交换机迁移到Cisco Nexus 9336C-x2集群交换机
+= 从较旧的Cisco交换机迁移到Cisco Nexus 933A0-拧 动交换机
 :allow-uri-read: 
 :icons: font
 :imagesdir: ../media/
@@ -592,7 +592,7 @@ Group Port-       Type     Protocol  Member Ports
 ----
 cluster1::*> *network interface check cluster-connectivity start*
 ----
-*注：*请等待几秒钟、然后再运行show命令显示详细信息。
+*注：*请等待几秒钟、然后再运行 `show`命令以显示详细信息。
 
 [listing, subs="+quotes"]
 ----

@@ -592,7 +592,7 @@ Group Port-       Type     Protocol  Member Ports
 ----
 cluster1::*> *network interface check cluster-connectivity start*
 ----
-*注：*请等待几秒钟、然后再运行show命令显示详细信息。
+*注：*请等待几秒钟、然后再运行 `show`命令以显示详细信息。
 
 [listing, subs="+quotes"]
 ----
