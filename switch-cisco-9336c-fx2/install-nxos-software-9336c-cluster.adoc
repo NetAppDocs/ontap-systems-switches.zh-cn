@@ -62,9 +62,11 @@ summary: 您可以使用此操作步骤在 Nexus 9336C-x2 集群交换机上安�
 . 将集群交换机连接到管理网络。
 . 使用 ping 命令验证与托管 NX-OS 软件和 RCF 的服务器的连接。
 +
+.显示示例
+[%collapsible]
+====
 此示例验证交换机是否可以通过 IP 地址 172.19.2.1 访问服务器：
 
-+
 [listing, subs="+quotes"]
 ----
 cs2# *ping 172.19.2.1*
@@ -72,6 +74,150 @@ Pinging 172.19.2.1 with 0 bytes of data:
 
 Reply From 172.19.2.1: icmp_seq = 0. time= 5910 usec.
 ----
+====
+. 显示连接到集群交换机的每个节点上的集群端口：
++
+`network device-discovery show`
+
++
+.显示示例
+[%collapsible]
+====
+[listing, subs="+quotes"]
+----
+cluster1::*> *network device-discovery show*
+Node/       Local  Discovered
+Protocol    Port   Device (LLDP: ChassisID)  Interface         Platform
+----------- ------ ------------------------- ----------------  --------------
+cluster1-01/cdp
+            e0a    cs1                       Ethernet1/7       N9K-C9336C-FX2
+            e0d    cs2                       Ethernet1/7       N9K-C9336C-FX2
+cluster1-02/cdp
+            e0a    cs1                       Ethernet1/8       N9K-C9336C-FX2
+            e0d    cs2                       Ethernet1/8       N9K-C9336C-FX2
+cluster1-03/cdp
+            e0a    cs1                       Ethernet1/1/1     N9K-C9336C-FX2
+            e0b    cs2                       Ethernet1/1/1     N9K-C9336C-FX2
+cluster1-04/cdp
+            e0a    cs1                       Ethernet1/1/2     N9K-C9336C-FX2
+            e0b    cs2                       Ethernet1/1/2     N9K-C9336C-FX2
+cluster1::*>
+----
+====
+. 检查每个集群端口的管理和运行状态。
++
+.. 验证所有集群端口是否均为*已启动*且运行状况良好：
++
+`network port show -role cluster`
+
++
+.显示示例
+[%collapsible]
+====
+[listing, subs="+quotes"]
+----
+cluster1::*> *network port show -role cluster*
+
+Node: cluster1-01
+                                                                       Ignore
+                                                  Speed(Mbps) Health   Health
+Port      IPspace      Broadcast Domain Link MTU  Admin/Oper  Status   Status
+--------- ------------ ---------------- ---- ---- ----------- -------- ------
+e0a       Cluster      Cluster          up   9000  auto/100000 healthy false
+e0d       Cluster      Cluster          up   9000  auto/100000 healthy false
+
+Node: cluster1-02
+                                                                       Ignore
+                                                  Speed(Mbps) Health   Health
+Port      IPspace      Broadcast Domain Link MTU  Admin/Oper  Status   Status
+--------- ------------ ---------------- ---- ---- ----------- -------- ------
+e0a       Cluster      Cluster          up   9000  auto/100000 healthy false
+e0d       Cluster      Cluster          up   9000  auto/100000 healthy false
+8 entries were displayed.
+
+Node: cluster1-03
+
+   Ignore
+                                                  Speed(Mbps) Health   Health
+Port      IPspace      Broadcast Domain Link MTU  Admin/Oper  Status   Status
+--------- ------------ ---------------- ---- ---- ----------- -------- ------
+e0a       Cluster      Cluster          up   9000  auto/10000 healthy  false
+e0b       Cluster      Cluster          up   9000  auto/10000 healthy  false
+
+Node: cluster1-04
+                                                                       Ignore
+                                                  Speed(Mbps) Health   Health
+Port      IPspace      Broadcast Domain Link MTU  Admin/Oper  Status   Status
+--------- ------------ ---------------- ---- ---- ----------- -------- ------
+e0a       Cluster      Cluster          up   9000  auto/10000 healthy  false
+e0b       Cluster      Cluster          up   9000  auto/10000 healthy  false
+cluster1::*>
+----
+====
+.. 验证所有集群接口（ LIF ）是否均位于主端口上：
++
+`network interface show -role cluster`
+
++
+.显示示例
+[%collapsible]
+====
+[listing, subs="+quotes"]
+----
+cluster1::*> *network interface show -role cluster*
+            Logical            Status     Network           Current      Current Is
+Vserver     Interface          Admin/Oper Address/Mask      Node         Port    Home
+----------- ------------------ ---------- ----------------- ------------ ------- ----
+Cluster
+            cluster1-01_clus1  up/up     169.254.3.4/23     cluster1-01  e0a     true
+            cluster1-01_clus2  up/up     169.254.3.5/23     cluster1-01  e0d     true
+            cluster1-02_clus1  up/up     169.254.3.8/23     cluster1-02  e0a     true
+            cluster1-02_clus2  up/up     169.254.3.9/23     cluster1-02  e0d     true
+            cluster1-03_clus1  up/up     169.254.1.3/23     cluster1-03  e0a     true
+            cluster1-03_clus2  up/up     169.254.1.1/23     cluster1-03  e0b     true
+            cluster1-04_clus1  up/up     169.254.1.6/23     cluster1-04  e0a     true
+            cluster1-04_clus2  up/up     169.254.1.7/23     cluster1-04  e0b     true
+8 entries were displayed.
+cluster1::*>
+----
+====
+.. 验证集群是否同时显示两个集群交换机的信息：
++
+`ssystem cluster-switch show -is-monitoring-enableed-Operational true`
+
++
+.显示示例
+[%collapsible]
+====
+[listing, subs="+quotes"]
+----
+cluster1::*> *system cluster-switch show -is-monitoring-enabled-operational true*
+Switch                      Type               Address          Model
+--------------------------- ------------------ ---------------- --------------
+cs1                         cluster-network    10.233.205.90    N9K-C9336C-FX2
+     Serial Number: FOCXXXXXXGD
+      Is Monitored: true
+            Reason: None
+  Software Version: Cisco Nexus Operating System (NX-OS) Software, Version
+                    9.3(5)
+    Version Source: CDP
+
+cs2                         cluster-network    10.233.205.91    N9K-C9336C-FX2
+     Serial Number: FOCXXXXXXGS
+      Is Monitored: true
+            Reason: None
+  Software Version: Cisco Nexus Operating System (NX-OS) Software, Version
+                    9.3(5)
+    Version Source: CDP
+cluster1::*>
+----
+====
+
+
+. 在集群 LIF 上禁用自动还原。在目标交换机上执行升级过程时、这些集群Cifs将故障转移到配对集群交换机并保留在该交换机上：
++
+`network interface modify -vserver cluster -lif *-auto-revert false`
+
 . 将 NX-OS 软件和 EPLD 映像复制到 Nexus 9336C-x2 交换机。
 +
 .显示示例
@@ -212,15 +358,15 @@ Notifying services about system upgrade.
 
 
 Compatibility check is done:
-Module  bootable       Impact     Install-type  Reason
-------  --------  --------------- ------------  ------
-  1       yes      disruptive         reset     default upgrade is not hitless
+Module  Bootable  Impact          Install-type  Reason
+------  --------  --------------- ------------  ---------
+  1     yes       Disruptive      Reset         Default upgrade is not hitless
 
 
 
 Images will be upgraded according to following table:
 
-Module   Image    Running-Version(pri:alt                  New-Version         Upg-Required
+Module   Image    Running-Version(pri:alt)                 New-Version         Upg-Required
 ------- --------- ---------------------------------------- ------------------- ------------
   1      nxos     9.3(4)                                   9.3(5)                  yes
   1      bios     v08.37(01/28/2020):v08.23(09/23/2015)    v08.38(05/29/2020)      yes
@@ -329,8 +475,8 @@ GEM  FPGA                        0x2
 
 cs2# *install epld bootflash:n9000-epld.9.3.5.img module 1*
 Compatibility check:
-Module        Type         Upgradable        Impact   Reason
-------  ------------------ ----------------- --------- -----
+Module        Type         Upgradable        Impact    Reason
+------  ------------------ ----------------- --------- -----------
      1         SUP         Yes       disruptive  Module Upgradable
 
 Retrieving EPLD versions.... Please wait.
@@ -361,6 +507,9 @@ Module 1 EPLD upgrade is successful.
 ====
 . 交换机重新启动后，重新登录并验证是否已成功加载新版本的 EPLD 。
 +
+.显示示例
+[%collapsible]
+====
 [listing, subs="+quotes"]
 ----
 cs2# *show version module 1 epld*
@@ -375,7 +524,173 @@ GEM  FPGA                        0x2
 GEM  FPGA                        0x2
 GEM  FPGA                        0x2
 ----
-. 重复步骤1至8、在交换机CS1上安装NX-OS软件。
+====
+. 验证集群上集群端口的运行状况。
++
+.. 验证集群中所有节点上的集群端口是否均已启动且运行正常：
++
+`network port show -role cluster`
+
++
+.显示示例
+[%collapsible]
+====
+[listing, subs="+quotes"]
+----
+cluster1::*> *network port show -role cluster*
+
+Node: cluster1-01
+                                                                       Ignore
+                                                  Speed(Mbps) Health   Health
+Port      IPspace      Broadcast Domain Link MTU  Admin/Oper  Status   Status
+--------- ------------ ---------------- ---- ---- ----------- -------- ------
+e0a       Cluster      Cluster          up   9000  auto/10000 healthy  false
+e0b       Cluster      Cluster          up   9000  auto/10000 healthy  false
+
+Node: cluster1-02
+                                                                       Ignore
+                                                  Speed(Mbps) Health   Health
+Port      IPspace      Broadcast Domain Link MTU  Admin/Oper  Status   Status
+--------- ------------ ---------------- ---- ---- ----------- -------- ------
+e0a       Cluster      Cluster          up   9000  auto/10000 healthy  false
+e0b       Cluster      Cluster          up   9000  auto/10000 healthy  false
+
+Node: cluster1-03
+                                                                       Ignore
+                                                  Speed(Mbps) Health   Health
+Port      IPspace      Broadcast Domain Link MTU  Admin/Oper  Status   Status
+--------- ------------ ---------------- ---- ---- ----------- -------- ------
+e0a       Cluster      Cluster          up   9000  auto/100000 healthy false
+e0d       Cluster      Cluster          up   9000  auto/100000 healthy false
+
+Node: cluster1-04
+                                                                       Ignore
+                                                  Speed(Mbps) Health   Health
+Port      IPspace      Broadcast Domain Link MTU  Admin/Oper  Status   Status
+--------- ------------ ---------------- ---- ---- ----------- -------- ------
+e0a       Cluster      Cluster          up   9000  auto/100000 healthy false
+e0d       Cluster      Cluster          up   9000  auto/100000 healthy false
+8 entries were displayed.
+----
+====
+.. 从集群验证交换机运行状况。
++
+`network device-discovery show -protocol cdp`
+
++
+.显示示例
+[%collapsible]
+====
+[listing, subs="+quotes"]
+----
+cluster1::*> *network device-discovery show -protocol cdp*
+Node/       Local  Discovered
+Protocol    Port   Device (LLDP: ChassisID)  Interface         Platform
+----------- ------ ------------------------- ----------------- --------------
+cluster1-01/cdp
+            e0a    cs1                       Ethernet1/7       N9K-C9336C-FX2
+            e0d    cs2                       Ethernet1/7       N9K-C9336C-FX2
+cluster01-2/cdp
+            e0a    cs1                       Ethernet1/8       N9K-C9336C-FX2
+            e0d    cs2                       Ethernet1/8       N9K-C9336C-FX2
+cluster01-3/cdp
+            e0a    cs1                       Ethernet1/1/1     N9K-C9336C-FX2
+            e0b    cs2                       Ethernet1/1/1     N9K-C9336C-FX2
+cluster1-04/cdp
+            e0a    cs1                       Ethernet1/1/2     N9K-C9336C-FX2
+            e0b    cs2                       Ethernet1/1/2     N9K-C9336C-FX2
+
+cluster1::*> *system cluster-switch show -is-monitoring-enabled-operational true*
+Switch                      Type               Address          Model
+--------------------------- ------------------ ---------------- --------------
+cs1                         cluster-network    10.233.205.90    N9K-C9336C-FX2
+     Serial Number: FOCXXXXXXGD
+      Is Monitored: true
+            Reason: None
+  Software Version: Cisco Nexus Operating System (NX-OS) Software, Version
+                    9.3(5)
+    Version Source: CDP
+
+cs2                         cluster-network    10.233.205.91    N9K-C9336C-FX2
+     Serial Number: FOCXXXXXXGS
+      Is Monitored: true
+            Reason: None
+  Software Version: Cisco Nexus Operating System (NX-OS) Software, Version
+                    9.3(5)
+    Version Source: CDP
+
+2 entries were displayed.
+----
+根据先前加载在 CS1 交换机控制台上的 RCF 版本，您可能会在该交换机控制台上看到以下输出。
+
+[listing]
+----
+2020 Nov 17 16:07:18 cs1 %$ VDC-1 %$ %STP-2-UNBLOCK_CONSIST_PORT: Unblocking port port-channel1 on VLAN0092. Port consistency restored.
+2020 Nov 17 16:07:23 cs1 %$ VDC-1 %$ %STP-2-BLOCK_PVID_PEER: Blocking port-channel1 on VLAN0001. Inconsistent peer vlan.
+2020 Nov 17 16:07:23 cs1 %$ VDC-1 %$ %STP-2-BLOCK_PVID_LOCAL: Blocking port-channel1 on VLAN0092. Inconsistent local vlan.
+----
+====
+
+
+. 验证集群是否运行正常：
++
+`cluster show`
+
++
+.显示示例
+[%collapsible]
+====
+[listing, subs="+quotes"]
+----
+cluster1::*> *cluster show*
+Node                 Health   Eligibility   Epsilon
+-------------------- -------- ------------- -------
+cluster1-01          true     true          false
+cluster1-02          true     true          false
+cluster1-03          true     true          true
+cluster1-04          true     true          false
+4 entries were displayed.
+cluster1::*>
+----
+====
+. 重复步骤6至13、在交换机CS1上安装NX-OS软件。
+. 在集群 LIF 上启用自动还原。
++
+`network interface modify -vserver cluster -lif *-auto-revert true`
+
+. 验证集群 LIF 是否已还原到其主端口：
++
+`network interface show -role cluster`
+
++
+.显示示例
+[%collapsible]
+====
+[listing, subs="+quotes"]
+----
+cluster1::*> *network interface show -role cluster*
+            Logical            Status     Network            Current             Current Is
+Vserver     Interface          Admin/Oper Address/Mask       Node                Port    Home
+----------- ------------------ ---------- ------------------ ------------------- ------- ----
+Cluster
+            cluster1-01_clus1  up/up      169.254.3.4/23     cluster1-01         e0d     true
+            cluster1-01_clus2  up/up      169.254.3.5/23     cluster1-01         e0d     true
+            cluster1-02_clus1  up/up      169.254.3.8/23     cluster1-02         e0d     true
+            cluster1-02_clus2  up/up      169.254.3.9/23     cluster1-02         e0d     true
+            cluster1-03_clus1  up/up      169.254.1.3/23     cluster1-03         e0b     true
+            cluster1-03_clus2  up/up      169.254.1.1/23     cluster1-03         e0b     true
+            cluster1-04_clus1  up/up      169.254.1.6/23     cluster1-04         e0b     true
+            cluster1-04_clus2  up/up      169.254.1.7/23     cluster1-04         e0b     true
+8 entries were displayed.
+cluster1::*>
+----
+====
++
+如果任何集群LUN尚未返回其主端口、请从本地节点手动还原它们：
+
++
+`network interface revert -vserver Cluster -lif <lif_name>`
+
 
 
 .下一步是什么？

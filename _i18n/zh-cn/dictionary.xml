@@ -1563,7 +1563,6 @@
   <block id="9ef8bc24ada1a94fde4c058d1c913413" category="paragraph">`ssystem cluster-switch delete`</block>
   <block id="ea07c00f9576f4476947cdd532e4de56" category="list-text">验证是否监控了正确的集群交换机：</block>
   <block id="bf30874b6334fc99e10539c66e1807f2" category="summary">您可以使用此操作步骤 在 Nexus 3132Q-V 集群交换机上安装 NX-OS 软件。</block>
-  <block id="f9a089a8b7bd6f9eda6a30bb504dd013" category="list-text">交换机重新启动后，重新登录，升级 EPLD 黄金映像并重新启动交换机。</block>
   <block id="3f5e00dc10415204c495781f25039129" category="list-text">交换机重新启动后，登录以验证是否已成功加载新版本的 EPLD 。</block>
   <block id="be35c0433e2f088bb58b07aa0870c632" category="inline-link">命令参考</block>
   <block id="007a2516a7f2fd06444a1fb0bee06dfb" category="paragraph"><block ref="007a2516a7f2fd06444a1fb0bee06dfb" category="inline-link-rx"></block></block>
@@ -1914,7 +1913,6 @@
   <block id="f543ce97fb14fdd83e102f7c07cb1098" category="list-text">重复执行操作步骤 以升级交换机 S1 上的 NX-OS 软件和 RCF 。</block>
   <block id="6077ced278f43e53de7e35b83fc92b34" category="summary">您可以使用此操作步骤 在 Nexus 3232C 集群交换机上安装 NX-OS 软件。</block>
   <block id="3f9bab8a5b1cdb3201a21d8b44293910" category="list-text">将 NX-OS 软件和 EPLD 映像复制到 Nexus 3232C 交换机。</block>
-  <block id="270d9f5c816d086b9c8e95d65a866883" category="list-text">在交换机重新启动后验证 NX-OS 软件的新版本： `show version`</block>
   <block id="e1627dc3d6778455a12628ffd4b63310" category="summary">您可以通过执行一系列特定任务无中断地更换有故障的 Cisco Nexus 3232C 存储交换机。</block>
   <block id="6a1a067add8a7adf79aa495107641ea8" category="paragraph">确保已完成所有故障排除步骤，以确认您的交换机需要更换。</block>
   <block id="a73af9ac7ebd9af574fd595fa58fb097" category="paragraph">更换用的 Cisco Nexus 3232C 交换机必须具有以下特征：</block>
@@ -3361,26 +3359,14 @@
   <block id="925214212b01eccbe569020ac0ec7569" category="section-title">新交换机支持</block>
   <block id="0052efad5d260a806d52bfcfe640936f" category="cell">交换机</block>
   <block id="198fc1af468509094e8d40e07916c836" category="cell">可从一开始使用</block>
-  <block id="d580be6c6f7c3c0fa749d81a5cd7cd95" category="inline-link">36 端口 100 GbE Cisco 交换机（ X190200 ）</block>
-  <block id="deb0a21917c7eb0c3c9938d678ab438a" category="paragraph"><block ref="deb0a21917c7eb0c3c9938d678ab438a" category="inline-link-rx"></block></block>
   <block id="123e4b878b0b13297b19666d44ad9918" category="paragraph">支持在同一对 Cisco Nexus 9336C-x2 交换机上使用共享基础架构（集群， HA 和交换机连接存储），包括支持 MetroCluster IP 配置。</block>
   <block id="74eb178224c5fa701fbcd96998feaafe" category="paragraph">ONTAP 9.9.1</block>
-  <block id="b35c80b21274714ff3bddbab4058ca2d" category="inline-link">36 端口 100 GbE Cisco 交换机（ X190200 和 X190210 ）</block>
-  <block id="f8fcbafd01f8949c32d6eda760c789d1" category="paragraph"><block ref="f8fcbafd01f8949c32d6eda760c789d1" category="inline-link-rx"></block></block>
-  <block id="89d274f5355a3e0e5f362e8cbb94f354" category="paragraph">Cisco Nexus 9336C-f2 集群互连交换机和存储交换机支持 AFF/FAS 控制器以及前端数据连接。</block>
   <block id="2abfff2974f589f7a217325f304e0ec5" category="paragraph">ONTAP 9.8</block>
   <block id="deba35864593b3bc749c649b8ffc8b8a" category="inline-link">Broadcom BES-53248 交换机（ X190005 和 X190005R ）</block>
-  <block id="acee3e35fac9100c5030755c314eab73" category="paragraph"><block ref="acee3e35fac9100c5030755c314eab73" category="inline-link-rx"></block></block>
-  <block id="3e3c90d3e7cba2e9c472cc6c982b426c" category="paragraph">Broadcom BES-53248 集群互连交换机支持使用 40/100GbE 端口的 AFF/FAS 控制器。</block>
-  <block id="76b8d0202e0ebac8536bfbb927cb77cf" category="inline-link">32 端口 100 GbE Cisco 交换机（ X190100 和 X190100R ）</block>
-  <block id="289176b1f2563464b0dfb798658c0152" category="paragraph"><block ref="deb0a21917c7eb0c3c9938d678ab438a" category="inline-link-rx"></block><block ref="18e71ce452675f527b9e6ee74d504889" category="inline-link-rx"></block></block>
-  <block id="856f27e361c1b2c9da2793619e1bea84" category="paragraph">Cisco Nexus 100 GbE 交换机可用作专用存储交换机，用于将 NS224 NVMe 驱动器架连接到以下平台：</block>
   <block id="fe3922b3af83dfb6ba506bb4b7969408" category="list-text">AFF A800/AFF ASA A800</block>
   <block id="040a43f160d19358d6aaa58c129061c6" category="list-text">AFF A700/AFF ASA A700</block>
   <block id="a2830a8a6b7415efd3d60ab3af3c1b02" category="list-text">AFF A400/AFF ASA A400</block>
   <block id="73ab298c8e00d66d28156892903a39ce" category="list-text">AFF A320</block>
-  <block id="fc2c2083a19a418b8843fac67146e44d" category="paragraph">Broadcom BES-53248 集群互连交换机支持使用 10/25GbE 端口的 AFF/FAS 控制器。</block>
-  <block id="afa798215d91c0ee616815befa600f66" category="paragraph">ONTAP 9.5P8</block>
   <block id="54519321875ddf488fc5718c21b9ac82" category="summary">适用于FAS 和AFF 系统的EOD交换机。</block>
   <block id="d3f0947d0a91424d3423125ef86f501f" category="doc">可用性终止</block>
   <block id="ce635353f76cce14fcf36429dff9e01d" category="paragraph">以下交换机不再可供购买、但仍受支持。</block>
@@ -3902,7 +3888,6 @@
   <block id="febc0aefd48524c17323ea62f494c0a3" category="paragraph">请参见 <block ref="1dbca34b24162eb59cc33616a1549705" category="inline-link-macro-rx"></block> 有关详细信息 ...</block>
   <block id="fc03792e787f91930c4afa79aa28d773" category="paragraph"><block ref="fc03792e787f91930c4afa79aa28d773" category="inline-link-macro-rx"></block></block>
   <block id="10fd49cfa6f861021f96ea607a4f1301" category="paragraph">此替代操作步骤 中的示例使用四个节点。其中两个节点使用四个 10 Gb 集群互连端口： e0a ， e0b ， e0c 和 e0d 。其他两个节点使用两个 40 Gb 集群互连端口： E4A 和 e4e 。请参见 <block ref="9c839fcdfb8699a63c787254d7b1ae03" category="inline-link-macro-rx"></block> 验证适用于您的平台的集群端口是否正确。</block>
-  <block id="7b1f8572a598b67cece8c82d64948766" category="paragraph"><block ref="7b1f8572a598b67cece8c82d64948766" category="inline-link-macro-rx"></block></block>
   <block id="a4546ad702e5e121d27f5d4775aafe40" category="paragraph"><block ref="a4546ad702e5e121d27f5d4775aafe40" category="inline-link-rx"></block></block>
   <block id="5e39f518f379edf87fbd37cab3947422" category="paragraph"><block ref="5e39f518f379edf87fbd37cab3947422" category="inline-link-rx"></block></block>
   <block id="df45f84b5087e66d03f27b014107fca6" category="admonition">迁移完成后，您可能需要安装所需的配置文件，以支持 923300 YC 集群交换机的集群交换机运行状况监控器（ Cluster Switch Health Monitor ， CSHM ）。请参见 <block ref="7548ef470ae7a4b5446d2e75f973e9c7" category="inline-link-macro-rx"></block> 了解详细信息。</block>
@@ -4244,7 +4229,6 @@
   <block id="d576f6342b019a4a22e71708ae81b0d9" category="paragraph">对于所有ONTAP版本、您还可以使用<block ref="7eaac8e45910aa8bf3a06f6966ab0656" prefix=" " category="inline-code"></block> 用于检查连接的命令：</block>
   <block id="079555d3c02274a2f31c4ed0065d657e" category="doc">配置SNMPv3</block>
   <block id="1bd553f48f18f76a761092d0bebbe5a4" category="paragraph">以下命令将使用CSHM建立SNMPv3用户名：<block ref="bc0f2549b8e026bfa298fbc575ba6020" prefix=" " category="inline-code"></block></block>
-  <block id="44dd2902e6a8940e811d66f001eb74b8" category="list-text">重复步骤1至8、在交换机CS1上安装NX-OS软件。</block>
   <block id="52009bb7ee17227f566cd26a02caee56" category="inline-link-macro"><block ref="52009bb7ee17227f566cd26a02caee56" category="inline-link-rx"></block></block>
   <block id="a1a9afcf552a769c282769271829889a" category="paragraph"><block ref="a1a9afcf552a769c282769271829889a" category="inline-link-macro-rx"></block></block>
   <block id="f99aa604031e5049799e73b5c3748a98" category="inline-link-macro"><block ref="f99aa604031e5049799e73b5c3748a98" category="inline-link-rx"></block></block>
@@ -5038,4 +5022,41 @@
   <block id="ff518749d3663227de48008bfca511bb" category="list-text">[[STEP5]]在交换机C2上、关闭连接到节点集群端口的端口、以便对集群Lifs进行故障转移。</block>
   <block id="c47f8dc188da37844fcf13bca92e64bd" category="list-text">[[STEP8]]使用以下命令启用以太网交换机运行状况监控器日志收集功能以收集与交换机相关的日志文件：</block>
   <block id="d2370f0d6957d5e8b2747d5a02f35221" category="list-text">[[STEP8]]在交换机C2上、关闭连接到节点集群端口的端口。</block>
+  <block id="aa831e5ed3cf3569aacf417dc10d9847" category="list-text">在集群 LIF 上禁用自动还原。在目标交换机上执行升级过程时、这些集群Cifs将故障转移到配对集群交换机并保留在该交换机上：</block>
+  <block id="aa63446a40dd376200a3a73560757d27" category="list-text">重复步骤6至13、在交换机CS1上安装NX-OS软件。</block>
+  <block id="963ab35877bd19d496030356c61b1b19" category="paragraph"><block ref="7e5d5f666d8b34453c237cc352a9c503" prefix="" category="inline-code"></block></block>
+  <block id="05bb6ef3e2c06f73934efc48137c162b" category="paragraph">16端口100GbE NVIDIA交换机(X190006-PE和X190006-PI)</block>
+  <block id="397bd69d3afa84776e6692d4f26e2a0e" category="paragraph">NVIDIA SN2100集群互连交换机和存储交换机支持、包括对MetroCluster IP配置的支持。</block>
+  <block id="ed1ecba6f44fa7687919f5f5a307e935" category="paragraph">36端口100GbE Cisco交换机(X190200-CS-PE和X190200-CS-PI)</block>
+  <block id="e9a66ffb0e3c0bad6cf6c904a86f31c9" category="paragraph">36端口100GbE Cisco交换机(X190200-CS-PE和X190200-CS-PI)、(X190210-FE-PE和X190210-FE-PI)</block>
+  <block id="6b5cc0ac44e39f8cfe3a6dc3d48b0474" category="paragraph">Cisco Nexus 9334C-拧 动集群互连交换机和存储交换机支持AFF和ASA存储系统以及前端数据连接。</block>
+  <block id="c4da6f8530fbc654aa08dd52e5a99d6e" category="paragraph">Broadcom BES-53248集群互连交换机支持、适用于FAS具有10GbE/GbE和40/100GbE端口的AFF控制器。</block>
+  <block id="453008c048efb5abaa0f870ff90ec06c" category="paragraph">36端口100GbE Cisco交换机(X190200)和32端口100GbE Cisco交换机(X190100和X190100R)</block>
+  <block id="c96a54a5cd974eb7bce094557b242499" category="paragraph">支持使用Cisco Nexus 3232C存储交换机连接NS224 NVMe驱动器架AFF和ASA存储系统：</block>
+  <block id="716c0f8abe31b5f13bfd7bd43eb22133" category="paragraph"><block ref="39471232415c92480914fc76a83483d5" prefix="" category="inline-code"></block></block>
+  <block id="cf9a2fc59b627c808dba1bdf68eecdd2" category="list-text">对交换机CS1重复步骤6至11。</block>
+  <block id="5ea1c753a2f7b1ad712e6e80173d371b" category="list-text">如果要升级到NX-OS 9.3 (11)版、则必须升级EPLD<block ref="c773fdef3889bdadbe809f1e8aaeea46" prefix=" " category="inline-code"></block>映像并重新启动交换机。否则、请跳至步骤12。</block>
+  <block id="28caefed3a29faf45a4d032d5b1006b4" category="inline-link">EPLD升级发行说明、9.3 (11)版</block>
+  <block id="46ddffef0745adf199d35e9bbe4eec40" category="paragraph">有关详细信息、请参见<block ref="a4e876354b2a6a79541beefead7e3974" category="inline-link-rx"></block>。</block>
+  <block id="476acca7b2d84d147895203411c05eee" category="list-text">对交换机CS1重复步骤6至14。</block>
+  <block id="11e210472a35f336b513b2c57b8cffab" category="paragraph"><block ref="7b1f8572a598b67cece8c82d64948766" category="inline-link-macro-rx"></block>(英文)</block>
+  <block id="d80fed14d08f5cc94b5972605f7b1264" category="paragraph">4 个 100GbE 节点 1</block>
+  <block id="f92dbce301746858220367bd16fe3670" category="paragraph">4 个 100GbE 节点 2</block>
+  <block id="b360b026e43659aaec27da3653619648" category="paragraph">4 个 100GbE 节点 3</block>
+  <block id="266d2d353a3daec78bf2e7d143456e44" category="paragraph">4 个 100GbE 节点 4</block>
+  <block id="760f51d18df9099a0f0fe83e3abb7faf" category="paragraph">4 个 100GbE 节点 5</block>
+  <block id="b168a292126af3713fcd57f554534fd6" category="paragraph">4 个 100GbE 节点 6</block>
+  <block id="815287549036f1b9783ed83f49d18ad8" category="paragraph">4 个 100GbE 节点 25</block>
+  <block id="a6543ce9d981a8762d3f93b912a1513b" category="paragraph">4 个 100GbE 节点 26</block>
+  <block id="bda4efa27ca22157a1124a1811bb0fde" category="paragraph">4 个 100GbE 节点 27</block>
+  <block id="d96fb8ec55a6e1a3d9dc7b983a7db52a" category="paragraph">4 个 100GbE 节点 28</block>
+  <block id="115ad3a955478088a1ea07504f6b2100" category="paragraph">4 个 100GbE 节点 29</block>
+  <block id="d756601dbc88cef368b2fa44b4a6a1c5" category="paragraph">4 个 100GbE 节点 30</block>
+  <block id="4f370b0b5d39f8e59c998ad2ca78f8e0" category="paragraph">4 个 100GbE 节点 31</block>
+  <block id="b13fbfadd2367eaa29c4f08ea92d4d50" category="paragraph">4 个 100GbE 节点 32</block>
+  <block id="9ceb13bbaf3370be40502b834610747b" category="paragraph">4 个 100GbE 节点 33</block>
+  <block id="caaf1cd1838e5d2b66c67c3a5a467340" category="paragraph">4 个 100GbE 节点 34</block>
+  <block id="c509ae209503be0a774ac204f0f2dc91" category="paragraph">4 个 100GbE 节点 35</block>
+  <block id="f992d2e7f110147780c9ce8e305e4981" category="paragraph">4 个 100GbE 节点 36</block>
+  <block id="cb02ea2e8f595e77e5e6585ac0421c1a" category="paragraph">了解适用于FAS 和AFF 系统的新交换机。有关交换机的其他信息，请参见<block ref="341c1c8afc925d24c41903215e7d4958" category="inline-link-rx"></block>。</block>
 </blocks>
