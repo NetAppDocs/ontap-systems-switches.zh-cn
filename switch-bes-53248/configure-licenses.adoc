@@ -14,6 +14,9 @@ summary: BES-53248 集群交换机基本型号已获得 16 个 10GbE 或 25GbE �
 BES-53248 集群交换机基本型号已获得 16 个 10GbE 或 25GbE 端口和 2 个 100GbE 端口的许可。您可以通过购买更多许可证来添加新端口。
 
 
+CAUTION: 对于EFOS 3-16及更高版本，请按照中的安装步骤进行操作link:efos-install-rcf-license-file.html["安装参考配置文件(Reference Configuration File、RCF)和许可证文件"]。
+
+
 
 == 查看可用许可证
 

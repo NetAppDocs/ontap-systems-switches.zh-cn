@@ -1,20 +1,20 @@
 ---
-permalink: switch-bes-53248/configure-install-rcf.html 
+permalink: switch-bes-53248/efos-install-rcf-license-file.html 
 sidebar: sidebar 
-keywords: install rcf,setup rcf,rcf file 
+keywords: install rcf,setup rcf,rcf file, efos, license file 
 summary: '您可以在配置BES-53248集群交换机后以及应用新许可证后安装参考配置文件(Reference Configuration File、RCF)。' 
 ---
-= 安装参考配置文件（ RCF ）
+= 安装参考配置文件(Reference Configuration File、RCF)和许可证文件
 :allow-uri-read: 
 :icons: font
 :imagesdir: ../media/
 
 
 [role="lead"]
-您可以在配置BES-53248集群交换机后以及应用新许可证后安装参考配置文件(Reference Configuration File、RCF)。
+从EFOS 3.12.0.1开始、您可以在配置BES-53248集群交换机后安装参考配置文件(Reference Configuration File、RCF)和许可证文件。
 
 
-CAUTION: 对于EFOS 3-16及更高版本，请按照中的安装步骤进行操作link:efos-install-rcf-license-file.html["安装参考配置文件(Reference Configuration File、RCF)和许可证文件"]。
+CAUTION: 安装RC框架 时会配置Sall端口、但您需要安装许可证才能激活已配置的端口。
 
 
 
@@ -25,7 +25,7 @@ CAUTION: 对于EFOS 3-16及更高版本，请按照中的安装步骤进行操�
 
 * 交换机配置的当前备份。
 * 一个完全正常运行的集群(日志中没有错误或类似问题)。
-* 可从获取的当前RCF文件 https://mysupport.netapp.com/site/products/all/details/broadcom-cluster-switches/downloads-tab["Broadcom 集群交换机"^] 页面。
+* 页面中提供的当前RC框架 https://mysupport.netapp.com/site/products/all/details/broadcom-cluster-switches/downloads-tab["Broadcom 集群交换机"^]。
 * RC框架 中反映所需启动映像的启动配置、如果您仅安装EFOS并保留当前RC框架 版本、则需要此配置。如果您需要更改启动配置以反映当前启动映像，则必须在重新应用 RCF 之前进行更改，以便在将来重新启动时实例化正确的版本。
 * 从出厂默认状态安装RC框架 时需要与交换机建立控制台连接。如果您已使用知识库文章、则此要求是可选的 https://kb.netapp.com/onprem/Switches/Broadcom/How_to_clear_configuration_on_a_Broadcom_interconnect_switch_while_retaining_remote_connectivity["如何在保持远程连接的同时清除Broadcom互连交换机上的配置"^] 要清除配置、请事先清除。
 
@@ -437,40 +437,40 @@ Are you sure you would like to reset the system? (y/n) *y*
 .. 使用SSH再次登录到交换机以完成RC框架 安装。
 
 
-. 请注意以下事项：
+
+
+. 记录在以前的RC框架 中所做的任何自定义设置、并将其应用于新的RC框架。例如、设置端口速度或硬编码FEC模式。
+. 使用以下传输协议之一将RCC复制到交换机CS2的bootflash：FTP、HTTP、TFTP、SFTP或SCP。
 +
-.. 如果交换机上安装了其他端口许可证、则必须修改RCIF以配置其他获得许可的端口。请参见 link:configure-licenses.html#activate-newly-licensed-ports["激活新许可的端口"] 了解详细信息。
-.. 记录在以前的RC框架 中所做的任何自定义设置、并将其应用于新的RC框架。例如、设置端口速度或硬编码FEC模式。
+此示例显示了使用 HTTP 将 RCF 复制到交换机 CS2 上的 bootflash 。
 
-
-
-
-[role="tabbed-block"]
++
+.显示示例
+[%collapsible]
 ====
-.EFOS 3.12.x及更高版本
---
-. 使用以下传输协议之一将 RCF 复制到交换机 CS2 的启动闪存： FTP ， TFTP ， SFTP 或 SCP 。
-+
-此示例显示了使用SFTP将RCC复制到交换机CS2上的bootflash：
-
-
-
 [listing, subs="+quotes"]
 ----
-(cs2)# *copy sftp://172.19.2.1/BES-53248-RCF-v1.9-Cluster-HA.txt
-nvram:reference-config*
-Remote Password:**
-Mode........................................... TFTP
+(cs2)# *copy http://<ip-to-webserver>/path/to/BES-53248-RCF-v1.12-Cluster-HA.txt nvram:reference-config*
+
+Mode........................................... HTTP
 Set Server IP.................................. 172.19.2.1
-Path........................................... //tmp/
-Filename....................................... BES-53248_RCF_v1.9-Cluster-HA.txt
-Data Type...................................... Config Script
-Destination Filename........................... BES-53248_RCF_v1.9-Cluster-HA.scr
+Path........................................... <ip-to-webserver>/path/to/
+Filename....................................... BES-53248-RCF-v1.12-Cluster-HA.txt
+Data Type...................................... Unknown
+
 Management access will be blocked for the duration of the transfer
 Are you sure you want to start? (y/n) *y*
-TFTP Code transfer starting...
+File transfer in progress.
+Management access will be blocked for the duration of the transfer.
+Please wait...
+HTTP Unknown file type transfer starting...
+Validating configuration script
+.....
+....
+Configuration script validated.
 File transfer operation completed successfully.
 ----
+====
 . 验证脚本是否已下载并保存在您为其指定的文件名下：
 +
 `s记录列表`
@@ -483,14 +483,17 @@ File transfer operation completed successfully.
 Configuration Script Name                  Size(Bytes)  Date of Modification
 -----------------------------------------  -----------  --------------------
 Reference-config.scr                       2680         2024 05 31 21:54:22
-2 configuration script(s) found.
-2042 Kbytes free.
+1 configuration script(s) found.
+2045 Kbytes free.
 ----
 . 将此脚本应用于交换机。
 +
 `s记录应用`
 
 +
+.显示示例
+[%collapsible]
+====
 [listing, subs="+quotes"]
 ----
 (cs2)# *script apply reference-config.scr*
@@ -501,72 +504,51 @@ The system has unsaved changes.
 Would you like to save them now? (y/n) *y*
 Config file 'startup-config' created successfully.
 Configuration Saved!
-
-Configuration script 'BES-53248_RCF_v1.9-Cluster-HA.scr' applied.
+...
+...
+Configuration script 'reference-config.scr' applied.
 ----
-
-
---
-.所有其他 EFOS 版本
---
-. 使用以下传输协议之一将 RCF 复制到交换机 CS2 的启动闪存： FTP ， TFTP ， SFTP 或 SCP 。
+====
+. 安装许可证文件。
 +
-此示例显示了使用SFTP将RCC复制到交换机CS2上的bootflash：
-
-
-
+.显示示例
+[%collapsible]
+====
 [listing, subs="+quotes"]
 ----
-(cs2)# *copy sftp://172.19.2.1/tmp/BES-53248_RCF_v1.9-Cluster-HA.txt
-nvram:script BES-53248_RCF_v1.9-Cluster-HA.scr*
-Remote Password:**
-Mode........................................... SFTP
+(cs2)# *copy http://<ip-to-webserver>/path/to/BES-53248-LIC.dat nvram:license-key 1*
+Mode........................................... HTTP
 Set Server IP.................................. 172.19.2.1
-Path........................................... //tmp/
-Filename....................................... BES-53248_RCF_v1.9-Cluster-HA.txt
-Data Type...................................... Config Script
-Destination Filename........................... BES-53248_RCF_v1.9-Cluster-HA.scr
+Path........................................... <ip-to-webserver>/path/to/
+Filename....................................... BES-53248-LIC.dat
+Data Type...................................... license
+
 Management access will be blocked for the duration of the transfer
 Are you sure you want to start? (y/n) *y*
-SFTP Code transfer starting...
-File transfer operation completed successfully.
-----
-. 验证脚本是否已下载并保存到您为其指定的文件名中：
-+
-`s记录列表`
 
-+
-[listing, subs="+quotes"]
-----
-(cs2)# *script list*
+File transfer in progress. Management access will be blocked for the duration of the transfer.
 
-Configuration Script Name                  Size(Bytes)  Date of Modification
------------------------------------------  -----------  --------------------
-BES-53248_RCF_v1.9-Cluster-HA.scr          2241         2020 09 30 05:41:00
+Please wait...
 
-1 configuration script(s) found.
-----
-. 将此脚本应用于交换机。
-+
-`s记录应用`
+License Key transfer operation completed successfully.
 
-+
-[listing, subs="+quotes"]
-----
-(cs2)# *script apply BES-53248_RCF_v1.9-Cluster-HA.scr*
+System reboot is required.
+(cs2)# *write memory*
 
-Are you sure you want to apply the configuration script? (y/n) *y*
+This operation may take a few minutes.
 
-The system has unsaved changes.
-Would you like to save them now? (y/n) *y*
+Management interfaces will not be available during this time.
+Are you sure you want to save? (y/n) *y*
+
 Config file 'startup-config' created successfully.
+
 Configuration Saved!
 
-Configuration script 'BES-53248_RCF_v1.9-Cluster-HA.scr' applied.
+(cs2)# *reload*
+Are you sure you would like to reset the system? (y/n) *y*
+...
+...
 ----
-
-
---
 ====
 . 检查命令的横幅输出 `show clibanner`。您必须阅读并遵循以下说明、以验证交换机的配置和操作是否正确。
 +
@@ -579,29 +561,25 @@ Configuration script 'BES-53248_RCF_v1.9-Cluster-HA.scr' applied.
 
 Banner Message configured :
 =========================
-BES-53248 Reference Configuration File v1.9 for Cluster/HA/RDMA
+BES-53248 Reference Configuration File v1.12 for Cluster/HA/RDMA
 
 Switch   : BES-53248
-Filename : BES-53248-RCF-v1.9-Cluster.txt
-Date     : 10-26-2022
-Version  : v1.9
+Filename : BES-53248-RCF-v1.12-Cluster.txt
+Date     : 11-04-2024
+Version  : v1.12
 Port Usage:
 Ports 01 - 16: 10/25GbE Cluster Node Ports, base config
 Ports 17 - 48: 10/25GbE Cluster Node Ports, with licenses
 Ports 49 - 54: 40/100GbE Cluster Node Ports, with licenses, added right to left
 Ports 55 - 56: 100GbE Cluster ISL Ports, base config
 NOTE:
-- The 48 SFP28/SFP+ ports are organized into 4-port groups in terms of port
-speed:
-Ports 1-4, 5-8, 9-12, 13-16, 17-20, 21-24, 25-28, 29-32, 33-36, 37-40, 41-44,
-45-48
-The port speed should be the same (10GbE or 25GbE) across all ports in a 4-port
-group
+- The 48 SFP28/SFP+ ports are organized into 4-port groups in terms of port speed:
+  Ports 1-4, 5-8, 9-12, 13-16, 17-20, 21-24, 25-28, 29-32, 33-36, 37-40, 41-44, 45-48
+  The port speed should be the same (10GbE or 25GbE) across all ports in a 4-port group
 - If additional licenses are purchased, follow the 'Additional Node Ports
-activated with Licenses' section for instructions
-- If SSH is active, it will have to be re-enabled manually after 'erase
-startup-config'
-command has been executed and the switch rebooted
+  activated with Licenses' section for instructions
+- If SSH is active, it will have to be re-enabled manually after 'erase startup-config'
+  command has been executed and the switch rebooted"
 ----
 ====
 . 在交换机上、验证在应用RC框架 后是否显示其他已获得许可的端口：
@@ -647,7 +625,7 @@ Intf      Type   Mode      Mode         Status     Status Trap    Mode   Timeout
 0/56             Enable    100G Full               Down   Enable  Enable long
 ----
 ====
-. 在交换机上验证是否已进行更改：
+. 在交换机上、验证是否已进行更改：
 +
 [source, cli]
 ----
@@ -881,7 +859,7 @@ cluster1::*>
 ----
 --
 ====
-. 在集群交换机CS1上、关闭连接到节点集群端口的端口。
+. [[Step21]]在集群交换机CS1上、关闭连接到节点集群端口的端口。
 +
 以下示例使用接口示例输出：
 

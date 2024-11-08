@@ -63,9 +63,9 @@ NetApp强烈建议您在使用的设备上启用控制台日志记录、并在�
 ====
 [listing, subs="+quotes"]
 ----
-(old_cs1) *>enable*
-(old_cs1) *#show running-config*
-(old_cs1) *#show startup-config*
+(old_cs1)> *enable*
+(old_cs1)# *show running-config*
+(old_cs1)# *show startup-config*
 ----
 ====
 . 创建运行配置文件的副本。
@@ -78,7 +78,7 @@ NetApp强烈建议您在使用的设备上启用控制台日志记录、并在�
 ====
 [listing, subs="+quotes"]
 ----
-(old_cs1) *#show running-config filename.scr*
+(old_cs1)# *show running-config filename.scr*
 Config script created successfully.
 ----
 ====
@@ -94,7 +94,7 @@ NOTE: 您可以使用除以外的任何文件名 `CN1610_CS_RCF_v1.2.scr`。文�
 ====
 [listing, subs="+quotes"]
 ----
-(old_cs1) #*copy nvram:script filename.scr scp://<Username>@<remote_IP_address>/path_to_file/filename.scr*
+(old_cs1)# *copy nvram:script filename.scr scp://<Username>@<remote_IP_address>/path_to_file/filename.scr*
 ----
 ====
 . 确认交换机和ONTAP版本在兼容性列表中匹配。请参见 https://mysupport.netapp.com/site/info/netapp-cluster-switch["NetApp CN1601 和 CN1610 交换机"^] 页面以了解详细信息。
@@ -124,7 +124,7 @@ NOTE: 您可以使用除以外的任何文件名 `CN1610_CS_RCF_v1.2.scr`。文�
 ====
 [listing, subs="+quotes"]
 ----
-(new_cs1) #*serviceport ip <ipaddr> <netmask> <gateway>*
+(new_cs1)# *serviceport ip <ipaddr> <netmask> <gateway>*
 ----
 ====
 . (可选)如果TFTP服务器位于笔记本电脑上、则使用标准以太网缆线将CN1610交换机连接到笔记本电脑、然后使用备用IP地址在同一网络中配置其网络端口。
@@ -140,8 +140,8 @@ NOTE: 您可以使用除以外的任何文件名 `CN1610_CS_RCF_v1.2.scr`。文�
 ====
 [listing, subs="+quotes"]
 ----
-(new_cs1) >*enable*
-(new_cs1) #*show version*
+(new_cs1)> *enable*
+(new_cs1)# *show version*
 ----
 ====
 .. 将RC框架 下载到新交换机。
@@ -151,7 +151,7 @@ NOTE: 您可以使用除以外的任何文件名 `CN1610_CS_RCF_v1.2.scr`。文�
 ====
 [listing, subs="+quotes"]
 ----
-(new_cs1) #*copy tftp://<server_ip_address>/CN1610_CS_RCF_v1.2.txt nvram:script CN1610_CS_RCF_v1.2.scr*
+(new_cs1)# *copy tftp://<server_ip_address>/CN1610_CS_RCF_v1.2.txt nvram:script CN1610_CS_RCF_v1.2.scr*
 Mode.	TFTP
 Set Server IP.	172.22.201.50
 Path.	/
@@ -180,7 +180,7 @@ File transfer operation completed successfully.
 ====
 [listing, subs="+quotes"]
 ----
-(new_cs1) #*script list*
+(new_cs1)# *script list*
 Configuration Script Nam   Size(Bytes)
 -------------------------- -----------
 CN1610_CS_RCF_v1.1.scr            2191
@@ -200,7 +200,7 @@ latest_config.scr                 2356
 ====
 [listing, subs="+quotes"]
 ----
-(new_cs1) #*script apply CN1610_CS_RCF_v1.2.scr*
+(new_cs1)# *script apply CN1610_CS_RCF_v1.2.scr*
 Are you sure you want to apply the configuration script? (y/n) *y*
 ...
 (the entire script is displayed line by line)
@@ -219,7 +219,7 @@ After the script is applied, those settings will be active in the running-config
 ====
 [listing, subs="+quotes"]
 ----
-(new_cs1) #*write memory*
+(new_cs1)# *write memory*
 This operation may take a few minutes.
 Management interfaces will not be available during this time.
 
@@ -237,7 +237,7 @@ Configuration Saved!
 ====
 [listing, subs="+quotes"]
 ----
-(new_cs1) #*copy tftp://<server_ip_address>/NetApp_CN1610_1.2.0.7.stk active*
+(new_cs1)# *copy tftp://<server_ip_address>/NetApp_CN1610_1.2.0.7.stk active*
 Mode.	TFTP
 Set Server IP.	tftp_server_ip_address
 Path.	/
@@ -264,7 +264,7 @@ File transfer operation completed successfully.
 ====
 [listing, subs="+quotes"]
 ----
-(new_cs1) #*reload*
+(new_cs1)# *reload*
 The system has unsaved changes.
 Would you like to save them now? (y/n) *y*
 
@@ -286,7 +286,7 @@ User:admin Password: (new_cs1) >*enable*
 ====
 [listing, subs="+quotes"]
 ----
-(new_cs1) #*copy tftp://<server_ip_address>/<filename>.scr nvram:script <filename>.scr*
+(new_cs1)# *copy tftp://<server_ip_address>/<filename>.scr nvram:script <filename>.scr*
 ----
 ====
 .. 将先前保存的配置应用于新交换机。
@@ -296,7 +296,7 @@ User:admin Password: (new_cs1) >*enable*
 ====
 [listing, subs="+quotes"]
 ----
-(new_cs1) #*script apply <filename>.scr*
+(new_cs1)# *script apply <filename>.scr*
 Are you sure you want to apply the configuration script? (y/n) *y*
 
 The system has unsaved changes.
@@ -314,7 +314,7 @@ Configuration Saved!
 ====
 [listing, subs="+quotes"]
 ----
-(new_cs1) #*write memory*
+(new_cs1)# *write memory*
 ----
 ====
 
@@ -338,14 +338,13 @@ AutoSupport 消息会通知技术支持此维护任务，以便在维护窗口�
 ----
 User:*admin*
 Password:
-(new_cs1) >*enable*
-(new_cs1) #
-
-(new_cs1) #*config*
-(new_cs1)(config)#*interface 0/1-0/12*
-(new_cs1)(interface 0/1-0/12)#*shutdown*
-(new_cs1)(interface 0/1-0/12)#*exit*
-(new_cs1) #*write memory*
+(new_cs1)> *enable*
+(new_cs1)#
+(new_cs1)# *config*
+(new_cs1)(config)# *interface 0/1-0/12*
+(new_cs1)(interface 0/1-0/12)# *shutdown*
+(new_cs1)(interface 0/1-0/12)# *exit*
+(new_cs1)# *write memory*
 ----
 ====
 . 从连接到old_CS1交换机的端口迁移集群的集群的Sifs。
@@ -409,10 +408,10 @@ cluster::*> *cluster ping-cluster -node <node_name>*
 ====
 [listing, subs="+quotes"]
 ----
-(cs2) #*config*
-(cs2)(config)#*interface 0/13-0/16*
-(cs2)(interface 0/13-0/16)#*shutdown*
-(cs2) #*show port-channel 3/1*
+(cs2)# *config*
+(cs2)(config)# *interface 0/13-0/16*
+(cs2)(interface 0/13-0/16)# *shutdown*
+(cs2)# *show port-channel 3/1*
 ----
 ====
 . 验证存储管理员是否已准备好更换交换机。
@@ -424,9 +423,9 @@ cluster::*> *cluster ping-cluster -node <node_name>*
 ====
 [listing, subs="+quotes"]
 ----
-(cs2) #*config*
-(cs2)(config)#*interface 0/13-0/16*
-(cs2)(interface 0/13-0/16)#*no shutdown*
+(cs2)# *config*
+(cs2)(config)# *interface 0/13-0/16*
+(cs2)(interface 0/13-0/16)# *no shutdown*
 ----
 ====
 . 启动新交换机上与集群节点关联的端口。
@@ -436,9 +435,9 @@ cluster::*> *cluster ping-cluster -node <node_name>*
 ====
 [listing, subs="+quotes"]
 ----
-(cs2) #*config*
-(cs2)(config)#*interface 0/1-0/12*
-(cs2)(interface 0/13-0/16)#*no shutdown*
+(new_cs1)# *config*
+(new_cs1)(config)# *interface 0/1-0/12*
+(new_cs1)(interface 0/13-0/16)# *no shutdown*
 ----
 ====
 . 在单个节点上、启动连接到更换的交换机的集群节点端口、然后确认链路已启动。
@@ -484,9 +483,9 @@ cluster::*> *cluster show*
 ====
 [listing, subs="+quotes"]
 ----
-(new_cs1) >*enable*
-(new_cs1) #*show running-config*
-(new_cs1) #*show startup-config*
+(new_cs1)> *enable*
+(new_cs1)# *show running-config*
+(new_cs1)# *show startup-config*
 ----
 ====
 . 如果禁止自动创建案例，请通过调用 AutoSupport 消息重新启用它：

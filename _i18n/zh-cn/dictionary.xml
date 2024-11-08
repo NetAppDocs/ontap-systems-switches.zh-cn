@@ -4076,7 +4076,6 @@
   <block id="b211f67e6e9195c32683368a53542802" category="paragraph">此示例显示了使用SFTP将RCC复制到交换机CS2上的bootflash：</block>
   <block id="c77174e35b7f7fc235a87561809ad614" category="list-text">检查中的横幅输出<block ref="db837131dc56fab41bddc52d5aff8865" prefix=" " category="inline-code"></block> 命令：您必须阅读并遵循这些说明，以确保交换机的配置和操作正确。</block>
   <block id="420b545896cb1c9b03dbccd44bf33f86" category="list-text">在交换机上、验证在应用RC框架 后是否显示其他已获得许可的端口：</block>
-  <block id="e23c199f14d9e7bf9dbb9da03bf726a2" category="list-text">重新启动交换机 CS1 。执行此操作可触发集群 LIF 还原到其主端口。您可以忽略在交换机重新启动时报告的节点上的 " 集群端口关闭 " 事件。</block>
   <block id="6285269d7b8b003aed53cad1f3d13717" category="list-text">将所有集群节点连接缆线从旧CS2交换机移至新的CS2交换机。</block>
   <block id="f8e1e48a80ce2fac4d53a95f1f1ffd18" category="paragraph">*集群节点连接电缆已移至CS2-new交换机*</block>
   <block id="e07ca5d2322ee212c9dcb668e9db443a" category="image-alt">已将集群节点连接缆线移至CS2新交换机</block>
@@ -5059,4 +5058,21 @@
   <block id="c509ae209503be0a774ac204f0f2dc91" category="paragraph">4 个 100GbE 节点 35</block>
   <block id="f992d2e7f110147780c9ce8e305e4981" category="paragraph">4 个 100GbE 节点 36</block>
   <block id="cb02ea2e8f595e77e5e6585ac0421c1a" category="paragraph">了解适用于FAS 和AFF 系统的新交换机。有关交换机的其他信息，请参见<block ref="341c1c8afc925d24c41903215e7d4958" category="inline-link-rx"></block>。</block>
+  <block id="d217db6e5c9fe01778df762ef953150e" category="inline-link-macro">安装参考配置文件(Reference Configuration File、RCF)和许可证文件</block>
+  <block id="6503ea0189c5cfc2f7fbdef509813892" category="admonition">对于EFOS 3-16及更高版本，请按照中的安装步骤进行操作<block ref="2875012234c5bc616da894d0cc04d2b5" category="inline-link-macro-rx"></block>。</block>
+  <block id="138707357e50e83ca9a6f1bf487a4c4b" category="paragraph">验证以下各项是否已到位：</block>
+  <block id="f3f5793bcca1ebb5ebbd53986eeb7aa2" category="admonition">在安装新的交换机软件版本和RCF之前，请参阅知识库文章<block ref="18b4271d2bf70dbfb01e42cb4850cea6" category="inline-link-rx"></block>。如果您必须完全擦除交换机设置、则需要再次执行基本配置。您必须使用串行控制台连接到交换机、因为完整的配置清除会重置管理网络的配置。</block>
+  <block id="760a43dbe67e92dafc9be460c7ec7a71" category="open-title">EFOS 3.12.x及更高版本</block>
+  <block id="b901c25333441ff036da53fab081d9f0" category="list-text">验证脚本是否已下载并保存在您为其指定的文件名下：</block>
+  <block id="c996550fa25e7bc14821abd9c8d23ed7" category="open-title">所有其他 EFOS 版本</block>
+  <block id="cbaf87b69b101c8da09eb66a7e118196" category="list-text">检查命令的横幅输出<block ref="db837131dc56fab41bddc52d5aff8865" prefix=" " category="inline-code"></block>。您必须阅读并遵循以下说明、以验证交换机的配置和操作是否正确。</block>
+  <block id="d8b62ff42020df981e759bfaae3ea683" category="list-text">重新启动交换机 CS1 。这会触发集群的Sifs还原到其主端口。您可以忽略在交换机重新启动时报告的节点上的 " 集群端口关闭 " 事件。</block>
+  <block id="44b28482ab8476e86718a1ca5ff60e37" category="paragraph">从EFOS 3.12.0.1开始、您可以在配置BES-53248集群交换机后安装参考配置文件(Reference Configuration File、RCF)和许可证文件。</block>
+  <block id="9a155684dd1562ffdaa25731d825bbe9" category="admonition">安装RC框架 时会配置Sall端口、但您需要安装许可证才能激活已配置的端口。</block>
+  <block id="fbec2ebb075cb19757cff7017cb93af5" category="list-text">页面中提供的当前RC框架<block ref="b4c2fb45a290e6214474529bd84dd3bc" category="inline-link-rx"></block>。</block>
+  <block id="4456b97c43334b2054b59141ede95e7a" category="list-text">使用以下传输协议之一将RCC复制到交换机CS2的bootflash：FTP、HTTP、TFTP、SFTP或SCP。</block>
+  <block id="f33dd0ad3ffde0d7eeaba1d3a85f7205" category="paragraph">此示例显示了使用 HTTP 将 RCF 复制到交换机 CS2 上的 bootflash 。</block>
+  <block id="7bbcf8e324817b180739b7f7d821945a" category="list-text">在交换机上、验证是否已进行更改：</block>
+  <block id="a84263d893b250f940f2cfa8e599b7e2" category="list-text">[[Step21]]在集群交换机CS1上、关闭连接到节点集群端口的端口。</block>
+  <block id="5bd6c874b20210387cbc3fd552b0e8bc" category="sidebar">安装EFOS 3.5及更高版本的RCF和许可证文件</block>
 </blocks>
