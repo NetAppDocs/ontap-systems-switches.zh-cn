@@ -3982,7 +3982,6 @@
   <block id="b6a9bacb15977dcaaa1e05f20cc4d13b" category="paragraph">集群和存储应用程序可以使用两个RC框架 脚本。从下载RCF<block ref="89efcd657168a1e707caf54da1923871" category="inline-link-rx"></block>。每个的操作步骤 是相同的。</block>
   <block id="54d4022f2a747cb4974fcf06961bdb21" category="list-text">集群：* MSN2100-RCP-v1._x--cluster-HA-Breakout—LCDP*</block>
   <block id="eac7436c884133e6b945a51430510a32" category="list-text">存储：* MSN2100-RFP-v1._x_-Storage*</block>
-  <block id="196428336c87b3c0c9bf24432335bd6f" category="list-text">应用RCF python脚本*MSN2100-RCP-v1.x-Cluster-HA-Breakout LCDP*。</block>
   <block id="b9dfe38b5e91454220a6cd1f3cfb9ac8" category="admonition">在步骤3*更新上面的MOTD文件*中，命令<block ref="900d965bd90d181d344d976a0e3093d8" prefix=" " category="inline-code"></block> 已运行。这样、您可以验证RCV文件名、RCV版本、要使用的端口以及RCV横幅中的其他重要信息。</block>
   <block id="0440c59cc67785ca7939ff4e3eba86ed" category="admonition">在步骤3*更新上面的MOTD文件*中，命令<block ref="79a5f2bb850da898bd092e3a61bda06c" prefix=" " category="inline-code"></block> 已运行。这样、您可以验证RCV文件名、RCV版本、要使用的端口以及RCV横幅中的其他重要信息。</block>
   <block id="506c2c0c7f5b70af3df68c45c46f45a7" category="paragraph">例如：</block>
@@ -4016,7 +4015,6 @@
   <block id="0d151e82f107d3039ec4952c010d46c4" category="admonition">累积用户帐户的默认密码为*累积用户*。首次登录到Cumulus Linux时、必须更改此默认密码。在安装新映像之前、您必须更新所有自动化脚本。Cumulus Linux提供了命令行选项、用于在安装过程中自动更改默认密码。</block>
   <block id="324fe5adbd1d84e1635133b2f3572f6d" category="open-title">从Cumulus Linux 4.4.x到Cumulus Linux 5.x</block>
   <block id="6e86c333c0b662bb6dee3495ec26ec21" category="list-text">检查当前的Cumulus Linux版本和连接的端口：</block>
-  <block id="698eeac576f2a03927debdd14725ba5e" category="list-text">下载Cumulux Linux 5.x映像：</block>
   <block id="a034a19ca9c1623f94c8f52b386d5a41" category="list-text">更改密码：</block>
   <block id="d853eef2a857cbfcf5b1ef1abe8db17e" category="list-text">检查Cumulus Linux版本：<block ref="9fcc1ae85aac3dbd490f575cf5eb3d52" prefix=" " category="inline-code"></block></block>
   <block id="985599684d8f5a06353d35110138f1b2" category="list-text">更改主机名：</block>
@@ -5068,11 +5066,27 @@
   <block id="cbaf87b69b101c8da09eb66a7e118196" category="list-text">检查命令的横幅输出<block ref="db837131dc56fab41bddc52d5aff8865" prefix=" " category="inline-code"></block>。您必须阅读并遵循以下说明、以验证交换机的配置和操作是否正确。</block>
   <block id="d8b62ff42020df981e759bfaae3ea683" category="list-text">重新启动交换机 CS1 。这会触发集群的Sifs还原到其主端口。您可以忽略在交换机重新启动时报告的节点上的 " 集群端口关闭 " 事件。</block>
   <block id="44b28482ab8476e86718a1ca5ff60e37" category="paragraph">从EFOS 3.12.0.1开始、您可以在配置BES-53248集群交换机后安装参考配置文件(Reference Configuration File、RCF)和许可证文件。</block>
-  <block id="9a155684dd1562ffdaa25731d825bbe9" category="admonition">安装RC框架 时会配置Sall端口、但您需要安装许可证才能激活已配置的端口。</block>
   <block id="fbec2ebb075cb19757cff7017cb93af5" category="list-text">页面中提供的当前RC框架<block ref="b4c2fb45a290e6214474529bd84dd3bc" category="inline-link-rx"></block>。</block>
   <block id="4456b97c43334b2054b59141ede95e7a" category="list-text">使用以下传输协议之一将RCC复制到交换机CS2的bootflash：FTP、HTTP、TFTP、SFTP或SCP。</block>
   <block id="f33dd0ad3ffde0d7eeaba1d3a85f7205" category="paragraph">此示例显示了使用 HTTP 将 RCF 复制到交换机 CS2 上的 bootflash 。</block>
   <block id="7bbcf8e324817b180739b7f7d821945a" category="list-text">在交换机上、验证是否已进行更改：</block>
   <block id="a84263d893b250f940f2cfa8e599b7e2" category="list-text">[[Step21]]在集群交换机CS1上、关闭连接到节点集群端口的端口。</block>
   <block id="5bd6c874b20210387cbc3fd552b0e8bc" category="sidebar">安装EFOS 3.5及更高版本的RCF和许可证文件</block>
+  <block id="939b4bb2ac041f54295eebf712381c6e" category="admonition">安装RC框架 时会配置所有端口、但您需要安装许可证才能激活已配置的端口。</block>
+  <block id="95a409c28581e60b63d6744a63cec56e" category="list-text">设置交换机上的日期、时间、时区和NTP服务器。</block>
+  <block id="506fa9ce3fedb50c852bedfbf3a7cdd3" category="list-text">验证当前时区：</block>
+  <block id="a50a0e5cb483409f1fab325fb98837b7" category="list-text">更新到新时区：</block>
+  <block id="6da016a8d1ac9135eb58f58229421640" category="list-text">验证当前时区：</block>
+  <block id="f7831e2ba83d46ea1e5fff4e74fc5fa7" category="list-text">要使用引导式向导设置时区、请运行以下命令：</block>
+  <block id="73780f50cf375867a0588e7492720e92" category="list-text">根据配置的时区设置软件时钟：</block>
+  <block id="79f42127edb075c94bf534a70bd9670a" category="list-text">将软件时钟的当前值设置为硬件时钟：</block>
+  <block id="cc4d69e34240960e74993e23c384c9dd" category="list-text">根据需要添加NTP服务器：</block>
+  <block id="f24cc7b4e9b9029f28ce1ca2f70cdf80" category="list-text">验证系统是否<block ref="0453ce67cb028d800c9476a4d09364c9" prefix=" " category="inline-code"></block>正在运行：</block>
+  <block id="5f71b9c43a90b0d5c1da4caaf97582b9" category="list-text">指定NTP源接口。默认情况下，NTP使用的源接口为<block ref="a1a5b3d22e82bbd6f878d26feacc2c7d" prefix=" " category="inline-code"></block>。您可以按如下所示配置其他NTP源接口：</block>
+  <block id="49a81a8314008caafc812f9c76617125" category="list-text">设置交换机上的时区、日期、时间和NTP服务器。</block>
+  <block id="2747cbba0e5a031af50361e087bd59bb" category="list-text">设置时区：</block>
+  <block id="7db58b1ced05f0a1e8e0257017cd6c5b" category="list-text">应用RCF pyPython脚本*MSN2100-RCP-v1._x--Cluster-HA-Breakout－LCDP*。</block>
+  <block id="11b037d97237564e7d301df86420a468" category="inline-link">安装新的积云Linux映像</block>
+  <block id="ab12f4d1e56479a81a361f6109b978de" category="paragraph">有关详细信息、请参见<block ref="63da15f7ab7ce2a7550fdbf1e5e5d879" category="inline-link-rx"></block>。</block>
+  <block id="43622a7160f0cabed379e73776c14454" category="list-text">下载CUMLUX Linux 5.x image：tmp</block>
 </blocks>
