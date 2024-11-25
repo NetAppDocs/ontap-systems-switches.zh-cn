@@ -397,6 +397,7 @@ vlan database
 no vlan 17
 no vlan 18
 exit
+show-running-config
 ----
 .. 将运行配置保存到启动配置：
 +
