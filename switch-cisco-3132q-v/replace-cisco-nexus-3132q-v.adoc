@@ -67,7 +67,7 @@ NetApp强烈建议您在使用的设备上启用控制台日志记录、并在�
 * N1_clus2 是连接到节点 n1 的集群交换机 CL2 或 C2 的第一个集群 LIF 。
 * n1_clus3 是连接到节点 n1 的集群交换机 C2 的第二个 LIF 。
 * n1_clus4 是连接到节点 n1 的集群交换机 CL1 的第二个 LIF 。
-* 10 GbE 和 40/100 GbE 端口的数量在上提供的参考配置文件（ RCF ）中定义 link:https://mysupport.netapp.com/NOW/download/software/sanswitch/fcp/Cisco/netapp_cnmn/download.shtml["Cisco ® 集群网络交换机参考配置文件下载"^] 页面。
+* 10 GbE和40 GbE端口的数量在页面上提供的参考配置文件(Reference Configuration Files、RCF)中定义link:https://mysupport.netapp.com/NOW/download/software/sanswitch/fcp/Cisco/netapp_cnmn/download.shtml["Cisco ® 集群网络交换机参考配置文件下载"^]。
 * 节点为 n1 ， n2 ， n3 和 n4 。—此操作步骤 中的示例使用四个节点：两个节点使用四个 10 GB 集群互连端口： e0a ， e0b ， e0c 和 e0d 。其他两个节点使用两个 40 Gb 集群互连端口： E4A 和 e4e 。请参见 link:https://hwu.netapp.com/["Hardware Universe"^] 用于您平台上的实际集群端口。
 
 

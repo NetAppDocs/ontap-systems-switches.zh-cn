@@ -41,14 +41,14 @@ summary: 要将集群中的现有 CN1610 集群交换机更换为 Cisco Nexus 31
 * N1_clus3 是连接到节点 n1 的集群交换机 2 （ CL2 或 C2 ）的第二个 LIF 。
 * N1_clus4 是连接到节点 n1 的集群交换机 1 （ CL1 或 C1 ）的第二个 LIF 。
 * 节点为 n1 ， n2 ， n3 和 n4 。
-* 10 GbE 和 40/100 GbE 端口的数量在上提供的参考配置文件（ RCF ）中定义 https://mysupport.netapp.com/NOW/download/software/sanswitch/fcp/Cisco/netapp_cnmn/download.shtml["Cisco ® 集群网络交换机参考配置文件下载"^] 页面。
+* 10 GbE和40 GbE端口的数量在页面上提供的参考配置文件(Reference Configuration Files、RCF)中定义 https://mysupport.netapp.com/NOW/download/software/sanswitch/fcp/Cisco/netapp_cnmn/download.shtml["Cisco ® 集群网络交换机参考配置文件下载"^]。
 
 
 .关于示例
 此操作步骤 中的示例使用四个节点：
 
 * 两个节点使用四个10 GbE集群互连端口：e0a、e0b、e0c和e0d。
-* 其他两个节点使用两根 40/100 GbE 集群互连光缆： E4A 和 e4e 。
+* 其他两个节点使用两根 40 GbE 集群互连光缆： E4A 和 e4e 。
 
 
 。 link:https://hwu.netapp.com/["Hardware Universe"^] 提供有关平台上的集群光纤缆线的信息。

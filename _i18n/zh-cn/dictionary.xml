@@ -1249,7 +1249,6 @@
   <block id="622a8e6dbefe6751d8f689c24a2b3649" category="list-text">n2_clus1 是连接到节点 n2 的集群交换机 C1 的第一个集群 LIF 。</block>
   <block id="cbae7e4732af3199f41bd171fdae91a7" category="list-text">n2_clus2 是要连接到节点 n2 的集群交换机 C2 的第二个集群 LIF 。</block>
   <block id="c69cfd9e3ba37b533e64498443964744" category="inline-link">Cisco ® 集群网络交换机参考配置文件下载</block>
-  <block id="797c65f427eb3fe0e8ba459583050be1" category="list-text">10 GbE 和 40/100 GbE 端口的数量在上提供的参考配置文件（ RCF ）中定义<block ref="9bcfbf4ecbfa5f01b0fe987094e3d8a3" category="inline-link-rx"></block> 页面。</block>
   <block id="7f66bc04b2dfdeb5c9e1ad66b46c6cc7" category="paragraph">操作步骤 要求同时使用 ONTAP 命令和 Cisco Nexus 3000 系列交换机命令；除非另有说明，否则使用 ONTAP 命令。</block>
   <block id="7664236fe12ec0638eff103041560e12" category="list-text">集群首先连接两个节点，并在双节点无交换机集群设置下运行。</block>
   <block id="e0c459ee022d3d4ac187fbf896f3a3de" category="paragraph">`ssystem node AutoSupport invoke -node * -type all - 消息 MAINT=xh`</block>
@@ -1398,24 +1397,16 @@
   <block id="8eaf3d59876911ccca6dc5bdc347ee06" category="list-text">显示有关 LIF 的信息：</block>
   <block id="280107a5f53cc09efecfd6d30a3b7ebc" category="list-text">NetApp CN1610</block>
   <block id="1d8bdbbecd2a7992d9b2c5314cbc8da8" category="list-text">Cisco Nexus 3132Q-V</block>
-  <block id="246b4f4943a9ef7d81b1ecb7d14db012" category="list-text">Cisco Nexus 3132Q-V ：端口 E1/1-30 （ 40/100 GbE ）</block>
-  <block id="57d3034f2867f54843c59eacb52d62bf" category="list-text">Cisco Nexus 3132Q-V ：端口 E1/31 至 32 （ 40/100 GbE ）</block>
   <block id="472bbef967b4ae7a0b29aff643bee169" category="list-text">具有 10 GbE 集群连接的节点需要使用 QSFP 到 SFP+ 光纤分支电缆或 QSFP 到 SFP+ 铜分支电缆</block>
-  <block id="409f985ef1bffdcbe3bc46fc059d909f" category="list-text">具有 40/100 GbE 集群连接的节点需要支持的 QSFP/QSFP28 光纤模块以及光缆或 QSFP28 铜缆</block>
   <block id="7b5781881fa8326227e58e694e97198c" category="list-text">开始：对于 CN1610 到 CN1610 （ SFP+ 到 SFP+ ），需要四根 SFP+ 光纤或铜缆直连缆线</block>
   <block id="277ee11ec93d0d5d7bb265959cfadb18" category="list-text">过渡：对于 CN1610 到 Nexus 3132Q-V （ QSFP 到四个 SFP+ 分支），使用一根 QSFP 到 SFP+ 光纤或铜分支缆线</block>
   <block id="21e8ded62a39d44e1afa6aaee348bd88" category="list-text">最终版本：对于 Nexus 3132Q-V 到 Nexus 3132Q-V （ QSFP28 到 QSFP28 ），请使用两根 QSFP28 光纤或铜缆直连缆线</block>
   <block id="d129b7927c768a17882184f936cb7a36" category="list-text">NetApp 双轴电缆与 Cisco Nexus 3132Q-V 交换机不兼容。</block>
   <block id="9781497a027920a312b9c4cd217b3956" category="paragraph">如果您当前的 CN1610 配置使用 NetApp 双轴电缆进行集群节点到交换机连接或 ISL 连接，并且您希望在环境中继续使用双轴电缆，则需要购买 Cisco 双轴电缆。或者，您也可以使用光缆进行 ISL 连接和集群节点到交换机连接。</block>
-  <block id="3d8baabccb49d3044f14c0f5b022686f" category="list-text">在 Nexus 3132Q-V 交换机上，您可以将 QSFP/QSFP28 端口用作 40/100 Gb 以太网或 4 个 10 Gb 以太网模式。</block>
-  <block id="d443959501e56c10729109864777b8bb" category="paragraph">默认情况下， 40/100 Gb 以太网模式下有 32 个端口。这些 40 Gb 以太网端口按 2 元组命名约定进行编号。例如，第二个 40 Gb 以太网端口编号为 1/2 。将配置从 40 Gb 以太网更改为 10 Gb 以太网的过程称为 _break_ ，将配置从 10 Gb 以太网更改为 40 Gb 以太网的过程称为 _breakin 。将 40/100 Gb 以太网端口拆分为 10 Gb 以太网端口时，生成的端口将使用三元组命名约定进行编号。例如，第二个 40 Gb 以太网端口的分支端口编号为 1/2/1 ， 1/2/2 ， 1/2/3 和 1/2/4 。</block>
   <block id="96c63e9512f3230bf1f86bdd048e8470" category="list-text">Nexus 3132Q-V 交换机左侧是一组四个 SFP+ 端口，这些端口会多路传输到第一个 QSFP 端口。</block>
   <block id="68f609cf0d26657ca331984cb655e187" category="paragraph">默认情况下，参考配置文件（ RCF ）的结构使用第一个 QSFP 端口。</block>
   <block id="93b0e80a036070a07fd0baf72e679cd3" category="paragraph">对于 Nexus 3132Q-V 交换机，您可以使用 `hardware profile Front portmode SFP+` 命令将四个 SFP+ 端口设为活动状态，而不是 QSFP 端口。同样，您也可以使用 `hardware profile Front portmode QSFP` 命令将 Nexus 3132Q-V 交换机重置为使用 QSFP 端口，而不是四个 SFP+ 端口。</block>
   <block id="62773ff807cea7c5201a77e34fd71617" category="paragraph">使用前四个 SFP+ 端口时，它将禁用第一个 40GbE QSFP 端口。</block>
-  <block id="f03907e32ba4bc1e0430f00b6e896a20" category="list-text">您必须已将 Nexus 3132Q-V 交换机上的某些端口配置为以 10 GbE 或 40/100 GbE 运行。</block>
-  <block id="4769f2909f072141c447ee3c862e9f8d" category="paragraph">您可以使用 `interface breakout module 1 port 1-6 map 10g-4x` 命令将前六个端口细分为 4 个 10 GbE 模式。同样，您也可以使用 `no interface breakout module 1 port 1-6 map 10g-4x` 命令从 _break_ 配置对前六个 QSFP + 端口进行重新分组。</block>
-  <block id="7369c77472e2b3190b3567e209220672" category="list-text">您必须已完成有关从节点到 Nexus 3132Q-V 集群交换机的 10 GbE 和 40/100 GbE 连接的规划，迁移和阅读所需文档。</block>
   <block id="caa7a1b509ffae6e49682160486b956b" category="inline-link">NetApp CN1601 和 CN1610 交换机</block>
   <block id="6de42699e499fd1e22f3dba2b9245b8b" category="summary">要将现有 Nexus 5596 集群交换机更换为 Nexus 3132Q-V 集群交换机，您必须执行一系列特定的任务。</block>
   <block id="ba0aeff0757e53b1be2f02ce22967fe1" category="list-text">要更换的 Nexus 5596 交换机为 CL1 和 CL2 。</block>
@@ -1489,21 +1480,14 @@
   <block id="9330abbaaa76e6624badc34f8f4a32ea" category="paragraph">以下示例显示了如何删除 Nexus 5596 ：</block>
   <block id="dd21090e5d1cd428ffa6730ee85b51b9" category="list-text">集群交换机使用交换机间链路（ ISL ）端口 E1/31 至 32 。</block>
   <block id="0e170ece3637f1f6dfe129d6cce580e6" category="list-text">具有 10 GbE 集群连接的节点需要使用分支光缆的 QSFP 光纤模块或 QSFP 到 SFP+ 铜缆的分支。</block>
-  <block id="f37b6623746594c6564087d8bf2a354e" category="list-text">具有 40/100 GbE 集群连接的节点需要支持的 QSFP/QSFP28 光纤模块以及光缆或 QSFP28 铜缆。</block>
   <block id="cc577eea5612ed5d434ed2aed6a86680" category="list-text">集群交换机使用适当的 ISL 布线： 2 根 QSFP28 光纤或铜缆直连缆线。</block>
-  <block id="e9674399843595f1253f9d09c103dc33" category="list-text">在 Nexus 3132Q-V 上，您可以将 QSFP 端口作为 40/100 Gb 以太网或 4 个 10 Gb 以太网模式运行。</block>
-  <block id="2c75f2d9aba6763d779b9037d7bbb84e" category="paragraph">默认情况下， 40/100 Gb 以太网模式下有 32 个端口。这些 40 Gb 以太网端口按 2 元组命名约定进行编号。例如，第二个 40 Gb 以太网端口编号为 1/2 。将配置从 40 Gb 以太网更改为 10 Gb 以太网的过程称为 _break_ ，将配置从 10 Gb 以太网更改为 40 Gb 以太网的过程称为 _breakin 。将 40/100 Gb 以太网端口拆分为 10 Gb 以太网端口时，生成的端口将使用三元组命名约定进行编号。例如，第二个 40/100 Gb 以太网端口的分支端口编号为 1/2/1 ， 1/2/2 ， 1/2/3 ， 1/2/4 。</block>
   <block id="1d6565e31007c3df75b7f570d335cc62" category="list-text">Nexus 3132Q-V 的左侧是一组四个 SFP+ 端口，这些端口会多路传输到第一个 QSFP 端口。</block>
   <block id="5434677a69f7a86fa7d41a0731389cc7" category="paragraph">默认情况下， RCF 的结构使用第一个 QSFP 端口。</block>
   <block id="ed5676888d1e4bdc96d6718b15a728bd" category="paragraph">您可以使用 `hardware profile FRONT portmode sfp-plus` 命令使 Nexus 3132Q-V 的四个 SFP+ 端口处于活动状态，而不是 QSFP 端口。同样，您也可以使用 `hardware profile Front portmode QSFP` 命令将 Nexus 3132Q-V 重置为使用 QSFP 端口，而不是四个 SFP+ 端口。</block>
-  <block id="d749dda1ba6b167863e217ed8100c048" category="list-text">您必须已将 Nexus 3132Q-V 上的某些端口配置为以 10 GbE 或 40/100 GbE 运行。</block>
   <block id="436a67b06e6704883d8320cda2928548" category="paragraph">您可以使用 `interface breakout module 1 port 1-6 map 10g-4x` 命令将前六个端口细分为 4x10 GbE 模式。同样，您也可以使用 `no interface breakout module 1 port 1-6 map 10g-4x` 命令对分支配置中的前六个 QSFP + 端口进行重新分组。</block>
   <block id="c2f18641e43de285dd6439d822155502" category="list-text">端口 E1/1-40 （ 10 GbE ）： Nexus 5596</block>
-  <block id="bb6ae6b16e1b6cf9dee571c6b226e823" category="list-text">端口 E1/1-30 （ 40/100 GbE ）： Nexus 3132Q-V</block>
   <block id="b7989549a527f7e48aee50c95bd1de89" category="list-text">端口 E1/41-48 （ 10 GbE ）： Nexus 5596</block>
-  <block id="85fd74fc8657ee1a6bc8030bab203ea4" category="list-text">端口 E1/31 至 32 （ 40/100 GbE ）： Nexus 3132Q-V</block>
   <block id="8ad5621547abb5f398de647f01ee8992" category="list-text">具有 10 GbE 集群连接的节点需要使用 QSFP 到 SFP+ 光纤分支电缆或 QSFP 到 SFP+ 铜分支电缆。</block>
-  <block id="b9ca3537419b43c4c252e96426d68d33" category="list-text">具有 40/100 GbE 集群连接的节点需要使用光缆或 QSFP28 铜缆支持的 QSFP/QSFP28 光纤模块。</block>
   <block id="f6d943be4fed7a73b2b20c6cca1c0cb1" category="list-text">集群交换机使用适当的 ISL 布线：</block>
   <block id="f684f26bc5b9998c8f656cc25dc42d81" category="list-text">起始： Nexus 5596 到 Nexus 5596 （ SFP+ 到 SFP+ ）</block>
   <block id="e5b4cd0654ee56f4927678ab6792d941" category="list-text">8 根 SFP+ 光纤或铜缆直连缆线</block>
@@ -1511,14 +1495,10 @@
   <block id="ff844f64ec493dced35fea3af41734fa" category="list-text">1 根 QSFP 到 SFP+ 光纤分出或铜缆分出缆线</block>
   <block id="50f94cbc4cf0a33ff4f99b9553620925" category="list-text">最终结果： Nexus 3132Q-V 到 Nexus 3132Q-V （ QSFP28 到 QSFP28 ）</block>
   <block id="9dac3929f5f08b4f7ea27d4b985ed09c" category="list-text">2 根 QSFP28 光纤或铜缆直连缆线</block>
-  <block id="400199f305ffb36a587767aa7ea9bd26" category="list-text">在 Nexus 3132Q-V 交换机上，您可以将 QSFP/QSFP28 端口作为 40/100 千兆以太网模式或 4 个 10 千兆以太网模式运行。</block>
-  <block id="de179381d5dfc05e0a80e7052f0f7086" category="paragraph">默认情况下， 40/100 千兆以太网模式下有 32 个端口。这 40 个千兆以太网端口按照 2 元组命名约定进行编号。例如，第二个 40 千兆以太网端口编号为 1/2 。将配置从 40 千兆以太网更改为 10 千兆以太网的过程称为 _break_ ，将配置从 10 千兆以太网更改为 40 千兆以太网的过程称为 _breakin 。将 40/100 千兆以太网端口拆分为 10 千兆以太网端口时，生成的端口将使用三元组命名约定进行编号。例如，第二个 40 千兆以太网端口的分出端口编号为 1/2/1 ， 1/2/2 ， 1/2/3 和 1/2/4 。</block>
   <block id="4506e9d2fdc343c121f39bdf66de09fd" category="list-text">Nexus 3132Q-V 交换机左侧是一组 4 个 SFP+ 端口，这些端口会多路传输到该 QSFP28 端口。</block>
   <block id="6c28101de4bc69c38814cc5f0a5cdcb4" category="paragraph">默认情况下， RCF 的结构使用 QSFP28 端口。</block>
   <block id="5e51bdc54f5dd33d30418aa5b91af8ad" category="paragraph">您可以使用 `hardware profile FRONT portmode sfp-plus` 命令使 Nexus 3132Q-V 交换机的 4 个 SFP+ 端口处于活动状态，而不是 QSFP 端口。同样，您也可以使用 `hardware profile Front portmode QSFP` 命令将 Nexus 3132Q-V 交换机重置为使用 QSFP 端口，而不是 4 个 SFP+ 端口。</block>
-  <block id="361c24584ea413c01856408e97a40411" category="list-text">您已将 Nexus 3132Q-V 交换机上的某些端口配置为以 10 GbE 或 40/100 GbE 运行。</block>
   <block id="9043114d5258d60e49a6ff62966f1f4d" category="paragraph">您可以使用 `interface breakout module 1 port 1-6 map 10g-4x` 命令将前六个端口细分为 4x10 GbE 模式。同样，您也可以使用 `no interface breakout module 1 port 1-6 map 10g-4x` 命令对分支配置中的前六个 QSFP + 端口进行重新分组。</block>
-  <block id="b56d0aacb2956c32c453bd556e641731" category="list-text">您已经完成了从节点到 Nexus 3132Q-V 集群交换机的 10 GbE 和 40/100 GbE 连接的规划，迁移并阅读了相关文档。</block>
   <block id="7899d4f691aaa93027bcd88691483be1" category="summary">您可以将 Cisco Nexus 3132Q-V 交换机和直通面板安装在 NetApp 机柜中，并使用交换机附带的标准支架。</block>
   <block id="f7ad0a2648b0185763a6a88e903a53ac" category="list-text">在 Nexus 3132Q-V 交换机机箱上安装机架安装支架。</block>
   <block id="cb5d7fc87f5f11235e261bd3eb5a7274" category="list-text">对交换机另一侧的另一个前机架安装支架重复步骤 2a 。</block>
@@ -1981,14 +1961,12 @@
   <block id="bc01d49ccd216cbb296208344af71590" category="list-text">用于更换 CN1610 交换机的 Nexus 3132Q-V 交换机为 C1 和 C2 。</block>
   <block id="5f6af1e958a3701a7602a4d2261afe6d" category="list-text">请参见 <block ref="bea6a113c7846200412c9ca0694f7009" category="inline-link-macro-rx"></block> 页面。</block>
   <block id="d472e6c72465c08732a77102922a611d" category="paragraph">请参见 <block ref="34774b6dc875898cd8aa59f7081c068c" category="inline-link-macro-rx"></block> 验证平台上的集群端口是否正确。</block>
-  <block id="3085acabfffd08789d3274c0ba8c2a88" category="list-text">此操作步骤 中的示例使用四个节点：两个节点使用四个 10 GbE 集群互连端口： e0a ， e0b ， e0c 和 e0d 。其他两个节点使用两个 40/100 GbE 集群互连端口： E4A ， e4e 。。 <block ref="cbfe825e8e02458e2eef3cd048612d7d" category="inline-link-macro-rx"></block> 列出了平台上的实际集群端口。</block>
   <block id="34de640daae00968b964a68033ca6358" category="inline-xref">步骤 1.</block>
   <block id="e86ea01e700780ea92b3789d44f4c23c" category="list-text">要替换为 C2 （<block ref="55f08534725327744dab814bb2ce3ba4" category="inline-xref-macro-rx"></block> - <block ref="758db5a2604e6f852c33eb0fa872c37e" category="inline-xref-macro-rx"></block>）</block>
   <block id="199c448280caf4b3d38b86cfdc4d67e9" category="list-text">转至 <block ref="bea6a113c7846200412c9ca0694f7009" category="inline-link-macro-rx"></block> 页面。</block>
   <block id="dd91c3681cdde4bc7616a4b3ec5f7e72" category="list-text">。 <block ref="cbfe825e8e02458e2eef3cd048612d7d" category="inline-link-macro-rx"></block> 包含有关支持的 Nexus 3132Q-V 交换机布线的信息：</block>
   <block id="82638f9455b90aac4ecd3473c4abd282" category="list-text">上列出了此操作步骤 支持的 ONTAP 和 NX-OS 版本 <block ref="bea6a113c7846200412c9ca0694f7009" category="inline-link-macro-rx"></block> 页面。</block>
   <block id="a002527eadfaaff725e2967fe87378fd" category="list-text">上列出了此操作步骤 支持的 ONTAP 和快速路径版本 <block ref="02204714444b8dc050a0e8cdbf247292" category="inline-link-macro-rx"></block> 页面。</block>
-  <block id="615f0ddf4939c2d755829bfd3d0dc075" category="list-text">10 GbE 和 40/100 GbE 端口的数量在上提供的参考配置文件（ RCF ）中定义 <block ref="fbe8362ccb2da62f365822f496fddba9" category="inline-link-macro-rx"></block> 页面。</block>
   <block id="20c20e24dfa0ee82d11432c0c1d13fa6" category="list-text">。 <block ref="9c839fcdfb8699a63c787254d7b1ae03" category="inline-link-macro-rx"></block> 包含有关支持的 Nexus 3132Q-V 交换机布线的信息：</block>
   <block id="2b6f3ab875b845c218e00770e3512d7b" category="paragraph">。 <block ref="bd4121ea0586524602af8d06c17dcfca" category="inline-link-macro-rx"></block> 页面提供了有关此操作步骤 支持的 ONTAP 和 NX-OS 版本的信息。</block>
   <block id="0097132bac5d6c6b5abee712913401fa" category="paragraph">首次设置 Nexus 3132Q-V 交换机后，您可以安装 RCF 。您也可以使用此操作步骤升级 RCF 版本。</block>
@@ -1997,7 +1975,6 @@
   <block id="1a814209dc9d61786687170c6f1e1090" category="list-text">在 NetApp 支持站点上，转至 <block ref="9695fe01247a31a02b295ce8d21e5fd0" category="inline-link-macro-rx"></block> 页面。</block>
   <block id="f31feccfa3205f46547d83274bdfbcbd" category="list-text">此操作步骤 支持的 ONTAP 和 NX-OS 版本位于上 <block ref="bea6a113c7846200412c9ca0694f7009" category="inline-link-macro-rx"></block> 页面。</block>
   <block id="4dd112d6804b4f82a4602d3778c99cdb" category="list-text">Nexus 3132 集群基础架构在两台交换机上均为冗余且功能完备。</block>
-  <block id="10a697cf363bb941514e8b7cd31c91c7" category="paragraph">此操作步骤 中的示例使用两个节点，每个节点使用两个 40/100 GbE 集群互连端口 E4A 和 e4e 。。 <block ref="cbfe825e8e02458e2eef3cd048612d7d" category="inline-link-macro-rx"></block> 提供有关平台上集群端口的详细信息。</block>
   <block id="67dbd130b7f97be2f3adeeb97692aa5d" category="list-text">请参见 <block ref="03c4e3201f2c647c804c56964354a408" category="inline-link-macro-rx"></block> 页面。</block>
   <block id="ef84127d5ef060917ce0f8f8ec03bf82" category="list-text">从下载相应版本的映像软件 <block ref="a1b5971027192ba8f103906f3e0c5af3" category="inline-link-macro-rx"></block>。</block>
   <block id="0bb71d16588bbda61c53d6705fca9dd9" category="inline-link-macro">Cisco 以太网交换机页面</block>
@@ -2893,12 +2870,10 @@
   <block id="d77976c37f0905ead2cec6b14a961b3d" category="paragraph">如果您使用的是双节点无交换机集群、则可以按照此操作步骤 迁移到包含Cisco Nexus 3132Q-V集群网络交换机的双节点交换集群。替代操作步骤 是无中断操作步骤 (NDO)。</block>
   <block id="d864686a9a8c19574f54bab270afc92e" category="paragraph-title">端口和节点连接</block>
   <block id="1e7adbcd77a17bde5f2f970332192c58" category="paragraph">在使用Cisco Nexus 3132Q-V集群交换机迁移到双节点交换集群时、请确保了解端口和节点连接以及布线要求。</block>
-  <block id="0470593181facbe8abb9e3758645ad23" category="list-text">确保已将Nexus 3132Q-V上的某些端口配置为以10 GbE或40/100 GbE运行。</block>
   <block id="2127399e74c64848c33d8818562b72ca" category="list-text">配置已正确设置并正常运行。</block>
   <block id="8c3cbbc54611a910c53d17d08355f3e0" category="list-text">运行ONTAP 9.4或更高版本的节点。</block>
   <block id="c39d86e7c435537e2a5a4864517893b6" category="list-text">中的所有集群端口<block ref="46c48bec0d282018b9d167eef7711b2c" prefix=" " category="inline-code"></block> 状态。</block>
   <block id="8bd7a2e2adba3a2891e30cfe6cd673be" category="list-text">现有集群网络配置具有：</block>
-  <block id="d83854356a024169fc6ac96627d8763c" category="paragraph">此外、您还必须规划、迁移和阅读有关从节点到Nexus 3132Q-V集群交换机的10 GbE和40/100 GbE连接的所需文档。</block>
   <block id="63eab37cfcf6a2b62e0f76932eb79809" category="list-text">第一个集群端口将移至C1。</block>
   <block id="dd353d2ba6b926b08835d3c60dd7ce88" category="list-text">第二个集群端口将移至C2。</block>
   <block id="55b7e748bf261410178deee3a2012270" category="list-text">已禁用双节点无交换机集群选项。</block>
@@ -2979,7 +2954,6 @@
   <block id="c6adba6217951ed0e1a8ae3a9a50e632" category="paragraph">有关详细信息，请参见</block>
   <block id="599e429de04ef19f05e05c80158f2130" category="paragraph">此操作步骤 中的示例使用四个节点：</block>
   <block id="2e5f4bd73780ee0d4f1673a1a4718af2" category="list-text">两个节点使用四个10 GbE集群互连端口：e0a、e0b、e0c和e0d。</block>
-  <block id="d07ea0336757dc6c738f1426bdf8deba" category="list-text">其他两个节点使用两根 40/100 GbE 集群互连光缆： E4A 和 e4e 。</block>
   <block id="c5996a9ce6852df92e273664ad819c84" category="paragraph">。 <block ref="cbfe825e8e02458e2eef3cd048612d7d" category="inline-link-macro-rx"></block> 提供有关平台上的集群光纤缆线的信息。</block>
   <block id="149b4d7bd84f0ce5c4d69945fa307e44" category="list-text">集群交换机CL2将替换为C2</block>
   <block id="2c0d653bc3a1aa00fd3687625ec3bd27" category="list-text">集群交换机CL1将替换为C1</block>
@@ -5089,4 +5063,33 @@
   <block id="11b037d97237564e7d301df86420a468" category="inline-link">安装新的积云Linux映像</block>
   <block id="ab12f4d1e56479a81a361f6109b978de" category="paragraph">有关详细信息、请参见<block ref="63da15f7ab7ce2a7550fdbf1e5e5d879" category="inline-link-rx"></block>。</block>
   <block id="43622a7160f0cabed379e73776c14454" category="list-text">下载CUMLUX Linux 5.x image：tmp</block>
+  <block id="855b205ca9b9bd2b02453dbd19fc65b7" category="list-text">此操作步骤 中的示例使用四个节点：两个节点使用四个 10 GbE 集群互连端口： e0a ， e0b ， e0c 和 e0d 。其他两个节点使用两个 40 GbE 集群互连端口： E4A ， e4e 。<block ref="cbfe825e8e02458e2eef3cd048612d7d" category="inline-link-macro-rx"></block>列出了平台上的实际集群端口。</block>
+  <block id="66f3f703ef307f85603b46a4acbb712b" category="list-text">10 GbE和40 GbE端口的数量在页面上提供的参考配置文件(Reference Configuration Files、RCF)中定义<block ref="cce23acfce4c9bc9bb74fd35873aedf2" category="inline-link-rx"></block>。</block>
+  <block id="9f71b0536f9236a6977f9a70d6395a33" category="list-text">具有40 GbE集群连接的节点需要使用受支持的QSFP/QSFP28光纤模块以及光缆或QSFP/QSFP28铜质直连缆线。</block>
+  <block id="61f02de546275159b6eba3b5376756d8" category="list-text">在Nexus 3132Q-V上、您可以将Qsp端口作为40 Gb以太网或4个10 Gb以太网模式运行。</block>
+  <block id="e29b2f868e1044896b5cc6d476634b57" category="paragraph">默认情况下、40 Gb以太网模式下有32个端口。这些 40 Gb 以太网端口按 2 元组命名约定进行编号。例如，第二个 40 Gb 以太网端口编号为 1/2 。将配置从 40 Gb 以太网更改为 10 Gb 以太网的过程称为 _break_ ，将配置从 10 Gb 以太网更改为 40 Gb 以太网的过程称为 _breakin 。当您将40 Gb以太网端口划分为10 Gb以太网端口时、将使用三元组命名约定对生成的端口进行编号。例如，第二个 40 Gb 以太网端口的分支端口编号为 1/2/1 ， 1/2/2 ， 1/2/3 和 1/2/4 。</block>
+  <block id="ce8d64c62fe7d0d80ad6a4b2e1744516" category="list-text">确保已将Nexus 3132Q-V上的某些端口配置为以10 GbE或40 GbE运行。</block>
+  <block id="24b704dc9930f98145e6a041e122d90b" category="list-text">10 GbE和40 GbE端口的数量在页面上提供的参考配置文件(Reference Configuration Files、RCF)中定义<block ref="9bcfbf4ecbfa5f01b0fe987094e3d8a3" category="inline-link-rx"></block>。</block>
+  <block id="64e3923ed88357b9e310c9d354f23200" category="paragraph">此外、您还必须规划、迁移和阅读有关从节点到Nexus 3132Q-V集群交换机的10 GbE和40 GbE连接的必要文档。</block>
+  <block id="16f501807c40fcc074813b8de98881be" category="paragraph">此过程中的示例使用两个节点、每个节点使用两个40 GbE集群互连端口e4a和e4e。<block ref="cbfe825e8e02458e2eef3cd048612d7d" category="inline-link-macro-rx"></block>提供了有关您的平台上的集群端口的详细信息。</block>
+  <block id="e1ef80ee500d089193b647b456525328" category="list-text">10 GbE和40 GbE端口的数量在页面上提供的参考配置文件(Reference Configuration Files、RCF)中定义<block ref="fbe8362ccb2da62f365822f496fddba9" category="inline-link-macro-rx"></block>。</block>
+  <block id="adb2312231ae10781221ca6f85f1468b" category="list-text">其他两个节点使用两根 40 GbE 集群互连光缆： E4A 和 e4e 。</block>
+  <block id="4a1ae240823f0b9cf20cc4dcd3987a7d" category="list-text">在Nexus 3132Q-V上、您可以将QSFPs"端口作为40 Gb以太网或4x10 Gb以太网模式运行。</block>
+  <block id="ecfce3e51258080e9887731dcb939198" category="list-text">您必须已将Nexus 3132Q-V上的某些端口配置为以10 GbE或40 GbE的速度运行。</block>
+  <block id="8121786d2f761f3520658cbd44c0086b" category="list-text">您必须已完成从节点到Nexus 3132Q-V集群交换机的10 GbE和40 GbE连接的规划、迁移和阅读所需文档。</block>
+  <block id="9e85131d818cad8d6273559977450f37" category="list-text">端口 E1/1-30 （ 40 GbE ）： Nexus 3132Q-V</block>
+  <block id="6d979896855cb90ebff1fc64d16543df" category="list-text">端口 E1/31-32 （ 40 GbE ）： Nexus 3132Q-V</block>
+  <block id="154b6c893ed6c16744f390b9180e6725" category="list-text">具有40 GbE集群连接的节点需要使用受支持的带光缆或QSFP/QSFP28铜质直连缆线的QSFP/QSFP28光纤模块。</block>
+  <block id="5f6325e48e650901740731047024b139" category="list-text">在Nexus 3132Q-V交换机上、您可以将QSFP/QSFP28端口作为40千兆以太网或4个10千兆以太网模式运行。</block>
+  <block id="f348114fb6d1345ea6d8a657d9c00763" category="paragraph">默认情况下、40千兆以太网模式下有32个端口。这 40 个千兆以太网端口按照 2 元组命名约定进行编号。例如，第二个 40 千兆以太网端口编号为 1/2 。将配置从 40 千兆以太网更改为 10 千兆以太网的过程称为 _break_ ，将配置从 10 千兆以太网更改为 40 千兆以太网的过程称为 _breakin 。当您将40千兆以太网端口划分为10千兆以太网端口时、将使用三元组命名约定对生成的端口进行编号。例如，第二个 40 千兆以太网端口的分出端口编号为 1/2/1 ， 1/2/2 ， 1/2/3 和 1/2/4 。</block>
+  <block id="0440c6eaf862ee4cfd547f551d9a0cb9" category="list-text">您已将 Nexus 3132Q-V 交换机上的某些端口配置为以 10 GbE 或 40 GbE 运行。</block>
+  <block id="f202ba5b511e5de6a9e03a15d32b3543" category="list-text">您已完成从节点到Nexus 3132Q-V集群交换机的10 GbE和40 GbE连接的规划、迁移和所需文档的阅读。</block>
+  <block id="ea6a4753b32f7dc99b61788ca92c3192" category="list-text">Cisco Nexus 3132Q-V：端口E1/1-30 (40 GbE)</block>
+  <block id="41d2c2931dc62eed6aecb954de74c42c" category="list-text">Cisco Nexus 3132Q-V：端口E1/31-32 (40 GbE)</block>
+  <block id="902ca5e80a753adb8c809d46ffd2a177" category="list-text">具有40 GbE集群连接的节点需要使用受支持的QSFP/QSFP28光纤模块以及光缆或QSFP/QSFP28铜质直连缆线</block>
+  <block id="a79e81ac0a0322d06f217ec1313f9c2b" category="list-text">在Nexus 3132Q-V交换机上、您可以将QSFP/QSFP28端口作为40 Gb以太网或4个10 Gb以太网模式运行。</block>
+  <block id="427172b130a849e724ec686d49e97727" category="list-text">您必须已将Nexus 3132Q-V交换机上的某些端口配置为以10 GbE或40 GbE运行。</block>
+  <block id="57d432809175e2b2a95b3c3c1aeaabb9" category="paragraph">您可以使用命令将前六个端口划分为4x10 GbE模式<block ref="08aac397a11274cd898dfbb3a635cf19" prefix=" " category="inline-code"></block>。同样、您也可以使用命令对_分支_配置中的前六个QSFP+端口进行重新分组<block ref="9437e02f9ec4a8d602d396abd2c360b4" prefix=" " category="inline-code"></block>。</block>
+  <block id="c66ba47352d59b54f3a4b52ed5c4acb4" category="paragraph">*注：*如果回答<block ref="415290769594460e2e485922904f345d" prefix=" " category="inline-code"></block>用户规范提示，请确保用户具有中所述的必要权限<block ref="c36e4b8d8c2789dd7986c4af4bd3d942" category="inline-xref-macro-rx"></block>。</block>
+  <block id="921a23933bb7a508423ca6a0ad00bfd3" category="paragraph">*注：*如果回答<block ref="415290769594460e2e485922904f345d" prefix=" " category="inline-code"></block>用户规范提示，请确保用户具有中所述的必要权限<block ref="c36e4b8d8c2789dd7986c4af4bd3d942" category="inline-xref-macro-rx"></block>。</block>
 </blocks>

@@ -24,13 +24,13 @@ summary: 如果您使用双节点无交换机集群，则可以无中断地迁�
 * 。 link:https://hwu.netapp.com/["Hardware Universe"^] 包含有关支持的 Nexus 3132Q-V 交换机布线的信息：
 +
 ** 具有 10 GbE 集群连接的节点需要使用分支光缆的 QSFP 光纤模块或 QSFP 到 SFP+ 铜缆的分支。
-** 具有 40/100 GbE 集群连接的节点需要支持的 QSFP/QSFP28 光纤模块以及光缆或 QSFP28 铜缆。
+** 具有40 GbE集群连接的节点需要使用受支持的QSFP/QSFP28光纤模块以及光缆或QSFP/QSFP28铜质直连缆线。
 ** 集群交换机使用适当的 ISL 布线： 2 根 QSFP28 光纤或铜缆直连缆线。
 
 
-* 在 Nexus 3132Q-V 上，您可以将 QSFP 端口作为 40/100 Gb 以太网或 4 个 10 Gb 以太网模式运行。
+* 在Nexus 3132Q-V上、您可以将Qsp端口作为40 Gb以太网或4个10 Gb以太网模式运行。
 +
-默认情况下， 40/100 Gb 以太网模式下有 32 个端口。这些 40 Gb 以太网端口按 2 元组命名约定进行编号。例如，第二个 40 Gb 以太网端口编号为 1/2 。将配置从 40 Gb 以太网更改为 10 Gb 以太网的过程称为 _break_ ，将配置从 10 Gb 以太网更改为 40 Gb 以太网的过程称为 _breakin 。将 40/100 Gb 以太网端口拆分为 10 Gb 以太网端口时，生成的端口将使用三元组命名约定进行编号。例如，第二个 40/100 Gb 以太网端口的分支端口编号为 1/2/1 ， 1/2/2 ， 1/2/3 ， 1/2/4 。
+默认情况下、40 Gb以太网模式下有32个端口。这些 40 Gb 以太网端口按 2 元组命名约定进行编号。例如，第二个 40 Gb 以太网端口编号为 1/2 。将配置从 40 Gb 以太网更改为 10 Gb 以太网的过程称为 _break_ ，将配置从 10 Gb 以太网更改为 40 Gb 以太网的过程称为 _breakin 。当您将40 Gb以太网端口划分为10 Gb以太网端口时、将使用三元组命名约定对生成的端口进行编号。例如，第二个 40 Gb 以太网端口的分支端口编号为 1/2/1 ， 1/2/2 ， 1/2/3 和 1/2/4 。
 
 * Nexus 3132Q-V 的左侧是一组四个 SFP+ 端口，这些端口会多路传输到第一个 QSFP 端口。
 +
@@ -39,11 +39,11 @@ summary: 如果您使用双节点无交换机集群，则可以无中断地迁�
 +
 您可以使用 `hardware profile FRONT portmode sfp-plus` 命令使 Nexus 3132Q-V 的四个 SFP+ 端口处于活动状态，而不是 QSFP 端口。同样，您也可以使用 `hardware profile Front portmode QSFP` 命令将 Nexus 3132Q-V 重置为使用 QSFP 端口，而不是四个 SFP+ 端口。
 
-* 确保已将Nexus 3132Q-V上的某些端口配置为以10 GbE或40/100 GbE运行。
+* 确保已将Nexus 3132Q-V上的某些端口配置为以10 GbE或40 GbE运行。
 +
 您可以使用 `interface breakout module 1 port 1-6 map 10g-4x` 命令将前六个端口细分为 4x10 GbE 模式。同样，您也可以使用 `no interface breakout module 1 port 1-6 map 10g-4x` 命令对分支配置中的前六个 QSFP + 端口进行重新分组。
 
-* 10 GbE 和 40/100 GbE 端口的数量在上提供的参考配置文件（ RCF ）中定义 https://mysupport.netapp.com/NOW/download/software/sanswitch/fcp/Cisco/netapp_cnmn/download.shtml["Cisco ® 集群网络交换机参考配置文件下载"^] 页面。
+* 10 GbE和40 GbE端口的数量在页面上提供的参考配置文件(Reference Configuration Files、RCF)中定义 https://mysupport.netapp.com/NOW/download/software/sanswitch/fcp/Cisco/netapp_cnmn/download.shtml["Cisco ® 集群网络交换机参考配置文件下载"^]。
 
 
 .您需要的内容
@@ -67,7 +67,7 @@ summary: 如果您使用双节点无交换机集群，则可以无中断地迁�
 
 
 
-此外、您还必须规划、迁移和阅读有关从节点到Nexus 3132Q-V集群交换机的10 GbE和40/100 GbE连接的所需文档。
+此外、您还必须规划、迁移和阅读有关从节点到Nexus 3132Q-V集群交换机的10 GbE和40 GbE连接的必要文档。
 
 
 
@@ -82,7 +82,7 @@ summary: 如果您使用双节点无交换机集群，则可以无中断地迁�
 
 [NOTE]
 ====
-此操作步骤 中的示例使用两个节点，每个节点使用两个 40/100 GbE 集群互连端口 E4A 和 e4e 。。 link:https://hwu.netapp.com/["Hardware Universe"^] 提供有关平台上集群端口的详细信息。
+此过程中的示例使用两个节点、每个节点使用两个40 GbE集群互连端口e4a和e4e。link:https://hwu.netapp.com/["Hardware Universe"^]提供了有关您的平台上的集群端口的详细信息。
 
 ====
 .关于此任务
@@ -92,7 +92,7 @@ summary: 如果您使用双节点无交换机集群，则可以无中断地迁�
 * n1_clus2 是第一个连接到节点 n1 的集群交换机 C2 的集群 LIF 。
 * n2_clus1 是连接到节点 n2 的集群交换机 C1 的第一个集群 LIF 。
 * n2_clus2 是要连接到节点 n2 的集群交换机 C2 的第二个集群 LIF 。
-* 10 GbE 和 40/100 GbE 端口的数量在上提供的参考配置文件（ RCF ）中定义 https://mysupport.netapp.com/NOW/download/software/sanswitch/fcp/Cisco/netapp_cnmn/download.shtml["Cisco ® 集群网络交换机参考配置文件下载"^] 页面。
+* 10 GbE和40 GbE端口的数量在页面上提供的参考配置文件(Reference Configuration Files、RCF)中定义 https://mysupport.netapp.com/NOW/download/software/sanswitch/fcp/Cisco/netapp_cnmn/download.shtml["Cisco ® 集群网络交换机参考配置文件下载"^]。
 
 
 [NOTE]
