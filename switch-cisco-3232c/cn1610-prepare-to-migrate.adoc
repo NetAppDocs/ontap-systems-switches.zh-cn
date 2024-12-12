@@ -1,0 +1,222 @@
+---
+permalink: switch-cisco-3232c/cn1610-prepare-to-migrate.html 
+sidebar: sidebar 
+keywords: cisco 3232c, cluster switches 
+summary: 您可以将 Cisco Nexus 3232C 交换机用作 AFF 或 FAS 集群中的集群交换机。 
+---
+= 准备从CN1610交换机3232C交换机迁移
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+请按照以下步骤准备将CN1610交换机迁移到Cisco Nexus 3232C交换机。
+
+.步骤
+. 如果在此集群上启用了 AutoSupport ，则通过调用 AutoSupport 消息禁止自动创建案例：
++
+`ssystem node AutoSupport invoke -node * -type all -message MAINT=xh`
+
++
+_x_ 是维护时段的持续时间，以小时为单位。
+
++
+[NOTE]
+====
+此消息会通知技术支持此维护任务，以便在维护窗口期间禁止自动创建案例。
+
+====
+. 显示有关配置中设备的信息：
++
+`network device-discovery show`
+
++
+.显示示例
+[%collapsible]
+====
+以下示例显示了在每个节点中为每个集群互连交换机配置了多少个集群互连接口：
+
+[listing, subs="+quotes"]
+----
+cluster::> *network device-discovery show*
+
+       Local  Discovered
+Node   Port   Device       Interface   Platform
+------ ------ ------------ ----------- ----------
+n1     /cdp
+        e0a   CL1          0/1         CN1610
+        e0b   CL2          0/1         CN1610
+        e0c   CL2          0/2         CN1610
+        e0d   CL1          0/2         CN1610
+n2     /cdp
+        e0a   CL1          0/3         CN1610
+        e0b   CL2          0/3         CN1610
+        e0c   CL2          0/4         CN1610
+        e0d   CL1          0/4         CN1610
+
+8 entries were displayed.
+----
+====
+. 确定每个集群接口的管理或运行状态。
++
+.. 显示集群网络端口属性：
++
+`network port show -role cluster`
+
++
+.显示示例
+[%collapsible]
+====
+[listing, subs="+quotes"]
+----
+cluster::*> *network port show -role cluster*
+       (network port show)
+
+Node: n1
+                Broadcast              Speed (Mbps) Health Ignore
+Port  IPspace   Domain     Link  MTU   Admin/Open   Status Health Status
+----- --------- ---------- ----- ----- ------------ ------ -------------
+e0a   cluster   cluster    up    9000  auto/10000     -
+e0b   cluster   cluster    up    9000  auto/10000     -
+e0c   cluster   cluster    up    9000  auto/10000     -        -
+e0d   cluster   cluster    up    9000  auto/10000     -        -
+Node: n2
+                Broadcast              Speed (Mbps) Health Ignore
+Port  IPspace   Domain     Link  MTU   Admin/Open   Status Health Status
+----- --------- ---------- ----- ----- ------------ ------ -------------
+e0a   cluster   cluster    up    9000  auto/10000     -
+e0b   cluster   cluster    up    9000  auto/10000     -
+e0c   cluster   cluster    up    9000  auto/10000     -
+e0d   cluster   cluster    up    9000  auto/10000     -
+
+8 entries were displayed.
+----
+====
+.. 显示有关逻辑接口的信息：
++
+`network interface show -role cluster`
+
++
+.显示示例
+[%collapsible]
+====
+[listing, subs="+quotes"]
+----
+cluster::*> *network interface show -role cluster*
+(network interface show)
+         Logical    Status      Network        Current  Current  Is
+Vserver  Interface  Admin/Oper  Address/Mask   Node     Port     Home
+-------- ---------- ----------- -------------- -------- -------- -----
+Cluster
+         n1_clus1   up/up       10.10.0.1/24   n1       e0a      true
+         n1_clus2   up/up       10.10.0.2/24   n1       e0b      true
+         n1_clus3   up/up       10.10.0.3/24   n1       e0c      true
+         n1_clus4   up/up       10.10.0.4/24   n1       e0d      true
+         n2_clus1   up/up       10.10.0.5/24   n2       e0a      true
+         n2_clus2   up/up       10.10.0.6/24   n2       e0b      true
+         n2_clus3   up/up       10.10.0.7/24   n2       e0c      true
+         n2_clus4   up/up       10.10.0.8/24   n2       e0d      true
+
+ 8 entries were displayed.
+----
+====
+.. 显示有关已发现的集群交换机的信息：
++
+`ssystem cluster-switch show`
+
++
+.显示示例
+[%collapsible]
+====
+以下示例显示了集群已知的集群交换机及其管理 IP 地址：
+
+[listing, subs="+quotes"]
+----
+cluster::> *system cluster-switch show*
+Switch                        Type             Address       Model
+----------------------------- ---------------- ------------- --------
+CL1                           cluster-network  10.10.1.101   CN1610
+     Serial Number: 01234567
+      Is Monitored: true
+            Reason:
+  Software Version: 1.2.0.7
+    Version Source: ISDP
+CL2                           cluster-network  10.10.1.102   CN1610
+     Serial Number: 01234568
+      Is Monitored: true
+            Reason:
+  Software Version: 1.2.0.7
+    Version Source: ISDP
+
+2	entries displayed.
+----
+====
+
+
+. 根据您的需求，验证是否在新的 3232C 交换机上安装了适当的 RCF 和映像，并进行任何必要的站点自定义。
++
+此时应准备好两个交换机。如果需要升级 RCF 和映像，必须完成以下操作步骤 ：
+
++
+.. 请参见 link:http://support.netapp.com/NOW/download/software/cm_switches/.html["Cisco 以太网交换机"^] 页面。
+.. 请记下该页面上的表中的交换机和所需的软件版本。
+.. 下载适当版本的 RCF 。
+.. 在*Description*页上选择*CONTINUOD*，接受许可协议，然后按照*Download*页上的说明下载RCB。
+.. 从下载相应版本的映像软件 link:http://mysupport.netapp.com/NOW/download/software/sanswitch/fcp/Cisco/netapp_cnmn/download.html["Cisco ® 集群和管理网络交换机参考配置文件下载"^]。
+
+
+. 迁移与您计划更换的第二个CN1610交换机关联的Cifs：
++
+`network interface migrate -vserver _vserver-name_ -lif _lif-name_ -source-node _source-node-name_ destination-node _destination-node-name_ -destination-port _destination-port-name_`
+
++
+.显示示例
+[%collapsible]
+====
+您必须分别迁移每个 LIF ，如以下示例所示：
+
+[listing, subs="+quotes"]
+----
+cluster::*> *network interface migrate -vserver cluster -lif n1_clus2 -source-node n1
+-destination-node  n1  -destination-port  e0a*
+cluster::*> *network interface migrate -vserver cluster -lif n1_clus3 -source-node n1
+-destination-node  n1  -destination-port  e0d*
+cluster::*> *network interface migrate -vserver cluster -lif n2_clus2 -source-node n2
+-destination-node  n2  -destination-port  e0a*
+cluster::*> *network interface migrate -vserver cluster -lif n2_clus3 -source-node n2
+-destination-node  n2  -destination-port  e0d*
+----
+====
+. 验证集群的运行状况：
++
+`network interface show -role cluster`
+
++
+.显示示例
+[%collapsible]
+====
+[listing, subs="+quotes"]
+----
+cluster::*> *network interface show -role cluster*
+(network interface show)
+         Logical    Status      Network         Current  Current  Is
+Vserver  Interface  Admin/Oper  Address/Mask    Node     Port     Home
+-------- ---------- ----------- --------------- -------- -------- -----
+Cluster
+         n1_clus1   up/up       10.10.0.1/24    n1        e0a     true
+         n1_clus2   up/up       10.10.0.2/24    n1        e0a     false
+         n1_clus3   up/up       10.10.0.3/24    n1        e0d     false
+         n1_clus4   up/up       10.10.0.4/24    n1        e0d     true
+         n2_clus1   up/up       10.10.0.5/24    n2        e0a     true
+         n2_clus2   up/up       10.10.0.6/24    n2        e0a     false
+         n2_clus3   up/up       10.10.0.7/24    n2        e0d     false
+         n2_clus4   up/up       10.10.0.8/24    n2        e0d     true
+
+8 entries were displayed.
+----
+====
+
+
+.下一步是什么？
+link:cn1610-replace-CL2.html["将CN1610交换机CL2更换为3232C交换机C2"](英文)

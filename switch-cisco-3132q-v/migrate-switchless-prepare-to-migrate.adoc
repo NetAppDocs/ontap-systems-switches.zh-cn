@@ -1,0 +1,103 @@
+---
+permalink: switch-cisco-3132q-v/migrate-switchless-prepare-to-migrate.html 
+sidebar: sidebar 
+keywords: cisco 3132q-v, cluster switches 
+summary: 您可以在AFF或FAS集群中使用Cisco Nexus 3132q-v交换机作为集群交换机。 
+---
+= 准备从无交换机集群迁移到有交换机集群
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+请按照以下步骤准备好无交换机集群、以便迁移到双节点有交换机集群。
+
+.步骤
+. 如果在此集群上启用了 AutoSupport ，则通过调用 AutoSupport 消息禁止自动创建案例：
++
+`ssystem node AutoSupport invoke -node * -type all - 消息 MAINT=xh`
+
++
+_x_ 是维护时段的持续时间，以小时为单位。
+
++
+[NOTE]
+====
+AutoSupport 消息会通知技术支持此维护任务，以便在维护窗口期间禁止自动创建案例。
+
+====
+. 确定每个集群接口的管理或运行状态：
++
+.. 显示网络端口属性：
++
+`network port show`
+
++
+.显示示例
+[%collapsible]
+====
+[listing]
+----
+cluster::*> network port show -role cluster
+  (network port show)
+Node: n1
+                                                                       Ignore
+                                                  Speed(Mbps) Health   Health
+Port      IPspace      Broadcast Domain Link MTU  Admin/Oper  Status   Status
+--------- ------------ ---------------- ---- ---- ----------- -------- ------
+e4a       Cluster      Cluster          up   9000 auto/40000  -        -
+e4e       Cluster      Cluster          up   9000 auto/40000  -        -
+
+Node: n2
+                                                                       Ignore
+                                                  Speed(Mbps) Health   Health
+Port      IPspace      Broadcast Domain Link MTU  Admin/Oper  Status   Status
+--------- ------------ ---------------- ---- ---- ----------- -------- ------
+e4a       Cluster      Cluster          up   9000 auto/40000  -        -
+e4e       Cluster      Cluster          up   9000 auto/40000  -        -
+4 entries were displayed.
+----
+====
+.. 显示有关逻辑接口的信息：
++
+`network interface show`
+
++
+.显示示例
+[%collapsible]
+====
+[listing]
+----
+cluster::*> network interface show -role cluster
+ (network interface show)
+            Logical    Status     Network            Current       Current Is
+Vserver     Interface  Admin/Oper Address/Mask       Node          Port    Home
+----------- ---------- ---------- ------------------ ------------- ------- ----
+Cluster
+            n1_clus1   up/up      10.10.0.1/24       n1            e4a     true
+            n1_clus2   up/up      10.10.0.2/24       n1            e4e     true
+            n2_clus1   up/up      10.10.0.3/24       n2            e4a     true
+            n2_clus2   up/up      10.10.0.4/24       n2            e4e     true
+4 entries were displayed.
+----
+====
+
+
+. 根据您的需要，验证新的 3132Q-V 交换机上是否安装了适当的 RCF 和映像，并进行任何必要的站点自定义，例如用户和密码，网络地址等。
++
+此时必须准备两个交换机。如果您需要升级 RCF 和映像软件，必须按照以下步骤进行操作：
+
++
+.. 转至 link:http://support.netapp.com/NOW/download/software/cm_switches/["Cisco 以太网交换机"^] 页面。
+.. 请记下该页面上的表中的交换机和所需的软件版本。
+.. 下载适当版本的 RCF 。
+.. 在*Description*页上选择*CONTINUOD*，接受许可协议，然后按照*Download*页上的说明下载RCB。
+.. 下载相应版本的映像软件。
+
+
+. 在*Description*页上选择*CONTINUOD*，接受许可协议，然后按照*Download*页上的说明下载RCB。
+
+
+.下一步是什么？
+link:migrate-switchless-configure-ports.html["配置端口"](英文)

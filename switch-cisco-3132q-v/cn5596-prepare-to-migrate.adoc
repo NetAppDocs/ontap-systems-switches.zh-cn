@@ -1,0 +1,384 @@
+---
+permalink: switch-cisco-3132q-v/cn5596-prepare-to-migrate.html 
+sidebar: sidebar 
+keywords: cisco 3132q-v, cluster switches 
+summary: 您可以在AFF或FAS集群中使用Cisco Nexus 3132q-v交换机作为集群交换机。 
+---
+= 准备从Nexus 5596交换机迁移到Nexus 3132Q-V交换机
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+请按照以下步骤准备Cisco Nexus 5596交换机、以便迁移到Cisco Nexus 3132Q-V交换机。
+
+.步骤
+. 如果在此集群上启用了 AutoSupport ，请通过调用 AutoSupport 消息来禁止自动创建案例： `ssystem node AutoSupport invoke -node * -type all -message MAINT=xh`
++
+_x_ 是维护时段的持续时间，以小时为单位。
+
++
+
+NOTE: 此消息会通知技术支持此维护任务，以便在维护窗口期间禁止自动创建案例。
+
+. 显示有关配置中设备的信息：
++
+`network device-discovery show`
+
++
+.显示示例
+[%collapsible]
+====
+以下示例显示了在每个节点中为每个集群互连交换机配置了多少个集群互连接口：
+
+[listing]
+----
+cluster::> network device-discovery show
+            Local  Discovered
+Node        Port   Device              Interface        Platform
+----------- ------ ------------------- ---------------- ----------------
+n1         /cdp
+            e0a    CL1                 Ethernet1/1      N5K-C5596UP
+            e0b    CL2                 Ethernet1/1      N5K-C5596UP
+            e0c    CL2                 Ethernet1/2      N5K-C5596UP
+            e0d    CL1                 Ethernet1/2      N5K-C5596UP
+n2         /cdp
+            e0a    CL1                 Ethernet1/3      N5K-C5596UP
+            e0b    CL2                 Ethernet1/3      N5K-C5596UP
+            e0c    CL2                 Ethernet1/4      N5K-C5596UP
+            e0d    CL1                 Ethernet1/4      N5K-C5596UP
+8 entries were displayed.
+----
+====
+. 确定每个集群接口的管理或运行状态：
++
+.. 显示网络端口属性：
++
+`network port show`
+
++
+.显示示例
+[%collapsible]
+====
+以下示例显示了系统上的网络端口属性：
+
+[listing]
+----
+cluster::*> network port show –role cluster
+  (network port show)
+Node: n1
+                                                                       Ignore
+                                                  Speed(Mbps) Health   Health
+Port      IPspace      Broadcast Domain Link MTU  Admin/Oper  Status   Status
+--------- ------------ ---------------- ---- ---- ----------- -------- ------
+e0a       Cluster      Cluster          up   9000 auto/10000  -        -
+e0b       Cluster      Cluster          up   9000 auto/10000  -        -
+e0c       Cluster      Cluster          up   9000 auto/10000  -        -
+e0d       Cluster      Cluster          up   9000 auto/10000  -        -
+
+Node: n2
+                                                                       Ignore
+                                                  Speed(Mbps) Health   Health
+Port      IPspace      Broadcast Domain Link MTU  Admin/Oper  Status   Status
+--------- ------------ ---------------- ---- ---- ----------- -------- ------
+e0a       Cluster      Cluster          up   9000  auto/10000 -        -
+e0b       Cluster      Cluster          up   9000  auto/10000 -        -
+e0c       Cluster      Cluster          up   9000  auto/10000 -        -
+e0d       Cluster      Cluster          up   9000  auto/10000 -        -
+8 entries were displayed.
+----
+====
+.. 显示有关逻辑接口的信息： + `network interface show`
++
+.显示示例
+[%collapsible]
+====
+以下示例显示了有关系统上所有 LIF 的常规信息：
+
+[listing]
+----
+cluster::*> network interface show -role cluster
+ (network interface show)
+            Logical    Status     Network            Current       Current Is
+Vserver     Interface  Admin/Oper Address/Mask       Node          Port    Home
+----------- ---------- ---------- ------------------ ------------- ------- ----
+Cluster
+            n1_clus1   up/up      10.10.0.1/24       n1            e0a     true
+            n1_clus2   up/up      10.10.0.2/24       n1            e0b     true
+            n1_clus3   up/up      10.10.0.3/24       n1            e0c     true
+            n1_clus4   up/up      10.10.0.4/24       n1            e0d     true
+            n2_clus1   up/up      10.10.0.5/24       n2            e0a     true
+            n2_clus2   up/up      10.10.0.6/24       n2            e0b     true
+            n2_clus3   up/up      10.10.0.7/24       n2            e0c     true
+            n2_clus4   up/up      10.10.0.8/24       n2            e0d     true
+8 entries were displayed.
+----
+====
+.. 显示有关已发现集群交换机的信息： + `ssystem cluster-switch show`
++
+.显示示例
+[%collapsible]
+====
+以下示例显示了集群已知的集群交换机及其管理 IP 地址：
+
+[listing]
+----
+cluster::*> system cluster-switch show
+
+Switch                        Type               Address         Model
+----------------------------- ------------------ --------------- ---------------
+CL1                           cluster-network    10.10.1.101     NX5596
+     Serial Number: 01234567
+      Is Monitored: true
+            Reason:
+  Software Version: Cisco Nexus Operating System (NX-OS) Software, Version
+                    7.1(1)N1(1)
+    Version Source: CDP
+CL2                           cluster-network    10.10.1.102     NX5596
+     Serial Number: 01234568
+      Is Monitored: true
+            Reason:
+  Software Version: Cisco Nexus Operating System (NX-OS) Software, Version
+                    7.1(1)N1(1)
+    Version Source: CDP
+
+2 entries were displayed.
+----
+====
+
+
+. 在两个节点上的集群 LIF clus1 和 clus2 上将 ` -auto-revert` 参数设置为 `false` ：
++
+`network interface modify`
+
++
+.显示示例
+[%collapsible]
+====
+[listing]
+----
+cluster::*> network interface modify -vserver node1 -lif clus1 -auto-revert false
+cluster::*> network interface modify -vserver node1 -lif clus2 -auto-revert false
+cluster::*> network interface modify -vserver node2 -lif clus1 -auto-revert false
+cluster::*> network interface modify -vserver node2 -lif clus2 -auto-revert false
+----
+====
+. 根据您的需求，验证是否在新的 3132Q-V 交换机上安装了适当的 RCF 和映像，并进行必要的站点自定义，例如用户和密码，网络地址等。
++
+此时必须准备两个交换机。如果需要升级 RCF 和映像，请按照以下步骤操作：
+
++
+.. 转至 link:http://support.netapp.com/NOW/download/software/cm_switches/["Cisco 以太网交换机"^] 页面。
+.. 请记下该页面上的表中的交换机和所需的软件版本。
+.. 下载适当版本的 RCF 。
+.. 在*Description*页上选择*CONTINUOD*，接受许可协议，然后按照*Download*页上的说明下载RCB。
+.. 下载相应版本的映像软件。
++
+请参见__Cluster and Management ONTAP交换机参考配置文件__Download页面，然后选择相应的版本。
+
++
+要查找正确的版本，请参见 _Cluster ONTAP 8.x 或更高版本的集群网络交换机下载页面 _ 。
+
+
+
+. 迁移与要更换的第二个 Nexus 5596 交换机关联的 LIF ：
++
+`网络接口迁移`
+
++
+.显示示例
+[%collapsible]
+====
+以下示例显示了 n1 和 n2 ，但必须在所有节点上执行 LIF 迁移：
+
+[listing]
+----
+cluster::*> network interface migrate -vserver Cluster -lif n1_clus2 -source-node n1 –
+destination-node n1 -destination-port e0a
+cluster::*> network interface migrate -vserver Cluster -lif n1_clus3 -source-node n1 –
+destination-node n1 -destination-port e0d
+cluster::*> network interface migrate -vserver Cluster -lif n2_clus2 -source-node n2 –
+destination-node n2 -destination-port e0a
+cluster::*> network interface migrate -vserver Cluster -lif n2_clus3 -source-node n2 –
+destination-node n2 -destination-port e0d
+----
+====
+. 验证集群的运行状况：
++
+`network interface show`
+
++
+.显示示例
+[%collapsible]
+====
+以下示例显示了上一个 `network interface migrate` 命令的结果：
+
+[listing]
+----
+cluster::*> network interface show -role cluster
+ (network interface show)
+            Logical    Status     Network            Current       Current Is
+Vserver     Interface  Admin/Oper Address/Mask       Node          Port    Home
+----------- ---------- ---------- ------------------ ------------- ------- ----
+Cluster
+            n1_clus1   up/up      10.10.0.1/24       n1            e0a     true
+            n1_clus2   up/up      10.10.0.2/24       n1            e0a     false
+            n1_clus3   up/up      10.10.0.3/24       n1            e0d     false
+            n1_clus4   up/up      10.10.0.4/24       n1            e0d     true
+            n2_clus1   up/up      10.10.0.5/24       n2            e0a     true
+            n2_clus2   up/up      10.10.0.6/24       n2            e0a     false
+            n2_clus3   up/up      10.10.0.7/24       n2            e0d     false
+            n2_clus4   up/up      10.10.0.8/24       n2            e0d     true
+8 entries were displayed.
+----
+====
+. 关闭物理连接到交换机 CL2 的集群互连端口：
++
+`network port modify`
+
++
+.显示示例
+[%collapsible]
+====
+以下命令会关闭 n1 和 n2 上的指定端口，但必须关闭所有节点上的端口：
+
+[listing]
+----
+cluster::*> network port modify -node n1 -port e0b -up-admin false
+cluster::*> network port modify -node n1 -port e0c -up-admin false
+cluster::*> network port modify -node n2 -port e0b -up-admin false
+cluster::*> network port modify -node n2 -port e0c -up-admin false
+----
+====
+. 验证远程集群接口的连接：
+
+
+[role="tabbed-block"]
+====
+.ONTAP 9.9.1及更高版本
+--
+您可以使用 `network interface check cluster-connectivity` 命令启动集群连接的可访问性检查、然后显示详细信息：
+
+`network interface check cluster-connectivity start` 和 `network interface check cluster-connectivity show`
+
+[listing, subs="+quotes"]
+----
+cluster1::*> *network interface check cluster-connectivity start*
+----
+*注：*请等待几秒钟、然后再运行show命令显示详细信息。
+
+[listing, subs="+quotes"]
+----
+cluster1::*> *network interface check cluster-connectivity show*
+                                  Source          Destination       Packet
+Node   Date                       LIF             LIF               Loss
+------ -------------------------- --------------- ----------------- -----------
+n1
+       3/5/2022 19:21:18 -06:00   n1_clus2        n2_clus1      none
+       3/5/2022 19:21:20 -06:00   n1_clus2        n2_clus2      none
+
+n2
+       3/5/2022 19:21:18 -06:00   n2_clus2        n1_clus1      none
+       3/5/2022 19:21:20 -06:00   n2_clus2        n1_clus2      none
+----
+--
+.所有ONTAP版本
+--
+对于所有ONTAP版本、您还可以使用 `cluster ping-cluster -node <name>` 用于检查连接的命令：
+
+`cluster ping-cluster -node <name>`
+
+[listing, subs="+quotes"]
+----
+cluster::*> *cluster ping-cluster -node n1*
+Host is n1
+Getting addresses from network interface table...
+Cluster n1_clus1 n1		e0a	10.10.0.1
+Cluster n1_clus2 n1		e0b	10.10.0.2
+Cluster n1_clus3 n1		e0c	10.10.0.3
+Cluster n1_clus4 n1		e0d	10.10.0.4
+Cluster n2_clus1 n2		e0a	10.10.0.5
+Cluster n2_clus2 n2		e0b	10.10.0.6
+Cluster n2_clus3 n2		e0c	10.10.0.7
+Cluster n2_clus4 n2		e0d	10.10.0.8
+
+Local = 10.10.0.1 10.10.0.2 10.10.0.3 10.10.0.4
+Remote = 10.10.0.5 10.10.0.6 10.10.0.7 10.10.0.8
+Cluster Vserver Id = 4294967293
+Ping status:
+....
+Basic connectivity succeeds on 16 path(s)
+Basic connectivity fails on 0 path(s)
+................
+Detected 1500 byte MTU on 16 path(s):
+    Local 10.10.0.1 to Remote 10.10.0.5
+    Local 10.10.0.1 to Remote 10.10.0.6
+    Local 10.10.0.1 to Remote 10.10.0.7
+    Local 10.10.0.1 to Remote 10.10.0.8
+    Local 10.10.0.2 to Remote 10.10.0.5
+    Local 10.10.0.2 to Remote 10.10.0.6
+    Local 10.10.0.2 to Remote 10.10.0.7
+    Local 10.10.0.2 to Remote 10.10.0.8
+    Local 10.10.0.3 to Remote 10.10.0.5
+    Local 10.10.0.3 to Remote 10.10.0.6
+    Local 10.10.0.3 to Remote 10.10.0.7
+    Local 10.10.0.3 to Remote 10.10.0.8
+    Local 10.10.0.4 to Remote 10.10.0.5
+    Local 10.10.0.4 to Remote 10.10.0.6
+    Local 10.10.0.4 to Remote 10.10.0.7
+    Local 10.10.0.4 to Remote 10.10.0.8
+Larger than PMTU communication succeeds on 16 path(s)
+RPC status:
+4 paths up, 0 paths down (tcp check)
+4 paths up, 0 paths down (udp check)
+----
+--
+====
+. [[Step10]]关闭活动Nexus 5596交换机CL1上的ISL端口41到48：
++
+.显示示例
+[%collapsible]
+====
+以下示例显示了如何关闭 Nexus 5596 交换机 CL1 上的 ISL 端口 41 到 48 ：
+
+[listing]
+----
+(CL1)# configure
+(CL1)(Config)# interface e1/41-48
+(CL1)(config-if-range)# shutdown
+(CL1)(config-if-range)# exit
+(CL1)(Config)# exit
+(CL1)#
+----
+====
++
+如果要更换Nexus 5010或5020、请为ISL指定适当的端口号。
+
+. 在 CL1 和 C2 之间构建临时 ISL 。
++
+.显示示例
+[%collapsible]
+====
+以下示例显示了在 CL1 和 C2 之间设置的临时 ISL ：
+
+[listing]
+----
+C2# configure
+C2(config)# interface port-channel 2
+C2(config-if)# switchport mode trunk
+C2(config-if)# spanning-tree port type network
+C2(config-if)# mtu 9216
+C2(config-if)# interface breakout module 1 port 24 map 10g-4x
+C2(config)# interface e1/24/1-4
+C2(config-if-range)# switchport mode trunk
+C2(config-if-range)# mtu 9216
+C2(config-if-range)# channel-group 2 mode active
+C2(config-if-range)# exit
+C2(config-if)# exit
+----
+====
+
+
+.下一步是什么？
+link:cn5596-configure-ports.html["配置端口"](英文)

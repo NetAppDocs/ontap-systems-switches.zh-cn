@@ -1,10 +1,10 @@
 ---
-permalink: switch-cisco-9336c-fx2/install-nxos-rcf-9336c-cluster.html 
+permalink: switch-cisco-9336c-fx2/install-upgrade-rcf-overview-cluster.html 
 sidebar: sidebar 
-keywords: install rcf, cisco switches 
-summary: 您可以在首次设置 Nexus 9336C-fx2 交换机后安装 RCF 。您也可以使用此操作步骤升级 RCF 版本。 
+keywords: ssh, requirement, cluster, switch, health, monitor, cshm, log, collection, feature, cisco 9336c-fx2 
+summary: 使用集群交换机运行状况监控器（ CSHM ）和日志收集功能时需要使用 SSH 。要在Cisco 9336c-613集群交换机上启用SSH、请先生成SSH密钥、然后再启用SSH。 
 ---
-= 安装或升级参考配置文件(RCF)
+= 安装或升级参考配置文件(Reference Configuration File、RCF)概述
 :allow-uri-read: 
 :icons: font
 :imagesdir: ../media/
@@ -85,13 +85,13 @@ summary: 您可以在首次设置 Nexus 9336C-fx2 交换机后安装 RCF 。您�
 .关于示例
 此操作步骤中的示例使用以下交换机和节点命名：
 
-* 两个 Cisco 交换机的名称分别为 CS1 和 CS2 。
-* 节点名称包括cluster1-01、cluster1-02、cluster1-03和cluster1-04。
-* 集群 LIF 名称包括 cluster1-01_clus1 ， cluster1-01_clus2 ， cluster1-02_clus1 ， cluster1-02_clus2 ， cluster1-03_clus1 ， cluster1-03_clus2 ， cluster1-04_clus1 和 cluster1-04_clus2 。
+* 两个Cisco交换机的名称分别为*CS1*和*CS2*。
+* 节点名称为*集群1-01*、*集群1-02*、*集群1-03*和*集群1-04*。
+* 集群LIF名称包括*集群1-01_clus1*、*集群1-01_clus2*、*集群1-02_clus1*、*集群1-02_clus2*、*集群1-03_clus1*、*集群1-03_clus2*、*集群1-04_clus1*和*集群1-04_clus1*。
 * `cluster1 ：：： * >` 提示符指示集群的名称。
 
 
-此操作步骤 中的示例使用四个节点。这些节点使用两个 10GbE 集群互连端口 e0a 和 e0b 。请参见 https://hwu.netapp.com/SWITCH/INDEX["Hardware Universe"^]以验证平台上的集群端口是否正确。
+此操作步骤 中的示例使用四个节点。这些节点使用两个10GbE集群互连端口*e0a*和*e0b*。请参见 https://hwu.netapp.com/SWITCH/INDEX["Hardware Universe"^]以验证平台上的集群端口是否正确。
 
 
 NOTE: 根据不同版本的 ONTAP ，命令输出可能会有所不同。
@@ -101,36 +101,5 @@ NOTE: 根据不同版本的 ONTAP ，命令输出可能会有所不同。
 .使用的命令
 操作步骤要求同时使用 ONTAP 命令和 Cisco Nexus 9000 系列交换机命令；除非另有说明，否则使用 ONTAP 命令。
 
-
-
-== 选项1：在新交换机上安装RCF文件
-
-首次设置Nexus 9334C)交换机后，您可以安装参考配置文件(RF)。
-
-<stdin>中未解析的指令- include：..//_include/install-rcc-soft-9336c-cluster-adoc[]
-
-
-
-== 选项2：使用新的RC框架 版本升级现有交换机
-
-如果操作交换机上安装了现有版本的RCF文件、则可以升级RCF版本。
-
-.开始之前
-确保您已具备以下条件：
-
-* 交换机配置的当前备份。
-* 一个完全正常运行的集群(日志中没有错误或类似问题)。
-* 当前RCF文件。
-* 如果要更新RC框架 版本、则需要在RCIF中配置一个能够反映所需启动映像的启动配置。
-+
-如果您需要更改启动配置以反映当前启动映像，则必须在重新应用 RCF 之前进行更改，以便在将来重新启动时实例化正确的版本。
-
-
-
-
-NOTE: 在此操作步骤 期间、不需要可操作的交换机间链路(ISL)。这是设计上的原因、因为RCF版本更改可能会暂时影响ISL连接。为了确保集群无中断运行、以下操作步骤 会在对目标交换机执行步骤时将所有集群LIF迁移到运行中的配对交换机。
-
-
-CAUTION: 在安装新的交换机软件版本和 RCF 之前，您必须擦除交换机设置并执行基本配置。您必须使用串行控制台连接到交换机、或者在擦除交换机设置之前保留了基本配置信息。
-
-<stdin>中未解析的指令- include：..//_include/upgrade -rcc-soft-9336c-cluster-adoc[]
+.下一步是什么？
+link:install-rcf-software-9336c-cluster.html["安装RCF"] 或 link:upgrade-rcf-software-9336c-cluster.html["升级RC框架"]。

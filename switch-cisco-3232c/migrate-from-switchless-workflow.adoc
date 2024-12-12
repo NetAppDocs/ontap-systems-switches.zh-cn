@@ -1,0 +1,30 @@
+---
+permalink: switch-cisco-3232c/migrate-from-switchless-workflow.html 
+sidebar: sidebar 
+keywords: 3232c cabling setup, 3232c switches configuration, nx-os 
+summary: 在配置Cisco 3232C交换机之前、请查看以下信息。 
+---
+= 从双节点无交换机集群工作流迁移
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+按照以下工作流步骤从双节点无交换机集群迁移到使用Cisco Nexus 3232C集群交换机的集群。
+
+.image:https://raw.githubusercontent.com/NetAppDocs/common/main/media/number-1.png["一个"]link:migrate-from-switchless-migrate-requirements.html["迁移要求"]
+[role="quick-margin-para"]
+查看迁移过程的示例交换机信息。
+
+.image:https://raw.githubusercontent.com/NetAppDocs/common/main/media/number-2.png["两个"]link:migrate-from-switchless-prepare-to-migrate.html["准备迁移"]
+[role="quick-margin-para"]
+准备好双节点无交换机集群、以便迁移到双节点有交换机集群。
+
+.image:https://raw.githubusercontent.com/NetAppDocs/common/main/media/number-3.png["三个"]link:migrate-from-switchless-configure-ports.html["配置端口"]
+[role="quick-margin-para"]
+配置双节点无交换机集群、以便迁移到双节点有交换机集群。
+
+.image:https://raw.githubusercontent.com/NetAppDocs/common/main/media/number-4.png["四个"]link:migrate-from-switchless-complete-migration.html["完成迁移"]
+[role="quick-margin-para"]
+完成向双节点有交换机集群的迁移。

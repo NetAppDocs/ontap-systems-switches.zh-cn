@@ -17,7 +17,7 @@ summary: 您可以使用此操作步骤 在 Nexus 3232C 集群交换机上安装
 
 == 查看要求
 
-.您需要的内容
+.开始之前
 * 交换机配置的当前备份。
 * 一个完全正常运行的集群(日志中没有错误或类似问题)。
 * link:https://mysupport.netapp.com/site/info/cisco-ethernet-switch["Cisco 以太网交换机页面"^]。有关支持的ONTAP 和NX-OS版本、请参见交换机兼容性表。

@@ -20,7 +20,7 @@ summary: 更换集群网络中有故障的 Cisco Nexus 3132Q-V 交换机是一�
 .交换机要求
 查看 link:switch-requirements.html["更换Cisco Nexus 3132Q-V集群交换机的要求"]。
 
-.您需要的内容
+.开始之前
 * 现有集群和网络配置具有：
 +
 ** Nexus 3132Q-V集群基础架构在两台交换机上均为冗余基础架构、并可完全正常运行。

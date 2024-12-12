@@ -13,7 +13,7 @@ summary: 您可以将 Cisco Nexus 3232C 交换机和直通面板安装在 NetApp
 [role="lead"]
 根据您的配置、您可能需要将Cisco Nexus 3232C集群交换机和直通面板安装在NetApp机柜中、并使用交换机附带的标准支架。
 
-.您需要的内容
+.开始之前
 * 中的初始准备要求、套件内容和安全预防措施 link:http://www.cisco.com/c/en/us/td/docs/switches/datacenter/nexus3000/hw/installation/guide/b_n3000_hardware_install_guide.html["《 Cisco Nexus 3000 系列硬件安装指南》"^]。
 * 对于每个交换机、使用八个10-32或12-24螺钉和卡夹螺母将支架和滑轨安装到机柜前后柱上。
 * 用于在NetApp机柜中安装交换机的Cisco标准导轨套件。

@@ -38,12 +38,45 @@ entries:
 - title: 迁移交换机
   pdf-filename: migration_switchs_3132q-v
   entries:
-  - title: 从CN5596交换机迁移
-    url: "/switch-cisco-3132q-v/migrate-from-cisco-nexus-5596-to-cisco-nexus-3232c.html"
-  - title: 从CN1610交换机迁移
-    url: "/switch-cisco-3132q-v/replace-cn1610-with-cisco-nexus-3232c.html"
-  - title: 从无交换机集群迁移到有交换机集群
-    url: "/switch-cisco-3132q-v/migrate-from-switchless-cluster-to-cisco-nexus-3132q-v.html"
+  - title: CN1610交换机迁移
+    pdf-filename: CN1610_switch_migration
+    entries:
+    - title: CN1610交换机迁移工作流
+      url: "/switch-cisco-3132q-v/cn1610-migrate-workflow.html"
+    - title: 迁移要求
+      url: "/switch-cisco-3132q-v/cn1610-migrate-requirements.html"
+    - title: 准备迁移
+      url: "/switch-cisco-3132q-v/cn1610-prepare-to-migrate.html"
+    - title: 配置端口
+      url: "/switch-cisco-3132q-v/cn1610-configure-ports.html"
+    - title: 完成迁移
+      url: "/switch-cisco-3132q-v/cn1610-complete-migration.html"
+  - title: Cisco Nexus 5596交换机迁移
+    pdf-filename: CN5596_switch_migration
+    entries:
+    - title: Cisco Nexus 5596交换机迁移工作流
+      url: "/switch-cisco-3132q-v/cn5596-migrate-workflow.html"
+    - title: 迁移要求
+      url: "/switch-cisco-3132q-v/cn5596-migrate-requirements.html"
+    - title: 准备迁移
+      url: "/switch-cisco-3132q-v/cn5596-prepare-to-migrate.html"
+    - title: 配置端口
+      url: "/switch-cisco-3132q-v/cn5596-configure-ports.html"
+    - title: 完成迁移
+      url: "/switch-cisco-3132q-v/cn5596-complete-migration.html"
+  - title: 从无交换机集群迁移到双节点有交换机集群
+    pdf-filename: migration_from switchless至switched_cluster
+    entries:
+    - title: 从无交换机迁移到双节点交换工作流
+      url: "/switch-cisco-3132q-v/migrate-switchless-to-switched-workflow.html"
+    - title: 迁移要求
+      url: "/switch-cisco-3132q-v/migrate-switchless-to-switched-requirements.html"
+    - title: 准备迁移
+      url: "/switch-cisco-3132q-v/migrate-switchless-prepare-to-migrate.html"
+    - title: 配置端口
+      url: "/switch-cisco-3132q-v/migrate-switchless-configure-ports.html"
+    - title: 完成迁移
+      url: "/switch-cisco-3132q-v/migrate-switchless-complete-migration.html"
 - title: 更换交换机
   pdf-filename: REPLACE _switchs_3132q-v
   entries:

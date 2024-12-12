@@ -1,0 +1,30 @@
+---
+permalink: switch-cisco-3132q-v/cn1610-migrate-workflow.html 
+sidebar: sidebar 
+keywords: 3132q-v cabling setup, 3132q-v switches configuration, nx-os 
+summary: 在配置Cisco 3132q-v交换机之前、请查看以下信息。 
+---
+= 从CN1610交换机迁移到Nexus 3132Q-V交换机工作流
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+按照以下工作流步骤将CN1610交换机迁移到Cisco Nexus 3132Q-V交换机。
+
+.image:https://raw.githubusercontent.com/NetAppDocs/common/main/media/number-1.png["一个"]link:cn1610-migrate-requirements.html["迁移要求"]
+[role="quick-margin-para"]
+查看迁移过程的要求和示例交换机信息。
+
+.image:https://raw.githubusercontent.com/NetAppDocs/common/main/media/number-2.png["两个"]link:cn1610-prepare-to-migrate.html["准备迁移"]
+[role="quick-margin-para"]
+准备CN1610交换机以迁移到Nexus 3132Q-V交换机。
+
+.image:https://raw.githubusercontent.com/NetAppDocs/common/main/media/number-3.png["三个"]link:cn1610-configure-ports.html["配置端口"]
+[role="quick-margin-para"]
+配置端口以迁移到新的Nexus 3132Q-V交换机。
+
+.image:https://raw.githubusercontent.com/NetAppDocs/common/main/media/number-4.png["四个"]link:cn1610-complete-migration.html["完成迁移"]
+[role="quick-margin-para"]
+完成向新Nexus 3132Q-V交换机的迁移。

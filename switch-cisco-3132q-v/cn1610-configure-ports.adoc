@@ -1,0 +1,464 @@
+---
+permalink: switch-cisco-3132q-v/cn1610-configure-ports.html 
+sidebar: sidebar 
+keywords: cisco 3132q-v, cluster switches 
+summary: 您可以在AFF或FAS集群中使用Cisco Nexus 3132q-v交换机作为集群交换机。 
+---
+= 配置端口以从CN1610交换机迁移到3132Q-V交换机
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+请按照以下步骤配置端口、以便从CN1610交换机迁移到新的Nexus 3132Q-V交换机。
+
+.步骤
+. 在所有节点上，拔下连接到 CN1610 交换机 CL2 的缆线。
++
+使用支持的布线，您必须将所有节点上已断开连接的端口重新连接到 Nexus 3132Q-V 交换机 C2 。
+
+. 从 CN1610 交换机 CL1 上的端口 13 到 16 拔下四根 ISL 缆线。
++
+您必须使用适当的 Cisco QSFP 到 SFP+ 分支缆线将新 Cisco 3132Q-V 交换机 C2 上的端口 1/24 连接到现有 CN1610 交换机 CL1 上的端口 13 到 16 。
+
++
+
+NOTE: 在将任何缆线重新连接到新的 Cisco 3132Q-V 交换机时，您必须使用光缆或 Cisco 双轴电缆。
+
+. 要使 ISL 成为动态交换机，请在活动 CN1610 交换机上配置 ISL 接口 3/1 以禁用静态模式： `no port-channel static`
++
+步骤11中在3132Q-V交换机C2上启动ISL时、此配置与这两台交换机上的ISL配置匹配。
+
++
+.显示示例
+[%collapsible]
+====
+以下示例显示了使用 `no port-channel static` 命令将 ISL 接口 3/1 配置为动态：
+
+[listing]
+----
+(CL1)# configure
+(CL1)(Config)# interface 3/1
+(CL1)(Interface 3/1)# no port-channel static
+(CL1)(Interface 3/1)# exit
+(CL1)(Config)# exit
+(CL1)#
+----
+====
+. 在活动的 CN1610 交换机 CL1 上启动 ISL 13 到 16 。
++
+.显示示例
+[%collapsible]
+====
+以下示例说明了在端口通道接口 1/1 上启动 ISL 端口 13 到 16 的过程：
+
+[listing]
+----
+(CL1)# configure
+(CL1)(Config)# interface 0/13-0/16,3/1
+(CL1)(Interface 0/13-0/16,3/1)# no shutdown
+(CL1)(Interface 0/13-0/16,3/1)# exit
+(CL1)(Config)# exit
+(CL1)#
+----
+====
+. 验证ISL是否为 `up` 在CN1610交换机CL1上：
++
+`s如何使用端口通道`
+
++
+对于端口 0/13 到 0/16 ， "Link State" 应为 `up` ， "Type" 应为 `DDynamic` ， "Port Active" 列应为 `True` ：
+
++
+.显示示例
+[%collapsible]
+====
+[listing]
+----
+(CL1)# show port-channel 3/1
+Local Interface................................ 3/1
+Channel Name................................... ISL-LAG
+Link State..................................... Up
+Admin Mode..................................... Enabled
+Type........................................... Dynamic
+Load Balance Option............................ 7
+(Enhanced hashing mode)
+
+Mbr    Device/       Port        Port
+Ports  Timeout       Speed       Active
+------ ------------- ----------  -------
+0/13   actor/long    10 Gb Full  True
+       partner/long
+0/14   actor/long    10 Gb Full  True
+       partner/long
+0/15   actor/long    10 Gb Full  True
+       partner/long
+0/16   actor/long    10 Gb Full  True
+       partner/long
+----
+====
+. 验证 3132Q-V 交换机 C2 上的 ISL 是否为 `up` ：
++
+`s如何执行端口通道摘要`
+
++
+.显示示例
+[%collapsible]
+====
+端口 Eth1/24/1 到 Eth1/24/4 应指示 ` （ P ）` ，这意味着所有四个 ISL 端口在端口通道中均已启动。Eth1/31 和 Eth1/32 应指示 ` （ D ）` ，因为它们未连接：
+
+[listing]
+----
+C2# show port-channel summary
+
+Flags:  D - Down        P - Up in port-channel (members)
+        I - Individual  H - Hot-standby (LACP only)
+        s - Suspended   r - Module-removed
+        S - Switched    R - Routed
+        U - Up (port-channel)
+        M - Not in use. Min-links not met
+------------------------------------------------------------------------------
+Group Port-       Type     Protocol  Member Ports
+      Channel
+------------------------------------------------------------------------------
+1     Po1(SU)     Eth      LACP      Eth1/31(D)   Eth1/32(D)
+2     Po2(SU)     Eth      LACP      Eth1/24/1(P) Eth1/24/2(P) Eth1/24/3(P)
+                                     Eth1/24/4(P)
+----
+====
+. 启动所有节点上连接到3132Q-V交换机C2的所有集群互连端口：
++
+`network port modify`
+
++
+.显示示例
+[%collapsible]
+====
+以下示例显示了如何启动连接到 3132Q-V 交换机 C2 的集群互连端口：
+
+[listing]
+----
+cluster::*> network port modify -node n1 -port e0b -up-admin true
+cluster::*> network port modify -node n1 -port e0c -up-admin true
+cluster::*> network port modify -node n2 -port e0b -up-admin true
+cluster::*> network port modify -node n2 -port e0c -up-admin true
+----
+====
+. 还原所有节点上连接到C2的所有已迁移集群互连LIF：
++
+`网络接口还原`
+
++
+.显示示例
+[%collapsible]
+====
+[listing]
+----
+cluster::*> network interface revert -vserver Cluster -lif n1_clus2
+cluster::*> network interface revert -vserver Cluster -lif n1_clus3
+cluster::*> network interface revert -vserver Cluster -lif n2_clus2
+cluster::*> network interface revert -vserver Cluster -lif n2_clus3
+----
+====
+. 验证所有集群互连端口是否均已还原到其主端口：
++
+`network interface show`
+
++
+.显示示例
+[%collapsible]
+====
+以下示例显示 clus2 上的 LIF 已还原到其主端口，并显示，如果 "Current Port" 列中的端口在 "Is Home" 列中的状态为 `true` ，则 LIF 已成功还原。如果为 Home 值为 `false` ，则不会还原 LIF 。
+
+[listing]
+----
+cluster::*> network interface show -role cluster
+       (network interface show)
+
+         Logical    Status      Network        Current  Current  Is
+Vserver  Interface  Admin/Oper  Address/Mask   Node     Port     Home
+-------- ---------- ----------- -------------- -------- -------- -----
+Cluster
+         n1_clus1   up/up       10.10.0.1/24   n1       e0a      true
+         n1_clus2   up/up       10.10.0.2/24   n1       e0b      true
+         n1_clus3   up/up       10.10.0.3/24   n1       e0c      true
+         n1_clus4   up/up       10.10.0.4/24   n1       e0d      true
+         n2_clus1   up/up       10.10.0.5/24   n2       e0a      true
+         n2_clus2   up/up       10.10.0.6/24   n2       e0b      true
+         n2_clus3   up/up       10.10.0.7/24   n2       e0c      true
+         n2_clus4   up/up       10.10.0.8/24   n2       e0d      true
+
+8 entries were displayed.
+----
+====
+. 验证所有集群端口是否均已连接：
++
+`network port show`
+
++
+.显示示例
+[%collapsible]
+====
+以下示例显示了上一个 `network port modify` 命令的结果，确认所有集群互连均为 `up` ：
+
+[listing]
+----
+cluster::*> network port show -role Cluster
+       (network port show)
+
+Node: n1
+                Broadcast               Speed (Mbps) Health   Ignore
+Port  IPspace   Domain      Link  MTU   Admin/Open   Status   Health Status
+----- --------- ----------- ----- ----- ------------ -------- -------------
+e0a   cluster   cluster     up    9000  auto/10000     -        -
+e0b   cluster   cluster     up    9000  auto/10000     -        -
+e0c   cluster   cluster     up    9000  auto/10000     -        -
+e0d   cluster   cluster     up    9000  auto/10000     -        -
+
+Node: n2
+                Broadcast               Speed (Mbps) Health   Ignore
+Port  IPspace   Domain      Link  MTU   Admin/Open   Status   Health Status
+----- --------- ----------- ----- ----- ------------ -------- -------------
+e0a   cluster   cluster     up    9000  auto/10000     -        -
+e0b   cluster   cluster     up    9000  auto/10000     -        -
+e0c   cluster   cluster     up    9000  auto/10000     -        -
+e0d   cluster   cluster     up    9000  auto/10000     -        -
+
+8 entries were displayed.
+----
+====
+. 验证远程集群接口的连接：
+
+
+[role="tabbed-block"]
+====
+.ONTAP 9.9.1及更高版本
+--
+您可以使用 `network interface check cluster-connectivity` 命令启动集群连接的可访问性检查、然后显示详细信息：
+
+`network interface check cluster-connectivity start` 和 `network interface check cluster-connectivity show`
+
+[listing, subs="+quotes"]
+----
+cluster1::*> *network interface check cluster-connectivity start*
+----
+*注：*请等待几秒钟、然后再运行show命令显示详细信息。
+
+[listing, subs="+quotes"]
+----
+cluster1::*> *network interface check cluster-connectivity show*
+                                  Source      Destination   Packet
+Node   Date                       LIF         LIF           Loss
+------ -------------------------- ---------- -------------- -----------
+n1
+       3/5/2022 19:21:18 -06:00   n1_clus2   n1_clus1       none
+       3/5/2022 19:21:20 -06:00   n1_clus2   n2_clus2       none
+
+n2
+       3/5/2022 19:21:18 -06:00   n2_clus2   n1_clus1       none
+       3/5/2022 19:21:20 -06:00   n2_clus2   n1_clus2       none
+----
+--
+.所有ONTAP版本
+--
+对于所有ONTAP版本、您还可以使用 `cluster ping-cluster -node <name>` 用于检查连接的命令：
+
+`cluster ping-cluster -node <name>`
+
+[listing, subs="+quotes"]
+----
+cluster::*> *cluster ping-cluster -node n1*
+Host is n1
+Getting addresses from network interface table...
+Cluster n1_clus1 n1       e0a    10.10.0.1
+Cluster n1_clus2 n1       e0b    10.10.0.2
+Cluster n1_clus3 n1       e0c    10.10.0.3
+Cluster n1_clus4 n1       e0d    10.10.0.4
+Cluster n2_clus1 n2       e0a    10.10.0.5
+Cluster n2_clus2 n2       e0b    10.10.0.6
+Cluster n2_clus3 n2       e0c    10.10.0.7
+Cluster n2_clus4 n2       e0d    10.10.0.8
+
+Local = 10.10.0.1 10.10.0.2 10.10.0.3 10.10.0.4
+Remote = 10.10.0.5 10.10.0.6 10.10.0.7 10.10.0.8
+Cluster Vserver Id = 4294967293
+Ping status:
+....
+Basic connectivity succeeds on 16 path(s)
+Basic connectivity fails on 0 path(s)
+................
+Detected 1500 byte MTU on 16 path(s):
+    Local 10.10.0.1 to Remote 10.10.0.5
+    Local 10.10.0.1 to Remote 10.10.0.6
+    Local 10.10.0.1 to Remote 10.10.0.7
+    Local 10.10.0.1 to Remote 10.10.0.8
+    Local 10.10.0.2 to Remote 10.10.0.5
+    Local 10.10.0.2 to Remote 10.10.0.6
+    Local 10.10.0.2 to Remote 10.10.0.7
+    Local 10.10.0.2 to Remote 10.10.0.8
+    Local 10.10.0.3 to Remote 10.10.0.5
+    Local 10.10.0.3 to Remote 10.10.0.6
+    Local 10.10.0.3 to Remote 10.10.0.7
+    Local 10.10.0.3 to Remote 10.10.0.8
+    Local 10.10.0.4 to Remote 10.10.0.5
+    Local 10.10.0.4 to Remote 10.10.0.6
+    Local 10.10.0.4 to Remote 10.10.0.7
+    Local 10.10.0.4 to Remote 10.10.0.8
+
+Larger than PMTU communication succeeds on 16 path(s)
+RPC status:
+4 paths up, 0 paths down (tcp check)
+4 paths up, 0 paths down (udp check)
+----
+--
+====
+. [[STEP12]]在集群中的每个节点上、迁移与第一个CN1610交换机CL1关联的接口、以进行替换：
++
+`网络接口迁移`
+
++
+.显示示例
+[%collapsible]
+====
+以下示例显示了节点 n1 和 n2 上要迁移的端口或 LIF ：
+
+[listing]
+----
+cluster::*> network interface migrate -vserver Cluster -lif n1_clus1 -destination-node n1 -destination-port e0b
+cluster::*> network interface migrate -vserver Cluster -lif n1_clus4 -destination-node n1 -destination-port e0c
+cluster::*> network interface migrate -vserver Cluster -lif n2_clus1 -destination-node n2 -destination-port e0b
+cluster::*> network interface migrate -vserver Cluster -lif n2_clus4 -destination-node n2 -destination-port e0c
+----
+====
+. 验证集群状态：
++
+`network interface show`
+
++
+.显示示例
+[%collapsible]
+====
+以下示例显示所需的集群 LIF 已迁移到集群交换机 C2 上托管的相应集群端口：
+
+[listing]
+----
+cluster::*> network interface show -role Cluster
+       (network interface show)
+
+         Logical    Status      Network        Current  Current  Is
+Vserver  Interface  Admin/Oper  Address/Mask   Node     Port     Home
+-------- ---------- ----------- -------------- -------- -------- -----
+Cluster
+         n1_clus1   up/up       10.10.0.1/24   n1       e0b      false
+         n1_clus2   up/up       10.10.0.2/24   n1       e0b      true
+         n1_clus3   up/up       10.10.0.3/24   n1       e0c      true
+         n1_clus4   up/up       10.10.0.4/24   n1       e0c      false
+         n2_clus1   up/up       10.10.0.5/24   n2       e0b      false
+         n2_clus2   up/up       10.10.0.6/24   n2       e0b      true
+         n2_clus3   up/up       10.10.0.7/24   n2       e0c      true
+         n2_clus4   up/up       10.10.0.8/24   n2       e0c      false
+
+8 entries were displayed.
+----
+====
+. 关闭所有节点上连接到CL1的节点端口：
++
+`network port modify`
+
++
+.显示示例
+[%collapsible]
+====
+以下示例显示了如何关闭节点 n1 和 n2 上的指定端口：
+
+[listing]
+----
+cluster::*> network port modify -node n1 -port e0a -up-admin false
+cluster::*> network port modify -node n1 -port e0d -up-admin false
+cluster::*> network port modify -node n2 -port e0a -up-admin false
+cluster::*> network port modify -node n2 -port e0d -up-admin false
+----
+====
+. 关闭活动3132Q-V交换机C2上的ISL端口24、31和32：
++
+`s下行`
+
++
+.显示示例
+[%collapsible]
+====
+以下示例显示了如何关闭活动 3132Q-V 交换机 C2 上的 ISL 24 ， 31 和 32 ：
+
+[listing]
+----
+C2# configure
+C2(config)# interface ethernet 1/24/1-4
+C2(config-if-range)# shutdown
+C2(config-if-range)# exit
+C2(config)# interface ethernet 1/31-32
+C2(config-if-range)# shutdown
+C2(config-if-range)# exit
+C2(config)# exit
+C2#
+----
+====
+. 拔下所有节点上连接到 CN1610 交换机 CL1 的缆线。
++
+使用支持的布线，您必须将所有节点上已断开连接的端口重新连接到 Nexus 3132Q-V 交换机 C1 。
+
+. 从 Nexus 3132Q-V C2 端口 E1/24 拔下 QSFP 缆线。
++
+您必须使用受支持的 Cisco QSFP 光纤或直连缆线将 C1 上的端口 E1/31 和 E1/32 连接到 C2 上的端口 E1/31 和 E1/32 。
+
+. 通过复制还原端口24上的配置并删除C2上的临时端口通道2 `running-configuration` 将文件保存到 `startup-configuration` 文件
++
+.显示示例
+[%collapsible]
+====
+以下示例将 `Running-configuration` 文件复制到 `start-configuration` 文件：
+
+[listing]
+----
+C2# configure
+C2(config)# no interface breakout module 1 port 24 map 10g-4x
+C2(config)# no interface port-channel 2
+C2(config-if)# interface e1/24
+C2(config-if)# description 40GbE Node Port
+C2(config-if)# spanning-tree port type edge
+C2(config-if)# spanning-tree bpduguard enable
+C2(config-if)# mtu 9216
+C2(config-if-range)# exit
+C2(config)# exit
+C2# copy running-config startup-config
+[########################################] 100%
+Copy Complete.
+----
+====
+. 启动C2上的ISL端口31和32、即活动的3132Q-V交换机：
++
+`no shutdown`
+
++
+.显示示例
+[%collapsible]
+====
+以下示例显示了如何在 3132Q-V 交换机 C2 上启动 ISL 31 和 32 ：
+
+[listing]
+----
+
+C2# configure
+C2(config)# interface ethernet 1/31-32
+C2(config-if-range)# no shutdown
+C2(config-if-range)# exit
+C2(config)# exit
+C2# copy running-config startup-config
+[########################################] 100%
+Copy Complete.
+----
+====
+
+
+.下一步是什么？
+link:cn1610-complete-migration.html["完成迁移"](英文)

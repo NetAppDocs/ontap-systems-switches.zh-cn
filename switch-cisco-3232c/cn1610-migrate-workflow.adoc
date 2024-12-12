@@ -1,0 +1,34 @@
+---
+permalink: switch-cisco-3232c/cn1610-migrate-workflow.html 
+sidebar: sidebar 
+keywords: 3232c cabling setup, 3232c switches configuration, nx-os 
+summary: 在配置Cisco 3232C交换机之前、请查看以下信息。 
+---
+= 从CN1610交换机迁移到Nexus 3232C交换机工作流
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+按照以下工作流步骤将CN1610交换机迁移到Cisco Nexus 3232C交换机。
+
+.image:https://raw.githubusercontent.com/NetAppDocs/common/main/media/number-1.png["一个"]link:cn1610-migrate-to-3232c-overview.html["迁移要求"]
+[role="quick-margin-para"]
+查看迁移过程的示例交换机信息。
+
+.image:https://raw.githubusercontent.com/NetAppDocs/common/main/media/number-2.png["两个"]link:cn1610-prepare-to-migrate.html["准备迁移"]
+[role="quick-margin-para"]
+准备CN1610交换机以迁移到Nexus 3232C交换机。
+
+.image:https://raw.githubusercontent.com/NetAppDocs/common/main/media/number-3.png["三个"]link:cn1610-replace-CL2.html["更换集群交换机CL2"]
+[role="quick-margin-para"]
+将集群交换机CL2更换为新的Nexus 3232C交换机C2。
+
+.image:https://raw.githubusercontent.com/NetAppDocs/common/main/media/number-4.png["四个"]link:cn1610-replace-CL1.html["更换集群交换机CL1"]
+[role="quick-margin-para"]
+将集群交换机CL1更换为新的Nexus 3232C交换机C1。
+
+.image:https://raw.githubusercontent.com/NetAppDocs/common/main/media/number-5.png["五个"]link:cn1610-complete-migration.html["完成迁移"]
+[role="quick-margin-para"]
+完成向新Nexus 3232C交换机的迁移。

@@ -1,12 +1,23 @@
-= 第1步：在交换机上安装RC框架
+---
+permalink: switch-cisco-9336c-fx2/install-rcf-software-9336c-cluster.html 
+sidebar: sidebar 
+keywords: install rcf, cisco switches 
+summary: 您可以在首次设置 Nexus 9336C-fx2 交换机后安装 RCF 。您也可以使用此操作步骤升级 RCF 版本。 
+---
+= 安装参考配置文件（ RCF ）
 :allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
 
+
+[role="lead"]
+首次设置Nexus 9334C)交换机后，您可以安装参考配置文件(RF)。
 
 .开始之前
-确保满足以下要求：
+验证以下安装和连接：
 
 * 与交换机的控制台连接。如果您可以远程访问交换机、则可以选择控制台连接。
-* 交换机CS1和交换机CS2已启动、并且初始交换机设置已完成(已设置管理IP地址和SSH)
+* 交换机CS1和交换机CS2已启动、并且初始交换机设置已完成(管理IP地址和SSH已设置)。
 * 已安装所需的NX-OS版本。
 * 交换机之间的ISL连接已连接。
 * 未连接ONTAP节点集群端口。
@@ -14,7 +25,7 @@
 
 
 
-=== 第1步：在交换机上安装RC框架
+== 第1步：在交换机上安装RC框架
 
 . 使用SSH或串行控制台登录到交换机CS1。
 . 使用以下传输协议之一将RCC复制到交换机CS1的bootflash：FTP、TFTP、SFTP或SCP。
@@ -140,7 +151,7 @@ cs1# copy running-config startup-config [#######################################
 
 
 
-=== 第2步：验证交换机连接
+== 第2步：验证交换机连接
 
 . 验证连接到集群端口的交换机端口是否为*已启动*。
 +
@@ -350,7 +361,7 @@ cs1#
 
 
 
-=== 第3步：设置ONTAP集群
+== 第3步：设置ONTAP集群
 
 NetApp建议您使用System Manager设置新集群。
 

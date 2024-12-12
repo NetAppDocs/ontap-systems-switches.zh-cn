@@ -13,7 +13,7 @@ summary: 如果您还没有所需的配置信息和文档，则需要在设置�
 [role="lead"]
 按照此操作步骤 配置Cisco Nexus 3132Q-V交换机。
 
-.您需要的内容
+.开始之前
 * 访问安装站点上的HTTP、FTP或TFTP服务器、以下载适用的NX-OS和参考配置文件(RCF)版本。
 * 适用的NX-OS版本、从下载 https://software.cisco.com/download/home["Cisco软件下载"^] 页面。
 * 所需的网络交换机文档、控制器文档和ONTAP 文档。有关详细信息，请参见 link:required-documentation-3132q.html["所需文档"]。
