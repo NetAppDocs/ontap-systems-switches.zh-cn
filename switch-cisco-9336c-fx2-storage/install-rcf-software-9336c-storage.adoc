@@ -1,0 +1,453 @@
+---
+permalink: switch-cisco-9336c-fx2-storage/install-rcf-software-9336c-storage.html 
+sidebar: sidebar 
+keywords: install rcf, cisco switches, storage 
+summary: 您可以在首次设置Nexus 9334c-拧 动存储交换机后安装RC框架。您也可以使用此操作步骤升级 RCF 版本。 
+---
+= 安装参考配置文件
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+首次设置Nexus 9334C)存储交换机后，您可以安装参考配置文件(RF)。
+
+.开始之前
+验证以下安装和连接：
+
+* 与交换机的控制台连接。如果您可以远程访问交换机、则可以选择控制台连接。
+* 交换机CS1和交换机CS2已启动、并且初始交换机设置已完成(管理IP地址和SSH已设置)。
+* 已安装所需的NX-OS版本。
+* 未连接ONTAP节点集群端口。
+
+
+
+
+== 第1步：在交换机上安装RC框架
+
+. 使用SSH或串行控制台登录到交换机CS1。
+. 使用以下传输协议之一将RCC复制到交换机CS1的bootflash：FTP、TFTP、SFTP或SCP。
++
+有关 Cisco 命令的详细信息，请参见中的相应指南 https://www.cisco.com/c/en/us/support/switches/nexus-9336c-fx2-switch/model.html#CommandReferences["《 Cisco Nexus 9000 系列 NX-OS 命令参考》"^]。
+
++
+.显示示例
+[%collapsible]
+====
+此示例显示了使用TFTP将RCC复制到交换机CS1上的bootflash：
+
+[listing, subs="+quotes"]
+----
+cs1# *copy tftp: bootflash: vrf management*
+Enter source filename: *Nexus_9336C_RCF_v1.6-Storage.txt*
+Enter hostname for the tftp server: *172.22.201.50*
+Trying to connect to tftp server......Connection to Server Established.
+TFTP get operation was successful
+Copy complete, now saving to disk (please wait)...
+----
+====
+. 将先前下载的 RCF 应用于 bootflash 。
++
+有关 Cisco 命令的详细信息，请参见中的相应指南 https://www.cisco.com/c/en/us/support/switches/nexus-9336c-fx2-switch/model.html#CommandReferences["《 Cisco Nexus 9000 系列 NX-OS 命令参考》"^]。
+
++
+.显示示例
+[%collapsible]
+====
+此示例显示了交换机CS1上安装的RCC `Nexus_9336C_RCF_v1.6-Storage.txt`：
+
+[listing]
+----
+cs1# copy NNexus_9336C_RCF_v1.6-Storage.txt running-config echo-commands
+----
+====
+. 检查命令的横幅输出 `show banner motd`。您必须阅读并遵循这些说明、以确保交换机的配置和操作正确无误。
++
+.显示示例
+[%collapsible]
+====
+[listing]
+----
+cs1# show banner motd
+
+******************************************************************************
+* NetApp Reference Configuration File (RCF)
+*
+* Switch    : Nexus N9K-C9336C-FX2
+* Filename  : Nexus_9336C_RCF_v1.6-Storage.txt
+* Date      : 10-23-2020
+* Version   : v1.6
+*
+* Port Usage : Storage configuration
+* Ports  1-36: 100GbE Controller and Shelf Storage Ports
+******************************************************************************
+----
+====
+. 验证RCV是否为正确的较新版本：
++
+`s如何运行配置`
+
++
+在检查输出以确认您的 RCF 正确无误时，请确保以下信息正确无误：
+
++
+** RCF 横幅
+** 节点和端口设置
+** 自定义
++
+输出因站点配置而异。检查端口设置，并参阅发行说明，了解您安装的 RCF 的任何特定更改。
+
+
+
+. 将先前的所有自定义设置重新应用于交换机配置。link:cabling-considerations-9336c-fx2.html["查看布线和配置注意事项"]有关所需的任何进一步更改的详细信息、请参见。
+. 验证RCF版本和交换机设置是否正确后、将running-config文件复制到startup-config文件：
++
+`copy running-config startup-config`
+
++
+.显示示例
+[%collapsible]
+====
+[listing]
+----
+cs1# copy running-config startup-config [########################################] 100% Copy complete
+----
+====
++
+有关 Cisco 命令的详细信息，请参见中的相应指南 https://www.cisco.com/c/en/us/support/switches/nexus-9336c-fx2-switch/model.html#CommandReferences["《 Cisco Nexus 9000 系列 NX-OS 命令参考》"^]。
+
+. 重新启动交换机 CS1 。
++
+`cs1# *reload*`
+
++
+`This command will reboot the system. (y/n)?  [n] *y*`
+
+. 在交换机CS2上重复步骤1至7。
+. 将ONTAP集群中所有节点的集群端口连接到交换机CS1和CS2。
+
+
+
+
+== 第2步：验证交换机连接
+
+. 验证连接到集群端口的交换机端口是否为*已启动*。
++
+`show interface brief`
+
++
+.显示示例
+[%collapsible]
+====
+[listing, subs="+quotes"]
+----
+cs1# *show interface brief | grep up*
+mgmt0  --           up     _<mgmt ip address>_                       1000    1500
+Eth1/11         1       eth  trunk  up      none                     100G(D) --
+Eth1/12         1       eth  trunk  up      none                     100G(D) --
+Eth1/13         1       eth  trunk  up      none                     100G(D) --
+Eth1/14         1       eth  trunk  up      none                     100G(D) --
+Eth1/15         1       eth  trunk  up      none                     100G(D) --
+Eth1/16         1       eth  trunk  up      none                     100G(D) --
+Eth1/17         1       eth  trunk  up      none                     100G(D) --
+Eth1/18         1       eth  trunk  up      none                     100G(D) --
+Eth1/23         1       eth  trunk  up      none                     100G(D) --
+Eth1/24         1       eth  trunk  up      none                     100G(D) --
+Eth1/25         1       eth  trunk  up      none                     100G(D) --
+Eth1/26         1       eth  trunk  up      none                     100G(D) --
+Eth1/27         1       eth  trunk  up      none                     100G(D) --
+Eth1/28         1       eth  trunk  up      none                     100G(D) --
+Eth1/29         1       eth  trunk  up      none                     100G(D) --
+Eth1/30         1       eth  trunk  up      none                     100G(D) --
+----
+====
+. 使用以下命令验证集群节点是否位于正确的集群VLAN中：
++
+`show vlan brief`
+
++
+`show interface trunk`
+
++
+.显示示例
+[%collapsible]
+====
+[listing, subs="+quotes"]
+----
+cs1# *show vlan brief*
+
+VLAN Name                             Status    Ports
+---- -------------------------------- --------- -------------------------------
+1    default                          active    Po999
+30   VLAN0030                         active    Eth1/1, Eth1/2, Eth1/3, Eth1/4
+                                                Eth1/5, Eth1/6, Eth1/7, Eth1/8
+                                                Eth1/9, Eth1/10, Eth1/11
+                                                Eth1/12, Eth1/13, Eth1/14
+                                                Eth1/15, Eth1/16, Eth1/17
+                                                Eth1/18, Eth1/19, Eth1/20
+                                                Eth1/21, Eth1/22, Eth1/23
+                                                Eth1/24, Eth1/25, Eth1/26
+                                                Eth1/27, Eth1/28, Eth1/29
+                                                Eth1/30, Eth1/31, Eth1/32
+                                                Eth1/33, Eth1/34, Eth1/35
+                                                Eth1/36
+
+cs1# *show interface trunk*
+
+-----------------------------------------------------
+Port          Native  Status        Port
+              Vlan                  Channel
+-----------------------------------------------------
+Eth1/1        1       trunking      --
+Eth1/2        1       trunking      --
+Eth1/3        1       trunking      --
+Eth1/4        1       trunking      --
+Eth1/5        1       trunking      --
+Eth1/6        1       trunking      --
+Eth1/7        1       trunking      --
+Eth1/8        1       trunking      --
+Eth1/9        1       trunking      --
+Eth1/10       1       trunking      --
+Eth1/11       1       trunking      --
+Eth1/12       1       trunking      --
+Eth1/13       1       trunking      --
+Eth1/14       1       trunking      --
+Eth1/15       1       trunking      --
+Eth1/16       1       trunking      --
+Eth1/17       1       trunking      --
+Eth1/18       1       trunking      --
+Eth1/19       1       trunking      --
+Eth1/20       1       trunking      --
+Eth1/21       1       trunking      --
+Eth1/22       1       trunking      --
+Eth1/23       1       trunking      --
+Eth1/24       1       trunking      --
+Eth1/25       1       trunking      --
+Eth1/26       1       trunking      --
+Eth1/27       1       trunking      --
+Eth1/28       1       trunking      --
+Eth1/29       1       trunking      --
+Eth1/30       1       trunking      --
+Eth1/31       1       trunking      --
+Eth1/32       1       trunking      --
+Eth1/33       1       trunking      --
+Eth1/34       1       trunking      --
+Eth1/35       1       trunking      --
+Eth1/36       1       trunking      --
+
+--------------------------------------------------------------------------------
+Port          Vlans Allowed on Trunk
+--------------------------------------------------------------------------------
+Eth1/1        30
+Eth1/2        30
+Eth1/3        30
+Eth1/4        30
+Eth1/5        30
+Eth1/6        30
+Eth1/7        30
+Eth1/8        30
+Eth1/9        30
+Eth1/10       30
+Eth1/11       30
+Eth1/12       30
+Eth1/13       30
+Eth1/14       30
+Eth1/15       30
+Eth1/16       30
+Eth1/17       30
+Eth1/18       30
+Eth1/19       30
+Eth1/20       30
+Eth1/21       30
+Eth1/22       30
+Eth1/23       30
+Eth1/24       30
+Eth1/25       30
+Eth1/26       30
+Eth1/27       30
+Eth1/28       30
+Eth1/29       30
+Eth1/30       30
+Eth1/31       30
+Eth1/32       30
+Eth1/33       30
+Eth1/34       30
+Eth1/35       30
+Eth1/36       30
+
+--------------------------------------------------------------------------------
+Port          Vlans Err-disabled on Trunk
+--------------------------------------------------------------------------------
+Eth1/1        none
+Eth1/2        none
+Eth1/3        none
+Eth1/4        none
+Eth1/5        none
+Eth1/6        none
+Eth1/7        none
+Eth1/8        none
+Eth1/9        none
+Eth1/10       none
+Eth1/11       none
+Eth1/12       none
+Eth1/13       none
+Eth1/14       none
+Eth1/15       none
+Eth1/16       none
+Eth1/17       none
+Eth1/18       none
+Eth1/19       none
+Eth1/20       none
+Eth1/21       none
+Eth1/22       none
+Eth1/23       none
+Eth1/24       none
+Eth1/25       none
+Eth1/26       none
+Eth1/27       none
+Eth1/28       none
+Eth1/29       none
+Eth1/30       none
+Eth1/31       none
+Eth1/32       none
+Eth1/33       none
+Eth1/34       none
+Eth1/35       none
+Eth1/36       none
+
+--------------------------------------------------------------------------------
+Port          STP Forwarding
+--------------------------------------------------------------------------------
+Eth1/1        none
+Eth1/2        none
+Eth1/3        none
+Eth1/4        none
+Eth1/5        none
+Eth1/6        none
+Eth1/7        none
+Eth1/8        none
+Eth1/9        none
+Eth1/10       none
+Eth1/11       30
+Eth1/12       30
+Eth1/13       30
+Eth1/14       30
+Eth1/15       30
+Eth1/16       30
+Eth1/17       30
+Eth1/18       30
+Eth1/19       none
+Eth1/20       none
+Eth1/21       none
+Eth1/22       none
+Eth1/23       30
+Eth1/24       30
+Eth1/25       30
+Eth1/26       30
+Eth1/27       30
+Eth1/28       30
+Eth1/29       30
+Eth1/30       30
+Eth1/31       none
+Eth1/32       none
+Eth1/33       none
+Eth1/34       none
+Eth1/35       none
+Eth1/36       none
+
+--------------------------------------------------------------------------------
+Port          Vlans in spanning tree forwarding state and not pruned
+--------------------------------------------------------------------------------
+Eth1/1        Feature VTP is not enabled
+none
+Eth1/2        Feature VTP is not enabled
+none
+Eth1/3        Feature VTP is not enabled
+none
+Eth1/4        Feature VTP is not enabled
+none
+Eth1/5        Feature VTP is not enabled
+none
+Eth1/6        Feature VTP is not enabled
+none
+Eth1/7        Feature VTP is not enabled
+none
+Eth1/8        Feature VTP is not enabled
+none
+Eth1/9        Feature VTP is not enabled
+none
+Eth1/10       Feature VTP is not enabled
+none
+Eth1/11       Feature VTP is not enabled
+30
+Eth1/12       Feature VTP is not enabled
+30
+Eth1/13       Feature VTP is not enabled
+30
+Eth1/14       Feature VTP is not enabled
+30
+Eth1/15       Feature VTP is not enabled
+30
+Eth1/16       Feature VTP is not enabled
+30
+Eth1/17       Feature VTP is not enabled
+30
+Eth1/18       Feature VTP is not enabled
+30
+Eth1/19       Feature VTP is not enabled
+none
+Eth1/20       Feature VTP is not enabled
+none
+Eth1/21       Feature VTP is not enabled
+none
+Eth1/22       Feature VTP is not enabled
+none
+Eth1/23       Feature VTP is not enabled
+30
+Eth1/24       Feature VTP is not enabled
+30
+Eth1/25       Feature VTP is not enabled
+30
+Eth1/26       Feature VTP is not enabled
+30
+Eth1/27       Feature VTP is not enabled
+30
+Eth1/28       Feature VTP is not enabled
+30
+Eth1/29       Feature VTP is not enabled
+30
+Eth1/30       Feature VTP is not enabled
+30
+Eth1/31       Feature VTP is not enabled
+none
+Eth1/32       Feature VTP is not enabled
+none
+Eth1/33       Feature VTP is not enabled
+none
+Eth1/34       Feature VTP is not enabled
+none
+Eth1/35       Feature VTP is not enabled
+none
+Eth1/36       Feature VTP is not enabled
+none
+----
+====
++
+
+NOTE: 有关特定端口和VLAN使用情况的详细信息、请参阅RC框架 中的横幅和重要说明部分。
+
+
+
+
+
+== 第3步：设置ONTAP集群
+
+NetApp建议您使用System Manager设置新集群。
+
+System Manager为集群设置和配置提供了一个简单易行的工作流、其中包括分配节点管理IP地址、初始化集群、创建本地层、配置协议以及配置初始存储。
+
+转至 https://docs.netapp.com/us-en/ontap/task_configure_ontap.html["使用System Manager在新集群上配置ONTAP"] 有关设置说明、请参见。
+
+.下一步是什么？
+link:../switch-cshm/config-overview.html["配置交换机运行状况监控"](英文)

@@ -2631,7 +2631,6 @@
   <block id="feb8e402dbfa149a080f8f87ee22069f" category="list-text">节点名称包括cluster1-01、cluster1-02、cluster1-03和cluster1-04。</block>
   <block id="1a4c52cc090c463e0a3949fd93af9ca2" category="section-title">安装软件</block>
   <block id="ec8855627efbb26afaa912164ff82dbd" category="inline-link-macro">安装RCF配置文件</block>
-  <block id="afe6bd84cf9f314186e891843eba49cc" category="paragraph"><block ref="41aae7f405e62aa01d791efeede3f9c2" category="inline-link-macro-rx"></block>。</block>
   <block id="2563a96fdb66dda5382058af89e8a58c" category="paragraph-title">交换机和节点命名</block>
   <block id="a2d07f4e7a36ed872e60c08cdcc73771" category="doc">迁移到双节点交换集群</block>
   <block id="5b1bedb3dd2208af0449bbbfcc022136" category="paragraph">如果您有一个现有的双节点无交换机集群环境、则可以使用Cisco Nexus 9336C-f2交换机迁移到双节点_switched_cluster环境、以便可以扩展到集群中的两个节点以上。</block>
@@ -2818,7 +2817,6 @@
   <block id="c35204e874fcafc94c7c67e31162e966" category="paragraph">确保在运行此命令后禁用自动还原。</block>
   <block id="d08074ca4afc3cad1b1b41c1134b3f1e" category="section-title">第2步：配置并验证设置</block>
   <block id="b6ec5ccd50e4a92a636c1dc432c89581" category="admonition">集群节点报告运行状况可能需要长达5分钟的时间。</block>
-  <block id="442f3bc68fd4ab1c760b482d02f7ca71" category="list-text">对交换机CS1重复步骤1到10。</block>
   <block id="af4d9c4c765c5c1d9c279c35191c82da" category="paragraph"><block ref="e39b44798f52b1532971ab295180e1b0" prefix="" category="inline-code"></block></block>
   <block id="a96967612c6864aa22be45f265f4c533" category="paragraph">按照此操作步骤 更换集群网络中有故障的Cisco Nexus 3132Q-V交换机。替代操作步骤 是无中断操作步骤 (NDO)。</block>
   <block id="f3f6fdd1ea886344c6b4f8b4ee91d661" category="paragraph-title">交换机要求</block>
@@ -5185,4 +5183,15 @@
   <block id="6697bf1c75a0d4d8868afeab04858bc3" category="sidebar">Upgrade_switches_3232C</block>
   <block id="253d101ba7a8a0f1e24c1a3b13a1b5b5" category="sidebar">install_upgrade</block>
   <block id="2b8efdb0e77054ffe22b4bfb75564155" category="sidebar">安装或升级RC框架 概述</block>
+  <block id="b6503bc6a2e6ede86368a60473711626" category="list-text">对交换机 CS1 重复步骤 1 至 11 。</block>
+  <block id="604f0b8e46b056f4f2f05bb3ea87a5a7" category="inline-link-macro">安装RC框架</block>
+  <block id="f398a91a8a2500b4ebd90095482c2638" category="paragraph"><block ref="032b77b792344ea711cbb6f8f0bfe3cc" category="inline-link-macro-rx"></block>(英文)</block>
+  <block id="ea6719e8ba4a5a7aea0b4185afc5408b" category="summary">您可以在首次设置Nexus 9334c-拧 动存储交换机后安装RC框架。您也可以使用此操作步骤升级 RCF 版本。</block>
+  <block id="fc3ebe0c41be566a2062e99eee81c6ba" category="paragraph">首次设置Nexus 9334C)存储交换机后，您可以安装参考配置文件(RF)。</block>
+  <block id="0d54a8a99337a48199414ba38d122135" category="list-text">交换机CS1和交换机CS2已启动、并且初始交换机设置已完成(管理IP地址和SSH已设置)。</block>
+  <block id="f1de50ac922202c9581e806906499ae8" category="paragraph">此示例显示了交换机CS1上安装的RCC<block ref="fcd688c0fb8c0256c7fc0b5ca2fd673d" prefix=" " category="inline-code"></block>：</block>
+  <block id="a697c9a980376d3a62210b2b53d5b0b8" category="list-text">检查命令的横幅输出<block ref="6d53824b9996e36fd31937e922967215" prefix=" " category="inline-code"></block>。您必须阅读并遵循这些说明、以确保交换机的配置和操作正确无误。</block>
+  <block id="b0d1465a243b273a8f71d6084fd2c12c" category="list-text">验证RCV是否为正确的较新版本：</block>
+  <block id="7fd5f97719ed93b62ce57a2401ebb179" category="list-text">验证RCF版本和交换机设置是否正确后、将running-config文件复制到startup-config文件：</block>
+  <block id="f7b017d791fb57f4bbb1b2ce01659ed8" category="paragraph">System Manager为集群设置和配置提供了一个简单易行的工作流、其中包括分配节点管理IP地址、初始化集群、创建本地层、配置协议以及配置初始存储。</block>
 </blocks>
