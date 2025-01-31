@@ -694,4 +694,4 @@ cluster1::*>
 
 
 .下一步是什么？
-link:install-nxos-rcf-9336c-shared.html["安装RCF配置文件"]
+link:install-nxos-rcf-9336c-shared.html["安装RCF"]。

@@ -179,9 +179,7 @@
   <block id="d5fbb9cb1715ba5a21b66c0aa1b67707" category="paragraph">在此示例中， ` -vserver` 参数显示有关与集群端口关联的 LIF 的信息。`s状态管理 /Oper` 必须已启动且 `为主目录` 必须为 true ：</block>
   <block id="5898eff5c659f32cf3b2f42bd746d0c5" category="doc">安装 EFOS 软件</block>
   <block id="ba9e418ff064efca86945643e9b87680" category="list-text">将 BES-53248 集群交换机连接到管理网络。</block>
-  <block id="c95aaaacb482fe42dce56ee7cd8615a6" category="list-text">备份 CS2 上的当前活动映像：</block>
   <block id="2ab6a6c6e3efa9ded96d007db3c8ddd6" category="paragraph">`s如何启动 var`</block>
-  <block id="19cb75d1f662e01942f8d897534baeb7" category="list-text">验证运行的 EFOS 软件版本：</block>
   <block id="7c68cb6d1d2efbce76002169b10f787d" category="paragraph">`s如何使用版本`</block>
   <block id="6c3f6a049adc76db29ca1df525b7c235" category="list-text">将映像文件下载到交换机。</block>
   <block id="9f5a2906a0e63ca6b46604a272791779" category="paragraph">将映像文件复制到活动映像意味着，重新启动时，该映像将建立正在运行的 EFOS 版本。上一个映像仍可用作备份。</block>
@@ -2698,7 +2696,6 @@
   <block id="f8a26b1330fe6b7b741993630dd932e2" category="list-text">验证集群LIF是否已还原到其主端口(这可能需要一分钟时间)：</block>
   <block id="65201dcfc7c620613613b15eb161d307" category="paragraph">如果集群LIF尚未还原到其主端口、请手动还原它们：</block>
   <block id="88fb2189d22d2886ab33f16fdca0bb5b" category="paragraph"><block ref="7eaac8e45910aa8bf3a06f6966ab0656" prefix="" category="inline-code"></block></block>
-  <block id="ea4cd01e183524e8bbb487095fe3c5d9" category="list-text">当前RCF文件。</block>
   <block id="03c93e08ed4f9a68f6b404202d454262" category="list-text">RCF中反映所需启动映像的启动配置、如果仅安装NX-OS并保留当前RCF版本、则需要此配置。如果您需要更改启动配置以反映当前启动映像，则必须在重新应用 RCF 之前进行更改，以便在将来重新启动时实例化正确的版本。</block>
   <block id="a0f6e8eb6b5f6a47b9079727da7ff23a" category="list-text">安装RCF时需要与交换机建立控制台连接。</block>
   <block id="adbc02a7e46081db3727786cb62cdc0f" category="list-title">建议的文档</block>
@@ -3200,7 +3197,6 @@
   <block id="5e13628627abec712f77b1d757bfe59f" category="list-text">查看以下有关EFOS版本的注释。</block>
   <block id="9b2d3fb1dc09edda79dfe09e637f9716" category="list-text">从 EFOS 3.7.x.x 或更高版本开始，可以使用非 FIPS 兼容版本和 FIPS 兼容版本。从不符合FIPS的版本迁移到符合FIPS的版本时、需要执行不同的步骤、反之亦然。将 EFOS 从不符合 FIPS 的版本更改为符合 FIPS 的版本，或者反之，则会将交换机重置为出厂默认值。此操作步骤需要通过串行控制台端口进行访问。</block>
   <block id="7f824481c3b83fffcad8abfa0af8b312" category="inline-link">BES-53248集群交换机NDU无法升级到EFOS 3.7.0.4及更高版本</block>
-  <block id="cec6ec2be042120b7ff4b5d0f1e40dee" category="admonition">请注意，将 BES-53248 集群交换机从 EFOS 3.3.x.x 或 3.4.x.x 升级到 EFOS 3.7.0.4 或 3.8.0.2 后，交换机间链路（ ISL ）和端口通道将标记为 * 关闭 * 状态。请参见此知识库文章：<block ref="eb6085a70a8e8bb2aba905d5e75797ab" category="inline-link-rx"></block> 了解更多详细信息。</block>
   <block id="0fa8ca6cfd731f93388f2f318c1fb1d3" category="paragraph">使用以下方法之一：</block>
   <block id="420b291d479da153c96fd1143e9d0e2f" category="list-text"><block ref="c306cecb30107650b346d91b7d7c74b6" category="inline-xref-macro-rx"></block>。如果一个EFOS版本符合FIPS、而另一个EFOS版本不符合FIPS、则使用。</block>
   <block id="fa6c2d2a92519a714fe25ca830427ee1" category="section-title">方法1：安装EFOS</block>
@@ -3757,7 +3753,6 @@
   <block id="73cb4c03f2757beb35ad69fd322003be" category="list-text">【第 16 步】将 HA 对 1 从无交换机集群转换为有交换机集群。使用共享 RCF 定义的集群端口分配。请参见 <block ref="e0b55f136d815f7a36c41fd7fe28e0fd" category="inline-link-macro-rx"></block>了解更多详细信息。</block>
   <block id="12bc639206c2ca12e8a65041a697e4fc" category="paragraph">转至<block ref="c686ee523547302c3fa5199eafd95753" category="inline-link-rx"></block>。</block>
   <block id="6446fc62a2115815d4bdbe55f18815c1" category="list-text"><block ref="47109c7943148b2a9617cfcb4b49a79f" category="inline-link-macro-rx"></block>。</block>
-  <block id="22eb01d1e7d6584a0da20f490dc5af77" category="paragraph"><block ref="22eb01d1e7d6584a0da20f490dc5af77" category="inline-link-macro-rx"></block></block>
   <block id="6f773061a9b11739f4b04a8b170f8f8e" category="paragraph">根据您的配置、您可以 <block ref="bd7e5f56c6474a1d0a59eeac0ce681d7" category="inline-link-macro-rx"></block>。否则，请转到 <block ref="cd3d2c6d0c8a0c43f0a0e10375ad6bbc" category="inline-link-macro-rx"></block>。</block>
   <block id="7f81bc06b8e7a4bfd515767a4b4385fe" category="list-text">【第 6 步】将共享交换机 A 上的存储 RCF 替换为共享 RCF 文件。请参见 <block ref="2f595b9f03c1eca7e988cc615d685264" category="inline-link-macro-rx"></block> 了解更多详细信息。</block>
   <block id="2b888f1fbb1010b5a426f7a2a88e0914" category="list-text">【第 12 步】将共享交换机 B 上的存储 RCF 文件替换为共享 RCF 文件。请参见 <block ref="2f595b9f03c1eca7e988cc615d685264" category="inline-link-macro-rx"></block> 了解更多详细信息。</block>
@@ -4441,9 +4436,7 @@
   <block id="32559ee483b61b36141f9b9e0f4bbfff" category="paragraph">有关NetApp 支持站点 上支持的ONTAP和RC框架 版本、请参见交换机兼容性表。请注意、RC框架 中的命令语法与特定NX-OS版本中的语法之间可能存在命令相关性。</block>
   <block id="ad0d19783ccfa19f931108b838e4b7e4" category="list-text"><block ref="ad0d19783ccfa19f931108b838e4b7e4" category="inline-link-macro-rx"></block></block>
   <block id="79509ba15c2970f327dd8610e3b4628c" category="paragraph-title">使用的命令</block>
-  <block id="1ad593dd61af4356ce9ba12d276c4336" category="section-title">选项1：在新交换机上安装RCF文件</block>
   <block id="d061b4842fee7f503446ba29253d182f" category="paragraph">首次设置Nexus 9334C)交换机后，您可以安装参考配置文件(RF)。</block>
-  <block id="121f18688d36f2438eb17eb52e61e7e8" category="section-title">选项2：使用新的RC框架 版本升级现有交换机</block>
   <block id="eba0713505eba2aab08d4d6fa9ca2cf7" category="paragraph">如果操作交换机上安装了现有版本的RCF文件、则可以升级RCF版本。</block>
   <block id="ddd0020a0684c14dbd50622f84d8917a" category="paragraph">确保您已具备以下条件：</block>
   <block id="28dbd722b252673fdce3f809670e34b8" category="list-text">如果要更新RC框架 版本、则需要在RCIF中配置一个能够反映所需启动映像的启动配置。</block>
@@ -4549,8 +4542,6 @@
   <block id="56e7024dc2e812be7449228dc66597d9" category="admonition">一次升级一个交换机上的EFOS、以确保集群网络持续运行。</block>
   <block id="c3e2e765c3744c1b19452b2f233fdd15" category="section-title">方法1：升级EFOS</block>
   <block id="c117ec58c236a456904edaa76f1cc5a9" category="paragraph">执行以下步骤升级EFOS软件。</block>
-  <block id="061be1b61be0d3e5b21e6a5912639344" category="admonition">如果您安装了任何许可证、请查看其状态。</block>
-  <block id="84d3d1386241334d40a809878bbb05d9" category="list-text">对交换机CS1重复步骤5到10。</block>
   <block id="83b8a0042e3650c5af884c9601f53043" category="inline-link-macro">将 LIF 还原到其主端口</block>
   <block id="870c6c263570c51afc056f510d552e1f" category="paragraph">有关更多详细信息、请参见 <block ref="b9ea844d3dd5520c7767de46f1c99a2b" category="inline-link-macro-rx"></block>。</block>
   <block id="d0dc5dfd4c3b3be079653b7f0ac8d844" category="paragraph">如果一个 EFOS 版本符合 FIPS ，而另一个 EFOS 版本不符合 FIPS ，则可以执行以下步骤。如果交换机无法启动、可使用以下步骤从ONIE升级非FIPS或FIPS兼容EFOS 3.7.x.x.x.X的映像。</block>
@@ -4779,7 +4770,6 @@
   <block id="57b022aa023a23cddb03c6191daffa4f" category="list-text">将先前的所有自定义设置重新应用于交换机配置。<block ref="1d9551648f2ada4f38f23191d61ca885" category="inline-link-macro-rx"></block>有关所需的任何进一步更改的详细信息、请参见。</block>
   <block id="5a389651a2b073f3c60a3a61d9470776" category="list-text">将先前的所有自定义设置重新应用于交换机配置。<block ref="80cb17023e08ea29d449df7367413559" category="inline-link-macro-rx"></block>有关所需的任何进一步更改的详细信息、请参见。</block>
   <block id="7a6b9b7eb5a2b3055f09f44911fb2bc5" category="list-text">将先前的所有自定义设置重新应用于交换机配置。<block ref="a181f167f0e6d024e95ed78a8f44bff6" category="inline-link-macro-rx"></block>有关所需的任何进一步更改的详细信息、请参见。</block>
-  <block id="263b9f10fe7e073e656b08a5b6da7e5a" category="paragraph">此操作步骤 中的示例使用四个节点。这些节点使用两个 10GbE 集群互连端口 e0a 和 e0b 。请参见<block ref="cd25cbe53f0a314145c84729c6ce2c78" category="inline-link-rx"></block>以验证平台上的集群端口是否正确。</block>
   <block id="b1a89b5446a31892e94db79afbb0de42" category="inline-link">SN2100交换机无法使用40/100GbE铜缆进行连接</block>
   <block id="bea2f90298678b2195d0c6fdc1b17566" category="paragraph"><block ref="8462b48cb4d4d2778ecd09578b163838" category="inline-link-rx"></block>有关详细信息、请参见知识库文章。</block>
   <block id="4af7c647d1c04eb805c9ecbc772595d1" category="list-text">将先前的所有自定义设置重新应用于交换机配置。<block ref="81e27480a79c2bb77194c038c9737157" category="inline-link-macro-rx"></block>有关所需的任何进一步更改的详细信息、请参见。</block>
@@ -5142,7 +5132,6 @@
   <block id="5f9610f3409d9abe96cc344156486c5e" category="paragraph-title"><block ref="beadfa85a2fdca06b91edc1131c603e6" category="inline-image-macro-rx" type="image"></block><block ref="4c0a19683ab4dd37cd0517d25639fa78" category="inline-link-macro-rx"></block></block>
   <block id="e796841df950e342f76a5b538574f5f6" category="paragraph">完成向双节点有交换机集群的迁移。</block>
   <block id="e4ff582cba38e556dc88b3e74baf1ec1" category="paragraph">&lt;stdin&gt;中未解析的指令- include：..//_include/install-rcc-soft-9336c-cluster-adoc[]</block>
-  <block id="688523fe289426758745102b5d3ea37f" category="paragraph">&lt;stdin&gt;中未解析的指令- include：..//_include/upgrade -rcc-soft-9336c-cluster-adoc[]</block>
   <block id="1ececed2a569720ced41e9cd50d7b238" category="list-text">交换机CS1和交换机CS2已启动、并且初始交换机设置已完成(管理IP地址和SSH已设置)。</block>
   <block id="c3109b36f2c8edda93835ccefa0e4dc3" category="doc">安装或升级参考配置文件(Reference Configuration File、RCF)概述</block>
   <block id="6d7b8066e6c7166408cb61e68a705e7f" category="list-text">两个Cisco交换机的名称分别为*CS1*和*CS2*。</block>
@@ -5151,7 +5140,6 @@
   <block id="1c319a6cce094508e045c5bb62d6664e" category="paragraph">此操作步骤 中的示例使用四个节点。这些节点使用两个10GbE集群互连端口*e0a*和*e0b*。请参见<block ref="cd25cbe53f0a314145c84729c6ce2c78" category="inline-link-rx"></block>以验证平台上的集群端口是否正确。</block>
   <block id="88870df2dabeaf8bc50daf8d504498e0" category="inline-link-macro">升级RC框架</block>
   <block id="d1d882c0929e664f5d3052ad227ecec9" category="paragraph"><block ref="51640e6af8359470cbd047034716b7ac" category="inline-link-macro-rx"></block> 或 <block ref="d9cc2c4eec198e8f90466b5b89bfc33e" category="inline-link-macro-rx"></block>。</block>
-  <block id="fd7fe8bcb397a94d6c1c59e351072eac" category="doc">升级参考配置文件(RCF)</block>
   <block id="df73b0f89510f793b71a90bf50d82c10" category="list-text">当前的RC框架。</block>
   <block id="85e086d364dc39fb9a01f1b57e7afc52" category="list-text">ONTAP 9.10.1P3及更高版本</block>
   <block id="e6645191453a89d37ca94dbd791a1499" category="paragraph">SN2100交换机通过不同的交换机对为9.10.1P3 9.10.1P3及更高版本中的集群和存储应用程序提供服务。</block>
@@ -5194,4 +5182,15 @@
   <block id="b0d1465a243b273a8f71d6084fd2c12c" category="list-text">验证RCV是否为正确的较新版本：</block>
   <block id="7fd5f97719ed93b62ce57a2401ebb179" category="list-text">验证RCF版本和交换机设置是否正确后、将running-config文件复制到startup-config文件：</block>
   <block id="f7b017d791fb57f4bbb1b2ce01659ed8" category="paragraph">System Manager为集群设置和配置提供了一个简单易行的工作流、其中包括分配节点管理IP地址、初始化集群、创建本地层、配置协议以及配置初始存储。</block>
+  <block id="7ff4d12d3e81fb159ea571275dbbb3fd" category="admonition">请注意，将 BES-53248 集群交换机从 EFOS 3.3.x.x 或 3.4.x.x 升级到 EFOS 3.7.0.4 或 3.8.0.2 后，交换机间链路（ ISL ）和端口通道将标记为 * 关闭 * 状态。这是预期行为、可以安全地继续升级、除非您在自动还原IFs方面遇到问题。有关详细信息、请参见知识库文章：<block ref="eb6085a70a8e8bb2aba905d5e75797ab" category="inline-link-rx"></block>。</block>
+  <block id="4624388fca013386d1c7314566aa1510" category="list-text">从备份配置启动系统：</block>
+  <block id="ae791522c9f7834f0edc56277ffe2340" category="paragraph"><block ref="f2210f21804aee53def01718125f3f18" prefix="" category="inline-code"></block></block>
+  <block id="892854a85c10d8b7b832a094d0b2b95e" category="list-text">对交换机CS1重复步骤5到11。</block>
+  <block id="b0411eb90c7d5ca211940fcb5d8f219a" category="doc">升级参考配置文件(RCF)</block>
+  <block id="657454366cb4a451c5905310b7f4d2cc" category="paragraph">您可以在首次设置Nexus 9334C)交换机后安装参考配置文件(RF)。</block>
+  <block id="34b61fdbe20d7b5fdf2f4d5655d2dc71" category="list-text">交换机之间的交换机间链路(ISL)连接已连接。</block>
+  <block id="5e9fc634461251750aac2012c638665a" category="doc">升级参考配置文件(RCF)</block>
+  <block id="9129459f5b5477d59e1fbb13abc9bbd4" category="admonition">在安装新的交换机软件版本和 RCF 之前，您必须擦除交换机设置并执行基本配置。在擦除交换机设置之前、您必须使用串行控制台连接到交换机或保留基本配置信息。</block>
+  <block id="4c4876d5d981da2e6943a052d93bb189" category="list-text">对于NX-OS 10.2及更高版本、请使用<block ref="9c370f72db0e0d920841657ac5268365" prefix=" " category="inline-code"></block>命令与bootflash中保存的RCF文件进行比较。否则、请使用第三方比较或比较工具。</block>
+  <block id="0a306731a6993e7a08026ab2d7ca2d97" category="paragraph">您可能需要更新与SSH密钥相关的主机文件条目。</block>
 </blocks>

@@ -34,8 +34,10 @@ entries:
     url: "/switch-cisco-9336c-fx2-shared/prepare-nxos-rcf-9336c-shared.html"
   - title: 安装NX-OS软件
     url: "/switch-cisco-9336c-fx2-shared/install-nxos-software-9336c-shared.html"
-  - title: 安装RCF配置文件
+  - title: 安装RCF
     url: "/switch-cisco-9336c-fx2-shared/install-nxos-rcf-9336c-shared.html"
+  - title: 升级RC框架 版本
+    url: "/switch-cisco-9336c-fx2-shared/upgrade-rcf-software-9336c-shared.html"
 - title: 迁移交换机
   pdf-filename: migrate交换机_9336c-FX2共享
   entries:
