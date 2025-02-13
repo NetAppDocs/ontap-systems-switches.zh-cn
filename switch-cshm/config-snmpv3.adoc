@@ -27,25 +27,25 @@ NOTE: 仅ONTAP 9.12.1及更高版本支持SNMPv3。
 ====
 .Broadcom交换机
 --
-在Broadcom BES-53248交换机上配置SNMPv3用户名network-operator。
+在Broadcom BES-53248交换机上配置SNMPv3用户名SNMPv3 _user。
 
 * 对于*no authentication (无身份验证)*：
 +
 [source, cli]
 ----
-snmp-server user SNMPv3UserNoAuth NETWORK-OPERATOR noauth
+snmp-server user SNMPv3UserNoAuth SNMPv3_USER noauth
 ----
 * 对于*MD5/SHA身份验证*：
 +
 [source, cli]
 ----
-snmp-server user SNMPv3UserAuth NETWORK-OPERATOR [auth-md5|auth-sha]
+snmp-server user SNMPv3UserAuth SNMPv3_USER [auth-md5|auth-sha]
 ----
 * 对于采用AES/DES加密的*MD5/SHA身份验证*：
 +
 [source, cli]
 ----
-snmp-server user SNMPv3UserAuthEncrypt NETWORK-OPERATOR [auth-md5|auth-sha] [priv-aes128|priv-des]
+snmp-server user SNMPv3UserAuthEncrypt SNMPv3_USER [auth-md5|auth-sha] [priv-aes128|priv-des]
 ----
 
 

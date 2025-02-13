@@ -29,6 +29,7 @@ summary: '以太网交换机运行状况监控器(CSHM)日志收集功能用于�
 
 * 用户必须能够访问交换机 `show` 命令。如果这些权限不可用、请创建一个新用户并向该用户授予必要的权限。
 * 必须为交换机启用交换机运行状况监控。通过确保进行验证 `Is Monitored:` 字段在的输出中设置为*TRUE* `system switch ethernet show` 命令：
+* 要使用Broadcom和Cisco交换机收集日志、应在交换机上为启用了日志收集的每个设置创建一个新用户。这些交换机不支持同一用户使用多个SSH密钥。执行的任何其他日志收集设置都会覆盖用户的任何已有SSH密钥。
 * 要使用NVIDIA交换机收集支持日志、必须允许用于收集日志的_user_运行 `cl-support`命令、而无需提供密码。要允许使用此命令、请运行以下命令：
 +
 `echo '_<user>_ ALL = NOPASSWD: /usr/cumulus/bin/cl-support' | sudo EDITOR='tee -a' visudo -f /etc/sudoers.d/cumulus`

@@ -4707,7 +4707,6 @@
   <block id="c76d1ab1bab3f2bc0c89856d8d6e3d40" category="paragraph">按照以下步骤为支持CSHM的特定交换机配置SNMPv3。</block>
   <block id="5fb3828593766d454e79a0dcf52fed9d" category="paragraph">以下命令用于在*Broadcom*、*Cisco*和*NVIDIA*交换机上配置SNMPv3用户名：</block>
   <block id="77f3beca20fcd78f77236507e8d9b4af" category="open-title">Broadcom交换机</block>
-  <block id="89fe808c6ef5fe301085b5abe4406d35" category="paragraph">在Broadcom BES-53248交换机上配置SNMPv3用户名network-operator。</block>
   <block id="c59df2c71925eefec8dc03aa685125c8" category="list-text">对于*no authentication (无身份验证)*：</block>
   <block id="4c58055d9b16c25c354c591188cb27ae" category="list-text">对于*MD5/SHA身份验证*：</block>
   <block id="b00500f501ccb5c8ab2313d810b6ff29" category="list-text">对于采用AES/DES加密的*MD5/SHA身份验证*：</block>
@@ -5193,4 +5192,6 @@
   <block id="9129459f5b5477d59e1fbb13abc9bbd4" category="admonition">在安装新的交换机软件版本和 RCF 之前，您必须擦除交换机设置并执行基本配置。在擦除交换机设置之前、您必须使用串行控制台连接到交换机或保留基本配置信息。</block>
   <block id="4c4876d5d981da2e6943a052d93bb189" category="list-text">对于NX-OS 10.2及更高版本、请使用<block ref="9c370f72db0e0d920841657ac5268365" prefix=" " category="inline-code"></block>命令与bootflash中保存的RCF文件进行比较。否则、请使用第三方比较或比较工具。</block>
   <block id="0a306731a6993e7a08026ab2d7ca2d97" category="paragraph">您可能需要更新与SSH密钥相关的主机文件条目。</block>
+  <block id="8b4a2ab0394283209f67c0b0e8ca9f94" category="list-text">要使用Broadcom和Cisco交换机收集日志、应在交换机上为启用了日志收集的每个设置创建一个新用户。这些交换机不支持同一用户使用多个SSH密钥。执行的任何其他日志收集设置都会覆盖用户的任何已有SSH密钥。</block>
+  <block id="1d768064a88b1cd8a98efaa14d7f9949" category="paragraph">在Broadcom BES-53248交换机上配置SNMPv3用户名SNMPv3 _user。</block>
 </blocks>
