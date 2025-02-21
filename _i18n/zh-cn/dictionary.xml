@@ -42,9 +42,6 @@
   <block id="82c7b5069d64f95a2a115dff1c9ad171" category="doc">安装集群交换机运行状况监控器（ CSHM ）配置文件</block>
   <block id="f4041989c699a535116c689437df5c7f" category="inline-link">NetApp 软件下载</block>
   <block id="87a71c7310f603842228cb9ab1b19ec2" category="list-text">在软件下载页面上，选择 * 交换机运行状况监控器配置文件 *</block>
-  <block id="71e7226148073765129cd7907345e8d0" category="list-text">选择平台 = * ONTAP * ，然后单击 * 执行！ *</block>
-  <block id="10ecf803d0b4415af42ea78c998ea4d0" category="list-text">在 "Switch Health Monitor Configuration Files for ONTAP " 页面上，单击 * 查看并下载 *</block>
-  <block id="89d871d0880e9496071a54d271f32095" category="list-text">在最终用户许可协议页面上，单击 * 接受 *</block>
   <block id="3a1759e54cb06a13c2c5b9b85a4c5282" category="list-text">将适用的 zip 文件上传到 IP 地址为 X.X.X.X.X 的内部 Web 服务器</block>
   <block id="903944fca05d1da45a504e69ed5609fb" category="paragraph">对于内部 Web 服务器 IP 地址 192.168.2.2 并假设存在 /usr/download 目录，您可以使用 scp 将 zip 文件上传到 Web 服务器：</block>
   <block id="f4ab3be3915b88f9d23c5faf297e78ff" category="list-text">验证命令输出是否包含文本字符串 "downloaded package processed successfully" 。如果发生错误，请联系 NetApp 支持部门。</block>
@@ -645,11 +642,6 @@
   <block id="d3312f44f54240c00519f1adefa9ca06" category="paragraph">40 G ISL 连接到交换机 A 端口 31</block>
   <block id="60fd865aea88521b642bdeb3e8c153c0" category="paragraph">40 G ISL 连接到交换机 B 端口 32</block>
   <block id="38043f32f232d56f888681bc42ba1bd8" category="paragraph">40 G ISL 连接到交换机 A 端口 32</block>
-  <block id="7b5f1af07f17424faae23117b93de4fb" category="list-text">在适用于 ONTAP - 问题描述的交换机运行状况监控器配置文件页面上，对于适用的集群交换机型号，单击 * 下载 * ，例如： * Cisco Nexus 92300YC*</block>
-  <block id="d9342955a19c127d0b1dd4e72f3e86b1" category="list-text">在 "Switch Health Monitor Configuration Files for ONTAP - Download" 页面上，选择适用的配置文件，例如： * Cisco_Nexus _923300 YC.zip</block>
-  <block id="eacf976afedcff2a1b48626c95df5ae6" category="list-text">使用命令 set-privilege advanced 从集群中的一个 ONTAP 系统访问高级模式设置：</block>
-  <block id="5b1c58aff8e7e4b9950fac4fb9b4f420" category="list-text">运行 switch health monitor configure 命令 system cluster-switch configure-health-monitor -node * -package-url X.x.X/location_to_download_zip 文件：</block>
-  <block id="56900e070e593f86cfcbc92add3c9eda" category="admonition">如果您随时还原到早期版本的 ONTAP ，则需要重新安装 CSHM 配置文件，以便对 923300 YC 集群交换机启用交换机运行状况监控。</block>
   <block id="645b50612eedcb03bdeff0f4c9f4de12" category="summary">如果要记录受支持的平台，则必须参考填写好的示例布线工作表来完成空白布线工作表。每个交换机均可配置为一个 100GbE ， 40GbE 端口或 4 个 10GbE 端口。</block>
   <block id="a4514f98af1e4526e3b8ea633ec10c2c" category="summary">如果要使用两个以上的节点构建 ONTAP 集群，则需要两个受支持的集群网络交换机。您可以使用其他管理交换机，这些交换机是可选的。</block>
   <block id="f0936c8d947d6fc9958bb86b9f3f74f8" category="list-text">Nexus 9336C-x2</block>
@@ -1075,7 +1067,6 @@
   <block id="e6f7afb7cbc9cb091c28d87f1b64c273" category="paragraph">下表列出了 92300YC 交换机，风扇和电源的部件号和问题描述：</block>
   <block id="f5b758910e77ef4f56db9cc19f96d706" category="paragraph"><block ref="f5b758910e77ef4f56db9cc19f96d706" category="inline-link-rx"></block></block>
   <block id="ec4312d0db3bce928129e7e5c3a58d73" category="paragraph"><block ref="ec4312d0db3bce928129e7e5c3a58d73" category="inline-link-rx"></block></block>
-  <block id="474f795914b70c8d0fc4aa239c11011e" category="list-text">根据相应的 ONTAP 版本下载集群交换机运行状况监控器配置 zip 文件。此文件可从获取<block ref="cb382f539d8e67a00135c8306b3d74b6" category="inline-link-rx"></block> 页面。</block>
   <block id="59653acc587f13b42a1fce9e5296fc26" category="doc">更换 Cisco Nexus 9336C-x2 存储交换机</block>
   <block id="816587e95ab17ba96376a2f82938f45e" category="paragraph">更换 Cisco Nexus 9336C-x2 存储交换机时，您必须了解某些配置信息，端口连接和布线要求。</block>
   <block id="b02b7a75ea7fea56eaff742aba8db0a7" category="paragraph">在 Cisco Nexus 9336C-x2 存储交换机上安装 NX-OS 软件和 RCF 之前，必须验证是否存在以下条件：</block>
@@ -3553,12 +3544,6 @@
   <block id="b37ec6b5e583c4d4165c4f6468ff4c8d" category="paragraph"><block ref="ec4312d0db3bce928129e7e5c3a58d73" category="inline-link-rx"></block> 包含有关平台的实际集群端口的最新信息。</block>
   <block id="932e02f4dd5ce2afc5f1d337171bbe3b" category="paragraph">+以下示例显示交换机CS2上的ISL端口已启动：</block>
   <block id="a0913b1d0ca305ccc8a7cd70035752bf" category="paragraph">+以下示例列出了交换机CS2上的相邻设备：</block>
-  <block id="e14d75f19493380754a91f619e066d40" category="summary">您可以使用此操作步骤安装适用于 Nexus 92300YC 集群交换机的集群交换机运行状况监控的配置文件。</block>
-  <block id="1ff6e6ca835c55f7604fe145c9b7b1a0" category="paragraph">按照此操作步骤 安装适用于Nexus 92300YC集群交换机的集群交换机运行状况监控的配置文件。</block>
-  <block id="a83f4b45204cd2c802ce925a2c2acf4e" category="paragraph">在 ONTAP 9.5P7 及更早版本以及 9.6P2 及更早版本中，您必须单独下载集群交换机运行状况监控器配置文件。在 ONTAP 9.5P8 及更高版本， 9.6P3 及更高版本以及 9.7 及更高版本中，集群交换机运行状况监控器配置文件与 ONTAP 捆绑在一起。</block>
-  <block id="742faf5d1d23380cf8bd803a6d0e5587" category="paragraph">在为92300YC集群交换机设置交换机运行状况监控器之前、请确保ONTAP 集群已启动且正在运行。</block>
-  <block id="5b9e24c0df9b0a3c36ea2bc4f8f5689d" category="admonition">您还应启用SSH以使用CSHM中提供的所有功能。</block>
-  <block id="9c25093bf19e7e3701836da707bde234" category="list-text">在ONTAP 系统上运行system cluster-switch show命令、并确保在发现集群交换机时将受监控字段设置为"True"。</block>
   <block id="a0a9cbf20cafab0efc048f27174d4b6b" category="paragraph">按照此操作步骤 在Nexus 92300YC交换机上安装NX-OS软件。</block>
   <block id="4467c0e8315716749952b403b5a34f1e" category="list-title">支持的端口和节点连接</block>
   <block id="4f1029afef8c698983cd55b4b7196076" category="list-text">适用于NetApp 支持站点 中交换机的NetApp Cisco NX-OS软件、可从获取<block ref="7bc6752d2076d2c755eaebbdfeb91d23" category="inline-link-rx"></block></block>
@@ -3687,7 +3672,6 @@
   <block id="be822dc3c2f09a2076f72c87018d7d7b" category="list-text"><block ref="8e341dc1e80127ca0dc2c12db6d0237a" category="inline-link-macro-rx"></block>。</block>
   <block id="279268b426208b389290aef165bbd309" category="paragraph">根据您的配置、您可以将Cisco Nexus 9336C-FX2交换机和直通面板安装在NetApp机柜中、并使用交换机附带的标准支架。</block>
   <block id="04d079026b4a7b63a084b7ab24426723" category="list-text"><block ref="16a9a5fa8979bab3106e7aad0dfd20d9" category="inline-link-macro-rx"></block>。</block>
-  <block id="b7f670881100cb5015f24ab017668ff1" category="list-text"><block ref="1310b35f96fb7b8136de7cec708b0834" category="inline-link-macro-rx"></block>。</block>
   <block id="fd280d62f276e98d2c1156b6a7cd8932" category="paragraph">在BES-53248集群交换机上下载并安装以太网阵列操作系统(EFOS)软件。</block>
   <block id="e5e0ceddda654af2c9e3c1386537e4f7" category="paragraph">或者、也可以通过购买和安装更多许可证来添加新端口。此交换机基本型号已获得16个10GbE或25GbE端口和两个100GbE端口的许可。</block>
   <block id="b983f14988f359bc65d91f081089597f" category="list-text"><block ref="e2b4c4f5313b05dff7c4a02a4e9e0df6" category="inline-link-macro-rx"></block>。</block>
@@ -3829,8 +3813,6 @@
   <block id="b2fa408052dc67c0683eaf90858b073f" category="inline-link">NVIDIA用户帐户</block>
   <block id="9fce5f0b8e1dcabf168f42a400a2d10d" category="paragraph">请参见<block ref="2d38cb404d4e76c701a1714802ee2c54" category="inline-link-rx"></block> 有关详细信息 ...</block>
   <block id="be8d2db807f6ccc0599691b80f14b976" category="list-text">安装了Cumulus Linux。请参见<block ref="c043e01cdc55399f824e6d1e4eb8a5b5" category="inline-link-rx"></block> 支持的版本。</block>
-  <block id="6c92285fa6d3e827b198d120ea3ac674" category="inline-link">此处</block>
-  <block id="b6a9bacb15977dcaaa1e05f20cc4d13b" category="paragraph">集群和存储应用程序可以使用两个RC框架 脚本。从下载RCF<block ref="89efcd657168a1e707caf54da1923871" category="inline-link-rx"></block>。每个的操作步骤 是相同的。</block>
   <block id="54d4022f2a747cb4974fcf06961bdb21" category="list-text">集群：* MSN2100-RCP-v1._x--cluster-HA-Breakout—LCDP*</block>
   <block id="eac7436c884133e6b945a51430510a32" category="list-text">存储：* MSN2100-RFP-v1._x_-Storage*</block>
   <block id="b9dfe38b5e91454220a6cd1f3cfb9ac8" category="admonition">在步骤3*更新上面的MOTD文件*中，命令<block ref="900d965bd90d181d344d976a0e3093d8" prefix=" " category="inline-code"></block> 已运行。这样、您可以验证RCV文件名、RCV版本、要使用的端口以及RCV横幅中的其他重要信息。</block>
@@ -3923,7 +3905,6 @@
   <block id="b211f67e6e9195c32683368a53542802" category="paragraph">此示例显示了使用SFTP将RCC复制到交换机CS2上的bootflash：</block>
   <block id="c77174e35b7f7fc235a87561809ad614" category="list-text">检查中的横幅输出<block ref="db837131dc56fab41bddc52d5aff8865" prefix=" " category="inline-code"></block> 命令：您必须阅读并遵循这些说明，以确保交换机的配置和操作正确。</block>
   <block id="420b545896cb1c9b03dbccd44bf33f86" category="list-text">在交换机上、验证在应用RC框架 后是否显示其他已获得许可的端口：</block>
-  <block id="6285269d7b8b003aed53cad1f3d13717" category="list-text">将所有集群节点连接缆线从旧CS2交换机移至新的CS2交换机。</block>
   <block id="f8e1e48a80ce2fac4d53a95f1f1ffd18" category="paragraph">*集群节点连接电缆已移至CS2-new交换机*</block>
   <block id="e07ca5d2322ee212c9dcb668e9db443a" category="image-alt">已将集群节点连接缆线移至CS2新交换机</block>
   <block id="604d674dc95a98cb2db636e889289949" category="list-text">将集群节点连接缆线从CS1移至新的CS1新交换机。</block>
@@ -4587,7 +4568,6 @@
   <block id="7d48e882dc8cfcd3a44f3f59ba949595" category="paragraph">提供有关在Nexus 9000系列交换机上对Cisco NX-OS软件进行中断升级/降级的信息
 基于您的当前版本和目标版本。</block>
   <block id="d6221baaf45cc1f4ed9ce13f32541fa8" category="paragraph">在页面上，选择“*中断升级”，然后从下拉列表中选择当前版本和目标版本。</block>
-  <block id="103347887335950e25df4c7b93bdd950" category="paragraph"><block ref="103347887335950e25df4c7b93bdd950" category="inline-link-macro-rx"></block></block>
   <block id="cf3a2d2c139bf5c9cc87fe714bfff3b1" category="list-text">请注意以下事项：</block>
   <block id="3ee80345befd8ba67ee5e3200beb2fd8" category="list-text">如果交换机上安装了其他端口许可证、则必须修改RCIF以配置其他获得许可的端口。请参见 <block ref="029ce138066352981401c2da3f4be7ea" category="inline-link-macro-rx"></block> 了解详细信息。</block>
   <block id="febb316f33bb4f57154038c792c90fc0" category="list-text">记录在以前的RC框架 中所做的任何自定义设置、并将其应用于新的RC框架。例如、设置端口速度或硬编码FEC模式。</block>
@@ -4626,11 +4606,7 @@
   <block id="c36caaf00f9a67804cb39871b93b4fb1" category="list-text">在“最终用户许可协议”页面上，选中复选框以同意，然后单击*Accept &amp; Continue*。</block>
   <block id="e5e0b87b73538c14eb1223ba2685b479" category="list-text">在Nvidia CSHM文件-下载页面上、选择适用的配置文件。可以使用以下文件：</block>
   <block id="4b96de8aec25594d2021f91d86aa38cb" category="open-title">ONTAP 9.151及更高版本</block>
-  <block id="b834fb250d0f1e06556ff2af9ce370ff" category="list-text">X190006-PE.zip</block>
-  <block id="33ab7322815a985fdb6cbba64b9ffda9" category="list-text">X190006-PI.zip</block>
   <block id="9fc9e8ea7a5cdfe68b4528fb16936bf1" category="open-title">ONTAP 9.11.1至9.14.1</block>
-  <block id="00032ac6acd20eb8310604aa0ac6a200" category="list-text">X190006-PE_PRIOR_9.15.1.zip</block>
-  <block id="6a9e7f50780a2f2b4e2b5999c1b1ae2b" category="list-text">X190006-PI_PRIOR_9.15.1.zip</block>
   <block id="3e5315d19591c6790a6c062127cf9a8e" category="list-text">[[STEP2]]将适用的zip文件上传到内部Web服务器。</block>
   <block id="e319ecf1cb942a0710da7d0d525af1db" category="list-text">从集群中的一个ONTAP系统访问高级模式设置。</block>
   <block id="4072831dc74599297a173c0e1d86b538" category="list-text">运行交换机运行状况监控器配置命令。</block>
@@ -5193,5 +5169,46 @@
   <block id="4c4876d5d981da2e6943a052d93bb189" category="list-text">对于NX-OS 10.2及更高版本、请使用<block ref="9c370f72db0e0d920841657ac5268365" prefix=" " category="inline-code"></block>命令与bootflash中保存的RCF文件进行比较。否则、请使用第三方比较或比较工具。</block>
   <block id="0a306731a6993e7a08026ab2d7ca2d97" category="paragraph">您可能需要更新与SSH密钥相关的主机文件条目。</block>
   <block id="8b4a2ab0394283209f67c0b0e8ca9f94" category="list-text">要使用Broadcom和Cisco交换机收集日志、应在交换机上为启用了日志收集的每个设置创建一个新用户。这些交换机不支持同一用户使用多个SSH密钥。执行的任何其他日志收集设置都会覆盖用户的任何已有SSH密钥。</block>
-  <block id="1d768064a88b1cd8a98efaa14d7f9949" category="paragraph">在Broadcom BES-53248交换机上配置SNMPv3用户名SNMPv3 _user。</block>
+  <block id="89fe808c6ef5fe301085b5abe4406d35" category="paragraph">在Broadcom BES-53248交换机上配置SNMPv3用户名network-operator。</block>
+  <block id="97e3bfa41185c29b8e204545b638d532" category="open-title">NVIDIA - CLI 5.11</block>
+  <block id="3a5cc736f1918e798338d9e890393631" category="paragraph">在运行CLI 5.11的NVIDIA SN2100交换机上配置SNMPv3用户名SNMPv3 _user：</block>
+  <block id="01fabc1436d158d1079e5aac28e9fdc4" category="list-text">[[STEP_4]]对集群Lifs禁用自动还原。</block>
+  <block id="5b7bd3025678f1b622b4cfd0f4313991" category="inline-xref">步骤。10</block>
+  <block id="4ea7139be4dc5337c4d5a24c536b310e" category="list-text">如果集群的SIF已故障转移到交换机CS1且集群运行状况良好，请转至<block ref="1d8bc3843ab5c78170d8cf97ded2a73f" category="inline-xref-macro-rx"></block>。如果某些集群lifs运行不正常或集群运行不正常、您可以回滚与交换机CS2的连接、如下所示：</block>
+  <block id="b52df29b27288e7509af85c891cfa88b" category="list-text">启动连接到*all*节点的集群端口的端口：</block>
+  <block id="ca0787e835ac5a719db1548573613d0f" category="inline-xref">步骤。4</block>
+  <block id="bee24c21734f4c3230186de99029991e" category="list-text">恢复LIF和集群运行状况后，从重新启动该进程<block ref="6f1447d50cf784e5bfe7d2099a4e4237" category="inline-xref-macro-rx"></block>。</block>
+  <block id="701f1b96f3c7f1e9d631ebd244cb5751" category="list-text">[[STEP_10]]将所有集群节点连接缆线从旧的CS2交换机移至新的CS2-new交换机。</block>
+  <block id="e443d0981e8ed96d62afd1a1990bd924" category="list-text"><block ref="e1c53d78ceb09f1d765f98cd902707bb" category="inline-link-macro-rx"></block>(英文)</block>
+  <block id="dbe9b3c650ae4dca2117921c884a54d2" category="paragraph"><block ref="dbe9b3c650ae4dca2117921c884a54d2" category="inline-link-macro-rx"></block></block>
+  <block id="04809177ba282c138a7aa6bfb72e2303" category="list-text"><block ref="a01edf94205db0a19942e0d6099d8722" category="inline-link-macro-rx"></block>(英文)</block>
+  <block id="4e83c3d43e8660c85f2e2b6e1374c91c" category="inline-link">NVIDIA SN2100软件下载</block>
+  <block id="618905d758007147320232ab81a98bf3" category="paragraph">集群和存储应用程序可以使用两个RC框架 脚本。从第页下载RCF<block ref="5baf2e10c7d5342617f6966efa0bb2fe" category="inline-link-rx"></block>。每个的操作步骤 是相同的。</block>
+  <block id="ad1d45bcb656bf91a079869a2361d735" category="open-title">Cumulus Linux 5.4</block>
+  <block id="ccd8680433ee6ee996cb1f0a2ae6fb85" category="admonition">列出的例外不会影响性能、可以放心地忽略。</block>
+  <block id="a8b6e34450406e412ecb8d40596d9a8d" category="open-title">Cumulus Linux 5.1.1</block>
+  <block id="554b50c45dae7ea0e30a60829694ee3a" category="admonition">虽然<block ref="8a444a43bdf534c0c6338bb7809659b3" prefix=" " category="inline-code"></block>在示例中使用了、但您可以使用首选的文件传输方法。</block>
+  <block id="9cb95d38203cf6445dec8201a9a5b8df" category="paragraph">按照以下过程安装适用于监控NVIDIA集群交换机以太网交换机运行状况的配置文件。</block>
+  <block id="118235a8412030b4348eaf7beb295e9a" category="paragraph">支持的型号包括：</block>
+  <block id="4439fd91d84b3562f1b65b6624b8e4af" category="list-text">MSN2100-CB2FC</block>
+  <block id="95457e019d4e34bf1527cfc720276bde" category="list-text">MSN2100-CB2RC</block>
+  <block id="0a7c753e8699d579b1dd4105b9e6b566" category="list-text">清除<block ref="8be5dd683a73b3d7c1a85aa778b3c099" prefix=" " category="inline-code"></block>所有节点上的目录：</block>
+  <block id="ccbc1b6fe0fb2c14a182936d44b7998a" category="list-text">输入noshell：</block>
+  <block id="fbae52a4debd6c92af11b0063f9a23d8" category="paragraph"><block ref="ce0584b63a66ddeac8919682fc93ce1a" prefix="" category="inline-code"></block></block>
+  <block id="efe7a477280f5bfdffb85faa6e94d148" category="list-text">更改为高级权限：</block>
+  <block id="04f8c8c881d9c66c4b51ab93a42ab746" category="paragraph"><block ref="37c965129cc09840500d7671b0accef3" prefix="" category="inline-code"></block></block>
+  <block id="771d6c6c56d83746eaa82bd62e11363c" category="list-text">列出目录中的配置文件<block ref="e4b3e6938bc5f3e3c811cf46ae8b7d53" prefix=" " category="inline-code"></block>。如果目录存在并包含配置文件、则会列出文件名。</block>
+  <block id="6e89d35fb8a737baae7064c5ba2d6485" category="paragraph"><block ref="47f0187f585158fcdf3257a96c5d4bab" prefix="" category="inline-code"></block></block>
+  <block id="804c8f34f92745eacda3674d93c6ede1" category="list-text">删除与您所连接的交换机型号对应的所有NOD文件。</block>
+  <block id="f938cfce39fe890a9f9b521c87a02106" category="paragraph">如果您不确定、请删除上面列出的受支持型号的所有nod文件、然后下载并安装这些型号的最新nod文件。</block>
+  <block id="ff9495347e1ccb9f937f04b4bbdd58bb" category="paragraph"><block ref="529be1cf6940ca38f1fda287a22c9fda" prefix="" category="inline-code"></block></block>
+  <block id="410e37690b6661c1eaeb818d9bed27c0" category="list-text">确认已删除的nud文件不再位于目录中：</block>
+  <block id="76bde9294ef84452f21b2745228ae290" category="list-text">MSN2100-CB2FC-v1.4.zip</block>
+  <block id="85c07a49f236d7b33a2e8b48d076ed48" category="list-text">MSN2100-CB2RC-v1.4.zip</block>
+  <block id="ae5e87300b042b85bdd2853f386265e7" category="list-text">X190006-PE-v1.4.zip</block>
+  <block id="ab58ebe2dd50e3692c204585184a34f7" category="list-text">X190006-PI-v1.4.zip</block>
+  <block id="c3a1ef8a44fcace6af948f51ef4d8258" category="list-text">MSN2100-CB2FC_PRIOR_R9.15.1-v1.4.zip</block>
+  <block id="11ef8d241b319efa4a76430a0c6a78dd" category="list-text">MSN2100-CB2RC_PRIOR_R9.15.1-v1.4.zip</block>
+  <block id="0179c8f8dd0b9cba4199d46bd95ddd3b" category="list-text">X190006-PE_PRIOR_9.15.1-v1.4.zip</block>
+  <block id="3dd005cf004a39e1cb3e400094afa4c6" category="list-text">X190006-PI_PRIOR_9.15.1-v1.4.zip</block>
 </blocks>

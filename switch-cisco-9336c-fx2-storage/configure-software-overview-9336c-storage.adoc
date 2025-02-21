@@ -15,5 +15,5 @@ summary: Cisco Nexus 9336C-x2存储交换机的软件配置概述
 
 . link:install-nxos-overview-9336c-storage.html["准备安装NX-OS和RCF"]。
 . link:install-nxos-software-9336c-storage.html["安装 NX-OS 软件"]。
-. link:install-nxos-rcf-9336c-storage.html["安装RCF配置文件"]。
+. link:install-rcf-software-9336c-storage.html["安装RCF配置文件"](英文)
 

@@ -25,8 +25,7 @@ Cisco Nexus 9334C-拧 动交换机是Cisco Nexus 9000平台的一部分、可安
 . link:install-switch-and-passthrough-panel-9336c-storage.html["将交换机安装到NetApp机柜中"](英文)
 . link:install-nxos-overview-9336c-storage.html["准备安装NX-OS和RCF"]。
 . link:install-nxos-software-9336c-storage.html["安装 NX-OS 软件"]。
-. link:install-nxos-rcf-9336c-storage.html["安装RCF配置文件"]。
-. link:configure-ssh.html["启用 SSH ："](英文)
+. link:install-rcf-software-9336c-storage.html["安装RCF配置文件"](英文)
 
 
 

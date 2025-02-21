@@ -21,7 +21,7 @@ Cisco Nexus 9336C-x2 集群交换机上必须安装 Cisco NX-OS 软件和参考�
 +
 下载并安装或升级Cisco Nexus 9335C - NX集群交换机上的NX-OS软件。
 
-. link:install-nxos-rcf-9336c-cluster.html["安装或升级RC框架"](英文)
+. link:install-upgrade-rcf-overview-cluster.html["安装或升级RC框架"](英文)
 +
 在首次设置Cisco Nexus 9334C -拧 动交换机后、安装或升级RCC。您也可以使用此操作步骤升级 RCF 版本。
 
