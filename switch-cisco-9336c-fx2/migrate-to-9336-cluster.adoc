@@ -26,7 +26,8 @@ summary: 您可以将 ONTAP 集群中较早的 Cisco 集群交换机无中断迁
 * Cisco Nexus 9336C-x2交换机的初始自定义已完成、以便：
 +
 ** 9336C-FX2交换机正在运行建议的最新软件版本。
-** 参考配置文件(Reference Configuration Files、RCF)已应用于交换机。
+** 确认参考配置文件(Reference Configuration Files、RCF)已完全应用于任何新交换机、然后再将这些交换机迁移到新交换机。
+** 在转移网络流量之前、请检查两台交换机上的运行和启动配置。
 ** 任何站点自定义、例如DNS、NTP、SMTP、SNMP、和SSH。
 
 
