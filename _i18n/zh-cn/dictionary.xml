@@ -3635,7 +3635,6 @@
   <block id="ce140d6d1921435e3df40a72b6d032f4" category="sidebar">从CN1610交换机迁移</block>
   <block id="ac0586dfb2126d95d9be6378c5f70512" category="sidebar">从无交换机集群迁移到有交换机集群</block>
   <block id="703c0fedc12db69e340d7c2f3de0d764" category="sidebar">更换交换机</block>
-  <block id="742d7720a6bdc19b4810641f0c74ddd3" category="sidebar">升级交换机</block>
   <block id="5990fb757a59a934aeb2786bac162e97" category="sidebar">安装EFOS软件</block>
   <block id="e7d694813a2146a3ab31b4b907988620" category="sidebar">启用 SSH ：</block>
   <block id="037fd3285f5414c76c57c401fbc5603c" category="sidebar">启用日志收集</block>
@@ -3901,7 +3900,6 @@
   <block id="d03fee12ab01ee4f556908abcba26347" category="list-text">使用SSH再次登录到交换机以完成RC框架 安装。</block>
   <block id="63f7338fc9ee539e34242e8d03110038" category="list-text">使用以下传输协议之一将 RCF 复制到交换机 CS2 的启动闪存： FTP ， TFTP ， SFTP 或 SCP 。</block>
   <block id="b211f67e6e9195c32683368a53542802" category="paragraph">此示例显示了使用SFTP将RCC复制到交换机CS2上的bootflash：</block>
-  <block id="c77174e35b7f7fc235a87561809ad614" category="list-text">检查中的横幅输出<block ref="db837131dc56fab41bddc52d5aff8865" prefix=" " category="inline-code"></block> 命令：您必须阅读并遵循这些说明，以确保交换机的配置和操作正确。</block>
   <block id="420b545896cb1c9b03dbccd44bf33f86" category="list-text">在交换机上、验证在应用RC框架 后是否显示其他已获得许可的端口：</block>
   <block id="f8e1e48a80ce2fac4d53a95f1f1ffd18" category="paragraph">*集群节点连接电缆已移至CS2-new交换机*</block>
   <block id="e07ca5d2322ee212c9dcb668e9db443a" category="image-alt">已将集群节点连接缆线移至CS2新交换机</block>
@@ -4634,9 +4632,7 @@
   <block id="e1ef2bf589b36ef4fe890c1ce3f4414e" category="list-text"><block ref="0a41823d2a109b5dbd6f2fa1f8fe6689" category="inline-link-macro-rx"></block>(英文)</block>
   <block id="629075dbdb9eff0fb95f99ab0fcd1967" category="paragraph">下载并安装或升级Cisco Nexus 9335C - NX集群交换机上的NX-OS软件。</block>
   <block id="11106314fe1d4dd5bee639afb348b915" category="inline-link-macro">安装或升级RC框架</block>
-  <block id="c04285e0007809b2644676a723882b00" category="list-text"><block ref="1fe309bd8e626375dc4971f4edf77d2d" category="inline-link-macro-rx"></block>(英文)</block>
   <block id="01a618717f01c55d9b54bedd7307a43f" category="paragraph">在首次设置Cisco Nexus 9334C -拧 动交换机后、安装或升级RCC。您也可以使用此操作步骤升级 RCF 版本。</block>
-  <block id="b002a5cd7db32a3dea22b0992712b264" category="list-text"><block ref="56a03b023ba50fb49738eaf20203f57a" category="inline-link-macro-rx"></block>(英文)</block>
   <block id="959598166d06ebc7f87da7525f293a91" category="list-text"><block ref="0bc8e83d3cd2eebf0c2c5d2a7b54cc6c" category="inline-link-macro-rx"></block>(英文)</block>
   <block id="df7bc1c04ccb094d3b474fc08a97d272" category="paragraph">设置交换机硬件。</block>
   <block id="a7682f7ee72405f79f40850a1dea900c" category="list-text"><block ref="93d08ab8d6c80a25299648349a7a616c" category="inline-link-macro-rx"></block>(英文)</block>
@@ -4779,7 +4775,6 @@
   <block id="2d7cd36455daea92f172ede16d765aae" category="list-text">[[STEP7]]验证集群是否运行正常：</block>
   <block id="acdfe379cf0ed5868b119418e7d41b82" category="list-text">[[STEP11]]为组2中的端口设置无交换机配置。</block>
   <block id="a2f7ec2dd8feebc2c1e30e5f859d4497" category="list-text">[[STEP6]]如果禁止自动创建案例、请通过调用AutoSupport消息重新启用：</block>
-  <block id="2f3040f570b3d77425ad0bf50fc7985c" category="list-text">[[STEP6]]将权限级别重新更改为admin：</block>
   <block id="4e4f70ba52e8cb595faa069991c5a9f4" category="list-text">[[STEP5]]如果禁止自动创建案例、请通过调用AutoSupport 消息重新启用：</block>
   <block id="c97fddef37af781b99f2bb564a90861d" category="list-text">[[STEP9]]将权限级别重新更改为admin：</block>
   <block id="991d705309210a9623a3f1d994c15150" category="list-text">[[Step10]]关闭活动Nexus 5596交换机CL1上的ISL端口41到48：</block>
@@ -5139,7 +5134,6 @@
   <block id="f36aa89aee5a55633ce25b54c9a779d3" category="sidebar">migrate from switchless集群</block>
   <block id="c32aa48aa3b92b64c3a5ea6a1b2e9a1f" category="sidebar">从双节点无交换机集群迁移工作流</block>
   <block id="df8a9198280d88db538535b2609f0f83" category="sidebar">Replace_switches_3232C</block>
-  <block id="6697bf1c75a0d4d8868afeab04858bc3" category="sidebar">Upgrade_switches_3232C</block>
   <block id="253d101ba7a8a0f1e24c1a3b13a1b5b5" category="sidebar">install_upgrade</block>
   <block id="2b8efdb0e77054ffe22b4bfb75564155" category="sidebar">安装或升级RC框架 概述</block>
   <block id="b6503bc6a2e6ede86368a60473711626" category="list-text">对交换机 CS1 重复步骤 1 至 11 。</block>
@@ -5256,4 +5250,6 @@
   <block id="a9fc37ffea4ac5fbd75f369d96c903f6" category="sidebar">集群交换机- Cisco Nexus 9336-拧 动或9336-拨 动</block>
   <block id="ed3dd7f516f69cf573ae79a1781bbcbf" category="sidebar">集群交换机—NVIDIA SN2100集群交换机</block>
   <block id="49e57b2c31c8feba776b7a2916673678" category="sidebar">Cisco Nexus 9334T-Nexus或9334T-902-T</block>
+  <block id="c66ea64be71d87967746ef74fac6ec75" category="list-text">[[STEP11]]检查命令的横幅输出<block ref="db837131dc56fab41bddc52d5aff8865" prefix=" " category="inline-code"></block>。您必须阅读并遵循这些说明，以确保交换机的配置和操作正确。</block>
+  <block id="8b084baecf96a692280d1a024d86081d" category="list-text"><block ref="cf3a409f8782a7944244632e6a1adb8e" category="inline-link-macro-rx"></block>(英文)</block>
 </blocks>

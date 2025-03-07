@@ -19,7 +19,7 @@ Cisco Nexus 9336C-x2集群交换机是Cisco Nexus 9000平台的一部分、可�
 
 要在运行ONTAP 的系统上初始配置Cisco Nexus 9336C-FX2交换机、请执行以下步骤：
 
-. link:setup-worksheet-9336c-cluster.html["填写Cisco Nexus 9336C-x2布线工作表"](英文)
+. link:setup-worksheet-9336c-cluster.html["填写Cisco Nexus 9334T-Nexus或9334T-702-T布线工作表"](英文)
 +
 示例布线工作表提供了从交换机到控制器的建议端口分配示例。空白工作表提供了一个模板、可用于设置集群。
 
@@ -43,7 +43,7 @@ Cisco Nexus 9336C-x2集群交换机是Cisco Nexus 9000平台的一部分、可�
 +
 在Nexus 9335C-NX集群交换机上安装或升级NX-OS软件。
 
-. link:install-nxos-rcf-9336c-cluster.html["安装或升级RC框架"](英文)
+. link:install-upgrade-rcf-overview-cluster.html["安装或升级RC框架"](英文)
 +
 在首次设置Nexus 9334c-拧 动交换机后、安装或升级RC框架。您也可以使用此操作步骤升级 RCF 版本。
 

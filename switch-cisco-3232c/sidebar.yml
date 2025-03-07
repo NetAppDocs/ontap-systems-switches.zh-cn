@@ -86,6 +86,3 @@ entries:
     url: "/switch-cisco-3232c/replace-cluster-switch.html"
   - title: 将集群交换机更换为无交换机连接
     url: "/switch-cisco-3232c/migrate-to-switchless-cluster-interconnect.html"
-- title: 升级交换机
-  pdf-filename: Upgrade_switches_3232C
-  url: "/switch-cisco-3232c/upgrade-3232c-storage-switches.html"

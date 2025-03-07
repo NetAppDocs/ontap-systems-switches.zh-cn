@@ -426,6 +426,7 @@ Configuration Saved!
 (cs2)# *reload*
 Are you sure you would like to reset the system? (y/n) *y*
 ----
+.. 使用SSH再次登录到交换机以完成RC框架 安装。
 
 
 . 请注意以下事项：
@@ -434,11 +435,78 @@ Are you sure you would like to reset the system? (y/n) *y*
 .. 记录在以前的RC框架 中所做的任何自定义设置、并将其应用于新的RC框架。例如、设置端口速度或硬编码FEC模式。
 
 
+
+
+[role="tabbed-block"]
+====
+.EFOS 3.12.x及更高版本
+--
 . 使用以下传输协议之一将 RCF 复制到交换机 CS2 的启动闪存： FTP ， TFTP ， SFTP 或 SCP 。
 +
 此示例显示了使用SFTP将RCC复制到交换机CS2上的bootflash：
 
+
+
+[listing, subs="+quotes"]
+----
+(cs2)# *copy sftp://172.19.2.1/BES-53248-RCF-v1.9-Cluster-HA.txt
+nvram:reference-config*
+Remote Password:**
+Mode........................................... TFTP
+Set Server IP.................................. 172.19.2.1
+Path........................................... //tmp/
+Filename....................................... BES-53248_RCF_v1.9-Cluster-HA.txt
+Data Type...................................... Config Script
+Destination Filename........................... BES-53248_RCF_v1.9-Cluster-HA.scr
+Management access will be blocked for the duration of the transfer
+Are you sure you want to start? (y/n) *y*
+TFTP Code transfer starting...
+File transfer operation completed successfully.
+----
+. 验证脚本是否已下载并保存在您为其指定的文件名下：
 +
+`s记录列表`
+
++
+[listing, subs="+quotes"]
+----
+(cs2)# *script list*
+
+Configuration Script Name                  Size(Bytes)  Date of Modification
+-----------------------------------------  -----------  --------------------
+Reference-config.scr                       2680         2024 05 31 21:54:22
+2 configuration script(s) found.
+2042 Kbytes free.
+----
+. 将此脚本应用于交换机。
++
+`s记录应用`
+
++
+[listing, subs="+quotes"]
+----
+(cs2)# *script apply reference-config.scr*
+
+Are you sure you want to apply the configuration script? (y/n) *y*
+
+The system has unsaved changes.
+Would you like to save them now? (y/n) *y*
+Config file 'startup-config' created successfully.
+Configuration Saved!
+
+Configuration script 'BES-53248_RCF_v1.9-Cluster-HA.scr' applied.
+----
+
+
+--
+.所有其他 EFOS 版本
+--
+. 使用以下传输协议之一将 RCF 复制到交换机 CS2 的启动闪存： FTP ， TFTP ， SFTP 或 SCP 。
++
+此示例显示了使用SFTP将RCC复制到交换机CS2上的bootflash：
+
+
+
 [listing, subs="+quotes"]
 ----
 (cs2)# *copy sftp://172.19.2.1/tmp/BES-53248_RCF_v1.9-Cluster-HA.txt
@@ -460,9 +528,6 @@ File transfer operation completed successfully.
 `s记录列表`
 
 +
-.显示示例
-[%collapsible]
-====
 [listing, subs="+quotes"]
 ----
 (cs2)# *script list*
@@ -473,15 +538,11 @@ BES-53248_RCF_v1.9-Cluster-HA.scr          2241         2020 09 30 05:41:00
 
 1 configuration script(s) found.
 ----
-====
 . 将此脚本应用于交换机。
 +
 `s记录应用`
 
 +
-.显示示例
-[%collapsible]
-====
 [listing, subs="+quotes"]
 ----
 (cs2)# *script apply BES-53248_RCF_v1.9-Cluster-HA.scr*
@@ -495,8 +556,11 @@ Configuration Saved!
 
 Configuration script 'BES-53248_RCF_v1.9-Cluster-HA.scr' applied.
 ----
+
+
+--
 ====
-. 检查中的横幅输出 `show clibanner` 命令：您必须阅读并遵循这些说明，以确保交换机的配置和操作正确。
+. [[STEP11]]检查命令的横幅输出 `show clibanner`。您必须阅读并遵循这些说明，以确保交换机的配置和操作正确。
 +
 `show clibanner`
 
@@ -1042,7 +1106,7 @@ RPC status:
 ----
 --
 ====
-. [[STEP6]]将权限级别重新更改为admin：
+. 将权限级别重新更改为 admin ：
 +
 [source, cli]
 ----
