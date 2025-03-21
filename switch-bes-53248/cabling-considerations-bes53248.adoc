@@ -68,12 +68,11 @@ summary: 在配置Broadcom BES-53248交换机之前、请查看以下信息。
 == FEC要求
 
 * 对于使用铜缆的25G端口、请参见下表以了解详细信息。
-
-
++
 如果控制器端为 `auto`，开关端设置为FEC 25G。
 
 +
-图像：./media/FEC_copper_table.jpg[25G端口(使用铜缆)
+image::../media/FEC_copper_table.jpg[使用铜缆的25G端口]
 
 * 对于使用光纤/光缆的25G端口、请参见下表以了解详细信息：
 +

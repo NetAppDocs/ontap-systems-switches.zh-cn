@@ -1,16 +1,7 @@
----
-permalink: switch-cshm/config-log-collection.html 
-sidebar: sidebar 
-keywords: log collection feature,collect switch-related log files,SSh key,crypto key generation 
-summary: '以太网交换机运行状况监控器(CSHM)日志收集功能用于从ONTAP中的集群或存储网络交换机收集日志。' 
----
-= 配置日志收集
+= 开始之前
 :allow-uri-read: 
-:icons: font
-:imagesdir: ../media/
 
 
-[role="lead"]
 以太网交换机运行状况监控器(CSHM)负责确保集群和存储网络交换机的运行状况、并收集交换机日志以进行调试。此过程将指导您完成设置收集、请求详细的*Support*日志以及启用每小时收集AutoSupport收集的*定期*数据的过程。
 
 *注：*如果启用FIPS模式，则必须完成以下操作：
@@ -240,8 +231,3 @@ cluster1::*> *system switch ethernet log show -instance*
 
 --
 ====
-
-CAUTION: 如果日志收集功能报告了任何错误状态(在的输出中可见 `system switch ethernet log show`)，请参见以了解更多详细信息。 link:log-collection-troubleshoot.html["对日志收集进行故障排除"]
-
-.下一步是什么？
-link:config-snmpv3.html["配置SNMPv3 (可选)"](英文)
