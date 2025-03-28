@@ -4,17 +4,17 @@ sidebar: sidebar
 keywords: install rcf script, python script, sn2100 SN2100 switches, cumulus 
 summary: 按照此操作步骤 安装RCF脚本。 
 ---
-= 安装RCF脚本
+= 安装或升级RCF脚本
 :allow-uri-read: 
 :icons: font
 :imagesdir: ../media/
 
 
 [role="lead"]
-按照此操作步骤 安装RCF脚本。
+按照以下过程安装或升级RCF脚本。
 
 .您需要的内容
-在安装RCF脚本之前、请确保交换机上具有以下配置：
+在安装或升级RCF脚本之前、请确保交换机上具有以下可用项：
 
 * 已安装Cumulus Linux 4.4.3。
 * 通过DHCP定义或手动配置的IP地址、子网掩码和默认网关。
@@ -23,8 +23,8 @@ summary: 按照此操作步骤 安装RCF脚本。
 .当前RCF脚本版本
 有两个RCF脚本可用于集群和存储应用程序。每个的操作步骤 是相同的。
 
-* 集群：* MSN2100-RCF-v1.8-Cluster*
-* 存储：* MSN2100-RCF-v1.8-Storage*
+* 集群：* MSN2100-RFP-v1._x_-Cluster*
+* 存储：* MSN2100-RFP-v1._x_-Storage*
 
 
 

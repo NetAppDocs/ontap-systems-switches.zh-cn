@@ -2061,12 +2061,9 @@
   <block id="b366aa7d44d5ae24af827fa423f8a2f2" category="list-text">使用以下两个命令启用以太网交换机运行状况监控器日志收集功能以收集交换机相关的日志文件：`ssystem switch Ethernet log setup-password`和`ssystem switch Ethernet log enable-Collection`</block>
   <block id="6d5256d36c2629c07d67ddb2fc78e95c" category="list-text">启动交换机日志收集功能：`ssystem switch Ethernet log Collect -device *`</block>
   <block id="676b4f116c6b65afc97655131da52093" category="paragraph">等待10分钟、然后使用命令`ssystem switch Ethernet log show`检查日志收集是否成功</block>
-  <block id="3722090c5c0b0496759b23b1db5566cd" category="doc">安装RCF脚本</block>
   <block id="90bd80eefde443be8809a3edf64f7ef2" category="list-text">通过DHCP定义或手动配置的IP地址、子网掩码和默认网关。</block>
   <block id="1d9152605063cf1b257a36675cece81c" category="inline-link-macro">布线和配置注意事项</block>
   <block id="526990b43ff7cafabc1a3c5dda4e8c9b" category="paragraph">有两个RCF脚本可用于集群和存储应用程序。每个的操作步骤 是相同的。</block>
-  <block id="d43ffd29b9c1918eacb74ce61ab9c93d" category="list-text">集群：* MSN2100-RCF-v1.8-Cluster*</block>
-  <block id="85948408e24eaebde36ef1a070afa259" category="list-text">存储：* MSN2100-RCF-v1.8-Storage*</block>
   <block id="47a90a8bc6531c96684b95f438b570ff" category="admonition">以下示例操作步骤 显示了如何下载并应用集群交换机的RCF脚本。</block>
   <block id="8e7538255f1b89e8cb901d939793795e" category="admonition">示例命令输出使用交换机管理IP地址10.233.204.71、网络掩码255.255.254.0和默认网关10.233.204.1。</block>
   <block id="cba289d19a283a01be4ec7d5598b25e8" category="list-text">显示SN2100交换机上的可用接口：</block>
@@ -2370,7 +2367,6 @@
   <block id="e0ab29823a477894018f5c53cfabeece" category="summary">对于NVIDIA SN2100交换机安装和维护、请务必查看所有建议的文档。</block>
   <block id="7ec5693d2c180df872f5e23364ecd351" category="doc">NVIDIA SN2100交换机的文档要求</block>
   <block id="5a5096484954db754c9fdc1d20f50720" category="summary">按照此操作步骤 安装RCF脚本。</block>
-  <block id="2123b47f46a6b2a44de513e0c343098f" category="paragraph">在安装RCF脚本之前、请确保交换机上具有以下配置：</block>
   <block id="6b05439cc5176e82c5cfdc0d918624ea" category="paragraph"><block ref="e82a1249d31ab6e6d4064390013e6c55" prefix="" category="inline-code"></block></block>
   <block id="458ab89f862895d8f5ce855c654868d6" category="paragraph">RCF脚本将完成上述步骤。</block>
   <block id="8d64daaea35553b232a39d8de9b07201" category="list-text">验证接口中收发器的信息：</block>
@@ -5231,4 +5227,15 @@
   <block id="1422bf436bfd810c807aacf3aab99615" category="paragraph">配置交换机并安装所需软件后、请访问适用于您的ONTAP系统平台型号的安装和设置说明以完成系统设置。</block>
   <block id="ce85a54726781b89fe08c28de38285c0" category="paragraph">安装并设置ONTAP系统控制器和交换机后、必须在ONTAP中完成存储配置。根据您的部署配置访问以下说明。</block>
   <block id="674426100287eb3a5e16cf5705c524ea" category="image-alt">使用铜缆的25G端口</block>
+  <block id="ec65012ad6ac37ed9d5b425acfa4cdea" category="doc">安装或升级参考配置文件(Reference Configuration File、RCF)脚本</block>
+  <block id="60db3c5b6db09c40831f96fad7f5b5c4" category="paragraph">按照以下过程安装或升级RCF脚本。</block>
+  <block id="a26beebaedce14e4e55b90d7a8d895f4" category="paragraph">在安装或升级RCF脚本之前、请确保交换机上具有以下可用项：</block>
+  <block id="3a0aebe04bfa1f6aaf965b9c027512bc" category="open-title">Cumulus Linux 5.4.0</block>
+  <block id="9ec751f6f6fe23e217638410987b5aab" category="open-title">Cumulus Linux 5.11.0</block>
+  <block id="2340bc2649383727b40f4420d1b47844" category="doc">升级参考配置文件(Reference Configuration File、RCF)脚本</block>
+  <block id="8ab41648ed191efe1d9524e2535c7f4d" category="paragraph">按照以下过程升级RCF脚本。</block>
+  <block id="b3be7362d2d8f250dc5fcbfaf784efd0" category="paragraph">在升级RCF脚本之前、请确保交换机上具有以下可用项：</block>
+  <block id="997f5023d76908d72d993d6b09390a5e" category="doc">安装或升级RCF脚本</block>
+  <block id="7baa7758ed49797651dc1e276762ae15" category="list-text">集群：* MSN2100-RFP-v1._x_-Cluster*</block>
+  <block id="dd584ffba0b7534139645967bf24df84" category="sidebar">安装或升级RCF脚本</block>
 </blocks>
