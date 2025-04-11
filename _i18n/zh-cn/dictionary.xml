@@ -5213,7 +5213,6 @@
   <block id="49e57b2c31c8feba776b7a2916673678" category="sidebar">Cisco Nexus 9334T-Nexus或9334T-902-T</block>
   <block id="c66ea64be71d87967746ef74fac6ec75" category="list-text">[[STEP11]]检查命令的横幅输出<block ref="db837131dc56fab41bddc52d5aff8865" prefix=" " category="inline-code"></block>。您必须阅读并遵循这些说明，以确保交换机的配置和操作正确。</block>
   <block id="8b084baecf96a692280d1a024d86081d" category="list-text"><block ref="cf3a409f8782a7944244632e6a1adb8e" category="inline-link-macro-rx"></block>(英文)</block>
-  <block id="a0483532706ba341300191e20cafc42e" category="list-text">要使用Broadcom和Cisco交换机收集日志、应在交换机上为启用了日志收集的每个集群设置创建一个新用户。这些交换机不支持同一用户使用多个SSH密钥。执行的任何其他日志收集设置都会覆盖用户的任何已有SSH密钥。</block>
   <block id="1fcbc8802637b04b8fe9a86ac3d545c9" category="paragraph-title"><block ref="58f667aaf05f87159670e12bd9bc076b" category="inline-image-macro-rx" type="image"></block>安装交换机硬件</block>
   <block id="b11226c776ec1b74f6a42f871e3194c9" category="paragraph-title"><block ref="54f425ce8d89f4ed6b8a546561af5d60" category="inline-image-macro-rx" type="image"></block>安装存储系统和存储架</block>
   <block id="130792cb3edc8d0afffb557e50b218c3" category="paragraph">在机柜或机架中安装存储系统和存储架。访问适用于您的平台型号的安装和设置说明。</block>
@@ -5238,4 +5237,9 @@
   <block id="997f5023d76908d72d993d6b09390a5e" category="doc">安装或升级RCF脚本</block>
   <block id="7baa7758ed49797651dc1e276762ae15" category="list-text">集群：* MSN2100-RFP-v1._x_-Cluster*</block>
   <block id="dd584ffba0b7534139645967bf24df84" category="sidebar">安装或升级RCF脚本</block>
+  <block id="40b03f9635c63b20aade0ff8145eafb8" category="list-text">要使用Broadcom和Cisco交换机收集日志、请执行以下操作：</block>
+  <block id="89f1dd995a5c07ea1e13abc5993d9d59" category="list-text">用户必须具有网络管理员Privileges。</block>
+  <block id="60f743043272b873831b17c5e7290445" category="list-text">应在交换机上为启用了日志收集的每个集群设置创建一个新用户。这些交换机不支持同一用户使用多个SSH密钥。执行的任何其他日志收集设置都会覆盖用户的任何已有SSH密钥。</block>
+  <block id="63229fc9218a5e1a57243ce033e91a3b" category="paragraph">有关安装或升级RC框架 的详细信息、请参见知识库文章<block ref="862bab57a4acfb616afcae48c16f2cfe" category="inline-link-macro-rx"></block>。</block>
+  <block id="26552c2532e5b34c96d8cef5f736c6ff" category="paragraph">有关安装RC框架 的详细信息、请参见知识库文章<block ref="862bab57a4acfb616afcae48c16f2cfe" category="inline-link-macro-rx"></block>。</block>
 </blocks>

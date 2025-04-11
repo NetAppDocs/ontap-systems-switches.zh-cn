@@ -13,6 +13,8 @@ summary: 您可以在首次设置Nexus 9334c-拧 动存储交换机后安装RC�
 [role="lead"]
 首次设置Nexus 9334C)存储交换机后，您可以安装参考配置文件(RF)。
 
+有关安装RC框架 的详细信息、请参见知识库文章link:https://kb.netapp.com/on-prem/Switches/Cisco-KBs/How_to_clear_configuration_on_a_Cisco_interconnect_switch_while_retaining_remote_connectivity["如何在保持远程连接的同时清除Cisco互连交换机上的配置"^]。
+
 .开始之前
 验证以下安装和连接：
 

@@ -13,6 +13,8 @@ summary: 使用集群交换机运行状况监控器（ CSHM ）和日志收集�
 [role="lead"]
 首次设置Nexus 9334C)交换机后，您可以安装参考配置文件(RF)。如果交换机上安装了现有版本的RCF文件、则可以升级RCF版本。
 
+有关安装或升级RC框架 的详细信息、请参见知识库文章link:https://kb.netapp.com/on-prem/Switches/Cisco-KBs/How_to_clear_configuration_on_a_Cisco_interconnect_switch_while_retaining_remote_connectivity["如何在保持远程连接的同时清除Cisco互连交换机上的配置"^]。
+
 .可用的RC框架 配置
 下表介绍了可用于不同配置的RCF。选择适用于您的配置的RC框架。
 

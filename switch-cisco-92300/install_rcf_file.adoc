@@ -13,6 +13,8 @@ summary: 首次设置 Nexus 92300YC 交换机后，您可以安装 RCF 。
 [role="lead"]
 首次设置 Nexus 92300YC 交换机后，您可以安装 RCF 。您也可以使用此操作步骤升级 RCF 版本。
 
+有关安装或升级RC框架 的详细信息、请参见知识库文章link:https://kb.netapp.com/on-prem/Switches/Cisco-KBs/How_to_clear_configuration_on_a_Cisco_interconnect_switch_while_retaining_remote_connectivity["如何在保持远程连接的同时清除Cisco互连交换机上的配置"^]。
+
 .关于此任务
 此操作步骤中的示例使用以下交换机和节点命名：
 
