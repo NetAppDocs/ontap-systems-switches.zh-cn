@@ -5242,4 +5242,37 @@
   <block id="60f743043272b873831b17c5e7290445" category="list-text">应在交换机上为启用了日志收集的每个集群设置创建一个新用户。这些交换机不支持同一用户使用多个SSH密钥。执行的任何其他日志收集设置都会覆盖用户的任何已有SSH密钥。</block>
   <block id="63229fc9218a5e1a57243ce033e91a3b" category="paragraph">有关安装或升级RC框架 的详细信息、请参见知识库文章<block ref="862bab57a4acfb616afcae48c16f2cfe" category="inline-link-macro-rx"></block>。</block>
   <block id="26552c2532e5b34c96d8cef5f736c6ff" category="paragraph">有关安装RC框架 的详细信息、请参见知识库文章<block ref="862bab57a4acfb616afcae48c16f2cfe" category="inline-link-macro-rx"></block>。</block>
+  <block id="2b77bb88cf2794536ac9c658ce053c6b" category="doc">创建一个交换机条目、以便ONTAP可以对其进行监控</block>
+  <block id="4aa02798c2feea1f87e6fb5301e10d30" category="paragraph">使用<block ref="e59cde6e921a1b23eb9bf8c1c9068aca" prefix=" " category="inline-code"></block>命令为指定的以太网交换机手动配置和启用监控。如果ONTAP未自动添加交换机、或者您之前删除了交换机并希望重新添加它、则此功能非常有用。</block>
+  <block id="82b694a75e07a035b8cd3b7aae86fdb8" category="paragraph">典型的示例是添加一个名为[DeviceName]的交换机、IP地址为1.2.3.4、SNMPv2c凭据设置为* cshm1！*。如果要配置存储交换机、请使用、<block ref="0fa5a8d20ad4f199ce4bb17e333f0a4a" prefix=" " category="inline-code"></block>而不是<block ref="0f3e90baa25250f9896e5ad67dd9d1f6" prefix=" " category="inline-code"></block>。</block>
+  <block id="9e2f728fd093bf40641895bd7ab81ffc" category="section-title">禁用监控而不删除交换机</block>
+  <block id="71ea82a6a71bd6b5e0857ef4469e6824" category="paragraph">如果要暂停或停止监控某个交换机、但仍保留该交换机以供将来监控、请修改其参数、而不是将其<block ref="a95032ab49a61ccce65cbef4bf991ebd" prefix=" " category="inline-code"></block>删除。</block>
+  <block id="254dbd09c58880fcc321f2394e42803d" category="paragraph">这样、您就可以保留交换机详细信息和配置、而无需生成新警报或重新发现。</block>
+  <block id="5c87ebc68b8545e621c4293650f66e8e" category="section-title">删除不再需要的交换机</block>
+  <block id="c68359f3f21922e686e683f2b1fb2d69" category="paragraph"><block ref="72fd318795f4bf274ff150d0a09106e1" prefix=" " category="inline-code"></block>用于删除已断开连接或不再需要的交换机：</block>
+  <block id="0dcda35c85e27aa3498fa4ab30cb7dae" category="paragraph">默认情况下、只有当ONTAP当前未通过CDP或LDP检测到交换机时、此命令才会成功。要删除已发现的交换机、请使用<block ref="02e554f8f135bc49b80e8fc45a341757" prefix=" " category="inline-code"></block>参数：</block>
+  <block id="6625e054d05a0ea2ca1ae3049f75717e" category="paragraph">使用时<block ref="02e554f8f135bc49b80e8fc45a341757" prefix=" " category="inline-code"></block>、如果ONTAP再次检测到该交换机、则可能会自动重新添加该交换机。</block>
+  <block id="25784bbce13fd0c509a0fd1c5f248f3d" category="doc">确认监控已连接的以太网交换机</block>
+  <block id="570122e6553f3a17e7188a6ca23d70d9" category="paragraph">要确认已连接的以太网交换机正在受监控、请运行：</block>
+  <block id="7eaabdc7d2364e9a43feeb5cf07593dc" category="paragraph">如果<block ref="a559b87068921eec05086ce5485e9784" prefix=" " category="inline-code"></block>列显示*OTA*或<block ref="7a19db03ac26c54be196969b77d657a6" prefix=" " category="inline-code"></block>字段显示*false*，则ONTAP无法监控交换机。值*其他*通常表示ONTAP不支持使用该交换机进行运行状况监控。</block>
+  <block id="8d86e89da688f620dafbc70269059388" category="paragraph">由于在字段中指定的原因，此<block ref="7a19db03ac26c54be196969b77d657a6" prefix=" " category="inline-code"></block>字段将设置为*false*<block ref="fffcb4d1e12c96b2f571f77ad25878b8" prefix=" " category="inline-code"></block>。</block>
+  <block id="f9f5c952edf43434e02a625f00102b19" category="inline-link-macro">管理以太网交换机的监控</block>
+  <block id="f6ec6bfa57123a9616038a55e7f332a5" category="paragraph">如果命令输出中未列出某个交换机、则ONTAP可能尚未发现该交换机。确认交换机布线正确。如有必要、您可以手动添加交换机。有关详细信息、请参见 <block ref="ee7db2a0a5f0654c3c81941bc38adb11" category="inline-link-macro-rx"></block> 。</block>
+  <block id="ed7061b9b8f8c50684797c64a5576941" category="section-title">确认固件和RC框架 版本为最新</block>
+  <block id="43558d02214bf83729998ce237b6cdea" category="inline-link">NetApp支持下载页面</block>
+  <block id="9be0ccf5f4aae992d69ea7f079f6d048" category="paragraph">确保交换机运行的是受支持的最新固件、并且已应用兼容的参考配置文件(RCF)。有关详细信息，请参见<block ref="49046ae6b122d9765935bb9b378618a5" category="inline-link-rx"></block>。</block>
+  <block id="14bb00b56dfdaad98ccaf9d2ff1c1eb5" category="paragraph">默认情况下、运行状况监控器使用带有社区字符串* cshm1！*的SNMPv2c进行监控、但也可以配置SNMPv3。</block>
+  <block id="35011d870229aa144aa6a66350d2279e" category="paragraph">如果需要更改默认SNMPv2c社区字符串、请确保已在交换机上配置所需的SNMPv2c社区字符串。</block>
+  <block id="3d8bd273ce46782520a3a188e037f316" category="admonition">有关配置SNMPv3以供使用的详细信息、请参见<block ref="ec5440e4cc2d261dc76dac84e641c0ab" category="inline-link-macro-rx"></block>。</block>
+  <block id="f97512ee27e4fc37982423d301b8b2cd" category="section-title">确认管理网络连接</block>
+  <block id="4c3dc933dd2f14499a5b966f0d0f1242" category="paragraph">验证交换机的管理端口是否已连接到管理网络。</block>
+  <block id="7be780b96e93a50316d019e9c7358c89" category="paragraph">要使ONTAP执行SNMP查询和日志收集、需要正确的管理端口连接。</block>
+  <block id="6022c2f82411bbd57493d91e903ce8aa" category="admonition">请勿尝试手动迁移集群Sifs。</block>
+  <block id="a9b506398d4ccf6e53d71af16370c8e6" category="summary">了解如何手动创建、更改默认监控设置以及从监控中删除以太网交换机。</block>
+  <block id="a1c2fc220383716c158399e227f0b34f" category="paragraph">在大多数情况下、以太网交换机会由ONTAP自动发现并由CSHM进行监控。应用于交换机的参考配置文件(Reference Configuration File、RCF)等功能可启用Cisco发现协议(CDP)和/或链路层发现协议(Link Layer Discovery Protocol、LDP)。但是、您可能需要手动添加未发现的交换机或删除不再使用的交换机。您还可以在将交换机保留在配置中的同时停止活动监控、例如在维护期间。</block>
+  <block id="586ef722188ebd1147c5005705cba276" category="summary">了解如何验证对以太网交换机的监控是否正常工作。</block>
+  <block id="73938029de1874ad71500c396fa836b1" category="doc">验证对以太网交换机的监控</block>
+  <block id="7d446387be9f1d7a1583327a693c81a1" category="paragraph">以太网交换机运行状况监控器(CSHM)会自动尝试监控其发现的交换机；但是、如果交换机配置不正确、则可能无法自动进行监控。您应验证是否已正确配置运行状况监控器以监控交换机。</block>
+  <block id="a6227aae637a0baad0de1335f2d71396" category="sidebar">管理交换机监控</block>
+  <block id="5c46a4758dcc5f666eee202daef67af4" category="sidebar">验证交换机监控</block>
 </blocks>

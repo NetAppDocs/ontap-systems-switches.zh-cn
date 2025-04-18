@@ -313,6 +313,10 @@ RPC status:
 ====
 . [[STEP5]]在交换机C2上、关闭连接到节点集群端口的端口、以便对集群Lifs进行故障转移。
 +
+
+CAUTION: 请勿尝试手动迁移集群Sifs。
+
++
 [listing, subs="+quotes"]
 ----
 (C2)# *configure*
