@@ -151,11 +151,11 @@ UP     swp16      100G  9216   BondMember  sw1 (swp16)  Master: cluster_isl(UP)
 ----
 cumulus@sw1:~$ *nv set interface swp1s0-3,swp2s0-3,swp3-14 link state down*
 cumulus@sw1:~$ *nv config apply*
-cumulus@sw1:~$ *nv save*
+cumulus@sw1:~$ *nv config save*
 
 cumulus@sw2:~$ *nv set interface swp1s0-3,swp2s0-3,swp3-14 link state down*
 cumulus@sw2:~$ *nv config apply*
-cumulus@sw2:~$ *nv save*
+cumulus@sw2:~$ *nv config save*
 ----
 . 验证端口swp15和swp16上的ISL和两个SN2100交换机sw1和SW2之间的ISL上的物理端口是否已启动：
 +
