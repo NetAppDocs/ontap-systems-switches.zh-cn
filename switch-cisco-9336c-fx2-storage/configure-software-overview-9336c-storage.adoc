@@ -13,7 +13,16 @@ summary: Cisco Nexus 9336C-x2存储交换机的软件配置概述
 [role="lead"]
 要安装和配置Cisco Nexus 9334c-拧 动存储交换机的软件、请按照以下步骤进行操作：
 
-. link:install-nxos-overview-9336c-storage.html["准备安装NX-OS和RCF"]。
-. link:install-nxos-software-9336c-storage.html["安装 NX-OS 软件"]。
-. link:install-rcf-software-9336c-storage.html["安装RCF配置文件"](英文)
+. link:install-nxos-overview-9336c-storage.html["准备安装或升级NX-OS和RC框架"](英文)
++
+Cisco NX-OS软件和参考配置文件(Reference Configuration Files、RCF)必须安装在Cisco Nexus 9335C)存储交换机上。
+
+. link:install-nxos-software-9336c-storage.html["安装或升级NX-OS软件"](英文)
++
+下载并安装或升级Cisco Nexus 9335c-拧 动存储交换机上的NX-OS软件。
+
+. link:install-rcf-software-9336c-storage.html["安装或升级RCF配置文件"](英文)
++
+在首次设置Cisco Nexus 9334c-拧 动存储交换机后、安装或升级RC框架。您也可以使用此操作步骤升级 RCF 版本。
+
 

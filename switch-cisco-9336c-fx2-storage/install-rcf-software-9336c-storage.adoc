@@ -4,7 +4,7 @@ sidebar: sidebar
 keywords: install rcf, cisco switches, storage 
 summary: 您可以在首次设置Nexus 9334c-拧 动存储交换机后安装RC框架。您也可以使用此操作步骤升级 RCF 版本。 
 ---
-= 安装参考配置文件
+= 安装或升级参考配置文件
 :allow-uri-read: 
 :icons: font
 :imagesdir: ../media/

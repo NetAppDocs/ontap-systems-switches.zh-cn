@@ -4,7 +4,7 @@ sidebar: sidebar
 keywords: procedure, install, nx-os, software, nexus, cluster, switch, install the nx-os software - cisco nexus 9336c-fx2 
 summary: 您可以使用此操作步骤在 Nexus 9336C-x2 集群交换机上安装 NX-OS 软件。 
 ---
-= 安装 NX-OS 软件
+= 安装或升级NX-OS软件
 :allow-uri-read: 
 :icons: font
 :imagesdir: ../media/
@@ -694,4 +694,4 @@ cluster1::*>
 
 
 .下一步是什么？
-link:install-rcf-software-9336c-storage.html["安装RC框架"](英文)
+link:install-rcf-software-9336c-storage.html["安装或升级RC框架"](英文)

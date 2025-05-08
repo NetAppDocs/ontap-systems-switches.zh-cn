@@ -1,6 +1,6 @@
 ---
 section: switch-cisco-9336c-fx2-storage
-title: Cisco Nexus 9336C-x2
+title: Cisco Nexus 9334T-Nexus或9334T-902-T
 pdf-filename: switch-cisco-9336c-902-storage
 entries:
 - title: 概述
@@ -34,9 +34,9 @@ entries:
     url: "/switch-cisco-9336c-fx2-storage/configure-software-overview-9336c-storage.html"
   - title: 准备安装NX-OS和RCF
     url: "/switch-cisco-9336c-fx2-storage/install-nxos-overview-9336c-storage.html"
-  - title: 安装NX-OS软件
+  - title: 安装或升级NX-OS软件
     url: "/switch-cisco-9336c-fx2-storage/install-nxos-software-9336c-storage.html"
-  - title: 安装RCF配置文件
+  - title: 安装或升级RC框架
     url: "/switch-cisco-9336c-fx2-storage/install-rcf-software-9336c-storage.html"
 - title: 更换存储交换机
   pdf-filename: REPLACE switch_9336c-FX2存储

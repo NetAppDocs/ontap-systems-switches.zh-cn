@@ -4,7 +4,7 @@ permalink: switch-cisco-9336c-fx2-storage/components-9336c-storage.html
 keywords: shared storage cluster switch 
 summary: 从 ONTAP 9.1.1 开始，您可以使用 Cisco Nexus 9336C-f2 交换机将存储和集群功能结合到共享交换机方案中。 
 ---
-= Cisco Nexus 9336C-x2存储交换机的组件和部件号
+= Cisco Nexus 9334T-Nexus和9334T-902-T存储交换机的组件和部件号
 :hardbreaks:
 :allow-uri-read: 
 :nofooter: 
@@ -14,9 +14,9 @@ summary: 从 ONTAP 9.1.1 开始，您可以使用 Cisco Nexus 9336C-f2 交换机
 
 
 [role="lead"]
-对于Cisco Nexus 9336C-FX2交换机安装和维护、请务必查看组件列表和部件号。
+对于Cisco Nexus 9334T-拧 动和9334T-车 载交换机安装和维护、请务必查看组件和部件号列表。
 
-下表列出了 9336C-fx2 交换机，风扇和电源的部件号和问题描述：
+下表列出了933NE-查 拔器和933NE-查 拔器、风扇和电源的部件号和说明：
 
 [cols="1,2"]
 |===
@@ -26,28 +26,49 @@ summary: 从 ONTAP 9.1.1 开始，您可以使用 Cisco Nexus 9336C-f2 交换机
  a| 
 X190200-CS-PE
  a| 
-N9K-9336C-f2 ， CS ， PTSX ， 36PT10/25/40/100GQSFP28
+集群交换机、N9336C36端口PTSX 10/C5/40/100G
 
 
 
  a| 
 X190200-CS-PI
  a| 
-N9K-9336C-f2 ， CS ， PSIN ， 36PT10/25/40/100GQSFP28
+集群交换机、N9336C36端口PSIN 10/C5/40/100G
+
+
+
+ a| 
+X190212-CS-PE
+ a| 
+集群交换机、N9336C12pt (9336C/x2-T) PTSX 10/C5/40/100G
+
+
+
+ a| 
+X190212-CS-PI
+ a| 
+集群交换机、N9336C12pt (9336C-F2-T) PSIN 10/C5/40/100G
+
+
+
+ a| 
+SW-N9K-FX2-24P-UPG
+ a| 
+软件，Cisco 9336CFX2 24端口POD许可证
 
 
 
  a| 
 X190210-FE-PE
  a| 
-N9K-9336C ， FTE ， PTSX ， 36PT10/25/40/100GQSFP28
+N9K-9336、FTE、PTSX、36磅10/C5/40/100GQSFP28
 
 
 
  a| 
 X190210-FE-PI
  a| 
-N9K-9336C ， FTE ， PSIN ， 36PT10/25/40/100GQSFP28
+N9K-9336、FTE、PSIN、36磅10/C5/40/100GQSFP28
 
 
 
@@ -85,3 +106,15 @@ X-NXA-Fan-65CFM-PI
 N9K-9336C 65CFM ，端口侧进气气流
 
 |===
+
+
+== Cisco智能许可证
+
+要激活Cisco Nexus 9336年-FX-T存储交换机上的12个以上端口、您必须购买Cisco智能许可证。Cisco智能许可证通过Cisco智能帐户进行管理。
+
+. 根据需要创建新的智能帐户。有关详细信息、请参见。 https://id.cisco.com/signin/register["创建新的智能帐户"^]
+. 请求访问现有智能帐户。有关详细信息、请参见。 https://id.cisco.com/oauth2/default/v1/authorize?response_type=code&scope=openid%20profile%20address%20offline_access%20cci_coimemberOf%20email&client_id=cae-okta-web-gslb-01&state=s2wvKDiBja__7ylXonWrq8w-FAA&redirect_uri=https%3A%2F%2Frpfa.cloudapps.cisco.com%2Fcb%2Fsso&nonce=qO6s3cZE5ZdhC8UKMEfgE6fbu3mvDJ8PTw5jYOp6z30["请求访问现有智能帐户"^]
+
+
+
+NOTE: 购买智能许可证后、请安装相应的RCF)以启用并配置所有36个可用端口以供使用。
