@@ -4581,7 +4581,6 @@
   <block id="ace8956d8976d528bf22aab3553d5953" category="paragraph">如果要使用以太网交换机运行状况监控器(CSHM)和日志收集功能、则必须生成SSH密钥、然后在集群交换机上启用SSH。</block>
   <block id="5b8b393a675dcaaee97c02828356657c" category="paragraph"><block ref="5b8b393a675dcaaee97c02828356657c" category="inline-link-macro-rx"></block></block>
   <block id="bc0d8d4243074a46cad51594b5a0fd0f" category="admonition">使用以太网交换机运行状况监控器(CSHM)收集日志功能时、建议使用SSH。为了增强安全性，还建议使用 SSHv2 。</block>
-  <block id="af586f672614707ef07031398b17fe29" category="paragraph"><block ref="af586f672614707ef07031398b17fe29" category="inline-link-macro-rx"></block></block>
   <block id="63a3f29d798fa577b051e98c5ffbca0c" category="admonition">以太网交换机运行状况监控器不支持ONTAP 9.13.1P8及更早版本、9.14.1P3及更早版本或NX-OS 10.3 (4a)(M)版。</block>
   <block id="10bd81ac212ccc1de8787d82e4582e46" category="inline-link-macro">准备安装NX-OS软件和RC框架</block>
   <block id="5100b6db0c93d9851fab3b0b6ed72166" category="list-text"><block ref="0f24d169a2f575f17ba79644c46d3a03" category="inline-link-macro-rx"></block>(英文)</block>
@@ -5297,4 +5296,5 @@
   <block id="20eed5f0dc87e5058308718e45381220" category="paragraph">11 到 36</block>
   <block id="000bf48a29e422b515b1396c1aac3f2c" category="paragraph">您可以使用空白布线工作表记录支持用作集群节点的平台。</block>
   <block id="af9181560cc346780cf6974ca9209401" category="sidebar">存储交换机- Cisco Nexus 9336-拧 动或9336-拨 动</block>
+  <block id="d35b203e8fe0144f812f95e477dfc8ac" category="paragraph"><block ref="d35b203e8fe0144f812f95e477dfc8ac" category="inline-link-macro-rx"></block></block>
 </blocks>

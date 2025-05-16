@@ -224,4 +224,4 @@ Cluster
 
 
 .下一步是什么？
-link:install-nxos-software-3232c.html["安装NX-OS软件"]
+link:install-nx-os-software-3232c.html["安装NX-OS软件"]
