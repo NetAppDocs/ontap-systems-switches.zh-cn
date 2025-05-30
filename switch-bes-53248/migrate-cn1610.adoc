@@ -452,7 +452,7 @@ node1      /cdp
 +
 [listing, subs="+quotes"]
 ----
-cs2# *show port all*
+cs2# *show interface all*
 cs2# *show isdp neighbors*
 ----
 . 在集群交换机CL1上、关闭连接到节点集群端口的端口、以便对集群LI进行故障转移：
@@ -566,7 +566,7 @@ node2      /cdp
 +
 [listing, subs="+quotes"]
 ----
-cs1# *show port all*
+cs1# *show interface all*
 cs1# *show isdp neighbors*
 ----
 . 验证CS1和CS2之间的ISL是否仍正常运行：

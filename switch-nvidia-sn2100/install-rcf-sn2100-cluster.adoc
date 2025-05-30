@@ -40,6 +40,41 @@ NOTE: 除了管理员用户之外、您还必须在RC框架 中指定一个用�
 ====
 .Cumulus Linux 4.4.3
 --
+. 将集群交换机连接到管理网络。
+. 使用 `ping`命令来验证与托管 Cumulus Linux 和 RCF 的服务器的连接。
+. 显示连接到集群交换机的每个节点上的集群端口：
++
+`network device-discovery show`
+
+. 检查每个集群端口的管理和运行状态。
++
+.. 验证所有集群端口是否均已启动且状态正常：
++
+`network port show -role cluster`
+
+.. 验证所有集群接口（ LIF ）是否均位于主端口上：
++
+`network interface show -role cluster`
+
+.. 验证集群是否同时显示两个集群交换机的信息：
++
+`ssystem cluster-switch show -is-monitoring-enableed-Operational true`
+
+
+
+. 在集群 LIF 上禁用自动还原。在目标交换机上执行升级过程时、这些集群Cifs将故障转移到配对集群交换机并保留在该交换机上：
++
+`network interface modify -vserver cluster -lif *-auto-revert false`
+
++
+[NOTE]
+.请注意以下事项：
+====
+** 如果您正在升级 RCF，则必须禁用此步骤的自动恢复。
+** 如果您刚刚升级了 Cumulus Linux 版本，则无需禁用此步骤的自动恢复功能，因为它已被禁用。
+
+
+====
 . 显示SN2100交换机上的可用接口：
 +
 [listing, subs="+quotes"]
@@ -264,11 +299,55 @@ sw2                         cluster-network    10.233.205.91    MSN2100-CB2RC
 ----
 
 
+. 验证集群是否运行正常：
++
+`cluster show`
+
+. 在第二个交换机上重复步骤 1 至 14。
+. 在集群 LIF 上启用自动还原。
++
+`network interface modify -vserver cluster -lif *-auto-revert true`
+
 
 
 --
 .Cumulus Linux 5.4.0
 --
+. 将集群交换机连接到管理网络。
+. 使用 `ping`命令来验证与托管 Cumulus Linux 和 RCF 的服务器的连接。
+. 显示连接到集群交换机的每个节点上的集群端口：
++
+`network device-discovery show`
+
+. 检查每个集群端口的管理和运行状态。
++
+.. 验证所有集群端口是否均已启动且状态正常：
++
+`network port show -role cluster`
+
+.. 验证所有集群接口（ LIF ）是否均位于主端口上：
++
+`network interface show -role cluster`
+
+.. 验证集群是否同时显示两个集群交换机的信息：
++
+`ssystem cluster-switch show -is-monitoring-enableed-Operational true`
+
+
+
+. 在集群 LIF 上禁用自动还原。在目标交换机上执行升级过程时、这些集群Cifs将故障转移到配对集群交换机并保留在该交换机上：
++
+`network interface modify -vserver cluster -lif *-auto-revert false`
+
++
+[NOTE]
+.请注意以下事项：
+====
+** 如果您正在升级 RCF，则必须禁用此步骤的自动恢复。
+** 如果您刚刚升级了 Cumulus Linux 版本，则无需禁用此步骤的自动恢复功能，因为它已被禁用。
+
+
+====
 . 显示SN2100交换机上的可用接口：
 +
 [listing, subs="+quotes"]
@@ -586,11 +665,55 @@ sw2                         cluster-network    10.233.205.91    MSN2100-CB2RC
 ----
 
 
+. 验证集群是否运行正常：
++
+`cluster show`
+
+. 在第二个交换机上重复步骤 1 至 14。
+. 在集群 LIF 上启用自动还原。
++
+`network interface modify -vserver cluster -lif *-auto-revert true`
+
 
 
 --
 .Cumulus Linux 5.11.0
 --
+. 将集群交换机连接到管理网络。
+. 使用 `ping`命令来验证与托管 Cumulus Linux 和 RCF 的服务器的连接。
+. 显示连接到集群交换机的每个节点上的集群端口：
++
+`network device-discovery show`
+
+. 检查每个集群端口的管理和运行状态。
++
+.. 验证所有集群端口是否均已启动且状态正常：
++
+`network port show -role cluster`
+
+.. 验证所有集群接口（ LIF ）是否均位于主端口上：
++
+`network interface show -role cluster`
+
+.. 验证集群是否同时显示两个集群交换机的信息：
++
+`ssystem cluster-switch show -is-monitoring-enableed-Operational true`
+
+
+
+. 在集群 LIF 上禁用自动还原。在目标交换机上执行升级过程时、这些集群Cifs将故障转移到配对集群交换机并保留在该交换机上：
++
+`network interface modify -vserver cluster -lif *-auto-revert false`
+
++
+[NOTE]
+.请注意以下事项：
+====
+** 如果您正在升级 RCF，则必须禁用此步骤的自动恢复。
+** 如果您刚刚升级了 Cumulus Linux 版本，则无需禁用此步骤的自动恢复功能，因为它已被禁用。
+
+
+====
 . 显示SN2100交换机上的可用接口：
 +
 [listing, subs="+quotes"]
@@ -907,6 +1030,15 @@ sw2                         cluster-network    10.233.205.91    MSN2100-CB2RC
     Version Source: LLDP
 ----
 
+
+. 验证集群是否运行正常：
++
+`cluster show`
+
+. 在第二个交换机上重复步骤 1 至 14。
+. 在集群 LIF 上启用自动还原。
++
+`network interface modify -vserver cluster -lif *-auto-revert true`
 
 
 

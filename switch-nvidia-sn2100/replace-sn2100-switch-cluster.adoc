@@ -176,68 +176,60 @@ swp16      100G   BondMember  sw1                swp16
 
 === 第2步：配置端口和布线
 
+[role="tabbed-block"]
+====
+.Cumulus Linux 4.4.3
+--
 . 在新交换机nsw2上、以admin身份登录并关闭将连接到节点集群接口的所有端口(端口swp1到swp14)。
 +
 集群节点上的 LIF 应已故障转移到每个节点的另一个集群端口。
 
 +
-.显示示例
-[%collapsible]
-====
 [listing, subs="+quotes"]
 ----
 cumulus@nsw2:~$ *net add interface swp1s0-3, swp2s0-3, swp3-14 link down*
 cumulus@nsw2:~$ *net pending*
 cumulus@nsw2:~$ *net commit*
 ----
-====
 . 在集群LIF上禁用自动还原：
 +
 `network interface modify -vserver cluster -lif *-auto-revert false`
 
 +
-.显示示例
-[%collapsible]
-====
 [listing, subs="+quotes"]
 ----
 cluster1::*> *network interface modify -vserver Cluster -lif * -auto-revert false*
 
 Warning: Disabling the auto-revert feature of the cluster logical interface may effect the availability of your cluster network. Are you sure you want to continue? {y|n}: *y*
 ----
-====
-. 验证所有集群 LIF 是否均已启用自动还原：
+. 验证所有集群 LIF 是否都已禁用自动恢复：
 +
 `net interface show -vserver Cluster -fields auto-revert`
 
 . 关闭SN2100交换机sw1上的ISL端口swp15和swp16。
 +
-.显示示例
-[%collapsible]
-====
 [listing, subs="+quotes"]
 ----
 cumulus@sw1:~$ *net add interface swp15-16 link down*
 cumulus@sw1:~$ *net pending*
 cumulus@sw1:~$ *net commit*
 ----
-====
 . 拔下SN2100 sw1交换机上的所有缆线、然后将其连接到SN2100 nsw2交换机上的相同端口。
 . 启动sw1和nsw2交换机之间的ISL端口swp15和swp16。
 +
-.显示示例
-[%collapsible]
-====
 以下命令将在交换机sw1上启用ISL端口swp15和swp16：
 
++
 [listing, subs="+quotes"]
 ----
 cumulus@sw1:~$ *net del interface swp15-16 link down*
 cumulus@sw1:~$ *net pending*
 cumulus@sw1:~$ *net commit*
 ----
++
 以下示例显示交换机sw1上的ISL端口已启动：
 
++
 [listing, subs="+quotes"]
 ----
 cumulus@sw1:~$ *net show interface*
@@ -249,10 +241,10 @@ State  Name         Spd   MTU    Mode        LLDP           Summary
 UP     swp15        100G  9216   BondMember  nsw2 (swp15)   Master: cluster_isl(UP)
 UP     swp16        100G  9216   BondMember  nsw2 (swp16)   Master: cluster_isl(UP)
 ----
-+以下示例显示交换机nsw2上的ISL端口已启动：
++
+以下示例显示交换机nsw2上的ISL端口已启动：
 
 +
-
 [listing, subs="+quotes"]
 ----
 cumulus@nsw2:~$ *net show interface*
@@ -264,17 +256,14 @@ State  Name         Spd   MTU    Mode        LLDP           Summary
 UP     swp15        100G  9216   BondMember  sw1 (swp15)    Master: cluster_isl(UP)
 UP     swp16        100G  9216   BondMember  sw1 (swp16)    Master: cluster_isl(UP)
 ----
-====
 . 验证此端口 `e3b` 在所有节点上均已启动：
 +
 `network port show -ipspace cluster`
 
 +
-.显示示例
-[%collapsible]
-====
 输出应类似于以下内容：
 
++
 [listing, subs="+quotes"]
 ----
 cluster1::*> *network port show -ipspace Cluster*
@@ -296,12 +285,8 @@ Port      IPspace      Broadcast Domain Link MTU   Admin/Oper  Status    Status
 e3a       Cluster      Cluster          up   9000  auto/100000  healthy  false
 e3b       Cluster      Cluster          up   9000  auto/100000  healthy  false
 ----
-====
 . 现在，从节点的角度来看，每个节点上的集群端口均以以下方式连接到集群交换机：
 +
-.显示示例
-[%collapsible]
-====
 [listing, subs="+quotes"]
 ----
 cluster1::*> *network device-discovery show -protocol lldp*
@@ -315,15 +300,11 @@ node2      /lldp
             e3a    sw1  (b8:ce:f6:19:1a:7e)   swp4          -
             e3b    nsw2 (b8:ce:f6:19:1b:b6)   swp4          -
 ----
-====
 . 验证所有节点集群端口是否均已启动：
 +
 `net show interface`
 
 +
-.显示示例
-[%collapsible]
-====
 [listing, subs="+quotes"]
 ----
 cumulus@nsw2:~$ *net show interface*
@@ -337,17 +318,14 @@ UP     swp4         100G  9216   Trunk/L2                      Master: bridge(UP
 UP     swp15        100G  9216   BondMember  sw1 (swp15)       Master: cluster_isl(UP)
 UP     swp16        100G  9216   BondMember  sw1 (swp16)       Master: cluster_isl(UP)
 ----
-====
 . 验证两个节点与每个交换机之间是否有一个连接：
 +
 `net show lldp`
 
 +
-.显示示例
-[%collapsible]
-====
 以下示例显示了这两个交换机的相应结果：
 
++
 [listing, subs="+quotes"]
 ----
 cumulus@sw1:~$ *net show lldp*
@@ -369,33 +347,26 @@ swp4       100G   Trunk/L2    node2                e3b
 swp15      100G   BondMember  sw1                swp15
 swp16      100G   BondMember  sw1                swp16
 ----
-====
 . 在集群 LIF 上启用自动还原：
 +
 `cluster1::*> network interface modify -vserver Cluster -lif * -auto-revert true`
 
 . 在交换机nsw2上、启动连接到节点网络端口的端口。
 +
-.显示示例
-[%collapsible]
-====
 [listing, subs="+quotes"]
 ----
 cumulus@nsw2:~$ *net del interface swp1-14 link down*
 cumulus@nsw2:~$ *net pending*
 cumulus@nsw2:~$ *net commit*
 ----
-====
 . 显示有关集群中节点的信息：
 +
 `cluster show`
 
 +
-.显示示例
-[%collapsible]
-====
 此示例显示此集群中 node1 和 node2 的节点运行状况为 true ：
 
++
 [listing, subs="+quotes"]
 ----
 cluster1::*> *cluster show*
@@ -405,15 +376,11 @@ Node          Health  Eligibility
 node1         true    true
 node2         true    true
 ----
-====
 . 验证所有物理集群端口是否均已启动：
 +
 `network port show -ipspace cluster`
 
 +
-.显示示例
-[%collapsible]
-====
 [listing, subs="+quotes"]
 ----
 cluster1::*> *network port show -ipspace Cluster*
@@ -433,18 +400,241 @@ Port      IPspace      Broadcast Domain Link  MTU   Admin/Oper  Status   Status
 e3a       Cluster      Cluster          up    9000  auto/10000  healthy  false
 e3b       Cluster      Cluster          up    9000  auto/10000  healthy  false
 ----
+
+
+--
+.Cumulus Linux 5.x
+--
+. 在新交换机nsw2上、以admin身份登录并关闭将连接到节点集群接口的所有端口(端口swp1到swp14)。
++
+集群节点上的 LIF 应已故障转移到每个节点的另一个集群端口。
+
++
+[listing, subs="+quotes"]
+----
+cumulus@nsw2:~$ *nv set interface swp15-16 link state down*
+cumulus@nsw2:~$ *nv config apply*
+----
+. 在集群LIF上禁用自动还原：
++
+`network interface modify -vserver cluster -lif *-auto-revert false`
+
++
+[listing, subs="+quotes"]
+----
+cluster1::*> *network interface modify -vserver Cluster -lif * -auto-revert false*
+
+Warning: Disabling the auto-revert feature of the cluster logical interface may effect the availability of your cluster network. Are you sure you want to continue? {y|n}: *y*
+----
+. 验证所有集群 LIF 是否都已禁用自动恢复：
++
+`network interface show - vserver cluster -fields auto-revert`
+
+. 关闭SN2100交换机sw1上的ISL端口swp15和swp16。
++
+[listing, subs="+quotes"]
+----
+cumulus@sw1:~$ *nv set interface swp15-16 link state down*
+cumulus@sw1:~$ *nv config apply*
+----
+. 拔下SN2100 sw1交换机上的所有缆线、然后将其连接到SN2100 nsw2交换机上的相同端口。
+. 启动sw1和nsw2交换机之间的ISL端口swp15和swp16。
++
+以下命令将在交换机sw1上启用ISL端口swp15和swp16：
+
++
+[listing, subs="+quotes"]
+----
+cumulus@sw1:~$ *nv set interface swp15-16 link state down*
+cumulus@sw1:~$ *nv config apply*
+----
++
+以下示例显示交换机sw1上的ISL端口已启动：
+
++
+[listing, subs="+quotes"]
+----
+cumulus@sw1:~$ *nv show interface*
+
+State  Name         Spd   MTU    Mode        LLDP           Summary
+-----  -----------  ----  -----  ----------  -------------- ----------------------
+...
+...
+UP     swp15        100G  9216   BondMember  nsw2 (swp15)   Master: cluster_isl(UP)
+UP     swp16        100G  9216   BondMember  nsw2 (swp16)   Master: cluster_isl(UP)
+----
++
+以下示例显示交换机nsw2上的ISL端口已启动：
+
++
+[listing, subs="+quotes"]
+----
+cumulus@nsw2:~$ *nv show interface*
+
+State  Name         Spd   MTU    Mode        LLDP           Summary
+-----  -----------  ----  -----  ----------  -------------  -----------------------
+...
+...
+UP     swp15        100G  9216   BondMember  sw1 (swp15)    Master: cluster_isl(UP)
+UP     swp16        100G  9216   BondMember  sw1 (swp16)    Master: cluster_isl(UP)
+----
+. 验证此端口 `e3b` 在所有节点上均已启动：
++
+`network port show -ipspace cluster`
+
++
+输出应类似于以下内容：
+
++
+[listing, subs="+quotes"]
+----
+cluster1::*> *network port show -ipspace Cluster*
+
+Node: node1
+                                                                         Ignore
+                                                   Speed(Mbps)  Health   Health
+Port      IPspace      Broadcast Domain Link MTU   Admin/Oper   Status   Status
+--------- ------------ ---------------- ---- ----- ------------ -------- -------
+e3a       Cluster      Cluster          up   9000  auto/100000  healthy  false
+e3b       Cluster      Cluster          up   9000  auto/100000  healthy  false
+
+
+Node: node2
+                                                                         Ignore
+                                                   Speed(Mbps) Health    Health
+Port      IPspace      Broadcast Domain Link MTU   Admin/Oper  Status    Status
+--------- ------------ ---------------- ---- ----- ----------- --------- -------
+e3a       Cluster      Cluster          up   9000  auto/100000  healthy  false
+e3b       Cluster      Cluster          up   9000  auto/100000  healthy  false
+----
+. 现在，从节点的角度来看，每个节点上的集群端口均以以下方式连接到集群交换机：
++
+[listing, subs="+quotes"]
+----
+cluster1::*> *network device-discovery show -protocol lldp*
+Node/       Local  Discovered
+Protocol    Port   Device (LLDP: ChassisID)  Interface     Platform
+----------- ------ ------------------------- ------------  ----------------
+node1      /lldp
+            e3a    sw1  (b8:ce:f6:19:1a:7e)   swp3          -
+            e3b    nsw2 (b8:ce:f6:19:1b:b6)   swp3          -
+node2      /lldp
+            e3a    sw1  (b8:ce:f6:19:1a:7e)   swp4          -
+            e3b    nsw2 (b8:ce:f6:19:1b:b6)   swp4          -
+----
+. 验证所有节点集群端口是否均已启动：
++
+`nv show interface`
+
++
+[listing, subs="+quotes"]
+----
+cumulus@nsw2:~$ *nv show interface*
+
+State  Name         Spd   MTU    Mode        LLDP              Summary
+-----  -----------  ----  -----  ----------  ----------------- ----------------------
+...
+...
+UP     swp3         100G  9216   Trunk/L2                      Master: bridge(UP)
+UP     swp4         100G  9216   Trunk/L2                      Master: bridge(UP)
+UP     swp15        100G  9216   BondMember  sw1 (swp15)       Master: cluster_isl(UP)
+UP     swp16        100G  9216   BondMember  sw1 (swp16)       Master: cluster_isl(UP)
+----
+. 验证两个节点与每个交换机之间是否有一个连接：
++
+`nv show interface lldp`
+
++
+以下示例显示了这两个交换机的相应结果：
+
++
+[listing, subs="+quotes"]
+----
+cumulus@sw1:~$ *nv show interface lldp*
+
+LocalPort  Speed  Mode        RemoteHost         RemotePort
+---------  -----  ----------  -----------------  -----------
+swp3       100G   Trunk/L2    node1              e3a
+swp4       100G   Trunk/L2    node2              e3a
+swp15      100G   BondMember  nsw2               swp15
+swp16      100G   BondMember  nsw2               swp16
+
+
+cumulus@nsw2:~$ *nv show interface lldp*
+
+LocalPort  Speed  Mode        RemoteHost         RemotePort
+---------  -----  ----------  -----------------  -----------
+swp3       100G   Trunk/L2    node1                e3b
+swp4       100G   Trunk/L2    node2                e3b
+swp15      100G   BondMember  sw1                swp15
+swp16      100G   BondMember  sw1                swp16
+----
+. 在集群 LIF 上启用自动还原：
++
+`cluster1::*> network interface modify -vserver Cluster -lif * -auto-revert true`
+
+. 在交换机nsw2上、启动连接到节点网络端口的端口。
++
+[listing, subs="+quotes"]
+----
+cumulus@nsw2:~$ *nv set interface swp1-14 link state up*
+cumulus@nsw2:~$ *nv config apply*
+----
+. 显示有关集群中节点的信息：
++
+`cluster show`
+
++
+此示例显示此集群中 node1 和 node2 的节点运行状况为 true ：
+
++
+[listing, subs="+quotes"]
+----
+cluster1::*> *cluster show*
+
+Node          Health  Eligibility
+------------- ------- ------------
+node1         true    true
+node2         true    true
+----
+. 验证所有物理集群端口是否均已启动：
++
+`network port show -ipspace cluster`
+
++
+[listing, subs="+quotes"]
+----
+cluster1::*> *network port show -ipspace Cluster*
+
+Node node1                                                               Ignore
+                                                    Speed(Mbps) Health   Health
+Port      IPspace     Broadcast Domain  Link  MTU   Admin/Oper  Status   Status
+--------- ----------- ----------------- ----- ----- ----------- -------- ------
+e3a       Cluster     Cluster           up    9000  auto/10000  healthy  false
+e3b       Cluster     Cluster           up    9000  auto/10000  healthy  false
+
+Node: node2
+                                                                         Ignore
+                                                    Speed(Mbps) Health   Health
+Port      IPspace      Broadcast Domain Link  MTU   Admin/Oper  Status   Status
+--------- ------------ ---------------- ----- ----- ----------- -------- ------
+e3a       Cluster      Cluster          up    9000  auto/10000  healthy  false
+e3b       Cluster      Cluster          up    9000  auto/10000  healthy  false
+----
+
+
+--
 ====
-
-
 
 
 === 第3步：验证配置
 
+[role="tabbed-block"]
+====
+.Cumulus Linux 4.4.3
+--
 . 验证集群网络是否运行正常。
 +
-.显示示例
-[%collapsible]
-====
 [listing, subs="+quotes"]
 ----
 cumulus@sw1:~$ *net show lldp*
@@ -456,8 +646,29 @@ swp4       100G   Trunk/L2    node2           e3a
 swp15      100G   BondMember  nsw2            swp15
 swp16      100G   BondMember  nsw2            swp16
 ----
+
+
+--
+.Cumulus Linux 5.x
+--
+. 验证集群网络是否运行正常。
++
+[listing, subs="+quotes"]
+----
+cumulus@sw1:~$ *nv show interface lldp*
+
+LocalPort  Speed  Mode        RemoteHost      RemotePort
+---------  -----  ----------  --------------  -----------
+swp3       100G   Trunk/L2    node1           e3a
+swp4       100G   Trunk/L2    node2           e3a
+swp15      100G   BondMember  nsw2            swp15
+swp16      100G   BondMember  nsw2            swp16
+----
+
+
+--
 ====
-. 将权限级别重新更改为 admin ：
+. [[step2]] 将权限级别改回管理员：
 +
 `set -privilege admin`
 

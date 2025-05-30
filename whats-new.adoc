@@ -23,6 +23,15 @@ summary: 了解适用于FAS 和AFF 系统的新交换机。
 
 
  a| 
+12 端口 10/25/40/100GbE Cisco Nexus 9336C-FX2-T 集群和存储交换机（X190212-CS-PE 和 X190212-CS-PI）
+ a| 
+支持 10/25/40/100GbE 集群配置和 100GbE 存储（交换机连接存储）配置。
+ a| 
+ONTAP 9.10.1.
+
+
+
+ a| 
 16端口100GbE NVIDIA交换机(X190006-PE和X190006-PI)
  a| 
 NVIDIA SN2100集群互连交换机和存储交换机支持、包括对MetroCluster IP配置的支持。

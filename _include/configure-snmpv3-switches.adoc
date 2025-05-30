@@ -2,13 +2,18 @@
 :allow-uri-read: 
 
 
-SNMPv3比SNMPv2更安全、因为它引入了身份验证、加密和消息完整性等强大的安全功能、可防止未经授权的访问、并确保数据在传输期间的机密性和完整性。
+[NOTE]
+====
+* 仅ONTAP 9.12.1及更高版本支持SNMPv3。
+* ONTAP 9.13.1P12、9.14.1P9、9.15.1P5、9.16.1 及更高版本修复了以下两个问题：
++
+** link:https://kb.netapp.com/on-prem/ontap/OHW/OHW-Issues/CONTAP-82891["对于 Cisco 交换机的 ONTAP 运行状况监控，切换到 SNMPv3 进行监控后仍可能看到 SNMPv2 流量"^]
+** link:https://kb.netapp.com/on-prem/ontap/OHW/OHW-Issues/CONTAP-119131["SNMP 故障发生时误报交换机风扇和电源警报"^]
 
 
-NOTE: 仅ONTAP 9.12.1及更高版本支持SNMPv3。
 
-按照以下步骤为支持CSHM的特定交换机配置SNMPv3。
 
+====
 .关于此任务
 以下命令用于在*Broadcom*、*Cisco*和*NVIDIA*交换机上配置SNMPv3用户名：
 
@@ -123,7 +128,7 @@ DEPRECATED-Community String or SNMPv3 Username: -
 cluster1::*>
 cluster1::*> *system switch ethernet modify -device "sw1" -snmp-version SNMPv3 -community-or-username <username>*
 ----
-. 确认要使用新创建的SNMPv3用户查询的序列号与CSHM轮询周期完成后上一步中详述的序列号相同。
+. 等待 CSHM 轮询期后，验证以太网交换机的序列号是否已填充。
 +
 [source, cli]
 ----
@@ -311,9 +316,9 @@ cluster1::*>
 
 
 --
-.NVIDIA - CLI 5.4
+.NVIDIA-CL 5.4.0
 --
-在运行CLI 5.4的NVIDIA SN2100交换机上配置SNMPv3用户名SNMPv3 _user：
+在运行 CLI 5.4.0 的 NVIDIA SN2100 交换机上配置 SNMPv3 用户名 SNMPv3_USER：
 
 * 对于*no authentication (无身份验证)*：
 +
@@ -507,9 +512,9 @@ DEPRECATED-Community String or SNMPv3 Username: -
 
 
 --
-.NVIDIA - CLI 5.11
+.NVIDIA-CL 5.11.0
 --
-在运行CLI 5.11的NVIDIA SN2100交换机上配置SNMPv3用户名SNMPv3 _user：
+在运行 CLI 5.11.0 的 NVIDIA SN2100 交换机上配置 SNMPv3 用户名 SNMPv3_USER：
 
 * 对于*no authentication (无身份验证)*：
 +

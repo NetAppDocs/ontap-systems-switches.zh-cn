@@ -2510,7 +2510,6 @@
   <block id="ed312396f5e29fbaef2e7ca8c0d4ba24" category="paragraph">集群节点上的 LIF 应已故障转移到每个节点的另一个集群端口。</block>
   <block id="dc7cbbd12569ee34a303efcc2144c3cd" category="paragraph"><block ref="76c2debb2eab1cd32b18bd3cb1e927ba" prefix="" category="inline-code"></block></block>
   <block id="4aaaac13f30d8fbefcfbb3e31606aa24" category="list-text">关闭SN2100交换机sw1上的ISL端口swp15和swp16。</block>
-  <block id="1e3aa7ec0312557863e948b7ed8ae901" category="paragraph">+以下示例显示交换机nsw2上的ISL端口已启动：</block>
   <block id="edbff14541725a88fdfe9357e39df1e9" category="list-text">验证此端口<block ref="969d430598a257671bdf944480e4d46b" prefix=" " category="inline-code"></block> 在所有节点上均已启动：</block>
   <block id="017b98ea9ee2c66de5b1317a31211689" category="list-text">验证所有节点集群端口是否均已启动：</block>
   <block id="366abeaa2bac7598f17d029db42f0407" category="paragraph"><block ref="478474aa0db28144d5db02c478cd5215" prefix="" category="inline-code"></block></block>
@@ -3816,14 +3815,12 @@
   <block id="d62448073473e6946178f647bcbfbf0e" category="paragraph">完成以下操作步骤 以根据需要升级您的Cumulus Linux版本。</block>
   <block id="0fc8a779fbe2ae3a05240b53435f18cf" category="admonition">每次升级Cumulus Linux时、都会擦除并重建整个文件系统结构。现有配置将被擦除。在更新Cumulus Linux之前、您必须保存并记录交换机配置。</block>
   <block id="0d151e82f107d3039ec4952c010d46c4" category="admonition">累积用户帐户的默认密码为*累积用户*。首次登录到Cumulus Linux时、必须更改此默认密码。在安装新映像之前、您必须更新所有自动化脚本。Cumulus Linux提供了命令行选项、用于在安装过程中自动更改默认密码。</block>
-  <block id="324fe5adbd1d84e1635133b2f3572f6d" category="open-title">从Cumulus Linux 4.4.x到Cumulus Linux 5.x</block>
   <block id="6e86c333c0b662bb6dee3495ec26ec21" category="list-text">检查当前的Cumulus Linux版本和连接的端口：</block>
   <block id="a034a19ca9c1623f94c8f52b386d5a41" category="list-text">更改密码：</block>
   <block id="d853eef2a857cbfcf5b1ef1abe8db17e" category="list-text">检查Cumulus Linux版本：<block ref="9fcc1ae85aac3dbd490f575cf5eb3d52" prefix=" " category="inline-code"></block></block>
   <block id="985599684d8f5a06353d35110138f1b2" category="list-text">更改主机名：</block>
   <block id="0e991c1ef237b6e2304639c4e67230ec" category="list-text">注销并再次登录到交换机、以便在提示符处查看更新后的交换机名称：</block>
   <block id="9452c986bddec0ffc4c1e4393d954d4a" category="list-text">设置IP地址：</block>
-  <block id="b0255cc355effdccf079c37dfed7930c" category="open-title">从Cumulus Linux 5.x到Cumulus Linux 5.x</block>
   <block id="65a9f174ce483d8b53a1a174dc734625" category="list-text">下载Cumulux Linux 5.4.0映像：</block>
   <block id="ae9c690e9fad2f5c57259599dd4505b1" category="list-text">注销并重新登录到交换机、以便在提示符处查看更新后的交换机名称：</block>
   <block id="db20376829e65eac071b27b68736377d" category="paragraph">集群交换机、NVIDIA SN2100、16端口100GbE、PTSX</block>
@@ -4548,7 +4545,6 @@
   <block id="65c65b976cfab8bcc3a5fa282181ca5b" category="paragraph">按照以下过程安装适用于监控NVIDIA集群交换机以太网交换机运行状况的配置文件。支持的型号包括：</block>
   <block id="164a0cea1831b06a7fa67aab2e9a5d98" category="admonition">此安装过程适用于ONTAP 9.10.1及更高版本。</block>
   <block id="dd7fa1380804217cf2f3af00bb585752" category="list-text">运行并检查是否为您的型号显示了*OTER*，以验证您是否需要下载配置文件<block ref="db3929a8e897b02a87f7f4bc42f38fc1" prefix=" " category="inline-code"></block> 。</block>
-  <block id="3953f2c946249817a198b9dd2d604aa4" category="paragraph">如果您的型号在应用配置文件后仍显示*OTA*，请与NetApp支持联系。</block>
   <block id="294206f940bbd4f3ec7f79996b76c616" category="list-text">确保ONTAP 集群已启动且正在运行。</block>
   <block id="c2c0a6bc429d35a2d508307c899f4398" category="list-text">启用SSH以使用CSHM中提供的所有功能。</block>
   <block id="0cfea6e2910f570cd17c24fb74c90378" category="inline-link">NVIDIA以太网交换机</block>
@@ -4614,8 +4610,6 @@
   <block id="2ded3ff3862adfc6f54d2a2f3ebf1147" category="paragraph">*注：*如果启用FIPS模式，则必须完成以下操作：</block>
   <block id="ca243f374acfb56a77236e0d30935f7f" category="list-text">用户必须能够访问交换机<block ref="a7dd12b1dab17d25467b0b0a4c8d4a92" prefix=" " category="inline-code"></block> 命令。如果这些权限不可用、请创建一个新用户并向该用户授予必要的权限。</block>
   <block id="098a6be90d7d0f41999537981c29585d" category="open-title">ONTAP 9.14.1及更早版本</block>
-  <block id="bec82052a92013a93a38547be5743fc2" category="list-text">要请求支持日志收集并启用定期收集、请运行以下命令。此时将开始两种类型的日志收集：详细<block ref="db5eb84117d06047c97c9a0191b5fffe" prefix=" " category="inline-code"></block> 日志和每小时数据收集<block ref="cdcc32a064503184053bd2018d1c0e7e" prefix=" " category="inline-code"></block> 。</block>
-  <block id="d35634a11eab667045ca1f93a9aae3e4" category="list-text">启用定期日志收集：</block>
   <block id="679c69dadfb9ebf6a73c6cb1e48f610e" category="list-text">请求支持日志收集：</block>
   <block id="9c7ca9d82e20f27a701fcb23071651ef" category="list-text">要查看日志收集的所有详细信息、包括启用、状态消息、定期收集的先前时间戳和文件名、请求状态、状态消息以及支持收集的先前时间戳和文件名、请使用以下命令：</block>
   <block id="da28641e557d1527788801659dc81fd5" category="inline-link-macro">对日志收集进行故障排除</block>
@@ -4626,10 +4620,7 @@
   <block id="ec5440e4cc2d261dc76dac84e641c0ab" category="list-text"><block ref="ec5440e4cc2d261dc76dac84e641c0ab" category="inline-link-macro-rx"></block></block>
   <block id="5b62a4b03175f138ff64effec2560ed7" category="summary">您可以使用此过程为特定交换机配置SNMPv3、此交换机支持以太网交换机运行状况监控(CSHM)。</block>
   <block id="7e26b49f49bdf462799729889a55fd9a" category="doc">可选：为交换机配置SNMPv3</block>
-  <block id="476d803e2d152b994f42b3899dd8b1eb" category="paragraph">SNMP用于监控交换机。以太网交换机运行状况监控器(CSHM)利用SNMP监控集群和存储交换机的运行状况和性能。默认情况下、SNMPv2c是通过参考配置文件(Reference Configuration File、RCF)自动配置的。</block>
-  <block id="8e55417d823d2c594db1981ae6621e55" category="paragraph">SNMPv3比SNMPv2更安全、因为它引入了身份验证、加密和消息完整性等强大的安全功能、可防止未经授权的访问、并确保数据在传输期间的机密性和完整性。</block>
   <block id="1451684986f1c945fdb4e4f2a8b904be" category="admonition">仅ONTAP 9.12.1及更高版本支持SNMPv3。</block>
-  <block id="c76d1ab1bab3f2bc0c89856d8d6e3d40" category="paragraph">按照以下步骤为支持CSHM的特定交换机配置SNMPv3。</block>
   <block id="5fb3828593766d454e79a0dcf52fed9d" category="paragraph">以下命令用于在*Broadcom*、*Cisco*和*NVIDIA*交换机上配置SNMPv3用户名：</block>
   <block id="77f3beca20fcd78f77236507e8d9b4af" category="open-title">Broadcom交换机</block>
   <block id="c59df2c71925eefec8dc03aa685125c8" category="list-text">对于*no authentication (无身份验证)*：</block>
@@ -4639,8 +4630,6 @@
   <block id="760c6e9b6b587e6f977e0e7116b69f45" category="paragraph">以下命令将使用CSHM建立SNMPv3用户名：</block>
   <block id="250f3098aa37d3a08b48b8157db8a62e" category="open-title">Cisco交换机</block>
   <block id="0fdfed50bdfb7a964741d7f6016dd332" category="paragraph">在Cisco 9334c-966交换机上配置SNMPv3用户名SNMPv3 _user：</block>
-  <block id="e1df47a492be7a2e244ccb9b079d5cf3" category="open-title">NVIDIA - CLI 5.4</block>
-  <block id="108965fef02b86b124e7f3d9a56db931" category="paragraph">在运行CLI 5.4的NVIDIA SN2100交换机上配置SNMPv3用户名SNMPv3 _user：</block>
   <block id="1c76d98a8c6bdaf19a0c6e69ecd5d74b" category="doc">交换机运行状况监控器概述</block>
   <block id="5c1a7fd59da01d98a9fa4672044477e2" category="summary">您可以使用提供的命令...</block>
   <block id="28498a71a5aca6b62e077f2dc8cf0ccb" category="doc">日志收集概述</block>
@@ -4840,7 +4829,6 @@
   <block id="7db58b1ced05f0a1e8e0257017cd6c5b" category="list-text">应用RCF pyPython脚本*MSN2100-RCP-v1._x--Cluster-HA-Breakout－LCDP*。</block>
   <block id="11b037d97237564e7d301df86420a468" category="inline-link">安装新的积云Linux映像</block>
   <block id="ab12f4d1e56479a81a361f6109b978de" category="paragraph">有关详细信息、请参见<block ref="63da15f7ab7ce2a7550fdbf1e5e5d879" category="inline-link-rx"></block>。</block>
-  <block id="43622a7160f0cabed379e73776c14454" category="list-text">下载CUMLUX Linux 5.x image：tmp</block>
   <block id="855b205ca9b9bd2b02453dbd19fc65b7" category="list-text">此操作步骤 中的示例使用四个节点：两个节点使用四个 10 GbE 集群互连端口： e0a ， e0b ， e0c 和 e0d 。其他两个节点使用两个 40 GbE 集群互连端口： E4A ， e4e 。<block ref="cbfe825e8e02458e2eef3cd048612d7d" category="inline-link-macro-rx"></block>列出了平台上的实际集群端口。</block>
   <block id="66f3f703ef307f85603b46a4acbb712b" category="list-text">10 GbE和40 GbE端口的数量在页面上提供的参考配置文件(Reference Configuration Files、RCF)中定义<block ref="cce23acfce4c9bc9bb74fd35873aedf2" category="inline-link-rx"></block>。</block>
   <block id="9f71b0536f9236a6977f9a70d6395a33" category="list-text">具有40 GbE集群连接的节点需要使用受支持的QSFP/QSFP28光纤模块以及光缆或QSFP/QSFP28铜质直连缆线。</block>
@@ -4868,7 +4856,6 @@
   <block id="a79e81ac0a0322d06f217ec1313f9c2b" category="list-text">在Nexus 3132Q-V交换机上、您可以将QSFP/QSFP28端口作为40 Gb以太网或4个10 Gb以太网模式运行。</block>
   <block id="427172b130a849e724ec686d49e97727" category="list-text">您必须已将Nexus 3132Q-V交换机上的某些端口配置为以10 GbE或40 GbE运行。</block>
   <block id="57d432809175e2b2a95b3c3c1aeaabb9" category="paragraph">您可以使用命令将前六个端口划分为4x10 GbE模式<block ref="08aac397a11274cd898dfbb3a635cf19" prefix=" " category="inline-code"></block>。同样、您也可以使用命令对_分支_配置中的前六个QSFP+端口进行重新分组<block ref="9437e02f9ec4a8d602d396abd2c360b4" prefix=" " category="inline-code"></block>。</block>
-  <block id="c66ba47352d59b54f3a4b52ed5c4acb4" category="paragraph">*注：*如果回答<block ref="415290769594460e2e485922904f345d" prefix=" " category="inline-code"></block>用户规范提示，请确保用户具有中所述的必要权限<block ref="c36e4b8d8c2789dd7986c4af4bd3d942" category="inline-xref-macro-rx"></block>。</block>
   <block id="921a23933bb7a508423ca6a0ad00bfd3" category="paragraph">*注：*如果回答<block ref="415290769594460e2e485922904f345d" prefix=" " category="inline-code"></block>用户规范提示，请确保用户具有中所述的必要权限<block ref="c36e4b8d8c2789dd7986c4af4bd3d942" category="inline-xref-macro-rx"></block>。</block>
   <block id="4071b2d290eb3b1857c92068de31aa78" category="summary">您可以在AFF或FAS集群中使用Cisco Nexus 3132q-v交换机作为集群交换机。</block>
   <block id="b62fecd2daa19a4b26cb97fb72713787" category="doc">完成从CN1610交换机到Nexus 3132Q-V交换机的迁移</block>
@@ -5113,8 +5100,6 @@
   <block id="4c4876d5d981da2e6943a052d93bb189" category="list-text">对于NX-OS 10.2及更高版本、请使用<block ref="9c370f72db0e0d920841657ac5268365" prefix=" " category="inline-code"></block>命令与bootflash中保存的RCF文件进行比较。否则、请使用第三方比较或比较工具。</block>
   <block id="0a306731a6993e7a08026ab2d7ca2d97" category="paragraph">您可能需要更新与SSH密钥相关的主机文件条目。</block>
   <block id="89fe808c6ef5fe301085b5abe4406d35" category="paragraph">在Broadcom BES-53248交换机上配置SNMPv3用户名network-operator。</block>
-  <block id="97e3bfa41185c29b8e204545b638d532" category="open-title">NVIDIA - CLI 5.11</block>
-  <block id="3a5cc736f1918e798338d9e890393631" category="paragraph">在运行CLI 5.11的NVIDIA SN2100交换机上配置SNMPv3用户名SNMPv3 _user：</block>
   <block id="01fabc1436d158d1079e5aac28e9fdc4" category="list-text">[[STEP_4]]对集群Lifs禁用自动还原。</block>
   <block id="5b7bd3025678f1b622b4cfd0f4313991" category="inline-xref">步骤。10</block>
   <block id="4ea7139be4dc5337c4d5a24c536b310e" category="list-text">如果集群的SIF已故障转移到交换机CS1且集群运行状况良好，请转至<block ref="1d8bc3843ab5c78170d8cf97ded2a73f" category="inline-xref-macro-rx"></block>。如果某些集群lifs运行不正常或集群运行不正常、您可以回滚与交换机CS2的连接、如下所示：</block>
@@ -5130,8 +5115,6 @@
   <block id="ccd8680433ee6ee996cb1f0a2ae6fb85" category="admonition">列出的例外不会影响性能、可以放心地忽略。</block>
   <block id="a8b6e34450406e412ecb8d40596d9a8d" category="open-title">Cumulus Linux 5.1.1</block>
   <block id="554b50c45dae7ea0e30a60829694ee3a" category="admonition">虽然<block ref="8a444a43bdf534c0c6338bb7809659b3" prefix=" " category="inline-code"></block>在示例中使用了、但您可以使用首选的文件传输方法。</block>
-  <block id="9cb95d38203cf6445dec8201a9a5b8df" category="paragraph">按照以下过程安装适用于监控NVIDIA集群交换机以太网交换机运行状况的配置文件。</block>
-  <block id="118235a8412030b4348eaf7beb295e9a" category="paragraph">支持的型号包括：</block>
   <block id="4439fd91d84b3562f1b65b6624b8e4af" category="list-text">MSN2100-CB2FC</block>
   <block id="95457e019d4e34bf1527cfc720276bde" category="list-text">MSN2100-CB2RC</block>
   <block id="0a7c753e8699d579b1dd4105b9e6b566" category="list-text">清除<block ref="8be5dd683a73b3d7c1a85aa778b3c099" prefix=" " category="inline-code"></block>所有节点上的目录：</block>
@@ -5297,4 +5280,43 @@
   <block id="000bf48a29e422b515b1396c1aac3f2c" category="paragraph">您可以使用空白布线工作表记录支持用作集群节点的平台。</block>
   <block id="af9181560cc346780cf6974ca9209401" category="sidebar">存储交换机- Cisco Nexus 9336-拧 动或9336-拨 动</block>
   <block id="d35b203e8fe0144f812f95e477dfc8ac" category="paragraph"><block ref="d35b203e8fe0144f812f95e477dfc8ac" category="inline-link-macro-rx"></block></block>
+  <block id="8922abf783ebcd2485e871d83f810001" category="paragraph">*注意：*如果对用户规范提示回答 *y*，请确保用户具有必要的权限，如<block ref="c36e4b8d8c2789dd7986c4af4bd3d942" category="inline-xref-macro-rx"></block> 。</block>
+  <block id="0af41f793380f36203c150e88680ae0d" category="admonition">对于 CL 5.11.1，创建用户 *cumulus* 并对以下提示回复 *y*：Would you like to specify a user other than admin for log collection? {y|n}: *y*</block>
+  <block id="9516895d06a737348108b47f990aebff" category="list-text">[[step2]]启用定期日志收集：</block>
+  <block id="86433b1c6cd2dfe18ff408f3c045d2d1" category="list-text">[[step2]] 要请求支持日志收集并启用定期收集，请运行以下命令。此时将开始两种类型的日志收集：详细<block ref="db5eb84117d06047c97c9a0191b5fffe" prefix=" " category="inline-code"></block> 日志和每小时数据收集<block ref="cdcc32a064503184053bd2018d1c0e7e" prefix=" " category="inline-code"></block> 。</block>
+  <block id="e43f0bacec59589637fec825db76ae04" category="list-text">ONTAP 9.13.1P12、9.14.1P9、9.15.1P5、9.16.1 及更高版本修复了以下两个问题：</block>
+  <block id="b0dd8ee150ec6ec9cbd4e76f7441983f" category="inline-link-macro">对于 Cisco 交换机的 ONTAP 运行状况监控，切换到 SNMPv3 进行监控后仍可能看到 SNMPv2 流量</block>
+  <block id="f51d6ba5c14f0f9f7e1e94040870b36a" category="list-text"><block ref="f51d6ba5c14f0f9f7e1e94040870b36a" category="inline-link-macro-rx"></block></block>
+  <block id="703ad3e359e69f75421f8e8fdf1c4374" category="inline-link-macro">SNMP 故障发生时误报交换机风扇和电源警报</block>
+  <block id="972989a7e914db02b9462470b520ed9e" category="list-text"><block ref="972989a7e914db02b9462470b520ed9e" category="inline-link-macro-rx"></block></block>
+  <block id="f1d85c8d2abe8fba947527035ed0f381" category="list-text">等待 CSHM 轮询期后，验证以太网交换机的序列号是否已填充。</block>
+  <block id="05918726f836c344025fecbcf0275f1b" category="open-title">NVIDIA-CL 5.4.0</block>
+  <block id="c19095c0c8945d1d4e4e73ec7a11354c" category="paragraph">在运行 CLI 5.4.0 的 NVIDIA SN2100 交换机上配置 SNMPv3 用户名 SNMPv3_USER：</block>
+  <block id="cd12738ab621b27db86ca1b02e9d118c" category="open-title">NVIDIA-CL 5.11.0</block>
+  <block id="1d478fc1ce1613a790d5d77707c188f6" category="paragraph">在运行 CLI 5.11.0 的 NVIDIA SN2100 交换机上配置 SNMPv3 用户名 SNMPv3_USER：</block>
+  <block id="7d479c867c18b975b78a81ba6c500ec3" category="paragraph">12 端口 10/25/40/100GbE Cisco Nexus 9336C-FX2-T 集群和存储交换机（X190212-CS-PE 和 X190212-CS-PI）</block>
+  <block id="89e4c9dc7a888c7298069f7a0907a0ae" category="paragraph">支持 10/25/40/100GbE 集群配置和 100GbE 存储（交换机连接存储）配置。</block>
+  <block id="5e702c967ba07c588e80787874b7d19d" category="paragraph">要在 NVIDIA 以太网交换机上配置以太网交换机健康监控，请按照以下步骤操作。</block>
+  <block id="4d6e856387f9dc1d4c04534d7e8abc6b" category="paragraph">如果 NVIDIA X190006-PE 和 X190006-PI 交换机无法正确检测，则适用这些说明，可以通过运行<block ref="db3929a8e897b02a87f7f4bc42f38fc1" prefix=" " category="inline-code"></block>并检查您的型号是否显示“*OTHER*”。要识别您的 NVIDIA 交换机型号，请使用以下命令查找部件号<block ref="eca133854d2cdb8697246596d25a5eb3" prefix=" " category="inline-code"></block>对于 NVIDIA CL 5.8 及更早版本或<block ref="28b95eb6cef78e03af3129f8108edf3e" prefix=" " category="inline-code"></block>适用于更高版本。</block>
+  <block id="d63c11f73a289e709f02f89a7fd9bc50" category="paragraph">如果您希望在将 NVIDIA CL 5.11.x 与以下 ONTAP 版本结合使用时，运行状况监控和日志收集能够按预期工作，也建议您执行这些步骤。虽然即使没有这些步骤，运行状况监控和日志收集可能仍会正常运行，但遵循这些步骤可以确保一切正常运行。</block>
+  <block id="22ade9a0f286817cb6e7960fb4e222fa" category="list-text">9.10.1P20、9.11.1P18、9.12.1P16、9.13.1P8、9.14.1、9.15.1 及更高补丁版本</block>
+  <block id="486e5bfc1a37635afcdd9af389c406cc" category="list-text">在交换机上启用 SSH 以使用 CSHM 中可用的所有功能。</block>
+  <block id="beecd060af34d32d93c47b39c7723bb9" category="paragraph">根据您当前和目标版本提供有关 Nexus 9000 系列交换机上的 Cisco NX-OS 软件的中断升级/降级的信息。</block>
+  <block id="0f81363c5be126efb261f8dcd99f371f" category="paragraph">要设置 ONTAP 系统，您需要以下适用于您的操作系统版本的文档<block ref="6f42080c8f875d77e25baa15189a0ef0" category="inline-link-rx"></block> 。</block>
+  <block id="1c10f160ae9b8c4d78cec8e05f3c3a4e" category="paragraph">SNMP用于监控交换机。按照以下步骤配置 SNMPv3 的监控。</block>
+  <block id="b243d3b653e3e0bac6ab3be1bf2318bf" category="paragraph">以太网交换机运行状况监控器(CSHM)利用SNMP监控集群和存储交换机的运行状况和性能。默认情况下、SNMPv2c是通过参考配置文件(Reference Configuration File、RCF)自动配置的。SNMPv3比SNMPv2更安全、因为它引入了身份验证、加密和消息完整性等强大的安全功能、可防止未经授权的访问、并确保数据在传输期间的机密性和完整性。</block>
+  <block id="539f41729af62dae66a48e9619426286" category="list-text">使用<block ref="df911f0151f9ef021d410b4be5060972" prefix=" " category="inline-code"></block>命令来验证与托管 Cumulus Linux 和 RCF 的服务器的连接。</block>
+  <block id="0fbbad4e5350fbac341a075f41a5c28a" category="list-text">如果您正在升级 RCF，则必须禁用此步骤的自动恢复。</block>
+  <block id="1bdb02bb5a3beb73663730bb20fc1c76" category="list-text">如果您刚刚升级了 Cumulus Linux 版本，则无需禁用此步骤的自动恢复功能，因为它已被禁用。</block>
+  <block id="2768f3b6b437ed39538e52b6e83f011b" category="list-text">在第二个交换机上重复步骤 1 至 14。</block>
+  <block id="c9968f92aa55be49e85602936643e367" category="list-text">验证所有集群 LIF 是否都已禁用自动恢复：</block>
+  <block id="946e7e341f9fdba2f077d93298bb5db9" category="paragraph"><block ref="e2bf42f02b2b81e10f05db8c043a2a89" prefix="" category="inline-code"></block></block>
+  <block id="e35e1d0babb539d1b337602fdcf898ce" category="list-text">[[step2]] 将权限级别改回管理员：</block>
+  <block id="9a06646ee494bf67708a4bc06e71dbeb" category="open-title">Cumulus Linux 4.4.x 至 Cumulus Linux 5.4.0</block>
+  <block id="5dcfe2540f77c16760c1eaf0b8d7567a" category="list-text">使用 ping 命令验证与托管 Cumulus Linux 和 RCF 的服务器的连接。</block>
+  <block id="b71e5782145577531702a84f68699019" category="open-title">Cumulus Linux 5.x 至 Cumulus Linux 5.4.0</block>
+  <block id="607ce262227aceccd2c5daca045a80dc" category="open-title">Cumulus Linux 5.4.0 至 Cumulus Linux 5.11.0</block>
+  <block id="1793733c3fd6ed243dfcb1cd45582f6e" category="list-text">下载Cumulux Linux 5.11.0映像：</block>
+  <block id="3b17e95301e3d2dffb102ceff49ecd86" category="list-text">注销并再次登录交换机，即可在提示符下看到更新后的交换机名称：</block>
+  <block id="7c7a0b76c488baaa82c48a846faa8727" category="paragraph"><block ref="0d353ea2e4037b21b3bb06f2b69f1c6c" category="inline-link-macro-rx"></block>(英文)</block>
 </blocks>

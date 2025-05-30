@@ -42,8 +42,34 @@ CAUTION: 累积用户帐户的默认密码为*累积用户*。首次登录到Cum
 .步骤
 [role="tabbed-block"]
 ====
-.从Cumulus Linux 4.4.x到Cumulus Linux 5.x
+.Cumulus Linux 4.4.x 至 Cumulus Linux 5.4.0
 --
+. 将集群交换机连接到管理网络。
+. 使用 ping 命令验证与托管 Cumulus Linux 和 RCF 的服务器的连接。
+. 显示连接到集群交换机的每个节点上的集群端口：
++
+`network device-discovery show`
+
+. 检查每个集群端口的管理和运行状态。
++
+.. 验证所有集群端口是否均已启动且状态正常：
++
+`network port show -role cluster`
+
+.. 验证所有集群接口（ LIF ）是否均位于主端口上：
++
+`network interface show -role cluster`
+
+.. 验证集群是否同时显示两个集群交换机的信息：
++
+`ssystem cluster-switch show -is-monitoring-enableed-Operational true`
+
+
+
+. 在集群 LIF 上禁用自动还原。在目标交换机上执行升级过程时、这些集群Cifs将故障转移到配对集群交换机并保留在该交换机上：
++
+`network interface modify -vserver cluster -lif *-auto-revert false`
+
 . 检查当前的Cumulus Linux版本和连接的端口：
 +
 [listing, subs="+quotes"]
@@ -81,7 +107,7 @@ UP     swp6    100G  9216   Trunk/L2    SHFFG1826000102 (e0b)   Master: bridge(U
 .
 .
 ----
-. 下载CUMLUX Linux 5.x image：tmp
+. 下载Cumulux Linux 5.4.0映像：
 +
 [listing, subs="+quotes"]
 ----
@@ -250,8 +276,34 @@ cumulus@sw1:mgmt:~$ *sudo adduser admin nvshow*
 
 
 --
-.从Cumulus Linux 5.x到Cumulus Linux 5.x
+.Cumulus Linux 5.x 至 Cumulus Linux 5.4.0
 --
+. 将集群交换机连接到管理网络。
+. 使用 ping 命令验证与托管 Cumulus Linux 和 RCF 的服务器的连接。
+. 显示连接到集群交换机的每个节点上的集群端口：
++
+`network device-discovery show`
+
+. 检查每个集群端口的管理和运行状态。
++
+.. 验证所有集群端口是否均已启动且状态正常：
++
+`network port show -role cluster`
+
+.. 验证所有集群接口（ LIF ）是否均位于主端口上：
++
+`network interface show -role cluster`
+
+.. 验证集群是否同时显示两个集群交换机的信息：
++
+`ssystem cluster-switch show -is-monitoring-enableed-Operational true`
+
+
+
+. 在集群 LIF 上禁用自动还原。在目标交换机上执行升级过程时、这些集群Cifs将故障转移到配对集群交换机并保留在该交换机上：
++
+`network interface modify -vserver cluster -lif *-auto-revert false`
+
 . 检查当前的Cumulus Linux版本和连接的端口：
 +
 [listing, subs="+quotes"]
@@ -449,6 +501,173 @@ cumulus@sw1:mgmt:~$ *sudo adduser admin nvshow*
 
 
 --
+.Cumulus Linux 5.4.0 至 Cumulus Linux 5.11.0
+--
+. 将集群交换机连接到管理网络。
+. 使用 ping 命令验证与托管 Cumulus Linux 和 RCF 的服务器的连接。
+. 显示连接到集群交换机的每个节点上的集群端口：
++
+`network device-discovery show`
+
+. 检查每个集群端口的管理和运行状态。
++
+.. 验证所有集群端口是否均已启动且状态正常：
++
+`network port show -role cluster`
+
+.. 验证所有集群接口（ LIF ）是否均位于主端口上：
++
+`network interface show -role cluster`
+
+.. 验证集群是否同时显示两个集群交换机的信息：
++
+`ssystem cluster-switch show -is-monitoring-enableed-Operational true`
+
+
+
+. 在集群 LIF 上禁用自动还原。在目标交换机上执行升级过程时、这些集群Cifs将故障转移到配对集群交换机并保留在该交换机上：
++
+`network interface modify -vserver cluster -lif *-auto-revert false`
+
+. 检查当前的Cumulus Linux版本和连接的端口：
++
+[listing, subs="+quotes"]
+----
+admin@sw1:mgmt:~$ *nv show system*
+                    operational          applied
+------------------- -------------------- -----------------
+hostname            cumulus              cumulus
+build               Cumulus Linux 5.4.0
+uptime              6 days, 8:37:36
+timezone            Etc/UTC
+
+admin@sw1:mgmt:~$ *nv show interface*
+Interface     MTU   Speed State Remote Host         Remote Port- Type      Summary
+------------- ----- ----- ----- ------------------- ------------ --------- -------------
++ cluster_isl 9216  200G  up                                      bond
++ eth0        1500  100M  up    mgmt-sw1            Eth105/1/14   eth       IP Address: 10.231.80 206/22
+  eth0                                                                      IP Address: fd20:8b1e:f6ff:fe31:4a0e/64
++ lo          65536       up                                      loopback  IP Address: 127.0.0.1/8
+  lo                                                                        IP Address: ::1/128
++ swp1s0      9216 10G    up cluster01                e0b         swp
+.
+.
+.
++ swp15      9216 100G    up sw2                      swp15       swp
++ swp16      9216 100G    up sw2                      swp16       swp
+----
+. 下载Cumulux Linux 5.11.0映像：
++
+[listing, subs="+quotes"]
+----
+admin@sw1:mgmt:~$ *sudo onie-install -a -i http://_<ip-to-webserver>_/path/to/cumulus-linux-5.11.0-mlx-amd64.bin*
+[sudo] password for cumulus:
+Fetching installer: http://_<ip-to-webserver>_/path/to/cumulus-linux-5.11.0-mlx-amd64.bin
+Downloading URL: http://_<ip-to-webserver>_/path/to/cumulus-linux-5.11.0-mlx-amd64.bin
+######################################################################### 100.0%
+Success: HTTP download complete.
+EFI variables are not supported on this system
+Warning: SecureBoot is not available.
+Image is signed.
+.
+.
+.
+Staging installer image...done.
+WARNING:
+WARNING: Activating staged installer requested.
+WARNING: This action will wipe out all system data.
+WARNING: Make sure to back up your data.
+WARNING:
+Are you sure (y/N)? *y*
+Activating staged installer...done.
+Reboot required to take effect.
+----
+. 重新启动交换机：
++
+[listing, subs="+quotes"]
+----
+admin@sw1:mgmt:~$ *sudo reboot*
+----
+. 更改密码：
++
+[listing, subs="+quotes"]
+----
+cumulus login: *cumulus*
+Password:
+You are required to change your password immediately (administrator enforced)
+Changing password for cumulus.
+Current password: *cumulus*
+New password: *<new_password>*
+Retype new password: *<new_password>*
+Linux cumulus 5.11.0-cl-1-amd64 #1 SMP Debian 5.10.162-1+cl5.4.0u1 (2023-01-20) x86_64
+
+Welcome to NVIDIA Cumulus (R) Linux (R)
+
+ZTP in progress. To disable, do 'ztp -d'
+----
+. 检查Cumulus Linux版本： `nv show system`
++
+[listing, subs="+quotes"]
+----
+cumulus@cumulus:mgmt:~$ *nv show system*
+operational    applied
+-------------- ----------------
+hostname       cumulus cumulus
+build          Cumulus Linux 5.11.0
+uptime         14:07:08
+timezone       Etc/UTC
+----
+. 更改主机名：
++
+[listing, subs="+quotes"]
+----
+cumulus@cumulus:mgmt:~$ *nv set system hostname sw1*
+cumulus@cumulus:mgmt:~$ *nv config apply*
+Warning: The following files have been changed since the last save, and they WILL be overwritten.
+- /etc/nsswitch.conf
+- /etc/synced/synced.conf
+.
+.
+----
+. 注销并再次登录交换机，即可在提示符下看到更新后的交换机名称：
++
+[listing, subs="+quotes"]
+----
+cumulus@cumulus:mgmt:~$ *exit*
+logout
+
+Debian GNU/Linux 10 cumulus ttyS0
+
+cumulus login: *cumulus*
+Password:
+Last login: Tue Dec 15 21:43:13 UTC 2020 on ttyS0
+Linux cumulus 5.11.0-cl-1-amd64 #1 SMP Debian 5.10.162-1+cl5.4.0u1 (2023-01-20) x86_64
+
+Welcome to NVIDIA Cumulus (R) Linux (R)
+
+
+ZTP in progress. To disable, do 'ztp -d'
+
+cumulus@sw1:mgmt:~$
+----
+. 设置IP地址：
++
+[listing, subs="+quotes"]
+----
+cumulus@sw1:mgmt:~$ *nv unset interface eth0 ip address dhcp*
+cumulus@sw1:mgmt:~$ *nv set interface eth0 ip address 10.231.80.206/22*
+cumulus@sw1:mgmt:~$ *nv set interface eth0 ip gateway 10.231.80.1*
+cumulus@sw1:mgmt:~$ *nv config apply*
+applied [rev_id: 2]
+cumulus@sw1:mgmt:~$ *ip route show vrf mgmt*
+default via 10.231.80.1 dev eth0 proto kernel
+unreachable default metric 4278198272
+10.231.80.0/22 dev eth0 proto kernel scope link src 10.231.80.206
+127.0.0.0/8 dev mgmt proto kernel scope link src 127.0.0.1
+----
+
+
+--
 ====
 .下一步是什么？
-link:install-rcf-sn2100-cluster.html["安装参考配置文件(Reference Configuration File、RCF)脚本"]。
+link:install-rcf-sn2100-cluster.html["安装或升级RCF脚本"](英文)

@@ -86,7 +86,7 @@ Cisco Nexus 9000 系列的合规性和安全信息
 
 == ONTAP 系统文档
 
-要设置 ONTAP 系统，您需要在中为您的操作系统版本提供以下文档 https://docs.netapp.com/ontap-9/index.jsp["ONTAP 9 文档中心"^]。
+要设置 ONTAP 系统，您需要以下适用于您的操作系统版本的文档 https://docs.netapp.com/ontap-9/index.jsp["ONTAP 9."^] 。
 
 [cols="1,2"]
 |===

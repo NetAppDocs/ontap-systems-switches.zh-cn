@@ -11,6 +11,24 @@ summary: Cisco Nexus 9336C-x2 集群交换机上必须安装 Cisco NX-OS 软件�
 [role="lead"]
 在安装NX-OS软件和参考配置文件(Reference Configuration File、RCF)之前、请遵循此操作步骤。
 
+.建议的文档
+* link:https://mysupport.netapp.com/site/info/cisco-ethernet-switch["Cisco 以太网交换机页面"^]
++
+有关支持的ONTAP 和NX-OS版本、请参见交换机兼容性表。
+
+* link:https://www.cisco.com/c/en/us/support/switches/nexus-9000-series-switches/products-installation-guides-list.html["软件升级和降级指南"^]
++
+有关Cisco交换机升级和降级过程的完整文档、请参阅Cisco网站上提供的相应软件和升级指南。
+
+* link:https://www.cisco.com/c/dam/en/us/td/docs/dcn/tools/nexus-9k3k-issu-matrix/index.html["Cisco Nexus 9000和3000升级和ISSU列表"^]
++
+根据您当前和目标版本提供有关 Nexus 9000 系列交换机上的 Cisco NX-OS 软件的中断升级/降级的信息。
+
++
+在页面上，选择“*中断升级”，然后从下拉列表中选择当前版本和目标版本。
+
+
+
 .关于示例
 此操作步骤中的示例使用以下交换机和节点命名：
 
@@ -211,7 +229,7 @@ cluster1::*> *network interface show -vserver Cluster -fields auto-revert*
 
           Logical
 Vserver   Interface           Auto-revert
---------- ––––––-------------- ------------
+--------- ------------------- ------------
 Cluster
           cluster1-01_clus1   true
           cluster1-01_clus2   true

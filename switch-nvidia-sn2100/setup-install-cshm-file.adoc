@@ -11,26 +11,21 @@ summary: 您可以使用此过程为监控NVIDIA SN2100集群交换机的集群�
 
 
 [role="lead"]
-按照以下过程安装适用于监控NVIDIA集群交换机以太网交换机运行状况的配置文件。
+要在 NVIDIA 以太网交换机上配置以太网交换机健康监控，请按照以下步骤操作。
 
-支持的型号包括：
+如果 NVIDIA X190006-PE 和 X190006-PI 交换机无法正确检测，则适用这些说明，可以通过运行 `system switch ethernet show`并检查您的型号是否显示“*OTHER*”。要识别您的 NVIDIA 交换机型号，请使用以下命令查找部件号 `nv show platform hardware`对于 NVIDIA CL 5.8 及更早版本或 `nv show platform`适用于更高版本。
 
-* MSN2100-CB2FC
-* MSN2100-CB2RC
-* X190006-PE
-* X190006-PI
+[NOTE]
+====
+如果您希望在将 NVIDIA CL 5.11.x 与以下 ONTAP 版本结合使用时，运行状况监控和日志收集能够按预期工作，也建议您执行这些步骤。虽然即使没有这些步骤，运行状况监控和日志收集可能仍会正常运行，但遵循这些步骤可以确保一切正常运行。
+
+* 9.10.1P20、9.11.1P18、9.12.1P16、9.13.1P8、9.14.1、9.15.1 及更高补丁版本
 
 
-
-NOTE: 此安装过程适用于ONTAP 9.10.1及更高版本。
-
+====
 .开始之前
-* 运行并检查是否为您的型号显示了*OTER*，以验证您是否需要下载配置文件 `system switch ethernet show` 。
-+
-如果您的型号在应用配置文件后仍显示*OTA*，请与NetApp支持联系。
-
 * 确保ONTAP 集群已启动且正在运行。
-* 启用SSH以使用CSHM中提供的所有功能。
+* 在交换机上启用 SSH 以使用 CSHM 中可用的所有功能。
 * 清除 `/mroot/etc/cshm_nod/nod_sign/`所有节点上的目录：
 +
 .. 输入noshell：
@@ -101,7 +96,7 @@ NOTE: 此安装过程适用于ONTAP 9.10.1及更高版本。
 +
 [listing, subs="+quotes"]
 ----
-cluster1::> *system cluster-switch configure-health-monitor -node * -package-url http://192.168.2.20/usr/download/_[filename.zip]_*
+cluster1::> *system switch ethernet*
 ----
 . 确认对于您的ONTAP版本、命令输出以以下文本结尾：
 
@@ -134,6 +129,9 @@ shm已安装配置文件。
 cluster1::> *system switch ethernet show*
 ----
 
+
+
+NOTE: 如果您的型号在应用配置文件后仍显示*OTA*，请与NetApp支持联系。
 
 .下一步是什么？
 link:../switch-cshm/config-overview.html["配置交换机运行状况监控"](英文)
