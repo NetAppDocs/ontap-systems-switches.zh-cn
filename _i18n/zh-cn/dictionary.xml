@@ -191,7 +191,6 @@
   <block id="3a59514a5edf3d95e6827d526b38684f" category="list-text">奇偶校验：无</block>
   <block id="d2a62ef21f835696a8c6261bed3c3040" category="list-text">流量控制：无</block>
   <block id="ed37a6a8028dc06785735d8c0a7178b4" category="paragraph">默认情况下， serviceport 设置为使用 DHCP 。系统会自动分配 IP 地址，子网掩码和默认网关地址。</block>
-  <block id="433c21332379db77320fe7a821073bdc" category="list-text">使用命令验证结果：</block>
   <block id="054f736f28a6918e0571caad3b5d1440" category="paragraph">`s如何使用 serviceport`</block>
   <block id="afac0a52c83984bf1020f56dd9df720f" category="list-text">配置域和名称服务器：</block>
   <block id="46180f667842fa1595248c425401bc35" category="paragraph">`配置`</block>
@@ -233,7 +232,6 @@
   <block id="1dd482f318ebf3baf239afefb0c0756b" category="list-text">相应的 ISL 布线如下所示：</block>
   <block id="0770c9d05dca95d3cdebb78f361ae6e8" category="list-text">* 起始： * 对于 CN1610 到 CN1610 （ SFP+ 到 SFP+ ），需要四根 SFP+ 光纤或铜缆直连缆线。</block>
   <block id="320ed3c6eb6c5ab11253b5afc742dec7" category="list-text">* 最终版本： * 对于 BES-53248 到 BES-53248 （ QSFP28 到 QSFP28 ），需要两根 QSFP28 光纤收发器 / 光纤或铜缆直连缆线。</block>
-  <block id="c04ce9c1c44c5e07bf7a73e79811a429" category="list-text">要设置静态 IP 地址，请使用 `serviceport protocol` ， `network protocol` 和 `serviceport ip` 命令，如示例所示。</block>
   <block id="0fd8ea58e8899f870165c3b59ed22856" category="paragraph">双节点无交换机配置：</block>
   <block id="085e7d788f517113effde29af6642887" category="list-text">双节点无交换机配置必须已正确设置并正常运行。</block>
   <block id="3c5f7860b8066b3514dea9b2552a9d4e" category="list-text">两台交换机都必须具有管理网络连接。</block>
@@ -298,7 +296,6 @@
   <block id="7353d71bb489b434e9c00860f53dc245" category="paragraph">100GbE 集群交换机间链路（ ISL ）端口，基本配置</block>
   <block id="22ef485216cbed5496c7d8cea313dee0" category="paragraph">在四端口组中的所有端口之间， SFP28/SFP+ 端口速度必须相同（ 10GbE 或 25GbE ）。</block>
   <block id="d002eea8f83f99bafbbc5f36440edd41" category="summary">您可以在首次设置 Nexus 9336C-fx2 交换机后安装 RCF 。您也可以使用此操作步骤升级 RCF 版本。</block>
-  <block id="0e20b420112310f5c09a775e13d5ec63" category="paragraph">首次设置 Nexus 9336C-FX2 交换机后，您可以安装 RCF 。您也可以使用此操作步骤升级 RCF 版本。</block>
   <block id="065efbcd9d0a8e180fd23e7abf72c407" category="list-text">两个 Cisco 交换机的名称分别为 CS1 和 CS2 。</block>
   <block id="0a7b7f6be6701fe3f4fccf471c185aac" category="list-text">集群 LIF 名称包括 cluster1-01_clus1 ， cluster1-01_clus2 ， cluster1-02_clus1 ， cluster1-02_clus2 ， cluster1-03_clus1 ， cluster1-03_clus2 ， cluster1-04_clus1 和 cluster1-04_clus2 。</block>
   <block id="f0db4a1725ddf2683998fa54fd370447" category="admonition">操作步骤要求同时使用 ONTAP 命令和 Cisco Nexus 9000 系列交换机命令；除非另有说明，否则使用 ONTAP 命令。</block>
@@ -5040,7 +5037,6 @@
   <block id="a631ed2f01f0a384874d92ecdaee2d1c" category="paragraph">配置双节点无交换机集群、以便迁移到双节点有交换机集群。</block>
   <block id="5f9610f3409d9abe96cc344156486c5e" category="paragraph-title"><block ref="beadfa85a2fdca06b91edc1131c603e6" category="inline-image-macro-rx" type="image"></block><block ref="4c0a19683ab4dd37cd0517d25639fa78" category="inline-link-macro-rx"></block></block>
   <block id="e796841df950e342f76a5b538574f5f6" category="paragraph">完成向双节点有交换机集群的迁移。</block>
-  <block id="e4ff582cba38e556dc88b3e74baf1ec1" category="paragraph">&lt;stdin&gt;中未解析的指令- include：..//_include/install-rcc-soft-9336c-cluster-adoc[]</block>
   <block id="1ececed2a569720ced41e9cd50d7b238" category="list-text">交换机CS1和交换机CS2已启动、并且初始交换机设置已完成(管理IP地址和SSH已设置)。</block>
   <block id="c3109b36f2c8edda93835ccefa0e4dc3" category="doc">安装或升级参考配置文件(Reference Configuration File、RCF)概述</block>
   <block id="6d7b8066e6c7166408cb61e68a705e7f" category="list-text">两个Cisco交换机的名称分别为*CS1*和*CS2*。</block>
@@ -5319,4 +5315,9 @@
   <block id="1793733c3fd6ed243dfcb1cd45582f6e" category="list-text">下载Cumulux Linux 5.11.0映像：</block>
   <block id="3b17e95301e3d2dffb102ceff49ecd86" category="list-text">注销并再次登录交换机，即可在提示符下看到更新后的交换机名称：</block>
   <block id="7c7a0b76c488baaa82c48a846faa8727" category="paragraph"><block ref="0d353ea2e4037b21b3bb06f2b69f1c6c" category="inline-link-macro-rx"></block>(英文)</block>
+  <block id="fc6063e37d3407a7d76fabb59f7a96a3" category="list-text">要为交换机的服务端口设置静态 IPv4 或 IPv6 管理地址：</block>
+  <block id="42a9137a05a60eb752dcdf982e717626" category="open-title">IPv4</block>
+  <block id="fdb7cb8f657426e7c409bfd6d1a36ce4" category="open-title">IPv6</block>
+  <block id="eac292441a720b0a0f4b67dcb9db6398" category="list-text">[[step7]]使用命令验证结果：</block>
+  <block id="c946088bdd01d4ceb54099911c69adbe" category="admonition">显示的端口数量根据集群中的节点数量而变化。</block>
 </blocks>

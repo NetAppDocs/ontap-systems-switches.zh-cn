@@ -66,25 +66,40 @@ Password:
 (Routing)# *hostname cs2*
 (cs2)#
 ----
-. 要设置静态 IP 地址，请使用 `serviceport protocol` ， `network protocol` 和 `serviceport ip` 命令，如示例所示。
-+
+. 要为交换机的服务端口设置静态 IPv4 或 IPv6 管理地址：
+
+
+[role="tabbed-block"]
+====
+.IPv4
+--
 默认情况下， serviceport 设置为使用 DHCP 。系统会自动分配 IP 地址，子网掩码和默认网关地址。
 
-+
 [listing, subs="+quotes"]
 ----
 (cs2)# *serviceport protocol none*
 (cs2)# *network protocol none*
-(cs2)# *serviceport ip ipaddr netmask gateway*
+(cs2)# *serviceport ip <ip-address> <netmask> <gateway>*
 ----
-. 使用命令验证结果：
+--
+.IPv6
+--
+默认情况下， serviceport 设置为使用 DHCP 。系统会自动分配 IP 地址，子网掩码和默认网关地址。
+
+[listing, subs="+quotes"]
+----
+(cs2)# *serviceport protocol none*
+(cs2)# *network protocol none*
+(cs2)# *serviceport ipv6 <address>*
+(cs2)# *serviceport ipv6 <gateway>*
+----
+--
+====
+. [[step7]]使用命令验证结果：
 +
 `s如何使用 serviceport`
 
 +
-.显示示例
-[%collapsible]
-====
 [listing, subs="+quotes"]
 ----
 (cs2)# *show serviceport*
@@ -100,7 +115,6 @@ Configured IPv6 Protocol....................... None
 IPv6 AutoConfig Mode........................... Disabled
 Burned In MAC Address.......................... D8:C4:97:71:12:3C
 ----
-====
 . 配置域和名称服务器：
 +
 [source, cli]

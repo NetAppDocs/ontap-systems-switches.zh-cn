@@ -206,9 +206,17 @@ cluster1::*> *network interface modify -vserver Cluster -lif * -auto-revert fals
 +
 [listing, subs="+quotes"]
 ----
+cs2> *enable*
+cs2# *configure*
 cs2(config)# *interface eth1/1/1-2,eth1/7-8*
 cs2(config-if-range)# *shutdown*
+cs2(config-if-range)# *exit*
+cs2# *exit*
 ----
++
+
+NOTE: 显示的端口数量根据集群中的节点数量而变化。
+
 . 验证集群端口是否已迁移到集群交换机 CS1 上托管的端口。这可能需要几秒钟的时间。
 +
 `network interface show -vserver cluster`
@@ -570,10 +578,18 @@ NOTE: 集群节点报告运行状况可能需要长达5分钟的时间。
 ====
 [listing, subs="+quotes"]
 ----
+cs1> *enable*
+cs1# *configure*
 cs1(config)# *interface eth1/1/1-2,eth1/7-8*
 cs1(config-if-range)# *shutdown*
+cs1(config-if-range)# *exit*
+cs1# *exit*
 ----
 ====
++
+
+NOTE: 显示的端口数量根据集群中的节点数量而变化。
+
 . 验证集群 LIF 是否已迁移到交换机 CS2 上托管的端口。这可能需要几秒钟的时间。
 +
 `network interface show -vserver cluster`
