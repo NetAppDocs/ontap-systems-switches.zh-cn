@@ -11,6 +11,19 @@ summary: 对于ONTAP 9.3及更高版本、您可以从具有交换集群网络�
 
 
 [role="lead"]
+在 ONTAP 9.3 及更高版本中，您可以从具有交换集群网络的集群迁移到两个节点直接连接的集群。
+
+[NOTE]
+====
+NetApp 建议您在继续对 Cisco Nexus 3132Q-V 交换机进行切换到无交换机集群操作之前更新 ONTAP 版本。
+
+有关详细信息、请参见以下内容：
+
+* link:https://kb.netapp.com/Support_Bulletins/Customer_Bulletins/SU540["SU540：从 40G 升级到 100G 网络交换机时，Chelsio T6 NIC 错误导致系统关闭"^]
+* link:https://kb.netapp.com/on-prem/ontap/OHW/OHW-KBs/Node_panic_after_migration_from_switched_to_switchless_cluster["从交换集群迁移到无交换集群后节点崩溃"^]
+
+
+====
 对于ONTAP 9.3及更高版本、您可以从具有交换集群网络的集群迁移到两个节点直接连接的集群。
 
 

@@ -5320,4 +5320,11 @@
   <block id="fdb7cb8f657426e7c409bfd6d1a36ce4" category="open-title">IPv6</block>
   <block id="eac292441a720b0a0f4b67dcb9db6398" category="list-text">[[step7]]使用命令验证结果：</block>
   <block id="c946088bdd01d4ceb54099911c69adbe" category="admonition">显示的端口数量根据集群中的节点数量而变化。</block>
+  <block id="bfa3caeccd381a6edc0d03bcf593415d" category="paragraph">在 ONTAP 9.3 及更高版本中，您可以从具有交换集群网络的集群迁移到两个节点直接连接的集群。</block>
+  <block id="c9a6054069261a928a7c1dab82eb88fe" category="paragraph">NetApp 建议您在继续对 Cisco Nexus 3132Q-V 交换机进行切换到无交换机集群操作之前更新 ONTAP 版本。</block>
+  <block id="144a250e90b7036b16f6df3cfd1f5f99" category="paragraph">有关详细信息、请参见以下内容：</block>
+  <block id="87f018a0abede0248ff577d1557531c0" category="inline-link-macro">SU540：从 40G 升级到 100G 网络交换机时，Chelsio T6 NIC 错误导致系统关闭</block>
+  <block id="de7ffa00f75520afd4312c03db0da03c" category="list-text"><block ref="de7ffa00f75520afd4312c03db0da03c" category="inline-link-macro-rx"></block></block>
+  <block id="c409f8a3c1a31991297c71a6ef92dff2" category="inline-link-macro">从交换集群迁移到无交换集群后节点崩溃</block>
+  <block id="55f49c71e99a86d3514c015252eee468" category="list-text"><block ref="55f49c71e99a86d3514c015252eee468" category="inline-link-macro-rx"></block></block>
 </blocks>
