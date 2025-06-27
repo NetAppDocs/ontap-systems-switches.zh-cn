@@ -40,6 +40,23 @@ SSH Public Key Authentication Mode: ........... Disabled
 SCP server Administrative Mode: ............... Disabled
 ----
 ====
++
+如果 SSH 未禁用，请按如下方式禁用它：
+
++
+.显示示例
+[%collapsible]
+====
+[listing, subs="+quotes"]
+----
+(switch)# *ip ssh server disable*
+(switch)# *ip scp server disable*
+----
+====
++
+
+WARNING: 修改密钥之前请确保禁用 SSH，否则交换机上会报告警告。
+
 . 生成 SSH 密钥：
 +
 `crypto key generate`
@@ -82,10 +99,6 @@ Config file 'startup-config' created successfully.
 Configuration Saved!
 ----
 ====
-+
-
-WARNING: 请确保在修改密钥之前禁用SSH、否则交换机上会报告警告。
-
 . 加密SSH密钥(仅限* FIPS模式*)：
 +
 
@@ -167,4 +180,4 @@ SCP server Administrative Mode: ............... Enabled
 
 
 .下一步是什么？
-link:../switch-cshm/config-overview.html["配置交换机运行状况监控"](英文)
+link:../switch-cshm/config-overview.html["配置交换机运行状况监控"]

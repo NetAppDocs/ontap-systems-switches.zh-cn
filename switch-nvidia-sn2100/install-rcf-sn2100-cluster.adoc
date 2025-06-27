@@ -407,7 +407,7 @@ RCF脚本将完成上述示例中列出的步骤。
 
 +
 
-NOTE: 在步骤3*更新上面的MOTD文件*中，命令 `cat /etc/issue` 已运行。这样、您可以验证RCV文件名、RCV版本、要使用的端口以及RCV横幅中的其他重要信息。
+NOTE: 在上面的步骤 3 *更新 MOTD 文件* 中，命令 `cat /etc/issue.net`正在运行。这样、您可以验证RCV文件名、RCV版本、要使用的端口以及RCV横幅中的其他重要信息。
 
 +
 例如：
@@ -415,7 +415,7 @@ NOTE: 在步骤3*更新上面的MOTD文件*中，命令 `cat /etc/issue` 已运�
 +
 [listing]
 ----
-admin@sw1:mgmt:~$ cat /etc/issue
+admin@sw1:mgmt:~$ cat /etc/issue.net
 ******************************************************************************
 *
 * NetApp Reference Configuration File (RCF)
@@ -773,7 +773,7 @@ RCF脚本将完成上述示例中列出的步骤。
 
 +
 
-NOTE: 在步骤3*更新上面的MOTD文件*中，命令 `cat /etc/issue` 已运行。这样、您可以验证RCV文件名、RCV版本、要使用的端口以及RCV横幅中的其他重要信息。
+NOTE: 在上面的步骤 3 *更新 MOTD 文件*中，运行命令“cat /etc/issue.net”。这样、您可以验证RCV文件名、RCV版本、要使用的端口以及RCV横幅中的其他重要信息。
 
 +
 例如：
@@ -781,7 +781,7 @@ NOTE: 在步骤3*更新上面的MOTD文件*中，命令 `cat /etc/issue` 已运�
 +
 [listing]
 ----
-admin@sw1:mgmt:~$ cat /etc/issue
+admin@sw1:mgmt:~$ cat /etc/issue.net
 ******************************************************************************
 *
 * NetApp Reference Configuration File (RCF)

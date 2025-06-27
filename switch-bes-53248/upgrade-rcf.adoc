@@ -409,7 +409,7 @@ vlan database
 no vlan 17
 no vlan 18
 exit
-show-running-config
+show running-config
 ----
 .. 将运行配置保存到启动配置：
 +
@@ -657,7 +657,7 @@ Intf      Type   Mode      Mode         Status     Status Trap    Mode   Timeout
 +
 [source, cli]
 ----
-show running config
+show running-config
 ----
 . 保存正在运行的配置，使其在重新启动交换机时成为启动配置：
 +
