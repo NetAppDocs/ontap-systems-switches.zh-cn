@@ -377,10 +377,14 @@ cumulus@sw1:~$ *sudo hwclock -w*
 +
 [listing, subs="+quotes"]
 ----
-cumulus@sw1:~$ *nv set service ntp default server _<cumulus.network.ntp.org>_ iburst on*
+cumulus@sw1:~$ *nv set service ntp mgmt listen eth0*
+cumulus@sw1:~$ *nv set service ntp mgmt server <server> iburst on*
 cumulus@sw1:~$ *nv config apply*
 cumulus@sw1:~$ *nv config save*
 ----
++
+请参阅知识库文章link:https://kb.netapp.com/on-prem/Switches/Nvidia-KBs/NTP_Server_configuration_is_not_working_with_NVIDIA_SN2100_Switches["NTP 服务器配置不适用于 NVIDIA SN2100 交换机"^]了解更多详情。
+
 .. 验证系统是否 `ntpd`正在运行：
 +
 [listing, subs="+quotes"]
@@ -615,10 +619,14 @@ cumulus@sw1:~$ *sudo hwclock -w*
 +
 [listing, subs="+quotes"]
 ----
-cumulus@sw1:~$ *nv set service ntp default server _<cumulus.network.ntp.org>_ iburst on*
+cumulus@sw1:~$ *nv set service ntp mgmt listen eth0*
+cumulus@sw1:~$ *nv set service ntp mgmt server <server> iburst on*
 cumulus@sw1:~$ *nv config apply*
 cumulus@sw1:~$ *nv config save*
 ----
++
+请参阅知识库文章link:https://kb.netapp.com/on-prem/Switches/Nvidia-KBs/NTP_Server_configuration_is_not_working_with_NVIDIA_SN2100_Switches["NTP 服务器配置不适用于 NVIDIA SN2100 交换机"^]了解更多详情。
+
 .. 验证系统是否 `ntpd`正在运行：
 +
 [listing, subs="+quotes"]

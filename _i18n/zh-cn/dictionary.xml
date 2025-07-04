@@ -5330,4 +5330,6 @@
   <block id="1991f73b95765ab4d1861d2717ed45f2" category="admonition">修改密钥之前请确保禁用 SSH，否则交换机上会报告警告。</block>
   <block id="5046b85a70c9d571be19e2a0283d236b" category="admonition">在上面的步骤 3 *更新 MOTD 文件* 中，命令<block ref="633fe61df4a2e20028fd063d6108557f" prefix=" " category="inline-code"></block>正在运行。这样、您可以验证RCV文件名、RCV版本、要使用的端口以及RCV横幅中的其他重要信息。</block>
   <block id="1767f5d7b100e3d4d6c5fea66216a39c" category="admonition">在上面的步骤 3 *更新 MOTD 文件*中，运行命令“cat /etc/issue.net”。这样、您可以验证RCV文件名、RCV版本、要使用的端口以及RCV横幅中的其他重要信息。</block>
+  <block id="86f7f66cb381cc46fe300e0c2c8f0499" category="inline-link-macro">NTP 服务器配置不适用于 NVIDIA SN2100 交换机</block>
+  <block id="c77e68e056a1f231532a65076ed213f7" category="paragraph">请参阅知识库文章<block ref="54a4a8d8880601232d1c62bd5f55e05a" category="inline-link-macro-rx"></block>了解更多详情。</block>
 </blocks>
