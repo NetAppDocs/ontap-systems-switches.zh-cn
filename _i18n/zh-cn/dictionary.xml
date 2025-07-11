@@ -5332,4 +5332,11 @@
   <block id="1767f5d7b100e3d4d6c5fea66216a39c" category="admonition">在上面的步骤 3 *更新 MOTD 文件*中，运行命令“cat /etc/issue.net”。这样、您可以验证RCV文件名、RCV版本、要使用的端口以及RCV横幅中的其他重要信息。</block>
   <block id="86f7f66cb381cc46fe300e0c2c8f0499" category="inline-link-macro">NTP 服务器配置不适用于 NVIDIA SN2100 交换机</block>
   <block id="c77e68e056a1f231532a65076ed213f7" category="paragraph">请参阅知识库文章<block ref="54a4a8d8880601232d1c62bd5f55e05a" category="inline-link-macro-rx"></block>了解更多详情。</block>
+  <block id="18e6dddff6b5dbe3698443f6bf547259" category="list-text">对于 RCF 版本 1.12 及更高版本，运行以下命令：</block>
+  <block id="b9290d13c5441920a725478322d847bc" category="paragraph"><block ref="fd00e81f5f0cef46bffcdca10e8bb0be" prefix="" category="inline-code"></block></block>
+  <block id="34425e3277b6cd10529c78a1067175a7" category="paragraph"><block ref="56f6c12b458176a1c5a0b7f219fc582f" prefix="" category="inline-code"></block></block>
+  <block id="36e8b4b3d01f5fa01bc38b742b7adae1" category="paragraph"><block ref="ceccb5672696bf7833b4da32e595b96e" prefix="" category="inline-code"></block></block>
+  <block id="255946ce0bdffe025ba4bdaa710146e6" category="list-text">验证 write_erase.cfg 文件是否按预期填充：</block>
+  <block id="c8608e8042094ff03aff5d73acbce651" category="paragraph"><block ref="aa69f627a489063557f4707be7ba43f0" prefix="" category="inline-code"></block></block>
+  <block id="90b56b330f7736518fea2723b6853482" category="list-text">对交换机CS2重复步骤1至20。</block>
 </blocks>

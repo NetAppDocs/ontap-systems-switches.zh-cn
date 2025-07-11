@@ -265,6 +265,20 @@ cluster1::*>
 +
 `switch# show run | section "switchname" >> bootflash:write_erase.cfg`
 
+. 对于 RCF 版本 1.12 及更高版本，运行以下命令：
++
+`switch# echo "hardware access-list tcam region ing-racl 1024" >> bootflash:write_erase.cfg`
+
++
+`switch# echo "hardware access-list tcam region egr-racl 1024" >> bootflash:write_erase.cfg`
+
++
+`switch# echo "hardware access-list tcam region ing-l2-qos 1280" >> bootflash:write_erase.cfg`
+
+. 验证 write_erase.cfg 文件是否按预期填充：
++
+`show file bootflash:write_erase.cfg`
+
 . 使用问题描述the write erase命令擦除当前保存的配置：
 +
 `switch# write erase`
@@ -529,7 +543,7 @@ cluster1-04          true     true          false
 cluster1::*>
 ----
 ====
-. 对交换机CS2重复步骤1至18。
+. 对交换机CS2重复步骤1至20。
 . 在集群 LIF 上启用自动还原。
 +
 `cluster1::*> *network interface modify -vserver Cluster -lif * -auto-revert True*`
