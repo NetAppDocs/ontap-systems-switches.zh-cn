@@ -3110,7 +3110,6 @@
   <block id="ce4c0c35cac0cafac061a49da52f93cd" category="paragraph"><block ref="74dd19c11d43cfa2dd387ecf7d984746" category="inline-link-macro-rx"></block>。</block>
   <block id="d007743863da413e0445811c05d574db" category="summary">查看软件概述。</block>
   <block id="93d9f7b647768c2633a5b9f8a68e2b52" category="doc">BES-53248交换机的软件安装工作流</block>
-  <block id="6dd4b5e58bd32b079e19b1dda5c2f1bc" category="paragraph">要为BES-53248集群交换机初始安装和配置软件、请执行以下步骤：</block>
   <block id="9302ce88c481ebfe72d64373c7b0d0e5" category="doc">升级BES-53248集群交换机</block>
   <block id="db3a43c92e9a5ccc39b5fabb1bd97719" category="paragraph">按照以下步骤升级BES-53248集群交换机。</block>
   <block id="8ac36f1d8b0fc917225a100d2cd4a4c3" category="paragraph">在现有NetApp BES-53248集群交换机上安装EFOS软件、许可证和RCF文件之前、请确保：</block>
@@ -5207,7 +5206,6 @@
   <block id="7baa7758ed49797651dc1e276762ae15" category="list-text">集群：* MSN2100-RFP-v1._x_-Cluster*</block>
   <block id="dd584ffba0b7534139645967bf24df84" category="sidebar">安装或升级RCF脚本</block>
   <block id="40b03f9635c63b20aade0ff8145eafb8" category="list-text">要使用Broadcom和Cisco交换机收集日志、请执行以下操作：</block>
-  <block id="89f1dd995a5c07ea1e13abc5993d9d59" category="list-text">用户必须具有网络管理员Privileges。</block>
   <block id="60f743043272b873831b17c5e7290445" category="list-text">应在交换机上为启用了日志收集的每个集群设置创建一个新用户。这些交换机不支持同一用户使用多个SSH密钥。执行的任何其他日志收集设置都会覆盖用户的任何已有SSH密钥。</block>
   <block id="63229fc9218a5e1a57243ce033e91a3b" category="paragraph">有关安装或升级RC框架 的详细信息、请参见知识库文章<block ref="862bab57a4acfb616afcae48c16f2cfe" category="inline-link-macro-rx"></block>。</block>
   <block id="26552c2532e5b34c96d8cef5f736c6ff" category="paragraph">有关安装RC框架 的详细信息、请参见知识库文章<block ref="862bab57a4acfb616afcae48c16f2cfe" category="inline-link-macro-rx"></block>。</block>
@@ -5339,4 +5337,19 @@
   <block id="255946ce0bdffe025ba4bdaa710146e6" category="list-text">验证 write_erase.cfg 文件是否按预期填充：</block>
   <block id="c8608e8042094ff03aff5d73acbce651" category="paragraph"><block ref="aa69f627a489063557f4707be7ba43f0" prefix="" category="inline-code"></block></block>
   <block id="90b56b330f7736518fea2723b6853482" category="list-text">对交换机CS2重复步骤1至20。</block>
+  <block id="fb945b959f6754639fad6c6e9e9469b9" category="list-text">本地用户必须具有网络管理员权限。</block>
+  <block id="47547bd96a2d76e2174e671baccc263a" category="paragraph">要安装和配置 BES-53248 集群交换机的软件，请按照以下步骤操作：</block>
+  <block id="7a81f2c0648b303fec3fe1081158d0e3" category="inline-link-macro">将交换机重置为出厂默认设置</block>
+  <block id="842f57c662529f95b306feb653984af0" category="list-text"><block ref="6356dc79de453379cf58db845e7c3b08" category="inline-link-macro-rx"></block>(英文)</block>
+  <block id="585a6fd0f28eaade2a16ccaba1bb9b0d" category="paragraph">清除 BES-53248 集群交换机设置。</block>
+  <block id="b879f523acbbe3c8d6ea83060443367e" category="doc">将 BES-53248 集群交换机重置为出厂默认设置</block>
+  <block id="7515349dce34258a6f65c5f9b6b0bc58" category="paragraph">要将 BES-53248 集群交换机重置为出厂默认设置，必须清除 BES-53248 交换机设置。</block>
+  <block id="cf8c4cbc63a2e42b70c4b4beddd2e366" category="list-text">您必须使用串行控制台连接到交换机。</block>
+  <block id="55b0c310e4703cc82f05f8c44c9d0d39" category="list-text">此任务将重置管理网络的配置。</block>
+  <block id="eceb40fbe3a93ae0c766b186cce3cba4" category="list-text">更改为提升的命令提示符。</block>
+  <block id="8045e733034738065ca77d531de9666f" category="list-text">清除启动配置。</block>
+  <block id="91f81f9cd1a23a248e317b6b22a84ce3" category="paragraph"><block ref="1fb554759d9d32d450daa4da09330114" prefix="" category="inline-code"></block></block>
+  <block id="671537f32d06de75a977dc3008daeff5" category="admonition">如果系统在重新加载交换机之前询问是保存未保存的配置还是更改的配置，请选择 * 否 * 。</block>
+  <block id="01abea5f71122f7491f5d67a54692187" category="list-text">[[step4]] 等待交换机重新加载，然后登录交换机。</block>
+  <block id="3298c6d813bb0262584ca3882273ff2a" category="paragraph">默认用户为“admin”，未设置密码。此时将显示类似于以下内容的提示：</block>
 </blocks>

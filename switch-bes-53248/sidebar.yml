@@ -37,6 +37,8 @@ entries:
     url: "/switch-bes-53248/configure-install-rcf.html"
   - title: 启用SSH以收集日志
     url: "/switch-bes-53248/configure-ssh.html"
+  - title: 将交换机重置为出厂默认设置
+    url: "/switch-bes-53248/reset-switch-bes-53248.html"
 - title: 升级交换机
   pdf-filename: 升级交换机_bes53248
   entries:

@@ -11,7 +11,7 @@ summary: 查看软件概述。
 
 
 [role="lead"]
-要为BES-53248集群交换机初始安装和配置软件、请执行以下步骤：
+要安装和配置 BES-53248 集群交换机的软件，请按照以下步骤操作：
 
 . link:configure-efos-software.html["安装 EFOS 软件"]。
 +
@@ -28,5 +28,9 @@ summary: 查看软件概述。
 . link:configure-ssh.html["在 BES-53248 集群交换机上启用 SSH"]。
 +
 如果使用以太网交换机运行状况监控器(CSHM)和日志收集功能、请在交换机上启用SSH。
+
+. link:reset-switch-bes-53248.html["将交换机重置为出厂默认设置"](英文)
++
+清除 BES-53248 集群交换机设置。
 
 
