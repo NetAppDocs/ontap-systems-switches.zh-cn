@@ -80,3 +80,6 @@ summary: 您可以参考 BES-53248 集群交换机端口分配表来配置集群
 * 如果您购买了其他许可证、请参见 link:configure-licenses.html["激活新的许可证端口"] 有关如何激活它们的详细信息。
 * 如果SSH处于活动状态、则必须在运行命令后手动重新启用它 `erase startup-config` 并重新启动交换机。
 
+
+.下一步
+link:components-bes53248.html["组件和部件号"] 。

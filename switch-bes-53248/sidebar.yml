@@ -5,7 +5,7 @@ entries:
 - title: 概述
   pdf-filename: 概述_bes53248
   entries:
-  - title: 配置概述
+  - title: 快速入门
     url: "/switch-bes-53248/configure-new-switch-overview.html"
   - title: 配置要求
     url: "/switch-bes-53248/configure-reqs-bes53248.html"
@@ -13,13 +13,13 @@ entries:
     url: "/switch-bes-53248/components-bes53248.html"
   - title: 所需文档
     url: "/switch-bes-53248/required-documentation-bes53248.html"
-- title: 安装硬件
+- title: Install the hardware
   pdf-filename: install_hardhardware _bes53248
   entries:
+  - title: 硬件安装工作流程
+    url: "/switch-bes-53248/install-hardware-workflow.html"
   - title: 安装交换机
     url: "/switch-bes-53248/install-hardware-bes53248.html"
-  - title: 配置交换机
-    url: "/switch-bes-53248/configure-install-initial.html"
   - title: 查看布线和配置
     url: "/switch-bes-53248/cabling-considerations-bes-53248.html"
 - title: 配置软件
@@ -27,7 +27,9 @@ entries:
   entries:
   - title: 软件安装工作流
     url: "/switch-bes-53248/configure-software-overview-bes53248.html"
-  - title: 安装EFOS软件
+  - title: 配置交换机
+    url: "/switch-bes-53248/configure-install-initial.html"
+  - title: 安装 EFOS 软件
     url: "/switch-bes-53248/configure-efos-software.html"
   - title: 安装EFOS 3.5及更高版本的RCF和许可证文件
     url: "/switch-bes-53248/efos-install-rcf-license-file.html"
@@ -42,7 +44,7 @@ entries:
 - title: 升级交换机
   pdf-filename: 升级交换机_bes53248
   entries:
-  - title: 升级概述
+  - title: 升级工作流程
     url: "/switch-bes-53248/upgrade-switch-overview.html"
   - title: 升级EFOS版本
     url: "/switch-bes-53248/upgrade-efos-software.html"
@@ -57,7 +59,7 @@ entries:
     url: "/switch-bes-53248/migrate-cn1610.html"
   - title: 迁移到双节点交换节点
     url: "/switch-bes-53248/migrate-to-2n-switched.html"
-- title: 更换交换机
+- title: 更换开关
   pdf-filename: Replace _switchs_bes53248
   entries:
   - title: 更换要求

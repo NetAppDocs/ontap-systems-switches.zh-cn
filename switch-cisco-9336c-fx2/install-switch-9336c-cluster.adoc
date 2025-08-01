@@ -13,7 +13,9 @@ summary: 按照此操作步骤 安装Cisco Nexus 9336C-x2交换机。
 [role="lead"]
 按照此操作步骤 设置和配置Cisco Nexus 9336C-x2交换机。
 
-.您需要的内容
+.开始之前
+确保您已具备以下条件：
+
 * 访问安装站点上的HTTP、FTP或TFTP服务器以下载适用的NX-OS和参考配置文件(Reference Configuration File、RCF)版本。
 * 适用的NX-OS版本、从下载 https://software.cisco.com/download/home["Cisco 软件下载"^] 页面。
 * 适用的许可证、网络和配置信息以及缆线。
@@ -48,4 +50,4 @@ NetApp 系统机柜中的 Cisco Nexus 9336C-x2
 
 
 .下一步是什么？
-转至 link:setup-switch-9336c-cluster.html["配置Cisco Nexus 9336C-x2交换机"]。
+或者，您可以link:install-switch-and-passthrough-panel-9336c-cluster.html["在NetApp机柜中安装Cisco Nexus 9336C-x2交换机"]。否则，转到link:cabling-considerations-9336c-fx2.html["查看布线和配置"]。

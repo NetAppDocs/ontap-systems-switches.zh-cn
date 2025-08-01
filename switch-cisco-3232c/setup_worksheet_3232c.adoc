@@ -589,3 +589,5 @@ summary: 如果要记录受支持的平台，则必须参考填写好的示例�
 100GbE ISL连接到交换机A端口32
 
 |===
+.下一步
+link:install-switch-3232c.html["安装交换机"] 。

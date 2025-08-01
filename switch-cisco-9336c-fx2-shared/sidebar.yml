@@ -6,7 +6,7 @@ entries:
 - title: 概述
   pdf-filename: Overview _9336c-FX2 - Shared
   entries:
-  - title: 配置概述
+  - title: 快速入门
     url: "/switch-cisco-9336c-fx2-shared/configure-switch-overview-9336c-shared.html"
   - title: 配置要求
     url: "/switch-cisco-9336c-fx2-shared/configure-reqs-9336c-shared.html"
@@ -14,15 +14,15 @@ entries:
     url: "/switch-cisco-9336c-fx2-shared/components-9336c-shared.html"
   - title: 所需文档
     url: "/switch-cisco-9336c-fx2-shared/required-documentation-9336c-shared.html"
-- title: 安装硬件
+- title: Install the hardware
   pdf-filename: install_hardhardware _9336c-FX2 -共享
   entries:
+  - title: 硬件安装工作流程
+    url: "/switch-cisco-9336c-fx2-shared/install-hardware-workflow.html"
   - title: 完成布线工作表
     url: "/switch-cisco-9336c-fx2-shared/cable-9336c-shared.html"
   - title: 安装交换机
     url: "/switch-cisco-9336c-fx2-shared/install-9336c-shared.html"
-  - title: 配置交换机
-    url: "/switch-cisco-9336c-fx2-shared/setup-and-configure-9336c-shared.html"
   - title: 将交换机安装在NetApp机柜中
     url: "/switch-cisco-9336c-fx2-shared/install-switch-and-passthrough-panel-9336c-shared.html"
 - title: 配置软件
@@ -30,6 +30,8 @@ entries:
   entries:
   - title: 软件安装工作流
     url: "/switch-cisco-9336c-fx2-shared/configure-software-overview-9336c-shared.html"
+  - title: 配置交换机
+    url: "/switch-cisco-9336c-fx2-shared/setup-and-configure-9336c-shared.html"
   - title: 准备安装NX-OS软件和RCF
     url: "/switch-cisco-9336c-fx2-shared/prepare-nxos-rcf-9336c-shared.html"
   - title: 安装NX-OS软件

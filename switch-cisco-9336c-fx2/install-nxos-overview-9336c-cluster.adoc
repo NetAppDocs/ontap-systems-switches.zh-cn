@@ -241,4 +241,4 @@ Cluster
 
 
 .下一步是什么？
-link:install-nxos-software-9336c-cluster.html["安装或升级NX-OS软件"]
+link:install-nxos-software-9336c-cluster.html["安装或升级NX-OS软件"](英文)

@@ -13,7 +13,9 @@ summary: '您可以在配置BES-53248集群交换机并应用任何新许可证�
 [role="lead"]
 在升级BES-53248集群交换机EFOS并应用任何新许可证之后、您可以升级参考配置文件(Reference Configuration File、RCF)。
 
-.您需要的内容
+.开始之前
+确保您已具备以下条件：
+
 * 交换机配置的当前备份。
 * 一个完全正常运行的集群(日志中没有错误或类似问题)。
 * 可从获取的当前RCF文件 https://mysupport.netapp.com/site/products/all/details/broadcom-cluster-switches/downloads-tab["Broadcom 集群交换机"^] 页面。

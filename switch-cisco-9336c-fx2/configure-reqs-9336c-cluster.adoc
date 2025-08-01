@@ -50,3 +50,6 @@ NOTE: 以太网交换机运行状况监控器不支持ONTAP 9.13.1P8及更早版
 
 
 有关交换机初始配置的详细信息，请参见以下指南： https://www.cisco.com/c/en/us/td/docs/dcn/hw/nx-os/nexus9000/9336c-fx2-e/cisco-nexus-9336c-fx2-e-nx-os-mode-switch-hardware-installation-guide.html["《 Cisco Nexus 9336C-x2 安装和升级指南》"^]。
+
+.下一步
+link:components-9336c-cluster.html["组件和部件号"] 。

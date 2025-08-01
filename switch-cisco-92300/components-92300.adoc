@@ -4,7 +4,7 @@ sidebar: sidebar
 keywords: cisco nexus 92300YC 
 summary: 如果要使用两个以上的节点构建 ONTAP 集群，则需要两个受支持的集群网络交换机。您可以使用其他管理交换机，这些交换机是可选的。 
 ---
-= Cisco Nexus 92300YC交换机的组件
+= Cisco Nexus 92300YC 交换机的组件和部件号
 :allow-uri-read: 
 :icons: font
 :imagesdir: ../media/
@@ -66,3 +66,6 @@ Cisco Nexus 92300YC 交换机气流详细信息：
 * 端口端排气气流(标准空气)—冷空气通过冷通道中的风扇和电源模块进入机箱、并通过热通道中的机箱端口端进行排气。端口端的排气气流，蓝色。
 * 端口侧进气气流(反向空气)—冷空气通过冷通道的端口端进入机箱、并通过热通道中的风扇和电源模块进行排气。端口侧进气气流，具有红色。
 
+
+.下一步
+link:required-documentation-92300.html["所需文档"] 。

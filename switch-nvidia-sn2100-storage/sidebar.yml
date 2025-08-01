@@ -6,7 +6,7 @@ entries:
 - title: 概述
   pdf-filename: Overview _sn2100-storage
   entries:
-  - title: 配置概述
+  - title: 快速入门
     url: "/switch-nvidia-sn2100-storage/configure-overview-sn2100-storage.html"
   - title: 配置要求
     url: "/switch-nvidia-sn2100-storage/configure-reqs-sn2100-storage.html"
@@ -17,10 +17,10 @@ entries:
 - title: 安装硬件
   pdf-filename: install_hardhardware sn2100-storage
   entries:
+  - title: 硬件安装工作流程
+    url: "/switch-nvidia-sn2100-storage/install-hardware-workflow.html"
   - title: 安装交换机
     url: "/switch-nvidia-sn2100-storage/install-hardware-sn2100-storage.html"
-  - title: 配置交换机
-    url: "/switch-nvidia-sn2100-storage/configure-sn2100-storage.html"
   - title: 查看布线和配置
     url: "/switch-nvidia-sn2100-storage/cabling-considerations-sn2100-storage.html"
   - title: 为NS224磁盘架布线
@@ -30,6 +30,8 @@ entries:
   entries:
   - title: 软件安装工作流
     url: "/switch-nvidia-sn2100-storage/configure-software-sn2100-storage.html"
+  - title: 配置交换机
+    url: "/switch-nvidia-sn2100-storage/configure-sn2100-storage.html"
   - title: 在Cumulus模式下安装Cumulus Linux
     url: "/switch-nvidia-sn2100-storage/install-cumulus-mode-sn2100-storage.html"
   - title: 在ONIE模式下安装Cumulus Linux

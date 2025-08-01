@@ -6,7 +6,7 @@ entries:
 - title: 概述
   pdf-filename: 概述_sn2100
   entries:
-  - title: 配置概述
+  - title: 快速入门
     url: "/switch-nvidia-sn2100/configure-overview-sn2100-cluster.html"
   - title: 配置要求
     url: "/switch-nvidia-sn2100/configure-reqs-sn2100-cluster.html"
@@ -14,13 +14,13 @@ entries:
     url: "/switch-nvidia-sn2100/components-sn2100-cluster.html"
   - title: 所需文档
     url: "/switch-nvidia-sn2100/required-documentation-sn2100-cluster.html"
-- title: 安装硬件
+- title: Install the hardware
   pdf-filename: install_hardhardware sn2100
   entries:
+  - title: 硬件安装工作流程
+    url: "/switch-nvidia-sn2100/install-hardware-workflow.html"
   - title: 安装交换机
     url: "/switch-nvidia-sn2100/install-hardware-sn2100-cluster.html"
-  - title: 配置交换机
-    url: "/switch-nvidia-sn2100/configure-sn2100-cluster.html"
   - title: 查看布线和配置
     url: "/switch-nvidia-sn2100/cabling-considerations-sn2100-cluster.html"
   - title: 为NS224磁盘架布线
@@ -30,6 +30,8 @@ entries:
   entries:
   - title: 软件安装工作流
     url: "/switch-nvidia-sn2100/configure-software-overview-sn2100-cluster.html"
+  - title: 配置交换机
+    url: "/switch-nvidia-sn2100/configure-sn2100-cluster.html"
   - title: 在Cumulus模式下安装Cumulus Linux
     url: "/switch-nvidia-sn2100/install-cumulus-mode-sn2100-cluster.html"
   - title: 在ONIE模式下安装Cumulus Linux
@@ -49,7 +51,7 @@ entries:
     url: "/switch-nvidia-sn2100/migrate-cisco-sn2100-cluster-switch.html"
   - title: 迁移到双节点交换集群
     url: "/switch-nvidia-sn2100/migrate-2n-switched-sn2100-cluster.html"
-- title: 更换交换机
+- title: 更换开关
   pdf-filename: REPLACE switches sn2100
   entries:
   - title: 更换集群交换机

@@ -24,7 +24,9 @@ NX-OS 是 Cisco Systems 提供的 Nexus 系列以太网交换机和 MDS 系列�
 * Nexus 92300YC 交换机支持的节点连接为端口 1/1 到 1/66 。
 
 
-.您需要的内容
+.开始之前
+确保您已具备以下条件：
+
 * 适用于NetApp 支持站点 中交换机的NetApp Cisco NX-OS软件、可从获取 http://mysupport.netapp.com/["mysupport.netapp.com"]
 * 一个完全正常运行的集群(日志中没有错误或类似问题)。
 * link:https://mysupport.netapp.com/site/info/cisco-ethernet-switch["Cisco 以太网交换机页面"^]。有关支持的ONTAP 和NX-OS版本、请参见交换机兼容性表。

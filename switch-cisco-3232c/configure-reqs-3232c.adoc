@@ -31,3 +31,6 @@ summary: 您可以将 Cisco Nexus 3232C 交换机用作 AFF 或 FAS 集群中的
 
 
 请参见 https://hwu.netapp.com["Hardware Universe"^] 了解最新信息。
+
+.下一步
+link:required-documentation-3232c.html["所需文档"] 。

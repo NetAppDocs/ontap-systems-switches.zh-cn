@@ -4,7 +4,7 @@ sidebar: sidebar
 keywords: install, cisco nexus 3232c switch, 
 summary: 在配置Cisco Nexus 3232c交换机之前、请查看此过程的概述以及术语。 
 ---
-= Cisco Nexus 3232c交换机安装和配置概述
+= Cisco Nexus 3232C 交换机的安装和设置工作流程
 :allow-uri-read: 
 :icons: font
 :imagesdir: ../media/
@@ -13,27 +13,24 @@ summary: 在配置Cisco Nexus 3232c交换机之前、请查看此过程的概述
 [role="lead"]
 Cisco Nexus 3232C交换机可用作AFF 或FAS 集群中的集群交换机。通过集群交换机、您可以使用两个以上的节点构建ONTAP 集群。
 
+按照这些工作流程步骤安装和设置您的Cisco Nexus 3232C 交换机。
 
+.image:https://raw.githubusercontent.com/NetAppDocs/common/main/media/number-1.png["一个"]link:configure-reqs-3232c.html["配置要求"]
+[role="quick-margin-para"]
+查看 3232C 集群交换机的配置要求。
 
-== 初始配置概述
+.image:https://raw.githubusercontent.com/NetAppDocs/common/main/media/number-2.png["两个"]link:required-documentation-3232c.html["所需文档"]
+[role="quick-margin-para"]
+查看特定的交换机和控制器文档以设置您的 3232C 交换机和ONTAP集群。
 
-要在运行ONTAP 的系统上初始配置Cisco Nexus 3232c交换机、请执行以下步骤：
+.image:https://raw.githubusercontent.com/NetAppDocs/common/main/media/number-3.png["三个"]link:smart-call-home-3232c.html["智能自动通报要求"]
+[role="quick-margin-para"]
+查看Cisco Smart Call Home 功能的要求，该功能用于监控网络上的硬件和软件组件。
 
-. link:setup_worksheet_3232c.html["完整的Cisco Nexus 3232C布线工作表"]。示例布线工作表提供了从交换机到控制器的建议端口分配示例。空白工作表提供了一个模板、可用于设置集群。
-. link:install-cisco-nexus-3232c.html["在NetApp机柜中安装Cisco Nexus 3232C集群交换机"]。将Cisco Nexus 3232C集群交换机和直通面板安装在NetApp机柜中、并使用交换机附带的标准支架。
-. link:setup-switch.html["配置3232C集群交换机"]。设置和配置Cisco Nexus 3232C交换机。
-. link:prepare-install-cisco-nexus-3232c.html["准备安装NX-OS软件和参考配置文件"]。准备安装NX-OS软件和参考配置文件(Reference Configuration File、RCF)。
-. link:install-nx-os-software-3232c.html["安装 NX-OS 软件"]。在Nexus 3232C集群交换机上安装NX-OS软件。
-. link:install-rcf-3232c.html["安装参考配置文件（ RCF ）"]。首次设置Nexus 3232C交换机后安装RCF。您也可以使用此操作步骤升级 RCF 版本。
+.image:https://raw.githubusercontent.com/NetAppDocs/common/main/media/number-4.png["四个"]link:install-hardware-workflow.html["Install the hardware"]
+[role="quick-margin-para"]
+安装交换机硬件。
 
-
-
-
-== 追加信息
-
-开始安装或维护之前、请务必查看以下内容：
-
-* link:configure-reqs-3232c.html["配置要求"]
-* link:required-documentation-3232c.html["所需文档"]
-* link:smart-call-home-3232c.html["智能自动通报要求"]
-
+.image:https://raw.githubusercontent.com/NetAppDocs/common/main/media/number-5.png["五个"]link:configure-software-overview-3232c-cluster.html["配置软件"]
+[role="quick-margin-para"]
+配置交换机软件。

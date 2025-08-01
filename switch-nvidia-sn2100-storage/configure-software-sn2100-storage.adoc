@@ -13,16 +13,22 @@ summary: NVIDIA SN2100存储交换机的软件配置过程概述。
 [role="lead"]
 要为NVIDIA SN2100交换机安装和配置软件、请执行以下步骤：
 
-. link:install-cumulus-mode-sn2100-storage.html["在Cumulus模式下安装Cumulus Linux"] 或 link:install-onie-mode-sn2100-storage.html["在ONIE模式下安装Cumulus Linux"]。
-+
-当交换机运行的是Cumulus Linux或ONIE时、您可以安装Cumulus Linux (CL)操作系统。
+.image:https://raw.githubusercontent.com/NetAppDocs/common/main/media/number-1.png["一个"]link:configure-sn2100-storage.html["配置交换机"]
+[role="quick-margin-para"]
+配置NVIDIA SN2100交换机。
 
-. link:install-rcf-sn2100-storage.html["安装参考配置文件脚本"]。
-+
-有两个RCF脚本可用于集群和存储应用程序。
+.image:https://raw.githubusercontent.com/NetAppDocs/common/main/media/number-2.png["两个"]link:install-cumulus-mode-sn2100-storage.html["在Cumulus模式下安装Cumulus Linux"]
+[role="quick-margin-para"]
+当交换机运行 Cumulus Linux 时，您可以安装 Cumulus Linux (CL) 操作系统。
 
-. link:setup-install-cshm-file.html["安装CSHM文件"](英文)
-+
+.image:https://raw.githubusercontent.com/NetAppDocs/common/main/media/number-3.png["三个"]link:install-onie-mode-sn2100-storage.html["在ONIE模式下安装Cumulus Linux"]
+[role="quick-margin-para"]
+或者，您可以在交换机以 ONIE 模式运行 Cumulus Linux 时安装 Cumulus Linux (CL) 操作系统。
+
+.image:https://raw.githubusercontent.com/NetAppDocs/common/main/media/number-4.png["四个"]link:install-rcf-sn2100-storage.html["安装参考配置文件(Reference Configuration File、RCF)脚本"]
+[role="quick-margin-para"]
+有两个RCF脚本可用于集群和存储应用程序。每个的操作步骤 是相同的。
+
+.image:https://raw.githubusercontent.com/NetAppDocs/common/main/media/number-5.png["五个"]link:setup-install-cshm-file.html["安装CSHM文件"]
+[role="quick-margin-para"]
 您可以安装相应的配置文件、以便监控NVIDIA集群交换机的以太网交换机运行状况。
-
-

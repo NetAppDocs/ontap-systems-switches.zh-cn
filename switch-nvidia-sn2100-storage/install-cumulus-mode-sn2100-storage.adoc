@@ -16,7 +16,9 @@ summary: '可以在交换机运行Cumulus Linux或ONIE时安装Cumulus Linux (CL
 
 NOTE: 可以在交换机运行Cumulus Linux或ONIE时安装Cumulus Linux (CL)操作系统(请参见 link:install-onie-mode-sn2100-storage.html["在ONIE模式下安装"]）。
 
-.您需要的内容
+.开始之前
+确保以下各项可用：
+
 * 中级Linux知识。
 * 熟悉基本文本编辑、UNIX文件权限和进程监控。预安装了各种文本编辑器、包括 `vi` 和 `nano`。
 * 访问Linux或UNIX Shell。如果您运行的是Windows、请使用Linux环境作为命令行工具与Cumulus Linux进行交互。
@@ -245,4 +247,4 @@ admin@sw1:mgmt:~$
 
 
 .下一步是什么？
-link:install-rcf-sn2100-storage.html["安装RCF脚本"]。
+link:install-rcf-sn2100-storage.html["安装或升级RCF脚本"] 。

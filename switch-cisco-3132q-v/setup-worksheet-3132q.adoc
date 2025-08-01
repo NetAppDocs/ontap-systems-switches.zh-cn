@@ -589,3 +589,5 @@ summary: 如果要记录受支持的平台，则必须参考填写好的示例�
 40 G ISL 连接到交换机 A 端口 32
 
 |===
+.下一步
+link:install-switch-3132qv.html["安装交换机"] 。

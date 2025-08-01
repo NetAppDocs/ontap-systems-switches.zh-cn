@@ -1,0 +1,26 @@
+---
+permalink: switch-cisco-9336c-fx2-storage/install-hardware-workflow.html 
+sidebar: sidebar 
+keywords: witches, initial installation, configure switch-cisco-9336c-fx2 switch 
+summary: 在配置Cisco Nexus 9336C-FX2 集群交换机之前，请查看配置概述。 
+---
+= Cisco Nexus 9336C-FX2 存储交换机的硬件安装工作流程
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+要安装和配置 9336C-FX2 存储交换机的硬件，请按照以下步骤操作：
+
+.image:https://raw.githubusercontent.com/NetAppDocs/common/main/media/number-1.png["一个"]link:setup-worksheet-9336c-storage.html["完成布线工作表"]
+[role="quick-margin-para"]
+示例布线工作表提供了从交换机到控制器的建议端口分配示例。空白工作表提供了一个模板、可用于设置集群。
+
+.image:https://raw.githubusercontent.com/NetAppDocs/common/main/media/number-2.png["两个"]link:install-9336c-storage.html["安装交换机"]
+[role="quick-margin-para"]
+安装 9336C-FX2 存储交换机。
+
+.image:https://raw.githubusercontent.com/NetAppDocs/common/main/media/number-3.png["三个"]link:install-switch-and-passthrough-panel-9336c-storage.html["将交换机安装到NetApp机柜中"]
+[role="quick-margin-para"]
+根据需要在NetApp机柜中安装 9336C-FX2 交换机和直通面板。

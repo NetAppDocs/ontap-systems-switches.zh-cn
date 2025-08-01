@@ -13,24 +13,26 @@ summary: 查看软件概述。
 [role="lead"]
 要安装和配置 BES-53248 集群交换机的软件，请按照以下步骤操作：
 
-. link:configure-efos-software.html["安装 EFOS 软件"]。
-+
+.image:https://raw.githubusercontent.com/NetAppDocs/common/main/media/number-1.png["一个"]link:configure-install-initial.html["配置交换机"]
+[role="quick-margin-para"]
+配置BES-53248集群交换机。
+
+.image:https://raw.githubusercontent.com/NetAppDocs/common/main/media/number-2.png["两个"]link:configure-efos-software.html["安装 EFOS 软件"]
+[role="quick-margin-para"]
 在BES-53248集群交换机上下载并安装以太网阵列操作系统(EFOS)软件。
 
-. link:configure-licenses.html["安装 BES-53248 集群交换机的许可证"]。
-+
+.image:https://raw.githubusercontent.com/NetAppDocs/common/main/media/number-3.png["三个"]link:configure-licenses.html["安装 BES-53248 集群交换机的许可证"]
+[role="quick-margin-para"]
 或者、也可以通过购买和安装更多许可证来添加新端口。此交换机基本型号已获得16个10GbE或25GbE端口和两个100GbE端口的许可。
 
-. link:configure-install-rcf.html["安装参考配置文件（ RCF ）"]。
-+
+.image:https://raw.githubusercontent.com/NetAppDocs/common/main/media/number-4.png["四个"]link:configure-install-rcf.html["安装参考配置文件（ RCF ）"]
+[role="quick-margin-para"]
 在BES-53248集群交换机上安装或升级RCF、然后在应用RCF后验证端口以获取额外许可证。
 
-. link:configure-ssh.html["在 BES-53248 集群交换机上启用 SSH"]。
-+
+.image:https://raw.githubusercontent.com/NetAppDocs/common/main/media/number-5.png["五个"]link:configure-ssh.html["在 BES-53248 集群交换机上启用 SSH"]
+[role="quick-margin-para"]
 如果使用以太网交换机运行状况监控器(CSHM)和日志收集功能、请在交换机上启用SSH。
 
-. link:reset-switch-bes-53248.html["将交换机重置为出厂默认设置"](英文)
-+
+.image:https://raw.githubusercontent.com/NetAppDocs/common/main/media/number-6.png["六个"]link:reset-switch-bes-53248.html["将交换机重置为出厂默认设置"]
+[role="quick-margin-para"]
 清除 BES-53248 集群交换机设置。
-
-

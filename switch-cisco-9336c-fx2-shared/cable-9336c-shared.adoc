@@ -69,3 +69,6 @@ image:blank_cabling_worksheet.jpg["空布线工作表"]
 * 100 G ISL 连接到交换机 B 端口 35
 * 100 G ISL 连接到交换机 B 端口 36
 
+
+.下一步
+link:install-9336c-shared.html["安装交换机"]。

@@ -4,7 +4,7 @@ sidebar: sidebar
 keywords: BES-53248 switches, initial installation, configure switch-cisco-9336c-fx2 switch 
 summary: Cisco Nexus 9336C-x2存储交换机的安装和配置概述 
 ---
-= Cisco Nexus 9336C-x2存储交换机的安装和配置概述
+= Cisco Nexus 9336C-FX2 存储交换机的安装和设置工作流程
 :allow-uri-read: 
 :icons: font
 :imagesdir: ../media/
@@ -13,50 +13,28 @@ summary: Cisco Nexus 9336C-x2存储交换机的安装和配置概述
 [role="lead"]
 Cisco Nexus 9334C-拧 动交换机是Cisco Nexus 9000平台的一部分、可安装在NetApp系统机柜中。Nexus 9334E-拧 动是一款以太网交换机、可用于在控制器和磁盘架之间切换数据。
 
+按照这些工作流程步骤安装和设置您的Cisco 9336C-FX2 交换机。
 
+.image:https://raw.githubusercontent.com/NetAppDocs/common/main/media/number-1.png["一个"]link:configure-reqs-9336c-storage.html["查看配置要求"]
+[role="quick-margin-para"]
+查看 9336C-FX2 存储交换机的配置要求。
 
-== 初始配置概述
+.image:https://raw.githubusercontent.com/NetAppDocs/common/main/media/number-2.png["两个"]link:components-9336c-storage.html["查看组件和零件编号"]
+[role="quick-margin-para"]
+查看 9336C-FX2 存储交换机的组件和部件号。
 
-要在运行ONTAP 的系统上初始配置Cisco Nexus 9336C-FX2交换机、请执行以下步骤：
+.image:https://raw.githubusercontent.com/NetAppDocs/common/main/media/number-3.png["三个"]link:required-documentation-9336c-storage.html["审查所需文件"]
+[role="quick-margin-para"]
+查看特定的交换机和控制器文档以设置您的 9336C-FX2 交换机和ONTAP集群。
 
-. link:setup-worksheet-9336c-storage.html["完成布线工作表"]。
-+
-示例布线工作表提供了从交换机到控制器的建议端口分配示例。空白工作表提供了一个模板、可用于设置集群。
+.image:https://raw.githubusercontent.com/NetAppDocs/common/main/media/number-4.png["四个"]link:smart-call-9336c-storage.html["查看 Smart Call Home 要求"]
+[role="quick-margin-para"]
+查看Cisco Smart Call Home 功能的要求，该功能用于监控网络上的硬件和软件组件。
 
-. link:install-9336c-storage.html["安装交换机"]。
-+
-设置交换机硬件。
+.image:https://raw.githubusercontent.com/NetAppDocs/common/main/media/number-5.png["五个"]link:install-9336c-storage.html["Install the hardware"]
+[role="quick-margin-para"]
+安装交换机硬件。
 
-. link:setup-switch-9336c-storage.html["配置交换机"](英文)
-+
-设置Cisco Nexus 933AE-拧 动存储交换机。
-
-. link:install-switch-and-passthrough-panel-9336c-storage.html["将交换机安装到NetApp机柜中"](英文)
-+
-根据您的配置、您可以将Cisco Nexus 9336C-FX2交换机和直通面板安装在NetApp机柜中、并使用交换机附带的标准支架。
-
-. link:install-nxos-overview-9336c-storage.html["准备安装或升级NX-OS和RC框架"](英文)
-+
-请按照准备安装Cisco NX-OS软件和参考配置文件(RCF)的初步过程进行操作。
-
-. link:install-nxos-software-9336c-storage.html["安装或升级NX-OS软件"](英文)
-+
-在Nexus 9335c-拧 动存储交换机上安装或升级NX-OS软件。
-
-. link:install-rcf-software-9336c-storage.html["安装或升级RCF配置文件"](英文)
-+
-在首次设置Nexus 9334c-拧 动交换机后、安装或升级RC框架。您也可以使用此操作步骤升级 RCF 版本。
-
-
-
-
-
-== 追加信息
-
-开始安装或维护之前、请务必查看以下内容：
-
-* link:configure-reqs-9336c-storage.html["配置要求"]
-* link:components-9336c-storage.html["组件和部件号"]
-* link:required-documentation-9336c-storage.html["所需文档"]
-* link:smart-call-9336c-storage.html["智能自动通报要求"]
-
+.image:https://raw.githubusercontent.com/NetAppDocs/common/main/media/number-6.png["六个"]link:configure-software-overview-9336c-storage.html["配置软件"]
+[role="quick-margin-para"]
+配置交换机软件。

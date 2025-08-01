@@ -4,7 +4,7 @@ sidebar: sidebar
 keywords: BES-53248 switches, initial installation, configure new bes-53248 switch 
 summary: 在配置BES-53248集群交换机之前、请查看此过程的概述和术语。 
 ---
-= BES-53248集群交换机升级过程概述
+= BES-53248 集群交换机的升级工作流程
 :allow-uri-read: 
 :icons: font
 :imagesdir: ../media/
@@ -13,16 +13,14 @@ summary: 在配置BES-53248集群交换机之前、请查看此过程的概述�
 [role="lead"]
 按照以下步骤升级Broadcom BES-54328集群交换机上的EFOS软件和参考配置文件(RCF)(如果适用)。
 
-. link:upgrade-efos-software.html["升级EFOS版本"]
-+
+.image:https://raw.githubusercontent.com/NetAppDocs/common/main/media/number-1.png["一个"]link:upgrade-efos-software.html["升级EFOS版本"]
+[role="quick-margin-para"]
 在BES-53248集群交换机上下载并安装以太网阵列操作系统(EFOS)软件。
 
-. link:upgrade-rcf.html["升级RC框架 版本"]
-+
+.image:https://raw.githubusercontent.com/NetAppDocs/common/main/media/number-2.png["两个"]link:upgrade-rcf.html["升级RC框架 版本"]
+[role="quick-margin-para"]
 升级BES-53248集群交换机上的RCN、然后在应用RCN后验证端口是否具有附加许可证。
 
-. link:replace-verify.html["升级后验证ONTAP集群网络"]
-+
+.image:https://raw.githubusercontent.com/NetAppDocs/common/main/media/number-3.png["三个"]link:replace-verify.html["升级后验证ONTAP集群网络"]
+[role="quick-margin-para"]
 升级适用于BES-53248集群交换机的EFOS软件或RCK后、验证ONTAP集群网络的运行状况。
-
-

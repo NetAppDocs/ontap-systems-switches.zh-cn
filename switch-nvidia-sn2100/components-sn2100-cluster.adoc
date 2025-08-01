@@ -59,3 +59,6 @@ X-MTEF-KIT-E
 |===
 
 NOTE: 有关详细信息、请参见NVIDIA文档 https://docs.nvidia.com/networking/display/sn2000pub/Installation["安装SN2100交换机和导轨套件"^]。
+
+.下一步是什么？
+link:required-documentation-sn2100-cluster.html["所需文档"] 。

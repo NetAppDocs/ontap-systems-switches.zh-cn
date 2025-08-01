@@ -424,3 +424,6 @@ unit 	active 	    backup   current-active  next-active
 
 . 对配对交换机重复步骤1至8。
 
+
+.下一步
+link:configure-licenses.html["安装许可证"] 。

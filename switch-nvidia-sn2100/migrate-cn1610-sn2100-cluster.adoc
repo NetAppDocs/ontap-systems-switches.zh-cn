@@ -28,7 +28,7 @@ summary: 您可以将ONTAP集群的NetApp CN1610集群交换机无故障迁移�
 
 有关支持的端口及其配置的详细信息、请参见 https://hwu.netapp.com/["Hardware Universe"^]。
 
-.您需要的内容
+.开始之前
 验证您的配置是否满足以下要求：
 
 * 现有集群已正确设置且正常运行。

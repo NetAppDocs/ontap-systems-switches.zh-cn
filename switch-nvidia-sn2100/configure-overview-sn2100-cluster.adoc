@@ -4,7 +4,7 @@ sidebar: sidebar
 keywords: sn2100 SN2100 switches setup, sn2100 SN2100 switches install, cumulus linux 
 summary: NVIDIA SN2100交换机是一款运行Cumulus Linux的10/25/40/100 GbE以太网交换机。SN2100交换机通过不同的交换机对为ONTAP 9.10.1中的集群和存储应用程序提供服务。 
 ---
-= NVIDIA SN2100交换机安装和配置概述
+= NVIDIA SN2100 交换机的安装和设置工作流程
 :allow-uri-read: 
 :icons: font
 :imagesdir: ../media/
@@ -13,50 +13,24 @@ summary: NVIDIA SN2100交换机是一款运行Cumulus Linux的10/25/40/100 GbE�
 [role="lead"]
 NVIDIA SN2100是一款集群交换机、可用于构建具有两个以上节点的ONTAP 集群。
 
+按照以下工作流程步骤安装并设置NVIDIA SN2100 交换机。
 
+.image:https://raw.githubusercontent.com/NetAppDocs/common/main/media/number-1.png["一个"]link:configure-reqs-sn2100-cluster.html["查看配置要求"]
+[role="quick-margin-para"]
+查看 SN2100 集群交换机的配置要求。
 
-== 初始配置概述
+.image:https://raw.githubusercontent.com/NetAppDocs/common/main/media/number-2.png["两个"]link:components-sn2100-cluster.html["查看组件和零件编号"]
+[role="quick-margin-para"]
+查看 SN2100 集群交换机的组件和零件编号。
 
-要在运行ONTAP 的系统上配置NVIDIA SN2100交换机、请执行以下步骤：
+.image:https://raw.githubusercontent.com/NetAppDocs/common/main/media/number-3.png["三个"]link:required-documentation-sn2100-cluster.html["审查所需文件"]
+[role="quick-margin-para"]
+查看特定的交换机和控制器文档以设置您的 SN2100 交换机和ONTAP集群。
 
-. link:install-hardware-sn2100-cluster.html["安装NVIDIA SN2100交换机的硬件"]。
-+
-有关说明、请参见_NVIDIA交换机安装指南_。
+.image:https://raw.githubusercontent.com/NetAppDocs/common/main/media/number-4.png["四个"]link:install-hardware-workflow.html["Install the hardware"]
+[role="quick-margin-para"]
+安装交换机硬件。
 
-. link:configure-sn2100-cluster.html["配置交换机"]。
-+
-有关说明、请参见NVIDIA文档。
-
-. link:cabling-considerations-sn2100-cluster.html["查看布线和配置注意事项"]。
-+
-查看光纤连接、QSA适配器和交换机端口速度的要求。
-
-. link:install-cable-shelves-sn2100-cluster.html["将NS224磁盘架作为交换机连接的存储进行布线"]。
-+
-如果您的系统需要将NS224驱动器架作为交换机连接存储(而不是直连存储)进行布线、请按照布线过程进行操作。
-
-. link:install-cumulus-mode-sn2100-cluster.html["在Cumulus模式下安装Cumulus Linux"] 或 link:install-onie-mode-sn2100-cluster.html["在ONIE模式下安装Cumulus Linux"]。
-+
-当交换机运行的是Cumulus Linux或ONIE时、您可以安装Cumulus Linux (CL)操作系统。
-
-. link:install-rcf-sn2100-cluster.html["安装参考配置文件(Reference Configuration File、RCF)脚本"]。
-+
-有两个RCF脚本可用于集群和存储应用程序。每个的操作步骤 是相同的。
-
-. link:setup-install-cshm-file.html["安装CSHM文件"](英文)
-+
-您可以安装相应的配置文件、以便监控NVIDIA集群交换机的以太网交换机运行状况。
-
-
-
-
-
-== 追加信息
-
-开始安装或维护之前、请务必查看以下内容：
-
-* link:configure-reqs-sn2100-cluster.html["配置要求"]
-* link:components-sn2100-cluster.html["组件和部件号"]
-* link:required-documentation-sn2100-cluster.html["所需文档"]
-* https://hwu.netapp.com["Hardware Universe"^] 所有受支持的ONTAP 版本。
-
+.image:https://raw.githubusercontent.com/NetAppDocs/common/main/media/number-5.png["五个"]link:configure-software-overview-sn2100-cluster.html["配置软件"]
+[role="quick-margin-para"]
+配置交换机软件。

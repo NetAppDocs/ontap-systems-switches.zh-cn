@@ -1,0 +1,22 @@
+---
+permalink: switch-bes-53248/install-hardware-workflow.html 
+sidebar: sidebar 
+keywords: BES-53248 switches, initial installation, configure new bes-53248 switch 
+summary: 在配置BES-53248集群交换机之前、请查看配置概述。 
+---
+= BES-53248 交换机的硬件安装工作流程
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+要安装和配置 BES-53248 集群交换机的硬件，请按照以下步骤操作：
+
+.image:https://raw.githubusercontent.com/NetAppDocs/common/main/media/number-1.png["一个"]link:install-hardware-bes53248.html["安装交换机硬件"]
+[role="quick-margin-para"]
+安装并配置 BES-53248 交换机硬件。
+
+.image:https://raw.githubusercontent.com/NetAppDocs/common/main/media/number-2.png["两个"]link:cabling-considerations-bes-53248.html["查看布线和配置"]
+[role="quick-margin-para"]
+查看 BES-53248 集群交换机的布线和配置注意事项。

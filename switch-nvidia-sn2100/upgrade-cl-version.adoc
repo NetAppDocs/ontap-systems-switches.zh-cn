@@ -13,7 +13,9 @@ summary: 完成以下步骤以升级您的Cumulus Linux版本。
 [role="lead"]
 完成以下操作步骤 以根据需要升级您的Cumulus Linux版本。
 
-.您需要的内容
+.开始之前
+确保您已具备以下条件：
+
 * 中级Linux知识。
 * 熟悉基本文本编辑、UNIX文件权限和进程监控。预安装了各种文本编辑器、包括 `vi` 和 `nano`。
 * 访问Linux或UNIX Shell。如果您运行的是Windows、请使用Linux环境作为命令行工具与Cumulus Linux进行交互。

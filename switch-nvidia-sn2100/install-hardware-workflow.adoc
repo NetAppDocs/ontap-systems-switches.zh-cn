@@ -1,0 +1,26 @@
+---
+permalink: switch-nvidia-sn2100/install-hardware-workflow.html 
+sidebar: sidebar 
+keywords: switches, initial installation, configure switch-nvidia-sn2100 switch 
+summary: 在配置NVIDIA SN2100 集群交换机之前，请查看配置概述。 
+---
+= NVIDIA SN2100 交换机的硬件安装工作流程
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+要安装和配置 SN2100 集群交换机的硬件，请按照以下步骤操作：
+
+.image:https://raw.githubusercontent.com/NetAppDocs/common/main/media/number-1.png["一个"]link:install-hardware-sn2100-cluster.html["Install the hardware"]
+[role="quick-margin-para"]
+安装交换机硬件。
+
+.image:https://raw.githubusercontent.com/NetAppDocs/common/main/media/number-2.png["两个"]link:cabling-considerations-sn2100-cluster.html["查看布线和配置注意事项"]
+[role="quick-margin-para"]
+查看光纤连接、QSA适配器和交换机端口速度的要求。
+
+.image:https://raw.githubusercontent.com/NetAppDocs/common/main/media/number-3.png["三个"]link:install-cable-shelves-sn2100-cluster.html["为NS224磁盘架布线"]
+[role="quick-margin-para"]
+如果您的系统需要将NS224驱动器架作为交换机连接存储(而不是直连存储)进行布线、请按照布线过程进行操作。

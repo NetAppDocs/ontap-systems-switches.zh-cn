@@ -13,20 +13,22 @@ summary: Cisco Nexus 9336C-x2集群交换机软件配置概述
 [role="lead"]
 要为Cisco Nexus 9334C)交换机安装和配置软件以及安装或升级参考配置文件(RF)，请执行以下步骤：
 
-. link:install-nxos-overview-9336c-cluster.html["准备安装NX-OS软件和RC框架"](英文)
-+
-Cisco Nexus 9336C-x2 集群交换机上必须安装 Cisco NX-OS 软件和参考配置文件（ RCF ）。
+.image:https://raw.githubusercontent.com/NetAppDocs/common/main/media/number-1.png["一个"]link:setup-switch-9336c-cluster.html["配置交换机"]
+[role="quick-margin-para"]
+配置 9336C-FX2 集群交换机。
 
-. link:install-nxos-software-9336c-cluster.html["安装或升级NX-OS软件"](英文)
-+
-下载并安装或升级Cisco Nexus 9335C - NX集群交换机上的NX-OS软件。
+.image:https://raw.githubusercontent.com/NetAppDocs/common/main/media/number-2.png["两个"]link:install-nxos-overview-9336c-cluster.html["准备安装NX-OS软件和RC框架"]
+[role="quick-margin-para"]
+必须在Cisco 9336C-FX2 集群交换机上安装Cisco NX-OS 软件和参考配置文件 (RCF)。
 
-. link:install-upgrade-rcf-overview-cluster.html["安装或升级RC框架"](英文)
-+
-在首次设置Cisco Nexus 9334C -拧 动交换机后、安装或升级RCC。您也可以使用此操作步骤升级 RCF 版本。
+.image:https://raw.githubusercontent.com/NetAppDocs/common/main/media/number-3.png["三个"]link:install-nxos-software-9336c-cluster.html["安装或升级NX-OS软件"]
+[role="quick-margin-para"]
+下载并安装或升级Cisco 9336C-FX2 集群交换机上的 NX-OS 软件。
 
-. link:configure-ssh-keys.html["验证Nexus 9334C-查 验Nexus集群交换机上的SSH配置"](英文)
-+
-如果使用以太网交换机运行状况监控器(CSHM)和日志收集功能、请验证是否已在交换机上启用SSH。
+.image:https://raw.githubusercontent.com/NetAppDocs/common/main/media/number-4.png["四个"]link:install-upgrade-rcf-overview-cluster.html["安装或升级RC框架"]
+[role="quick-margin-para"]
+首次设置Cisco 9336C-FX2 交换机后安装或升级 RCF。您也可以使用此过程升级您的 RCF 版本。
 
-
+.image:https://raw.githubusercontent.com/NetAppDocs/common/main/media/number-5.png["五个"]link:configure-ssh-keys.html["验证 SSH 配置"]
+[role="quick-margin-para"]
+验证交换机上是否启用了 SSH 以使用以太网交换机健康监视器 (CSHM) 和日志收集功能。

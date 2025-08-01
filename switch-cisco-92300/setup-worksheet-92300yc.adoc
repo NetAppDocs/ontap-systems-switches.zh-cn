@@ -1365,3 +1365,5 @@ ISL 连接到交换机 B 端口 66
 通过 ISL 连接到交换机 A 端口 66
 
 |===
+.下一步
+link:install-switch-92300yc.html["安装交换机"] 。
