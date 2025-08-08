@@ -36,3 +36,7 @@ summary: 软件配置或NVIDIA SN2100交换机概述。
 .image:https://raw.githubusercontent.com/NetAppDocs/common/main/media/number-6.png["六个"]link:setup-install-cshm-file.html["安装CSHM文件"]
 [role="quick-margin-para"]
 您可以安装相应的配置文件、以便监控NVIDIA集群交换机的以太网交换机运行状况。
+
+.image:https://raw.githubusercontent.com/NetAppDocs/common/main/media/number-7.png["七个"]link:reset-switch-sn2100.html["将交换机重置为出厂默认设置"]
+[role="quick-margin-para"]
+清除 SN2100 集群交换机设置。

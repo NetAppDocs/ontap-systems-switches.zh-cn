@@ -23,6 +23,22 @@ summary: 在安装RCF脚本之前、请确保交换机上具有以下配置
 
 NOTE: 除了管理员用户之外、您还必须在RC框架 中指定一个用户、以专门用于收集日志。
 
+.客户配置
+可用的参考配置类别如下：
+
+[cols="1,2"]
+|===
+
+
+| 集群 | 在配置为 4x10GbE 分支的端口上，一个端口配置为 4x25GbE 分支，其他端口配置为 40/100GbE。对于使用共享集群/HA 端口的节点，支持端口上的共享集群/HA 流量。请参阅知识库文章中的平台表 https://kb.netapp.com/on-prem/ontap/OHW/OHW-KBs/What_AFF_ASA_and_FAS_platforms_use_shared_Cluster_and_HA_Ethernet_ports["哪些AFF、 ASA和FAS平台使用共享集群和 HA 以太网端口？"^]。所有端口也可以用作专用集群端口。 
+
+
+ a| 
+存储
+ a| 
+所有端口均配置为 100GbE NVMe 存储连接。
+
+|===
 .当前RCF脚本版本
 集群和存储应用程序可以使用两个RC框架 脚本。从第页下载RCF https://mysupport.netapp.com/site/info/nvidia-cluster-switch["NVIDIA SN2100软件下载"^]。每个的操作步骤 是相同的。
 

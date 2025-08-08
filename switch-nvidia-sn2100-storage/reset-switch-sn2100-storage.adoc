@@ -1,0 +1,78 @@
+---
+permalink: switch-nvidia-sn2100-storage/reset-switch-sn2100-storage.html 
+sidebar: sidebar 
+keywords: SN2100 reset switch to factory defaults, SN2100 switches configuration, efos 
+summary: 在配置Cisco Nexus SN2100 交换机之前，请查看以下信息。 
+---
+= 将 SN2100 存储交换机重置为出厂默认设置
+:allow-uri-read: 
+
+
+[role="lead"]
+要将 SN2100 存储交换机重置为出厂默认设置：
+
+* 对于 Cumulus Linux 5.10 及更早版本，您可以应用 Cumulus 映像。
+* 对于 Cumulus Linux 5.11 及更高版本，您可以使用 `nv action reset system factory-default`命令。
+
+
+.关于此任务
+* 您必须使用串行控制台连接到交换机。
+* 您必须拥有 root 密码才能使用 sudo 访问命令。
+
+
+
+NOTE: 有关安装 Cumulus Linux 的更多信息，请参阅link:configure-software-overview-sn2100-cluster.html["NVIDIA SN2100交换机的软件安装工作流"]。
+
+.步骤
+[role="tabbed-block"]
+====
+.Cumulus Linux 5.10 及更早版本
+--
+. 从 Cumulus 控制台，使用命令下载并排队交换机软件安装 `onie-install -a -i`后面跟着交换机软件的文件路径，例如：
++
+[listing, subs="+quotes"]
+----
+cumulus@sw1:mgmt:~$ *sudo onie-install -a -i http://<web-server>/<path>/cumulus-linux-5.10.0-mlx-amd64.bin*
+----
+. 安装程序开始下载。当图像下载并验证后，当提示确认安装时，输入*y*。
+. 重新启动交换机以安装新软件。
++
+`sudo reboot`
+
++
+[listing, subs="+quotes"]
+----
+cumulus@sw1:mgmt:~$ *sudo reboot*
+----
++
+
+NOTE: 交换机重新启动并进入交换机软件安装，这需要一些时间。安装完成后，交换机重新启动并保持在 `log-in`迅速的。
+
+
+
+--
+.Cumulus Linux 5.11 及更高版本
+--
+. 要将交换机重置为出厂默认设置并删除所有配置、系统文件和日志文件，请运行：
++
+`nv action reset system factory-default`
+
++
+例如：
+
++
+[listing, subs="+quotes"]
+----
+cumulus@switch:~$ *nv action reset system factory-default*
+
+This operation will reset the system configuration, delete the log files and reboot the switch.
+Type [y] continue.
+Type [n] to abort.
+Do you want to continue? [y/n] *y*
+----
+
+
+查看NVIDIA https://docs.nvidia.com/networking-ethernet-software/cumulus-linux-511/Installation-Management/Factory-Reset/["恢复出厂设置"^]文档以了解更多详细信息。
+
+--
+====

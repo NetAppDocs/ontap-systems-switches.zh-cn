@@ -51,6 +51,8 @@ entries:
       url: "/switch-cisco-9336c-fx2/upgrade-rcf-software-9336c-cluster.html"
   - title: 验证 SSH 配置
     url: "/switch-cisco-9336c-fx2/configure-ssh-keys.html"
+  - title: 将交换机重置为出厂默认设置
+    url: "/switch-cisco-9336c-fx2/reset-switch-9336c.html"
 - title: 迁移交换机
   pdf-filename: migration_switchs_9336c-FX2
   entries:
