@@ -123,3 +123,5 @@ cluster1::> *system switch ethernet show*
 
 
 NOTE: 如果您的型号在应用配置文件后仍显示*OTA*，请与NetApp支持联系。
+
+查看 https://docs.netapp.com/us-en/ontap-cli/system-switch-ethernet-configure-health-monitor.html["系统交换机以太网配置-健康-监控"^]命令以了解更多详细信息。

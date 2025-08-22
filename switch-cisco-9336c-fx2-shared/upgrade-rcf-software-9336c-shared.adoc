@@ -254,37 +254,54 @@ cluster1::*>
 
 . 将基本配置详细信息保存到bootflash上的write_erase.cfg文件中。
 +
-`switch# show run | i "username admin password" > bootflash:write_erase.cfg`
+`cs1# show run | i "username admin password" > bootflash:write_erase.cfg`
 
 +
-`switch# show run | section "vrf context management" >> bootflash:write_erase.cfg`
+`cs1# show run | section "vrf context management" >> bootflash:write_erase.cfg`
 
 +
-`switch# show run | section "interface mgmt0" >> bootflash:write_erase.cfg`
+`cs1# show run | section "interface mgmt0" >> bootflash:write_erase.cfg`
 
 +
-`switch# show run | section "switchname" >> bootflash:write_erase.cfg`
+`cs1# show run | section "switchname" >> bootflash:write_erase.cfg`
+
+. 对于 RCF 版本 1.12 及更高版本，运行以下命令：
++
+`cs1# echo "hardware access-list tcam region ing-racl 1024" >> bootflash:write_erase.cfg`
+
++
+`cs1# echo "hardware access-list tcam region egr-racl 1024" >> bootflash:write_erase.cfg`
+
++
+`cs1# echo "hardware access-list tcam region ing-l2-qos 1280" >> bootflash:write_erase.cfg`
+
++
+请参阅知识库文章 https://kb.netapp.com/on-prem/Switches/Cisco-KBs/How_to_clear_configuration_on_a_Cisco_interconnect_switch_while_retaining_remote_connectivity["如何在保持远程连接的同时清除Cisco互连交换机上的配置"^]了解更多详情。
+
+. 验证 write_erase.cfg 文件是否按预期填充：
++
+`show file bootflash:write_erase.cfg`
 
 . 使用问题描述the write erase命令擦除当前保存的配置：
 +
-`switch# write erase`
+`cs1# *write erase*`
 
 +
 `Warning: This command will erase the startup-configuration.`
 
 +
-`Do you wish to proceed anyway? (y/n)  [n] y`
+`Do you wish to proceed anyway? (y/n)  [n] *y*`
 
 . 将先前保存的基本配置复制到启动配置中。
 +
-`switch# copy write_erase.cfg startup-config`
+`cs1# copy bootflash:write_erase.cfg startup-config`
 
 . 重新启动交换机：
 +
-`switch# reload`
+`switch# *reload*`
 
 +
-`This command will reboot the system. (y/n)?  [n] y`
+`This command will reboot the system. (y/n)?  [n] *y*`
 
 . 再次访问管理IP地址后、通过SSH登录到交换机。
 +
@@ -529,7 +546,7 @@ cluster1-04          true     true          false
 cluster1::*>
 ----
 ====
-. 对交换机CS2重复步骤1至18。
+. 对交换机CS2重复步骤1至20。
 . 在集群 LIF 上启用自动还原。
 +
 `cluster1::*> *network interface modify -vserver Cluster -lif * -auto-revert True*`

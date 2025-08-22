@@ -4,7 +4,7 @@ sidebar: sidebar
 keywords: install rcf 
 summary: 首次设置 Nexus 3132Q-V 交换机后，您可以安装 RCF 。您也可以使用此操作步骤升级 RCF 版本。 
 ---
-= 安装参考配置文件（ RCF ）
+= 安装或升级参考配置文件(RCF)
 :allow-uri-read: 
 :icons: font
 :imagesdir: ../media/
@@ -273,40 +273,67 @@ cluster1::*>
 +
 `s如何运行配置`
 
-. 清理交换机 CS2 上的配置并执行基本设置。
+. 记录当前运行配置和正在使用的 RCF 文件之间的任何自定义添加。
+. 将基本配置详细信息保存到bootflash上的write_erase.cfg文件中。
 +
 
-WARNING: 更新或应用新 RCF 时，必须擦除交换机设置并执行基本配置。您必须*连接到交换机串行控制台端口才能重新设置交换机。但是、如果您使用了知识库文章、则此要求是可选的 https://kb.netapp.com/on-prem/Switches/Cisco-KBs/How_to_clear_configuration_on_a_Cisco_interconnect_switch_while_retaining_remote_connectivity["如何在保持远程连接的同时清除Cisco互连交换机上的配置"^] 要清除配置、请事先清除。
+NOTE: 升级或应用新的 RCF 时，必须清除交换机设置并执行基本配置。您必须连接到交换机串行控制台端口才能重新设置交换机。
 
 +
-.. 清理配置：
+`cs2# show run | section "switchname" > bootflash:write_erase.cfg`
+
 +
-.显示示例
-[%collapsible]
-====
-[listing, subs="+quotes"]
-----
-(cs2)# *write erase*
+`cs2# show run | section "hostname" >> bootflash:write_erase.cfg`
 
-Warning: This command will erase the startup-configuration.
-
-Do you wish to proceed anyway? (y/n)  [n]  *y*
-----
-====
-.. 重新启动交换机：
 +
-.显示示例
-[%collapsible]
-====
-[listing, subs="+quotes"]
-----
-(cs2)# *reload*
+`cs2# show run | i "username admin password" >> bootflash:write_erase.cfg`
 
-Are you sure you would like to reset the system? (y/n) *y*
++
+`cs2# show run | section "vrf context management" >> bootflash:write_erase.cfg`
 
-----
-====
++
+`cs2# show run | section "interface mgmt0" >> bootflash:write_erase.cfg`
 
+. 对于 RCF 版本 1.12 及更高版本，运行以下命令：
++
+`cs2# echo "hardware access-list tcam region vpc-convergence 256" > bootflash:write_erase.cfg`
+
++
+`cs2# echo "hardware access-list tcam region racl 256" >> bootflash:write_erase.cfg`
+
++
+`cs2# echo "hardware access-list tcam region e-racl 256" >> bootflash:write_erase.cfg`
+
++
+`cs2# echo "hardware access-list tcam region qos 256" >> bootflash:write_erase.cfg`
+
++
+请参阅知识库文章 https://kb.netapp.com/on-prem/Switches/Cisco-KBs/How_to_clear_configuration_on_a_Cisco_interconnect_switch_while_retaining_remote_connectivity["如何在保持远程连接的同时清除Cisco互连交换机上的配置"^]了解更多详情。
+
+. 验证 write_erase.cfg 文件是否按预期填充：
++
+`show file bootflash:write_erase.cfg`
+
+. 发出 `write erase`命令来删除当前保存的配置：
++
+`cs2# *write erase*`
+
++
+`Warning: This command will erase the startup-configuration.`
+
++
+`Do you wish to proceed anyway? (y/n)  [n] *y*`
+
+. 将先前保存的基本配置复制到启动配置中。
++
+`cs2# *copy write_erase.cfg startup-config*`
+
+. 重新启动交换机：
++
+`cs2# *reload*`
+
++
+`This command will reboot the system. (y/n)?  [n] *y*`
 
 . 使用以下传输协议之一将 RCF 复制到交换机 CS2 的启动闪存： FTP ， TFTP ， SFTP 或 SCP 。有关 Cisco 命令的详细信息，请参见中的相应指南 https://www.cisco.com/c/en/us/support/switches/nexus-3000-series-switches/products-installation-guides-list.html["《 Cisco Nexus 3000 系列 NX-OS 命令参考》"^] 指南。
 +
@@ -637,7 +664,7 @@ cluster1-04          true     true          false
 cluster1::*>
 ----
 ====
-. 对交换机 CS1 重复步骤 1 至 11 。
+. 在交换机 cs1 上重复步骤 1 至 19。
 . 在集群 LIF 上启用自动还原。
 +
 .显示示例
