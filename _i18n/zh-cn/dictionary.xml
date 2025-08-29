@@ -65,7 +65,6 @@
   <block id="09b8dd35e8fef3e8e5d41f09345fb4d1" category="list-text">使用 ping 命令验证与托管 EFOS ，许可证和 RCF 的服务器的连接。</block>
   <block id="e90d5ac1532bae79aa9f467efd13168c" category="summary">使用集群交换机运行状况监控器（ CSHM ）和日志收集功能时需要使用 SSH 。要在 BES-53248 集群交换机上启用 SSH ，请先生成 SSH 密钥，然后再启用 SSH 。</block>
   <block id="850f5123d6e90a3f43933cb2bcb88fe1" category="doc">在 BES-53248 集群交换机上启用 SSH</block>
-  <block id="59ed8d797343a87748211be365bd1d90" category="list-text">生成 SSH 密钥：</block>
   <block id="3bb5f52e05a05dc888185ec616dd0442" category="paragraph">大多数系统需要在每个控制器上使用两个专用集群网络端口。</block>
   <block id="56901ba0364771cc3907ec9a30481dd8" category="summary">在集群网络中更换 Broadcom 支持的故障 BES-53248 集群交换机是无中断操作步骤 \ （ NDU\ ）。</block>
   <block id="c4ceb27b488ee8c76dddf465a267e6fb" category="paragraph">在当前环境中以及在替代交换机上执行交换机更换之前，必须满足以下条件。</block>
@@ -2074,19 +2073,12 @@
   <block id="815792b56cadfb802621ba5d3728c768" category="admonition">每次安装Cumulus Linux时、都会擦除并重建整个文件系统结构。</block>
   <block id="6ae4d8bf3ebde7936b05c2fe894d7ada" category="admonition">累积用户帐户的默认密码为*累积用户*。首次登录到Cumulus Linux时、必须更改此默认密码。在安装新映像之前、请务必更新所有自动化脚本。Cumulus Linux提供了命令行选项、用于在安装过程中自动更改默认密码。</block>
   <block id="06c2ede7dabacb6c8f4f628bf6b1de39" category="paragraph">要访问NVIDIA SN2100交换机控制台、必须将串行控制台交换机上的波特率要求设置为115200、如下所示：</block>
-  <block id="9e6b336700c1d2e767e05525b2b57ef3" category="list-text">检查Cumulus Linux版本：</block>
   <block id="2667c65a518ae8fb280dc9f6a61de3c5" category="list-text">配置主机名、IP地址、子网掩码和默认网关。只有在重新启动控制台/SSH会话后、新主机名才会生效。</block>
   <block id="62b623b92c382746efee9767d590d86c" category="admonition">一个Cumulus Linux交换机至少可提供一个名为`eth0`的专用以太网管理端口。此接口专用于带外管理。默认情况下、管理接口使用DHCPv4进行寻址。</block>
   <block id="91dcca4278a428afbccb2f118d523e13" category="admonition">请勿在主机名中使用下划线(_)、撇号(')或非ASCII字符。</block>
   <block id="5e82a0b4b15e3bfeac2a57b4a294a39c" category="paragraph">此命令会同时修改`/etc/hostname`和`/etc/hosts`文件。</block>
-  <block id="6c42fa7e4c3302fb56f4374e70b97fc2" category="list-text">使用NTP交互模式配置时区。</block>
-  <block id="3f13db29081af25b57d3e76ea324a03b" category="list-text">在终端上、运行以下命令：</block>
-  <block id="83d1563d45527134091bdab8d6e5072d" category="list-text">按照屏幕上的菜单选项选择地理区域和区域。</block>
-  <block id="fe0f6a5f9b992c1eea817100a2c1c148" category="list-text">要设置所有服务和守护进程的时区、请重新启动交换机。</block>
-  <block id="61d6aab01fc093c66c1e769d05c39812" category="list-text">验证交换机上的日期和时间是否正确、并在必要时进行更新。</block>
   <block id="9a828cf107e0b55e82b0e52b871aa982" category="paragraph">安装程序将开始下载。出现提示时、键入*。</block>
   <block id="b64202cf747d1cf1ed877a2b16051b9b" category="list-text">重新启动NVIDIA SN2100交换机：</block>
-  <block id="9f4f33c5c40ac522549c3e58d187e0a0" category="list-text">安装将自动启动、并显示以下Grub屏幕。请勿*选择*。</block>
   <block id="0356af5b3daf1c5f334184d547ba7462" category="list-text">Cumulus-Linux GNU/Linux</block>
   <block id="a64ef5ea949c8d49f35a27151295f942" category="list-text">ONIE：安装操作系统</block>
   <block id="e0fb005ad468c2c6da5d94ae5ee83311" category="list-text">Cumulus-install</block>
@@ -2379,7 +2371,6 @@
   <block id="8e64ad5c6fa8e624c5e3a0540ce81b15" category="paragraph">请注意以下事项：</block>
   <block id="ed4bb13420682d03565e592a54ec52c0" category="list-text">登录到交换机。</block>
   <block id="0dc40761c6c698e59be5abb0f871de2e" category="paragraph">首次登录到交换机时、需要使用的用户名/密码为*累积us*/*累积us*<block ref="d338b3f0f405eb5e51c8cc1e5ca66f02" prefix=" " category="inline-code"></block> 特权。</block>
-  <block id="cbb09f555687650b38fcf6ac05ce4978" category="paragraph"><block ref="518227d11c3d0b4ad2468e4272be661a" prefix="" category="inline-code"></block></block>
   <block id="81ed2a4b4b4f78c31401892f676d00f6" category="list-text">确认主机名、IP地址、子网掩码和默认网关已更新。</block>
   <block id="d592f003299c9790cf6b7880991e4552" category="list-text">创建新用户并将此用户添加到<block ref="d338b3f0f405eb5e51c8cc1e5ca66f02" prefix=" " category="inline-code"></block> 组。只有在重新启动控制台/SSH会话后、此用户才会生效。</block>
   <block id="d006305baa198ce937fb8d7cec588b7e" category="paragraph"><block ref="5f3d789fda71670b944a623edd4613a5" prefix="" category="inline-code"></block></block>
@@ -3565,7 +3556,6 @@
   <block id="6bb3008abc00d2a0fe4d634f0b89831e" category="list-text">当交换机运行的是Cumulus Linux或ONIE时、您可以安装Cumulus Linux。</block>
   <block id="8f77c20cd9bd8afa1521eb15ea44a8ef" category="list-text">已安装Cumulus Linux 4.4.3。</block>
   <block id="2da5e3ee5bdcbc1a5443b42db962c1bb" category="list-text">安装Cumulus Linux 4.5.3：</block>
-  <block id="d639f69fd7b303cd7aefe025e7d76848" category="list-text">验证Cumulus Linux版本是否为4.5.3：</block>
   <block id="4a4b6084f06cc45c6f17ae2aa9bd4dc4" category="inline-link">Cisco软件下载</block>
   <block id="0a6aaed7ba5c231511f7822eac6c4607" category="list-text">适用的NX-OS版本、从下载<block ref="f823faeecc1cbb37f2d732cc29c07d86" category="inline-link-rx"></block> 页面。</block>
   <block id="b27df45c7b9d2b8ac8126550ac4038eb" category="list-text">检查集群网络交换机上的版本、如有必要、从将NetApp支持的软件版本下载到交换机<block ref="f823faeecc1cbb37f2d732cc29c07d86" category="inline-link-rx"></block> 页面。</block>
@@ -5588,4 +5578,12 @@
   <block id="bc19795a1e2342c4b6ced06c4d40bf1f" category="paragraph"><block ref="06ea8c0ad9680ca72f21fb9acf4190a7" prefix="" category="inline-code"></block></block>
   <block id="c0203a2fdd4f105bd33b18aba6317c1b" category="paragraph"><block ref="13a92d9b51e90b702df63253eaabc9ad" prefix="" category="inline-code"></block></block>
   <block id="473d16af00e46c61faa5f7ae956e2c65" category="paragraph"><block ref="02a3315103301dc60f71538670f8e63e" prefix="" category="inline-code"></block></block>
+  <block id="a857d7fbcfec4b7266d8ae96e74feaff" category="list-text">在配置模式下，生成 SSH 密钥：</block>
+  <block id="e7a2f981aa0484adea9bedbd78c1087b" category="list-text">在配置模式下，设置ONTAP日志收集的 AAA 授权：</block>
+  <block id="4f4336771d0733889f26dc02ed32b5b4" category="paragraph"><block ref="160edba9b79d23472e05dab56e0f0cfa" prefix="" category="inline-code"></block></block>
+  <block id="558547888dbf1ed9cea97d962f5a635c" category="list-text">重新启用 SSH/SCP。</block>
+  <block id="a2c7fa8f383a047f3591230c9b0234c9" category="list-text">将这些更改保存到启动配置：</block>
+  <block id="7411e9f163d9baab36b5ebc3f80bda73" category="admonition">尽管<block ref="8a444a43bdf534c0c6338bb7809659b3" prefix=" " category="inline-code"></block>在示例中使用，您可以使用您喜欢的文件传输方法，例如 SFTP、HTTPS 或 FTP。</block>
+  <block id="5b9b8dea15de063806f0306fe78872c8" category="admonition">虽然<block ref="8a444a43bdf534c0c6338bb7809659b3" prefix=" " category="inline-code"></block>在示例中使用，您可以使用您喜欢的文件传输方法，例如 SFTP、HTTPS 或 FTP。</block>
+  <block id="bea4eb9c3f61f6fc9076a215ac1173fe" category="paragraph"><block ref="c1b3921cc8c2b4b51a888d2dc803623c" category="inline-link-macro-rx"></block> 。</block>
 </blocks>

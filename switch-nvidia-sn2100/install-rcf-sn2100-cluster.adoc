@@ -129,7 +129,7 @@ MSN2100-RCF-v1._x_-Cluster-HA-Breakout-LLDP         100% 8607   111.2KB/s       
 ----
 +
 
-NOTE: 同时 `scp` 在本示例中、您可以使用首选的文件传输方法。
+NOTE: 尽管 `scp`在示例中使用，您可以使用您喜欢的文件传输方法，例如 SFTP、HTTPS 或 FTP。
 
 . 应用RCF pyPython脚本*MSN2100-RCP-v1._x--Cluster-HA-Breakout－LCDP*。
 +
@@ -394,7 +394,7 @@ MSN2100-RCF-v1.x-Cluster-HA-Breakout-LLDP          100% 8607   111.2KB/s        
 ----
 +
 
-NOTE: 同时 `scp` 在本示例中、您可以使用首选的文件传输方法。
+NOTE: 尽管 `scp`在示例中使用，您可以使用您喜欢的文件传输方法，例如 SFTP、HTTPS 或 FTP。
 
 . 应用RCF pyPython脚本*MSN2100-RCP-v1._x--Cluster-HA-Breakout－LCDP*。
 +
@@ -760,7 +760,7 @@ MSN2100-RCF-v1.x-Cluster-HA-Breakout-LLDP          100% 8607   111.2KB/s        
 ----
 +
 
-NOTE: 虽然 `scp`在示例中使用了、但您可以使用首选的文件传输方法。
+NOTE: 虽然 `scp`在示例中使用，您可以使用您喜欢的文件传输方法，例如 SFTP、HTTPS 或 FTP。
 
 . 应用RCF pyPython脚本*MSN2100-RCP-v1._x--Cluster-HA-Breakout－LCDP*。
 +

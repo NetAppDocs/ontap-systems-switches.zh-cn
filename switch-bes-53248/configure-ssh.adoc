@@ -41,8 +41,7 @@ SCP server Administrative Mode: ............... Disabled
 ----
 ====
 +
-如果 SSH 未禁用，请按如下方式禁用它：
-
+** 如果 SSH 未禁用，请按如下方式禁用它：
 +
 .显示示例
 [%collapsible]
@@ -57,7 +56,9 @@ SCP server Administrative Mode: ............... Disabled
 
 WARNING: 修改密钥之前请确保禁用 SSH，否则交换机上会报告警告。
 
-. 生成 SSH 密钥：
+
+
+. 在配置模式下，生成 SSH 密钥：
 +
 `crypto key generate`
 
@@ -82,13 +83,45 @@ Do you want to overwrite the existing DSA keys? (y/n): *y*
 (switch) (Config)# *crypto key generate ecdsa 521*
 
 Do you want to overwrite the existing ECDSA keys? (y/n): *y*
+----
+====
+. 在配置模式下，设置ONTAP日志收集的 AAA 授权：
++
+`aaa authorization commands "noCmdAuthList" none`
 
++
+.显示示例
+[%collapsible]
+====
+[listing, subs="+quotes"]
+----
 (switch) (Config)# *aaa authorization commands "noCmdAuthList" none*
 (switch) (Config)# *exit*
+----
+====
+. 重新启用 SSH/SCP。
++
+.显示示例
+[%collapsible]
+====
+[listing, subs="+quotes"]
+----
 (switch)# *ip ssh server enable*
 (switch)# *ip scp server enable*
 (switch)# *ip ssh pubkey-auth*
-(switch)# *write mem*
+----
+====
+. 将这些更改保存到启动配置：
++
+`写入内存`
+
++
+.显示示例
+[%collapsible]
+====
+[listing, subs="+quotes"]
+----
+(switch)# *write memory*
 
 This operation may take a few minutes.
 Management interfaces will not be available during this time.
@@ -135,8 +168,8 @@ Do you want to continue? (y/n): *y*
 
 Config file 'startup-config' created successfully.
 
-(switch) (Config)# end
-(switch)# write memory
+(switch) (Config)# *end*
+(switch)# *write memory*
 
 This operation may take a few minutes.
 Management interfaces will not be available during this time.
