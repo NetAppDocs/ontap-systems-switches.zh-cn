@@ -4,14 +4,14 @@ sidebar: sidebar
 keywords: install, cisco, nexus, switch, pass-through, panel, netapp, cabinet, bracket, switch, install a cisco nexus 9336c-fx2 switch and pass-through panel in a netapp cabinet - cisco nexus 9336c-fx2 
 summary: 您可以将 Cisco Nexus 9336C-FX2 交换机和直通面板安装在 NetApp 机柜中，并使用交换机附带的标准支架。 
 ---
-= 在NetApp机柜中安装Cisco Nexus 9336C-x2交换机
+= 在NetApp机柜中安装Cisco Nexus 9336C-FX2 和 9336C-FX2-T 交换机
 :allow-uri-read: 
 :icons: font
 :imagesdir: ../media/
 
 
 [role="lead"]
-根据您的配置、您可能需要在NetApp机柜中安装Cisco Nexus 9336C-FX2交换机和直通面板。交换机附带标准支架。
+根据您的配置，您可能需要在NetApp机柜中安装Cisco Nexus 9336C-FX2 和 9336C-FX2-T 交换机和直通面板。开关附带标准支架。
 
 .开始之前
 确保您已具备以下条件：
@@ -70,7 +70,7 @@ image::../media/3132q_front_bracket.gif[前支架]
 image::../media/ru_locations_for_3132q_v.gif[3132q v 的 RU 位置]
 
 +
-两个9336C-fx2交换机始终安装在机柜RU41和42的前2U中。
+两个 9336C-FX2 和 9336C-FX2-T 交换机始终安装在机柜 RU41 和 42 的顶部 2U 中。
 
 . 在机柜中安装滑轨。
 +
@@ -125,11 +125,11 @@ NOTE: 通过使用完全安装的交换机作为支持，在安装过程中无�
 
 NOTE: 要保持冗余，必须将两条线连接到不同的 PDU 。
 
-. 将每个 9336C-x2 交换机上的管理端口连接到任一管理交换机（如果已订购）或将其直接连接到管理网络。
+. 将每个 9336C-FX2 和 9336C-FX2-T 交换机上的管理端口连接到任一管理交换机（如果订购）或将其直接连接到管理网络。
 +
 管理端口是位于交换机 PSU 侧的右上角端口。在安装交换机以连接到管理交换机或管理网络之后，需要通过直通面板为每个交换机布线 CAT6 缆线。
 
 
 
 .下一步是什么？
-link:setup-switch-9336c-cluster.html["配置Cisco Nexus 9336C-x2交换机"]。
+在NetApp机柜中安装交换机后，link:setup-switch-9336c-cluster.html["配置Cisco Nexus 9336C-FX2 和 9336C-FX2-T 交换机"] 。

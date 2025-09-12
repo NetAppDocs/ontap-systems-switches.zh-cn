@@ -11,7 +11,7 @@ summary: 在配置Cisco 9334c-查 对交换机之前、请查看以下信息。
 
 
 [role="lead"]
-在配置Cisco 9334c-查 对交换机之前、请查看以下注意事项。
+在配置 9336C-FX2 和 9336C-FX2-T 交换机之前，请先阅读以下注意事项。
 
 
 
@@ -42,8 +42,7 @@ summary: 在配置Cisco 9334c-查 对交换机之前、请查看以下信息。
 
 === FAS2820 e0a/e0b端口
 
-FAS2820 e0a和e0b端口需要更改FEC配置、才能与9336 C至FX2交换机端口建立链路。
-对于交换机端口e0a和e0b、FEC设置设置为 `rs-cons16`。
+FAS2820 e0a 和 e0b 端口需要更改 FEC 配置才能与 9336C-FX2 和 9336C-FX2-T 交换机端口连接。对于交换机端口 e0a 和 e0b，fec 设置设为 `rs-cons16`。
 
 [listing, subs="+quotes"]
 ----
@@ -58,6 +57,6 @@ FAS2820 e0a和e0b端口需要更改FEC配置、才能与9336 C至FX2交换机端
 
 == 由于TCAM资源问题、端口未链接
 
-在9336C)交换机上，在该交换机使用的配置中配置的主内容可存储器(TCAM)资源已用尽。
+在 9336C-FX2 和 9336C-FX2-T 交换机上，交换机使用的配置中配置的三态内容寻址存储器 (TCAM) 资源已耗尽。
 
 请参见知识库文章 https://kb.netapp.com/on-prem/Switches/Cisco-KBs/Ports_do_not_link_up_on_Cisco_Nexus_9336C-FX2_due_to_TCAM_resources["由于TCAM资源的原因、Cisco Nexus 9334C-算 上的端口未链接"^] 有关如何解决此问题描述的详细信息。

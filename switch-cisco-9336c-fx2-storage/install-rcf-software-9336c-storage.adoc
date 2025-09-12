@@ -11,7 +11,7 @@ summary: 您可以在首次设置Nexus 9334c-拧 动存储交换机后安装RC�
 
 
 [role="lead"]
-首次设置Nexus 9334C)存储交换机后，您可以安装参考配置文件(RF)。
+首次设置 Nexus 9336C-FX2 和 9336C-FX2-T 存储交换机后，安装参考配置文件 (RCF)。
 
 有关安装RC框架 的详细信息、请参见知识库文章link:https://kb.netapp.com/on-prem/Switches/Cisco-KBs/How_to_clear_configuration_on_a_Cisco_interconnect_switch_while_retaining_remote_connectivity["如何在保持远程连接的同时清除Cisco互连交换机上的配置"^]。
 
@@ -118,7 +118,7 @@ cs1# show banner motd
 
 . 对于 RCF 版本 1.12 及更高版本，运行以下命令：
 +
-`cs1# echo "hardware access-list tcam region ing-racl 1024" > bootflash:write_erase.cfg`
+`cs1# echo "hardware access-list tcam region ing-racl 1024" >> bootflash:write_erase.cfg`
 
 +
 `cs1# echo "hardware access-list tcam region egr-racl 1024" >> bootflash:write_erase.cfg`
@@ -480,4 +480,4 @@ System Manager为集群设置和配置提供了一个简单易行的工作流、
 转至 https://docs.netapp.com/us-en/ontap/task_configure_ontap.html["使用System Manager在新集群上配置ONTAP"] 有关设置说明、请参见。
 
 .下一步是什么？
-link:configure-ssh-keys.html["验证 SSH 配置"]
+安装或升级 RCF 后，您link:configure-ssh-keys.html["验证 SSH 配置"]

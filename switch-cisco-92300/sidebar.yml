@@ -2,7 +2,7 @@
 section: switch-cisco-92300
 title: Cisco Nexus 92300YC
 entries:
-- title: 概述
+- title: 入门
   pdf-filename: 概述_923.00年
   entries:
   - title: 快速入门

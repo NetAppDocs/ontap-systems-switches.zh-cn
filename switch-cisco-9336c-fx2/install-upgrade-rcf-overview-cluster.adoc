@@ -11,7 +11,7 @@ summary: 使用集群交换机运行状况监控器（ CSHM ）和日志收集�
 
 
 [role="lead"]
-首次设置Nexus 9334C)交换机后，您可以安装参考配置文件(RF)。如果交换机上安装了现有版本的RCF文件、则可以升级RCF版本。
+首次设置 Nexus 9336C-FX2 和 9336C-FX2-T 交换机后，安装参考配置文件 (RCF)。当您的交换机上安装了现有版本的 RCF 文件时，您可以升级您的 RCF 版本。
 
 有关安装或升级RC框架 的详细信息、请参见知识库文章link:https://kb.netapp.com/on-prem/Switches/Cisco-KBs/How_to_clear_configuration_on_a_Cisco_interconnect_switch_while_retaining_remote_connectivity["如何在保持远程连接的同时清除Cisco互连交换机上的配置"^]。
 
@@ -104,4 +104,4 @@ NOTE: 根据不同版本的 ONTAP ，命令输出可能会有所不同。
 操作步骤要求同时使用 ONTAP 命令和 Cisco Nexus 9000 系列交换机命令；除非另有说明，否则使用 ONTAP 命令。
 
 .下一步是什么？
-link:install-rcf-software-9336c-cluster.html["安装RCF"] 或 link:upgrade-rcf-software-9336c-cluster.html["升级RC框架"]。
+在您查看安装 RCF 或升级 RCF 程序后，您link:install-rcf-software-9336c-cluster.html["安装 RCF"]或者link:upgrade-rcf-software-9336c-cluster.html["升级您的 RCF"]按要求。

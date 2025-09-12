@@ -11,7 +11,7 @@ summary: 如果您现有的双节点无交换机集群环境，则可以使用 C
 
 
 [role="lead"]
-如果您有一个现有的双节点无交换机集群环境、则可以使用Cisco Nexus 9336C-f2交换机迁移到双节点_switched_cluster环境。
+如果您已有双节点无交换机集群环境，则可以使用Cisco Nexus 9336C-FX2 和 9336C-FX2-T 交换机迁移到双节点有交换机集群环境。
 
 此迁移过程适用于使用光纤或双轴端口的所有节点、但如果节点使用板载10 Gb Base-T RJ45端口作为集群网络端口、则此交换机不支持此过程。
 
@@ -629,4 +629,4 @@ RPC status:
 
 
 .下一步是什么？
-link:../switch-cshm/config-overview.html["配置交换机运行状况监控"](英文)
+迁移交换机后，您link:../switch-cshm/config-overview.html["配置交换机健康监控"]。

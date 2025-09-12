@@ -2,7 +2,7 @@
 section: switch-netapp-cn1610
 title: NetApp CN1610
 entries:
-- title: 概述
+- title: 入门
   pdf-filename: 概述_cn1610
   url: "/switch-netapp-cn1610/switch-overview-cn1610.html"
 - title: 安装和配置工作流

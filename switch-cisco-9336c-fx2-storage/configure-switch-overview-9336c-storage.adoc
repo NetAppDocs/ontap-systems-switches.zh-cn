@@ -4,28 +4,30 @@ sidebar: sidebar
 keywords: BES-53248 switches, initial installation, configure switch-cisco-9336c-fx2 switch 
 summary: Cisco Nexus 9336C-x2存储交换机的安装和配置概述 
 ---
-= Cisco Nexus 9336C-FX2 存储交换机的安装和设置工作流程
+= Cisco Nexus 9336C-FX2 9336C-FX2-T 存储交换机的安装和设置工作流程
 :allow-uri-read: 
 :icons: font
 :imagesdir: ../media/
 
 
 [role="lead"]
-Cisco Nexus 9334C-拧 动交换机是Cisco Nexus 9000平台的一部分、可安装在NetApp系统机柜中。Nexus 9334E-拧 动是一款以太网交换机、可用于在控制器和磁盘架之间切换数据。
+Cisco Nexus 9336C-FX2 和 9336C-FX2-T 交换机是Cisco Nexus 9000 平台的一部分，可以安装在NetApp系统机柜中。
 
-按照这些工作流程步骤安装和设置您的Cisco 9336C-FX2 交换机。
+Cisco Nexus 9336C-FX2（36 个端口）是高端口密度集群/存储/数据交换机。Cisco Nexus 9336C-FX2-T（12 端口）是一款低端口密度、高性能交换机，支持 10/25/40/100GbE 配置。
+
+按照这些工作流程步骤安装和设置Cisco 9336C-FX2 和 9336C-FX2-T 交换机。
 
 .image:https://raw.githubusercontent.com/NetAppDocs/common/main/media/number-1.png["一个"]link:configure-reqs-9336c-storage.html["查看配置要求"]
 [role="quick-margin-para"]
-查看 9336C-FX2 存储交换机的配置要求。
+查看 9336C-FX2 和 9336C-FX2-T 存储交换机的配置要求。
 
 .image:https://raw.githubusercontent.com/NetAppDocs/common/main/media/number-2.png["两个"]link:components-9336c-storage.html["查看组件和零件编号"]
 [role="quick-margin-para"]
-查看 9336C-FX2 存储交换机的组件和部件号。
+查看 9336C-FX2 和 9336C-FX2-T 存储交换机的组件和部件号。
 
 .image:https://raw.githubusercontent.com/NetAppDocs/common/main/media/number-3.png["三个"]link:required-documentation-9336c-storage.html["审查所需文件"]
 [role="quick-margin-para"]
-查看特定的交换机和控制器文档以设置您的 9336C-FX2 交换机和ONTAP集群。
+查看特定的交换机和控制器文档以设置 9336C-FX2 和 9336C-FX2-T 交换机和ONTAP集群。
 
 .image:https://raw.githubusercontent.com/NetAppDocs/common/main/media/number-4.png["四个"]link:smart-call-9336c-storage.html["查看 Smart Call Home 要求"]
 [role="quick-margin-para"]

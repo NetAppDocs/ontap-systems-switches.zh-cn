@@ -3,7 +3,7 @@ section: switch-cisco-9336c-fx2
 title: Cisco Nexus 9334T-Nexus或9334T-902-T
 pdf-filename: cisco-9336c-902-cluster
 entries:
-- title: 概述
+- title: 入门
   pdf-filename: 概述_9336c-FX2
   entries:
   - title: 快速入门

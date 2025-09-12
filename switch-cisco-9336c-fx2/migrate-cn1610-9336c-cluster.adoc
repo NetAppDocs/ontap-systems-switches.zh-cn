@@ -4,26 +4,27 @@ sidebar: sidebar
 keywords: migrate cluster Cisco Nexus 9336C-FX2 cluster switches cn1610 
 summary: 您可以将ONTAP集群的NetApp CN1610集群交换机无故障迁移到Cisco Nexus 9336C至FX2集群网络交换机。 
 ---
-= 从NetApp CN1610集群交换机迁移到Cisco 9336C - FX2集群交换机
+= 从NetApp CN1610 集群交换机迁移到Cisco 9336C-FX2 和 9336C-FX2-T 集群交换机
 :allow-uri-read: 
 :icons: font
 :imagesdir: ../media/
 
 
 [role="lead"]
-您可以将ONTAP集群的NetApp CN1610集群交换机迁移到Cisco 9336C至FX2集群交换机。这是一个无中断操作步骤。
+您可以将ONTAP集群的NetApp CN1610 集群交换机迁移到Cisco 9336C-FX2 和 9336C-FX2-T 集群交换机。这是一个非破坏性的过程。
 
 
 
 == 查看要求
 
-在将NetApp CN1610集群交换机更换为Cisco 9336C - FX2集群交换机时、您必须了解某些配置信息、端口连接和布线要求。此外、请验证交换机序列号以确保迁移的交换机正确无误。
+使用Cisco 9336C-FX2 和 9336C-FX2-T 集群交换机替换NetApp CN1610 集群交换机时，必须了解某些配置信息、端口连接和布线要求。您还必须验证交换机序列号以确保迁移了正确的交换机。
 
 .支持的交换机
 支持以下集群交换机：
 
 * NetApp CN1610
 * Cisco 9336C-x2
+* Cisco9336C-FX2-T
 
 
 有关支持的端口及其配置的详细信息、请参见 https://hwu.netapp.com/["Hardware Universe"^]。
@@ -33,7 +34,7 @@ summary: 您可以将ONTAP集群的NetApp CN1610集群交换机无故障迁移�
 
 * 现有集群已正确设置且正常运行。
 * 所有集群端口均处于*启动*状态、以确保无中断运行。
-* Cisco 9335C－FX2集群交换机已配置并在应用了参考配置文件(RCF)的正确NX-OS版本下运行。
+* Cisco 9336C-FX2 和 9336C-FX2-T 集群交换机在安装并应用参考配置文件 (RCF) 的正确版本的 NX-OS 下配置和运行。
 * 现有集群网络配置具有以下功能：
 +
 ** 一种使用NetApp CN1610交换机且功能完备的冗余NetApp集群。
@@ -41,8 +42,8 @@ summary: 您可以将ONTAP集群的NetApp CN1610集群交换机无故障迁移�
 ** 所有与集群 LIF 处于 up 状态的集群 LIF 均位于其主端口上。
 
 
-* Cisco 9336C -FX2交换机上的某些端口配置为以40GbE或100GbE运行。
-* 您已规划、迁移和记录从节点到Cisco 9336C -FX2集群交换机的40GbE和100GbE连接。
+* 一些端口在Cisco 9336C-FX2 和 9336C-FX2-T 交换机上配置为以 40GbE 或 100GbE 运行。
+* 您已经规划、迁移并记录了从节点到Cisco 9336C-FX2 和 9336C-FX2-T 集群交换机的 40GbE 和 100GbE 连接。
 
 
 
@@ -325,7 +326,7 @@ CAUTION: 请勿尝试手动迁移集群Sifs。
 (C2)(Interface 0/1-0/12)# *exit*
 (C2)(Config)# *exit*
 ----
-. 使用Cisco 9336C -FX2支持的适当布线方法、将节点集群端口从旧交换机C2移至新交换机CS2。
+. 使用Cisco 9336C-FX2 和 9336C-FX2-T 支持的适当电缆将节点集群端口从旧交换机 C2 移动到新交换机 cs2。
 . 显示网络端口属性：
 +
 `network port show -ipspace cluster`
@@ -409,7 +410,7 @@ Cluster
 (C1)(Interface 0/1-0/12)# *exit*
 (C1)(Config)# *exit*
 ----
-. 使用Cisco 9336C -FX2支持的适当布线方法、将节点集群端口从旧交换机C1移动到新交换机CS1。
+. 使用Cisco 9336C-FX2 和 9336C-FX2-T 支持的适当电缆将节点集群端口从旧交换机 C1 移动到新交换机 cs1。
 . 验证集群的最终配置：
 +
 `network port show -ipspace cluster`
@@ -562,4 +563,4 @@ Cluster
 
 
 .下一步是什么？
-link:../switch-cshm/config-overview.html["配置交换机运行状况监控"](英文)
+迁移交换机后，您link:../switch-cshm/config-overview.html["配置交换机健康监控"]。

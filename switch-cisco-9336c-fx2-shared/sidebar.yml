@@ -3,7 +3,7 @@ section: switch-cisco-9336c-fx2-shared
 title: Cisco Nexus 9336C-x2
 pdf-filename: cisco-9336c-602-shared
 entries:
-- title: 概述
+- title: 入门
   pdf-filename: Overview _9336c-FX2 - Shared
   entries:
   - title: 快速入门

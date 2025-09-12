@@ -4,12 +4,12 @@ sidebar: sidebar
 keywords: 9336C-FX2 reset switch to factory defaults, 9336C-FX2 switches configuration, efos 
 summary: 在配置Cisco Nexus 9336C-FX2 交换机之前，请查看以下信息。 
 ---
-= 将 9336C-FX2 存储交换机重置为出厂默认设置
+= 将 9336C-FX2 和 9336C-FX2-T 存储交换机重置为出厂默认设置
 :allow-uri-read: 
 
 
 [role="lead"]
-要将 9336C-FX2 存储交换机重置为出厂默认设置，必须清除 9336C-FX2 交换机设置。
+要将 9336C-FX2 和 9336C-FX2-T 存储交换机重置为出厂默认设置，必须清除 9336C-FX2 和 9336C-FX2-T 交换机设置。
 
 .关于此任务
 * 您必须使用串行控制台连接到交换机。

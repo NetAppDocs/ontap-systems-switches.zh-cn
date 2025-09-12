@@ -4,7 +4,7 @@ permalink: switch-cisco-9336c-fx2/required-documentation-9336c-cluster.html
 keywords: shared storage cluster switch 
 summary: 对于Cisco Nexus 9336C-x2交换机安装和维护、请务必查看特定的交换机和控制器文档、以设置Cisco 93336-x2交换机和ONTAP 集群。 
 ---
-= Cisco Nexus 9336C-x2交换机的文档要求
+= Cisco Nexus 9336C-FX2 和 9336C-FX2-T 交换机的文档要求
 :hardbreaks:
 :allow-uri-read: 
 :nofooter: 
@@ -14,13 +14,13 @@ summary: 对于Cisco Nexus 9336C-x2交换机安装和维护、请务必查看特
 
 
 [role="lead"]
-对于Cisco Nexus 9336C-x2交换机安装和维护、请务必查看特定的交换机和控制器文档、以设置Cisco 93336-x2交换机和ONTAP 集群。
+对于Cisco Nexus 9336C-FX2 和 9336C-FX2-T 交换机的安装和维护，请务必查看特定的交换机和控制器文档以设置Cisco 9336-FX2 交换机和ONTAP集群。
 
 
 
 == 交换机文档
 
-要设置Cisco Nexus 9336C-FX2交换机、您需要中的以下文档 https://www.cisco.com/c/en/us/support/switches/nexus-9000-series-switches/series.html["Cisco Nexus 9000 系列交换机支持"^] 页面。
+要设置Cisco Nexus 9336C-FX2 和 9336C-FX2-T 交换机，您需要以下文档 https://www.cisco.com/c/en/us/support/switches/nexus-9000-series-switches/series.html["Cisco Nexus 9000 系列交换机支持"^]页：
 
 [cols="1,2"]
 |===
@@ -134,6 +134,6 @@ https://library.netapp.com/ecm/ecm_download_file/ECMM1280394["42U 系统机柜�
  a| 
 link:install-switch-and-passthrough-panel-9336c-cluster.html["在NetApp机柜中安装Cisco 9333-FX2交换机"^]
  a| 
-介绍如何在四柱NetApp机柜中安装Cisco Nexus 9336C-fx2交换机。
+介绍如何在四柱NetApp机柜中安装Cisco Nexus 9336C-FX2 和 9336C-FX2-T 交换机。
 
 |===

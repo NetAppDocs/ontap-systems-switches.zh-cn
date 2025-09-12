@@ -4,14 +4,14 @@ sidebar: sidebar
 keywords: require, configuration, information, documentation, cluster, management, network, switches, set up the switches - cisco nexus 9336c-fx2 
 summary: 如果您还没有所需的配置信息和文档，则需要在设置集群和管理网络交换机之前收集这些信息。 
 ---
-= 配置9336C-x2存储交换机
+= 配置 9336C-FX2 和 9336C-FX2-T 存储交换机
 :allow-uri-read: 
 :icons: font
 :imagesdir: ../media/
 
 
 [role="lead"]
-按照此操作步骤 配置Cisco Nexus 9336C-x2交换机。
+按照以下步骤配置Cisco Nexus 9336C-FX2 和 9336C-FX2-T 交换机。
 
 .开始之前
 确保您已具备以下条件：
@@ -192,4 +192,4 @@ NOTE: 如果您在此阶段未保存配置，则下次重新启动交换机时�
 
 
 .下一步是什么？
-link:install-nxos-overview-9336c-storage.html["准备安装NX-OS和RCF"] 。
+配置好交换机后，link:install-nxos-overview-9336c-storage.html["准备安装NX-OS软件和RCF"] 。

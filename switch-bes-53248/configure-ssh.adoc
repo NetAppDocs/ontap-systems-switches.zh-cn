@@ -43,14 +43,18 @@ SCP server Administrative Mode: ............... Disabled
 +
 ** 如果 SSH 未禁用，请按如下方式禁用它：
 +
-.显示示例
-[%collapsible]
+`no ip ssh server enable`
+
++
+`no ip scp server enable`
+
++
+[NOTE]
 ====
-[listing, subs="+quotes"]
-----
-(switch)# *ip ssh server disable*
-(switch)# *ip scp server disable*
-----
+*** 对于 EFOS 3.12 及更高版本，需要控制台访问，因为禁用 SSH 时活动的 SSH 会话会丢失。
+*** 对于 EFOS 3.11 及更早版本，禁用 SSH 服务器后当前 SSH 会话仍保持打开。
+
+
 ====
 +
 

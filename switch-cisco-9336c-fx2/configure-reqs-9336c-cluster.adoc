@@ -4,7 +4,7 @@ permalink: /switch-cisco-9336c-fx2/configure-reqs-9336c-cluster.html
 keywords: shared storage cluster switch 
 summary: 从 ONTAP 9.1.1 开始，您可以使用 Cisco Nexus 9336C-f2 交换机将存储和集群功能结合到共享交换机方案中。 
 ---
-= Cisco Nexus 9336C-x2集群交换机的配置要求
+= Cisco Nexus 9336C-FX2 和 9336C-FX2-T 集群交换机的配置要求
 :hardbreaks:
 :allow-uri-read: 
 :nofooter: 
@@ -14,12 +14,16 @@ summary: 从 ONTAP 9.1.1 开始，您可以使用 Cisco Nexus 9336C-f2 交换机
 
 
 [role="lead"]
-对于Cisco Nexus 9336C-x2交换机安装和维护、请务必查看配置和网络要求。
+对于Cisco Nexus 9336C-FX2 和 9336C-FX2-T 交换机的安装和维护，请务必查看配置和网络要求。
 
 
 
 == ONTAP 支持
 
+[role="tabbed-block"]
+====
+.ONTAP 9.9.1及更高版本
+--
 从 ONTAP 9.1.1 开始，您可以使用 Cisco Nexus 9336C-f2 交换机将存储和集群功能组合到共享交换机配置中。
 
 如果要使用两个以上的节点构建 ONTAP 集群，则需要两个受支持的网络交换机。
@@ -27,6 +31,15 @@ summary: 从 ONTAP 9.1.1 开始，您可以使用 Cisco Nexus 9336C-f2 交换机
 
 NOTE: 以太网交换机运行状况监控器不支持ONTAP 9.13.1P8及更早版本、9.14.1P3及更早版本或NX-OS 10.3 (4a)(M)版。
 
+--
+.ONTAP 9.10.1 及更高版本
+--
+此外，从ONTAP 9.10.1 开始，您可以使用Cisco Nexus 9336C-FX2-T 交换机将存储和集群功能组合到共享交换机配置中。
+
+如果要使用两个以上的节点构建 ONTAP 集群，则需要两个受支持的网络交换机。
+
+--
+====
 
 
 == 配置要求
@@ -52,4 +65,4 @@ NOTE: 以太网交换机运行状况监控器不支持ONTAP 9.13.1P8及更早版
 有关交换机初始配置的详细信息，请参见以下指南： https://www.cisco.com/c/en/us/td/docs/dcn/hw/nx-os/nexus9000/9336c-fx2-e/cisco-nexus-9336c-fx2-e-nx-os-mode-switch-hardware-installation-guide.html["《 Cisco Nexus 9336C-x2 安装和升级指南》"^]。
 
 .下一步
-link:components-9336c-cluster.html["组件和部件号"] 。
+查看配置要求后，您可以确认您的link:components-9336c-cluster.html["组件和零件编号"]。

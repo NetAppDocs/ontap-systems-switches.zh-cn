@@ -3,7 +3,7 @@ section: switch-cisco-9336c-fx2-storage
 title: Cisco Nexus 9334T-Nexus或9334T-902-T
 pdf-filename: switch-cisco-9336c-902-storage
 entries:
-- title: 概述
+- title: 入门
   pdf-filename: OVERVIEW _9336c-FX2存储
   entries:
   - title: 快速入门
