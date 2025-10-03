@@ -14,7 +14,7 @@ summary: 您可以使用交换机附带的标准支架将Cisco Nexus 92300YC 交
 根据您的配置，您可能需要使用交换机附带的标准支架在NetApp机柜中安装Cisco Nexus 92300YC 集群交换机和直通面板。
 
 .开始之前
-* 初始准备要求、工具包内容和安全预防措施link:http://www.cisco.com/c/en/us/td/docs/switches/datacenter/nexu9000/hw/installation/guide/b_n3000_hardware_install_guide.html["《 Cisco Nexus 9000 系列硬件安装指南》"^]。
+* 初始准备要求、工具包内容和安全预防措施link:https://www.cisco.com/site/us/en/products/networking/cloud-networking-switches/nexus-9200-series-switches/index.html["《 Cisco Nexus 9000 系列硬件安装指南》"^]。
 * 对于每个交换机、使用八个10-32或12-24螺钉和卡夹螺母将支架和滑轨安装到机柜前后柱上。
 * 用于在NetApp机柜中安装交换机的Cisco标准导轨套件。
 
@@ -45,7 +45,7 @@ NetApp 直通面板套件包含以下硬件：
 ... 将面板垂直居中以防止侵入相邻机架空间，然后拧紧螺钉。
 ... 从面板后部插入两个 48 英寸跳线的凹形连接器，并穿过刷子组件。
 +
-image::../media/cisco_9148_jumper_cords.gif[Cisco 9148 跳线]
+image::../media/cisco_9148_jumper_cords.gif[]
 
 
 
@@ -68,7 +68,7 @@ image::../media/3132q_front_bracket.gif[前支架]
 
 . 在所有四个 IEA 柱的方孔位置安装卡夹螺母。
 +
-image::../media/ru_locations_for_3132q_v.gif[3132q v 的 RU 位置]
+image::../media/ru_locations_for_3132q_v.gif[]
 
 +
 两台 92300YC 交换机将始终安装在机柜 RU41 和 42 的顶部 2U 中。
@@ -77,7 +77,7 @@ image::../media/ru_locations_for_3132q_v.gif[3132q v 的 RU 位置]
 +
 .. 将第一个滑轨放在左后柱背面的 RU42 标记处，插入螺纹类型匹配的螺钉，然后用您的手拧紧螺钉。
 +
-image::../media/3132q_v_slider_rails.gif[3132q v 滑轨]
+image::../media/3132q_v_slider_rails.gif[]
 
 +
 _(1)在轻轻滑动滑轨时、将滑轨与机架中的螺钉孔对齐。_+_(2)将滑轨的螺钉拧紧到机柜柱上。_
@@ -106,7 +106,7 @@ _(2)轻滑交换机、直到机架前支架与前柱平齐为止。_
 
 .. 将交换机连接到机柜。
 +
-image::../media/3132q_attaching.gif[3132q 正在连接]
+image::../media/3132q_attaching.gif[]
 
 +
 _(1)一人握住机箱前部、另一人应将四个后部螺钉完全拧紧到机箱柱上。_

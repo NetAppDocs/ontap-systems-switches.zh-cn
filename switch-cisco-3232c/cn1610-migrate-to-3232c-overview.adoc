@@ -17,9 +17,9 @@ NOTE: 操作步骤 要求同时使用 ONTAP 命令和 Cisco Nexus 3000 系列交
 
 如有必要、请参见以下内容了解详细信息：
 
-* http://support.netapp.com/NOW/download/software/cm_switches_ntap/["NetApp CN1601 和 CN1610 问题描述 页面"^]
-* http://support.netapp.com/NOW/download/software/cm_switches/["Cisco 以太网交换机问题描述 页面"^]
-* http://hwu.netapp.com["Hardware Universe"^]
+* link:https://mysupport.netapp.com/site/products/all/details/netapp-cluster-switches/docs-tab["NetApp CN1601 和 CN1610"^]
+* link:https://mysupport.netapp.com/site/info/cisco-ethernet-switch["Cisco 以太网交换机"^]
+* link:http://hwu.netapp.com["Hardware Universe"^]
 
 
 
@@ -75,11 +75,11 @@ CN1610 到 3232C （ QSFP 到 SFP+ ）
 2 根 QSFP 光纤或铜缆直连缆线
 
 |===
-您必须已下载适用的参考配置文件（ Reference Configuration Files ， RCF ）。10 GbE 和 40/100 GbE 端口的数量在上提供的 RCF 中定义 https://mysupport.netapp.com/NOW/download/software/sanswitch/fcp/Cisco/netapp_cnmn/download.shtml["Cisco ® 集群网络交换机参考配置文件下载"^] 页面。
+您必须下载适用的参考配置文件（RCF）。  10 GbE 和 40/100 GbE 端口的数量在以下 RCF 中定义：link:https://mysupport.netapp.com/site/products/all/details/cisco-cluster-storage-switch/downloads-tab["Cisco ® 集群网络交换机参考配置文件下载"^] 。
 
-上列出了此操作步骤 支持的 ONTAP 和 NX-OS 版本 link:https://mysupport.netapp.com/NOW/download/software/cm_switches/.html["Cisco 以太网交换机页面"^]。
+此过程中支持的ONTAP和 NX-OS 版本列于link:https://mysupport.netapp.com/site/info/cisco-ethernet-switch["Cisco 以太网交换机"^]。
 
-上列出了此操作步骤 支持的 ONTAP 和快速路径版本 link:http://support.netapp.com/NOW/download/software/cm_switches_ntap/.html["NetApp CN1601 和 CN1610 交换机页面"^]。
+此过程中支持的ONTAP和 FASTPATH 版本列于link:https://mysupport.netapp.com/site/products/all/details/netapp-cluster-switches/docs-tab["NetApp CN1601 和 CN1610 交换机"^]。
 
 .关于所用示例
 迁移过程中的示例使用四个节点：
@@ -101,7 +101,7 @@ link:https://hwu.netapp.com/["_SIL_ Hardware Universe"^]提供了有关适用于
 * *n1_clus2*是连接到节点*n1*的集群交换机2 (CL2或C2)的第一个集群LIF。
 * *n1_clus3*是连接到节点*n1*的集群交换机2 (CL2或C2)的第二个LIF。
 * *n1_clus4*是连接到节点*n1*的集群交换机1 (CL1或C1)的第二个LIF。
-* 10 GbE 和 40/100 GbE 端口的数量在上提供的参考配置文件（ RCF ）中定义 https://mysupport.netapp.com/NOW/download/software/sanswitch/fcp/Cisco/netapp_cnmn/download.shtml["Cisco ® 集群网络交换机参考配置文件下载"^] 页面。
+* 10 GbE 和 40/100 GbE 端口的数量在参考配置文件 (RCF) 中定义，可从link:https://mysupport.netapp.com/site/products/all/details/cisco-cluster-storage-switch/downloads-tab["Cisco ® 集群网络交换机参考配置文件下载"^]。
 
 
 .下一步是什么？

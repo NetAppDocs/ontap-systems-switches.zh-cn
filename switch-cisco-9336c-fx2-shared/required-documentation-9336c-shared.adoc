@@ -10,7 +10,7 @@ summary: 对于Cisco Nexus 9336C-x2交换机安装和维护、请务必查看特
 :nofooter: 
 :icons: font
 :linkattrs: 
-:imagesdir: ./media/
+:imagesdir: ../media/
 
 
 [role="lead"]
@@ -34,7 +34,7 @@ summary: 对于Cisco Nexus 9336C-x2交换机安装和维护、请务必查看特
 | link:https://www.cisco.com/c/en/us/support/switches/nexus-9000-series-switches/products-command-reference-list.html["Cisco Nexus 9000 系列 NX-OS 命令参考主索引"] | 提供 Cisco 提供的各种命令参考的链接。 
 
 
-| link:https://www.cisco.com/c/en/us/td/docs/switches/datacenter/sw/mib/quickreference/b_Cisco_Nexus_7000_Series_and_9000_Series_NX-OS_MIB_Quick_Reference.html["《 Cisco Nexus 9000 MIB 参考》"] | 介绍 Nexus 9000 交换机的管理信息库（ Management Information Base ， MIB ）文件。 
+| link:https://www.cisco.com/c/en/us/td/docs/switches/datacenter/sw/mib/reference/MIBRef.html["《 Cisco Nexus 9000 MIB 参考》"] | 介绍 Nexus 9000 交换机的管理信息库（ Management Information Base ， MIB ）文件。 
 
 
 | link:https://www.cisco.com/c/en/us/support/switches/nexus-9000-series-switches/products-system-message-guides-list.html["Nexus 9000 系列 NX-OS 系统消息参考"] | 介绍 Cisco Nexus 9000 系列交换机的系统消息，信息性消息以及可能有助于诊断链路，内部硬件或系统软件问题的其他消息。 

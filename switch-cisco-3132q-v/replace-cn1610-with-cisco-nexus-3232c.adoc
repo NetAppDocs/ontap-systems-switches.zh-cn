@@ -21,9 +21,9 @@ summary: 要将集群中的现有 CN1610 集群交换机更换为 Cisco Nexus 31
 
 有关详细信息，请参见
 
-* http://support.netapp.com/NOW/download/software/cm_switches_ntap/["NetApp CN1601 和 CN1610 问题描述 页面"^]
-* http://support.netapp.com/NOW/download/software/cm_switches/["Cisco 以太网交换机问题描述 页面"^]
-* http://hwu.netapp.com["Hardware Universe"^]
+* link:https://mysupport.netapp.com/site/products/all/details/netapp-cluster-switches/docs-tab["NetApp CN1601 和 CN1610"^]
+* link:https://mysupport.netapp.com/site/info/cisco-ethernet-switch["Cisco 以太网交换机"^]
+* link:http://hwu.netapp.com["Hardware Universe"^]
 
 
 
@@ -41,7 +41,7 @@ summary: 要将集群中的现有 CN1610 集群交换机更换为 Cisco Nexus 31
 * N1_clus3 是连接到节点 n1 的集群交换机 2 （ CL2 或 C2 ）的第二个 LIF 。
 * N1_clus4 是连接到节点 n1 的集群交换机 1 （ CL1 或 C1 ）的第二个 LIF 。
 * 节点为 n1 ， n2 ， n3 和 n4 。
-* 10 GbE和40 GbE端口的数量在页面上提供的参考配置文件(Reference Configuration Files、RCF)中定义 https://mysupport.netapp.com/NOW/download/software/sanswitch/fcp/Cisco/netapp_cnmn/download.shtml["Cisco ® 集群网络交换机参考配置文件下载"^]。
+* 10 GbE 和 40 GbE 端口的数量在参考配置文件 (RCF) 中定义，可从link:https://mysupport.netapp.com/site/products/all/details/cisco-cluster-storage-switch/downloads-tab["Cisco ® 集群网络交换机参考配置文件下载"^]。
 
 
 .关于示例
@@ -247,13 +247,13 @@ cluster::*> network interface modify -vserver node2 -lif clus4 -auto-revert fals
 此时必须准备两个交换机。如果需要升级 RCF 和映像，请按照以下步骤操作：
 
 +
-.. 请参见 link:http://support.netapp.com/NOW/download/software/cm_switches/["Cisco 以太网交换机"^] 页面。
+.. 看link:https://mysupport.netapp.com/site/info/cisco-ethernet-switch["Cisco 以太网交换机"^]在NetApp支持站点上。
 .. 请记下该页面上的表中的交换机和所需的软件版本。
 .. 下载适当版本的 RCF 。
 .. 单击 * RCF* 页面上的 * 继续 * ，接受许可协议，然后按照 * 下载 * 页面上的说明下载问题描述 。
 .. 下载相应版本的映像软件。
 +
-http://mysupport.netapp.com/NOW/download/software/sanswitch/fcp/Cisco/netapp_cnmn/download.shtml["Cisco ® 集群和管理网络交换机参考配置文件下载"^]
+link:shttps://mysupport.netapp.com/site/products/all/details/cisco-cluster-storage-switch/downloads-tab["Cisco ® 集群和管理网络交换机参考配置文件下载"^]
 
 
 
@@ -386,8 +386,7 @@ Cluster n2_clus4 n2       e0d    10.10.0.8
 Local = 10.10.0.1 10.10.0.2 10.10.0.3 10.10.0.4
 Remote = 10.10.0.5 10.10.0.6 10.10.0.7 10.10.0.8
 Cluster Vserver Id = 4294967293
-Ping status:
-....
+Ping status:....
 Basic connectivity succeeds on 16 path(s)
 Basic connectivity fails on 0 path(s)
 ................
@@ -734,8 +733,7 @@ Cluster n2_clus4 n2       e0d    10.10.0.8
 Local = 10.10.0.1 10.10.0.2 10.10.0.3 10.10.0.4
 Remote = 10.10.0.5 10.10.0.6 10.10.0.7 10.10.0.8
 Cluster Vserver Id = 4294967293
-Ping status:
-....
+Ping status:....
 Basic connectivity succeeds on 16 path(s)
 Basic connectivity fails on 0 path(s)
 ................
@@ -1101,8 +1099,7 @@ Cluster n2_clus4 n2       e0d    10.10.0.8
 Local = 10.10.0.1 10.10.0.2 10.10.0.3 10.10.0.4
 Remote = 10.10.0.5 10.10.0.6 10.10.0.7 10.10.0.8
 Cluster Vserver Id = 4294967293
-Ping status:
-....
+Ping status:....
 Basic connectivity succeeds on 16 path(s)
 Basic connectivity fails on 0 path(s)
 ................

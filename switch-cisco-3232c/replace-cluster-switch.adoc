@@ -40,8 +40,8 @@ Cisco 以太网交换机页面会为您的交换机提供最新的 RCF 和 NX-OS
 .有关详细信息 ...
 请参见以下内容：
 
-* http://support.netapp.com/NOW/download/software/cm_switches/["Cisco 以太网交换机问题描述 页面"^]
-* http://hwu.netapp.com["Hardware Universe"^]
+* link:https://mysupport.netapp.com/site/info/cisco-ethernet-switch["Cisco 以太网交换机"^]
+* link:http://hwu.netapp.com["Hardware Universe"^]
 
 
 
@@ -51,8 +51,8 @@ Cisco 以太网交换机页面会为您的交换机提供最新的 RCF 和 NX-OS
 NetApp强烈建议您在使用的设备上启用控制台日志记录、并在更换交换机时采取以下措施：
 
 * 在维护期间保持AutoSupport处于启用状态。
-* 在维护前后触发维护AutoSupport、以便在维护期间禁用案例创建。请参见此知识库文章 https://kb.netapp.com/Support_Bulletins/Customer_Bulletins/SU92["SU92：如何禁止在计划维护时段自动创建案例"^] 了解更多详细信息。
-* 为所有命令行界面会话启用会话日志记录。有关如何启用会话日志记录的说明、请查看此知识库文章中的"记录会话输出"一节 https://kb.netapp.com/on-prem/ontap/Ontap_OS/OS-KBs/How_to_configure_PuTTY_for_optimal_connectivity_to_ONTAP_systems["如何配置PuTTY以优化与ONTAP系统的连接"^]。
+* 在维护之前和之后触发维护AutoSupport ，以在维护期间禁用案例创建。请参阅此知识库文章link:https://kb.netapp.com/Support_Bulletins/Customer_Bulletins/SU92["SU92：如何禁止在计划维护时段自动创建案例"^]了解更多详情。
+* 为任何 CLI 会话启用会话日志记录。有关如何启用会话日志记录的说明，请参阅此知识库文章中的“日志记录会话输出”部分link:https://kb.netapp.com/on-prem/ontap/Ontap_OS/OS-KBs/How_to_configure_PuTTY_for_optimal_connectivity_to_ONTAP_systems["如何配置PuTTY以优化与ONTAP系统的连接"^]。
 
 
 
@@ -84,7 +84,7 @@ NetApp强烈建议您在使用的设备上启用控制台日志记录、并在�
 * n1_clus4 是连接到节点 n1 的集群交换机 CL1 的第二个 LIF 。
 
 
-10 GbE 和 40/100 GbE 端口的数量在上提供的参考配置文件（ RCF ）中定义 https://mysupport.netapp.com/NOW/download/software/sanswitch/fcp/Cisco/netapp_cnmn/download.shtml["Cisco ® 集群网络交换机参考配置文件下载"^] 页面。
+10 GbE 和 40/100 GbE 端口的数量在参考配置文件 (RCF) 中定义，可从link:https://mysupport.netapp.com/site/products/all/details/cisco-cluster-storage-switch/downloads-tab["Cisco ® 集群网络交换机参考配置文件下载"^]。
 
 此替代操作步骤 中的示例使用四个节点。其中两个节点使用四个 10 Gb 集群互连端口： e0a ， e0b ， e0c 和 e0d 。其他两个节点使用两个 40 Gb 集群互连端口： E4A 和 e4e 。请参见 link:https://hwu.netapp.com["Hardware Universe"^] 验证适用于您的平台的集群端口是否正确。
 
@@ -260,13 +260,13 @@ http://mysupport.netapp.com/["mysupport.netapp.com"^]
 
 .. 转到 * Cisco 以太网交换机 * 页面，并记下表中所需的软件版本。
 +
-https://mysupport.netapp.com/NOW/download/software/cm_switches/["Cisco 以太网交换机"^]
+https://mysupport.netapp.com/site/info/cisco-ethernet-switch["Cisco 以太网交换机"^]
 
 .. 下载适当版本的 RCF 。
 .. 单击 * 问题描述 * 页面上的 * 继续 * ，接受许可协议，然后导航到 * 下载 * 页面。
 .. 从 * Cisco ® 集群和管理网络交换机参考配置文件下载 * 页面下载正确版本的映像软件。
 +
-http://mysupport.netapp.com/NOW/download/software/sanswitch/fcp/Cisco/netapp_cnmn/download.shtml["Cisco ® 集群和管理网络交换机参考配置文件下载"^]
+link:https://mysupport.netapp.com/site/products/all/details/cisco-cluster-storage-switch/downloads-tab["Cisco ® 集群和管理网络交换机参考配置文件下载"^]
 
 
 

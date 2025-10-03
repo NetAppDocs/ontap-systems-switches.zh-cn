@@ -21,7 +21,7 @@ summary: 在配置Cisco Nexus SN2100 交换机之前，请查看以下信息。
 
 
 
-NOTE: 有关安装 Cumulus Linux 的更多信息，请参阅link:configure-software-overview-sn2100-cluster.html["NVIDIA SN2100交换机的软件安装工作流"]。
+NOTE: 有关安装 Cumulus Linux 的更多信息，请参阅link:configure-software-sn2100-storage.html["NVIDIA SN2100交换机的软件安装工作流"]。
 
 .步骤
 [role="tabbed-block"]

@@ -66,11 +66,11 @@ CN1610 到 3232C （ QSFP 到 SFP+ ）
 2 根 QSFP 光纤或铜缆直连缆线
 
 |===
-您必须已下载适用的参考配置文件（ Reference Configuration Files ， RCF ）。10 GbE 和 40/100 GbE 端口的数量在上提供的 RCF 中定义 https://mysupport.netapp.com/NOW/download/software/sanswitch/fcp/Cisco/netapp_cnmn/download.shtml["Cisco ® 集群网络交换机参考配置文件下载"^] 页面。
+您必须下载适用的参考配置文件（RCF）。  10 GbE 和 40/100 GbE 端口的数量在link:https://mysupport.netapp.com/site/products/all/details/cisco-cluster-storage-switch/downloads-tab["Cisco ® 集群网络交换机参考配置文件下载"^]。
 
-上列出了此操作步骤 支持的 ONTAP 和 NX-OS 版本 link:https://mysupport.netapp.com/NOW/download/software/cm_switches/.html["Cisco 以太网交换机页面"^]。
+此过程中支持的ONTAP和 NX-OS 版本列于link:https://mysupport.netapp.com/site/info/cisco-ethernet-switch["Cisco 以太网交换机"^]。
 
-上列出了此操作步骤 支持的 ONTAP 和快速路径版本 link:http://support.netapp.com/NOW/download/software/cm_switches_ntap/.html["NetApp CN1601 和 CN1610 交换机页面"^]。
+此过程中支持的ONTAP和 FASTPATH 版本列于link:https://mysupport.netapp.com/site/products/all/details/netapp-cluster-switches/docs-tab["NetApp CN1601 和 CN1610 交换机"^]。
 
 
 
@@ -123,7 +123,7 @@ CN1610 到 3232C （ QSFP 到 SFP+ ）
 
 ====
 *** 您已完成从节点到 Nexus 3232C 集群交换机的 10 GbE 和 40/100 GbE 连接的规划，迁移并阅读了相关文档。
-*** 此操作步骤 支持的 ONTAP 和 NX-OS 版本位于上 link:http://support.netapp.com/NOW/download/software/cm_switches/.html["Cisco 以太网交换机页面"^]。
+*** 此过程中支持的ONTAP和 NX-OS 版本为link:https://mysupport.netapp.com/site/info/cisco-ethernet-switch["Cisco 以太网交换机"^]。
 
 
 

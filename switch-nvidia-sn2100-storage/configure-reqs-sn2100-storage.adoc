@@ -21,7 +21,7 @@ summary: 对于NVIDIA SN2100交换机安装和维护、请务必查看所有要�
 
 您可以在NVIDIA双/单交换机机柜中使用随交换机提供的标准支架安装NVIDIA SN2100交换机(X190006/X190106)。
 
-有关布线准则、请参见 link:cabling-considerations-sn2100-cluster.html["布线和配置注意事项"]。
+有关布线指南，请参阅link:cabling-considerations-sn2100-storage.html["布线和配置注意事项"]。
 
 
 

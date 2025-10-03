@@ -19,9 +19,9 @@ summary: 在配置Cisco Nexus 3132q-v交换机之前、请查看此过程和术�
 ====
 有关详细信息，请参见
 
-* http://support.netapp.com/NOW/download/software/cm_switches_ntap/["NetApp CN1601 和 CN1610 问题描述 页面"^]
-* http://support.netapp.com/NOW/download/software/cm_switches/["Cisco 以太网交换机问题描述 页面"^]
-* http://hwu.netapp.com["Hardware Universe"^]
+* link:https://mysupport.netapp.com/site/products/all/details/netapp-cluster-switches/docs-tab["NetApp CN1601 和 CN1610"^]
+* link:https://mysupport.netapp.com/site/info/cisco-ethernet-switch["Cisco 以太网交换机"^]
+* link:http://hwu.netapp.com["Hardware Universe"^]
 
 
 .端口和节点连接
@@ -50,7 +50,7 @@ summary: 在配置Cisco Nexus 3132q-v交换机之前、请查看此过程和术�
 +
 您可以使用 `interface breakout module 1 port 1-6 map 10g-4x` 命令将前六个端口细分为 4x10 GbE 模式。同样，您也可以使用 `no interface breakout module 1 port 1-6 map 10g-4x` 命令对分支配置中的前六个 QSFP + 端口进行重新分组。
 
-* 10 GbE和40 GbE端口的数量在页面上提供的参考配置文件(Reference Configuration Files、RCF)中定义 https://mysupport.netapp.com/NOW/download/software/sanswitch/fcp/Cisco/netapp_cnmn/download.shtml["Cisco ® 集群网络交换机参考配置文件下载"^]。
+* 10 GbE 和 40 GbE 端口的数量在参考配置文件 (RCF) 中定义，可从link:https://mysupport.netapp.com/site/products/all/details/cisco-cluster-storage-switch/downloads-tab["Cisco ® 集群网络交换机参考配置文件下载"^]。
 
 
 .开始之前
@@ -63,7 +63,7 @@ summary: 在配置Cisco Nexus 3132q-v交换机之前、请查看此过程和术�
 ** Nexus 3132 集群基础架构在两台交换机上均为冗余且功能完备。
 ** 交换机上的最新 RCF 和 NX-OS 版本。
 +
-。 link:http://mysupport.netapp.com/NOW/download/software/cm_switches/["Cisco 以太网交换机"^] 页面提供了有关此操作步骤 支持的 ONTAP 和 NX-OS 版本的信息。
+link:https://mysupport.netapp.com/site/info/cisco-ethernet-switch["Cisco 以太网交换机"^]包含有关此过程中支持的ONTAP和 NX-OS 版本的信息。
 
 ** 两台交换机上的管理连接。
 ** 对两个交换机的控制台访问。
@@ -94,7 +94,7 @@ summary: 在配置Cisco Nexus 3132q-v交换机之前、请查看此过程和术�
 * *n1_clus2*是第一个连接到节点*n1*的集群交换机C2的集群LIF。
 * *n2_clus1*是第一个连接到节点*n2*的集群交换机C1的集群LIF。
 * *n2_clus2*是连接到节点*n2*的集群交换机C2的第二个集群LIF。
-* 10 GbE和40 GbE端口的数量在页面上提供的参考配置文件(Reference Configuration Files、RCF)中定义 https://mysupport.netapp.com/NOW/download/software/sanswitch/fcp/Cisco/netapp_cnmn/download.shtml["Cisco ® 集群网络交换机参考配置文件下载"^]。
+* 10 GbE 和 40 GbE 端口的数量在参考配置文件 (RCF) 中定义，可从link:https://mysupport.netapp.com/site/products/all/details/cisco-cluster-storage-switch/downloads-tab["Cisco ® 集群网络交换机参考配置文件下载"^]。
 
 
 [NOTE]

@@ -46,6 +46,6 @@ NOTE: 在 RCF 1.2 版中，出于安全考虑，已明确禁用对 Telnet 的支
 
 此操作步骤 包含两部分：
 
-* link:task-install-fastpath-software.html["安装 FastPath 软件"] 介绍如何安装 FastPath 软件。
-* link:task-install-an-rcf-on-a-cn1610-switch.html["在 CN1610 交换机上安装 RCF"] 介绍如何安装 RCF 。
+* link:install-fastpath-software.html["安装 FastPath 软件"]描述如何安装 FASTPATH 软件。
+* link:install-rcf-file.html["在 CN1610 交换机上安装 RCF"]描述如何安装 RCF。
 

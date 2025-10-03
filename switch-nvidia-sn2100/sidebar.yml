@@ -1,10 +1,8 @@
 ---
 section: switch-nvidia-sn2100
 title: NVIDIA SN2100
-pdf-filename: switch-nidia-sn2100-cluster
 entries:
 - title: 入门
-  pdf-filename: 概述_sn2100
   entries:
   - title: 快速入门
     url: "/switch-nvidia-sn2100/configure-overview-sn2100-cluster.html"

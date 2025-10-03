@@ -10,7 +10,7 @@ summary: 对于Cisco Nexus 9336C-x2交换机安装和维护、请务必查看特
 :nofooter: 
 :icons: font
 :linkattrs: 
-:imagesdir: ./media/
+:imagesdir: ../media/
 
 
 [role="lead"]

@@ -33,7 +33,7 @@ summary: 了解集群、存储和共享交换机。
  a| 
 .存储交换机
 * link:../switch-cisco-9336c-fx2-storage/install-9336c-storage.html["安装Cisco Nexus 9336C-x2交换机"]
-* link:../switch-nvidia-sn2100/install-hardware-sn2100-storage.html["安装NVIDIA SN2100交换机"]
+* link:../switch-nvidia-sn2100-storage/install-hardware-sn2100-storage.html["安装NVIDIA SN2100交换机"]
 
  a| 
 .共享交换机
@@ -78,7 +78,7 @@ ONTAP系统安装和设置说明包括使用缆线将控制器端口连接到交
  a| 
 .存储交换机
 * link:../switch-cisco-9336c-fx2-storage/setup-worksheet-9336c-storage.html["使用缆线连接Cisco Nexus 9336C-x2交换机"]
-* link:../switch-nvidia-sn2100/cabling-considerations-sn2100-storage.html["使用缆线连接NVIDIA SN2100交换机"]
+* link:../switch-nvidia-sn2100-storage/cabling-considerations-sn2100-storage.html["使用缆线连接NVIDIA SN2100交换机"]
 
  a| 
 .共享交换机
@@ -104,7 +104,7 @@ ONTAP系统安装和设置说明包括使用缆线将控制器端口连接到交
  a| 
 .存储交换机
 * link:../switch-cisco-9336c-fx2-storage/setup-switch-9336c-storage.html["配置Cisco Nexus 9336C-x2交换机"]
-* link:../switch-nvidia-sn2100/configure-sn2100-storage.html["配置NVIDIA SN2100交换机"]
+* link:../switch-nvidia-sn2100-storage/configure-sn2100-storage.html["配置NVIDIA SN2100交换机"]
 
  a| 
 .共享交换机
@@ -130,7 +130,7 @@ ONTAP系统安装和设置说明包括使用缆线将控制器端口连接到交
  a| 
 .存储交换机
 * link:../switch-cisco-9336c-fx2-storage/configure-software-overview-9336c-storage.html["为Cisco Nexus 9336C-x2交换机安装软件"]
-* link:../switch-nvidia-sn2100/configure-software-sn2100-storage.html["为NVIDIA SN2100交换机安装软件"]
+* link:../switch-nvidia-sn2100-storage/configure-software-sn2100-storage.html["为NVIDIA SN2100交换机安装软件"]
 
  a| 
 .共享交换机

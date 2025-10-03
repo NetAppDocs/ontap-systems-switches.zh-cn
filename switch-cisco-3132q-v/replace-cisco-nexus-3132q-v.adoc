@@ -25,7 +25,7 @@ summary: 更换集群网络中有故障的 Cisco Nexus 3132Q-V 交换机是一�
 +
 ** Nexus 3132Q-V集群基础架构在两台交换机上均为冗余基础架构、并可完全正常运行。
 +
-。 link:http://support.netapp.com/NOW/download/software/cm_switches/["Cisco 以太网交换机"^] 页面提供了交换机上最新的 RCF 和 NX-OS 版本。
+link:https://mysupport.netapp.com/site/products/all/details/cisco-cluster-storage-switch/downloads-tab["Cisco 以太网交换机"^]为您的交换机提供最新的 RCF 和 NX-OS 版本。
 
 ** 所有集群端口均位于中 `up` 状态。
 ** 这两台交换机上都存在管理连接。
@@ -40,7 +40,7 @@ summary: 更换集群网络中有故障的 Cisco Nexus 3132Q-V 交换机是一�
 ** 交换机的初始自定义已完成。
 
 
-* http://hwu.netapp.com["Hardware Universe"^]
+* link:http://hwu.netapp.com["Hardware Universe"^]
 
 
 
@@ -50,8 +50,8 @@ summary: 更换集群网络中有故障的 Cisco Nexus 3132Q-V 交换机是一�
 NetApp强烈建议您在使用的设备上启用控制台日志记录、并在更换交换机时采取以下措施：
 
 * 在维护期间保持AutoSupport处于启用状态。
-* 在维护前后触发维护AutoSupport、以便在维护期间禁用案例创建。请参见此知识库文章 https://kb.netapp.com/Support_Bulletins/Customer_Bulletins/SU92["SU92：如何禁止在计划维护时段自动创建案例"^] 了解更多详细信息。
-* 为所有命令行界面会话启用会话日志记录。有关如何启用会话日志记录的说明、请查看此知识库文章中的"记录会话输出"一节 https://kb.netapp.com/on-prem/ontap/Ontap_OS/OS-KBs/How_to_configure_PuTTY_for_optimal_connectivity_to_ONTAP_systems["如何配置PuTTY以优化与ONTAP系统的连接"^]。
+* 在维护之前和之后触发维护AutoSupport ，以在维护期间禁用案例创建。请参阅此知识库文章link:https://kb.netapp.com/Support_Bulletins/Customer_Bulletins/SU92["SU92：如何禁止在计划维护时段自动创建案例"^]了解更多详情。
+* 为任何 CLI 会话启用会话日志记录。有关如何启用会话日志记录的说明，请参阅此知识库文章中的“日志记录会话输出”部分link:https://kb.netapp.com/on-prem/ontap/Ontap_OS/OS-KBs/How_to_configure_PuTTY_for_optimal_connectivity_to_ONTAP_systems["如何配置PuTTY以优化与ONTAP系统的连接"^]。
 
 
 
@@ -67,7 +67,7 @@ NetApp强烈建议您在使用的设备上启用控制台日志记录、并在�
 * N1_clus2 是连接到节点 n1 的集群交换机 CL2 或 C2 的第一个集群 LIF 。
 * n1_clus3 是连接到节点 n1 的集群交换机 C2 的第二个 LIF 。
 * n1_clus4 是连接到节点 n1 的集群交换机 CL1 的第二个 LIF 。
-* 10 GbE和40 GbE端口的数量在页面上提供的参考配置文件(Reference Configuration Files、RCF)中定义link:https://mysupport.netapp.com/NOW/download/software/sanswitch/fcp/Cisco/netapp_cnmn/download.shtml["Cisco ® 集群网络交换机参考配置文件下载"^]。
+* 10 GbE 和 40 GbE 端口的数量在参考配置文件 (RCF) 中定义，可从link:https://mysupport.netapp.com/site/products/all/details/cisco-cluster-storage-switch/downloads-tab["Cisco ® 集群网络交换机参考配置文件下载"^]。
 * 节点为 n1 ， n2 ， n3 和 n4 。—此操作步骤 中的示例使用四个节点：两个节点使用四个 10 GB 集群互连端口： e0a ， e0b ， e0c 和 e0d 。其他两个节点使用两个 40 Gb 集群互连端口： E4A 和 e4e 。请参见 link:https://hwu.netapp.com/["Hardware Universe"^] 用于您平台上的实际集群端口。
 
 
@@ -261,7 +261,7 @@ CL2                          cluster-network   10.10.1.102      NX3132V
 此时，您必须准备更换交换机。如果需要升级 RCF 和映像，必须执行以下步骤：
 
 +
-.. 在 NetApp 支持站点上，转至 link:http://support.netapp.com/NOW/download/software/cm_switches/["Cisco 以太网交换机"^] 页面。
+.. 在NetApp支持站点上，请参阅link:https://mysupport.netapp.com/site/info/cisco-ethernet-switch/["Cisco 以太网交换机"^]。
 .. 请记下该页面上的表中的交换机和所需的软件版本。
 .. 下载适当版本的 RCF 。
 .. 单击 * RCF* 页面上的 * 继续 * ，接受许可协议，然后按照 * 下载 * 页面上的说明下载问题描述 。
@@ -577,8 +577,8 @@ cluster::*> network interface revert -vserver Cluster -lif n1_clus2
 cluster::*> network interface revert -vserver Cluster -lif n1_clus3
 cluster::*> network interface revert -vserver Cluster -lif n2_clus2
 cluster::*> network interface revert -vserver Cluster -lif n2_clus3
-Cluster::*> network interface revert –vserver Cluster –lif n3_clus2
-Cluster::*> network interface revert –vserver Cluster –lif n4_clus2
+cluster::*> network interface revert -vserver Cluster -lif n3_clus2
+cluster::*> network interface revert -vserver Cluster -lif n4_clus2
 ----
 ====
 . 验证集群互连端口现在是否已还原到其主端口：
@@ -624,7 +624,7 @@ Cluster
 ====
 [listing]
 ----
-cluster::*> network port show –role cluster
+cluster::*> network port show -role cluster
   (network port show)
 Node: n1
                                                                        Ignore

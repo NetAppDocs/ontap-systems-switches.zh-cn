@@ -19,8 +19,8 @@ Cisco Nexus 3132Q-V交换机可用作AFF 或FAS 集群中的集群交换机。�
 ====
 有关详细信息，请参见
 
-* http://support.netapp.com/NOW/download/software/cm_switches_ntap/["NetApp CN1601 和 CN1610 问题描述 页面"^]
-* http://support.netapp.com/NOW/download/software/cm_switches/["Cisco 以太网交换机问题描述 页面"^]
+* https://mysupport.netapp.com/site/products/all/details/netapp-cluster-switches/docs-tab["NetApp CN1601 和 CN1610 问题描述 页面"^]
+* https://mysupport.netapp.com/site/info/cisco-ethernet-switch["Cisco 以太网交换机问题描述 页面"^]
 * http://hwu.netapp.com["Hardware Universe"^]
 
 

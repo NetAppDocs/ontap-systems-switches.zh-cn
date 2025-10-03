@@ -123,8 +123,14 @@ g mode:
 
 
 
-. 将先前的所有自定义设置重新应用于交换机配置。link:cabling-considerations-9336c-fx2.html["查看布线和配置注意事项"]有关所需的任何进一步更改的详细信息、请参见。
-. 将基本配置详细信息保存到bootflash上的write_erase.cfg文件中。
+. 记录当前之间的任何自定义添加 `running-config`文件和正在使用的 RCF 文件。
+. 确认 RCF 版本和开关设置正确后，复制 `running-config`文件到 `startup-config`文件。
++
+[listing]
+----
+cs1# copy running-config startup-config [########################################] 100% Copy complete
+----
+. 将基本配置详细信息保存到 `write_erase.cfg`bootflash 上的文件。
 +
 `cs1# show run | i "username admin password" > bootflash:write_erase.cfg`
 
@@ -148,9 +154,9 @@ g mode:
 `cs1# echo "hardware access-list tcam region ing-l2-qos 1280" >> bootflash:write_erase.cfg`
 
 +
-请参阅知识库文章 https://kb.netapp.com/on-prem/Switches/Cisco-KBs/How_to_clear_configuration_on_a_Cisco_interconnect_switch_while_retaining_remote_connectivity["如何在保持远程连接的同时清除Cisco互连交换机上的配置"^]了解更多详情。
+请参阅知识库文章link:https://kb.netapp.com/on-prem/Switches/Cisco-KBs/How_to_clear_configuration_on_a_Cisco_interconnect_switch_while_retaining_remote_connectivity["如何在保持远程连接的同时清除Cisco互连交换机上的配置"^]了解更多详情。
 
-. 验证 write_erase.cfg 文件是否按预期填充：
+. 验证 `write_erase.cfg`文件按预期填充：
 +
 `show file bootflash:write_erase.cfg`
 
@@ -175,7 +181,7 @@ g mode:
 +
 `This command will reboot the system. (y/n)?  [n] *y*`
 
-. 在交换机 cs2 上重复步骤 1 至 12。
+. 在交换机 cs2 上重复步骤 1 至 13。
 . 将ONTAP集群中所有节点的集群端口连接到交换机CS1和CS2。
 
 

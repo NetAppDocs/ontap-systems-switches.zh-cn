@@ -107,14 +107,14 @@ Enable Switchless Cluster Detection: true
 +
 .. 转到 NetApp 支持站点上的 _Cisco 以太网交换机 _ 页面。
 +
-http://support.netapp.com/NOW/download/software/cm_switches/["Cisco 以太网交换机"^]
+link:https://mysupport.netapp.com/site/info/cisco-ethernet-switch/["Cisco 以太网交换机"^]
 
 .. 请记下该页面上的表中的交换机和所需的软件版本。
 .. 下载适当版本的 RCF 。
 .. 在*Description*页上选择*CONTINUOD*，接受许可协议，然后按照*Download*页上的说明下载RCB。
 .. 下载相应版本的映像软件。
 +
-https://mysupport.netapp.com/NOW/download/software/sanswitch/fcp/Cisco/netapp_cnmn/download.shtml["Cisco 集群和管理网络交换机参考配置文件下载页面"^]
+link:https://mysupport.netapp.com/site/products/all/details/cisco-cluster-storage-switch/downloads-tab["Cisco集群和管理网络交换机参考配置文件下载"^]
 
 
 

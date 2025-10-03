@@ -1,5 +1,5 @@
 ---
-permalink: other/switch-linkout.html 
+permalink: other/switch_linkout.html 
 sidebar: sidebar 
 keywords: cisco, Nexus 5596, CN1601 
 summary: 您可以将这些链接用于其他交换机型号。 
@@ -10,7 +10,8 @@ summary: 您可以将这些链接用于其他交换机型号。
 :imagesdir: ../media/
 
 
-您可以使用这些链接查找早期型号的集群和配置交换机的文档。通过这些链接，您可以访问其他文档站点。
+[role="lead"]
+您可以使用这些链接查找早期型号的集群和存储交换机的文档。这些链接会将您带到不同的文档站点。
 
 * https://mysupport.netapp.com/documentation/docweb/index.html?productID=62376&language=en-US["Cisco Nexus 5596"]
 * https://mysupport.netapp.com/documentation/docweb/index.html?productID=62373&language=en-USNetApp["CN1601"]

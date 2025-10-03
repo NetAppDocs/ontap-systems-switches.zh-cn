@@ -7,7 +7,7 @@ summary: 适用于FAS 和AFF 系统的EOD交换机。
 = 可用性终止
 :allow-uri-read: 
 :icons: font
-:imagesdir: ../media/
+:imagesdir: ./media/
 
 
 [role="lead"]

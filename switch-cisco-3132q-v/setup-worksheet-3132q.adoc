@@ -1,5 +1,5 @@
 ---
-permalink: switch-cisco-3132q-v/setup_worksheet_3132q.html 
+permalink: switch-cisco-3132q-v/setup-worksheet-3132q.html 
 sidebar: sidebar 
 keywords: cable worksheet, Cisco NX 3132Q-V 
 summary: 如果要记录受支持的平台，则必须参考填写好的示例布线工作表来完成空白布线工作表。可以将每个交换机配置为一个 40GbE 端口或 4 个 10GbE 端口。 

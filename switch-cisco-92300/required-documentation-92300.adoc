@@ -17,7 +17,7 @@ summary: 对于Cisco Nexus 92300YC交换机安装和维护、请务必查看所�
 
 == 交换机文档
 
-要设置Cisco Nexus 92300YC交换机、您需要中的以下文档 https://www.cisco.com/c/en/us/support/switches/nexus-9000-series-switches/series.html["Cisco Nexus 9000 系列交换机支持"^] 页面。
+要设置Cisco Nexus 92300YC 交换机，您需要以下文档 https://www.cisco.com/site/us/en/products/networking/cloud-networking-switches/nexus-9200-series-switches/index.html["Cisco Nexus 9000 系列交换机支持"^]页：
 
 [cols="1,2"]
 |===
@@ -129,7 +129,7 @@ https://library.netapp.com/ecm/ecm_download_file/ECMM1280394["42U 系统机柜�
 
 
  a| 
-link:install-cisco-nexus-3132qv.html["[在NetApp机柜中安装Cisco Nexus 92300YC交换机"]
+link:install-switch-netapp-cabinet-92300yc.html["在NetApp机柜中安装Cisco Nexus 92300YC 交换机"]
  a| 
 介绍如何在四柱NetApp机柜中安装Cisco Nexus 92300YC交换机。
 

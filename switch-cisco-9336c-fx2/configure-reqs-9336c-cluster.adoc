@@ -1,6 +1,6 @@
 ---
 sidebar: sidebar 
-permalink: /switch-cisco-9336c-fx2/configure-reqs-9336c-cluster.html 
+permalink: switch-cisco-9336c-fx2/configure-reqs-9336c-cluster.html 
 keywords: shared storage cluster switch 
 summary: 从 ONTAP 9.1.1 开始，您可以使用 Cisco Nexus 9336C-f2 交换机将存储和集群功能结合到共享交换机方案中。 
 ---
@@ -10,7 +10,7 @@ summary: 从 ONTAP 9.1.1 开始，您可以使用 Cisco Nexus 9336C-f2 交换机
 :nofooter: 
 :icons: font
 :linkattrs: 
-:imagesdir: ./media/
+:imagesdir: ../media/
 
 
 [role="lead"]

@@ -7,7 +7,7 @@ summary: 了解适用于FAS 和AFF 系统的新交换机。
 = 交换机的新增功能
 :allow-uri-read: 
 :icons: font
-:imagesdir: ../media/
+:imagesdir: ./media/
 
 
 [role="lead"]

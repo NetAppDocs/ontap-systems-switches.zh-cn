@@ -14,7 +14,7 @@ summary: 您可以将 ONTAP 集群中较早的 Cisco 集群交换机无中断迁
 您可以将 ONTAP 集群中较早的 Cisco 集群交换机无中断迁移到 Cisco Nexus 92300YC 集群网络交换机。
 
 
-NOTE: 迁移完成后，您可能需要安装所需的配置文件，以支持 923300 YC 集群交换机的集群交换机运行状况监控器（ Cluster Switch Health Monitor ， CSHM ）。请参见link:setup-install-cshm-file.html["安装集群交换机运行状况监控器(CSHM)"]。
+NOTE: 迁移完成后，您可能需要安装所需的配置文件以支持 92300YC 集群交换机的集群交换机健康监视器 (CSHM)。看link:../switch-cshm/cshm-overview.html["交换机健康监测（CSHM）"] 。
 
 
 

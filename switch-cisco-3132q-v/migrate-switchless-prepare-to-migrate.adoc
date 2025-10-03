@@ -89,7 +89,7 @@ Cluster
 此时必须准备两个交换机。如果您需要升级 RCF 和映像软件，必须按照以下步骤进行操作：
 
 +
-.. 转至 link:http://support.netapp.com/NOW/download/software/cm_switches/["Cisco 以太网交换机"^] 页面。
+.. 前往link:https://mysupport.netapp.com/site/info/cisco-ethernet-switch["Cisco 以太网交换机"^]在NetApp支持站点上。
 .. 请记下该页面上的表中的交换机和所需的软件版本。
 .. 下载适当版本的 RCF 。
 .. 在*Description*页上选择*CONTINUOD*，接受许可协议，然后按照*Download*页上的说明下载RCB。
