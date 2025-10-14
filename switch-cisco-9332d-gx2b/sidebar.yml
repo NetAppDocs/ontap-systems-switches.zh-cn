@@ -1,0 +1,45 @@
+---
+section: switch-cisco-9332d-gx2b
+title: CiscoNexus 9332D-GX2B
+entries:
+- title: 入门
+  pdf-filename: Overview_9332d-gx2b
+  entries:
+  - title: 快速入门
+    url: "/switch-cisco-9332d-gx2b/configure-switch-overview-9332d-cluster.html"
+  - title: 交换机端口详细信息
+    url: "/switch-cisco-9332d-gx2b/configure-setup-ports-9332d.html"
+  - title: 所需文档
+    url: "/switch-cisco-9332d-gx2b/required-documentation-9332d-cluster.html"
+  - title: 智能自动通报要求
+    url: "/switch-cisco-9332d-gx2b/smart-call-9332d-cluster.html"
+- title: 安装硬件
+  url: "/switch-cisco-9332d-gx2b/install-hardware.html"
+  pdf-filename: Install_hardware_9332d-gx2b
+- title: 配置软件
+  pdf-filename: Configure_software_9332d-gx2b
+  entries:
+  - title: 配置软件工作流程
+    url: "/switch-cisco-9332d-gx2b/configure-software-overview-9332d-cluster.html"
+  - title: 配置交换机
+    url: "/switch-cisco-9332d-gx2b/setup-switch-9332d-cluster.html"
+  - title: 准备安装NX-OS和RCF
+    url: "/switch-cisco-9332d-gx2b/install-nxos-overview-9332d-cluster.html"
+  - title: 安装或升级NX-OS软件
+    url: "/switch-cisco-9332d-gx2b/install-nxos-software-9332d-cluster.html"
+  - title: 安装或升级RC框架
+    pdf-filename: install_upgrade
+    entries:
+    - title: 安装或升级RC框架 概述
+      url: "/switch-cisco-9332d-gx2b/install-upgrade-rcf-overview-cluster.html"
+    - title: 安装RCF
+      url: "/switch-cisco-9332d-gx2b/install-rcf-software-9332d-cluster.html"
+    - title: 升级RC框架 版本
+      url: "/switch-cisco-9332d-gx2b/upgrade-rcf-software-9332d-cluster.html"
+  - title: 验证 SSH 是否已启用
+    url: "/switch-cisco-9332d-gx2b/configure-ssh-keys.html"
+  - title: 将交换机重置为出厂默认设置
+    url: "/switch-cisco-9332d-gx2b/reset-switch-9332d.html"
+- title: 更换 9332D-GX2B 开关
+  pdf-filename: Replace_switches_9332d-gx2b
+  url: "/switch-cisco-9332d-gx2b/replace-9332d-cluster.html"

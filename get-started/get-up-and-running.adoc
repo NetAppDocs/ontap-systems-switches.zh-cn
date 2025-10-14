@@ -4,14 +4,14 @@ sidebar: sidebar
 keywords:  
 summary: 了解集群、存储和共享交换机。 
 ---
-= 启动并运行集群、存储和共享交换机
+= 使用 AFX 系统、集群、存储和共享交换机启动并运行
 :allow-uri-read: 
 :icons: font
 :imagesdir: ../media/
 
 
 [role="lead"]
-要启动并运行集群、存储和共享交换机、您需要安装硬件组件并配置交换机。
+要启动并运行 AFX 系统、集群、存储和共享交换机，您需要安装硬件组件并配置交换机。
 
 部署交换机涉及以下工作流。
 
@@ -19,11 +19,15 @@ summary: 了解集群、存储和共享交换机。
 [role="quick-margin-para"]
 将交换机安装在机架或机柜中。根据您的交换机型号访问以下说明。
 
-[cols="2,9,9,9"]
+[cols="11,9,9,9"]
 |===
 
 
  a| 
+.AFX 系统交换机
+* link:https://docs.netapp.com/us-en/ontap-afx/install-setup/install-switches.html["安装Cisco Nexus 9332D-GX2B 交换机"^]
+* link:https://docs.netapp.com/us-en/ontap-afx/install-setup/install-switches.html["安装Cisco Nexus 9364D-GX2A 交换机"^]
+
  a| 
 .集群交换机
 * link:../switch-bes-53248/install-hardware-bes53248.html["安装BES-53248交换机"]
@@ -45,12 +49,13 @@ summary: 了解集群、存储和共享交换机。
 [role="quick-margin-para"]
 在机柜或机架中安装存储系统和存储架。访问适用于您的平台型号的安装和设置说明。
 
-[cols="4,9,9,9"]
+[cols="2,9,9,9"]
 |===
 
 
  a| 
  a| 
+* https://docs.netapp.com/us-en/ontap-afx/index.html["AFX 系统"^]
 * https://docs.netapp.com/us-en/ontap-systems/aff-landing/index.html["AFF 系统"^]
 * https://docs.netapp.com/us-en/ontap-systems/allsan-landing/index.html["ASA 系统"^]
 * https://docs.netapp.com/us-en/asa-r2/index.html["ASA r2系统"^]
@@ -60,67 +65,49 @@ summary: 了解集群、存储和共享交换机。
  a| 
 
 |===
-.image:https://raw.githubusercontent.com/NetAppDocs/common/main/media/number-3.png["三个"]使用缆线将交换机连接到控制器
+.image:https://raw.githubusercontent.com/NetAppDocs/common/main/media/number-3.png["三个"]将交换机连接到控制器
 [role="quick-margin-para"]
 ONTAP系统安装和设置说明包括使用缆线将控制器端口连接到交换机的说明。但是、如果您需要受支持的缆线和收发器列表以及有关交换机主机端口的详细信息、请根据您的交换机型号访问以下说明。
 
-[cols="2,9,9,9"]
+[cols="11,9,9,9"]
 |===
 
 
  a| 
+.AFX 系统交换机
+* link:https://docs.netapp.com/us-en/ontap-afx/install-setup/afx-cable-overview.html["为Cisco Nexus 9332D-GX2B 交换机布线"^]
+* link:https://docs.netapp.com/us-en/ontap-afx/install-setup/afx-cable-overview.html["为Cisco Nexus 9364D-GX2A 交换机布线"^]
+
  a| 
 .集群交换机
-* link:../switch-bes-53248/configure-reqs-bes53248.html#configuration-requirements["为BES-53248交换机布线"]
-* link:../switch-cisco-9336c-fx2/setup-worksheet-9336c-cluster.html["使用缆线连接Cisco Nexus 9336C-x2交换机"]
-* link:../switch-nvidia-sn2100/cabling-considerations-sn2100-cluster.html["使用缆线连接NVIDIA SN2100交换机"]
+* link:../switch-bes-53248/configure-reqs-bes53248.html#configuration-requirements["为 BES-53248 交换机布线"]
+* link:../switch-cisco-9336c-fx2/setup-worksheet-9336c-cluster.html["为Cisco Nexus 9336C-FX2 交换机布线"]
+* link:../switch-nvidia-sn2100/cabling-considerations-sn2100-cluster.html["连接NVIDIA SN2100 交换机"]
 
  a| 
 .存储交换机
-* link:../switch-cisco-9336c-fx2-storage/setup-worksheet-9336c-storage.html["使用缆线连接Cisco Nexus 9336C-x2交换机"]
-* link:../switch-nvidia-sn2100-storage/cabling-considerations-sn2100-storage.html["使用缆线连接NVIDIA SN2100交换机"]
+* link:../switch-cisco-9336c-fx2-storage/setup-worksheet-9336c-storage.html["为Cisco Nexus 9336C-FX2 交换机布线"]
+* link:../switch-nvidia-sn2100-storage/cabling-considerations-sn2100-storage.html["连接NVIDIA SN2100 交换机"]
 
  a| 
 .共享交换机
-* link:../switch-cisco-9336c-fx2-shared/cable-9336c-shared.html["使用缆线连接Cisco Nexus 9336C-x2交换机"]
+* link:../switch-cisco-9336c-fx2-shared/cable-9336c-shared.html["为Cisco Nexus 9336C-FX2 交换机布线"]
 
 
 |===
-.image:https://raw.githubusercontent.com/NetAppDocs/common/main/media/number-4.png["四个"]配置交换机
-[role="quick-margin-para"]
-对交换机执行初始设置。根据您的交换机型号访问以下说明。
-
-[cols="2,9,9,9"]
-|===
-
-
- a| 
- a| 
-.集群交换机
-* link:../switch-bes-53248/configure-install-initial.html["配置BES-53248交换机"]
-* link:../switch-cisco-9336c-fx2/setup-switch-9336c-cluster.html["配置Cisco Nexus 9336C-x2交换机"]
-* link:../switch-nvidia-sn2100/configure-sn2100-cluster.html["配置NVIDIA SN2100交换机"]
-
- a| 
-.存储交换机
-* link:../switch-cisco-9336c-fx2-storage/setup-switch-9336c-storage.html["配置Cisco Nexus 9336C-x2交换机"]
-* link:../switch-nvidia-sn2100-storage/configure-sn2100-storage.html["配置NVIDIA SN2100交换机"]
-
- a| 
-.共享交换机
-* link:../switch-cisco-9336c-fx2-shared/setup-and-configure-9336c-shared.html["配置Cisco Nexus 9336C-x2交换机"]
-
-
-|===
-.image:https://raw.githubusercontent.com/NetAppDocs/common/main/media/number-5.png["五个"] 安装交换机软件
+.image:https://raw.githubusercontent.com/NetAppDocs/common/main/media/number-4.png["四个"]配置交换机软件
 [role="quick-margin-para"]
 要在交换机上安装和配置软件、请按照适用于您的交换机型号的软件安装工作流进行操作。
 
-[cols="2,9,9,9"]
+[cols="11,9,9,9"]
 |===
 
 
  a| 
+.AFX 系统交换机
+* link:../switch-cisco-9332d-gx2b/configure-software-overview-9332d-cluster.html["为Cisco Nexus 9332D-GX2B 交换机安装软件"]
+* link:../switch-cisco-9364d-gx2a/configure-software-overview-9364d-cluster.html["为Cisco Nexus 9364D-GX2A 交换机安装软件"]
+
  a| 
 .集群交换机
 * link:../switch-bes-53248/configure-software-overview-bes53248.html["为BES-53248交换机安装软件"]
@@ -138,16 +125,17 @@ ONTAP系统安装和设置说明包括使用缆线将控制器端口连接到交
 
 
 |===
-.image:https://raw.githubusercontent.com/NetAppDocs/common/main/media/number-6.png["六个"] 完成系统设置
+.image:https://raw.githubusercontent.com/NetAppDocs/common/main/media/number-5.png["五个"]完成系统设置
 [role="quick-margin-para"]
 配置交换机并安装所需软件后、请访问适用于您的ONTAP系统平台型号的安装和设置说明以完成系统设置。
 
-[cols="4,9,9,9"]
+[cols="2,9,9,9"]
 |===
 
 
  a| 
  a| 
+* https://docs.netapp.com/us-en/ontap-afx/index.html["AFX 系统"^]
 * https://docs.netapp.com/us-en/ontap-systems/aff-landing/index.html["AFF 系统"^]
 * https://docs.netapp.com/us-en/ontap-systems/allsan-landing/index.html["ASA 系统"^]
 * https://docs.netapp.com/us-en/asa-r2/index.html["ASA r2系统"^]
@@ -157,7 +145,7 @@ ONTAP系统安装和设置说明包括使用缆线将控制器端口连接到交
  a| 
 
 |===
-.image:https://raw.githubusercontent.com/NetAppDocs/common/main/media/number-7.png["七个"] 完成ONTAP 配置
+.image:https://raw.githubusercontent.com/NetAppDocs/common/main/media/number-6.png["六个"]完成ONTAP配置
 [role="quick-margin-para"]
 安装并设置ONTAP系统控制器和交换机后、必须在ONTAP中完成存储配置。根据您的部署配置访问以下说明。
 

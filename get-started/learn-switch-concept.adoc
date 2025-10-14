@@ -4,19 +4,29 @@ sidebar: sidebar
 keywords:  
 summary: 了解集群、存储和共享交换机。 
 ---
-= 了解集群、存储和共享交换机
+= 了解 AFX 系统、集群、存储和共享交换机
 :allow-uri-read: 
 :icons: font
 :imagesdir: ../media/
 
 
 [role="lead"]
-NetApp提供的集群、存储和共享交换机可提供内部通信、并能够在集群中无中断地移动数据和网络接口。
+NetApp提供 AFX 系统、集群、存储和共享交换机，可实现内部通信，并能够在集群内无中断地移动数据和网络接口。
 
 "前端"交换机提供与主机存储的连接、而"后端"集群交换机则提供两个或更多NetApp控制器之间的连接。
 
 
 NOTE: 仅支持经过NetApp验证的后端交换机(从NetApp订购)。
+
+
+
+== AFX 系统交换机
+
+AFX 系统交换机允许您创建快速、节能且节省空间的网络交换机。它们体积小、端口密度高，非常适合处理大型网络。这些端口支持不同的速度，并且可以分成多个连接。  NetApp支持的 AFX 系统交换机包括：
+
+* CiscoNexus 9332D-GX2B
+* CiscoNexus 9364D-GX2A
+
 
 
 

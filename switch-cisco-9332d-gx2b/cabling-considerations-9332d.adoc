@@ -1,0 +1,32 @@
+---
+permalink: switch-cisco-9332d-gx2b/cabling-considerations-9332d.html 
+sidebar: sidebar 
+keywords: 9332d-gx2b cabling setup, 9332d-gx2b switches configuration, nx-os 
+summary: 在配置Cisco 9332D-GX2B 交换机之前，请查看以下信息。 
+---
+= 查看布线和配置注意事项
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+在配置Cisco 9332D-GX2B 交换机之前，请查看以下注意事项。
+
+
+
+== 支持NVIDIA CX6-DX 以太网端口
+
+如果使用NVIDIA ConnectX-6 Dx (CX6-DX) NIC 端口（部件号 X50130B）将交换机端口连接到ONTAP控制器，则必须对交换机端口速度进行硬编码。
+
+[listing, subs="+quotes"]
+----
+(cs1)# *configure*
+(cs1)(config)# *interface Ethernet1/16/?*
+(cs1)(config-if)# *speed 100000*
+(cs1)(config-if)# *no negotiate auto*
+(cs1)(config-if)# *exit*
+(cs1)(config)# *exit*
+(cs1)# *copy running-config startup-config*
+----
+请参见 https://hwu.netapp.com/Switch/Index["Hardware Universe"^] 有关交换机端口的详细信息。

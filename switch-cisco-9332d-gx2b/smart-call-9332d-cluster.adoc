@@ -1,5 +1,5 @@
 ---
-permalink: switch-cisco-9336c-fx2/smart-call-9336c-cluster.html 
+permalink: switch-cisco-9332d-gx2b/smart-call-9332d-cluster.html 
 sidebar: sidebar 
 keywords: cisco smart call,small call home 
 summary: 智能自动通报功能可监控网络上的硬件和软件组件，以生成基于电子邮件的关键系统情况通知。当设备上发生事件时，智能自动通报会向目标配置文件中配置的所有收件人发出警报。 

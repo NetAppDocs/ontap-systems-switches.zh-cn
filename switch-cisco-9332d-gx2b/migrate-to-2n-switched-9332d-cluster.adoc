@@ -1,0 +1,632 @@
+---
+permalink: switch-cisco-9332d-gx2b/migrate-to-2n-switched-9332d-cluster.html 
+sidebar: sidebar 
+keywords: two-node switchless cluster environments,migrating to a two-node switched 9332D-GX2B cluster environment,switchless cluster environments,9332D-GX2B switches 
+summary: 如果您已有双节点无交换机集群环境，则可以使用Cisco Nexus 9332D-GX2B 交换机迁移到双节点有交换机集群环境，以便能够将集群扩展到两个以上节点。 
+---
+= 迁移到双节点交换集群
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+如果您已有双节点无交换机集群环境，则可以使用Cisco Nexus 9332D-GX2B 交换机迁移到双节点有交换机集群环境。
+
+此迁移过程适用于使用光纤或双轴端口的所有节点、但如果节点使用板载10 Gb Base-T RJ45端口作为集群网络端口、则此交换机不支持此过程。
+
+
+
+== 查看要求
+
+.您需要的内容
+* 对于双节点无交换机配置：
++
+** 双节点无交换机配置已正确设置并正常运行。
+** 所有集群端口均处于*启动*状态。
+** 所有集群逻辑接口(LIF)均处于*启动*状态、并位于其主端口上。
+** 请参见 https://hwu.netapp.com["Hardware Universe"^] 所有受支持的ONTAP 版本。
+
+
+* 对于Cisco Nexus 9332D-GX2B 交换机配置：
++
+** 这两台交换机都具有管理网络连接。
+** 可以通过控制台访问集群交换机。
+** Nexus 9332D-GX2B 节点到节点交换机和交换机到交换机连接使用 Twinax 或光纤电缆。
++
+请参见 https://hwu.netapp.com["Hardware Universe"^] 有关布线的详细信息。
+
+
+
+* 交换机间链路 (ISL) 电缆连接到两个 9332D-GX2B 交换机上的端口 1/35 和 1/36。
+* 两个 9332D-GX2B 交换机的初始定制已完成，因此：
++
+** 9332D-GX2B 交换机运行的是最新版本的软件。
+** 参考配置文件(Reference Configuration Files、RCF)将应用于交换机。在新交换机上配置任何站点自定义、例如SMTP、SNMP和SSH。
+
+
+
+
+.关于示例
+此操作步骤中的示例使用以下集群交换机和节点命名：
+
+* 9332D-GX2B2 交换机的名称是 cs1 和 cs2。
+* 集群 SVM 的名称是 node1 和 node2 。
+* LIF 的名称分别是节点 1 上的 node1_clus1 和 node1_clus2 以及节点 2 上的 node2_clus1 和 node2_clus2 。
+* `cluster1 ：：： * >` 提示符指示集群的名称。
+* 此操作步骤中使用的集群端口为 e0a 和 e0b 。
+
+
+请参见 https://hwu.netapp.com["Hardware Universe"^] 有关平台的集群端口的信息。
+
+
+
+== 迁移交换机
+
+
+
+=== 第1步：准备迁移
+
+. 如果在此集群上启用了 AutoSupport ，则通过调用 AutoSupport 消息禁止自动创建案例：
++
+`ssystem node AutoSupport invoke -node * -type all -message MAINT=xh`
+
++
+其中 x 是维护时段的持续时间，以小时为单位。
+
++
+
+NOTE: AutoSupport 消息会通知技术支持此维护任务，以便在维护窗口期间禁止自动创建案例。
+
+. 将权限级别更改为高级，在系统提示您继续时输入 `y` ：
++
+`set -privilege advanced`
+
++
+此时将显示高级提示符（` * >` ）。
+
+
+
+
+
+=== 第2步：配置端口和布线
+
+. 在新集群交换机 CS1 和 CS2 上禁用所有面向节点的端口（而不是 ISL 端口）。
++
+请勿禁用ISL端口。
+
++
+.显示示例
+[%collapsible]
+====
+以下示例显示了交换机 CS1 上面向节点的端口 1 到 34 已禁用：
+
+[listing]
+----
+cs1# config
+Enter configuration commands, one per line. End with CNTL/Z.
+cs1(config)# interface e1/1/1-4, e1/2/1-4, e1/3/1-4, e1/4/1-4, e1/5/1-4, e1/6/1-4, e1/7-34
+cs1(config-if-range)# shutdown
+----
+====
+. 验证两个 9332D-GX2B 交换机 cs1 和 cs2 之间的 ISL 以及 ISL 上的物理端口在端口 1/35 和 1/36 上是否处于启动状态：
++
+`s如何执行端口通道摘要`
+
++
+.显示示例
+[%collapsible]
+====
+以下示例显示交换机 CS1 上的 ISL 端口已启动：
+
+[listing]
+----
+cs1# show port-channel summary
+
+Flags:  D - Down        P - Up in port-channel (members)
+        I - Individual  H - Hot-standby (LACP only)
+        s - Suspended   r - Module-removed
+        b - BFD Session Wait
+        S - Switched    R - Routed
+        U - Up (port-channel)
+        p - Up in delay-lacp mode (member)
+        M - Not in use. Min-links not met
+--------------------------------------------------------------------------------
+Group Port-       Type     Protocol  Member Ports
+      Channel
+--------------------------------------------------------------------------------
+1     Po1(SU)     Eth      LACP      Eth1/35(P)   Eth1/36(P)
+----
+以下示例显示交换机 CS2 上的 ISL 端口已启动：
+
+[listing]
+----
+(cs2)# show port-channel summary
+
+Flags:  D - Down        P - Up in port-channel (members)
+        I - Individual  H - Hot-standby (LACP only)
+        s - Suspended   r - Module-removed
+        b - BFD Session Wait
+        S - Switched    R - Routed
+        U - Up (port-channel)
+        p - Up in delay-lacp mode (member)
+        M - Not in use. Min-links not met
+--------------------------------------------------------------------------------
+Group Port-       Type     Protocol  Member Ports
+      Channel
+--------------------------------------------------------------------------------
+1     Po1(SU)     Eth      LACP      Eth1/35(P)   Eth1/36(P)
+----
+====
+. 显示相邻设备的列表：
++
+`s如何使用 cdp 邻居`
+
++
+此命令可提供有关连接到系统的设备的信息。
+
++
+.显示示例
+[%collapsible]
+====
+以下示例列出了交换机 CS1 上的相邻设备：
+
+[listing]
+----
+cs1# show cdp neighbors
+
+Capability Codes: R - Router, T - Trans-Bridge, B - Source-Route-Bridge
+                  S - Switch, H - Host, I - IGMP, r - Repeater,
+                  V - VoIP-Phone, D - Remotely-Managed-Device,
+                  s - Supports-STP-Dispute
+
+Device-ID          Local Intrfce  Hldtme Capability  Platform      Port ID
+cs2                Eth1/35        175    R S I s     N9K-C9336C    Eth1/35
+cs2                Eth1/36        175    R S I s     N9K-C9336C    Eth1/36
+
+Total entries displayed: 2
+----
+以下示例列出了交换机 CS2 上的相邻设备：
+
+[listing]
+----
+cs2# show cdp neighbors
+
+Capability Codes: R - Router, T - Trans-Bridge, B - Source-Route-Bridge
+                  S - Switch, H - Host, I - IGMP, r - Repeater,
+                  V - VoIP-Phone, D - Remotely-Managed-Device,
+                  s - Supports-STP-Dispute
+
+Device-ID          Local Intrfce  Hldtme Capability  Platform      Port ID
+cs1                Eth1/35        177    R S I s     N9K-C9336C    Eth1/35
+cs1                Eth1/36        177    R S I s     N9K-C9336C    Eth1/36
+
+Total entries displayed: 2
+----
+====
+. 验证所有集群端口是否均已启动：
++
+`network port show -ipspace cluster`
+
++
+对于 `Link` ，每个端口均应显示 up ；对于 `Health Status` ，每个端口均应显示 Healthy 。
+
++
+.显示示例
+[%collapsible]
+====
+[listing]
+----
+cluster1::*> network port show -ipspace Cluster
+
+Node: node1
+
+                                                  Speed(Mbps) Health
+Port      IPspace      Broadcast Domain Link MTU  Admin/Oper  Status
+--------- ------------ ---------------- ---- ---- ----------- --------
+e0a       Cluster      Cluster          up   9000  auto/10000 healthy
+e0b       Cluster      Cluster          up   9000  auto/10000 healthy
+
+Node: node2
+
+                                                  Speed(Mbps) Health
+Port      IPspace      Broadcast Domain Link MTU  Admin/Oper  Status
+--------- ------------ ---------------- ---- ---- ----------- --------
+e0a       Cluster      Cluster          up   9000  auto/10000 healthy
+e0b       Cluster      Cluster          up   9000  auto/10000 healthy
+
+4 entries were displayed.
+----
+====
+. 验证所有集群 LIF 是否均已启动且正常运行：
++
+`network interface show -vserver cluster`
+
++
+应显示每个集群LIF `true` 适用于 `Is Home` 并具有 `Status Admin/Oper` 已启动/已启动。
+
++
+.显示示例
+[%collapsible]
+====
+[listing]
+----
+cluster1::*> network interface show -vserver Cluster
+
+            Logical    Status     Network            Current       Current Is
+Vserver     Interface  Admin/Oper Address/Mask       Node          Port    Home
+----------- ---------- ---------- ------------------ ------------- ------- -----
+Cluster
+            node1_clus1  up/up    169.254.209.69/16  node1         e0a     true
+            node1_clus2  up/up    169.254.49.125/16  node1         e0b     true
+            node2_clus1  up/up    169.254.47.194/16  node2         e0a     true
+            node2_clus2  up/up    169.254.19.183/16  node2         e0b     true
+4 entries were displayed.
+----
+====
+. 验证是否已在所有集群 LIF 上启用自动还原：
++
+`network interface show - vserver cluster -fields auto-revert`
+
++
+.显示示例
+[%collapsible]
+====
+[listing]
+----
+cluster1::*> network interface show -vserver Cluster -fields auto-revert
+
+          Logical
+Vserver   Interface     Auto-revert
+--------- ------------- ------------
+Cluster
+          node1_clus1   true
+          node1_clus2   true
+          node2_clus1   true
+          node2_clus2   true
+
+4 entries were displayed.
+----
+====
+. 断开节点 1 上集群端口 e0a 的电缆，然后使用 9332D-GX2B 交换机支持的适当电缆将 e0a 连接到集群交换机 cs1 上的端口 1。
++
+。 https://hwu.netapp.com/SWITCH/INDEX["Hardware Universe —交换机"^] 包含有关布线的详细信息。
+
++
+https://hwu.netapp.com/SWITCH/INDEX["Hardware Universe —交换机"^]
+
+. 断开节点 2 上的集群端口 e0a 的电缆，然后使用 9332D-GX2B 交换机支持的适当电缆将 e0a 连接到集群交换机 cs1 上的端口 2。
+. 启用集群交换机 CS1 上面向节点的所有端口。
++
+.显示示例
+[%collapsible]
+====
+以下示例显示交换机 CS1 上的端口 1/1 到 1/34 已启用：
+
+[listing]
+----
+cs1# config
+Enter configuration commands, one per line. End with CNTL/Z.
+cs1(config)# interface e1/1/1-4, e1/2/1-4, e1/3/1-4, e1/4/1-4, e1/5/1-4, e1/6/1-4, e1/7-34
+cs1(config-if-range)# no shutdown
+----
+====
+. 验证所有集群 LIF 是否均已启动，正常运行并显示为 `true` for `is Home` ：
++
+`network interface show -vserver cluster`
+
++
+.显示示例
+[%collapsible]
+====
+以下示例显示 node1 和 node2 上的所有 LIF 均已启动，并且 `为 Home` 结果为 true ：
+
+[listing]
+----
+cluster1::*> network interface show -vserver Cluster
+
+         Logical      Status     Network            Current     Current Is
+Vserver  Interface    Admin/Oper Address/Mask       Node        Port    Home
+-------- ------------ ---------- ------------------ ----------- ------- ----
+Cluster
+         node1_clus1  up/up      169.254.209.69/16  node1       e0a     true
+         node1_clus2  up/up      169.254.49.125/16  node1       e0b     true
+         node2_clus1  up/up      169.254.47.194/16  node2       e0a     true
+         node2_clus2  up/up      169.254.19.183/16  node2       e0b     true
+
+4 entries were displayed.
+----
+====
+. 显示有关集群中节点状态的信息：
++
+`cluster show`
+
++
+.显示示例
+[%collapsible]
+====
+以下示例显示了有关集群中节点的运行状况和资格的信息：
+
+[listing]
+----
+cluster1::*> cluster show
+
+Node                 Health  Eligibility   Epsilon
+-------------------- ------- ------------  ------------
+node1                true    true          false
+node2                true    true          false
+
+2 entries were displayed.
+----
+====
+. 断开节点 1 上的集群端口 e0b 的电缆，然后使用 9332D-GX2B 交换机支持的适当电缆将 e0b 连接到集群交换机 cs2 上的端口 1。
+. 断开节点 2 上的集群端口 e0b 的电缆，然后使用 9332D-GX2B 交换机支持的适当电缆将 e0b 连接到集群交换机 cs2 上的端口 2。
+. 启用集群交换机 CS2 上面向节点的所有端口。
++
+.显示示例
+[%collapsible]
+====
+以下示例显示交换机 CS2 上的端口 1/1 到 1/34 已启用：
+
+[listing]
+----
+cs2# config
+Enter configuration commands, one per line. End with CNTL/Z.
+cs2(config)# interface e1/1/1-4, e1/2/1-4, e1/3/1-4, e1/4/1-4, e1/5/1-4, e1/6/1-4, e1/7-34
+cs2(config-if-range)# no shutdown
+----
+====
+. 验证所有集群端口是否均已启动：
++
+`network port show -ipspace cluster`
+
++
+.显示示例
+[%collapsible]
+====
+以下示例显示 node1 和 node2 上的所有集群端口均已启动：
+
+[listing]
+----
+cluster1::*> network port show -ipspace Cluster
+
+Node: node1
+                                                                       Ignore
+                                                  Speed(Mbps) Health   Health
+Port      IPspace      Broadcast Domain Link MTU  Admin/Oper  Status   Status
+--------- ------------ ---------------- ---- ---- ----------- -------- ------
+e0a       Cluster      Cluster          up   9000  auto/10000 healthy  false
+e0b       Cluster      Cluster          up   9000  auto/10000 healthy  false
+
+Node: node2
+                                                                       Ignore
+                                                  Speed(Mbps) Health   Health
+Port      IPspace      Broadcast Domain Link MTU  Admin/Oper  Status   Status
+--------- ------------ ---------------- ---- ---- ----------- -------- ------
+e0a       Cluster      Cluster          up   9000  auto/10000 healthy  false
+e0b       Cluster      Cluster          up   9000  auto/10000 healthy  false
+
+4 entries were displayed.
+----
+====
+
+
+
+
+=== 第3步：验证配置
+
+. 验证 `Is Home` 的所有接口是否均显示 true ：
++
+`network interface show -vserver cluster`
+
++
+
+NOTE: 完成此操作可能需要几分钟时间。
+
++
+.显示示例
+[%collapsible]
+====
+以下示例显示 node1 和 node2 上的所有 LIF 均已启动，并且 `为 Home` 结果为 true ：
+
+[listing]
+----
+cluster1::*> network interface show -vserver Cluster
+
+          Logical      Status     Network            Current    Current Is
+Vserver   Interface    Admin/Oper Address/Mask       Node       Port    Home
+--------- ------------ ---------- ------------------ ---------- ------- ----
+Cluster
+          node1_clus1  up/up      169.254.209.69/16  node1      e0a     true
+          node1_clus2  up/up      169.254.49.125/16  node1      e0b     true
+          node2_clus1  up/up      169.254.47.194/16  node2      e0a     true
+          node2_clus2  up/up      169.254.19.183/16  node2      e0b     true
+
+4 entries were displayed.
+----
+====
+. 验证两个节点与每个交换机之间是否有一个连接：
++
+`s如何使用 cdp 邻居`
+
++
+.显示示例
+[%collapsible]
+====
+以下示例显示了这两个交换机的相应结果：
+
+[listing]
+----
+(cs1)# show cdp neighbors
+
+Capability Codes: R - Router, T - Trans-Bridge, B - Source-Route-Bridge
+                  S - Switch, H - Host, I - IGMP, r - Repeater,
+                  V - VoIP-Phone, D - Remotely-Managed-Device,
+                  s - Supports-STP-Dispute
+
+Device-ID          Local Intrfce  Hldtme Capability  Platform      Port ID
+node1              Eth1/1         133    H           FAS2980       e0a
+node2              Eth1/2         133    H           FAS2980       e0a
+cs2                Eth1/35        175    R S I s     N9K-C9336C    Eth1/35
+cs2                Eth1/36        175    R S I s     N9K-C9336C    Eth1/36
+
+Total entries displayed: 4
+
+(cs2)# show cdp neighbors
+
+Capability Codes: R - Router, T - Trans-Bridge, B - Source-Route-Bridge
+                  S - Switch, H - Host, I - IGMP, r - Repeater,
+                  V - VoIP-Phone, D - Remotely-Managed-Device,
+                  s - Supports-STP-Dispute
+
+Device-ID          Local Intrfce  Hldtme Capability  Platform      Port ID
+node1              Eth1/1         133    H           FAS2980       e0b
+node2              Eth1/2         133    H           FAS2980       e0b
+cs1                Eth1/35        175    R S I s     N9K-C9336C    Eth1/35
+cs1                Eth1/36        175    R S I s     N9K-C9336C    Eth1/36
+
+Total entries displayed: 4
+----
+====
+. 显示有关集群中发现的网络设备的信息：
++
+`network device-discovery show -protocol cdp`
+
++
+.显示示例
+[%collapsible]
+====
+[listing]
+----
+cluster1::*> network device-discovery show -protocol cdp
+Node/       Local  Discovered
+Protocol    Port   Device (LLDP: ChassisID)  Interface         Platform
+----------- ------ ------------------------- ----------------  ----------------
+node2      /cdp
+            e0a    cs1                       0/2               N9K-C9336C
+            e0b    cs2                       0/2               N9K-C9336C
+node1      /cdp
+            e0a    cs1                       0/1               N9K-C9336C
+            e0b    cs2                       0/1               N9K-C9336C
+
+4 entries were displayed.
+----
+====
+. 验证这些设置是否已禁用：
++
+`network options switchless-cluster show`
+
++
+
+NOTE: 完成此命令可能需要几分钟的时间。等待 " 三分钟生命周期到期 " 公告。
+
++
+.显示示例
+[%collapsible]
+====
+以下示例中的 false 输出显示配置设置已禁用：
+
+[listing]
+----
+cluster1::*> network options switchless-cluster show
+Enable Switchless Cluster: false
+----
+====
+. 验证集群中节点成员的状态：
++
+`cluster show`
+
++
+.显示示例
+[%collapsible]
+====
+以下示例显示了有关集群中节点的运行状况和资格的信息：
+
+[listing]
+----
+cluster1::*> cluster show
+
+Node                 Health  Eligibility   Epsilon
+-------------------- ------- ------------  --------
+node1                true    true          false
+node2                true    true          false
+----
+====
+. 验证远程集群接口的连接：
+
+
+[role="tabbed-block"]
+====
+.ONTAP 9.9.1及更高版本
+--
+您可以使用 `network interface check cluster-connectivity` 命令启动集群连接的可访问性检查、然后显示详细信息：
+
+`network interface check cluster-connectivity start` 和 `network interface check cluster-connectivity show`
+
+[listing, subs="+quotes"]
+----
+cluster1::*> *network interface check cluster-connectivity start*
+----
+*注：*请等待几秒钟、然后再运行 `show`命令以显示详细信息。
+
+[listing, subs="+quotes"]
+----
+cluster1::*> *network interface check cluster-connectivity show*
+                                  Source           Destination      Packet
+Node   Date                       LIF              LIF              Loss
+------ -------------------------- ---------------- ---------------- -----------
+node1
+       3/5/2022 19:21:18 -06:00   node1_clus2      node2-clus1      none
+       3/5/2022 19:21:20 -06:00   node1_clus2      node2_clus2      none
+node2
+       3/5/2022 19:21:18 -06:00   node2_clus2      node1_clus1      none
+       3/5/2022 19:21:20 -06:00   node2_clus2      node1_clus2      none
+----
+--
+.所有ONTAP版本
+--
+对于所有ONTAP版本、您还可以使用 `cluster ping-cluster -node <name>` 用于检查连接的命令：
+
+`cluster ping-cluster -node <name>`
+
+[listing, subs="+quotes"]
+----
+cluster1::*> *cluster ping-cluster -node local*
+Host is node2
+Getting addresses from network interface table...
+Cluster node1_clus1 169.254.209.69 node1 e0a
+Cluster node1_clus2 169.254.49.125 node1 e0b
+Cluster node2_clus1 169.254.47.194 node2 e0a
+Cluster node2_clus2 169.254.19.183 node2 e0b
+Local = 169.254.47.194 169.254.19.183
+Remote = 169.254.209.69 169.254.49.125
+Cluster Vserver Id = 4294967293
+Ping status:
+
+Basic connectivity succeeds on 4 path(s)
+Basic connectivity fails on 0 path(s)
+
+Detected 9000 byte MTU on 4 path(s):
+Local 169.254.47.194 to Remote 169.254.209.69
+Local 169.254.47.194 to Remote 169.254.49.125
+Local 169.254.19.183 to Remote 169.254.209.69
+Local 169.254.19.183 to Remote 169.254.49.125
+Larger than PMTU communication succeeds on 4 path(s)
+RPC status:
+2 paths up, 0 paths down (tcp check)
+2 paths up, 0 paths down (udp check)
+----
+--
+====
+. [[STEP7]]将权限级别重新更改为admin：
++
+`set -privilege admin`
+
+. 如果禁止自动创建案例，请通过调用 AutoSupport 消息重新启用它：
++
+`ssystem node AutoSupport invoke -node * -type all -message MAINT=end`
+
+
+
+.下一步是什么？
+link:../switch-cshm/config-overview.html["配置交换机运行状况监控"](英文)

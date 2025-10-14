@@ -21,35 +21,28 @@ summary: 对于NVIDIA SN2100交换机安装和维护、请务必查看所有建�
 
 
  a| 
-https://docs.netapp.com/us-en/ontap-systems-switches/switch-nvidia-sn2100/install-hardware-sn2100-cluster.html["设置和配置NVIDIA SN2100交换机_"^]
+link:https://docs.netapp.com/us-en/ontap-systems-switches/switch-nvidia-sn2100/install-hardware-sn2100-cluster.html["设置和配置NVIDIA SN2100交换机_"^]
  a| 
 介绍如何设置和配置NVIDIA SN2100交换机、包括安装Cumulus Linux和适用的RCF。
 
 
 
  a| 
-https://docs.netapp.com/us-en/ontap-systems-switches/switch-nvidia-sn2100/migrate-cisco-sn2100-cluster-switch.html["_从Cisco集群交换机迁移到NVIDIA SN2100集群交换机_"^]
+link:https://docs.netapp.com/us-en/ontap-systems-switches/switch-nvidia-sn2100-storage/migrate-cisco-storage-switch-sn2100-storage.html["从Cisco存储交换机迁移到NVIDIA SN2100 存储交换机"^]
  a| 
-介绍如何从使用Cisco集群交换机的环境迁移到使用NVIDIA SN2100集群交换机的环境。
+描述如何从使用Cisco存储交换机的环境迁移到使用NVIDIA SN2100 存储交换机的环境。
 
 
 
  a| 
-https://docs.netapp.com/us-en/ontap-systems-switches/switch-nvidia-sn2100/migrate-2n-switched-sn2100-cluster.html["_迁移到使用NVIDIA SN2100集群交换机的双节点交换集群_"^]
+link:https://docs.netapp.com/us-en/ontap-systems-switches/switch-nvidia-sn2100/migrate-2n-switched-sn2100-cluster.html["_迁移到使用NVIDIA SN2100集群交换机的双节点交换集群_"^]
  a| 
 介绍如何使用NVIDIA SN2100集群交换机迁移到双节点交换环境。
 
 
 
  a| 
-https://docs.netapp.com/us-en/ontap-systems-switches/switch-nvidia-sn2100/replace-sn2100-switch-cluster.html["_更换NVIDIA SN2100集群交换机_"^]
- a| 
-介绍用于更换集群中有缺陷的NVIDIA SN2100交换机以及下载Cumulus Linux和参考配置文件的操作步骤。
-
-
-
- a| 
-https://docs.netapp.com/us-en/ontap-systems-switches/switch-nvidia-sn2100/replace-sn2100-switch-storage.html["_更换NVIDIA SN2100存储交换机_"^]
+link:https://docs.netapp.com/us-en/ontap-systems-switches/switch-nvidia-sn2100-storage/replace-sn2100-switch-storage.html["_更换NVIDIA SN2100存储交换机_"^]
  a| 
 介绍用于更换有缺陷的NVIDIA SN2100存储交换机以及下载Cumulus Linux和参考配置文件的操作步骤。
 

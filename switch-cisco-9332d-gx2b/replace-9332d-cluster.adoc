@@ -1,0 +1,985 @@
+---
+permalink: switch-cisco-9332d-gx2b/replace-9332d-cluster.html 
+sidebar: sidebar 
+keywords: replacing, replace, defective, nexus, switch, cluster, network, nondisruptive, procedure, ndu, replace a cisco nexus 9332d-gx2b cluster switch - cisco nexus 9332d-gx2b 
+summary: '更换集群网络中有缺陷的 Nexus 9332D-GX2B 交换机是一个无中断过程 \(NDU\)。' 
+---
+= 更换Cisco Nexus 9332D-GX2B 交换机
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+按照以下步骤更换共享网络中有缺陷的 Nexus 9332D-GX2B 交换机。这是一个无中断程序 (NDU)。
+
+
+
+== 查看要求
+
+在执行交换机更换之前、请确保：
+
+* 您已验证交换机序列号、以确保更换了正确的交换机。
+* 在现有集群和网络基础架构上：
++
+** 现有集群已通过验证可完全正常运行、并且至少有一个完全连接的集群交换机。
+** 所有集群端口均已启动。
+** 所有集群逻辑接口(LIF)均已启动并位于其主端口上。
+** ONTAP `cluster ping-cluster -node <node-name>`命令必须表明所有路径上的基本连接和大于 PMTU 的通信均成功。
+
+
+* 在 Nexus 9332D-GX2B 替换交换机上：
++
+** 替代交换机上的管理网络连接正常工作。
+** 可以通过控制台访问替代交换机。
+** 节点连接是端口 1/1 至 1/30。
+** 端口 1/31 和 1/32 上的所有交换机间链路 (ISL) 端口均被禁用。
+** 所需的参考配置文件(Reference Configuration File、RCF)和NX-OS操作系统映像交换机将加载到此交换机上。
+** 开关的初始定制已完成，详见link:setup-switch-9332d-cluster.html["配置 9332D-GX2B 集群交换机"]。
++
+先前的所有站点自定义设置(例如STP、SNMP和SSH)都会复制到新交换机。
+
+
+
+* 您已执行命令从托管集群LIF的节点迁移集群LIF。
+
+
+
+
+== 启用控制台日志记录
+
+NetApp强烈建议您在使用的设备上启用控制台日志记录、并在更换交换机时采取以下措施：
+
+* 在维护期间保持AutoSupport处于启用状态。
+* 在维护前后触发维护AutoSupport、以便在维护期间禁用案例创建。请参见此知识库文章 https://kb.netapp.com/Support_Bulletins/Customer_Bulletins/SU92["SU92：如何禁止在计划维护时段自动创建案例"^] 了解更多详细信息。
+* 为所有命令行界面会话启用会话日志记录。有关如何启用会话日志记录的说明、请查看此知识库文章中的"记录会话输出"一节 https://kb.netapp.com/on-prem/ontap/Ontap_OS/OS-KBs/How_to_configure_PuTTY_for_optimal_connectivity_to_ONTAP_systems["如何配置PuTTY以优化与ONTAP系统的连接"^]。
+
+
+
+
+== 更换交换机
+
+.关于示例
+此操作步骤中的示例使用以下交换机和节点命名：
+
+* 现有的 Nexus 9332D-GX2B 交换机的名称为 cs1 和 cs2。
+* 新的 Nexus 9332D-GX2B 交换机的名称是 newcs2。
+* 节点名称为node1-01、node1-02、node1-03和node1-04。
+* 对于 node1-01，集群 LIF 名称为 node1-01_clus1 和 node1-01_clus2；对于 node1-02，集群 LIF 名称为 node1-02_clus1 和 node1-02_clus2；对于 node1-03，集群 LIF 名称为 node1-03_clus1 和 node1-03_clus2；对于 node1-04，集群 LIF 名称为 node1-04_clus1 和 node1-04_clus2。
+* 对所有集群节点进行更改的提示为 cluster1 ：：： * > 。
+
+
+.关于此任务
+以下操作步骤基于以下集群网络拓扑：
+
+.显示示例
+[%collapsible]
+====
+[listing, subs="+quotes"]
+----
+cluster1::*> *network port show -ipspace Cluster*
+
+Node: node1-01
+                                                                       Ignore
+                                                  Speed(Mbps) Health   Health
+Port      IPspace      Broadcast Domain Link MTU  Admin/Oper  Status   Status
+--------- ------------ ---------------- ---- ---- ----------- -------- ------
+e7a       Cluster      Cluster          up   9000  auto/100000 healthy false
+e7b       Cluster      Cluster          up   9000  auto/100000 healthy false
+
+
+Node: node1-02
+                                                                       Ignore
+                                                  Speed(Mbps) Health   Health
+Port      IPspace      Broadcast Domain Link MTU  Admin/Oper  Status   Status
+--------- ------------ ---------------- ---- ---- ----------- -------- ------
+e7a       Cluster      Cluster          up   9000  auto/100000 healthy false
+e7b       Cluster      Cluster          up   9000  auto/100000 healthy false
+
+
+Node: node1-03
+                                                                       Ignore
+                                                  Speed(Mbps) Health   Health
+Port      IPspace      Broadcast Domain Link MTU  Admin/Oper  Status   Status
+--------- ------------ ---------------- ---- ---- ----------- -------- ------
+e7a       Cluster      Cluster          up   9000  auto/100000 healthy false
+e7b       Cluster      Cluster          up   9000  auto/100000 healthy false
+
+
+Node: node1-04
+                                                                       Ignore
+                                                  Speed(Mbps) Health   Health
+Port      IPspace      Broadcast Domain Link MTU  Admin/Oper  Status   Status
+--------- ------------ ---------------- ---- ---- ----------- -------- ------
+e7a       Cluster      Cluster          up   9000  auto/100000 healthy false
+e7b       Cluster      Cluster          up   9000  auto/100000 healthy false
+
+8 entries were displayed.
+
+
+cluster1::*> *network interface show -vserver Cluster*
+            Logical    Status     Network            Current     Current   Is
+Vserver     Interface  Admin/Oper Address/Mask       Node        Port      Home
+----------- ---------- ---------- ------------------ ----------- --------- ----
+Cluster
+            node1-01_clus1 up/up  169.254.36.44/16    node1-01    e7a      true
+            node1-01_clus2 up/up  169.254.7.5/16      node1-01    e7b      true
+            node1-02_clus1 up/up  169.254.197.206/16  node1-02    e7a      true
+            node1-02_clus2 up/up  169.254.195.186/16  node1-02    e7b      true
+            node1-03_clus1 up/up  169.254.192.49/16   node1-03    e7a      true
+            node1-03_clus2 up/up  169.254.182.76/16   node1-03    e7b      true
+            node1-04_clus1 up/up  169.254.59.49/16    node1-04    e7a      true
+            node1-04_clus2 up/up  169.254.62.244/16   node1-04    e7b      true
+
+8 entries were displayed.
+
+cluster1::*> *network device-discovery show -protocol cdp*
+
+Node/       Local  Discovered
+Protocol    Port   Device (LLDP: ChassisID)  Interface         Platform
+----------- ------ ------------------------- ----------------  ----------------
+node1-01/cdp
+            e10a   cs1(FLMXXXXXXXX)          Ethernet1/16/3    N9K-C9332D-GX2B
+            e10b   cs2(FDOXXXXXXXX)          Ethernet1/16/3    N9K-C9332D-GX2B
+            e11a   cs1(FLMXXXXXXXX)          Ethernet1/16/4    N9K-C9332D-GX2B
+            e11b   cs2(FDOXXXXXXXX)          Ethernet1/16/4    N9K-C9332D-GX2B
+            e1a    cs1(FLMXXXXXXXX)          Ethernet1/16/1    N9K-C9332D-GX2B
+            e1b    cs2(FDOXXXXXXXX)          Ethernet1/16/1    N9K-C9332D-GX2B
+            .
+            .
+            .
+            e7a    cs1(FLMXXXXXXXX)          Ethernet1/16/2    N9K-C9332D-GX2B
+            e7b    cs2(FDOXXXXXXXX)          Ethernet1/16/2    N9K-C9332D-GX2B
+
+cs1# *show cdp neighbors*
+
+Capability Codes: R - Router, T - Trans-Bridge, B - Source-Route-Bridge
+                  S - Switch, H - Host, I - IGMP, r - Repeater,
+                  V - VoIP-Phone, D - Remotely-Managed-Device,
+                  s - Supports-STP-Dispute
+
+Device-ID          Local Intrfce  Hldtme Capability  Platform      Port ID
+Device-ID          Local Intrfce  Hldtme Capability  Platform         Port ID
+cs2(FDOXXXXXXXX)    Eth1/31        179    R S I s   N9K-C9364D-GX2A   Eth1/63
+cs2(FDOXXXXXXXX)    Eth1/32        179    R S I s   N9K-C9364D-GX2A   Eth1/64
+node1-01            Eth1/4/1       123    H         AFX-1K            e1a
+node1-01            Eth1/4/2       123    H         AFX-1K            e7a
+node1-01            Eth1/4/3       123    H         AFX-1K            e10a
+node1-01            Eth1/4/4       123    H         AFX-1K            e11a
+node1-02            Eth1/9/1       138    H         AFX-1K            e1a
+node1-02            Eth1/9/2       138    H         AFX-1K            e7a
+node1-02            Eth1/9/3       138    H         AFX-1K            e10a
+node1-02            Eth1/9/4       138    H         AFX-1K            e11a
+node1-03            Eth1/15/1      138    H         AFX-1K            e1a
+node1-03            Eth1/15/2      138    H         AFX-1K            e7a
+node1-03            Eth1/15/3      138    H         AFX-1K            e10a
+node1-03            Eth1/15/4      138    H         AFX-1K            e11a
+node1-04            Eth1/16/1      173    H         AFX-1K            e1a
+node1-04            Eth1/16/2      173    H         AFX-1K            e7a
+node1-04            Eth1/16/3      173    H         AFX-1K            e10a
+node1-04            Eth1/16/4      173    H         AFX-1K            e11a
+
+Total entries displayed: 18
+
+cs2# *show cdp neighbors*
+
+Capability Codes: R - Router, T - Trans-Bridge, B - Source-Route-Bridge
+                  S - Switch, H - Host, I - IGMP, r - Repeater,
+                  V - VoIP-Phone, D - Remotely-Managed-Device,
+                  s - Supports-STP-Dispute
+
+Device-ID          Local Intrfce  Hldtme Capability  Platform      Port ID
+Device-ID          Local Intrfce  Hldtme Capability  Platform         Port ID
+cs1(FLMXXXXXXXX)    Eth1/31        179    R S I s   N9K-C9364D-GX2A   Eth1/63
+cs1(FLMXXXXXXXX)    Eth1/32        179    R S I s   N9K-C9364D-GX2A   Eth1/64
+node1-01            Eth1/4/1       123    H         AFX-1K            e1a
+node1-01            Eth1/4/2       123    H         AFX-1K            e7a
+node1-01            Eth1/4/3       123    H         AFX-1K            e10a
+node1-01            Eth1/4/4       123    H         AFX-1K            e11a
+node1-02            Eth1/9/1       138    H         AFX-1K            e1a
+node1-02            Eth1/9/2       138    H         AFX-1K            e7a
+node1-02            Eth1/9/3       138    H         AFX-1K            e10a
+node1-02            Eth1/9/4       138    H         AFX-1K            e11a
+node1-03            Eth1/15/1      138    H         AFX-1K            e1a
+node1-03            Eth1/15/2      138    H         AFX-1K            e7a
+node1-03            Eth1/15/3      138    H         AFX-1K            e10a
+node1-03            Eth1/15/4      138    H         AFX-1K            e11a
+node1-04            Eth1/16/1      173    H         AFX-1K            e1a
+node1-04            Eth1/16/2      173    H         AFX-1K            e7a
+node1-04            Eth1/16/3      173    H         AFX-1K            e10a
+node1-04            Eth1/16/4      173    H         AFX-1K            e11a
+
+Total entries displayed: 18
+----
+====
+
+
+=== 第1步：准备更换
+
+. 如果在此集群上启用了 AutoSupport ，则通过调用 AutoSupport 消息禁止自动创建案例：
++
+`ssystem node AutoSupport invoke -node * -type all -message MAINT=xh`
+
++
+其中 x 是维护时段的持续时间，以小时为单位。
+
++
+
+NOTE: AutoSupport 消息会通知技术支持此维护任务，以便在维护窗口期间禁止自动创建案例。
+
+. 在交换机 newcs2 上安装相应的 RCF 和映像，并进行必要的站点准备。
++
+如有必要，请验证，下载并安装适用于新交换机的 RCF 和 NX-OS 软件的相应版本。如果您已确认新交换机设置正确，并且不需要更新 RCF 和 NX-OS 软件，请继续执行步骤 2 。
+
++
+.. 转至 NetApp 支持站点上的 _NetApp 集群和管理网络交换机参考配置文件问题描述 Page_ 。
+.. 单击 _Cluster Network and Management Network Compatibility Matrix _ 的链接，然后记下所需的交换机软件版本。
+.. 单击浏览器的后退箭头返回到问题描述页面，单击 * 继续 * ，接受许可协议，然后转到下载页面。
+.. 按照下载页面上的步骤下载与您要安装的 ONTAP 软件版本对应的正确 RCF 和 NX-OS 文件。
+
+
+. 在新交换机上，以管理员身份登录并关闭所有将连接到节点集群接口的端口（端口 1/1 到 1/30）。
++
+如果要更换的交换机无法正常工作并已关闭电源，请转至步骤 4 。集群节点上的 LIF 应已故障转移到每个节点的另一个集群端口。
+
++
+.显示示例
+[%collapsible]
+====
+[listing, subs="+quotes"]
+----
+newcs2# *config*
+newcs2(config)# *interface e1/1/1-4,e1/2/1-4,e1/3/1-4,e1/4/1-4,e1/5/1-4,e1/6/1-4,e1/7/1-4,e1/8/1-4*
+newcs2(config-if-range)# *shutdown*
+newcs2(config)# *interface e1/9/1-4,e1/10/1-4,e1/11/1-4,e1/12/1-4,e1/13/1-4,e1/14/1-4,e1/15/1-4,e1/16/1-4*
+newcs2(config-if-range)# *shutdown*
+newcs2(config)# *interface e1/17/1-4,e1/18/1-4,e1/19/1-4,e1/20/1-4,e1/21/1-4,e1/22/1-44,e1/23/1-4*
+newcs2(config-if-range)# *shutdown*
+newcs2(config)# *interface e1/24/1-,e1/25/1-4,e1/26/1-4,e1/27/1-4,e1/28/1-4,e1/29/1-4,e1/30/1-44*
+newcs2(config-if-range)# *shutdown*
+newcs2(config-if-range)# exit
+newcs2(config)# exit
+----
+====
+. 验证所有集群 LIF 是否均已启用自动还原：
++
+[source, cli]
+----
+network interface show -vserver Cluster -fields auto-revert
+----
++
+.显示示例
+[%collapsible]
+====
+[listing, subs="+quotes"]
+----
+cluster1::> *network interface show -vserver Cluster -fields auto-revert*
+
+             Logical
+Vserver      Interface        Auto-revert
+------------ ---------------- -------------
+Cluster      node1-01_clus1   true
+Cluster      node1-02_clus2   true
+Cluster      node1-03_clus1   true
+Cluster      node1-04_clus2   true
+
+4 entries were displayed.
+----
+====
+. 验证远程集群接口的连接：
++
+.. 您可以使用 `network interface check cluster-connectivity show`命令显示集群连接可访问性检查的详细信息：
++
+[source, cli]
+----
+network interface check cluster-connectivity show
+----
++
+.显示示例
+[%collapsible]
+====
+[listing, subs="+quotes"]
+----
+cluster1::*> *network interface check cluster-connectivity show*
+                                     Source          Destination     Packet
+Node      Date                       LIF             LIF             Loss
+--------- -------------------------- --------------- --------------- -----------
+node1-01
+          6/4/2025 03:13:33 -04:00   node1-01_clus2  node1-02_clus1  none
+          6/4/2025 03:13:34 -04:00   node1-01_clus2  node1-02_clus2  none
+node1-02
+          6/4/2025 03:13:33 -04:00   node1-02_clus2  node1-01_clus1  none
+          6/4/2025 03:13:34 -04:00   node1-02_clus2  node1-01_clus2  none
+.
+.
+.
+----
+====
+.. 或者，您也可以使用 `cluster ping-cluster -node <node-name>`检查连接性的命令：
++
+`cluster ping-cluster -node <node-name>`
+
++
+.显示示例
+[%collapsible]
+====
+[listing, subs="+quotes"]
+----
+cluster1::*> *cluster ping-cluster -node local*
+Host is node2
+Getting addresses from network interface table...
+Cluster node1_clus1 169.254.209.69 node1 e0a
+Cluster node1_clus2 169.254.49.125 node1 e0b
+Cluster node2_clus1 169.254.47.194 node2 e0a
+Cluster node2_clus2 169.254.19.183 node2 e0b
+Local = 169.254.47.194 169.254.19.183
+Remote = 169.254.209.69 169.254.49.125
+Cluster Vserver Id = 4294967293
+Ping status:
+....
+Basic connectivity succeeds on 4 path(s)
+Basic connectivity fails on 0 path(s)
+................
+Detected 9000 byte MTU on 4 path(s):
+Local 169.254.47.194 to Remote 169.254.209.69
+Local 169.254.47.194 to Remote 169.254.49.125
+Local 169.254.19.183 to Remote 169.254.209.69
+Local 169.254.19.183 to Remote 169.254.49.125
+Larger than PMTU communication succeeds on 4 path(s)
+RPC status:
+2 paths up, 0 paths down (tcp check)
+2 paths up, 0 paths down (udp check)
+----
+====
+
+
+
+
+
+
+=== 第2步：配置缆线和端口
+
+. 关闭 Nexus 9332D-GX2B 交换机 cs1 上的 ISL 端口 Eth1/31 和 Eth1/32。
++
+[listing, subs="+quotes"]
+----
+cs1# *config*
+Enter configuration commands, one per line. End with CNTL/Z.
+cs1(config)# *interface e1/31-32*
+cs1(config-if-range)# *shutdown*
+cs1(config-if-range)# exit
+cs1(config)# exit
+----
+. 从 Nexus 9332D-GX2B cs2 交换机上拔下所有电缆，然后将它们连接到 9332D-GX2B newcs2 交换机上的相同端口。
+. 在 cs1 和 newcs2 交换机之间启动 ISL 端口 Eth1/31 和 Eth1/32，然后验证端口通道运行状态。
++
+Port-Channel 应指示 Po1(SU)，成员端口应指示 Eth1/31(P) 和 Eth1/32(P)。
+
++
+.显示示例
+[%collapsible]
+====
+此示例启用 ISL 端口 Eth1/31 和 Eth1/32 并显示交换机 cs1 上的端口通道摘要：
+
+[listing, subs="+quotes"]
+----
+cs1# *config*
+Enter configuration commands, one per line. End with CNTL/Z.
+cs1(config)# *int e1/31-32*
+cs1(config-if-range)# *no shutdown*
+cs1(config-if-range)# *exit*
+cs1(config)# *exit*
+cs1#
+cs1# *show port-channel summary*
+Flags:  D - Down        P - Up in port-channel (members)
+        I - Individual  H - Hot-standby (LACP only)
+        s - Suspended   r - Module-removed
+        b - BFD Session Wait
+        S - Switched    R - Routed
+        U - Up (port-channel)
+        p - Up in delay-lacp mode (member)
+        M - Not in use. Min-links not met
+--------------------------------------------------------------------------------
+Group Port-       Type     Protocol  Member Ports
+      Channel
+--------------------------------------------------------------------------------
+1     Po1(SU)     Eth      LACP      Eth1/31(P)   Eth1/32(P)
+999   Po999(SD)   Eth      NONE      --
+----
+====
+. 验证所有节点上的端口 e7b 是否已启动：
++
+[source, cli]
+----
+network port show ipspace Cluster
+----
++
+.显示示例
+[%collapsible]
+====
+输出应类似于以下内容：
+
+[listing, subs="+quotes"]
+----
+cluster1::*> *network port show -ipspace Cluster*
+
+Node: node1-01
+                                                                       Ignore
+                                                  Speed(Mbps) Health   Health
+Port      IPspace      Broadcast Domain Link MTU  Admin/Oper  Status   Status
+--------- ------------ ---------------- ---- ---- ----------- -------- ------
+e7a       Cluster      Cluster          up   9000  auto/100000 healthy false
+e7b       Cluster      Cluster          up   9000  auto/100000 healthy false
+
+
+Node: node1-02
+                                                                       Ignore
+                                                  Speed(Mbps) Health   Health
+Port      IPspace      Broadcast Domain Link MTU  Admin/Oper  Status   Status
+--------- ------------ ---------------- ---- ---- ----------- -------- ------
+e7a       Cluster      Cluster          up   9000  auto/100000 healthy false
+e7b       Cluster      Cluster          up   9000  auto/100000 healthy false
+
+
+Node: node1-03
+                                                                       Ignore
+                                                  Speed(Mbps) Health   Health
+Port      IPspace      Broadcast Domain Link MTU  Admin/Oper  Status   Status
+--------- ------------ ---------------- ---- ---- ----------- -------- ------
+e7a       Cluster      Cluster          up   9000  auto/100000 healthy false
+e7b       Cluster      Cluster          up   9000  auto/100000 healthy false
+
+
+Node: node1-04
+                                                                       Ignore
+                                                  Speed(Mbps) Health   Health
+Port      IPspace      Broadcast Domain Link MTU  Admin/Oper  Status   Status
+--------- ------------ ---------------- ---- ---- ----------- -------- ------
+e7a       Cluster      Cluster          up   9000  auto/100000 healthy false
+e7b       Cluster      Cluster          up   9000  auto/100000 healthy false
+
+8 entries were displayed.
+----
+====
+. 在上一步中使用的同一节点上，使用 network interface revert 命令还原与上一步中的端口关联的集群 LIF 。
++
+.显示示例
+[%collapsible]
+====
+在此示例中，如果 Home 值为 true 且端口为 e7b，则 node1-01 上的 LIF node1-01_clus2 成功恢复。
+
+以下命令返回 LIF `node1-01_clus2`在 `node1-01`到母港 `e7a`并显示有关两个节点上的 LIF 的信息。如果两个集群接口的 Is Home 列均为真，并且显示正确的端口分配，则启动第一个节点成功，在本例中 `e7a`和 `e7b`在节点1-01上。
+
+[listing, subs="+quotes"]
+----
+cluster1::*> *network interface show -vserver Cluster*
+
+          Logical        Status     Network            Current    Current Is
+Vserver   Interface      Admin/Oper Address/Mask       Node       Port    Home
+--------- -------------- ---------- ------------------ ---------- ------- -----
+Cluster
+          node1-01_clus1  up/up     169.254.209.69/16  node1-01   e7a     true
+          node1-01_clus2  up/up     169.254.49.125/16  node1-01   e7b     true
+          node1-02_clus1  up/up     169.254.47.194/16  node1-02   e7b     true
+          node1-02_clus2  up/up     169.254.19.183/16  node1-02   e7a     false
+          .
+          .
+          .
+----
+====
+. 显示有关集群中节点的信息：
++
+`cluster show`
+
++
+.显示示例
+[%collapsible]
+====
+此示例显示此集群中 node1 和 node2 的节点运行状况为 true ：
+
+[listing, subs="+quotes"]
+----
+cluster1::*> *cluster show*
+
+Node           Health  Eligibility
+-------------- ------- ------------
+node1-01       false   true
+node1-02       true    true
+node1-03       true    true
+node1-04       true    true
+----
+====
+. 验证所有物理集群端口是否均已启动：
++
+[source, cli]
+----
+network port show ipspace Cluster
+----
++
+.显示示例
+[%collapsible]
+====
+[listing, subs="+quotes"]
+----
+cluster1::*> *network port show -ipspace Cluster*
+
+Node: node1-01
+                                                                       Ignore
+                                                  Speed(Mbps) Health   Health
+Port      IPspace      Broadcast Domain Link MTU  Admin/Oper  Status   Status
+--------- ------------ ---------------- ---- ---- ----------- -------- ------
+e7a       Cluster      Cluster          up   9000  auto/100000 healthy false
+e7b       Cluster      Cluster          up   9000  auto/100000 healthy false
+
+
+Node: node1-02
+                                                                       Ignore
+                                                  Speed(Mbps) Health   Health
+Port      IPspace      Broadcast Domain Link MTU  Admin/Oper  Status   Status
+--------- ------------ ---------------- ---- ---- ----------- -------- ------
+e7a       Cluster      Cluster          up   9000  auto/100000 healthy false
+e7b       Cluster      Cluster          up   9000  auto/100000 healthy false
+.
+.
+.
+----
+====
+. 验证远程集群接口的连接：
++
+.. 您可以使用 `network interface check cluster-connectivity`命令显示集群连接可访问性检查的详细信息：
++
+[source, cli]
+----
+network interface check cluster-connectivity start
+----
++
+.显示示例
+[%collapsible]
+====
+[listing, subs="+quotes"]
+----
+cluster1::*> *network interface check cluster-connectivity show*
+                                     Source          Destination     Packet
+Node      Date                       LIF             LIF             Loss
+--------- -------------------------- --------------- --------------- -----------
+node1-01
+          6/4/2025 03:13:33 -04:00   node1-01_clus2  node1-02_clus1  none
+          6/4/2025 03:13:34 -04:00   node1-01_clus2  node1-02_clus2  none
+node1-02
+          6/4/2025 03:13:33 -04:00   node1-02_clus2  node1-01_clus1  none
+          6/4/2025 03:13:34 -04:00   node1-02_clus2  node1-01_clus2  none
+.
+.
+.
+----
+====
+.. 或者，您也可以使用 `cluster ping-cluster -node <node-name>`检查连接性的命令：
++
+`cluster ping-cluster -node <node-name>`
+
++
+.显示示例
+[%collapsible]
+====
+[listing, subs="+quotes"]
+----
+cluster1::*> *cluster ping-cluster -node local*
+Host is node2
+Getting addresses from network interface table...
+Cluster node1_clus1 169.254.209.69 node1 e0a
+Cluster node1_clus2 169.254.49.125 node1 e0b
+Cluster node2_clus1 169.254.47.194 node2 e0a
+Cluster node2_clus2 169.254.19.183 node2 e0b
+Local = 169.254.47.194 169.254.19.183
+Remote = 169.254.209.69 169.254.49.125
+Cluster Vserver Id = 4294967293
+Ping status:
+....
+Basic connectivity succeeds on 4 path(s)
+Basic connectivity fails on 0 path(s)
+................
+Detected 9000 byte MTU on 4 path(s):
+Local 169.254.47.194 to Remote 169.254.209.69
+Local 169.254.47.194 to Remote 169.254.49.125
+Local 169.254.19.183 to Remote 169.254.209.69
+Local 169.254.19.183 to Remote 169.254.49.125
+Larger than PMTU communication succeeds on 4 path(s)
+RPC status:
+2 paths up, 0 paths down (tcp check)
+2 paths up, 0 paths down (udp check)
+----
+====
+
+
+
+
+
+
+=== 第3步：验证配置
+
+. 验证集群上所有端口的健康状况。
++
+.. *集群端口*
++
+... 验证集群中所有节点上的集群端口是否均已启动且运行正常：
++
+[source, cli]
+----
+network port show ipspace Cluster
+----
++
+[source, cli]
+----
+network interface show -vserver Cluster
+----
++
+[source, cli]
+----
+network device-discovery show -protocol cdp
+----
++
+[source, cli]
+----
+show cdp neighbors
+----
++
+.显示示例
+[%collapsible]
+====
+[listing, subs="+quotes"]
+----
+cluster1::*> *network port show -ipspace Cluster*
+Node: node1-01
+                                                                       Ignore
+                                                  Speed(Mbps) Health   Health
+Port      IPspace      Broadcast Domain Link MTU  Admin/Oper  Status   Status
+--------- ------------ ---------------- ---- ---- ----------- -------- ------
+e7a       Cluster      Cluster          up   9000  auto/100000 healthy false
+e7b       Cluster      Cluster          up   9000  auto/100000 healthy false
+
+
+Node: node1-02
+                                                                       Ignore
+                                                  Speed(Mbps) Health   Health
+Port      IPspace      Broadcast Domain Link MTU  Admin/Oper  Status   Status
+--------- ------------ ---------------- ---- ---- ----------- -------- ------
+e7a       Cluster      Cluster          up   9000  auto/100000 healthy false
+e7b       Cluster      Cluster          up   9000  auto/100000 healthy false
+
+
+Node: node1-03
+                                                                       Ignore
+                                                  Speed(Mbps) Health   Health
+Port      IPspace      Broadcast Domain Link MTU  Admin/Oper  Status   Status
+--------- ------------ ---------------- ---- ---- ----------- -------- ------
+e7a       Cluster      Cluster          up   9000  auto/100000 healthy false
+e7b       Cluster      Cluster          up   9000  auto/100000 healthy false
+
+
+Node: node1-04
+                                                                       Ignore
+                                                  Speed(Mbps) Health   Health
+Port      IPspace      Broadcast Domain Link MTU  Admin/Oper  Status   Status
+--------- ------------ ---------------- ---- ---- ----------- -------- ------
+e7a       Cluster      Cluster          up   9000  auto/100000 healthy false
+e7b       Cluster      Cluster          up   9000  auto/100000 healthy false
+
+8 entries were displayed.
+
+cluster1::*> *network interface show -vserver Cluster*
+
+          Logical       Status     Network            Current    Current Is
+Vserver   Interface     Admin/Oper Address/Mask       Node       Port    Home
+--------- ------------- ---------- ------------------ ---------- ------- ----
+Cluster
+          node1-01_clus1  up/up    169.254.209.69/16  node1-01   e7a     true
+          node1-01_clus2  up/up    169.254.49.125/16  node1-01   e7b     true
+          node1-02_clus1  up/up    169.254.47.194/16  node1-02   e7b     true
+          node1-02_clus2  up/up    169.254.19.183/16  node1-02   e7a     true
+          node1-03_clus1  up/up    169.254.209.69/16  node1-03   e7a     true
+          node1-03_clus2  up/up    169.254.49.125/16  node1-03   e7b     true
+          node1-04_clus1  up/up    169.254.47.194/16  node1-04   e7b     true
+          node1-04_clus2  up/up    169.254.19.183/16  node1-04   e7a     false
+
+8 entries were displayed.
+
+cluster1::> *network device-discovery show -protocol cdp*
+
+Node/       Local  Discovered
+Protocol    Port   Device (LLDP: ChassisID)  Interface         Platform
+----------- ------ ------------------------- ----------------  ----------------
+node1-01/cdp
+            e10a   cs1(FLMXXXXXXXX)          Ethernet1/16/3    N9K-C9332D-GX2B
+            e10b   cs2(FDOXXXXXXXX)          Ethernet1/16/3    N9K-C9332D-GX2B
+            e11a   cs1(FLMXXXXXXXX)          Ethernet1/16/4    N9K-C9332D-GX2B
+            e11b   cs2(FDOXXXXXXXX)          Ethernet1/16/4    N9K-C9332D-GX2B
+            e1a    cs1(FLMXXXXXXXX)          Ethernet1/16/1    N9K-C9332D-GX2B
+            e1b    cs2(FDOXXXXXXXX)          Ethernet1/16/1    N9K-C9332D-GX2B
+            .
+            .
+            .
+            e7a    cs1(FLMXXXXXXXX)          Ethernet1/16/2    N9K-C9332D-GX2B
+            e7b    cs2(FDOXXXXXXXX)          Ethernet1/16/2    N9K-C9332D-GX2B
+.
+.
+.
+
+cs1# *show cdp neighbors*
+
+Capability Codes: R - Router, T - Trans-Bridge, B - Source-Route-Bridge
+                  S - Switch, H - Host, I - IGMP, r - Repeater,
+                  V - VoIP-Phone, D - Remotely-Managed-Device,
+                  s - Supports-STP-Dispute
+
+Device-ID             Local Intrfce  Hldtme Capability  Platform          Port ID
+newcs2(FDOXXXXXXXX)   Eth1/31        179    R S I s     N9K-C9364D-GX2A   Eth1/63
+newcs2(FDOXXXXXXXX)   Eth1/32        179    R S I s     N9K-C9364D-GX2A   Eth1/64
+node1-01              Eth1/4/1       123    H           AFX-1K            e1a
+node1-01              Eth1/4/2       123    H           AFX-1K            e7a
+node1-01              Eth1/4/3       123    H           AFX-1K            e10a
+node1-01              Eth1/4/4       123    H           AFX-1K            e11a
+node1-02              Eth1/9/1       138    H           AFX-1K            e1a
+node1-02              Eth1/9/2       138    H           AFX-1K            e7a
+node1-02              Eth1/9/3       138    H           AFX-1K            e10a
+node1-02              Eth1/9/4       138    H           AFX-1K            e11a
+node1-03              Eth1/15/1      138    H           AFX-1K            e1a
+node1-03              Eth1/15/2      138    H           AFX-1K            e7a
+node1-03              Eth1/15/3      138    H           AFX-1K            e10a
+node1-03              Eth1/15/4      138    H           AFX-1K            e11a
+node1-04              Eth1/16/1      173    H           AFX-1K            e1a
+node1-04              Eth1/16/2      173    H           AFX-1K            e7a
+node1-04              Eth1/16/3      173    H           AFX-1K            e10a
+node1-04              Eth1/16/4      173    H           AFX-1K            e11a
+
+Total entries displayed: 18
+
+
+newcs2# *show cdp neighbors*
+
+Capability Codes: R - Router, T - Trans-Bridge, B - Source-Route-Bridge
+                  S - Switch, H - Host, I - IGMP, r - Repeater,
+                  V - VoIP-Phone, D - Remotely-Managed-Device,
+                  s - Supports-STP-Dispute
+
+Device-ID          Local Intrfce  Hldtme Capability  Platform          Port ID
+cs1(FDOXXXXXXXX)   Eth1/31        179    R S I s     N9K-C9364D-GX2A   Eth1/63
+cs1(FDOXXXXXXXX)   Eth1/32        179    R S I s     N9K-C9364D-GX2A   Eth1/64
+node1-01           Eth1/4/1       123    H           AFX-1K            e1a
+node1-01           Eth1/4/2       123    H           AFX-1K            e7a
+node1-01           Eth1/4/3       123    H           AFX-1K            e10a
+node1-01           Eth1/4/4       123    H           AFX-1K            e11a
+node1-02           Eth1/9/1       138    H           AFX-1K            e1a
+node1-02           Eth1/9/2       138    H           AFX-1K            e7a
+node1-02           Eth1/9/3       138    H           AFX-1K            e10a
+node1-02           Eth1/9/4       138    H           AFX-1K            e11a
+node1-03           Eth1/15/1      138    H           AFX-1K            e1a
+node1-03           Eth1/15/2      138    H           AFX-1K            e7a
+node1-03           Eth1/15/3      138    H           AFX-1K            e10a
+node1-03           Eth1/15/4      138    H           AFX-1K            e11a
+node1-04           Eth1/16/1      173    H           AFX-1K            e1a
+node1-04           Eth1/16/2      173    H           AFX-1K            e7a
+node1-04           Eth1/16/3      173    H           AFX-1K            e10a
+node1-04           Eth1/16/4      173    H           AFX-1K            e11a
+
+Total entries displayed: 18
+----
+====
+
+
+.. *HA 端口*
++
+... 验证所有 HA 端口是否处于正常运行状态：
++
+`ha interconnect status show -node <node-name>`
+
++
+.显示示例
+[%collapsible]
+====
+[listing, subs="+quotes"]
+----
+cluster1::*> *ha interconnect status show -node node1-01*
+  (system ha interconnect status show)
+
+                       Node: node1-01
+              Link 0 Status: up
+              Link 1 Status: up
+           Is Link 0 Active: true
+           Is Link 1 Active: true
+         IC RDMA Connection: up
+                       Slot: 0
+             Debug Firmware: no
+
+
+Interconnect Port 0 :
+                  Port Name: e1a-17
+                        MTU: 4096
+           Link Information: ACTIVE
+
+
+Interconnect Port 1 :
+                  Port Name: e1b-18
+                        MTU: 4096
+           Link Information: ACTIVE
+
+cluster1::*> *ha interconnect status show -node node1-02*
+  (system ha interconnect status show)
+
+                       Node: node1-02
+              Link 0 Status: up
+              Link 1 Status: up
+           Is Link 0 Active: true
+           Is Link 1 Active: true
+         IC RDMA Connection: up
+                       Slot: 0
+             Debug Firmware: no
+
+
+Interconnect Port 0 :
+                  Port Name: e1a-17
+                        MTU: 4096
+           Link Information: ACTIVE
+
+
+Interconnect Port 1 :
+                  Port Name: e1b-18
+                        MTU: 4096
+           Link Information: ACTIVE
+.
+.
+.
+----
+====
+
+
+.. *存储端口*
++
+... 验证所有存储端口均处于正常状态：
++
+[source, cli]
+----
+storage port show -port-type ENET
+----
++
+.显示示例
+[%collapsible]
+====
+[listing, subs="+quotes"]
+----
+cluster1::*> *storage port show -port-type ENET*
+
+
+                                      Speed
+Node               Port Type  Mode    (Gb/s) State    Status
+------------------ ---- ----- ------- ------ -------- -----------
+node1-01
+                   e10a ENET  -          100 enabled  online
+                   e10b ENET  -          100 enabled  online
+                   e11a ENET  -          100 enabled  online
+                   e11b ENET  -          100 enabled  online
+node1-02
+                   e10a ENET  -          100 enabled  online
+                   e10b ENET  -          100 enabled  online
+                   e11a ENET  -          100 enabled  online
+                   e11b ENET  -          100 enabled  online
+node1-03
+                   e10a ENET  -          100 enabled  online
+                   e10b ENET  -          100 enabled  online
+                   e11a ENET  -          100 enabled  online
+node1-04
+                   e10a ENET  -          100 enabled  online
+                   e10b ENET  -          100 enabled  online
+                   e11a ENET  -          100 enabled  online
+                   e11b ENET  -          100 enabled  online
+16 entries were displayed.
+----
+====
+
+
+.. *存储架端口*
++
+... 验证所有存储架端口是否处于正常状态：
++
+[source, cli]
+----
+storage shelf port show
+----
++
+.显示示例
+[%collapsible]
+====
+[listing, subs="+quotes"]
+----
+cluster1::*> *storage shelf port show*
+
+Shelf ID Module State        Internal?
+----- -- ------ ------------ ---------
+1.1
+       0 A      connected    false
+       1 A      connected    false
+       2 A      connected    false
+       3 A      connected    false
+       4 A      connected    false
+       5 A      connected    false
+       6 A      connected    false
+       7 A      connected    false
+       8 B      connected    false
+       9 B      connected    false
+      10 B      connected    false
+      11 B      connected    false
+      12 B      connected    false
+      13 B      connected    false
+      14 B      connected    false
+      15 B      connected    false
+
+16 entries were displayed.
+----
+====
+... 验证所有存储架端口的连接状态：
++
+[source, cli]
+----
+storage shelf port show -fields remote-device,remote-port,connector-state
+----
++
+.显示示例
+[%collapsible]
+====
+[listing, subs="+quotes"]
+----
+cluster1::*> *storage shelf port show -fields remote-device,remote-port,connector-state*
+
+shelf id connector-state remote-port    remote-device
+----- -- --------------- -------------- -----------------
+1.1   0  connected       Ethernet1/17/1 CX9332D-cs1
+1.1   1  connected       Ethernet1/15/1 CX9364D-cs1
+1.1   2  connected       Ethernet1/17/2 CX9332D-cs1
+1.1   3  connected       Ethernet1/15/2 CX9364D-cs1
+1.1   4  connected       Ethernet1/17/3 CX9332D-cs1
+1.1   5  connected       Ethernet1/15/3 CX9364D-cs1
+1.1   6  connected       Ethernet1/17/4 CX9332D-cs1
+1.1   7  connected       Ethernet1/15/4 CX9364D-cs1
+1.1   8  connected       Ethernet1/19/1 CX9332D-cs1
+1.1   9  connected       Ethernet1/17/1 CX9364D-cs1
+1.1   10 connected       Ethernet1/19/2 CX9332D-cs1
+1.1   11 connected       Ethernet1/17/2 CX9364D-cs1
+1.1   12 connected       Ethernet1/19/3 CX9332D-cs1
+1.1   13 connected       Ethernet1/17/3 CX9364D-cs1
+1.1   14 connected       Ethernet1/19/4 CX9332D-cs1
+1.1   15 connected       Ethernet1/17/4 CX9364D-cs1
+
+16 entries were displayed.
+----
+====
+
+
+
+
+. 如果禁止自动创建案例，请通过调用 AutoSupport 消息重新启用它：
++
+`ssystem node AutoSupport invoke -node * -type all -message MAINT=end`
+
+
+
+.下一步是什么？
+更换开关后，您link:../switch-cshm/config-overview.html["配置交换机健康监控"]。

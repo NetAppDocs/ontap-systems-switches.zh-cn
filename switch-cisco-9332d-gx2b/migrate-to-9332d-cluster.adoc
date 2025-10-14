@@ -1,17 +1,17 @@
 ---
-permalink: switch-cisco-9336c-fx2-storage/migrate-to-9336-storage.html 
+permalink: switch-cisco-9332d-gx2b/migrate-to-9332d-cluster.html 
 sidebar: sidebar 
-keywords: migrating to a cluster with Cisco Nexus 9336C-FX2 cluster switches, how to migrate 
-summary: 您可以将 ONTAP 集群中较早的 Cisco 集群交换机无中断迁移到 Cisco Nexus 9336C-x2 集群网络交换机。 
+keywords: migrating to a cluster with Cisco Nexus 9332D-GX2B cluster switches, how to migrate 
+summary: 您可以将ONTAP集群的旧Cisco集群交换机无中断地迁移到Cisco Nexus 9332D-GX2B 集群网络交换机。 
 ---
-= 从较旧的Cisco交换机迁移到Cisco Nexus 9336C-FX2 和 9336C-FX2-T 交换机
+= 从较旧的Cisco交换机迁移到Cisco Nexus 9332D-GX2B 交换机
 :allow-uri-read: 
 :icons: font
 :imagesdir: ../media/
 
 
 [role="lead"]
-您可以将ONTAP集群的旧Cisco交换机迁移到Cisco Nexus 9336C-FX2 和 9336C-FX2-T 存储网络交换机。这是一个非破坏性的过程。
+您可以从较旧的Cisco集群交换机执行无中断迁移到Cisco Nexus 9332D-GX2B 集群网络交换机。
 
 
 

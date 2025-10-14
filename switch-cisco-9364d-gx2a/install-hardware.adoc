@@ -1,0 +1,21 @@
+---
+permalink: switch-cisco-9364d-gx2a/install-hardware.html 
+sidebar: sidebar 
+keywords: switches, hardware installation, Cisco Nexus, 9332D-GX2B switches 
+summary: 有关如何为您的系统安装和设置交换机硬件和控制器硬件的详细信息。 
+---
+= 安装硬件
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+前往link:https://docs.netapp.com/us-en/ontap-afx/install-setup/install-setup-workflow.html["AFX 安装和设置工作流程"^]了解如何为您的系统安装和设置交换机硬件和控制器硬件。
+
+AFX 安装和设置文档包括以下信息：
+
+* 准备场地、拆箱并将箱子内容与装箱单进行比较以及注册系统以获取支持权益的说明。
+* 有关在NetApp机柜或电信机架中安装交换机、控制器和存储架的说明。
+* 有关系统布线的说明，包括将控制器存储布线到交换机连接以及将机架布线到交换机连接。
+

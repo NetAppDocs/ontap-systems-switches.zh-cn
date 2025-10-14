@@ -15,16 +15,12 @@ indexpage:
       url: https://library.netapp.com/ecm/ecm_download_file/ECMLP2492508
   - title: 支持的交换机
     links:
-    - title: 集群交换机- Broadcom BES-53248
-      url: "/switch-bes-53248/configure-new-switch-overview.html"
-    - title: 集群交换机- Cisco Nexus 9336-拧 动或9336-拨 动
-      url: "/switch-cisco-9336c-fx2/configure-switch-overview-9336c-cluster.html"
-    - title: 集群交换机—NVIDIA SN2100集群交换机
-      url: "/switch-nvidia-sn2100/configure-overview-sn2100-cluster.html"
-    - title: 存储交换机- Cisco Nexus 9336-拧 动或9336-拨 动
-      url: "/switch-cisco-9336c-fx2-storage/configure-switch-overview-9336c-storage.html"
-    - title: 存储交换机- NVIDIA SN2100
-      url: "/switch-nvidia-sn2100-storage/configure-overview-sn2100-storage.html"
+    - title: AFX 系统交换机
+      url: "/afx/index.html"
+    - title: 集群交换机
+      url: "/cluster/index.html"
+    - title: 存储交换机
+      url: "/storage/index.html"
     - title: 共享交换机—Cisco Nexus 9336-拧 动
       url: "/switch-cisco-9336c-fx2-shared/configure-switch-overview-9336c-shared.html"
   - title: 可用性终止的交换机

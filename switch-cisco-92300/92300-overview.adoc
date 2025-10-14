@@ -100,7 +100,7 @@ https://docs.netapp.com/us-en/ontap-systems-switches/switch-cisco-92300/configur
 
 
  a| 
-https://docs.netapp.com/us-en/ontap-systems-switches/switch-cisco-92300/migrate-to-92300yc-overview.html["_ 从旧版 Cisco 交换机迁移到 Cisco Nexus 92300YC 交换机 _"^]
+https://docs.netapp.com/us-en/ontap-systems-switches/switch-cisco-92300/migrate-to-92300yc.html["_ 从旧版 Cisco 交换机迁移到 Cisco Nexus 92300YC 交换机 _"^]
  a| 
 介绍将旧版 Cisco 交换机更换为 Cisco Nexus 92300YC 集群交换机的操作步骤 。
 

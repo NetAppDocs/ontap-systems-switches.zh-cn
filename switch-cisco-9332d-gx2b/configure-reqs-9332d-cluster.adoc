@@ -1,0 +1,37 @@
+---
+sidebar: sidebar 
+permalink: switch-cisco-9332d-gx2b/configure-reqs-9332d-cluster.html 
+keywords: shared storage cluster switch 
+summary: 从ONTAP 9.9.1 开始，您可以使用Cisco Nexus 9332D-GX2B 交换机将存储和集群功能组合到共享交换机场景中。 
+---
+= Cisco Nexus 9332D-GX2B 交换机的网络要求
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ../media/
+
+
+[role="lead"]
+对于Cisco Nexus 9332D-GX2B 交换机的安装和维护，请务必检查布线和网络要求。
+
+
+
+== 网络要求
+
+所有交换机配置都需要以下网络信息。
+
+* 用于管理网络流量的 IP 子网
+* 每个存储系统控制器和所有适用交换机的主机名和 IP 地址
+* 大多数存储系统控制器通过连接到以太网服务端口（扳手图标）通过 e0M 接口进行管理。
+* 请参见 https://hwu.netapp.com["Hardware Universe"^] 以获取最新信息。
+
+
+
+
+== 布线要求
+
+* 您的交换机具有适当数量和类型的缆线和缆线连接器。请参见 https://hwu.netapp.com["Hardware Universe"^]。
+* 根据您最初配置的交换机类型、您需要使用随附的控制台缆线连接到交换机控制台端口。
+

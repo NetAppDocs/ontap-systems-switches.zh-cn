@@ -1,0 +1,36 @@
+---
+permalink: switch-cisco-9364d-gx2a/configure-setup-ports-9364d.html 
+sidebar: sidebar 
+keywords: switches, initial installation, ports, configure switch-cisco-9364d-gx2a switch 
+summary: Cisco Nexus 9364D-GX2A 交换机的端口详细信息。 
+---
+= Cisco Nexus 9364D-GX2A 交换机的端口详细信息
+:allow-uri-read: 
+
+
+[role="lead"]
+Cisco Nexus 9364D-GX2A 交换机是Cisco Nexus 9000 平台的一部分，可以安装在NetApp系统机柜中。  9364D-GX2A 交换机允许您构建具有两个以上节点的ONTAP集群。
+
+
+
+== Cisco Nexus 9364D-GX2A 端口详细信息
+
+[cols="1,2"]
+|===
+| 端口 | Description 
+
+
+ a| 
+以太网 1/1/1-4 至以太网 1/62/1-4
+ a| 
+4x100GbE 模式，用于集群、HA、AMD 存储连接
+
+
+
+ a| 
+以太网1/63、以太网1/64
+ a| 
+400GbE ISL
+
+|===
+查看 https://hwu.netapp.com["Hardware Universe"^]有关平台使用的端口的详细信息。
