@@ -455,7 +455,7 @@ Are you sure you would like to reset the system? (y/n) *y*
 ====
 .EFOS 3.12.x及更高版本
 --
-. 使用以下传输协议之一将 RCF 复制到交换机 CS2 的启动闪存： FTP ， TFTP ， SFTP 或 SCP 。
+. 使用以下传输协议之一将 RCF 复制到交换机 cs2 的 bootflash：HTTP、HTTPS、FTP、TFTP、SFTP 或 SCP。
 +
 此示例显示了使用SFTP将RCC复制到交换机CS2上的bootflash：
 
@@ -514,7 +514,7 @@ Configuration script 'reference-config.scr' applied.
 --
 .所有其他 EFOS 版本
 --
-. 使用以下传输协议之一将 RCF 复制到交换机 CS2 的启动闪存： FTP ， TFTP ， SFTP 或 SCP 。
+. 使用以下传输协议之一将 RCF 复制到交换机 cs2 的 bootflash：HTTP、HTTPS、FTP、TFTP、SFTP 或 SCP。
 +
 此示例显示了使用SFTP将RCC复制到交换机CS2上的bootflash：
 

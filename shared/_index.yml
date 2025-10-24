@@ -1,0 +1,31 @@
+---
+indexpage:
+  title: 共享交换机
+  summary: 使用此站点上的文档来安装、配置和维护用于ONTAP集群部署的共享交换机。
+  keywords: shared switches, cisco nexus switches, cluster switches, ontap clusters
+  lead: 共享交换机使您能够构建具有两个以上节点的ONTAP集群。这些Cisco Nexus 9000 平台交换机为NetApp ONTAP环境中的可扩展集群互连解决方案提供了基础。
+  tiles:
+  - title: 入门
+    links:
+    - title: Cisco Nexus 9336C-x2
+      url: "../switch-cisco-9336c-fx2-shared/configure-switch-overview-9336c-shared.html"
+  - title: 安装和配置共享交换机
+    links:
+    - title: 安装 9336C-FX2 交换机硬件
+      url: "../switch-cisco-9336c-fx2-shared/install-hardware-workflow.html"
+    - title: 配置9336C-FX2交换机软件
+      url: "../switch-cisco-9336c-fx2-shared/configure-software-overview-9336c-shared.html"
+  - title: 维护共享交换机
+    links:
+    - title: 更换 9336C-FX2 开关
+      url: "../switch-cisco-9336c-fx2-shared/replace-9336c-fx2-shared.html"
+    - title: 将 9336C-FX2 交换机重置为出厂默认设置
+      url: "../switch-cisco-9336c-fx2-shared/reset-switch-9336c-shared.html"
+  - title: 相关文档
+    links:
+    - title: ONTAP硬件系统
+      url: https://docs.netapp.com/us-en/ontap-systems/index.html
+    - title: 集群交换机文档
+      url: "../index.html"
+    - title: 交换机健康监控
+      url: "../switch-cshm/config-overview.html"

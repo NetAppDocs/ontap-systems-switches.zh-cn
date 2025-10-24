@@ -1,0 +1,271 @@
+---
+permalink: switch-cisco-3232c/install-rcf-software-3232c.html 
+sidebar: sidebar 
+keywords: ssh, requirement, cluster, switch, health, monitor, cshm, log, collection, feature, cisco 3232c 
+summary: '使用集群交换机健康监视器 (CSHM) 和日志收集功能时需要 SSH。要在Cisco 3232c 集群交换机上启用 SSH，您需要先生成 SSH 密钥，然后启用 SSH。' 
+---
+= 安装参考配置文件（ RCF ）
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+首次设置 Nexus 3232C 交换机后，安装参考配置文件 (RCF)。
+
+.开始之前
+验证以下安装和连接：
+
+* 交换机配置的当前备份。
+* 一个完全正常运行的集群(日志中没有错误或类似问题)。
+* 当前的RC框架。
+* 安装RCF时需要与交换机建立控制台连接。
+
+
+.关于此任务
+操作步骤 要求同时使用 ONTAP 命令和 Cisco Nexus 3000 系列交换机命令；除非另有说明，否则使用 ONTAP 命令。
+
+在此过程中不需要任何可操作的交换机间链路 (ISL)。这是设计使然，因为 RCF 版本的更改可能会暂时影响 ISL 连接。为了实现无中断集群操作，以下步骤将所有集群 LIF 迁移到可操作的合作伙伴交换机，同时在目标交换机上执行步骤。
+
+请务必在中完成操作步骤 link:prepare-install-cisco-nexus-3232c.html["准备安装NX-OS和RCF"]、然后按照以下步骤进行操作。
+
+
+
+== 第1步：在交换机上安装RC框架
+
+. 使用 SSH 或串行控制台登录到 switch cs2。
+. 使用以下传输协议之一将 RCF 复制到交换机 cs2 的 bootflash：FTP、TFTP、SFTP 或 SCP。有关Cisco命令的更多信息，请参阅 https://www.cisco.com/c/en/us/support/switches/nexus-3000-series-switches/products-installation-guides-list.html["《 Cisco Nexus 3000 系列 NX-OS 命令参考》"^]。
++
+.显示示例
+[%collapsible]
+====
+此示例显示了使用 TFTP 将 RCF 复制到交换机 CS2 上的 bootflash 。
+
+[listing, subs="+quotes"]
+----
+cs2# *copy tftp: bootflash: vrf management*
+Enter source filename: *Nexus_3232C_RCF_v1.6-Cluster-HA-Breakout.txt*
+Enter hostname for the tftp server: *172.22.201.50*
+Trying to connect to tftp server......Connection to Server Established.
+TFTP get operation was successful
+Copy complete, now saving to disk (please wait)...
+----
+====
+. 将先前下载的 RCF 应用于 bootflash 。
++
+有关Cisco命令的更多信息，请参阅 https://www.cisco.com/c/en/us/support/switches/nexus-3000-series-switches/products-installation-guides-list.html["《 Cisco Nexus 3000 系列 NX-OS 命令参考》"^]。
+
++
+.显示示例
+[%collapsible]
+====
+此示例显示了正在交换机 CS2 上安装的 RCF 文件 `Nexus 3232C_RCF_v1.6-Cluster-HA-Breakout 。 txt` ：
+
+[listing, subs="+quotes"]
+----
+cs2# *copy Nexus_3232C_RCF_v1.6-Cluster-HA-Breakout.txt running-config echo-commands*
+----
+====
++
+[NOTE]
+====
+请务必仔细阅读 RCF 的 *安装说明*、*重要说明* 和 *横幅* 部分。您必须阅读并遵循这些说明以确保交换机的正确配置和操作。
+
+====
+. 检查中的横幅输出 `show banner motd` 命令：您必须阅读并按照*重要说明*中的说明进行操作、以确保交换机的配置和操作正确无误。
+. 验证 RCF 文件是否为正确的较新版本：
++
+`s如何运行配置`
+
++
+在检查输出以确认您的 RCF 正确无误时，请确保以下信息正确无误：
+
++
+** RCF 横幅
+** 节点和端口设置
+** 自定义
++
+输出因站点配置而异。检查端口设置，并参阅发行说明，了解您安装的 RCF 的任何特定更改。
+
+
+
+. 将先前的所有自定义设置重新应用于交换机配置。link:cabling-considerations-3232c.html["查看布线和配置注意事项"]有关所需的任何进一步更改的详细信息、请参见。
+. 将基本配置详细信息保存到 `write_erase.cfg`bootflash 上的文件。
++
+[NOTE]
+====
+确保配置以下内容：* 用户名和密码* 管理 IP 地址* 默认网关* 交换机名称
+
+====
++
+`cs2# show run | section "switchname" > bootflash:write_erase.cfg`
+
++
+`cs2# show run | section "hostname" >> bootflash:write_erase.cfg`
+
++
+`cs2# show run | i "username admin password" >> bootflash:write_erase.cfg`
+
++
+`cs2# show run | section "vrf context management" >> bootflash:write_erase.cfg`
+
++
+`cs2# show run | section "interface mgmt0" >> bootflash:write_erase.cfg`
+
+. 对于 RCF 版本 1.12 及更高版本，运行以下命令：
++
+`cs2# echo "hardware access-list tcam region racl-lite 512" >> bootflash:write_erase.cfg`
+
++
+`cs2# echo "hardware access-list tcam region qos 256" >> bootflash:write_erase.cfg`
+
++
+请参阅知识库文章 https://kb.netapp.com/on-prem/Switches/Cisco-KBs/How_to_clear_configuration_on_a_Cisco_interconnect_switch_while_retaining_remote_connectivity["如何在保持远程连接的同时清除Cisco互连交换机上的配置"^]了解更多详情。
+
+. 验证 `write_erase.cfg`文件按预期填充：
++
+`show file bootflash:write_erase.cfg`
+
+. 发出 `write erase`命令来删除当前保存的配置：
++
+`cs2# *write erase*`
+
++
+`Warning: This command will erase the startup-configuration.`
+
++
+`Do you wish to proceed anyway? (y/n)  [n] *y*`
+
+. 将先前保存的基本配置复制到启动配置中。
++
+`cs2# *copy bootflash:write_erase.cfg startup-config*`
+
+. 重启交换机cs2：
++
+`cs2# *reload*`
+
++
+`This command will reboot the system. (y/n)?  [n] *y*`
+
+. 在交换机 cs1 上重复步骤 1 至 12。
+. 将ONTAP集群中所有节点的集群端口连接到交换机CS1和CS2。
+
+
+
+
+== 步骤 2：验证交换机连接
+
+. 验证连接到集群端口的交换机端口是否为*已启动*。
++
+`show interface brief | grep up`
+
++
+.显示示例
+[%collapsible]
+====
+[listing, subs="+quotes"]
+----
+cs1# *show interface brief | grep up*
+.
+.
+Eth1/1/1      1       eth  access up      none                    10G(D) --
+Eth1/1/2      1       eth  access up      none                    10G(D) --
+Eth1/7        1       eth  trunk  up      none                   100G(D) --
+Eth1/8        1       eth  trunk  up      none                   100G(D) --
+.
+.
+----
+====
+. 验证 CS1 和 CS2 之间的 ISL 是否正常运行：
++
+`s如何执行端口通道摘要`
+
++
+.显示示例
+[%collapsible]
+====
+[listing, subs="+quotes"]
+----
+cs1# *show port-channel summary*
+Flags:  D - Down        P - Up in port-channel (members)
+        I - Individual  H - Hot-standby (LACP only)
+        s - Suspended   r - Module-removed
+        b - BFD Session Wait
+        S - Switched    R - Routed
+        U - Up (port-channel)
+        p - Up in delay-lacp mode (member)
+        M - Not in use. Min-links not met
+--------------------------------------------------------------------------------
+Group Port-       Type     Protocol  Member Ports
+      Channel
+--------------------------------------------------------------------------------
+1     Po1(SU)     Eth      LACP      Eth1/31(P)   Eth1/32(P)
+cs1#
+----
+====
+. 验证集群 LIF 是否已还原到其主端口：
++
+`network interface show -role cluster`
+
++
+.显示示例
+[%collapsible]
+====
+[listing, subs="+quotes"]
+----
+cluster1::*> *network interface show -role cluster*
+            Logical            Status     Network            Current             Current Is
+Vserver     Interface          Admin/Oper Address/Mask       Node                Port    Home
+----------- ------------------ ---------- ------------------ ------------------- ------- ----
+Cluster
+            cluster1-01_clus1  up/up      169.254.3.4/23     cluster1-01         e0d     true
+            cluster1-01_clus2  up/up      169.254.3.5/23     cluster1-01         e0d     true
+            cluster1-02_clus1  up/up      169.254.3.8/23     cluster1-02         e0d     true
+            cluster1-02_clus2  up/up      169.254.3.9/23     cluster1-02         e0d     true
+            cluster1-03_clus1  up/up      169.254.1.3/23     cluster1-03         e0b     true
+            cluster1-03_clus2  up/up      169.254.1.1/23     cluster1-03         e0b     true
+            cluster1-04_clus1  up/up      169.254.1.6/23     cluster1-04         e0b     true
+            cluster1-04_clus2  up/up      169.254.1.7/23     cluster1-04         e0b     true
+8 entries were displayed.
+cluster1::*>
+----
+====
++
+如果任何集群 LIFS 尚未返回其主端口，请手动将其恢复：
+`network interface revert -vserver <vserver_name> -lif <lif_name>`
+
+. 验证集群是否运行正常：
++
+`cluster show`
+
++
+.显示示例
+[%collapsible]
+====
+[listing, subs="+quotes"]
+----
+cluster1::*> *cluster show*
+Node                 Health  Eligibility   Epsilon
+-------------------- ------- ------------- -------
+cluster1-01          true    true          false
+cluster1-02          true    true          false
+cluster1-03          true    true          true
+cluster1-04          true    true          false
+4 entries were displayed.
+cluster1::*>
+----
+====
+
+
+
+
+== 步骤 3：设置ONTAP集群
+
+NetApp建议您使用System Manager设置新集群。
+
+系统管理器为集群设置和配置提供了简单易行的工作流程，包括分配节点管理 IP 地址、初始化集群、创建本地层、配置协议和配置初始存储。
+
+参考 https://docs.netapp.com/us-en/ontap/task_configure_ontap.html["使用System Manager在新集群上配置ONTAP"]了解设置说明。
+
+.下一步是什么？
+安装 RCF 后，您link:configure-ssh-keys.html["验证 SSH 配置"]。

@@ -1,6 +1,6 @@
 ---
 indexpage:
-  title: ONTAP系统的交换机
+  title: ONTAP硬件系统的交换机文档
   summary: 使用此站点上的文档安装，升级和维护集群，共享存储和 MetroCluster 交换机。
   keywords: switches
   lead: NetApp提供集群、存储和共享交换机、可在主机存储与两个或更多NetApp控制器之间建立连接、从而使您能够在存储基础架构中无中断地移动数据和网络接口。
@@ -21,8 +21,8 @@ indexpage:
       url: "/cluster/index.html"
     - title: 存储交换机
       url: "/storage/index.html"
-    - title: 共享交换机—Cisco Nexus 9336-拧 动
-      url: "/switch-cisco-9336c-fx2-shared/configure-switch-overview-9336c-shared.html"
+    - title: 共享交换机
+      url: "/shared/index.html"
   - title: 可用性终止的交换机
     links:
     - title: 集群交换机—Cisco Nexus 3232c

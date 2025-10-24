@@ -1,6 +1,6 @@
 ---
 settings:
-  name: Cluster and storage switches
+  name: Install and maintain
   internal:
     pdf_enabled: true
   prod:
@@ -12,7 +12,7 @@ settings:
   langs: zh-cn,us-en,de-de,es-es,fr-fr,it-it,pt-br,ja-jp,ko-kr,zh-tw
 sidebar:
   entries:
-  - title: 切换ONTAP硬件文档
+  - title: ONTAP硬件系统的 Switch 文档
     url: "/index.html"
   - title: 入门
     entries:
@@ -23,19 +23,23 @@ sidebar:
     - title: 启动并运行
       url: "/get-started/get-up-and-running.html"
   - title: AFX 系统交换机
+    url: "/afx/index.html"
     entries:
     - section: switch-cisco-9332d-gx2b
     - section: switch-cisco-9364d-gx2a
   - title: 集群交换机
+    url: "/cluster/index.html"
     entries:
     - section: switch-bes-53248
     - section: switch-cisco-9336c-fx2
     - section: switch-nvidia-sn2100
   - title: 存储交换机
+    url: "/storage/index.html"
     entries:
     - section: switch-cisco-9336c-fx2-storage
     - section: switch-nvidia-sn2100-storage
   - title: 共享交换机
+    url: "/shared/index.html"
     entries:
     - section: switch-cisco-9336c-fx2-shared
       pdf-filename: switch-cisco-9336c-902-storage

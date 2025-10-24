@@ -53,16 +53,13 @@ Copy complete, now saving to disk (please wait)...
 有关Cisco命令的更多信息，请参阅link:https://www.cisco.com/c/en/us/support/switches/nexus-9336c-fx2-switch/model.html#CommandReferences["《 Cisco Nexus 9000 系列 NX-OS 命令参考》"^]指南。
 
 +
-.显示示例
-[%collapsible]
-====
 此示例显示了RCF文件 `Nexus_9336C_RCF_v1.6-Cluster-HA-Breakout.txt` 正在安装在交换机CS1上：
 
-[listing]
++
+[listing, subs="+quotes"]
 ----
-cs1# copy Nexus_9336C_RCF_v1.6-Cluster-HA-Breakout.txt running-config echo-commands
+cs1# *copy Nexus_9336C_RCF_v1.6-Cluster-HA-Breakout.txt running-config echo-commands*
 ----
-====
 . 检查 `show banner motd` 命令的横幅输出。您必须阅读并遵循这些说明，以确保交换机的配置和操作正确。
 +
 .显示示例
@@ -130,6 +127,18 @@ cs1# copy running-config startup-config [#######################################
 ----
 . 将基本配置详细信息保存到 `write_erase.cfg`bootflash 上的文件。
 +
+[NOTE]
+====
+确保配置以下内容：
+
+** 用户名和密码
+** 管理 IP 地址
+** 默认网关
+** 交换机名称
+
+
+====
++
 `cs1# show run | i "username admin password" > bootflash:write_erase.cfg`
 
 +
@@ -156,7 +165,7 @@ cs1# copy running-config startup-config [#######################################
 
 . 验证 `write_erase.cfg`文件按预期填充：
 +
-`show file bootflash:write_erase.cfg`
+`*show file bootflash:write_erase.cfg*`
 
 . 发出 `write erase`命令来删除当前保存的配置：
 +

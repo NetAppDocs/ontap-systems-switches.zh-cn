@@ -17,20 +17,14 @@ summary: 在配置Cisco Nexus 3232C 集群交换机之前，请查看配置概�
 [role="quick-margin-para"]
 示例布线工作表提供了从交换机到控制器的建议端口分配示例。空白工作表提供了一个模板、可用于设置集群。
 
-.image:https://raw.githubusercontent.com/NetAppDocs/common/main/media/number-2.png["两个"]
-link:install-switch-3232c.html["安装交换机"]
-
+.image:https://raw.githubusercontent.com/NetAppDocs/common/main/media/number-2.png["两个"]link:install-switch-3232c.html["安装交换机"]
 [role="quick-margin-para"]
 安装3232C开关。
 
-.image:https://raw.githubusercontent.com/NetAppDocs/common/main/media/number-3.png["三个"]
-link:install-cisco-nexus-3232c.html["将交换机安装到NetApp机柜中"]
-
+.image:https://raw.githubusercontent.com/NetAppDocs/common/main/media/number-3.png["三个"]link:install-cisco-nexus-3232c.html["将交换机安装到NetApp机柜中"]
 [role="quick-margin-para"]
 根据需要在NetApp机柜中安装 3232C 交换机和直通面板。
 
-.image:https://raw.githubusercontent.com/NetAppDocs/common/main/media/number-4.png["四个"]
-link:cabling-considerations-3232c.html["查看布线和配置"]
-
+.image:https://raw.githubusercontent.com/NetAppDocs/common/main/media/number-4.png["四个"]link:cabling-considerations-3232c.html["查看布线和配置"]
 [role="quick-margin-para"]
 审查对NVIDIA以太网端口的支持。
