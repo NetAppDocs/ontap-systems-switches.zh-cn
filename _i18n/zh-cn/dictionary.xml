@@ -2159,7 +2159,6 @@
   <block id="5fd6f50ffed943141f031543ab15c5c3" category="paragraph">swp1s0-3</block>
   <block id="3226294083a7703912d2bb83f5ed65bd" category="paragraph">swp2s0-3</block>
   <block id="a8b3385461e026cd59cbc121f290ce13" category="paragraph">请参见<block ref="ba81a2074219dbc1e842c96a03d02ea8" category="inline-link-rx"></block> 有关交换机端口的详细信息。</block>
-  <block id="106f56409094e8675dc6d648c4e5ab5d" category="paragraph"><block ref="9a00636def01671b999a7c1df59762ff" category="inline-link-macro-rx"></block>。</block>
   <block id="efeb406865c5500553bf0ee6711eb714" category="summary">对于NVIDIA SN2100交换机安装和维护、请务必查看所有要求和建议的文档。</block>
   <block id="c1bbeec855d76242340c5bdf0a270fb1" category="paragraph">当交换机在Cumulus模式下运行时、请按照此操作步骤 安装Cumulus Linux (CL)操作系统。</block>
   <block id="eaeaa3cbb68f870319145c61053e1d67" category="inline-link-macro">在ONIE模式下安装</block>
@@ -2243,7 +2242,6 @@
   <block id="b53f6b592c12fd5937d7b72a3bcbfcfb" category="list-text">在GNU Grub屏幕上按* Esc *键以中断正常启动过程、选择* ONIE*、然后按* Enter键。</block>
   <block id="bb8165c1c0d8416da1e318e1c0f54603" category="list-text">在下一个屏幕上、选择*。onIE：install OS*。</block>
   <block id="673b183eae1d985d3373995f15978e5b" category="inline-link-macro">安装参考配置文件(Reference Configuration File、RCF)脚本</block>
-  <block id="8dcb8ce87423e2f4276589483a457d92" category="paragraph"><block ref="464fe9c0adfef54cfb4c6fe21ef12b08" category="inline-link-macro-rx"></block>。</block>
   <block id="2eb103c9e878418bac314f3d0a12d9a6" category="paragraph">下表列出了SN2100交换机和导轨套件的部件号和问题描述 ：</block>
   <block id="67dfd4b7e3a80a311bee6d3c67d73ba2" category="doc">将NS224磁盘架作为交换机连接的存储进行布线</block>
   <block id="69fe2bd920008d1b6c35f9baad74d4f1" category="inline-link">为交换机连接的NS224驱动器架布线</block>
@@ -2252,7 +2250,6 @@
   <block id="144a8e89f9c38ca949aede4fe56c2cb7" category="list-text">将RCF python脚本复制到交换机。</block>
   <block id="39e77b4f608ccea6c3163df34d07da19" category="paragraph">RCF脚本将完成上述示例中列出的步骤。</block>
   <block id="1a8981f50831032975e7c7ab919cf671" category="list-text">查看 <block ref="d6c0afb29fcb19bc79e093e82e35e6bb" category="inline-link-macro-rx"></block>。</block>
-  <block id="0575b6ffe3df5337cb3759f533fd3151" category="paragraph"><block ref="00e0372232f46e972c663d4404b271c3" category="inline-link-macro-rx"></block>。</block>
   <block id="845296543f4c0f8578120a5e5c4e09f2" category="paragraph"><block ref="845296543f4c0f8578120a5e5c4e09f2" category="inline-link-rx"></block></block>
   <block id="a58b8710ff3e173d8d485d0f96fa1c4d" category="paragraph">介绍如何安装NVIDIA SN2100交换机。</block>
   <block id="3946a95173cf2872b6b6e8309352d61b" category="inline-link">《NS224 NVMe驱动器架布线指南》</block>
@@ -2318,7 +2315,6 @@
   <block id="2e7c59cc96135fe229b2eef0001efa1a" category="list-text">在交换机sw1和SW2上、验证所有节点集群端口是否均已启动：</block>
   <block id="496fe3dd70b4f5816f2c409909812bb5" category="list-text">验证所有集群网络LIF是否均已恢复其主端口：</block>
   <block id="551d30a8d4eb4a668b69a7293c7a7b96" category="section-title">QSA适配器</block>
-  <block id="95014a22727b6c60eefe66a36ce9ded2" category="paragraph"><block ref="520f63525f898e977d91bb94f9da1129" category="inline-link-macro-rx"></block>。</block>
   <block id="b3ab991775278214a4482646f14a4804" category="paragraph">您使用的操作步骤取决于每个控制器上是有两个专用集群网络端口，还是每个控制器上有一个集群端口。记录的过程适用于使用光纤或双轴端口的所有节点、但如果节点将板载10GBASE-T RJ45端口用于集群网络端口、则此交换机不支持此过程。</block>
   <block id="52c5fb2d511e57cc084140509647dd1e" category="list-text">双节点无交换机配置已正确设置并正常运行。</block>
   <block id="12840018be7e8eb67f53fbfb0d4257aa" category="list-text">这些节点运行的是ONTAP 9.10.1P3及更高版本。</block>
@@ -2472,7 +2468,6 @@
   <block id="64af225baad7175531906842d9dee5e7" category="paragraph">请务必在中完成操作步骤 <block ref="c7d9f92acf90399e5467216f763af38e" category="inline-link-macro-rx"></block>、然后按照以下步骤进行操作。</block>
   <block id="47fde1d6f33f1e1831eabb5dbb44a901" category="inline-link">Cisco Nexus 3000系列NX-OS命令参考指南</block>
   <block id="ec8e2c0b6ca60727d2402a49b67315ac" category="list-text">使用以下传输协议之一将NX-OS软件复制到Nexus 3132Q-V交换机：FTP、TFTP、SFTP或SCP。有关Cisco命令的详细信息、请参见中的相应指南<block ref="d6b429c6adadc5e67023a0f5351e7ffd" category="inline-link-rx"></block>。</block>
-  <block id="ced2c729b002b1db52a54a7e9056ae20" category="paragraph"><block ref="a230254c929e1946d5af4ce09f0d3fb2" category="inline-link-macro-rx"></block>。</block>
   <block id="a48009e341ec5158a809b8ddefc65f61" category="doc">完整的Cisco Nexus 3132Q-V布线工作表</block>
   <block id="b4faaa394948e9aca63bbc431d9061e1" category="paragraph">可以将每个交换机配置为一个 40GbE 端口或 4 个 10GbE 端口。</block>
   <block id="1e7adbcd77a17bde5f2f970332192c58" category="paragraph">在使用Cisco Nexus 3132Q-V集群交换机迁移到双节点交换集群时、请确保了解端口和节点连接以及布线要求。</block>
@@ -2504,9 +2499,7 @@
   <block id="9c97aec7cdd4bc75bb47296acfbc45bd" category="list-text">适用的NetApp集群网络和管理网络RCF、从NetApp 支持站点 下载、网址为<block ref="28649c93049a329043d206ec7fa0c6f8" category="inline-link-rx"></block> 用于接收的交换机。所有 Cisco 集群网络和管理网络交换机均采用标准的 Cisco 出厂默认配置。这些交换机还具有最新版本的NX-OS软件、但未加载RCF。</block>
   <block id="ce874b06f4fe47acb09deda5a20e5bc6" category="list-text">按照中所述、使用完整的布线工作表将集群网络和管理网络交换机连接到控制器 <block ref="23d1fa41a61ba507d26b61266d9bc561" category="inline-link-macro-rx"></block>。</block>
   <block id="ee9b25a09da211887f0fa89abf6031a5" category="paragraph">输入密钥位、范围为1024-2048。</block>
-  <block id="83855999b3308477760994ec497ea43a" category="paragraph"><block ref="12fd8f733c82b6251ce762993bfda2b0" category="inline-link-macro-rx"></block>。</block>
   <block id="f62cbeef79975f2a60c9a80145b7741c" category="inline-link-macro">安装NX-OS软件</block>
-  <block id="bd599a74c6b6bb0488a3ffe28b84d972" category="paragraph"><block ref="fc3a2bdf8893a6559328b7345e1a1c31" category="inline-link-macro-rx"></block>。</block>
   <block id="5541ef2268c2ae16e69f03011e3e160c" category="paragraph">根据您的配置、您可能需要将Cisco Nexus 3132Q-V交换机和直通面板安装在NetApp机柜中、并使用交换机附带的标准支架。</block>
   <block id="8c7ab8ec144d835d6b8e6d8c020901fa" category="list-text">中的初始准备要求、套件内容和安全预防措施<block ref="5af883df35ff9fd9c3ef6c5532417452" category="inline-link-rx"></block>。开始操作步骤 之前、请查看这些文档。</block>
   <block id="1843176ae8cd66ed9a7b08aab08723f3" category="list-text">直通面板套件、可从NetApp获得(部件号X8784-R6)。NetApp 直通面板套件包含以下硬件：</block>
@@ -2645,7 +2638,6 @@
   <block id="b9f5f24ad90c4ea8ff15fad9ac408f42" category="list-text">所需的控制器文档和ONTAP 文档。</block>
   <block id="19bf12997a2536b4572991e599e17801" category="list-text">已完成布线工作表。</block>
   <block id="e7f4ab45950498df235454e086acfca4" category="paragraph">输入密钥位数、范围为1024-2048。</block>
-  <block id="903eb4ad98b740ebeb449655751eb804" category="paragraph"><block ref="92ff606cd08828782a7061b88d8a96a2" category="inline-link-macro-rx"></block>。</block>
   <block id="ccc7541015670d615a3ac3ca54f328a2" category="doc">Cisco Nexus 3232C集群交换机的迁移要求</block>
   <block id="095f3ce4df6c9efa0ac2ac584751cd57" category="paragraph">迁移到Cisco Nexus 3232C集群交换机之前。查看配置信息、端口连接和布线要求。</block>
   <block id="3bede8234c2da7c7a1e8d9374ccb1072" category="section-title">CN1610迁移要求</block>
@@ -2746,7 +2738,6 @@
   <block id="fa1cada3dcf72cd1845a9b13f721353f" category="list-text">在控制台中、设置主机端串行设置：</block>
   <block id="5774edcf06cc50000de075fa347fa292" category="list-text">以身份登录到交换机<block ref="21232f297a57a5a743894a0e4a801fc3" prefix=" " category="inline-code"></block> 并在系统提示输入密码时按* Enter *。默认交换机名称为*路由*。在提示符处、输入<block ref="208f156d4a803025c284bb595a7576b4" prefix=" " category="inline-code"></block>。这样，您就可以访问交换机配置的特权执行模式。</block>
   <block id="b51993b6b7e3ea50c17952db42c3a543" category="list-text">将交换机名称更改为*CS2*。</block>
-  <block id="62d8b9841abbee3c8d144371f887a783" category="paragraph"><block ref="1233ecfc62f0bed40d830afa17eec2c7" category="inline-link-macro-rx"></block>。</block>
   <block id="5b987a205f558ab0653eabd5c075ecef" category="summary">要安装BES-53248硬件、请参见Broadcom文档。</block>
   <block id="07dc48432521e8881ac99696b791f50c" category="doc">安装BES-53248集群交换机的硬件</block>
   <block id="ffe7a2cdbe818a87c6dc07fcabe21b8d" category="list-text">查看 <block ref="aefa00c6161012d4695cd8109566fb4d" category="inline-link-macro-rx"></block>。</block>
@@ -2901,7 +2892,6 @@
   <block id="0cc464fe26f2dccabb9644f27a14d078" category="list-text"><block ref="0cc464fe26f2dccabb9644f27a14d078" category="inline-link-macro-rx"></block></block>
   <block id="549f827e07761bafef053e8ca7564a39" category="inline-link">配置 ONTAP</block>
   <block id="10775dd39d5bac0a859a7c2aa804576e" category="inline-link">使用ONTAP 配置MetroCluster</block>
-  <block id="1e672cb0691529b9dab89394f7a5f58c" category="paragraph"><block ref="f9b2ed845567b21857ae5d0479088ab0" category="inline-link-macro-rx"></block>。</block>
   <block id="21f31f792b72c310b4fd5aa9c2e35835" category="paragraph">按照此操作步骤 在Nexus 9336C-x2共享交换机上安装NX-OS软件。</block>
   <block id="3353682bf555dc374d0a35c53f69888f" category="paragraph">您可以更换有故障的Nexus 9336C-x2共享交换机。这是无中断操作步骤 (NDU)。</block>
   <block id="417613c56ec1e642135d2c1c9047771b" category="list-text">在现有集群和网络基础架构中：</block>
@@ -3236,8 +3226,6 @@
   <block id="fd280d62f276e98d2c1156b6a7cd8932" category="paragraph">在BES-53248集群交换机上下载并安装以太网阵列操作系统(EFOS)软件。</block>
   <block id="e5e0ceddda654af2c9e3c1386537e4f7" category="paragraph">或者、也可以通过购买和安装更多许可证来添加新端口。此交换机基本型号已获得16个10GbE或25GbE端口和两个100GbE端口的许可。</block>
   <block id="89176363c7d28c567fb702f95f7eee23" category="list-text"><block ref="89176363c7d28c567fb702f95f7eee23" category="inline-link-macro-rx"></block></block>
-  <block id="fd5531349e673e037070aacc3a802f37" category="list-text"><block ref="2d5ab056fce0957a1995d7dbefe2460c" category="inline-link-macro-rx"></block>。</block>
-  <block id="cdb75160db01dcaff8578367832cc1a8" category="list-text"><block ref="cd3d2c6d0c8a0c43f0a0e10375ad6bbc" category="inline-link-macro-rx"></block>。</block>
   <block id="f179eebc625c94b5b94fc136b78506e5" category="inline-link-macro">安装参考配置文件</block>
   <block id="67bea00aeda47411a539357c5eea36bd" category="list-text"><block ref="67bea00aeda47411a539357c5eea36bd" category="inline-link-macro-rx"></block></block>
   <block id="a4cc27f030d5855528a867889ecb752b" category="list-text"><block ref="a4cc27f030d5855528a867889ecb752b" category="inline-link-macro-rx"></block></block>
@@ -3272,7 +3260,6 @@
   <block id="17467de5e625043cda6499d3541a20d4" category="list-text">【第 7 步】将共享交换机 A 上的存储 RCF 替换为共享 RCF 文件。请参见 <block ref="2f595b9f03c1eca7e988cc615d685264" category="inline-link-macro-rx"></block> 了解更多详细信息。</block>
   <block id="636bbeffec3fc87e3384d539d543afee" category="list-text">【第 13 步】将共享交换机 B 上的存储 RCF 文件替换为共享 RCF 文件。请参见 <block ref="2f595b9f03c1eca7e988cc615d685264" category="inline-link-macro-rx"></block> 了解更多详细信息。</block>
   <block id="73cb4c03f2757beb35ad69fd322003be" category="list-text">【第 16 步】将 HA 对 1 从无交换机集群转换为有交换机集群。使用共享 RCF 定义的集群端口分配。请参见 <block ref="e0b55f136d815f7a36c41fd7fe28e0fd" category="inline-link-macro-rx"></block>了解更多详细信息。</block>
-  <block id="6446fc62a2115815d4bdbe55f18815c1" category="list-text"><block ref="47109c7943148b2a9617cfcb4b49a79f" category="inline-link-macro-rx"></block>。</block>
   <block id="7f81bc06b8e7a4bfd515767a4b4385fe" category="list-text">【第 6 步】将共享交换机 A 上的存储 RCF 替换为共享 RCF 文件。请参见 <block ref="2f595b9f03c1eca7e988cc615d685264" category="inline-link-macro-rx"></block> 了解更多详细信息。</block>
   <block id="2b888f1fbb1010b5a426f7a2a88e0914" category="list-text">【第 12 步】将共享交换机 B 上的存储 RCF 文件替换为共享 RCF 文件。请参见 <block ref="2f595b9f03c1eca7e988cc615d685264" category="inline-link-macro-rx"></block> 了解更多详细信息。</block>
   <block id="8ddcfbe457d5db5e61625624a6a20b33" category="list-text">【第 16 步】使用替代交换机操作步骤和共享 RCF 将集群网络从现有集群交换机迁移到共享交换机。新的共享交换机 A 为 "CS1" 。新的共享交换机 B 为 "CS2" 。请参见 <block ref="79be7ff3aee9976e13251b5a88fadf5c" category="inline-link-macro-rx"></block> 和 <block ref="2f595b9f03c1eca7e988cc615d685264" category="inline-link-macro-rx"></block> 了解更多详细信息。</block>
@@ -3927,8 +3914,6 @@
   <block id="322cf54023dcfab56a26576123959d58" category="inline-link-macro">启用SSH以收集日志</block>
   <block id="7b0ac22c525a61eb6a12e2267bf6ddea" category="doc">在对BES-53248集群交换机执行EFOS软件或RC框架 升级后、验证ONTAP集群网络</block>
   <block id="45f43daecf76cec34b1fa9cb5925aa48" category="paragraph">升级适用于BES-53248集群交换机的EFOS软件或RCK后、您可以使用以下命令验证ONTAP集群网络的运行状况。</block>
-  <block id="d5c56d6c3abbb7dd20246c17ec16d101" category="inline-link-macro">升级RC框架</block>
-  <block id="3ff8146e3852dfcba1cfd255ac4f5576" category="paragraph"><block ref="74dd19c11d43cfa2dd387ecf7d984746" category="inline-link-macro-rx"></block> 或 <block ref="885efaf124d7da00a7a60364582f6275" category="inline-link-macro-rx"></block>。</block>
   <block id="18e822da210e93da8992e6b3c462671f" category="open-title">EFOS 3.10.0.3及更高版本</block>
   <block id="85e9fe702698c7a1eb1de4500bc3fca4" category="paragraph">配置时区和时间同步(NTP)：</block>
   <block id="3cc87411e9c51d2b281718c8673c3219" category="open-title">EFOS 3.9.0.2及更早版本</block>
@@ -4043,7 +4028,6 @@
   <block id="c7ca49e9f550dc9b18f2402f13ad9430" category="list-text">[[STEP5]]如果禁止自动创建案例、请通过调用AutoSupport消息重新启用：<block ref="9ac424c0d7b432975df36a19daf50c9c" prefix=" " category="inline-code"></block></block>
   <block id="58a19c530e54f6364edd838f35b1830e" category="inline-link-macro">配置交换机运行状况监控</block>
   <block id="d21243682bbd31fa9c0d32d291135394" category="paragraph"><block ref="5b8b393a675dcaaee97c02828356657c" category="inline-link-macro-rx"></block>(英文)</block>
-  <block id="e0ac82c3ba84f3478af53619e7a13dc9" category="paragraph"><block ref="0ad0656927b565ff563d073b0158ec24" category="inline-link-macro-rx"></block>(英文)</block>
   <block id="33446f9dc3d57cc65d0607602cea0067" category="paragraph">在BES-53248集群交换机上安装或升级RCF、然后在应用RCF后验证端口以获取额外许可证。</block>
   <block id="6839871c951e0451fa16484988485a69" category="paragraph">如果使用以太网交换机运行状况监控器(CSHM)和日志收集功能、请在交换机上启用SSH。</block>
   <block id="ace8956d8976d528bf22aab3553d5953" category="paragraph">如果要使用以太网交换机运行状况监控器(CSHM)和日志收集功能、则必须生成SSH密钥、然后在集群交换机上启用SSH。</block>
@@ -4070,9 +4054,7 @@
   <block id="8ae4eeaa7baed19106cc30ea02483c5e" category="summary">以太网交换机运行状况监控器(CSHM)负责确保集群和存储网络交换机的运行状况、并收集交换机日志以进行调试。</block>
   <block id="c4bf003fc396e9ee7d60812f1da24cfe" category="list-text"><block ref="c4bf003fc396e9ee7d60812f1da24cfe" category="inline-link-macro-rx"></block></block>
   <block id="2ae26c52de113e0592fc26619e9e73d1" category="inline-link-macro">可选：配置SNMPv3</block>
-  <block id="ec5440e4cc2d261dc76dac84e641c0ab" category="list-text"><block ref="ec5440e4cc2d261dc76dac84e641c0ab" category="inline-link-macro-rx"></block></block>
   <block id="5b62a4b03175f138ff64effec2560ed7" category="summary">您可以使用此过程为特定交换机配置SNMPv3、此交换机支持以太网交换机运行状况监控(CSHM)。</block>
-  <block id="7e26b49f49bdf462799729889a55fd9a" category="doc">可选：为交换机配置SNMPv3</block>
   <block id="1451684986f1c945fdb4e4f2a8b904be" category="admonition">仅ONTAP 9.12.1及更高版本支持SNMPv3。</block>
   <block id="5fb3828593766d454e79a0dcf52fed9d" category="paragraph">以下命令用于在*Broadcom*、*Cisco*和*NVIDIA*交换机上配置SNMPv3用户名：</block>
   <block id="77f3beca20fcd78f77236507e8d9b4af" category="open-title">Broadcom交换机</block>
@@ -4115,7 +4097,6 @@
   <block id="08b7ad798c66f1af0fba98a0107b6dfc" category="sidebar">交换机运行状况监控概述</block>
   <block id="6611dff3ec03954421335708f49af79d" category="sidebar">switch_健康cshm</block>
   <block id="37f6298ed21bb27b583654cebefb4620" category="sidebar">配置交换机运行状况</block>
-  <block id="db15809ae693fa5aa50cb4b40454f055" category="sidebar">可选-配置SNMPv3</block>
   <block id="5bc599259e802db4cd19057399debd0b" category="sidebar">检查交换机运行状况</block>
   <block id="114c27cb863250ce041d62daae03a69e" category="sidebar">monitor_switch_Health</block>
   <block id="d4a8473f83e1246e0b3ab08e2034db7c" category="sidebar">收集日志</block>
@@ -4123,7 +4104,6 @@
   <block id="d9566e63378c0ff8504c903128e5c6f6" category="inline-link-macro">配置SNMPv3 (可选)</block>
   <block id="e2101619626dc7b8ea25749787797515" category="paragraph"><block ref="a294afff18b68f8c1e4f78aeef5ef294" category="inline-link-macro-rx"></block>(英文)</block>
   <block id="96a5ba855b4ee3dba60ecf722a706b29" category="inline-link-macro">安装CSHM文件</block>
-  <block id="54f593b53357d530cce6870c293a0379" category="list-text"><block ref="bc8e6b3d8a605e692bda90d2d873314b" category="inline-link-macro-rx"></block>(英文)</block>
   <block id="446a9723b131c4606a1b6d581fef9f10" category="paragraph">您可以安装相应的配置文件、以便监控NVIDIA集群交换机的以太网交换机运行状况。</block>
   <block id="2cd1b70f79d5acd7ffb2c204f4069175" category="summary">您可以使用此过程为NVIDIA SN2100存储交换机的集群交换机运行状况监控安装适用的配置文件。</block>
   <block id="d57382f230671f8cd52f47dc80838934" category="paragraph">如果您的型号在应用配置文件后仍显示*OTA*，请与NetApp支持联系。</block>
@@ -4221,7 +4201,6 @@
   <block id="28caefed3a29faf45a4d032d5b1006b4" category="inline-link">EPLD升级发行说明、9.3 (11)版</block>
   <block id="46ddffef0745adf199d35e9bbe4eec40" category="paragraph">有关详细信息、请参见<block ref="a4e876354b2a6a79541beefead7e3974" category="inline-link-rx"></block>。</block>
   <block id="476acca7b2d84d147895203411c05eee" category="list-text">对交换机CS1重复步骤6至14。</block>
-  <block id="11e210472a35f336b513b2c57b8cffab" category="paragraph"><block ref="7b1f8572a598b67cece8c82d64948766" category="inline-link-macro-rx"></block>(英文)</block>
   <block id="d80fed14d08f5cc94b5972605f7b1264" category="paragraph">4 个 100GbE 节点 1</block>
   <block id="f92dbce301746858220367bd16fe3670" category="paragraph">4 个 100GbE 节点 2</block>
   <block id="b360b026e43659aaec27da3653619648" category="paragraph">4 个 100GbE 节点 3</block>
@@ -4729,7 +4708,6 @@
   <block id="607ce262227aceccd2c5daca045a80dc" category="open-title">Cumulus Linux 5.4.0 至 Cumulus Linux 5.11.0</block>
   <block id="1793733c3fd6ed243dfcb1cd45582f6e" category="list-text">下载Cumulux Linux 5.11.0映像：</block>
   <block id="3b17e95301e3d2dffb102ceff49ecd86" category="list-text">注销并再次登录交换机，即可在提示符下看到更新后的交换机名称：</block>
-  <block id="7c7a0b76c488baaa82c48a846faa8727" category="paragraph"><block ref="0d353ea2e4037b21b3bb06f2b69f1c6c" category="inline-link-macro-rx"></block>(英文)</block>
   <block id="fc6063e37d3407a7d76fabb59f7a96a3" category="list-text">要为交换机的服务端口设置静态 IPv4 或 IPv6 管理地址：</block>
   <block id="42a9137a05a60eb752dcdf982e717626" category="open-title">IPv4</block>
   <block id="fdb7cb8f657426e7c409bfd6d1a36ce4" category="open-title">IPv6</block>
@@ -4767,8 +4745,6 @@
   <block id="01abea5f71122f7491f5d67a54692187" category="list-text">[[step4]] 等待交换机重新加载，然后登录交换机。</block>
   <block id="3298c6d813bb0262584ca3882273ff2a" category="paragraph">默认用户为“admin”，未设置密码。此时将显示类似于以下内容的提示：</block>
   <block id="01e12de62fa77fda2815719aed8ff892" category="paragraph-title">下一步</block>
-  <block id="d29ee2143986e1790a9cd170344db5a2" category="paragraph"><block ref="30bc59659410cfda61387b34e1612b7c" category="inline-link-macro-rx"></block> 。</block>
-  <block id="d7644dedcbfb5c562e4684e77d00a009" category="paragraph"><block ref="cc83c245da410495a294f033719b1669" category="inline-link-macro-rx"></block> 。</block>
   <block id="30f6afd41919b41a456c94f0f66fa5d3" category="doc">BES-53248 交换机的安装和设置工作流程</block>
   <block id="a8707fcc977da1a092531cdd197f8ba9" category="paragraph">按照这些工作流程步骤安装和设置您的 BES-53248 交换机。</block>
   <block id="a83565177e04591255a835fde719da37" category="inline-link-macro">查看配置要求</block>
@@ -4785,14 +4761,12 @@
   <block id="cc6a7a00f2331df56d127235ab712a53" category="inline-link-macro">配置软件</block>
   <block id="09e3ea1c9ed929b9d5ba65aa0e1a2e57" category="paragraph-title"><block ref="99e8b2f00e172bfcff96afdce69907bc" category="inline-image-macro-rx" type="image"></block><block ref="cc407d015acb61c0e32d43737b9a7b52" category="inline-link-macro-rx"></block></block>
   <block id="50684e38d3c3e950bc58738bb16d0843" category="paragraph">配置交换机软件。</block>
-  <block id="e17e6fce1c9267a06663c214d3364910" category="paragraph"><block ref="8b21286de1f0b27e78e54a55a69f517f" category="inline-link-macro-rx"></block> 。</block>
   <block id="a37cc2eef24d556279f24156644d2f76" category="paragraph-title"><block ref="58f667aaf05f87159670e12bd9bc076b" category="inline-image-macro-rx" type="image"></block><block ref="b88c299eeb38820fb709454fcd144438" category="inline-link-macro-rx"></block></block>
   <block id="17fc3f3ff88ac99f3928ed20888ee5ad" category="paragraph">配置BES-53248集群交换机。</block>
   <block id="2fdc035f31f6f8e5dc2cc860f7ac2b5e" category="paragraph-title"><block ref="54f425ce8d89f4ed6b8a546561af5d60" category="inline-image-macro-rx" type="image"></block><block ref="1233ecfc62f0bed40d830afa17eec2c7" category="inline-link-macro-rx"></block></block>
   <block id="d2fbaa7f212d11bb223bcb79e99d25a5" category="paragraph-title"><block ref="05b2444faffd66d76e88602ea7dd353f" category="inline-image-macro-rx" type="image"></block><block ref="0f9f654882514557e57b19641aa7b563" category="inline-link-macro-rx"></block></block>
   <block id="039ac036dd5126741513b6ff02740aa3" category="paragraph-title"><block ref="beadfa85a2fdca06b91edc1131c603e6" category="inline-image-macro-rx" type="image"></block><block ref="74dd19c11d43cfa2dd387ecf7d984746" category="inline-link-macro-rx"></block></block>
   <block id="ba4ab00920641dfd5423a47fe9d7f3c9" category="paragraph-title"><block ref="99e8b2f00e172bfcff96afdce69907bc" category="inline-image-macro-rx" type="image"></block><block ref="e2b4c4f5313b05dff7c4a02a4e9e0df6" category="inline-link-macro-rx"></block></block>
-  <block id="b072aeefadd5f4debb10448ed0f78d3d" category="paragraph"><block ref="6750c4dc9d2505a8ea19f483ac83a6d9" category="inline-link-macro-rx"></block> 。</block>
   <block id="df262d72a3f24d806e5173e9cf649e77" category="doc">BES-53248 交换机的硬件安装工作流程</block>
   <block id="28a0c60fdf5ca57b39720c3a8d882046" category="paragraph">要安装和配置 BES-53248 集群交换机的硬件，请按照以下步骤操作：</block>
   <block id="cf1d9d7a26637db18765ddf010f65be6" category="inline-link-macro">安装交换机硬件</block>
@@ -4804,7 +4778,6 @@
   <block id="e0a521d00ae74b0c84db0c847fddb6ad" category="paragraph-title"><block ref="58f667aaf05f87159670e12bd9bc076b" category="inline-image-macro-rx" type="image"></block><block ref="fea95d28df6c953ffdb2096099ec83e5" category="inline-link-macro-rx"></block></block>
   <block id="96fb740240c8f1bf5739883588c34128" category="paragraph-title"><block ref="54f425ce8d89f4ed6b8a546561af5d60" category="inline-image-macro-rx" type="image"></block><block ref="b0d7a2164137f2036f3af1efcfb1968f" category="inline-link-macro-rx"></block></block>
   <block id="0c6171d657f447db9f7b65ec421619f2" category="paragraph-title"><block ref="05b2444faffd66d76e88602ea7dd353f" category="inline-image-macro-rx" type="image"></block><block ref="ee9cd451d5dc1debab0286f89e5c8301" category="inline-link-macro-rx"></block></block>
-  <block id="4deb9a9ff2057f7c893692587e556260" category="paragraph"><block ref="3733ea959ea350d46ba403dfe4087bb4" category="inline-link-macro-rx"></block> 。</block>
   <block id="926ea8223c35e0974ecfabb2c02ad4ff" category="summary">Cisco Nexus 3132Q-V 集群交换机软件配置概述</block>
   <block id="fddd0032cd4149fb7bfea4114a217072" category="doc">Cisco Nexus 3132Q-V 集群交换机的软件安装工作流程</block>
   <block id="e87559d7fe5ea552cfe4b62d24bc8ae6" category="paragraph">要安装和配置Cisco Nexus 3132Q-V 交换机的软件并安装或升级参考配置文件 (RCF)，请按照以下步骤操作：</block>
@@ -4822,7 +4795,6 @@
   <block id="d4efb0e9c28005734b2cd25f396c4a48" category="doc">Cisco Nexus 3132Q-V 交换机的硬件安装工作流程</block>
   <block id="5f8a048748aa7a1283276d1b0da8b301" category="paragraph">要安装和配置 3132Q-V 集群交换机的硬件，请按照以下步骤操作：</block>
   <block id="4c915003076a6d86a9620d6756fba2c2" category="inline-link-macro">完成布线工作表</block>
-  <block id="670b8bcb0f55091123c6ed29714c3705" category="paragraph-title"><block ref="58f667aaf05f87159670e12bd9bc076b" category="inline-image-macro-rx" type="image"></block><block ref="53357c7c5c3be35085bc708441ee4e98" category="inline-link-macro-rx"></block></block>
   <block id="1678bed7696215f8954f4b86a7e8545c" category="paragraph-title"><block ref="54f425ce8d89f4ed6b8a546561af5d60" category="inline-image-macro-rx" type="image"></block><block ref="207ad0352300a36b0c0e92c58f1c94c7" category="inline-link-macro-rx"></block></block>
   <block id="383ec28e4a088a104d47579bdb8c4764" category="paragraph">安装 3132Q-V 交换机。</block>
   <block id="9da628940cacc721b9a48c0819528e51" category="paragraph-title"><block ref="05b2444faffd66d76e88602ea7dd353f" category="inline-image-macro-rx" type="image"></block><block ref="1f00ece542bc54197fbab1596f438e3d" category="inline-link-macro-rx"></block></block>
@@ -4844,9 +4816,6 @@
   <block id="59f8816adc68d17a564a2adcb32f6df2" category="list-text">完全的<block ref="e253afe6db79a1011e9ed137315b003b" category="inline-link-macro-rx"></block>。</block>
   <block id="0941c5c2195dd31d0727420366f92c3a" category="list-text"><block ref="eb114e7f9419da2ed2795f56bdba3e97" category="inline-link-macro-rx"></block> 。</block>
   <block id="0f4ae3cf88771c7467206da3010f8d36" category="inline-link-macro">在NetApp机柜中安装Cisco Nexus 3132Q-V 交换机</block>
-  <block id="e20ca246755989fe82bdc30b472d4045" category="paragraph">或者，您可以<block ref="18420978bb95dbc58537866fa2d7958a" category="inline-link-macro-rx"></block>。否则，转到<block ref="d0781e7a35581c9e242db456a8edbe98" category="inline-link-macro-rx"></block>。</block>
-  <block id="6f2cc65e666a9e05689591993e20b041" category="paragraph"><block ref="207ad0352300a36b0c0e92c58f1c94c7" category="inline-link-macro-rx"></block> 。</block>
-  <block id="f84a74725677310e72a17907322dd85b" category="paragraph"><block ref="1dbca34b24162eb59cc33616a1549705" category="inline-link-macro-rx"></block> 。</block>
   <block id="8a621cac0318aad5331388c261fff40d" category="summary">Cisco Nexus 3232C 集群交换机软件配置概述</block>
   <block id="d0e2537bdd90951e7c488815de10574a" category="doc">Cisco Nexus 3232C 集群交换机的软件安装工作流程</block>
   <block id="7b97f12b51fcbcc014add4de101dcc01" category="paragraph">要安装和配置Cisco Nexus 3232C 交换机的软件并安装或升级参考配置文件 (RCF)，请按照以下步骤操作：</block>
@@ -4876,9 +4845,6 @@
   <block id="f66b7080792725ee57ea7f7b02c7d38b" category="doc">安装3232C集群交换机</block>
   <block id="422598dd3d31832bfe941edd56d7d1bd" category="list-text"><block ref="405e8e3e93d725761176a326f99e4751" category="inline-link-macro-rx"></block> 。</block>
   <block id="abdf142c465e75d188665a07134160d1" category="inline-link-macro">在NetApp机柜中安装Cisco Nexus 3223C 交换机</block>
-  <block id="1e6e456a14b9d3e18e246a85940b6a59" category="paragraph">或者，您可以<block ref="2cea7f88b524cc550d065cf33c8d1c58" category="inline-link-macro-rx"></block>。否则，转到<block ref="76b532b4ae4cf629b8e1a3ede08fd7ff" category="inline-link-macro-rx"></block>。</block>
-  <block id="9dc1ae98b1a9d05149e769f392412112" category="paragraph"><block ref="d35b203e8fe0144f812f95e477dfc8ac" category="inline-link-macro-rx"></block> 。</block>
-  <block id="dddd09d86cdbd9ad27e95c11d655ffd2" category="paragraph"><block ref="6fb43cd5c831afd08ed62ea7c301589a" category="inline-link-macro-rx"></block> 。</block>
   <block id="ce6bf7cd47eb09b6a69cb1199b0e124b" category="doc">Cisco Nexus 92300YC 交换机的组件和部件号</block>
   <block id="374e26b57d48a3f53edf0eed7b8b9a0a" category="paragraph"><block ref="953b08a76549ddb5339056aaf68e6af4" category="inline-link-macro-rx"></block> 。</block>
   <block id="6518e087ea131b7bbb106dea2f0c4eaf" category="paragraph"><block ref="94f89641c24a2c5acf155cedb6b917d3" category="inline-link-macro-rx"></block> 。</block>
@@ -4945,8 +4911,6 @@
   <block id="5420b49f6bb2b4c6cd29f1d04f886142" category="paragraph">根据需要在NetApp机柜中安装 9336C-FX2 交换机和直通面板。</block>
   <block id="1a93d578061f1724e84a74106f164f03" category="paragraph-title"><block ref="beadfa85a2fdca06b91edc1131c603e6" category="inline-image-macro-rx" type="image"></block><block ref="f31e2218f7cf08b190abb8563911bffd" category="inline-link-macro-rx"></block></block>
   <block id="8608163382dad3a40accd48496936aa9" category="paragraph">查看对NVIDIA以太网端口、25GbE FEC 要求的支持以及有关 TCAM 资源的信息。</block>
-  <block id="be706a7a12c76624a9ad7568f3b79f1f" category="paragraph"><block ref="c05d7708e583b7d4b251d68f1130d2c6" category="inline-link-macro-rx"></block> 。</block>
-  <block id="d91ea354659a63a988e9a43bfe660ac0" category="paragraph"><block ref="ce2926213e4f5e76e8b29ae87f344220" category="inline-link-macro-rx"></block> 。</block>
   <block id="e2715c3387d9508dc033488d6e43c425" category="paragraph-title"><block ref="58f667aaf05f87159670e12bd9bc076b" category="inline-image-macro-rx" type="image"></block><block ref="068ae9dc6825f9dcbe393c782d23d120" category="inline-link-macro-rx"></block></block>
   <block id="532d48076326d08b06c875806937e7fd" category="paragraph">配置 9336C-FX2 共享交换机。</block>
   <block id="876fcd8ffe61bb8affbdbb68b1e10baf" category="paragraph-title"><block ref="54f425ce8d89f4ed6b8a546561af5d60" category="inline-image-macro-rx" type="image"></block><block ref="a56c4df2c3d1cf8a69dff5f1adb2c643" category="inline-link-macro-rx"></block></block>
@@ -4983,7 +4947,6 @@
   <block id="e89feb45a019aae43e7072a7606f97d8" category="paragraph-title"><block ref="58f667aaf05f87159670e12bd9bc076b" category="inline-image-macro-rx" type="image"></block><block ref="35e16e47f4129ca15f5a4cfe7b290909" category="inline-link-macro-rx"></block></block>
   <block id="0f2fc5abf269bcd430c8f35e0203b2bd" category="paragraph-title"><block ref="54f425ce8d89f4ed6b8a546561af5d60" category="inline-image-macro-rx" type="image"></block><block ref="8e341dc1e80127ca0dc2c12db6d0237a" category="inline-link-macro-rx"></block></block>
   <block id="986b831325814d3f0225e51df098b72b" category="paragraph-title"><block ref="05b2444faffd66d76e88602ea7dd353f" category="inline-image-macro-rx" type="image"></block><block ref="d43bf43861b014b2f70de1c12cff1c76" category="inline-link-macro-rx"></block></block>
-  <block id="a7ba132631b64c7d74d24b772aacd919" category="paragraph"><block ref="fc89f8ef8daa08e9ffc121c5d5609d54" category="inline-link-macro-rx"></block> 。</block>
   <block id="4e66bc15577ca34b137ec086186da6aa" category="doc">NVIDIA SN2100 交换机的安装和设置工作流程</block>
   <block id="84a9509b45afdd4f172c9e97fb33aeae" category="paragraph">按照以下工作流程步骤安装并设置NVIDIA SN2100 交换机。</block>
   <block id="5f8f57ce76aa4b127e0ea13abdf1345e" category="paragraph-title"><block ref="58f667aaf05f87159670e12bd9bc076b" category="inline-image-macro-rx" type="image"></block><block ref="1d6fb5d005264e31a2bce3661d73104a" category="inline-link-macro-rx"></block></block>
@@ -4993,8 +4956,6 @@
   <block id="22b898a802e6ecf1efe4fd8447155ff8" category="paragraph-title"><block ref="05b2444faffd66d76e88602ea7dd353f" category="inline-image-macro-rx" type="image"></block><block ref="02de3235c7d60510b0e45690ce72f0ca" category="inline-link-macro-rx"></block></block>
   <block id="de38f5bc18224a904a9da613e9e951b0" category="paragraph">查看特定的交换机和控制器文档以设置您的 SN2100 交换机和ONTAP集群。</block>
   <block id="386ced704d131539551d82f287c24e19" category="paragraph-title"><block ref="99e8b2f00e172bfcff96afdce69907bc" category="inline-image-macro-rx" type="image"></block><block ref="f1c1619f8b1ed1d1d5c236b6f88e9555" category="inline-link-macro-rx"></block></block>
-  <block id="0b31070981ebc881be6e243852a30cab" category="paragraph"><block ref="e831ca446f09bd354bf76a86391af038" category="inline-link-macro-rx"></block> 。</block>
-  <block id="db0d76db0abfe2ece0fea7cc312897cd" category="paragraph"><block ref="770c77dd441cd3adc4139ccb3c0d491b" category="inline-link-macro-rx"></block>或者<block ref="bba3ec5e6ca5e4f48b010488a5229b2c" category="inline-link-macro-rx"></block>。</block>
   <block id="713d4f97a0409024a758cf7996d847d7" category="paragraph-title"><block ref="58f667aaf05f87159670e12bd9bc076b" category="inline-image-macro-rx" type="image"></block><block ref="00e0372232f46e972c663d4404b271c3" category="inline-link-macro-rx"></block></block>
   <block id="476f34e9325d1f5ca4e7f6764f1c37c4" category="paragraph">配置NVIDIA SN2100交换机。</block>
   <block id="51f9c4931826853711f81f0086b1be28" category="paragraph-title"><block ref="54f425ce8d89f4ed6b8a546561af5d60" category="inline-image-macro-rx" type="image"></block><block ref="770c77dd441cd3adc4139ccb3c0d491b" category="inline-link-macro-rx"></block></block>
@@ -5006,7 +4967,6 @@
   <block id="4f5cad90763c2ce535c7e96c7cccdc28" category="paragraph">您可以根据需要升级您的 Cumulus Linux (CL) 操作系统。</block>
   <block id="6644a96995b52c5a8f8a5e5ce0f802e0" category="paragraph-title"><block ref="99e8b2f00e172bfcff96afdce69907bc" category="inline-image-macro-rx" type="image"></block><block ref="3d9967042c3cdfc5d68365a8b89192b1" category="inline-link-macro-rx"></block></block>
   <block id="a87966bc5780610e7f2d0b7124159db7" category="paragraph-title"><block ref="ef78558f80439832e0f51cc22cee8b8c" category="inline-image-macro-rx" type="image"></block><block ref="bc8e6b3d8a605e692bda90d2d873314b" category="inline-link-macro-rx"></block></block>
-  <block id="a30be21f198530b5b6b8978b4ae21e1f" category="paragraph"><block ref="586358657da9582be98d1a15e5fd7854" category="inline-link-macro-rx"></block> 。</block>
   <block id="c7a001e5237d88fee0ed6a186bf5042e" category="summary">在配置NVIDIA SN2100 集群交换机之前，请查看配置概述。</block>
   <block id="19613dba5f729ac14e1b40a3e61a1ab9" category="doc">NVIDIA SN2100 交换机的硬件安装工作流程</block>
   <block id="aa93083325d3660d1aed75b314e1270e" category="paragraph">要安装和配置 SN2100 集群交换机的硬件，请按照以下步骤操作：</block>
@@ -5020,16 +4980,12 @@
   <block id="9fe54b1584b269535a10ca9757e0d633" category="paragraph">查看 SN2100 存储交换机的组件和零件编号。</block>
   <block id="5c48143a21829dd93210328cf347b174" category="paragraph-title"><block ref="05b2444faffd66d76e88602ea7dd353f" category="inline-image-macro-rx" type="image"></block><block ref="13fcbddd528de4209e7d23a68d1b9854" category="inline-link-macro-rx"></block></block>
   <block id="cf432b832643aab203cf324c0cdd3d2a" category="paragraph-title"><block ref="99e8b2f00e172bfcff96afdce69907bc" category="inline-image-macro-rx" type="image"></block><block ref="262cec1150ef38c9ea7540d7ae3a4889" category="inline-link-macro-rx"></block></block>
-  <block id="ed769f33f5e6396a5350c26d00e10952" category="paragraph"><block ref="6f29ea203d7917d9d35a7a8e4664773a" category="inline-link-macro-rx"></block> 。</block>
-  <block id="0f017a1e017594e935437ab5c77ea9cf" category="paragraph"><block ref="3041b5118a03f510955dbbcc0f577290" category="inline-link-macro-rx"></block>或者<block ref="a2ff852c84f89fa9e1b524e12735250e" category="inline-link-macro-rx"></block>。</block>
   <block id="fcdc3fbb546ffe8444175e226eb7d6d8" category="paragraph-title"><block ref="58f667aaf05f87159670e12bd9bc076b" category="inline-image-macro-rx" type="image"></block><block ref="d639995fde516a3ba2e60963b02aecc1" category="inline-link-macro-rx"></block></block>
   <block id="625b196242864fb625e827a05ba0ca8b" category="paragraph-title"><block ref="54f425ce8d89f4ed6b8a546561af5d60" category="inline-image-macro-rx" type="image"></block><block ref="3041b5118a03f510955dbbcc0f577290" category="inline-link-macro-rx"></block></block>
   <block id="9d9be89e305913aa4f5fc1db511581ef" category="paragraph-title"><block ref="05b2444faffd66d76e88602ea7dd353f" category="inline-image-macro-rx" type="image"></block><block ref="a2ff852c84f89fa9e1b524e12735250e" category="inline-link-macro-rx"></block></block>
   <block id="a29cf60e6a27ba607f38c03d72584ed6" category="paragraph-title"><block ref="beadfa85a2fdca06b91edc1131c603e6" category="inline-image-macro-rx" type="image"></block><block ref="042936408f11a0ab2085068400be81ab" category="inline-link-macro-rx"></block></block>
   <block id="5ec621045cf8b59339b967f20e718f17" category="paragraph-title"><block ref="99e8b2f00e172bfcff96afdce69907bc" category="inline-image-macro-rx" type="image"></block><block ref="bc8e6b3d8a605e692bda90d2d873314b" category="inline-link-macro-rx"></block></block>
   <block id="dc6a92646e360d6aebcb4ffde88fdaa1" category="paragraph">确保以下各项可用：</block>
-  <block id="d59b6c21553d166822815063268759a9" category="paragraph"><block ref="02bab6a93984b80dbf6d1f4b3c04e68a" category="inline-link-macro-rx"></block> 。</block>
-  <block id="0e245f17e1a2edaaad55998a79c7ba51" category="paragraph"><block ref="ec7a39e14153ae248be0af2fdfe579b9" category="inline-link-macro-rx"></block> 。</block>
   <block id="9becc6b0b1c7536b40d8c1cc61107fca" category="doc">NVIDIA SN2100 存储交换机的硬件安装工作流程</block>
   <block id="aca9675b14d96b37e8250c7e8e7ee607" category="paragraph">要安装和配置 SN2100 存储交换机的硬件，请按照以下步骤操作：</block>
   <block id="928d9ac7d5d1c965d93fe4d3435b9692" category="paragraph-title"><block ref="58f667aaf05f87159670e12bd9bc076b" category="inline-image-macro-rx" type="image"></block><block ref="1fbc6a97823ab47111a560b4ffbc73ac" category="inline-link-macro-rx"></block></block>
@@ -5132,7 +5088,6 @@
   <block id="a2c7fa8f383a047f3591230c9b0234c9" category="list-text">将这些更改保存到启动配置：</block>
   <block id="7411e9f163d9baab36b5ebc3f80bda73" category="admonition">尽管<block ref="8a444a43bdf534c0c6338bb7809659b3" prefix=" " category="inline-code"></block>在示例中使用，您可以使用您喜欢的文件传输方法，例如 SFTP、HTTPS 或 FTP。</block>
   <block id="5b9b8dea15de063806f0306fe78872c8" category="admonition">虽然<block ref="8a444a43bdf534c0c6338bb7809659b3" prefix=" " category="inline-code"></block>在示例中使用，您可以使用您喜欢的文件传输方法，例如 SFTP、HTTPS 或 FTP。</block>
-  <block id="bea4eb9c3f61f6fc9076a215ac1173fe" category="paragraph"><block ref="c1b3921cc8c2b4b51a888d2dc803623c" category="inline-link-macro-rx"></block> 。</block>
   <block id="00a850fef80958a3c902c0d0b0fc20c4" category="inline-link-macro">配置交换机健康监控</block>
   <block id="07c675c656e29cd460e1d99b7aa706f4" category="paragraph">迁移交换机后，您<block ref="9c3be868eca09e30ec03c7542e485ba6" category="inline-link-macro-rx"></block>。</block>
   <block id="549a122380830b4e1927b9e610dcece8" category="paragraph">Smart Call Home 监控您网络上的硬件和软件组件。当发生关键系统配置时，它会生成基于电子邮件的通知并向目标配置文件中配置的所有收件人发出警报。</block>
@@ -5345,7 +5300,6 @@
   <block id="0d76d085864e864b6fe18472ceadd96e" category="paragraph">这<block ref="cbfe825e8e02458e2eef3cd048612d7d" category="inline-link-macro-rx"></block>包含有关您的平台的实际集群端口的最新信息。</block>
   <block id="93f48052b83573c9588c2e2a29f0d2f4" category="list-text"><block ref="bdfe1ecddcd4f86ab15c01ce788e67b1" category="inline-link-macro-rx"></block>描述如何安装 FASTPATH 软件。</block>
   <block id="34a82aa346c0fcde4927e8ace4faeac1" category="list-text"><block ref="916de883b9541163d5e1b0ec103d976a" category="inline-link-macro-rx"></block>描述如何安装 RCF。</block>
-  <block id="2761fa8eeeaa9de0cb19156fa8180759" category="paragraph"><block ref="b4874fc318a2d2906865491ec45c2419" category="inline-link-macro-rx"></block> 。</block>
   <block id="bb3d2404d1e457b7cb2a94d3022caef9" category="paragraph">有关布线指南，请参阅<block ref="3660d2e2669921395eb817463df6e8d8" category="inline-link-macro-rx"></block>。</block>
   <block id="2793c83561f3221907ce0970e3c21030" category="list-text">完成所有故障排除步骤以确认您需要更换开关。</block>
   <block id="867dcc02c6629ff2e444919a943a2054" category="list-text">确保两个交换机上都存在管理连接。</block>
@@ -5800,4 +5754,76 @@
   <block id="da3536e3f4767ec4860d848c1b36098e" category="sidebar">ONTAP硬件系统的 Switch 文档</block>
   <block id="d0dfe2145063d5d6960f55dcbfb612c8" category="sidebar">安装升级</block>
   <block id="f3b17afc64da773efa83071745456131" category="sidebar">验证 SSH 配置</block>
+  <block id="2fcc83b51658ac7b52256ccd25ac6593" category="paragraph">确认组件和零件编号后，您可以进行审核。 <block ref="898b788ce0d10fbe77260f597aa8c6e0" category="inline-link-macro-rx"></block>。</block>
+  <block id="74af5112ab6cf8732ffe8eba910e2290" category="inline-link-macro">安装您的许可证</block>
+  <block id="85290349ee32e9f062a4795f3e1e06bb" category="paragraph">安装完 EFOS 软件后，您可以…… <block ref="172517aa1fa2cd21dd6fb86167c00f86" category="inline-link-macro-rx"></block>。</block>
+  <block id="8ec519db7b497274ec49e47d1d5805aa" category="inline-link-macro">安装 EFOS 软件</block>
+  <block id="1cdfb67cf1efdfc117156b73520a6202" category="paragraph">配置好交换机后，您可以…… <block ref="5f8c635ef985b849c8790b2e319cc3c1" category="inline-link-macro-rx"></block>。</block>
+  <block id="4d18a3e221b1f491180309c24ea50bd4" category="inline-link-macro">启用 SSH</block>
+  <block id="7c4e8f380d6fe0f7b87ed4f313261231" category="paragraph">安装完 RCF 后，您可以…… <block ref="e4ca236fba47af149933dade92f0dad2" category="inline-link-macro-rx"></block>。</block>
+  <block id="c8ebf4a179068046dbdbcfb49a4f1dd5" category="inline-link-macro">安装参考配置文件（RCF）</block>
+  <block id="1505c4fc614b38764c22b241eaa0da89" category="inline-link-macro">升级 RCF</block>
+  <block id="d3c28bc24f5e8dd1c938a675301f9dcd" category="paragraph">安装许可证后，您可以 <block ref="6caac7e01ed877f3cbe38ea9f059e295" category="inline-link-macro-rx"></block> 或者 <block ref="0ed9a2b66ddf9814b21a0bf59aa0f37b" category="inline-link-macro-rx"></block>。</block>
+  <block id="9d1f74f243e690a09970b31e96cfbf7d" category="paragraph">在您查看完配置要求后，您可以确认您的配置。 <block ref="205362a34e39f230d5f9e0dfed8a4350" category="inline-link-macro-rx"></block>。</block>
+  <block id="8aff8cebd8b9f73249a04d1015130ff5" category="paragraph">启用 SSH 后，您可以 <block ref="9c3be868eca09e30ec03c7542e485ba6" category="inline-link-macro-rx"></block>。</block>
+  <block id="804977fd87512d500a4689120af8cf70" category="paragraph">安装完 RCF 和许可证文件后，您可以…… <block ref="e4ca236fba47af149933dade92f0dad2" category="inline-link-macro-rx"></block>。</block>
+  <block id="99b9c101b9c51f15009f95c9edaf5a7e" category="paragraph">安装好交换机的硬件后，您可以…… <block ref="c501fc5287782c51cee053d084046acf" category="inline-link-macro-rx"></block> 要求。</block>
+  <block id="30e3b2cfb1c72e5b230d98750db3bf2b" category="paragraph">交换机迁移完成后，您可以…… <block ref="9c3be868eca09e30ec03c7542e485ba6" category="inline-link-macro-rx"></block>。</block>
+  <block id="c79eef3140e00260a78d272576cfba3c" category="paragraph">更换开关后，您可以 <block ref="9c3be868eca09e30ec03c7542e485ba6" category="inline-link-macro-rx"></block>。</block>
+  <block id="6d8754e81f6011fb9b29f77002c01275" category="paragraph">确认 EFOS 软件或 RCF 升级后，您可以…… <block ref="9c3be868eca09e30ec03c7542e485ba6" category="inline-link-macro-rx"></block>。</block>
+  <block id="afcde3664e37d8f858999ffb7e9d8467" category="paragraph">在您查看完配置要求后，您可以查看 <block ref="3bfe41df5ada7a5031db91489b512eed" category="inline-link-macro-rx"></block>。</block>
+  <block id="553a821415dc28221ab327b526d188f2" category="paragraph">验证完 SSH 配置后，您可以…… <block ref="9c3be868eca09e30ec03c7542e485ba6" category="inline-link-macro-rx"></block>。</block>
+  <block id="f7ab4643afdeb874561532068edda37b" category="paragraph-title"><block ref="58f667aaf05f87159670e12bd9bc076b" category="inline-image-macro-rx" type="image"></block><block ref="047e8cec0867aa2536fa544cc6e11acf" category="inline-link-macro-rx"></block></block>
+  <block id="e2dcca837ccd11685f32aea9c011201b" category="paragraph">安装完 NX-OS 软件后，您可以…… <block ref="fbf9c4918e420134d4383ce5a14b440d" category="inline-link-macro-rx"></block>。</block>
+  <block id="b6ec1495188cac4c86c841f0ab2f8043" category="paragraph">安装完 RCF 后，您可以…… <block ref="9c2eadd0cc07686b4a17c38ca62f4a4c" category="inline-link-macro-rx"></block>。</block>
+  <block id="227aef12ec3020452ced595834ad2e65" category="inline-link-macro">检查布线和配置</block>
+  <block id="2a78b7ed86f724cd65058a1dd9259dfa" category="paragraph">（可选） <block ref="18420978bb95dbc58537866fa2d7958a" category="inline-link-macro-rx"></block>。否则，你可以 <block ref="784e4f3e02f5e19f4a49a1542dbad39c" category="inline-link-macro-rx"></block> 要求。</block>
+  <block id="9c7e872eafa4ce3bafe48b85e4dccabc" category="inline-link-macro">安装 NX-OS 软件</block>
+  <block id="a83444c24e0333a8d2c26d5a4a4cb369" category="paragraph">准备好安装 NX-OS 软件和 RCF 后，您 <block ref="d75ac7de135fb381613e594c611e5a43" category="inline-link-macro-rx"></block>。</block>
+  <block id="0955b90a6dd9305ce1c157f3a6535248" category="inline-link-macro">准备安装 NX-OS 和 RCF</block>
+  <block id="1b23eca6bd0e688418119caf9e4cb36b" category="paragraph">配置好交换机之后，你 <block ref="67415c224bad223c5c0fa6b21bfd239f" category="inline-link-macro-rx"></block>。</block>
+  <block id="ff9a297b40cb610e8b48d97c5b2e8a60" category="paragraph">完成布线工作表后，你 <block ref="ba9ddce99e2d1f592840436be13feddd" category="inline-link-macro-rx"></block>。</block>
+  <block id="4b0405f5d2ef385bf5dd1ca9741968d4" category="list-text">升级到 RCF 版本 1.12 及更高版本时，请运行以下命令：</block>
+  <block id="33a0b92f0ebac7efe8736828a29dff1a" category="paragraph">确认配置要求后，您需要查看以下内容： <block ref="ebd73c3e74cc4ef5f3b03634c8dd9a01" category="inline-link-macro-rx"></block>。</block>
+  <block id="b3418e071ad0af628321787bdfdb144a" category="paragraph">安装完 NX-OS 软件后，您 <block ref="06b5548e8ac5164b226ba17b6e4d1fe4" category="inline-link-macro-rx"></block>。</block>
+  <block id="2e595795ee7d7b27d6013ed4aa1edbe6" category="paragraph">（可选） <block ref="2cea7f88b524cc550d065cf33c8d1c58" category="inline-link-macro-rx"></block>。否则，请前往 <block ref="3efd7bbc59a61a74defb48cf3f1c6fa7" category="inline-link-macro-rx"></block>。</block>
+  <block id="738f308f5a85950565ca6768bbd1b6df" category="inline-link-macro">安装 NX-OS 软件</block>
+  <block id="090d6ba973224b58ce14f935b1afaddc" category="paragraph">准备好安装 NX-OS 软件和 RCF 后，您 <block ref="86658f2b70ba317271005496e806b03c" category="inline-link-macro-rx"></block>。</block>
+  <block id="88fdc99e69a743a1eb164994c319127b" category="paragraph">配置好交换机之后，你 <block ref="cd06af6a9a8fb3236be1b579437fb58f" category="inline-link-macro-rx"></block>。</block>
+  <block id="b23946ab85420318ad29297bc09065d0" category="paragraph">完成布线工作表后，你 <block ref="158345103486debcc0cfc10501f464f8" category="inline-link-macro-rx"></block>。</block>
+  <block id="1fc28573c4253eea534a9b0a7346c2ae" category="paragraph">完成布线工作表后，您可以 <block ref="4952d250d292a65a90c0bebba6014799" category="inline-link-macro-rx"></block>。</block>
+  <block id="1ef6eed0ebf9cc7427083a8bd2e14d4b" category="paragraph">确认组件和零件编号后，您需要进行审核。 <block ref="df0358fd02066e7e9ccbaff4c1a048a5" category="inline-link-macro-rx"></block>。</block>
+  <block id="3c7137666241068803662df69a2b396f" category="paragraph">在您查看完配置要求后，您可以确认您的配置。 <block ref="7f669d24d9aef19198d4056386b39684" category="inline-link-macro-rx"></block>。</block>
+  <block id="fe8431277c54167a72c8b61fe4a00ac3" category="paragraph">安装完 RCF 后，您可以…… <block ref="5b8b393a675dcaaee97c02828356657c" category="inline-link-macro-rx"></block>。</block>
+  <block id="fe7ed7c52d6e6e2009c6cf35bf3fe240" category="paragraph">安装完 NX-OS 软件后，您可以…… <block ref="081d00f96e1fa5769dbf06cd540488d3" category="inline-link-macro-rx"></block>。</block>
+  <block id="0753226c968a573c0f0e13bee0aef3d8" category="paragraph">准备好安装 NX-OS 软件和 RCF 后，您可以…… <block ref="9b6aa2dad0d0afce300d884800fc9c37" category="inline-link-macro-rx"></block>。</block>
+  <block id="b843d161450c20e0071c16a2c9d56952" category="paragraph">配置好交换机后，您可以…… <block ref="746057c05111c8d98d05f7c2aa1f8967" category="inline-link-macro-rx"></block>。</block>
+  <block id="3db6619adb39cede96d0fac5db0dc834" category="paragraph">升级 RCF 后，您可以 <block ref="9c3be868eca09e30ec03c7542e485ba6" category="inline-link-macro-rx"></block>。</block>
+  <block id="a294afff18b68f8c1e4f78aeef5ef294" category="list-text"><block ref="a294afff18b68f8c1e4f78aeef5ef294" category="inline-link-macro-rx"></block></block>
+  <block id="62f22218ea7fb3cf6669cdfdb6c908e0" category="doc">为交换机配置 SNMPv3（可选）</block>
+  <block id="f8f4eb0f97707e7f8ebb995321498794" category="inline-link-macro">将 NS224 货架连接成交换机连接的存储设备</block>
+  <block id="ff22d5f888f5a0913f853ce7392a315e" category="paragraph">在您审核完布线和配置要求后，您 <block ref="9b56153f8288ea213a61283aa51d0b66" category="inline-link-macro-rx"></block>。</block>
+  <block id="21d99f2d550020c5a0b4816423b48ba6" category="paragraph">确认组件和零件编号后，您需要进行审核。 <block ref="49a5e49bddaeabf84f2ee5cfa4f2c2f8" category="inline-link-macro-rx"></block>。</block>
+  <block id="e078b89c94c4240cd6dab3e59e8b1f98" category="paragraph">在您查看完配置要求后，您可以确认您的配置。 <block ref="73d4a57b8c77c4dbdae06c6c07cd9dcc" category="inline-link-macro-rx"></block>。</block>
+  <block id="732e3e82bec2d756529a769494dc70f8" category="inline-link-macro">以 Cumulus 模式安装 Cumulus Linux</block>
+  <block id="8043ee61c7f7379917235c3269fed7c9" category="inline-link-macro">以 ONIE 模式安装 Cumulus Linux</block>
+  <block id="88e5314f302655cbcf7f227e92429626" category="paragraph">配置好交换机之后，你 <block ref="abc8e2fb5cb0373d7006d768e8dc0bfd" category="inline-link-macro-rx"></block> 或者 <block ref="28a30a7b340666b28d9a4222e714aaf7" category="inline-link-macro-rx"></block>。</block>
+  <block id="255f37e0f64c267cbe1845aba29c7c7c" category="paragraph">给书架布线完毕后，你 <block ref="a5a547b7e695aa3612b72d881f169519" category="inline-link-macro-rx"></block>。</block>
+  <block id="81f5064b20459a10b0a452ae24733718" category="inline-link-macro">安装参考配置文件 (RCF) 脚本</block>
+  <block id="ed3b40beeb91dc0a99c4580cb378b4b6" category="paragraph">在 Cumulus 模式下安装 Cumulus Linux 后，您 <block ref="83ca9f457d58548616bdf5d734a73df4" category="inline-link-macro-rx"></block>。</block>
+  <block id="482ccd1106eaba7536fd24593f4e76f2" category="paragraph">安装完硬件后，你 <block ref="b80562321e7105a297052828d3712cf7" category="inline-link-macro-rx"></block> 要求。</block>
+  <block id="81b9a3178dc726848b0b45d04848ad99" category="paragraph">在 ONIE 模式下安装 Cumulus Linux 后，您 <block ref="83ca9f457d58548616bdf5d734a73df4" category="inline-link-macro-rx"></block>。</block>
+  <block id="86a6c0bf628510e354b0911c128a4e0e" category="inline-link-macro">安装 CSHM 文件</block>
+  <block id="4976123a345a946ae994590aa9c2dfa3" category="paragraph">安装完 RCF 后，你 <block ref="f3791ff783629f66fe5f05b40418ed92" category="inline-link-macro-rx"></block>。</block>
+  <block id="ff10673c2cf2dcff4a056995095cf432" category="paragraph">安装 CSHM 文件后，您 <block ref="9c3be868eca09e30ec03c7542e485ba6" category="inline-link-macro-rx"></block>。</block>
+  <block id="2c2eb6e2450884003d431faa5248647a" category="inline-link-macro">安装或升级 RCF 脚本</block>
+  <block id="800f95ad6373c68fc216bece87093f65" category="paragraph">升级 Cumulus Linux 版本后，您 <block ref="ac720c45794c201b5f80c4938224f8dc" category="inline-link-macro-rx"></block>。</block>
+  <block id="548165e58dfad6461a9166d5091e701e" category="paragraph">在您审核完布线和配置要求后，您 <block ref="75b216e283a24f30a49086565a4dd379" category="inline-link-macro-rx"></block>。</block>
+  <block id="3755fc7d8677ebe8f5018b192d76ecee" category="paragraph">确认组件和零件编号后，您需要进行审核。 <block ref="439fe3fb46bcc21d34c70ab0497fdf03" category="inline-link-macro-rx"></block>。</block>
+  <block id="e151bfa4f47eb413c8e626e023b54eb2" category="paragraph">在您查看完配置要求后，您可以确认您的配置。 <block ref="00ac7ae7a02f4d4916cc2e9a0c466e89" category="inline-link-macro-rx"></block>。</block>
+  <block id="abe2721f38aeb4a52b34f031e63cb999" category="paragraph">配置好交换机之后，你 <block ref="393555469596ca2345e43e80c6e74ba5" category="inline-link-macro-rx"></block> 或者 <block ref="ac50052da6099ecd2d2a2ee1cd713de9" category="inline-link-macro-rx"></block>。</block>
+  <block id="15d61e1a8c8e02ed201c6c136d785267" category="paragraph">在 Cumulus 模式下安装 Cumulus Linux 后，您 <block ref="3acf483c9de841e025c40a5da17bc790" category="inline-link-macro-rx"></block>。</block>
+  <block id="09398bfa676e806eeb6998df2ece8bef" category="paragraph">安装完硬件后，你 <block ref="9158e03ff3d3214abbf7c9c47bc446be" category="inline-link-macro-rx"></block> 要求。</block>
+  <block id="9e54073d137b0a37710654f115f0a5c2" category="paragraph">在 ONIE 模式下安装 Cumulus Linux 后，您 <block ref="3acf483c9de841e025c40a5da17bc790" category="inline-link-macro-rx"></block>。</block>
+  <block id="b659527f486f2e9b0bf097bbf528b934" category="paragraph">安装或升级 RCF 后，您 <block ref="f3791ff783629f66fe5f05b40418ed92" category="inline-link-macro-rx"></block>。</block>
 </blocks>

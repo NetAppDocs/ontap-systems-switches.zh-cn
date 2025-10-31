@@ -211,3 +211,6 @@ sh1 (config)# *exit*
 . 删除未使用的集群交换机。
 . 删除未使用的存储交换机。
 
+
+.下一步是什么？
+交换机迁移完成后，您可以…… link:../switch-cshm/config-overview.html["配置交换机健康监控"]。

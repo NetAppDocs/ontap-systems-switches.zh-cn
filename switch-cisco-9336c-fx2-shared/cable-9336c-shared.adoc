@@ -71,4 +71,4 @@ image:blank_cabling_worksheet.jpg["空布线工作表"]
 
 
 .下一步
-link:install-9336c-shared.html["安装交换机"]。
+完成布线工作表后，您可以 link:install-9336c-shared.html["安装开关"]。

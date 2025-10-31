@@ -580,4 +580,4 @@ cluster1::*>
 
 
 .下一步是什么？
-link:install-rcf-3132q-v.html["安装参考配置文件（ RCF ）"]。
+安装完 NX-OS 软件后，您可以…… link:install-upgrade-rcf-overview-3132q-v.html["安装或升级参考配置文件（RCF）"]。

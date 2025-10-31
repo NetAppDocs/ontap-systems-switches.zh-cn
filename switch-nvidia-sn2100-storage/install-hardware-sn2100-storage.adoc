@@ -19,4 +19,4 @@ summary: 要安装BES-53248硬件、请参阅NVIDIA的文档。
 
 
 .下一步是什么？
-link:cabling-considerations-sn2100-storage.html["查看布线和配置"] 。
+安装完硬件后，你 link:cabling-considerations-sn2100-storage.html["检查布线和配置"] 要求。

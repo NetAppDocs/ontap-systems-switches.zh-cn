@@ -424,4 +424,4 @@ NetApp建议您使用System Manager设置新集群。
 参考link:https://docs.netapp.com/us-en/ontap/task_configure_ontap.html["使用System Manager在新集群上配置ONTAP"]了解设置说明。
 
 .下一步是什么？
-安装 RCF 后，您link:configure-ssh-keys.html["验证 SSH 配置"]。
+安装完 RCF 后，您可以…… link:configure-ssh-keys.html["验证 SSH 配置"]。

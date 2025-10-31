@@ -35,4 +35,4 @@ NVIDIA SN2100交换机是一款运行Cumulus Linux的10/25/40/100 Gb以太网交
 
 
 .下一步
-link:components-sn2100-storage.html["组件和部件号"] 。
+在您查看完配置要求后，您可以确认您的配置。 link:components-sn2100-storage.html["组件和零件编号"]。

@@ -13,7 +13,7 @@ summary: 在配置Cisco Nexus 3132Q-V 集群交换机之前，请查看配置概
 [role="lead"]
 要安装和配置 3132Q-V 集群交换机的硬件，请按照以下步骤操作：
 
-.image:https://raw.githubusercontent.com/NetAppDocs/common/main/media/number-1.png["一个"]link:setup_worksheet_3132q.html["完成布线工作表"]
+.image:https://raw.githubusercontent.com/NetAppDocs/common/main/media/number-1.png["一个"]link:setup-worksheet-3132q.html["完成布线工作表"]
 [role="quick-margin-para"]
 示例布线工作表提供了从交换机到控制器的建议端口分配示例。空白工作表提供了一个模板、可用于设置集群。
 

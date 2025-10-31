@@ -333,4 +333,4 @@ UP     swp16      100G  9216   BondMember  cs01 (swp16)     Master: cl
 --
 ====
 .下一步是什么？
-link:install-cable-shelves-sn2100-cluster.html["将NS224磁盘架作为交换机连接的存储进行布线"]。
+在您审核完布线和配置要求后，您 link:install-cable-shelves-sn2100-cluster.html["将 NS224 货架连接成交换机连接的存储设备"]。

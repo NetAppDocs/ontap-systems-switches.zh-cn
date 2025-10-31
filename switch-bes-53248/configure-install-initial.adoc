@@ -249,4 +249,4 @@ Configuration Saved!
 
 
 .下一步是什么？
-link:configure-efos-software.html["安装 EFOS 软件"]。
+配置好交换机后，您可以…… link:configure-efos-software.html["安装 EFOS 软件"]。

@@ -1169,4 +1169,4 @@ system node autosupport invoke -node * -type all -message MAINT=END
 
 
 .下一步是什么？
-link:configure-ssh.html["启用 SSH ："](英文)
+安装完 RCF 后，您可以…… link:configure-ssh.html["启用 SSH"]。

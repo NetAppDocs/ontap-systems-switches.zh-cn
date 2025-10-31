@@ -696,4 +696,4 @@ cluster1::*>
 
 
 .下一步是什么？
-link:install-nxos-rcf-9336c-shared.html["安装RCF"]。
+安装完 NX-OS 软件后，您可以…… link:install-nxos-rcf-9336c-shared.html["安装 RCF"]。

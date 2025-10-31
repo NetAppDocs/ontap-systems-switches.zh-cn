@@ -47,4 +47,4 @@ summary: 从 ONTAP 9.1.1 开始，您可以使用 Cisco Nexus 9336C-f2 交换机
 有关交换机初始配置的详细信息，请参见以下指南： https://www.cisco.com/c/en/us/td/docs/dcn/hw/nx-os/nexus9000/9336c-fx2-e/cisco-nexus-9336c-fx2-e-nx-os-mode-switch-hardware-installation-guide.html["《 Cisco Nexus 9336C-x2 安装和升级指南》"]。
 
 .下一步
-link:components-9336c-shared.html["组件和部件号"] 。
+在您查看完配置要求后，您可以确认您的配置。 link:components-9336c-shared.html["组件和零件编号"]。

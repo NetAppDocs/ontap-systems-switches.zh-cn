@@ -12,7 +12,7 @@ entries:
     url: "/switch-cshm/config-overview.html"
   - title: 配置日志收集
     url: "/switch-cshm/config-log-collection.html"
-  - title: 可选-配置SNMPv3
+  - title: 配置SNMPv3 (可选)
     url: "/switch-cshm/config-snmpv3.html"
 - title: 检查交换机运行状况
   pdf-filename: monitor_switch_Health

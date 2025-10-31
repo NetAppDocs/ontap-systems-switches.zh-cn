@@ -50,4 +50,4 @@ NetApp 系统机柜中的 Cisco Nexus 9336C-x2
 
 
 .下一步是什么？
-或者，您可以link:install-cisco-nexus-3132qv.html["在NetApp机柜中安装Cisco Nexus 3132Q-V 交换机"]。否则，转到link:cabling-considerations-3132q-v.html["查看布线和配置"]。
+（可选） link:install-cisco-nexus-3132qv.html["在NetApp机柜中安装Cisco Nexus 3132Q-V 交换机"]。否则，你可以 link:cabling-considerations-3132q-v.html["检查布线和配置"] 要求。

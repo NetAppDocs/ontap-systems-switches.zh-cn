@@ -50,4 +50,4 @@ NetApp 系统机柜中的 Cisco Nexus 3232C
 
 
 .下一步是什么？
-或者，您可以link:install-cisco-nexus-3232c.html["在NetApp机柜中安装Cisco Nexus 3223C 交换机"]。否则，转到link:cabling-considerations-3232c.html["查看布线和配置"]。
+（可选） link:install-cisco-nexus-3232c.html["在NetApp机柜中安装Cisco Nexus 3223C 交换机"]。否则，请前往 link:cabling-considerations-3232c.html["检查布线和配置"]。

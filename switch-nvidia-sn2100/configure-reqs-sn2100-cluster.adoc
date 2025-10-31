@@ -45,4 +45,4 @@ SN2100交换机通过不同的交换机对为9.10.1P3 9.10.1P3及更高版本中
 
 
 .下一步是什么？
-link:components-sn2100-cluster.html["组件和部件号"] 。
+在您查看完配置要求后，您可以确认您的配置。 link:components-sn2100-cluster.html["组件和零件编号"]。

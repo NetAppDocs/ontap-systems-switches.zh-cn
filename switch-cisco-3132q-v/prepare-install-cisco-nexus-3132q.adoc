@@ -218,4 +218,4 @@ Cluster
 
 
 .下一步是什么？
-link:install-nx-os-software-3132q-v.html["安装NX-OS软件"]。
+准备好安装 NX-OS 软件和 RCF 后，您 link:install-nx-os-software-3132q-v.html["安装 NX-OS 软件"]。

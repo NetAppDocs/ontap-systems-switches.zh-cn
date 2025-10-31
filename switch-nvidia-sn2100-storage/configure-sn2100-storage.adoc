@@ -19,4 +19,4 @@ summary: 要安装BES-53248硬件、请参阅NVIDIA的文档。
 
 
 .下一步是什么？
-link:install-cumulus-mode-sn2100-storage.html["在Cumulus模式下安装Cumulus Linux"]或者link:install-onie-mode-sn2100-storage.html["在ONIE模式下安装Cumulus Linux"]。
+配置好交换机之后，你 link:install-cumulus-mode-sn2100-storage.html["以 Cumulus 模式安装 Cumulus Linux"] 或者 link:install-onie-mode-sn2100-storage.html["以 ONIE 模式安装 Cumulus Linux"]。

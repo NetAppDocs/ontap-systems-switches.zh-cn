@@ -628,4 +628,4 @@ shelf id remote-port  remote-device
 
 
 .下一步是什么？
-link:../switch-cshm/config-overview.html["配置交换机运行状况监控"](英文)
+更换开关后，您可以 link:../switch-cshm/config-overview.html["配置交换机健康监控"]。

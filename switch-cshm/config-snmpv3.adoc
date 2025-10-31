@@ -4,7 +4,7 @@ sidebar: sidebar
 keywords: cshm, configure, snmpv3, switch logs, debugging, collection 
 summary: '您可以使用此过程为特定交换机配置SNMPv3、此交换机支持以太网交换机运行状况监控(CSHM)。' 
 ---
-= 可选：为交换机配置SNMPv3
+= 为交换机配置 SNMPv3（可选）
 :allow-uri-read: 
 :icons: font
 :imagesdir: ../media/
