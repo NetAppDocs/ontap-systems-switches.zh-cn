@@ -134,4 +134,4 @@ NOTE: 要保持冗余，必须将两条线连接到不同的 PDU 。
 
 
 .下一步
-在NetApp机柜中安装交换机后，link:setup-switch-9336c-storage.html["配置Cisco Nexus 9336C-FX2 和 9336C-FX2-T 交换机"] 。
+在将交换机安装到NetApp机柜后，您可以……link:setup-switch-9336c-storage.html["配置Cisco Nexus 9336C-FX2 和 9336C-FX2-T 交换机"] 。

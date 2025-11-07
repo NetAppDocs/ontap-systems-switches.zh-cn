@@ -19,4 +19,4 @@ summary: 要安装SN2100硬件、请参阅NVIDIA的文档。
 
 
 .下一步是什么？
-安装完硬件后，你 link:cabling-considerations-sn2100-cluster.html["检查布线和配置"] 要求。
+硬件安装完毕后，您可以……link:cabling-considerations-sn2100-cluster.html["检查布线和配置"]要求。

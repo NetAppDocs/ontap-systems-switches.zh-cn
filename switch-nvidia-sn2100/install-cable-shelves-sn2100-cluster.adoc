@@ -24,4 +24,4 @@ https://hwu.netapp.com/["NetApp Hardware Universe"^]
 
 
 .下一步是什么？
-给书架布线完毕后，你 link:configure-sn2100-cluster.html["配置交换机"]。
+给书架布线完成后，你可以……link:configure-sn2100-cluster.html["配置交换机"] 。

@@ -43,4 +43,4 @@ summary: 从 ONTAP 9.1.1 开始，您可以使用 Cisco Nexus 9336C-f2 交换机
 | X-NXA-Fan-65CFM-PI | N9K-9336C 65CFM ，端口侧进气气流 
 |===
 .下一步
-确认组件和零件编号后，您需要进行审核。 link:required-documentation-9336c-shared.html["所需文件"]。
+确认组件和零件编号后，您可以进行审核。 link:required-documentation-9336c-shared.html["所需文件"]。

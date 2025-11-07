@@ -701,4 +701,4 @@ RPC status:
 
 
 .下一步是什么？
-迁移交换机后，您link:../switch-cshm/config-overview.html["配置交换机健康监控"]。
+交换机迁移完成后，您可以link:../switch-cshm/config-overview.html["配置交换机健康监控"]。

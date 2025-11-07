@@ -902,4 +902,4 @@ RPC status:
 --
 ====
 .下一步是什么？
-升级 RCF 后，您link:configure-ssh-keys.html["验证 SSH 配置"]。
+升级 RCF 后，您可以link:configure-ssh-keys.html["验证 SSH 配置"]。

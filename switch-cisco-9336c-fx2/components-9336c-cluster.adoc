@@ -124,4 +124,4 @@ N9K-9336C 65CFM ，端口侧进气气流
 NOTE: 购买智能许可证后、请安装相应的RCF)以启用并配置所有36个可用端口以供使用。
 
 .下一步
-确认组件和零件号后，您可以查看link:required-documentation-9336c-cluster.html["所需文件"]。
+确认组件和零件编号后，您可以进行审核。 link:required-documentation-9336c-cluster.html["所需文件"]。

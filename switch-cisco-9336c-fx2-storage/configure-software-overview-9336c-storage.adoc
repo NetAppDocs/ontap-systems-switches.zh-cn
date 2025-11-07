@@ -25,7 +25,7 @@ summary: Cisco Nexus 9336C-x2存储交换机的软件配置概述
 [role="quick-margin-para"]
 在Cisco 9336C-FX2 和 9336C-FX2-T 存储交换机上下载并安装或升级 NX-OS 软件。
 
-.image:https://raw.githubusercontent.com/NetAppDocs/common/main/media/number-4.png["四个"]link:install-rcf-software-9336c-storage.html["安装或升级RC框架"]
+.image:https://raw.githubusercontent.com/NetAppDocs/common/main/media/number-4.png["四个"]link:install-upgrade-rcf-overview-9336c-storage.html["安装或升级RC框架"]
 [role="quick-margin-para"]
 首次设置Cisco 9336C-FX2 和 9336C-FX2-T 交换机后安装或升级 RCF。您也可以使用此过程升级您的 RCF 版本。
 

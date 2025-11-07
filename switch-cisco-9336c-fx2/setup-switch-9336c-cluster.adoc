@@ -192,4 +192,4 @@ NOTE: 如果您在此阶段未保存配置，则下次重新启动交换机时�
 
 
 .下一步是什么？
-配置好交换机后，link:install-nxos-overview-9336c-cluster.html["准备安装NX-OS软件和RCF"] 。
+配置好交换机后，您可以…… link:install-nxos-overview-9336c-cluster.html["准备安装NX-OS软件和RCF"]。

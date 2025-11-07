@@ -150,7 +150,7 @@ cs1# copy running-config startup-config [#######################################
 +
 `cs1# show run | section "switchname" >> bootflash:write_erase.cfg`
 
-. 对于 RCF 版本 1.12 及更高版本，运行以下命令：
+. 安装 RCF 1.12 及更高版本时，请运行以下命令：
 +
 `cs1# echo "hardware access-list tcam region ing-racl 1024" >> bootflash:write_erase.cfg`
 
@@ -413,4 +413,4 @@ System Manager为集群设置和配置提供了一个简单易行的工作流、
 转至 https://docs.netapp.com/us-en/ontap/task_configure_ontap.html["使用System Manager在新集群上配置ONTAP"] 有关设置说明、请参见。
 
 .下一步是什么？
-安装 RCF 后，您link:configure-ssh-keys.html["验证 SSH 配置"]。
+安装完 RCF 后，您可以…… link:configure-ssh-keys.html["验证 SSH 配置"]。

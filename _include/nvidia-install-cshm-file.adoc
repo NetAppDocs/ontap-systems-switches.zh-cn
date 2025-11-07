@@ -87,7 +87,7 @@
 +
 [listing, subs="+quotes"]
 ----
-cluster1::> *system switch ethernet*
+cluster1::> *system switch ethernet configure-health-monitor*
 ----
 . 确认对于您的ONTAP版本、命令输出以以下文本结尾：
 
@@ -113,11 +113,11 @@ shm已安装配置文件。
 如果发生错误，请联系 NetApp 支持部门。
 
 . [[step 6]]等待以太网交换机运行状况监控器轮询间隔两次(通过运行找到 `system switch ethernet polling-interval show`)，然后再完成下一步。
-. 在ONTAP系统上运行命令 `system switch ethernet show` 、并确保发现集群交换机时、监控字段设置为*真*、序列号字段未显示*未知*。
+. 运行该命令 `system switch ethernet configure-health-monitor show`在ONTAP系统中，确保已发现集群交换机，并且监控字段设置为 *True*，序列号字段不显示 *Unknown*。
 +
 [listing, subs="+quotes"]
 ----
-cluster1::> *system switch ethernet show*
+cluster1::> *system switch ethernet configure-health-monitor show*
 ----
 
 

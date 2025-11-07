@@ -696,4 +696,4 @@ cluster1::*>
 
 
 .下一步是什么？
-安装或升级 NX-OS 软件后，您link:install-rcf-software-9336c-storage.html["安装或升级 RCF"]。
+安装或升级 NX-OS 软件后，您可以……link:install-rcf-software-9336c-storage.html["安装或升级 RCF"] 。
