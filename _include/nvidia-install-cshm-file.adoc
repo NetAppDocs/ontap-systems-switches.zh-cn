@@ -2,43 +2,43 @@
 :allow-uri-read: 
 
 
-要在 NVIDIA 以太网交换机上配置以太网交换机健康监控，请按照以下步骤操作。
+要在NVIDIA以太网交换机上配置以太网交换机健康状况监控，请按照以下步骤操作。
 
-如果 NVIDIA X190006-PE 和 X190006-PI 交换机无法正确检测，则适用这些说明，可以通过运行 `system switch ethernet show`并检查您的型号是否显示“*OTHER*”。要识别您的 NVIDIA 交换机型号，请使用以下命令查找部件号 `nv show platform hardware`对于 NVIDIA CL 5.8 及更早版本或 `nv show platform`适用于更高版本。
+如果NVIDIA X190006-PE 和 X190006-PI 开关未被正确检测到，则适用以下说明，可通过运行以下命令来确认这一点： `system switch ethernet show`并检查您的型号是否显示“其他”选项。要识别您的NVIDIA交换机型号，请使用以下命令查找部件号。 `nv show platform hardware`适用于NVIDIA CL 5.8 及更早版本或 `nv show platform`适用于后续版本。
 
 [NOTE]
 ====
-如果您希望在将 NVIDIA CL 5.11.x 与以下 ONTAP 版本结合使用时，运行状况监控和日志收集能够按预期工作，也建议您执行这些步骤。虽然即使没有这些步骤，运行状况监控和日志收集可能仍会正常运行，但遵循这些步骤可以确保一切正常运行。
+如果您希望在使用NVIDIA CL 5.11.x 和以下ONTAP版本时，健康监控和日志收集能够按预期工作，也建议执行这些步骤。即使不采取这些步骤，健康监测和日志收集功能也可能仍然有效，但遵循这些步骤可确保一切正常运行。
 
-* 9.10.1P20、9.11.1P18、9.12.1P16、9.13.1P8、9.14.1、9.15.1 及更高补丁版本
+* 9.10.1P20、9.11.1P18、9.12.1P16、9.13.1P8、9.14.1、9.15.1 及更高版本的补丁
 
 
 ====
 .开始之前
-* 确保ONTAP 集群已启动且正在运行。
-* 在交换机上启用 SSH 以使用 CSHM 中可用的所有功能。
+* 请确保ONTAP集群已启动并正在运行。
+* 在交换机上启用 SSH，即可使用 CSHM 中的所有功能。
 * 清除 `/mroot/etc/cshm_nod/nod_sign/`所有节点上的目录：
 +
-.. 输入noshell：
+.. 进入节点 shell：
 +
 `system node run -node <name>`
 
-.. 更改为高级权限：
+.. 切换到高级权限：
 +
 `priv set advanced`
 
-.. 列出目录中的配置文件 `/etc/cshm_nod/nod_sign`。如果目录存在并包含配置文件、则会列出文件名。
+.. 列出配置文件。 `/etc/cshm_nod/nod_sign`目录。如果目录存在且包含配置文件，则会列出文件名。
 +
 `ls /etc/cshm_nod/nod_sign`
 
-.. 删除与所连接交换机型号对应的所有配置文件。
+.. 删除与所连接的交换机型号对应的所有配置文件。
 +
-如果您不确定、请删除上述受支持型号的所有配置文件、然后下载并安装这些型号的最新配置文件。
+如果您不确定，请删除上面列出的受支持型号的所有配置文件，然后下载并安装这些型号的最新配置文件。
 
 +
 `rm /etc/cshm_nod/nod_sign/<filename>`
 
-.. 确认删除的配置文件不再位于目录中：
+.. 确认已删除的配置文件已不在目录中：
 +
 `ls /etc/cshm_nod/nod_sign`
 
@@ -47,19 +47,19 @@
 
 
 .步骤
-. 根据相应的ONTAP版本下载以太网交换机运行状况监控器配置zip文件。此文件可从页面访问 https://mysupport.netapp.com/site/info/nvidia-cluster-switch["NVIDIA以太网交换机"^] 。
+. 根据相应的ONTAP版本下载以太网交换机健康监控器配置 zip 文件。该文件可从以下位置获取： https://mysupport.netapp.com/site/info/nvidia-cluster-switch["NVIDIA以太网交换机"^]页。
 +
-.. 在NVIDIA SN2100软件下载页面上，选择*Nvidia CSHM File*。
-.. 在Cau/必 读页面上、选中复选框以达成一致。
-.. 在“最终用户许可协议”页面上，选中复选框以同意，然后单击*Accept & Continue*。
-.. 在Nvidia CSHM文件-下载页面上、选择适用的配置文件。可以使用以下文件：
+.. 在NVIDIA SN2100 软件下载页面上，选择 *Nvidia CSHM 文件*。
+.. 在“注意事项/必读”页面上，选中复选框表示同意。
+.. 在最终用户许可协议页面上，选中复选框表示同意，然后单击“接受并继续”。
+.. 在 Nvidia CSHM 文件 - 下载页面上，选择适用的配置文件。以下文件可供下载：
 
 
 
 
 [role="tabbed-block"]
 ====
-.ONTAP 9.151及更高版本
+.ONTAP 9.15.1 及更高版本
 --
 * MSN2100-CB2FC-v1.4.zip
 * MSN2100-CB2RC-v1.4.zip
@@ -68,7 +68,7 @@
 
 
 --
-.ONTAP 9.11.1至9.14.1
+.ONTAP 9.11.1 至 9.14.1
 --
 * MSN2100-CB2FC_PRIOR_R9.15.1-v1.4.zip
 * MSN2100-CB2RC_PRIOR_R9.15.1-v1.4.zip
@@ -78,41 +78,41 @@
 
 --
 ====
-. [[STEP2]]将适用的zip文件上传到内部Web服务器。
-. 从集群中的一个ONTAP系统访问高级模式设置。
+. [[step2]]将相应的 zip 文件上传到您的内部 Web 服务器。
+. 从集群中的某个ONTAP系统访问高级模式设置。
 +
 `set -privilege advanced`
 
-. 运行交换机运行状况监控器配置命令。
+. 运行交换机健康监控器配置命令。
 +
 [listing, subs="+quotes"]
 ----
 cluster1::> *system switch ethernet configure-health-monitor*
 ----
-. 确认对于您的ONTAP版本、命令输出以以下文本结尾：
+. 请确认您的ONTAP版本命令输出是否以以下文本结尾：
 
 
 [role="tabbed-block"]
 ====
-.ONTAP 9.151及更高版本
+.ONTAP 9.15.1 及更高版本
 --
-以太网交换机运行状况监控已安装配置文件。
+以太网交换机健康监控已安装配置文件。
 
 --
-.ONTAP 9.11.1至9.14.1
+.ONTAP 9.11.1 至 9.14.1
 --
-shm已安装配置文件。
+SHM 已安装配置文件。
 
 --
-.ONTAP 9.10.1.
+.ONTAP 9.10.1
 --
-已成功处理CSHM下载的软件包。
+CSHM下载包已成功处理。
 
 --
 ====
-如果发生错误，请联系 NetApp 支持部门。
+如果发生错误，请联系NetApp支持。
 
-. [[step 6]]等待以太网交换机运行状况监控器轮询间隔两次(通过运行找到 `system switch ethernet polling-interval show`)，然后再完成下一步。
+. [[step6]]等待以太网交换机健康监视器轮询间隔的两倍，该间隔可通过运行以下命令找到。 `system switch ethernet polling-interval show`在完成下一步之前。
 . 运行该命令 `system switch ethernet configure-health-monitor show`在ONTAP系统中，确保已发现集群交换机，并且监控字段设置为 *True*，序列号字段不显示 *Unknown*。
 +
 [listing, subs="+quotes"]
@@ -122,6 +122,6 @@ cluster1::> *system switch ethernet configure-health-monitor show*
 
 
 
-NOTE: 如果您的型号在应用配置文件后仍显示*OTA*，请与NetApp支持联系。
+NOTE: 如果应用配置文件后，您的模型仍然显示“*OTHER*”，请联系NetApp支持。
 
-查看 https://docs.netapp.com/us-en/ontap-cli/system-switch-ethernet-configure-health-monitor.html["系统交换机以太网配置-健康-监控"^]命令以了解更多详细信息。
+参见 https://docs.netapp.com/us-en/ontap-cli/system-switch-ethernet-configure-health-monitor.html["系统交换机以太网配置-健康-监控"^]运行命令以获取更多详情。

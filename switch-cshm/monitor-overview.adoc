@@ -2,17 +2,17 @@
 permalink: switch-cshm/monitor-overview.html 
 sidebar: sidebar 
 keywords: cshm, cluster, storage, switch logs, debugging, collection 
-summary: 您可以使用以下命令 
+summary: 您可以使用以下命令…… 
 ---
-= 运行状况检查概述
+= 健康检查概述
 :allow-uri-read: 
 :icons: font
 :imagesdir: ../media/
 
 
 [role="lead"]
-运行状况监控器会主动监控集群中的某些严重情况，并在检测到故障或风险时发出警报。
+健康监控器会主动监控集群中的某些关键状况，并在检测到故障或风险时发出警报。
 
-要查看当前引发的以太网交换机运行状况监控器警报、请运行以下命令： `system health alert show -monitor ethernet-switch`
+要查看当前已触发的以太网交换机健康监控警报，请运行以下命令： `system health alert show -monitor ethernet-switch`
 
-要查看可用的以太网交换机运行状况监控器警报、请运行以下命令： `system health alert definition show -monitor ethernet-switch`
+要查看可用的以太网交换机健康监控警报，请运行以下命令： `system health alert definition show -monitor ethernet-switch`

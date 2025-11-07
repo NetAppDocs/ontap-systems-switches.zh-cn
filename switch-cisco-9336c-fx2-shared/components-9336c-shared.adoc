@@ -2,9 +2,9 @@
 sidebar: sidebar 
 permalink: switch-cisco-9336c-fx2-shared/components-9336c-shared.html 
 keywords: shared storage cluster switch 
-summary: 从 ONTAP 9.1.1 开始，您可以使用 Cisco Nexus 9336C-f2 交换机将存储和集群功能结合到共享交换机方案中。 
+summary: 从ONTAP 9.9.1 开始，您可以使用Cisco Nexus 9336C-FX2 交换机将存储和集群功能组合到共享交换机场景中。 
 ---
-= Cisco Nexus 9336C-x2共享交换机的组件和部件号
+= Cisco Nexus 9336C-FX2 共享交换机的组件和部件号
 :hardbreaks:
 :allow-uri-read: 
 :nofooter: 
@@ -14,33 +14,33 @@ summary: 从 ONTAP 9.1.1 开始，您可以使用 Cisco Nexus 9336C-f2 交换机
 
 
 [role="lead"]
-对于Cisco Nexus 9336C-FX2交换机安装和维护、请务必查看组件列表和部件号。
+对于Cisco Nexus 9336C-FX2 交换机的安装和维护，请务必查看组件和部件号列表。
 
-下表列出了 9336C-fx2 交换机，风扇和电源的部件号和问题描述：
+下表列出了 9336C-FX2 交换机、风扇和电源的部件号和描述：
 
 |===
-| 部件号 | Description 
+| 零件编号 | 描述 
 
 
-| X190200-CS-PE | N9K-9336C-f2 ， CS ， PTSX ， 36PT10/25/40/100GQSFP28 
+| X190200-CS-PE | N9K-9336C-FX2、CS、PTSX、36PT10/25/40/100GQSFP28 
 
 
-| X190200-CS-PI | N9K-9336C-f2 ， CS ， PSIN ， 36PT10/25/40/100GQSFP28 
+| X190200-CS-PI | N9K-9336C-FX2，CS，PSIN，36PT10/25/40/100GQSFP28 
 
 
 | X190002 | 附件套件 X190001/X190003 
 
 
-| X-NXA-PA-11000W-PE2 | N9K-9336C 交流 1100 W PSU —端口侧排气 
+| X-NXA-PAC-1100W-PE2 | N9K-9336C 交流 1100W 电源 - 端口侧排气 
 
 
-| X-NXA-PC-11000W-PI2 | N9K-9336C 交流 1100 W PSU —端口侧进气气流 
+| X-NXA-PAC-1100W-PI2 | N9K-9336C 交流 1100W 电源 - 端口侧进气 
 
 
-| X-NXA-Fan-65CFM-PE | N9K-9336C 65CFM ，端口侧排气 
+| X-NXA-FAN-65CFM-PE | N9K-9336C 65CFM，左舷排气气流 
 
 
-| X-NXA-Fan-65CFM-PI | N9K-9336C 65CFM ，端口侧进气气流 
+| X-NXA-FAN-65CFM-PI | N9K-9336C 65CFM，左舷进气气流 
 |===
 .下一步
 确认组件和零件编号后，您可以进行审核。 link:required-documentation-9336c-shared.html["所需文件"]。

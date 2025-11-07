@@ -2,26 +2,26 @@
 permalink: switch-nvidia-sn2100/configure-software-overview-sn2100-cluster.html 
 sidebar: sidebar 
 keywords: sn2100 SN2100 switches setup, sn2100 SN2100 switches install, cumulus linux 
-summary: 软件配置或NVIDIA SN2100交换机概述。 
+summary: NVIDIA SN2100交换机的软件配置概述。 
 ---
-= NVIDIA SN2100交换机的软件安装工作流
+= NVIDIA SN2100交换机的软件安装工作流程
 :allow-uri-read: 
 :icons: font
 :imagesdir: ../media/
 
 
 [role="lead"]
-要为NVIDIA SN2100交换机安装和配置软件、请执行以下步骤：
+要为NVIDIA SN2100 交换机安装和配置软件，请按照以下步骤操作：
 
 .image:https://raw.githubusercontent.com/NetAppDocs/common/main/media/number-1.png["一个"]link:configure-sn2100-cluster.html["配置交换机"]
 [role="quick-margin-para"]
 配置NVIDIA SN2100交换机。
 
-.image:https://raw.githubusercontent.com/NetAppDocs/common/main/media/number-2.png["两个"]link:install-cumulus-mode-sn2100-cluster.html["在Cumulus模式下安装Cumulus Linux"]
+.image:https://raw.githubusercontent.com/NetAppDocs/common/main/media/number-2.png["两个"]link:install-cumulus-mode-sn2100-cluster.html["以 Cumulus 模式安装 Cumulus Linux"]
 [role="quick-margin-para"]
 当交换机运行 Cumulus Linux 时，您可以安装 Cumulus Linux (CL) 操作系统。
 
-.image:https://raw.githubusercontent.com/NetAppDocs/common/main/media/number-3.png["三个"]link:install-onie-mode-sn2100-cluster.html["在ONIE模式下安装Cumulus Linux"]
+.image:https://raw.githubusercontent.com/NetAppDocs/common/main/media/number-3.png["三"]link:install-onie-mode-sn2100-cluster.html["以 ONIE 模式安装 Cumulus Linux"]
 [role="quick-margin-para"]
 或者，您可以在交换机以 ONIE 模式运行 Cumulus Linux 时安装 Cumulus Linux (CL) 操作系统。
 
@@ -29,14 +29,14 @@ summary: 软件配置或NVIDIA SN2100交换机概述。
 [role="quick-margin-para"]
 您可以根据需要升级您的 Cumulus Linux (CL) 操作系统。
 
-.image:https://raw.githubusercontent.com/NetAppDocs/common/main/media/number-5.png["五个"]link:install-rcf-sn2100-cluster.html["安装或升级参考配置文件(Reference Configuration File、RCF)脚本"]
+.image:https://raw.githubusercontent.com/NetAppDocs/common/main/media/number-5.png["五"]link:install-rcf-sn2100-cluster.html["安装或升级参考配置文件 (RCF) 脚本"]
 [role="quick-margin-para"]
-有两个RCF脚本可用于集群和存储应用程序。每个的操作步骤 是相同的。
+有两个 RCF 脚本可用于集群和存储应用。每种情况的处理步骤都相同。
 
-.image:https://raw.githubusercontent.com/NetAppDocs/common/main/media/number-6.png["六个"]link:setup-install-cshm-file.html["安装CSHM文件"]
+.image:https://raw.githubusercontent.com/NetAppDocs/common/main/media/number-6.png["六"]link:setup-install-cshm-file.html["安装 CSHM 文件"]
 [role="quick-margin-para"]
-您可以安装相应的配置文件、以便监控NVIDIA集群交换机的以太网交换机运行状况。
+您可以安装适用于NVIDIA集群交换机的以太网交换机健康状况监控的配置文件。
 
-.image:https://raw.githubusercontent.com/NetAppDocs/common/main/media/number-7.png["七个"]link:reset-switch-sn2100.html["将交换机重置为出厂默认设置"]
+.image:https://raw.githubusercontent.com/NetAppDocs/common/main/media/number-7.png["七"]link:reset-switch-sn2100.html["将交换机重置为出厂默认设置"]
 [role="quick-margin-para"]
 清除 SN2100 集群交换机设置。

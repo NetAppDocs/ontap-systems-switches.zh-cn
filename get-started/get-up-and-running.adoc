@@ -2,7 +2,7 @@
 permalink: get-started/get-up-and-running.html 
 sidebar: sidebar 
 keywords:  
-summary: 了解集群、存储和共享交换机。 
+summary: 了解集群交换机、存储交换机和共享交换机。 
 ---
 = 使用 AFX 系统、集群、存储和共享交换机启动并运行
 :allow-uri-read: 
@@ -13,11 +13,11 @@ summary: 了解集群、存储和共享交换机。
 [role="lead"]
 要启动并运行 AFX 系统、集群、存储和共享交换机，您需要安装硬件组件并配置交换机。
 
-部署交换机涉及以下工作流。
+部署交换机涉及以下工作流程。
 
 .image:https://raw.githubusercontent.com/NetAppDocs/common/main/media/number-1.png["一个"]安装交换机硬件
 [role="quick-margin-para"]
-将交换机安装在机架或机柜中。根据您的交换机型号访问以下说明。
+将交换机安装在机架或机柜中。请参考以下适用于您交换机型号的说明。
 
 [cols="11,9,9,9"]
 |===
@@ -30,24 +30,24 @@ summary: 了解集群、存储和共享交换机。
 
  a| 
 .集群交换机
-* link:../switch-bes-53248/install-hardware-bes53248.html["安装BES-53248交换机"]
-* link:../switch-cisco-9336c-fx2/install-switch-9336c-cluster.html["安装Cisco Nexus 9336C-x2交换机"]
-* link:../switch-nvidia-sn2100/install-hardware-sn2100-cluster.html["安装NVIDIA SN2100交换机"]
+* link:../switch-bes-53248/install-hardware-bes53248.html["安装 BES-53248 交换机"]
+* link:../switch-cisco-9336c-fx2/install-switch-9336c-cluster.html["安装Cisco Nexus 9336C-FX2 交换机"]
+* link:../switch-nvidia-sn2100/install-hardware-sn2100-cluster.html["安装NVIDIA SN2100 开关"]
 
  a| 
 .存储交换机
-* link:../switch-cisco-9336c-fx2-storage/install-9336c-storage.html["安装Cisco Nexus 9336C-x2交换机"]
-* link:../switch-nvidia-sn2100-storage/install-hardware-sn2100-storage.html["安装NVIDIA SN2100交换机"]
+* link:../switch-cisco-9336c-fx2-storage/install-9336c-storage.html["安装Cisco Nexus 9336C-FX2 交换机"]
+* link:../switch-nvidia-sn2100-storage/install-hardware-sn2100-storage.html["安装NVIDIA SN2100 开关"]
 
  a| 
 .共享交换机
-* link:../switch-cisco-9336c-fx2-shared/install-9336c-shared.html["安装Cisco Nexus 9336C-x2交换机"]
+* link:../switch-cisco-9336c-fx2-shared/install-9336c-shared.html["安装Cisco Nexus 9336C-FX2 交换机"]
 
 
 |===
-.image:https://raw.githubusercontent.com/NetAppDocs/common/main/media/number-2.png["两个"]安装存储系统和存储架
+.image:https://raw.githubusercontent.com/NetAppDocs/common/main/media/number-2.png["两个"]安装储物系统和储物架
 [role="quick-margin-para"]
-在机柜或机架中安装存储系统和存储架。访问适用于您的平台型号的安装和设置说明。
+将储物系统和储物架安装到柜子或货架上。请查阅适用于您平台型号的安装和设置说明。
 
 [cols="2,9,9,9"]
 |===
@@ -58,16 +58,16 @@ summary: 了解集群、存储和共享交换机。
 * https://docs.netapp.com/us-en/ontap-afx/index.html["AFX 系统"^]
 * https://docs.netapp.com/us-en/ontap-systems/aff-landing/index.html["AFF 系统"^]
 * https://docs.netapp.com/us-en/ontap-systems/allsan-landing/index.html["ASA 系统"^]
-* https://docs.netapp.com/us-en/asa-r2/index.html["ASA r2系统"^]
+* https://docs.netapp.com/us-en/asa-r2/index.html["ASA r2 系统"^]
 * https://docs.netapp.com/us-en/ontap-systems/fas/index.html["FAS 系统"^]
 
  a| 
  a| 
 
 |===
-.image:https://raw.githubusercontent.com/NetAppDocs/common/main/media/number-3.png["三个"]将交换机连接到控制器
+.image:https://raw.githubusercontent.com/NetAppDocs/common/main/media/number-3.png["三"]将开关通过电缆连接到控制器。
 [role="quick-margin-para"]
-ONTAP系统安装和设置说明包括使用缆线将控制器端口连接到交换机的说明。但是、如果您需要受支持的缆线和收发器列表以及有关交换机主机端口的详细信息、请根据您的交换机型号访问以下说明。
+ONTAP系统的安装和设置说明包括将控制器端口连接到交换机的说明。但是，如果您需要支持的电缆和收发器列表，以及有关交换机主机端口的详细信息，请访问以下适用于您的交换机型号的说明。
 
 [cols="11,9,9,9"]
 |===
@@ -97,7 +97,7 @@ ONTAP系统安装和设置说明包括使用缆线将控制器端口连接到交
 |===
 .image:https://raw.githubusercontent.com/NetAppDocs/common/main/media/number-4.png["四个"]配置交换机软件
 [role="quick-margin-para"]
-要在交换机上安装和配置软件、请按照适用于您的交换机型号的软件安装工作流进行操作。
+要安装和配置交换机上的软件，请按照适用于您交换机型号的软件安装工作流程进行操作。
 
 [cols="11,9,9,9"]
 |===
@@ -110,24 +110,24 @@ ONTAP系统安装和设置说明包括使用缆线将控制器端口连接到交
 
  a| 
 .集群交换机
-* link:../switch-bes-53248/configure-software-overview-bes53248.html["为BES-53248交换机安装软件"]
-* link:../switch-cisco-9336c-fx2/configure-software-overview-9336c-cluster.html["为Cisco Nexus 9336C-x2交换机安装软件"]
-* link:../switch-nvidia-sn2100/configure-software-overview-sn2100-cluster.html["为NVIDIA SN2100交换机安装软件"]
+* link:../switch-bes-53248/configure-software-overview-bes53248.html["安装 BES-53248 交换机的软件"]
+* link:../switch-cisco-9336c-fx2/configure-software-overview-9336c-cluster.html["为Cisco Nexus 9336C-FX2 交换机安装软件"]
+* link:../switch-nvidia-sn2100/configure-software-overview-sn2100-cluster.html["安装NVIDIA SN2100交换机的软件"]
 
  a| 
 .存储交换机
-* link:../switch-cisco-9336c-fx2-storage/configure-software-overview-9336c-storage.html["为Cisco Nexus 9336C-x2交换机安装软件"]
-* link:../switch-nvidia-sn2100-storage/configure-software-sn2100-storage.html["为NVIDIA SN2100交换机安装软件"]
+* link:../switch-cisco-9336c-fx2-storage/configure-software-overview-9336c-storage.html["为Cisco Nexus 9336C-FX2 交换机安装软件"]
+* link:../switch-nvidia-sn2100-storage/configure-software-sn2100-storage.html["安装NVIDIA SN2100交换机的软件"]
 
  a| 
 .共享交换机
-* link:../switch-cisco-9336c-fx2-shared/configure-software-overview-9336c-shared.html["为Cisco Nexus 9336C-x2交换机安装软件"]
+* link:../switch-cisco-9336c-fx2-shared/configure-software-overview-9336c-shared.html["为Cisco Nexus 9336C-FX2 交换机安装软件"]
 
 
 |===
-.image:https://raw.githubusercontent.com/NetAppDocs/common/main/media/number-5.png["五个"]完成系统设置
+.image:https://raw.githubusercontent.com/NetAppDocs/common/main/media/number-5.png["五"]完整的系统设置
 [role="quick-margin-para"]
-配置交换机并安装所需软件后、请访问适用于您的ONTAP系统平台型号的安装和设置说明以完成系统设置。
+配置好交换机并安装所需软件后，请查阅ONTAP系统平台型号的安装和设置说明，以完成系统设置。
 
 [cols="2,9,9,9"]
 |===
@@ -138,18 +138,18 @@ ONTAP系统安装和设置说明包括使用缆线将控制器端口连接到交
 * https://docs.netapp.com/us-en/ontap-afx/index.html["AFX 系统"^]
 * https://docs.netapp.com/us-en/ontap-systems/aff-landing/index.html["AFF 系统"^]
 * https://docs.netapp.com/us-en/ontap-systems/allsan-landing/index.html["ASA 系统"^]
-* https://docs.netapp.com/us-en/asa-r2/index.html["ASA r2系统"^]
+* https://docs.netapp.com/us-en/asa-r2/index.html["ASA r2 系统"^]
 * https://docs.netapp.com/us-en/ontap-systems/fas/index.html["FAS 系统"^]
 
  a| 
  a| 
 
 |===
-.image:https://raw.githubusercontent.com/NetAppDocs/common/main/media/number-6.png["六个"]完成ONTAP配置
+.image:https://raw.githubusercontent.com/NetAppDocs/common/main/media/number-6.png["六"]完成ONTAP配置
 [role="quick-margin-para"]
-安装并设置ONTAP系统控制器和交换机后、必须在ONTAP中完成存储配置。根据您的部署配置访问以下说明。
+安装并设置好ONTAP系统控制器和交换机后，您必须在ONTAP中完成存储配置。根据您的部署配置，获取以下说明。
 
 [role="quick-margin-list"]
-* 有关ONTAP 部署、请参见 https://docs.netapp.com/us-en/ontap/task_configure_ontap.html["配置 ONTAP"^]。
-* 有关采用MetroCluster 的ONTAP 部署、请参见 https://docs.netapp.com/us-en/ontap-metrocluster/["使用ONTAP 配置MetroCluster"^]。
+* 有关ONTAP部署，请参阅 https://docs.netapp.com/us-en/ontap/task_configure_ontap.html["配置 ONTAP"^]。
+* 有关使用MetroCluster部署的ONTAP ，请参阅 https://docs.netapp.com/us-en/ontap-metrocluster/["使用ONTAP配置 Metrocluster"^]。
 

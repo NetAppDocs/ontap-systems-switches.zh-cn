@@ -2,29 +2,29 @@
 permalink: switch-cisco-3132q-v/migrate-switchless-prepare-to-migrate.html 
 sidebar: sidebar 
 keywords: cisco 3132q-v, cluster switches 
-summary: 您可以在AFF或FAS集群中使用Cisco Nexus 3132q-v交换机作为集群交换机。 
+summary: 您可以在AFF或FAS集群中使用Cisco Nexus 3132q-v 交换机作为集群交换机。 
 ---
-= 准备从无交换机集群迁移到有交换机集群
+= 做好从无交换机集群迁移到有交换机集群的准备
 :allow-uri-read: 
 :icons: font
 :imagesdir: ../media/
 
 
 [role="lead"]
-请按照以下步骤准备好无交换机集群、以便迁移到双节点有交换机集群。
+按照以下步骤准备无交换机集群，以便迁移到双节点交换机集群。
 
 .步骤
-. 如果在此集群上启用了 AutoSupport ，则通过调用 AutoSupport 消息禁止自动创建案例：
+. 如果此集群上启用了AutoSupport ，则通过调用AutoSupport消息来抑制自动创建案例：
 +
-`ssystem node AutoSupport invoke -node * -type all - 消息 MAINT=xh`
+`system node autosupport invoke -node * -type all - message MAINT=xh`
 
 +
-_x_ 是维护时段的持续时间，以小时为单位。
+_x_ 是维护窗口的持续时间，单位为小时。
 
 +
 [NOTE]
 ====
-AutoSupport 消息会通知技术支持此维护任务，以便在维护窗口期间禁止自动创建案例。
+AutoSupport消息会通知技术支持此维护任务，以便在维护窗口期间抑制自动创建案例。
 
 ====
 . 确定每个集群接口的管理或运行状态：
@@ -59,7 +59,7 @@ e4e       Cluster      Cluster          up   9000 auto/40000  -        -
 4 entries were displayed.
 ----
 ====
-.. 显示有关逻辑接口的信息：
+.. 显示逻辑接口信息：
 +
 `network interface show`
 
@@ -84,20 +84,20 @@ Cluster
 ====
 
 
-. 根据您的需要，验证新的 3132Q-V 交换机上是否安装了适当的 RCF 和映像，并进行任何必要的站点自定义，例如用户和密码，网络地址等。
+. 确认已根据您的要求在新 3132Q-V 交换机上安装了相应的 RCF 和映像，并进行任何必要的站点自定义，例如用户和密码、网络地址等。
 +
-此时必须准备两个交换机。如果您需要升级 RCF 和映像软件，必须按照以下步骤进行操作：
+此时您必须准备好这两个开关。如果需要升级 RCF 和镜像软件，必须按照以下步骤操作：
 
 +
-.. 前往link:https://mysupport.netapp.com/site/info/cisco-ethernet-switch["Cisco 以太网交换机"^]在NetApp支持站点上。
-.. 请记下该页面上的表中的交换机和所需的软件版本。
-.. 下载适当版本的 RCF 。
-.. 在*Description*页上选择*CONTINUOD*，接受许可协议，然后按照*Download*页上的说明下载RCB。
-.. 下载相应版本的映像软件。
+.. 前往link:https://mysupport.netapp.com/site/info/cisco-ethernet-switch["Cisco以太网交换机"^]在NetApp支持网站上。
+.. 请记下您交换机的型号以及该页表格中所需的软件版本。
+.. 下载相应版本的RCF。
+.. 在“描述”页面上选择“继续”，接受许可协议，然后按照“下载”页面上的说明下载 RCF。
+.. 下载相应版本的图像处理软件。
 
 
-. 在*Description*页上选择*CONTINUOD*，接受许可协议，然后按照*Download*页上的说明下载RCB。
+. 在“描述”页面上选择“继续”，接受许可协议，然后按照“下载”页面上的说明下载 RCF。
 
 
 .下一步是什么？
-link:migrate-switchless-configure-ports.html["配置端口"](英文)
+link:migrate-switchless-configure-ports.html["配置端口"]。

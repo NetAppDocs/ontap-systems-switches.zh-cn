@@ -2,57 +2,57 @@
 permalink: switch-cshm/monitor-verify.html 
 sidebar: sidebar 
 keywords: verify, monitor, cluster, management, network, switches, heath, monitor 
-summary: 了解如何验证对以太网交换机的监控是否正常工作。 
+summary: 了解如何验证以太网交换机的监控功能是否正常工作。 
 ---
-= 验证对以太网交换机的监控
+= 验证以太网交换机的监控情况
 :allow-uri-read: 
 :icons: font
 :imagesdir: ../media/
 
 
 [role="lead"]
-以太网交换机运行状况监控器(CSHM)会自动尝试监控其发现的交换机；但是、如果交换机配置不正确、则可能无法自动进行监控。您应验证是否已正确配置运行状况监控器以监控交换机。
+以太网交换机健康监视器 (CSHM) 会自动尝试监视它发现的交换机；但是，如果交换机配置不正确，则监视可能不会自动进行。您应该确认运行状况监控器已正确配置，可以监控您的交换机。
 
 
 
-== 确认监控已连接的以太网交换机
+== 确认对已连接的以太网交换机进行监控
 
-要确认已连接的以太网交换机正在受监控、请运行：
+要确认已连接的以太网交换机正在被监控，请运行：
 
 [source, cli]
 ----
 system switch ethernet show
 ----
-如果 `Model`列显示*OTA*或 `IS Monitored`字段显示*false*，则ONTAP无法监控交换机。值*其他*通常表示ONTAP不支持使用该交换机进行运行状况监控。
+如果 `Model`列显示“其他”或 `IS Monitored`如果字段显示*false*，则ONTAP无法监控交换机。  *OTHER* 值通常表示ONTAP不支持该开关进行健康监测。
 
-由于在字段中指定的原因，此 `IS Monitored`字段将设置为*false* `Reason`。
+这 `IS Monitored`该字段的值设置为*false*，原因已在文中说明。 `Reason`场地。
 
 [NOTE]
 ====
-如果命令输出中未列出交换机，则ONTAP可能尚未发现它。确认交换机的接线正确。如果需要，您可以手动添加交换机。请参阅link:monitor-manage.html["管理以太网交换机的监控"]了解更多详情。
+如果命令输出中未列出交换机，则ONTAP可能尚未发现该交换机。请确认交换机接线正确。如有必要，您可以手动添加开关。看link:monitor-manage.html["管理以太网交换机的监控"]更多详情请见下文。
 
 ====
 
 
-== 确认固件和RC框架 版本为最新
+== 请确认固件和 RCF 版本均为最新版本。
 
-确保交换机运行的是受支持的最新固件、并且已应用兼容的参考配置文件(RCF)。有关详细信息，请参见https://mysupport.netapp.com/site/downloads["NetApp支持下载页面"^]。
+确保交换机运行的是最新支持的固件，并且已应用兼容的参考配置文件（RCF）。更多信息请访问[此处]。https://mysupport.netapp.com/site/downloads["NetApp支持下载页面"^] 。
 
-默认情况下、运行状况监控器使用带有社区字符串* cshm1！*的SNMPv2c进行监控、但也可以配置SNMPv3。
+默认情况下，健康监视器使用 SNMPv2c 和团体字符串 *cshm1!* 进行监视，但也可以配置 SNMPv3。
 
-如果需要更改默认SNMPv2c社区字符串、请确保已在交换机上配置所需的SNMPv2c社区字符串。
+如果需要更改默认的 SNMPv2c 团体字符串，请确保已在交换机上配置所需的 SNMPv2c 团体字符串。
 
 [source, cli]
 ----
 system switch ethernet modify -device SwitchA -snmp-version SNMPv2c -community-or-username newCommunity!
 ----
 
-NOTE: 有关配置SNMPv3以供使用的详细信息、请参见link:config-snmpv3.html["可选：配置SNMPv3"]。
+NOTE: 看link:config-snmpv3.html["可选：配置 SNMPv3"]有关配置 SNMPv3 的详细信息。
 
 
 
 == 确认管理网络连接
 
-验证交换机的管理端口是否已连接到管理网络。
+确认交换机的管理端口已连接到管理网络。
 
-要使ONTAP执行SNMP查询和日志收集、需要正确的管理端口连接。
+ONTAP需要正确的管理端口连接才能执行 SNMP 查询和日志收集。

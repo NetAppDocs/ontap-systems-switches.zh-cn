@@ -1,17 +1,17 @@
 ---
 indexpage:
   title: ONTAP硬件系统的交换机文档
-  summary: 使用此站点上的文档安装，升级和维护集群，共享存储和 MetroCluster 交换机。
+  summary: 使用本网站上的文档来安装、升级和维护您的集群、共享存储和MetroCluster交换机。
   keywords: switches
-  lead: NetApp提供集群、存储和共享交换机、可在主机存储与两个或更多NetApp控制器之间建立连接、从而使您能够在存储基础架构中无中断地移动数据和网络接口。
+  lead: NetApp提供集群交换机、存储交换机和共享交换机，可在主机存储和两个或多个NetApp控制器之间提供连接，使您能够在存储基础架构中无中断地移动数据和网络接口。
   tiles:
-  - title: 入门
+  - title: 开始使用
     links:
-    - title: 新增功能
+    - title: 什么是新的
       url: whats-new.html
-    - title: 快速入门
+    - title: 快速启动
       url: "/get-started/get-up-and-running.html"
-    - title: "《 ONTAP 发行说明》"
+    - title: ONTAP 发行说明
       url: https://library.netapp.com/ecm/ecm_download_file/ECMLP2492508
   - title: 支持的交换机
     links:
@@ -23,37 +23,37 @@ indexpage:
       url: "/storage/index.html"
     - title: 共享交换机
       url: "/shared/index.html"
-  - title: 可用性终止的交换机
+  - title: 可用性终止开关
     links:
-    - title: 集群交换机—Cisco Nexus 3232c
+    - title: 集群交换机 - Cisco Nexus 3232c
       url: "/switch-cisco-3232c/install-overview-cisco-3232c.html"
-    - title: 集群交换机—Cisco Nexus 3132Q-V
+    - title: 集群交换机 - Cisco Nexus 3132Q-V
       url: "/switch-cisco-3132q-v/install-overview-cisco-3132qv.html"
-    - title: 集群交换机—Cisco Nexus 92300YC
+    - title: 集群交换机 - Cisco Nexus 92300YC
       url: "/switch-cisco-92300/install-overview-cisco-92300.html"
-    - title: 集群交换机—NetApp CN1610
+    - title: 集群交换机 - NetApp CN1610
       url: "/switch-netapp-cn1610/switch-overview-cn1610.html"
-  - title: 以太网交换机运行状况监控
+  - title: 以太网交换机健康状况监控
     links:
-    - title: 配置交换机运行状况监控
+    - title: 配置交换机健康监控
       url: "/switch-cshm/config-overview.html"
-    - title: 检查交换机运行状况监控
+    - title: 检查开关健康状况监控
       url: "/switch-cshm/monitor-overview.html"
-    - title: 收集用于监控交换机运行状况的日志
+    - title: 收集交换机健康状况监控日志
       url: "/switch-cshm/log-collection-overview.html"
-  - title: 相关ONTAP 文档
+  - title: 相关ONTAP文档
     links:
     - title: ONTAP硬件系统
       url: https://docs.netapp.com/us-en/ontap-systems/index.html
     - title: ONTAP 软件
       url: https://docs.netapp.com/us-en/ontap/index.html
-  - title: 工具支持
+  - title: 工具和支持
     links:
-    - title: NetApp 互操作性表
+    - title: NetApp互操作性表
       url: http://mysupport.netapp.com/matrix/
     - title: NetApp Hardware Universe
       url: https://hwu.netapp.com/
-    - title: NetApp 知识库
+    - title: NetApp知识库
       url: https://kb.netapp.com/
     - title: Active IQ （需要登录）
       url: https://activeiq.netapp.com/?source=aiqnsspages

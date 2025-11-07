@@ -2,32 +2,32 @@
 permalink: switch-cisco-92300/configure-install-initial.html 
 sidebar: sidebar 
 keywords: install cisco 92300YC cluster switch, cisco nx 92300yc 
-summary: 您可以使用此操作步骤执行 Cisco Nexus 92300YC 交换机的初始安装。 
+summary: 您可以使用此程序执行Cisco Nexus 92300YC 交换机的初始安装。 
 ---
-= 配置Cisco Nexus 92300YC交换机
+= 配置Cisco Nexus 92300YC 交换机
 :allow-uri-read: 
 :icons: font
 :imagesdir: ../media/
 
 
 [role="lead"]
-按照此操作步骤 设置和配置Cisco Nexus 92300YC交换机。
+按照以下步骤设置和配置Cisco Nexus 92300YC 交换机。
 
 .步骤
-. 将串行端口连接到主机或串行端口。
-. 将管理端口（位于交换机的非端口端）连接到您的 SFTP 服务器所在的同一网络。
-. 在控制台中，设置主机端串行设置：
+. 将串口连接到主机或串口。
+. 将管理端口（交换机的非端口侧）连接到 SFTP 服务器所在的同一网络。
+. 在控制台上，设置主机端串口设置：
 +
-** 9600 波特
-** 8 个数据位
-** 1 个停止位
-** 奇偶校验：无
+** 9600波特
+** 8 位数据
+** 1 停止位
+** 奇偶性：无
 ** 流量控制：无
 
 
-. 首次启动或擦除运行的配置后重新启动时、Nexus 923300 YC交换机会在启动周期内循环。键入 * 是 * 以中止启动自动配置，从而中断此周期。
+. 首次启动或在擦除运行配置后重新启动时，Nexus 92300YC 交换机会陷入启动循环。输入 *yes* 即可中断此循环，中止开机自动配置。
 +
-此时将显示系统管理员帐户设置。
+显示系统管理员帐户设置。
 
 +
 .显示示例
@@ -44,20 +44,20 @@ Disabling POAP.......Disabling POAP
 Do you want to enforce secure password standard (yes/no) [y]:
 ----
 ====
-. 键入 * y* 以强制实施安全密码标准：
+. 输入 *y* 以强制执行安全密码标准：
 +
 [listing, subs="+quotes"]
 ----
 Do you want to enforce secure password standard (yes/no) [y]: *y*
 ----
-. 输入并确认用户 admin 的密码：
+. 请输入并确认管理员用户的密码：
 +
 [listing]
 ----
 Enter the password for "admin":
 Confirm the password for "admin":
 ----
-. 键入*是*以进入基本系统配置对话框。
+. 输入 *yes* 进入基本系统配置对话框。
 +
 .显示示例
 [%collapsible]
@@ -79,13 +79,13 @@ to skip the remaining dialogs.
 Would you like to enter the basic configuration dialog (yes/no):
 ----
 ====
-. 是否创建其他登录帐户？
+. 创建另一个登录帐户：
 +
 [listing]
 ----
 Create another login account (yes/no) [n]:
 ----
-. 配置只读和读写 SNMP 社区字符串：
+. 配置只读和读写 SNMP 团体字符串：
 +
 [listing]
 ----
@@ -113,7 +113,7 @@ Configure the default gateway? (yes/no) [y]: *y*
 
 IPv4 address of the default gateway : 172.22.128.1
 ----
-. 是否配置高级 IP 选项？
+. 配置高级 IP 选项：
 +
 [listing, subs="+quotes"]
 ----
@@ -125,7 +125,7 @@ Configure advanced IP options? (yes/no) [n]: *n*
 ----
 Enable the telnet service? (yes/no) [n]: *n*
 ----
-. 配置 SSH 服务和 SSH 密钥：
+. 配置SSH服务和SSH密钥：
 +
 [listing, subs="+quotes"]
 ----
@@ -162,4 +162,4 @@ Copy complete.
 
 
 .下一步是什么？
-link:install-nxos-overview.html["准备安装NX-OS软件和RCF"]。
+link:install-nxos-overview.html["准备安装 NX-OS 软件和 RCF"]。

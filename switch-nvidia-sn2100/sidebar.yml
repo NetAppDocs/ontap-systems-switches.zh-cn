@@ -2,59 +2,59 @@
 section: switch-nvidia-sn2100
 title: NVIDIA SN2100
 entries:
-- title: 入门
+- title: 开始使用
   entries:
-  - title: 快速入门
+  - title: 快速启动
     url: "/switch-nvidia-sn2100/configure-overview-sn2100-cluster.html"
   - title: 配置要求
     url: "/switch-nvidia-sn2100/configure-reqs-sn2100-cluster.html"
-  - title: 组件和部件号
+  - title: 组件和零件编号
     url: "/switch-nvidia-sn2100/components-sn2100-cluster.html"
-  - title: 所需文档
+  - title: 所需文件
     url: "/switch-nvidia-sn2100/required-documentation-sn2100-cluster.html"
-- title: Install the hardware
-  pdf-filename: install_hardhardware sn2100
+- title: 安装硬件
+  pdf-filename: Install_hardware_sn2100
   entries:
   - title: 硬件安装工作流程
     url: "/switch-nvidia-sn2100/install-hardware-workflow.html"
-  - title: 安装交换机
+  - title: 安装开关
     url: "/switch-nvidia-sn2100/install-hardware-sn2100-cluster.html"
-  - title: 查看布线和配置
+  - title: 检查布线和配置
     url: "/switch-nvidia-sn2100/cabling-considerations-sn2100-cluster.html"
-  - title: 为NS224磁盘架布线
+  - title: NS224 货架的电缆
     url: "/switch-nvidia-sn2100/install-cable-shelves-sn2100-cluster.html"
 - title: 配置软件
-  pdf-filename: 配置软件sn2100
+  pdf-filename: Configure_software_sn2100
   entries:
-  - title: 软件安装工作流
+  - title: 软件安装工作流程
     url: "/switch-nvidia-sn2100/configure-software-overview-sn2100-cluster.html"
   - title: 配置交换机
     url: "/switch-nvidia-sn2100/configure-sn2100-cluster.html"
-  - title: 在Cumulus模式下安装Cumulus Linux
+  - title: 以 Cumulus 模式安装 Cumulus Linux
     url: "/switch-nvidia-sn2100/install-cumulus-mode-sn2100-cluster.html"
-  - title: 在ONIE模式下安装Cumulus Linux
+  - title: 以 ONIE 模式安装 Cumulus Linux
     url: "/switch-nvidia-sn2100/install-onie-mode-sn2100-cluster.html"
-  - title: 升级Cumulus Linux版本
+  - title: 升级 Cumulus Linux 版本
     url: "/switch-nvidia-sn2100/upgrade-cl-version.html"
-  - title: 安装或升级RCF脚本
+  - title: 安装或升级 RCF 脚本
     url: "/switch-nvidia-sn2100/install-rcf-sn2100-cluster.html"
-  - title: 安装CSHM文件
+  - title: 安装 CSHM 文件
     url: "/switch-nvidia-sn2100/setup-install-cshm-file.html"
   - title: 将交换机重置为出厂默认设置
     url: "/switch-nvidia-sn2100/reset-switch-sn2100.html"
 - title: 迁移交换机
-  pdf-filename: migration_switchs_sn2100
+  pdf-filename: Migrate_switches_sn2100
   entries:
-  - title: 从CN1610集群交换机迁移
+  - title: 从 CN1610 集群交换机迁移
     url: "/switch-nvidia-sn2100/migrate-cn1610-sn2100-cluster-switch.html"
   - title: 从Cisco集群交换机迁移
     url: "/switch-nvidia-sn2100/migrate-cisco-sn2100-cluster-switch.html"
   - title: 迁移到双节点交换集群
     url: "/switch-nvidia-sn2100/migrate-2n-switched-sn2100-cluster.html"
 - title: 更换开关
-  pdf-filename: REPLACE switches sn2100
+  pdf-filename: Replace_switches_sn2100
   entries:
-  - title: 更换集群交换机
+  - title: 更换集群开关
     url: "/switch-nvidia-sn2100/replace-sn2100-switch-cluster.html"
-  - title: 将集群交换机更换为无交换机连接
+  - title: 用无开关连接取代集群开关
     url: "/switch-nvidia-sn2100/migrate-to-switchless-interconnect-sn2100-cluster.html"

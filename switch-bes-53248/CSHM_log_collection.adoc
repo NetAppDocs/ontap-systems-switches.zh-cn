@@ -2,26 +2,26 @@
 permalink: switch-bes-53248/CSHM_log_collection.html 
 sidebar: sidebar 
 keywords: log collection feature,collect switch-related log files,SSh key,crypto key generation,BES-53248 Broadcom setup,BES-53248 switches configuration,EFOS 
-summary: '以太网交换机运行状况监控器(CSHM)日志收集功能用于从ONTAP中的集群或存储网络交换机收集日志。' 
+summary: 'ONTAP中的以太网交换机健康监视器 (CSHM) 日志收集功能用于从集群或存储网络交换机收集日志。' 
 ---
-= 以太网交换机运行状况监控日志收集
+= 以太网交换机健康监控日志收集
 :allow-uri-read: 
 :icons: font
 :imagesdir: ../media/
 
 
 [role="lead"]
-以太网交换机运行状况监控器(CSHM)负责确保集群和存储网络交换机的运行状况、并收集交换机日志以进行调试。此操作步骤将引导您完成设置和开始从交换机收集详细的*Support*日志的过程，并开始每小时收集由AutoSupport收集的*定期*数据。
+以太网交换机健康监视器 (CSHM) 负责确保集群和存储网络交换机的运行健康，并收集交换机日志以进行调试。此程序指导您完成从交换机设置和开始收集详细*支持*日志的过程，并开始每小时收集由AutoSupport收集的*定期*数据。
 
 .开始之前
-* 要启用日志收集功能、必须运行ONTAP 9.10.1P15、9.11.1P12或9.12.1或更高版本以及EFOS 3.8.0.2或更高版本。
-* 必须为交换机启用交换机运行状况监控。通过确保进行验证 `Is Monitored:` 字段在的输出中设置为*TRUE* `system switch ethernet show` 命令：
+* 要启用日志收集功能，您必须运行ONTAP版本 9.10.1P15、9.11.1P12 或 9.12.1 或更高版本以及 EFOS 3.8.0.2 或更高版本。
+* 必须为交换机启用交换机健康监控功能。通过确保以下方式验证这一点： `Is Monitored:`输出中该字段设置为*true* `system switch ethernet show`命令。
 
 
 .步骤
-. 要设置日志收集、请对每个交换机运行以下命令。系统会提示您输入交换机名称、用户名和密码以收集日志。
+. 要设置日志收集，请对每个交换机运行以下命令。系统会提示您输入用于日志收集的交换机名称、用户名和密码。
 +
-`s系统交换机以太网日志设置密码`
+`system switch ethernet log setup-password`
 
 +
 .显示示例
@@ -53,7 +53,7 @@ Enter the password: *<enter switch password>*
 Enter the password again: *<enter switch password>*
 ----
 ====
-. 要开始收集日志、请运行以下命令、将device替换为上一命令中使用的交换机。这将开始两种类型的日志收集：详细的*Support*日志和每小时收集*定期*数据。
+. 要开始收集日志，请运行以下命令，将 DEVICE 替换为上一个命令中使用的开关。这将启动两种类型的日志收集：详细的*支持*日志和每小时收集的*定期*数据。
 +
 `system switch ethernet log modify -device _<switch-name>_ -log-request true`
 
@@ -77,57 +77,57 @@ Enabling cluster switch log collection.
 ----
 ====
 +
-等待10分钟、然后检查日志收集是否完成：
+等待 10 分钟，然后检查日志收集是否完成：
 
 +
 `system switch ethernet log show`
 
 +
 
-CAUTION: 如果其中任一命令返回错误或日志收集未完成、请联系NetApp支持部门。
+CAUTION: 如果这些命令中的任何一个返回错误，或者日志收集未完成，请联系NetApp支持。
 
 
 
 .故障排除
-如果遇到日志收集功能报告的以下任一错误状态(在的输出中可见) `system switch ethernet log show`)、请尝试相应的调试步骤：
+如果您遇到日志收集功能报告的以下任何错误状态（可在输出中查看）， `system switch ethernet log show` ），请尝试相应的调试步骤：
 
 |===
 
 
-| *日志收集错误状态* | *分辨率* 
+| *日志收集错误状态* | *解决* 
 
 
  a| 
 *RSA密钥不存在*
  a| 
-重新生成ONTAP SSH密钥。请联系NetApp支持部门。
+重新生成ONTAP SSH 密钥。联系NetApp支持。
 
 
 
  a| 
-*交换机密码错误*
+*切换密码错误*
  a| 
-验证凭据、测试SSH连接并重新生成ONTAP SSH密钥。查看交换机文档或联系NetApp支持部门以获取相关说明。
-
-
-
- a| 
-*对于FIPS*，ECDSA密钥不存在
- a| 
-如果启用了FIPS模式、则需要在重试之前在交换机上生成ECDSA密钥。
+验证凭据，测试 SSH 连接，并重新生成ONTAP SSH 密钥。请查阅交换机文档或联系NetApp支持以获取操作说明。
 
 
 
  a| 
-*已找到已有日志*
+*FIPS 系统中不存在 ECDSA 密钥*
  a| 
-删除交换机上先前的日志收集文件。
+如果启用了 FIPS 模式，则需要在交换机上生成 ECDSA 密钥，然后再重试。
+
+
+
+ a| 
+*发现已存在的日志*
+ a| 
+删除交换机上之前的日志收集文件。
 
 
 
  a| 
 *交换机转储日志错误*
  a| 
-确保交换机用户具有日志收集权限。请参阅上述前提条件。
+请确保切换用户拥有日志收集权限。请参考以上先决条件。
 
 |===

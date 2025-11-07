@@ -4,7 +4,7 @@ sidebar: sidebar
 keywords: ssh, requirement, cluster, switch, health, monitor, cshm, log, collection, feature, cisco 9332d-gx2b 
 summary: '使用集群交换机健康监视器 (CSHM) 和日志收集功能时需要 SSH。要在Cisco 9364d-gx2a 集群交换机上启用 SSH，您需要先生成 SSH 密钥，然后启用 SSH。' 
 ---
-= 验证 SSH 配置
+= 请检查您的 SSH 配置
 :allow-uri-read: 
 :icons: font
 :imagesdir: ../media/
@@ -14,14 +14,14 @@ summary: '使用集群交换机健康监视器 (CSHM) 和日志收集功能时�
 如果您正在使用以太网交换机健康监视器 (CSHM) 和日志收集功能，请验证交换机上是否启用了 SSH 和 SSH 密钥。
 
 .步骤
-. 验证是否已启用 SSH ：
+. 确认 SSH 已启用：
 +
 [listing, subs="+quotes"]
 ----
 (switch) *show ssh server*
 ssh version 2 is enabled
 ----
-. 验证是否已启用SSH密钥：
+. 请确认 SSH 密钥已启用：
 +
 `show ssh key`
 
@@ -67,4 +67,4 @@ sshServer              1          enabled
 
 
 .下一步是什么？
-验证 SSH 配置后，link:../switch-cshm/config-overview.html["配置交换机健康监控"] 。
+验证完 SSH 配置后，您link:../switch-cshm/config-overview.html["配置交换机健康监控"]。

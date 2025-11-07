@@ -2,7 +2,7 @@
 permalink: switch-cisco-9336c-fx2-shared/configure-switch-overview-9336c-shared.html 
 sidebar: sidebar 
 keywords: BES-53248 switches, initial installation, configure switch-cisco-9336c-fx2 switch 
-summary: Cisco Nexus 9336C-x2共享交换机的安装和配置概述 
+summary: Cisco Nexus 9336C-FX2 共享交换机的安装和配置概述 
 ---
 = Cisco Nexus 9336C-FX2 共享交换机的安装和设置工作流程
 :allow-uri-read: 
@@ -11,7 +11,7 @@ summary: Cisco Nexus 9336C-x2共享交换机的安装和配置概述
 
 
 [role="lead"]
-Cisco Nexus 9336C-x2共享交换机是Cisco Nexus 9000平台的一部分、可以安装在NetApp系统机柜中。通过共享交换机、您可以通过支持使用共享集群和存储参考配置文件、将集群和存储功能组合到共享交换机配置中。
+Cisco Nexus 9336C-FX2 共享交换机是Cisco Nexus 9000 平台的一部分，可以安装在NetApp系统机柜中。共享交换机允许您将集群和存储功能合并到共享交换机配置中，支持使用共享集群和存储参考配置文件。
 
 按照这些工作流程步骤安装和设置您的Cisco 9336C-FX2 交换机。
 
@@ -23,6 +23,6 @@ Cisco Nexus 9336C-x2共享交换机是Cisco Nexus 9000平台的一部分、可�
 [role="quick-margin-para"]
 查看 9336C-FX2 共享交换机的组件和零件编号。
 
-.image:https://raw.githubusercontent.com/NetAppDocs/common/main/media/number-3.png["三个"]link:required-documentation-9336c-shared.html["审查所需文件"]
+.image:https://raw.githubusercontent.com/NetAppDocs/common/main/media/number-3.png["三"]link:required-documentation-9336c-shared.html["审查所需文件"]
 [role="quick-margin-para"]
 查看特定的交换机和控制器文档以设置您的 9336C-FX2 交换机和ONTAP集群。

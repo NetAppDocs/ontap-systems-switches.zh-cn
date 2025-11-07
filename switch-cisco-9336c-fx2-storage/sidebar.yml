@@ -1,53 +1,53 @@
 ---
 section: switch-cisco-9336c-fx2-storage
-title: Cisco Nexus 9334T-Nexus或9334T-902-T
+title: Cisco Nexus 9336C-FX2 或 9336C-FX2-T
 entries:
-- title: 入门
+- title: 开始使用
   entries:
-  - title: 快速入门
+  - title: 快速启动
     url: "/switch-cisco-9336c-fx2-storage/configure-switch-overview-9336c-storage.html"
   - title: 配置要求
     url: "/switch-cisco-9336c-fx2-storage/configure-reqs-9336c-storage.html"
-  - title: 组件和部件号
+  - title: 组件和零件编号
     url: "/switch-cisco-9336c-fx2-storage/components-9336c-storage.html"
-  - title: 所需文档
+  - title: 所需文件
     url: "/switch-cisco-9336c-fx2-storage/required-documentation-9336c-storage.html"
-  - title: 智能自动通报要求
+  - title: 智能呼叫中心的要求
     url: "/switch-cisco-9336c-fx2-storage/smart-call-9336c-storage.html"
-- title: Install the hardware
-  pdf-filename: install_hardhardware _9336c-FX2存储
+- title: 安装硬件
+  pdf-filename: 安装硬件 9336c-fx2-存储
   entries:
   - title: 硬件安装工作流程
     url: "/switch-cisco-9336c-fx2-storage/install-hardware-workflow.html"
-  - title: 完成布线工作表
+  - title: 完整的布线工作表
     url: "/switch-cisco-9336c-fx2-storage/setup-worksheet-9336c-storage.html"
-  - title: 安装交换机
+  - title: 安装开关
     url: "/switch-cisco-9336c-fx2-storage/install-9336c-storage.html"
   - title: 在NetApp机柜中安装交换机
     url: "/switch-cisco-9336c-fx2-storage/install-switch-and-passthrough-panel-9336c-storage.html"
 - title: 配置软件
-  pdf-filename: configure软件_9336c-FX2存储
+  pdf-filename: 配置软件 9336c-fx2-存储
   entries:
-  - title: 软件安装工作流
+  - title: 软件安装工作流程
     url: "/switch-cisco-9336c-fx2-storage/configure-software-overview-9336c-storage.html"
   - title: 配置交换机
     url: "/switch-cisco-9336c-fx2-storage/setup-switch-9336c-storage.html"
-  - title: 准备安装NX-OS和RCF
+  - title: 准备安装 NX-OS 和 RCF
     url: "/switch-cisco-9336c-fx2-storage/install-nxos-overview-9336c-storage.html"
-  - title: 安装或升级NX-OS软件
+  - title: 安装或升级 NX-OS 软件
     url: "/switch-cisco-9336c-fx2-storage/install-nxos-software-9336c-storage.html"
-  - title: 安装或升级RC框架
-    pdf-filename: install_upgrade
+  - title: 安装或升级 RCF
+    pdf-filename: 安装升级 rcf
     entries:
-    - title: 安装或升级RC框架 概述
+    - title: 安装或升级 RCF 概述
       url: "/switch-cisco-9336c-fx2-storage/install-upgrade-rcf-overview-9336c-storage.html"
-    - title: 安装RCF
+    - title: 安装 RCF
       url: "/switch-cisco-9336c-fx2-storage/install-rcf-software-9336c-storage.html"
-    - title: 升级RC框架 版本
+    - title: 升级您的 RCF 版本
       url: "/switch-cisco-9336c-fx2-storage/upgrade-rcf-software-9336c-storage.html"
     url: "/switch-cisco-9336c-fx2-storage/configure-ssh-keys.html"
   - title: 将交换机重置为出厂默认设置
     url: "/switch-cisco-9336c-fx2-storage/reset-switch-9336c-storage.html"
 - title: 更换存储开关
-  pdf-filename: REPLACE switch_9336c-FX2存储
+  pdf-filename: 替换交换机 9336c-fx2-存储
   url: "/switch-cisco-9336c-fx2-storage/replace-storage-switch-9336c-storage.html"

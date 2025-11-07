@@ -9,15 +9,15 @@ summary: Cisco Nexus 9332D-GX2B 交换机的端口详细信息
 
 
 [role="lead"]
-Cisco Nexus 9332D-GX2B 交换机是Cisco Nexus 9000 平台的一部分。  AFX 系统交换机允许您构建具有两个以上节点的ONTAP集群。
+Cisco Nexus 9332D-GX2B 交换机是Cisco Nexus 9000 平台的一部分。AFX 系统交换机允许您构建具有两个以上节点的ONTAP集群。
 
 
 
-== Cisco Nexus 9332D-GX2B 端口详情
+== Cisco Nexus 9332D-GX2B 端口详细信息
 
 [cols="1,2"]
 |===
-| 端口 | Description 
+| 端口 | 描述 
 
 
  a| 
@@ -28,9 +28,9 @@ Cisco Nexus 9332D-GX2B 交换机是Cisco Nexus 9000 平台的一部分。  AFX �
 
 
  a| 
-以太网 1/31、以太网 1/32
+以太网1/31、以太网1/32
  a| 
 400GbE ISL
 
 |===
-查看 https://hwu.netapp.com["Hardware Universe"^]有关平台使用的端口的详细信息。
+参见 https://hwu.netapp.com["Hardware Universe"^]有关平台所用端口的详细信息。

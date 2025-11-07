@@ -2,15 +2,15 @@
 :allow-uri-read: 
 
 
-以太网交换机运行状况监控器(CSHM)负责确保集群和存储网络交换机的运行状况、并收集交换机日志以进行调试。此过程将指导您完成设置收集、请求详细的*Support*日志以及启用每小时收集AutoSupport收集的*定期*数据的过程。
+以太网交换机健康监视器 (CSHM) 负责确保集群和存储网络交换机的运行健康，并收集交换机日志以进行调试。此流程指导您完成设置收集、请求详细的*支持*日志以及启用由AutoSupport收集的*定期*数据的每小时收集过程。
 
-*注：*如果启用FIPS模式，则必须完成以下操作：
+*注意：* 如果启用 FIPS 模式，则必须完成以下步骤：
 
 [NOTE]
 ====
-. 按照供应商说明在交换机上重新生成SSH密钥。
-. 使用在ONTAP中重新生成SSH密钥 `debug system regenerate-systemshell-key-pair`
-. 使用 `system switch ethernet log setup-password`命令重新运行日志收集设置例程
+. 按照厂商提供的说明，在交换机上重新生成 SSH 密钥。
+. 使用ONTAP重新生成 SSH 密钥 `debug system regenerate-systemshell-key-pair`
+. 使用以下方式重新运行日志收集设置例程： `system switch ethernet log setup-password`命令
 
 
 ====
@@ -18,15 +18,15 @@
 
 == 开始之前
 
-* 用户必须能够访问交换机 `show` 命令。如果这些权限不可用、请创建一个新用户并向该用户授予必要的权限。
-* 必须为交换机启用交换机运行状况监控。通过确保进行验证 `Is Monitored:` 字段在的输出中设置为*TRUE* `system switch ethernet show` 命令：
-* 要使用Broadcom和Cisco交换机收集日志、请执行以下操作：
+* 用户必须有权访问该开关。 `show`命令。如果这些用户不可用，请创建一个新用户并授予该用户必要的权限。
+* 必须为交换机启用交换机健康监控功能。通过确保以下方式验证这一点： `Is Monitored:`输出中该字段设置为*true* `system switch ethernet show`命令。
+* 用于收集博通和Cisco交换机的日志：
 +
 ** 本地用户必须具有网络管理员权限。
-** 应在交换机上为启用了日志收集的每个集群设置创建一个新用户。这些交换机不支持同一用户使用多个SSH密钥。执行的任何其他日志收集设置都会覆盖用户的任何已有SSH密钥。
+** 对于每个启用了日志收集的集群设置，都应该在交换机上创建一个新用户。这些交换机不支持同一用户使用多个 SSH 密钥。任何额外的日志收集设置都会覆盖用户的任何现有 SSH 密钥。
 
 
-* 要使用NVIDIA交换机收集支持日志、必须允许用于收集日志的_user_运行 `cl-support`命令、而无需提供密码。要允许使用此命令、请运行以下命令：
+* 为了支持使用NVIDIA交换机收集日志，必须允许用于日志收集的_user_ 运行该交换机。 `cl-support`无需提供密码即可执行命令。要启用此用法，请运行以下命令：
 +
 `echo '_<user>_ ALL = NOPASSWD: /usr/cumulus/bin/cl-support' | sudo EDITOR='tee -a' visudo -f /etc/sudoers.d/cumulus`
 
@@ -38,11 +38,11 @@
 
 [role="tabbed-block"]
 ====
-.ONTAP 9.151及更高版本
+.ONTAP 9.15.1 及更高版本
 --
-. 要设置日志收集、请对每个交换机运行以下命令。系统会提示您输入交换机名称、用户名和密码以收集日志。
+. 要设置日志收集，请对每个交换机运行以下命令。系统会提示您输入用于日志收集的交换机名称、用户名和密码。
 +
-*注意：*如果对用户规范提示回答 *y*，请确保用户具有必要的权限，如<<开始之前>> 。
+*注意：* 如果对用户规范提示回答 *y*，请确保用户拥有必要的权限，如以下所述：<<开始之前>> 。
 
 +
 [source, cli]
@@ -79,9 +79,9 @@ Enter the password again: *<enter switch password>*
 
 
 
-NOTE: 对于 CL 5.11.1，创建用户 *cumulus* 并对以下提示回复 *y*：Would you like to specify a user other than admin for log collection? {y|n}: *y*
+NOTE: 对于 CL 5.11.1，创建用户 *cumulus* 并对以下提示回答 *y*：您是否要指定除 admin 之外的用户进行日志收集？  {y|n}: *y*
 
-. [[step2]]启用定期日志收集：
+. 步骤2：启用定期日志收集。
 +
 [source, cli]
 ----
@@ -135,7 +135,7 @@ cs1                                       false       halted      initiated
 cs2                                       true        scheduled   initiated
 2 entries were displayed.
 ----
-. 要查看日志收集的所有详细信息、包括启用、状态消息、定期收集的先前时间戳和文件名、请求状态、状态消息以及支持收集的先前时间戳和文件名、请使用以下命令：
+. 要查看日志收集的所有详细信息，包括定期收集的启用状态、状态消息、上一个时间戳和文件名，以及支持收集的请求状态、状态消息、上一个时间戳和文件名，请使用以下命令：
 +
 [source, cli]
 ----
@@ -170,11 +170,11 @@ cluster1::*> *system switch ethernet log show -instance*
 
 
 --
-.ONTAP 9.14.1及更早版本
+.ONTAP 9.14.1 及更早版本
 --
-. 要设置日志收集、请对每个交换机运行以下命令。系统会提示您输入交换机名称、用户名和密码以收集日志。
+. 要设置日志收集，请对每个交换机运行以下命令。系统会提示您输入用于日志收集的交换机名称、用户名和密码。
 +
-*注：*如果回答 `y`用户规范提示，请确保用户具有中所述的必要权限<<开始之前>>。
+*注意：* 如果回答 `y`根据用户规范提示，确保用户拥有必要的权限，具体权限要求请参见相关文档。<<开始之前>> 。
 
 +
 [source, cli]
@@ -211,9 +211,9 @@ Enter the password again: *<enter switch password>*
 
 
 
-NOTE: 对于 CL 5.11.1，创建用户 *cumulus* 并对以下提示回复 *y*：Would you like to specify a user other than admin for log collection? {y|n}: *y*
+NOTE: 对于 CL 5.11.1，创建用户 *cumulus* 并对以下提示回答 *y*：您是否要指定除 admin 之外的用户进行日志收集？  {y|n}: *y*
 
-. [[step2]] 要请求支持日志收集并启用定期收集，请运行以下命令。此时将开始两种类型的日志收集：详细 `Support` 日志和每小时数据收集 `Periodic` 。
+. [[step2]] 要请求支持日志收集并启用定期收集，请运行以下命令。这将启动两种类型的日志收集：详细日志收集和详细日志收集。 `Support`日志和每小时收集的数据 `Periodic`数据。
 +
 [source, cli]
 ----
@@ -235,7 +235,7 @@ Do you want to modify the cluster switch log collection configuration? {y|n}: [n
 Enabling cluster switch log collection.
 ----
 +
-等待10分钟、然后检查日志收集是否完成：
+等待 10 分钟，然后检查日志收集是否完成：
 
 +
 [source, cli]

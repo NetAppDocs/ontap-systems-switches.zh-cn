@@ -2,35 +2,35 @@
 permalink: switch-cisco-92300/migrate-to-92300yc.html 
 sidebar: sidebar 
 keywords: migration steps for cisco nexus 92300yc cluster switch 
-summary: 您可以将 ONTAP 集群中较早的 Cisco 集群交换机无中断迁移到 Cisco Nexus 92300YC 集群网络交换机。 
+summary: 您可以将ONTAP集群的旧Cisco集群交换机无中断地迁移到Cisco Nexus 92300YC 集群网络交换机。 
 ---
-= 从 Cisco 交换机迁移到 Cisco Nexus 92300YC 交换机
+= 将Cisco交换机迁移到Cisco Nexus 92300YC 交换机
 :allow-uri-read: 
 :icons: font
 :imagesdir: ../media/
 
 
 [role="lead"]
-您可以将 ONTAP 集群中较早的 Cisco 集群交换机无中断迁移到 Cisco Nexus 92300YC 集群网络交换机。
+您可以将ONTAP集群的旧Cisco集群交换机无中断地迁移到Cisco Nexus 92300YC 集群网络交换机。
 
 
-NOTE: 迁移完成后，您可能需要安装所需的配置文件以支持 92300YC 集群交换机的集群交换机健康监视器 (CSHM)。看link:../switch-cshm/cshm-overview.html["交换机健康监测（CSHM）"] 。
+NOTE: 迁移完成后，您可能需要安装所需的配置文件，以支持 92300YC 集群交换机的集群交换机健康监视器 (CSHM)。看link:../switch-cshm/cshm-overview.html["交换机健康监测 (CSHM)"]。
 
 
 
-== 查看要求
+== 审查要求
 
 .开始之前
-确保您已具备以下条件：
+请确保您拥有以下物品：
 
-* 功能完备的现有集群。
-* 从节点到Nexus 92300YC集群交换机的10 GbE和40 GbE连接。
-* 所有集群端口均处于运行状态、以确保无中断运行。
-* 在Nexus 92300YC集群交换机上安装了正确版本的NX-OS和参考配置文件(RCF)。
-* 使用两个旧版 Cisco 交换机的冗余且功能完备的 NetApp 集群。
-* 管理连接以及对旧 Cisco 交换机和新交换机的控制台访问。
-* 所有与集群 LIF 处于 up 状态的集群 LIF 均位于其主端口上。
-* ISL 端口已启用，并已在旧的 Cisco 交换机之间以及新交换机之间进行布线。
+* 一个功能齐全的现有集群。
+* 节点到 Nexus 92300YC 集群交换机的 10 GbE 和 40 GbE 连接。
+* 集群所有端口均处于启用状态，以确保运行不中断。
+* Nexus 92300YC 集群交换机上安装了正确版本的 NX-OS 和参考配置文件 (RCF)。
+* 使用较旧的Cisco交换机构建冗余且功能齐全的NetApp集群。
+* 对旧款Cisco交换机和新款交换机的管理连接和控制台访问。
+* 所有处于启动状态的集群 LIF 都位于其主端口上。
+* ISL 端口已启用，并且已在旧款Cisco交换机和新款交换机之间连接了线缆。
 
 
 
@@ -38,80 +38,80 @@ NOTE: 迁移完成后，您可能需要安装所需的配置文件以支持 9230
 == 迁移交换机
 
 .关于示例
-此操作步骤中的示例使用以下交换机和节点命名：
+本流程中的示例使用以下开关和节点命名规则：
 
-* 现有的 Cisco Nexus 5596UP 集群交换机为 C1 和 C2 。
-* 新的 Nexus 92300YC 集群交换机为 CS1 和 CS2 。
-* 节点为 node1 和 node2 。
-* 集群 LIF 分别是节点 1 上的 node1_clus1 和 node1_clus2 以及节点 2 上的 node2_clus1 和 node2_clus2 。
-* 交换机 C2 首先由交换机 CS2 取代，然后交换机 C1 由交换机 CS1 取代。
+* 现有的Cisco Nexus 5596UP 集群交换机为 c1 和 c2。
+* 新的 Nexus 92300YC 集群交换机是 cs1 和 cs2。
+* 节点分别为 node1 和 node2。
+* 节点 1 上的集群 LIF 分别为 node1_clus1 和 node1_clus2，节点 2 上的集群 LIF 分别为 node2_clus1 和 node2_clus2。
+* 首先将交换机 c2 替换为交换机 cs2，然后将交换机 c1 替换为交换机 cs1。
 +
-** 临时 ISL 基于将 C1 连接到 CS1 的 CS1 构建。
-** 然后，节点和 C2 之间的布线将从 C2 断开，并重新连接到 CS2 。
-** 然后，节点和 C1 之间的布线将从 C1 断开，并重新连接到 CS1 。
-** 然后删除 C1 和 CS1 之间的临时 ISL 。
+** 在 cs1 上建立临时 ISL，将 c1 连接到 cs1。
+** 然后断开节点与 c2 之间的电缆与 c2 的连接，并重新连接到 cs2。
+** 然后断开节点与 c1 之间的电缆与 c1 的连接，并重新连接到 cs1。
+** 然后移除 c1 和 cs1 之间的临时 ISL。
 
 
 
 
 .用于连接的端口
-* Nexus 92300YC交换机上的某些端口配置为以10 GbE或40 GbE运行。
+* Nexus 92300YC 交换机上的一些端口配置为以 10 GbE 或 40 GbE 运行。
 * 集群交换机使用以下端口连接到节点：
 +
-** 端口 E1/1-48 （ 10/25 GbE ）， E1/49-64 （ 40/100 GbE ）： Nexus 92300YC
-** 端口 E1/1-40 （ 10 GbE ）： Nexus 5596UP
-** 端口 E1/1-32 （ 10 GbE ）： Nexus 5020
-** 端口 E1/1-12 ， E2/1-6 （ 10 GbE ）：具有扩展模块的 Nexus 5010
+** 端口 e1/1-48 (10/25 GbE)、e1/49-64 (40/100 GbE)：Nexus 92300YC
+** 端口 e1/1-40 (10 GbE)：Nexus 5596UP
+** 端口 e1/1-32 (10 GbE)：Nexus 5020
+** 端口 e1/1-12、e2/1-6 (10 GbE)：带扩展模块的 Nexus 5010
 
 
-* 集群交换机使用以下交换机间链路（ ISL ）端口：
+* 集群交换机使用以下交换机间链路 (ISL) 端口：
 +
-** 端口 E1/6566 （ 100 GbE ）： Nexus 92300YC
-** 端口 E1/41-48 （ 10 GbE ）： Nexus 5596UP
-** 端口 E1/33-40 （ 10 GbE ）： Nexus 5020
-** 端口 E1/13-20 （ 10 GbE ）： Nexus 5010
+** 端口 e1/65-66 (100 GbE)：Nexus 92300YC
+** 端口 e1/41-48 (10 GbE)：Nexus 5596UP
+** 端口 e1/33-40 (10 GbE)：Nexus 5020
+** 端口 e1/13-20 (10 GbE)：Nexus 5010
 
 
-* https://hwu.netapp.com/SWITCH/INDEX["Hardware Universe —交换机"^] 包含有关所有集群交换机支持的布线的信息。
-* 此操作步骤 支持的 ONTAP 和 NX-OS 版本位于上 https://support.netapp.com/NOW/download/software/cm_switches/["Cisco 以太网交换机"^] 页面。
+* https://hwu.netapp.com/SWITCH/INDEX["Hardware Universe- 交换机"^]包含有关所有集群交换机支持的布线信息。
+* 本流程支持的ONTAP和 NX-OS 版本如下： https://support.netapp.com/NOW/download/software/cm_switches/["Cisco以太网交换机"^]页。
 
 
 
 
-=== 第1步：准备迁移
+=== 步骤 1：准备迁移
 
-. 将权限级别更改为高级，在系统提示您继续时输入 * y * ：
+. 将权限级别更改为高级，并在提示继续时输入 *y*：
 +
 `set -privilege advanced`
 
 +
-此时将显示高级提示符（ * > ）。
+出现高级提示符（*>）。
 
-. 如果在此集群上启用了 AutoSupport ，则通过调用 AutoSupport 消息禁止自动创建案例：
+. 如果此集群上启用了AutoSupport ，则通过调用AutoSupport消息来抑制自动创建案例：
 +
-`ssystem node AutoSupport invoke -node * -type all -message MAINT=xh`
-
-+
-其中 x 是维护时段的持续时间，以小时为单位。
+`system node autosupport invoke -node * -type all -message MAINT=xh`
 
 +
+其中 x 为维护窗口的持续时间（小时）。
 
-NOTE: AutoSupport 消息会通知技术支持此维护任务，以便在维护窗口期间禁止自动创建案例。
++
+
+NOTE: AutoSupport消息会通知技术支持此维护任务，以便在维护窗口期间抑制自动创建案例。
 
 +
 .显示示例
 [%collapsible]
 ====
-以下命令将禁止自动创建案例 2 小时：
+以下命令可抑制自动创建案件两小时：
 
 [listing, subs="+quotes"]
 ----
 cluster1::*> *system node autosupport invoke -node * -type all -message MAINT=2h*
 ----
 ====
-. 验证是否已在所有集群 LIF 上启用自动还原：
+. 确认所有集群 LIF 都已启用自动回滚功能：
 +
-`network interface show - vserver cluster -fields auto-revert`
+`network interface show -vserver Cluster -fields auto-revert`
 
 +
 .显示示例
@@ -135,12 +135,12 @@ Cluster
 ====
 . 确定每个集群接口的管理或运行状态：
 +
-对于 `Link` ，每个端口均应显示 up ；对于 `Health Status` ，每个端口均应显示 Healthy 。
+每个端口都应该显示出来。 `Link`而且对身体有益 `Health Status`。
 
 +
 .. 显示网络端口属性：
 +
-`network port show -ipspace cluster`
+`network port show -ipspace Cluster`
 
 +
 .显示示例
@@ -169,12 +169,12 @@ e0b       Cluster      Cluster          up   9000  auto/10000 healthy  false
 4 entries were displayed.
 ----
 ====
-.. 显示有关逻辑接口及其指定主节点的信息：
+.. 显示有关逻辑接口及其指定归属节点的信息：
 +
-`network interface show -vserver cluster`
+`network interface show -vserver Cluster`
 
 +
-对于 `S状态管理 /Oper` ，每个 LIF 都应显示 up/up ；对于 `，每个 LIF 都应显示 true ，而对于` ，则显示 Home 。
+每个 LIF 都应该显示 up/up。 `Status Admin/Oper`确实如此 `Is Home`。
 
 +
 .显示示例
@@ -198,7 +198,7 @@ Cluster
 ====
 
 
-. 使用命令验证每个节点上的集群端口是否以以下方式(从节点角度)连接到现有集群交换机：
+. 使用以下命令（从节点角度）验证每个节点上的集群端口是否已按以下方式连接到现有的集群交换机：
 +
 `network device-discovery show -protocol cdp`
 
@@ -222,9 +222,9 @@ node1      /cdp
 4 entries were displayed.
 ----
 ====
-. 使用命令验证集群端口和交换机是否以以下方式(从交换机的角度)连接：
+. 使用以下命令验证集群端口和交换机是否按以下方式连接（从交换机的角度来看）：
 +
-`s如何使用 cdp 邻居`
+`show cdp neighbors`
 
 +
 .显示示例
@@ -290,22 +290,22 @@ c1(FOX2025GEEX)     Eth1/47        176    S I s     N5K-C5596UP        Eth1/47
 c1(FOX2025GEEX)     Eth1/48        176    S I s     N5K-C5596UP        Eth1/48
 ----
 ====
-. 验证远程集群接口的连接：
+. 验证远程集群接口的连接性：
 
 
 [role="tabbed-block"]
 ====
-.ONTAP 9.9.1及更高版本
+.ONTAP 9.9.1 及更高版本
 --
-您可以使用 `network interface check cluster-connectivity` 命令启动集群连接的可访问性检查、然后显示详细信息：
+你可以使用 `network interface check cluster-connectivity`执行命令以启动集群连接性检查，然后显示详细信息：
 
-`network interface check cluster-connectivity start` 和 `network interface check cluster-connectivity show`
+`network interface check cluster-connectivity start`和 `network interface check cluster-connectivity show`
 
 [listing, subs="+quotes"]
 ----
 cluster1::*> *network interface check cluster-connectivity start*
 ----
-*注：*请等待几秒钟、然后再运行 `show`命令以显示详细信息。
+*注意：*运行程序前请等待几秒钟 `show`显示详细信息的命令。
 
 [listing, subs="+quotes"]
 ----
@@ -323,7 +323,7 @@ node2
 --
 .所有ONTAP版本
 --
-对于所有ONTAP版本、您还可以使用 `cluster ping-cluster -node <name>` 用于检查连接的命令：
+对于所有ONTAP版本，您也可以使用 `cluster ping-cluster -node <name>`检查连接性的命令：
 
 `cluster ping-cluster -node <name>`
 
@@ -358,14 +358,14 @@ RPC status:
 ====
 
 
-=== 第2步：配置缆线和端口
+=== 步骤 2：配置线缆和端口
 
-. 在 C1 和 CS1 之间的端口 E1/41-48 上的 cs1上 配置临时 ISL 。
+. 在 c1 和 cs1 之间的端口 e1/41-48 上配置 cs1 上的临时 ISL。
 +
 .显示示例
 [%collapsible]
 ====
-以下示例显示了如何在 C1 和 CS1 上配置新 ISL ：
+以下示例展示了如何在 c1 和 cs1 上配置新的 ISL：
 
 [listing, subs="+quotes"]
 ----
@@ -386,16 +386,16 @@ cs1(config-if)# *exit*
 cs1(config)# *exit*
 ----
 ====
-. 从 C2 的端口 E1/41-48 中拔下 ISL 缆线，并将缆线连接到 CS1 上的端口 E1/41-48 。
-. 验证连接 C1 和 CS1 的 ISL 端口和端口通道是否正常运行：
+. 从 c2 的 e1/41-48 端口移除 ISL 电缆，并将电缆连接到 cs1 的 e1/41-48 端口。
+. 验证 ISL 端口和端口通道是否正常工作，连接 c1 和 cs1：
 +
-`s如何执行端口通道摘要`
+`show port-channel summary`
 
 +
 .显示示例
 [%collapsible]
 ====
-以下示例显示了用于验证 C1 和 CS1 上 ISL 端口是否正常运行的 Cisco show port-channel summary 命令：
+以下示例展示了如何使用Cisco show port-channel summary 命令来验证 c1 和 cs1 上的 ISL 端口是否正常运行：
 
 [listing, subs="+quotes"]
 ----
@@ -436,9 +436,9 @@ Group Port-       Type     Protocol  Member Ports
                                      Eth1/47(P)   Eth1/48(P)
 ----
 ====
-. 对于 node1 ，请断开 C2 上 E1/1 的缆线连接，然后使用 Nexus 92300YC 支持的相应布线方式将缆线连接到 CS2 上的 E1/1 。
-. 对于 node2 ，请断开 C2 上 E1/2 的缆线连接，然后使用 Nexus 92300YC 支持的相应布线方式将缆线连接到 CS2 上的 E1/2 。
-. 现在，从节点的角度来看，每个节点上的集群端口均以以下方式连接到集群交换机：
+. 对于节点 1，断开 c2 上的 e1/1 电缆，然后使用 Nexus 92300YC 支持的适当电缆将电缆连接到 cs2 上的 e1/1。
+. 对于节点 2，断开 c2 上的 e1/2 电缆，然后使用 Nexus 92300YC 支持的适当电缆将电缆连接到 cs2 上的 e1/2。
+. 从节点的角度来看，每个节点上的集群端口现在按以下方式连接到集群交换机：
 +
 `network device-discovery show -protocol cdp`
 
@@ -463,9 +463,9 @@ node1      /cdp
 4 entries were displayed.
 ----
 ====
-. 对于 node1 ，请断开 C1 上 E1/1 的缆线连接，然后使用 Nexus 92300YC 支持的相应缆线将缆线连接到 CS1 上的 E1/1 。
-. 对于 node2 ，请断开 C1 上 E1/2 的缆线连接，然后使用 Nexus 92300YC 支持的相应缆线将缆线连接到 CS1 上的 E1/2 。
-. 现在，从节点的角度来看，每个节点上的集群端口均以以下方式连接到集群交换机：
+. 对于节点 1，断开 c1 上的 e1/1 电缆，然后使用 Nexus 92300YC 支持的适当电缆将电缆连接到 cs1 上的 e1/1。
+. 对于节点 2，断开 c1 上的 e1/2 的电缆，然后使用 Nexus 92300YC 支持的适当电缆将电缆连接到 cs1 上的 e1/2。
+. 从节点的角度来看，每个节点上的集群端口现在按以下方式连接到集群交换机：
 +
 `network device-discovery show -protocol cdp`
 
@@ -488,7 +488,7 @@ node1      /cdp
 4 entries were displayed.
 ----
 ====
-. 删除 CS1 和 C1 之间的临时 ISL 。
+. 删除 cs1 和 c1 之间的临时 ISL。
 +
 .显示示例
 [%collapsible]
@@ -511,14 +511,14 @@ cs1(config)# *exit*
 
 
 
-=== 第3步：完成迁移
+=== 步骤 3：完成迁移
 
 . 验证集群的最终配置：
 +
-`network port show -ipspace cluster`
+`network port show -ipspace Cluster`
 
 +
-对于 `Link` ，每个端口均应显示 up ；对于 `Health Status` ，每个端口均应显示 Healthy 。
+每个端口都应该显示出来。 `Link`而且对身体有益 `Health Status`。
 
 +
 .显示示例
@@ -608,22 +608,22 @@ cs1(FDO220329KU)
 Total entries displayed: 4
 ----
 ====
-. 验证远程集群接口的连接：
+. 验证远程集群接口的连接性：
 
 
 [role="tabbed-block"]
 ====
-.ONTAP 9.9.1及更高版本
+.ONTAP 9.9.1 及更高版本
 --
-您可以使用 `network interface check cluster-connectivity` 命令启动集群连接的可访问性检查、然后显示详细信息：
+你可以使用 `network interface check cluster-connectivity`执行命令以启动集群连接性检查，然后显示详细信息：
 
-`network interface check cluster-connectivity start` 和 `network interface check cluster-connectivity show`
+`network interface check cluster-connectivity start`和 `network interface check cluster-connectivity show`
 
 [listing, subs="+quotes"]
 ----
 cluster1::*> *network interface check cluster-connectivity start*
 ----
-*注：*请等待几秒钟、然后再运行 `show`命令以显示详细信息。
+*注意：*运行程序前请等待几秒钟 `show`显示详细信息的命令。
 
 [listing, subs="+quotes"]
 ----
@@ -641,7 +641,7 @@ node2
 --
 .所有ONTAP版本
 --
-对于所有ONTAP版本、您还可以使用 `cluster ping-cluster -node <name>` 用于检查连接的命令：
+对于所有ONTAP版本，您也可以使用 `cluster ping-cluster -node <name>`检查连接性的命令：
 
 `cluster ping-cluster -node <name>`
 
@@ -674,9 +674,9 @@ RPC status:
 ----
 --
 ====
-. [[STEP3]]如果禁止自动创建案例、请通过调用AutoSupport消息重新启用：
+. [[步骤3]] 如果您已禁用自动创建案例功能，请通过调用AutoSupport消息重新启用该功能：
 +
-`ssystem node AutoSupport invoke -node * -type all -message MAINT=end`
+`system node autosupport invoke -node * -type all -message MAINT=END`
 
 +
 .显示示例
@@ -687,11 +687,11 @@ RPC status:
 cluster1::*> *system node autosupport invoke -node * -type all -message MAINT=END*
 ----
 ====
-. 将权限级别重新更改为 admin ：
+. 将权限级别改回管理员：
 +
 `set -privilege admin`
 
 
 
 .下一步是什么？
-link:../switch-cshm/config-overview.html["配置交换机运行状况监控"](英文)
+link:../switch-cshm/config-overview.html["配置交换机健康监控"]。

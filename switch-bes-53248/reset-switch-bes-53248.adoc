@@ -2,7 +2,7 @@
 permalink: switch-bes-53248/reset-switch-bes-53248.html 
 sidebar: sidebar 
 keywords: BES-53248 reset switch to factory defaults, BES-53248 switches configuration, efos 
-summary: 在配置Broadcom BES-53248交换机之前、请查看以下信息。 
+summary: 在配置博通BES-53248交换机之前，请查看以下信息。 
 ---
 = 将 BES-53248 集群交换机重置为出厂默认设置
 :allow-uri-read: 
@@ -12,12 +12,12 @@ summary: 在配置Broadcom BES-53248交换机之前、请查看以下信息。
 要将 BES-53248 集群交换机重置为出厂默认设置，必须清除 BES-53248 交换机设置。
 
 .关于此任务
-* 您必须使用串行控制台连接到交换机。
-* 此任务将重置管理网络的配置。
+* 您必须使用串口控制台连接到交换机。
+* 此任务会重置管理网络的配置。
 
 
 .步骤
-. 更改为提升的命令提示符。
+. 切换到管理员权限的命令提示符。
 +
 [listing, subs="+quotes"]
 ----
@@ -45,11 +45,11 @@ Are you sure you would like to reset the system? (y/n) *y*
 
 
 
-NOTE: 如果系统在重新加载交换机之前询问是保存未保存的配置还是更改的配置，请选择 * 否 * 。
+NOTE: 如果系统询问是否在重新加载交换机之前保存未保存或已更改的配置，请选择“否”。
 
-. [[step4]] 等待交换机重新加载，然后登录交换机。
+. [[step4]] 等待交换机重新加载，然后登录到交换机。
 +
-默认用户为“admin”，未设置密码。此时将显示类似于以下内容的提示：
+默认用户为“admin”，未设置密码。屏幕上会显示类似以下内容的提示：
 
 +
 [listing]

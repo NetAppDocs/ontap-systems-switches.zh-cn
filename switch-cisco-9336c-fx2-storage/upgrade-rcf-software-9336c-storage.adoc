@@ -4,50 +4,50 @@ sidebar: sidebar
 keywords: install rcf, cisco switches 
 summary: 您可以使用此过程升级您的 RCF 版本。 
 ---
-= 升级参考配置文件(RCF)
+= 升级您的参考配置文件 (RCF)
 :allow-uri-read: 
 :icons: font
 :imagesdir: ../media/
 
 
 [role="lead"]
-如果操作交换机上安装了现有版本的RCF文件、则可以升级RCF版本。
+当您的运行交换机上已安装了现有版本的 RCF 文件时，您需要升级 RCF 版本。
 
 .开始之前
-确保您已具备以下条件：
+请确保您拥有以下物品：
 
 * 交换机配置的当前备份。
-* 一个完全正常运行的集群(日志中没有错误或类似问题)。
-* 当前的RC框架。
-* 如果要更新RC框架 版本、则需要在RCIF中配置一个能够反映所需启动映像的启动配置。
+* 一个功能齐全的集群（日志中没有错误或类似问题）。
+* 当前的RCF。
+* 如果您要更新 RCF 版本，则需要在 RCF 中进行启动配置，以反映所需的启动映像。
 +
-如果您需要更改启动配置以反映当前启动映像，则必须在重新应用 RCF 之前进行更改，以便在将来重新启动时实例化正确的版本。
+如果需要更改启动配置以反映当前的启动映像，则必须在重新应用 RCF 之前进行更改，以便在以后的重启中实例化正确的版本。
 
 
 
 
-NOTE: 在此操作步骤 期间、不需要可操作的交换机间链路(ISL)。这是设计上的原因、因为RCF版本更改可能会暂时影响ISL连接。为了确保集群无中断运行、以下操作步骤 会在对目标交换机执行步骤时将所有集群LIF迁移到运行中的配对交换机。
+NOTE: 在此过程中不需要任何可操作的交换机间链路 (ISL)。这是设计使然，因为 RCF 版本的更改可能会暂时影响 ISL 连接。为确保集群运行不中断，以下步骤将所有集群 LIF 迁移到运行伙伴交换机，同时在目标交换机上执行相应步骤。
 
 
-CAUTION: 在安装新的交换机软件版本和 RCF 之前，您必须擦除交换机设置并执行基本配置。在擦除交换机设置之前、您必须使用串行控制台连接到交换机或保留基本配置信息。
+CAUTION: 安装新的交换机软件版本和 RCF 之前，必须清除交换机设置并执行基本配置。在清除交换机设置之前，您必须使用串行控制台连接到交换机，或者保留基本配置信息。
 
 
 
-== 第1步：准备升级
+== 第一步：准备升级
 
-. 如果在此集群上启用了 AutoSupport ，则通过调用 AutoSupport 消息禁止自动创建案例：
+. 如果此集群上启用了AutoSupport ，则通过调用AutoSupport消息来抑制自动创建案例：
 +
-`ssystem node AutoSupport invoke -node * -type all -message MAINT=xh`
+`system node autosupport invoke -node * -type all -message MAINT=xh`
 
 +
 其中 _x_ 为维护窗口的持续时间（小时）。
 
-. 将权限级别更改为高级，在系统提示您继续时输入 * y * ：
+. 将权限级别更改为高级，并在提示继续时输入 *y*：
 +
 `set -privilege advanced`
 
 +
-此时将显示高级提示符（ * > ）。
+出现高级提示符（*>）。
 
 . 显示每个节点上连接到交换机的端口：
 +
@@ -109,15 +109,15 @@ node1-02
 .
 ----
 ====
-. 在集群 LIF 上禁用自动还原。
+. 禁用集群 LIF 的自动回滚功能。
 +
-`network interface modify -vserver cluster -lif *-auto-revert false`
+`network interface modify -vserver Cluster -lif * -auto-revert false`
 
 
 
 
 
-== 第2步：配置端口
+== 步骤 2：配置端口
 
 . 在交换机cs1上，关闭与节点所有端口相连的端口。
 +
@@ -132,7 +132,7 @@ cs1(config)# *exit*
 ----
 +
 
-CAUTION: 确保关闭所有连接的端口以避免任何网络连接问题。请参阅知识库文章 https://kb.netapp.com/on-prem/ontap/OHW/OHW-KBs/Node_out_of_quorum_when_migrating_cluster_lif_during_switch_OS_upgrade["在交换机操作系统升级期间迁移集群LIF时、节点丢失仲裁"^]了解更多详情。
+CAUTION: 确保关闭所有连接的端口以避免任何网络连接问题。请参阅知识库文章 https://kb.netapp.com/on-prem/ontap/OHW/OHW-KBs/Node_out_of_quorum_when_migrating_cluster_lif_during_switch_OS_upgrade["在切换操作系统升级期间迁移集群 LIF 时，节点脱离仲裁。"^]更多详情请见下文。
 
 . 验证集群 LIF 是否已故障转移到交换机 cs1 上托管的端口。这可能需要几秒钟。
 +
@@ -185,16 +185,16 @@ node1-04          true    true          false
 4 entries were displayed.
 ----
 ====
-. 如果尚未保存当前交换机配置的副本、请将以下命令的输出复制到文本文件中：
+. 如果您尚未保存当前交换机配置，请将以下命令的输出复制到文本文件中：
 +
-`s如何运行配置`
+`show running-config`
 
 +
-.. 记录当前之间的任何自定义添加 `running-config`以及正在使用的 RCF 文件（例如您组织的 SNMP 配置）。
+.. 记录当前版本与当前版本之间的任何自定义添加内容。 `running-config`以及正在使用的 RCF 文件（例如贵组织的 SNMP 配置）。
 .. 对于 NX-OS 10.2 及更高版本，请使用 `show diff running-config`用于与 bootflash 中保存的 RCF 文件进行比较的命令。否则，请使用第三方差异比较工具。
 
 
-. 将基本配置详细信息保存到 `write_erase.cfg`bootflash 上的文件。
+. 保存基本配置详细信息 `write_erase.cfg`启动闪存上的文件。
 +
 [NOTE]
 ====
@@ -228,13 +228,13 @@ node1-04          true    true          false
 `cs1# echo "hardware access-list tcam region ing-l2-qos 1280 >> bootflash:write_erase.cfg`
 
 +
-请参阅知识库文章link:https://kb.netapp.com/on-prem/Switches/Cisco-KBs/How_to_clear_configuration_on_a_Cisco_interconnect_switch_while_retaining_remote_connectivity["如何在保持远程连接的同时清除Cisco互连交换机上的配置"^]了解更多详情。
+请参阅知识库文章link:https://kb.netapp.com/on-prem/Switches/Cisco-KBs/How_to_clear_configuration_on_a_Cisco_interconnect_switch_while_retaining_remote_connectivity["如何在保持远程连接的情况下清除Cisco互连交换机上的配置"^]更多详情请见下文。
 
-. 验证 `write_erase.cfg`文件按预期填充：
+. 确认 `write_erase.cfg`文件已按预期填充：
 +
 `*show file bootflash:write_erase.cfg*`
 
-. 发出 `write erase`命令来删除当前保存的配置：
+. 问题 `write erase`清除当前已保存配置的命令：
 +
 `cs1# *write erase*`
 
@@ -244,30 +244,30 @@ node1-04          true    true          false
 +
 `Do you wish to proceed anyway? (y/n)  [n] *y*`
 
-. 将先前保存的基本配置复制到启动配置中。
+. 将之前保存的基本配置复制到启动配置中。
 +
 `cs1# *copy bootflash:write_erase.cfg startup-config*`
 
-. 重新启动交换机：
+. 重启交换机：
 +
 `cs1# *reload*`
 
 +
 `This command will reboot the system. (y/n)?  [n] *y*`
 
-. 再次访问管理IP地址后、通过SSH登录到交换机。
+. 管理 IP 地址恢复正常后，通过 SSH 登录交换机。
 +
-您可能需要更新与SSH密钥相关的主机文件条目。
+您可能需要更新与 SSH 密钥相关的 hosts 文件条目。
 
-. 使用以下传输协议之一将RCC复制到交换机CS1的bootflash：FTP、TFTP、SFTP或SCP。
+. 使用以下传输协议之一将 RCF 复制到交换机 cs1 的 bootflash：FTP、TFTP、SFTP 或 SCP。
 +
-有关 Cisco 命令的详细信息，请参见中的相应指南 https://www.cisco.com/c/en/us/support/switches/nexus-9336c-fx2-switch/model.html#CommandReferences["《 Cisco Nexus 9000 系列 NX-OS 命令参考》"^] 指南。
+有关Cisco命令的更多信息，请参阅 https://www.cisco.com/c/en/us/support/switches/nexus-9336c-fx2-switch/model.html#CommandReferences["Cisco Nexus 9000 系列 NX-OS 命令参考"^]指南。
 
 +
 .显示示例
 [%collapsible]
 ====
-此示例显示了使用TFTP将RCC复制到交换机CS1上的bootflash：
+此示例展示了如何使用 TFTP 将 RCF 文件复制到交换机 cs1 的启动闪存中：
 
 [listing, subs="+quotes"]
 ----
@@ -279,9 +279,9 @@ TFTP get operation was successful
 Copy complete, now saving to disk (please wait)...
 ----
 ====
-. 将先前下载的 RCF 应用于 bootflash 。
+. 将之前下载的 RCF 文件应用到启动闪存中。
 +
-有关 Cisco 命令的详细信息，请参见中的相应指南 https://www.cisco.com/c/en/us/support/switches/nexus-9336c-fx2-switch/model.html#CommandReferences["《 Cisco Nexus 9000 系列 NX-OS 命令参考》"^] 指南。
+有关Cisco命令的更多信息，请参阅 https://www.cisco.com/c/en/us/support/switches/nexus-9336c-fx2-switch/model.html#CommandReferences["Cisco Nexus 9000 系列 NX-OS 命令参考"^]指南。
 
 +
 此示例展示了 RCF 文件 `NX9336C-FX2-RCF-v1.13-1-Storage.txt`正在交换机 cs1 上安装：
@@ -297,26 +297,26 @@ cs1# *copy Nexus_9336C_RCF_v1.6-Storage.txt running-config echo-commands*
 确保仔细阅读 RCF 的 *安装说明*、*重要说明* 和 *横幅* 部分。您必须阅读并遵循这些说明以确保交换机的正确配置和操作。
 
 ====
-. 验证 RCF 文件是否为正确的较新版本：
+. 请确认 RCF 文件是否为最新版本：
 +
-`s如何运行配置`
+`show running-config`
 
 +
-在检查输出以确认您的 RCF 正确无误时，请确保以下信息正确无误：
+检查输出结果以验证是否拥有正确的 RCF 时，请确保以下信息正确：
 
 +
-** RCF 横幅
+** RCF横幅
 ** 节点和端口设置
-** 自定义
+** 定制
 +
-输出因站点配置而异。检查端口设置，并参阅发行说明，了解您安装的 RCF 的任何特定更改。
+输出结果会根据您的网站配置而有所不同。检查端口设置，并参考发行说明，了解您安装的 RCF 版本是否有任何特定更改。
 
 
 
-. 将任何先前的自定义重新应用到交换机配置。
-. 验证 RCF 版本、自定义添加和开关设置正确后，复制 `running-config`文件到 `startup-config`文件。
+. 将之前对交换机配置所做的任何自定义设置重新应用。
+. 确认 RCF 版本、自定义添加项和交换机设置正确后，复制以下内容： `running-config`文件到 `startup-config`文件。
 +
-有关 Cisco 命令的详细信息，请参见中的相应指南 https://www.cisco.com/c/en/us/support/switches/nexus-9336c-fx2-switch/model.html#CommandReferences["《 Cisco Nexus 9000 系列 NX-OS 命令参考》"^] 指南。
+有关Cisco命令的更多信息，请参阅 https://www.cisco.com/c/en/us/support/switches/nexus-9336c-fx2-switch/model.html#CommandReferences["Cisco Nexus 9000 系列 NX-OS 命令参考"^]指南。
 
 +
 `cs1# *copy running-config startup-config*`
@@ -324,7 +324,7 @@ cs1# *copy Nexus_9336C_RCF_v1.6-Storage.txt running-config echo-commands*
 +
 `[########################################] 100% Copy complete`
 
-. 重新启动交换机 CS1 。您可以在交换机重新启动时忽略节点上报告的"` cluster switch Health monitor`"警报和"`cluster ports down`"事件。
+. 重启交换机cs1。在交换机重启期间，您可以忽略节点上报告的“集群交换机健康监视器”警报和“集群端口关闭”事件。
 +
 `cs1# *reload*`
 
@@ -386,29 +386,29 @@ node1-04          true     true          false
 ----
 ====
 . 在交换机 cs2 上重复步骤 4 至 19。
-. 在集群 LIF 上启用自动还原。
+. 启用集群 LIF 的自动回滚功能。
 +
-`network interface modify -vserver cluster -lif *-auto-revert true`
+`network interface modify -vserver Cluster -lif * -auto-revert true`
 
 
 
 
 
-== 第3步：验证集群网络配置和集群运行状况
+== 步骤 3：验证集群网络配置和集群健康状况
 
-. 验证连接到集群端口的交换机端口是否为*已启动*。
+. 确认连接到集群端口的交换机端口已启用。
 +
 [source, cli]
 ----
 show interface brief
 ----
-. 验证所需节点是否仍处于连接状态：
+. 确认预期节点仍然连接：
 +
 [source, cli]
 ----
 show cdp neighbors
 ----
-. 使用以下命令验证集群节点是否位于正确的集群VLAN中：
+. 使用以下命令验证集群节点是否位于正确的集群 VLAN 中：
 +
 [source, cli]
 ----
@@ -419,14 +419,14 @@ show vlan brief
 ----
 show interface trunk
 ----
-. 验证集群 LIF 是否已还原到其主端口：
+. 确认集群 LIF 已恢复到其原端口：
 +
 [source, cli]
 ----
 network interface show -role cluster
 ----
 +
-如果任何集群LUN尚未返回其主端口、请从本地节点手动还原它们：
+如果任何集群 LIF 尚未返回到其源端口，请从本地节点手动将其还原：
 
 +
 `network interface revert -vserver vserver_name -lif <lif-name>`
@@ -437,9 +437,9 @@ network interface show -role cluster
 ----
 cluster show
 ----
-. 验证远程集群接口的连接：
+. 验证远程集群接口的连接性：
 +
-.. 您可以使用 `network interface check cluster-connectivity show`命令显示集群连接可访问性检查的详细信息：
+.. 你可以使用 `network interface check cluster-connectivity show`用于显示集群连接性可访问性检查详细信息的命令：
 +
 [source, cli]
 ----

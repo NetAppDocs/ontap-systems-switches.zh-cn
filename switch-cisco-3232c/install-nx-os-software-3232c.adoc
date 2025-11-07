@@ -2,7 +2,7 @@
 permalink: switch-cisco-3232c/install-nx-os-software-3232c.html 
 sidebar: sidebar 
 keywords: install, nx-os software 
-summary: 您可以使用此操作步骤 在 Nexus 3232C 集群交换机上安装 NX-OS 软件。 
+summary: 您可以按照以下步骤在 Nexus 3232C 集群交换机上安装 NX-OS 软件。 
 ---
 = 安装 NX-OS 软件
 :allow-uri-read: 
@@ -11,35 +11,35 @@ summary: 您可以使用此操作步骤 在 Nexus 3232C 集群交换机上安装
 
 
 [role="lead"]
-您可以使用此操作步骤 在 Nexus 3232C 集群交换机上安装 NX-OS 软件。
+您可以按照以下步骤在 Nexus 3232C 集群交换机上安装 NX-OS 软件。
 
 
 
-== 查看要求
+== 审查要求
 
 .开始之前
 * 交换机配置的当前备份。
-* 一个完全正常运行的集群(日志中没有错误或类似问题)。
-* link:https://mysupport.netapp.com/site/info/cisco-ethernet-switch["Cisco 以太网交换机页面"^]。有关支持的ONTAP 和NX-OS版本、请参见交换机兼容性表。
-* link:https://www.cisco.com/c/en/us/support/switches/nexus-3000-series-switches/products-installation-guides-list.html["Cisco Nexus 3000 系列交换机"^]。有关Cisco交换机升级和降级过程的完整文档、请参见Cisco网站上提供的相应软件和升级指南。
+* 一个功能齐全的集群（日志中没有错误或类似问题）。
+* link:https://mysupport.netapp.com/site/info/cisco-ethernet-switch["Cisco以太网交换机页面"^]。请查阅交换机兼容性表格，了解支持的ONTAP和 NX-OS 版本。
+* link:https://www.cisco.com/c/en/us/support/switches/nexus-3000-series-switches/products-installation-guides-list.html["CiscoNexus 3000 系列交换机"^]。有关Cisco交换机升级和降级程序的完整文档，请参阅Cisco网站上提供的相应软件和升级指南。
 
 
 
 
 == 安装软件
 
-操作步骤 要求同时使用 ONTAP 命令和 Cisco Nexus 3000 系列交换机命令；除非另有说明，否则使用 ONTAP 命令。
+该过程需要同时使用ONTAP命令和Cisco Nexus 3000 系列交换机命令；除非另有说明，否则使用ONTAP命令。
 
-请务必在中完成操作步骤 link:prepare-install-cisco-nexus-3232c.html["准备安装NX-OS和RCF"]、然后按照以下步骤进行操作。
+务必完成以下步骤link:prepare-install-cisco-nexus-3232c.html["准备安装 NX-OS 和 RCF"]然后按照以下步骤操作。
 
 .步骤
 . 将集群交换机连接到管理网络。
-. 使用 `ping` 命令验证与托管 NX-OS 软件和 RCF 的服务器的连接。
+. 使用 `ping`用于验证与托管 NX-OS 软件和 RCF 的服务器的连接性的命令。
 +
 .显示示例
 [%collapsible]
 ====
-此示例验证交换机是否可以通过 IP 地址 172.19.2.1 访问服务器：
+此示例验证交换机可以访问 IP 地址为 172.19.2.1 的服务器：
 
 [listing, subs="+quotes"]
 ----
@@ -49,7 +49,7 @@ Pinging 172.19.2.1 with 0 bytes of data:
 Reply From 172.19.2.1: icmp_seq = 0. time= 5910 usec.
 ----
 ====
-. 显示连接到集群交换机的每个节点上的集群端口：
+. 显示每个节点上连接到集群交换机的集群端口：
 +
 `network device-discovery show`
 
@@ -80,7 +80,7 @@ cluster1::*>
 ====
 . 检查每个集群端口的管理和运行状态。
 +
-.. 验证所有集群端口是否均为*已启动*且运行状况良好：
+.. 确认集群所有端口均已启动且状态正常：
 +
 `network port show -role cluster`
 
@@ -128,7 +128,7 @@ e0b       Cluster      Cluster          up   9000  auto/10000 healthy  false
 cluster1::*>
 ----
 ====
-.. 验证所有集群接口（ LIF ）是否均位于主端口上：
+.. 确认所有集群接口（LIF）都位于主端口上：
 +
 `network interface show -role cluster`
 
@@ -155,9 +155,9 @@ Cluster
 cluster1::*>
 ----
 ====
-.. 验证集群是否同时显示两个集群交换机的信息：
+.. 确认集群显示两个集群交换机的信息：
 +
-`ssystem cluster-switch show -is-monitoring-enableed-Operational true`
+`system cluster-switch show -is-monitoring-enabled-operational true`
 
 +
 .显示示例
@@ -188,9 +188,9 @@ cluster1::*>
 ====
 
 
-. 在集群 LIF 上禁用自动还原。在目标交换机上执行升级过程时、这些集群Cifs将故障转移到配对集群交换机并保留在该交换机上：
+. 禁用集群 LIF 的自动回滚功能。集群 LIF 会故障转移到伙伴集群交换机，并在您对目标交换机执行升级过程时保留在该交换机上：
 +
-`network interface modify -vserver cluster -lif *-auto-revert false`
+`network interface modify -vserver Cluster -lif * -auto-revert false`
 
 . 将 NX-OS 软件和 EPLD 映像复制到 Nexus 3232C 交换机。
 +
@@ -233,9 +233,9 @@ Copy complete, now saving to disk (please wait)...
 Copy complete.
 ----
 ====
-. 验证正在运行的 NX-OS 软件版本：
+. 请确认NX-OS软件的运行版本：
 +
-`s如何使用版本`
+`show version`
 
 +
 .显示示例
@@ -293,9 +293,9 @@ Active Package(s):
 cs2#
 ----
 ====
-. 安装 NX-OS 映像。
+. 安装 NX-OS 镜像。
 +
-安装映像文件会导致每次重新启动交换机时加载该映像文件。
+安装镜像文件后，每次交换机重启时都会加载该文件。
 
 +
 .显示示例
@@ -362,9 +362,9 @@ Finishing the upgrade, switch will reboot in 10 seconds.
 cs2#
 ----
 ====
-. 在交换机重新启动后验证 NX-OS 软件的新版本：
+. 交换机重启后，请验证NX-OS软件的新版本：
 +
-`s如何使用版本`
+`show version`
 
 +
 .显示示例
@@ -422,7 +422,7 @@ Active Package(s):
 cs2#
 ----
 ====
-. 升级 EPLD 映像并重新启动交换机。
+. 升级EPLD镜像并重启交换机。
 +
 .显示示例
 [%collapsible]
@@ -466,9 +466,9 @@ Module 1 EPLD upgrade is successful.
 cs2#
 ----
 ====
-. 如果要升级到NX-OS 9.3 (11)版、则必须升级EPLD `golden`映像并重新启动交换机。否则、请跳至步骤12。
+. 如果您要升级到 NX-OS 版本 9.3(11)，则必须升级 EPLD。 `golden`镜像并再次重启交换机。否则，跳至步骤 12。
 +
-有关详细信息、请参见 https://www.cisco.com/c/en/us/td/docs/switches/datacenter/nexus9000/sw/93x/epld-rn/nxos_n9K_epldRN_9311.html["EPLD升级发行说明、9.3 (11)版"^]。
+看 https://www.cisco.com/c/en/us/td/docs/switches/datacenter/nexus9000/sw/93x/epld-rn/nxos_n9K_epldRN_9311.html["EPLD 升级版本说明，版本 9.3(11)"^]更多详情请见下文。
 
 +
 .显示示例
@@ -505,7 +505,7 @@ Module 1 EPLD upgrade is successful.
 cs2#
 ----
 ====
-. 交换机重新启动后，登录以验证是否已成功加载新版本的 EPLD 。
+. 交换机重启后，登录以验证新版本的 EPLD 是否已成功加载。
 +
 .显示示例
 [%collapsible]
@@ -520,9 +520,9 @@ MI   FPGA                        0x12
 IO   FPGA                        0x12
 ----
 ====
-. 验证集群上集群端口的运行状况。
+. 检查集群上集群端口的运行状况。
 +
-.. 验证集群中所有节点上的集群端口是否均已启动且运行正常：
+.. 确认集群中所有节点的集群端口均已启动且运行状况良好：
 +
 `network port show -role cluster`
 
@@ -568,7 +568,7 @@ e0d       Cluster      Cluster          up   9000  auto/100000 healthy false
 8 entries were displayed.
 ----
 ====
-.. 从集群验证交换机运行状况。
+.. 从集群中验证交换机的运行状况。
 +
 `network device-discovery show -protocol cdp`
 
@@ -616,7 +616,7 @@ cs2                         cluster-network    10.233.205.91    N3K-C3232C
 
 2 entries were displayed.
 ----
-根据先前加载在 CS1 交换机控制台上的 RCF 版本，您可能会在该交换机控制台上看到以下输出。
+根据交换机上先前加载的 RCF 版本，您可能会在 cs1 交换机控制台上看到以下输出：
 
 [listing]
 ----
@@ -648,12 +648,12 @@ cluster1-04          true     true          false
 cluster1::*>
 ----
 ====
-. 对交换机CS1重复步骤6至14。
-. 在集群 LIF 上启用自动还原。
+. 在交换机 cs1 上重复步骤 6 至 14。
+. 启用集群 LIF 的自动回滚功能。
 +
-`network interface modify -vserver cluster -lif *-auto-revert true`
+`network interface modify -vserver Cluster -lif * -auto-revert true`
 
-. 验证集群 LIF 是否已还原到其主端口：
+. 确认集群 LIF 已恢复到其原端口：
 +
 `network interface show -role cluster`
 
@@ -681,7 +681,7 @@ cluster1::*>
 ----
 ====
 +
-如果任何集群LUN尚未返回其主端口、请从本地节点手动还原它们：
+如果任何集群 LIF 尚未返回到其源端口，请从本地节点手动将其还原：
 
 +
 `network interface revert -vserver Cluster -lif <lif_name>`

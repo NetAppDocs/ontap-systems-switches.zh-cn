@@ -2,7 +2,7 @@
 permalink: switch-nvidia-sn2100/configure-reqs-sn2100-cluster.html 
 sidebar: sidebar 
 keywords: nvidia SN2100 switches 
-summary: 对于NVIDIA SN2100交换机安装和维护、请务必查看所有要求和建议的文档。 
+summary: 对于NVIDIA SN2100 交换机的安装和维护，请务必查看所有要求和推荐文档。 
 ---
 = NVIDIA SN2100交换机的配置要求
 :allow-uri-read: 
@@ -11,37 +11,37 @@ summary: 对于NVIDIA SN2100交换机安装和维护、请务必查看所有要�
 
 
 [role="lead"]
-对于NVIDIA SN2100交换机安装和维护、请务必查看所有配置要求。
+对于NVIDIA SN2100 交换机的安装和维护，请务必查看所有配置要求。
 
 
 
 == 安装要求
 
-如果要使用两个以上的节点构建 ONTAP 集群，则需要两个受支持的集群网络交换机。您可以使用其他管理交换机，这些交换机是可选的。
+如果要构建包含两个以上节点的ONTAP集群，则需要两个受支持的集群网络交换机。您还可以使用额外的管理交换机，这些交换机是可选的。
 
-使用NVIDIA SN2100交换机(X190006)随附的标准支架安装在NVIDIA双/单交换机机柜中。
+您可以使用交换机附带的标准支架将NVIDIA SN2100 交换机 (X190006) 安装到NVIDIA双/单交换机机柜中。
 
-有关布线准则、请参见 link:cabling-considerations-sn2100-cluster.html["查看布线和配置注意事项"]。
+有关布线指南，请参阅link:cabling-considerations-sn2100-cluster.html["审查布线和配置注意事项"]。
 
 
 
-== 支持ONTAP 和Linux
+== ONTAP和 Linux 支持
 
-NVIDIA SN2100交换机是运行Cumulus Linux的10/C5/40/100GbE交换机。交换机支持以下功能：
+NVIDIA SN2100 交换机是一款运行 Cumulus Linux 的 10/25/40/100GbE 交换机。该交换机支持以下功能：
 
-* ONTAP 9.10.1P3及更高版本
+* ONTAP 9.10.1P3 及更高版本
 +
-SN2100交换机通过不同的交换机对为9.10.1P3 9.10.1P3及更高版本中的集群和存储应用程序提供服务。
+SN2100 交换机通过不同的交换机对为ONTAP 9.10.1P3 及更高版本中的集群和存储应用提供服务。
 
-* 积云Linux (CL)操作系统版本
+* Cumulus Linux (CL) 操作系统版本
 +
-** 特定CL版本已通过NetApp认证并受其支持。有关最新的兼容性信息，请参见link:https://mysupport.netapp.com/site/info/nvidia-cluster-switch["NVIDIA以太网交换机信息"^]页面或link:https://hwu.netapp.com["NetApp Hardware Universe"^]。
-** 要从NVIDIA下载SN2100 Cumulus软件、您必须具有登录凭据才能访问NVIDIA的企业支持门户。请参阅知识库文章 https://kb.netapp.com/onprem/Switches/Nvidia/How_To_Register_With_NVIDIA_For_Enterprise_Support_Portal_Access["如何向NVIDIA注册企业支持门户访问"^]。
+** NetApp对特定 CL 版本进行了认证和支持。有关当前兼容性信息，请参阅link:https://mysupport.netapp.com/site/info/nvidia-cluster-switch["NVIDIA以太网交换机信息"^]页面或link:https://hwu.netapp.com["NetApp Hardware Universe"^]。
+** 要从NVIDIA下载 SN2100 Cumulus 软件，您必须拥有登录凭据才能访问 NVIDIA 企业支持门户。请参阅知识库文章 https://kb.netapp.com/onprem/Switches/Nvidia/How_To_Register_With_NVIDIA_For_Enterprise_Support_Portal_Access["如何注册NVIDIA企业支持门户访问权限"^]。
 
 
 
 
-* 当交换机运行的是Cumulus Linux或ONIE时、您可以安装Cumulus Linux。
+* 当交换机运行 Cumulus Linux 或 ONIE 时，您可以安装 Cumulus Linux。
 
 
 .下一步是什么？

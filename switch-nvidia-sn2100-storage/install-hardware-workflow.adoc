@@ -13,14 +13,14 @@ summary: 在配置NVIDIA SN2100 集群交换机之前，请查看配置概述。
 [role="lead"]
 要安装和配置 SN2100 存储交换机的硬件，请按照以下步骤操作：
 
-.image:https://raw.githubusercontent.com/NetAppDocs/common/main/media/number-1.png["一个"]link:install-hardware-sn2100-storage.html["Install the hardware"]
+.image:https://raw.githubusercontent.com/NetAppDocs/common/main/media/number-1.png["一个"]link:install-hardware-sn2100-storage.html["安装硬件"]
 [role="quick-margin-para"]
 安装交换机硬件。
 
-.image:https://raw.githubusercontent.com/NetAppDocs/common/main/media/number-2.png["两个"]link:cabling-considerations-sn2100-storage.html["查看布线和配置注意事项"]
+.image:https://raw.githubusercontent.com/NetAppDocs/common/main/media/number-2.png["两个"]link:cabling-considerations-sn2100-storage.html["审查布线和配置注意事项"]
 [role="quick-margin-para"]
-查看光纤连接、QSA适配器和交换机端口速度的要求。
+审查光纤连接、QSA适配器和交换机端口速度的要求。
 
-.image:https://raw.githubusercontent.com/NetAppDocs/common/main/media/number-3.png["三个"]link:install-cable-shelves-sn2100-storage.html["为NS224磁盘架布线"]
+.image:https://raw.githubusercontent.com/NetAppDocs/common/main/media/number-3.png["三"]link:install-cable-shelves-sn2100-storage.html["NS224 货架的电缆"]
 [role="quick-margin-para"]
-如果您的系统需要将NS224驱动器架作为交换机连接存储(而不是直连存储)进行布线、请按照布线过程进行操作。
+如果您的系统需要将 NS224 驱动器架作为交换机连接存储（而不是直接连接存储）进行布线，请按照布线程序进行操作。

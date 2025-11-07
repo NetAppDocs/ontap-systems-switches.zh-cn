@@ -2,7 +2,7 @@
 permalink: switch-cisco-3132q-v/cn1610-migrate-requirements.html 
 sidebar: sidebar 
 keywords: install, cisco nexus 3132q-v switch, 
-summary: 在配置Cisco Nexus 3132q-v交换机之前、请查看此过程和术语的概述。 
+summary: 在配置Cisco Nexus 3132q-v 交换机之前，请先查看流程概述和命名规则。 
 ---
 = 迁移要求
 :allow-uri-read: 
@@ -10,82 +10,82 @@ summary: 在配置Cisco Nexus 3132q-v交换机之前、请查看此过程和术�
 
 
 [role="lead"]
-Cisco Nexus 3132Q-V交换机可用作AFF 或FAS 集群中的集群交换机。通过集群交换机、您可以使用两个以上的节点构建ONTAP 集群。
+Cisco Nexus 3132Q-V 交换机可用作AFF或FAS集群中的集群交换机。集群交换机允许您构建具有两个以上节点的ONTAP集群。
 
 [NOTE]
 ====
-操作步骤 要求同时使用 ONTAP 命令和 Cisco Nexus 3000 系列交换机命令；除非另有说明，否则使用 ONTAP 命令。
+该过程需要同时使用ONTAP命令和Cisco Nexus 3000 系列交换机命令；除非另有说明，否则使用ONTAP命令。
 
 ====
-有关详细信息，请参见
+有关详细信息，请参阅：For more information, see:
 
-* https://mysupport.netapp.com/site/products/all/details/netapp-cluster-switches/docs-tab["NetApp CN1601 和 CN1610 问题描述 页面"^]
-* https://mysupport.netapp.com/site/info/cisco-ethernet-switch["Cisco 以太网交换机问题描述 页面"^]
+* https://mysupport.netapp.com/site/products/all/details/netapp-cluster-switches/docs-tab["NetApp CN1601 和 CN1610 说明页"^]
+* https://mysupport.netapp.com/site/info/cisco-ethernet-switch["Cisco以太网交换机描述页面"^]
 * http://hwu.netapp.com["Hardware Universe"^]
 
 
 
 
-== CN1610要求
+== CN1610 要求
 
 支持以下集群交换机：
 
 * NetApp CN1610
-* Cisco Nexus 3132Q-V
+* CiscoNexus 3132Q-V
 
 
 集群交换机支持以下节点连接：
 
-* NetApp CN1610 ：端口 0/1 到 0/12 （ 10 GbE ）
-* Cisco Nexus 3132Q-V ：端口 E1/1 至 30 （ 40/100 GbE ）
+* NetApp CN1610：端口 0/1 至 0/12 (10 GbE)
+* Cisco Nexus 3132Q-V：端口 e1/1-30 (40/100 GbE)
 
 
-集群交换机使用以下交换机间链路（ ISL ）端口：
+集群交换机使用以下交换机间链路（ISL）端口：
 
-* NetApp CN1610 ：端口 0/13 至 0/16 （ 10 GbE ）
-* Cisco Nexus 3132Q-V ：端口 E1/31 至 32 （ 40/100 GbE ）
+* NetApp CN1610：端口 0/13 至 0/16 (10 GbE)
+* Cisco Nexus 3132Q-V：端口 e1/31-32 (40/100 GbE)
 +
-。 link:https://hwu.netapp.com/["Hardware Universe"^] 包含有关支持的 Nexus 3132Q-V 交换机布线的信息：
+这link:https://hwu.netapp.com/["Hardware Universe"^]包含有关 Nexus 3132Q-V 交换机支持的布线信息：
 
-* 具有 10 GbE 集群连接的节点需要使用 QSFP 到 SFP+ 光纤分支电缆或 QSFP 到 SFP+ 铜分支电缆
-* 具有 40/100 GbE 集群连接的节点需要支持的 QSFP/QSFP28 光纤模块以及光缆或 QSFP28 铜缆
-
-
-相应的 ISL 布线如下所示：
-
-* 开始：对于 CN1610 到 CN1610 （ SFP+ 到 SFP+ ），需要四根 SFP+ 光纤或铜缆直连缆线
-* 过渡：对于 CN1610 到 Nexus 3132Q-V （ QSFP 到四个 SFP+ 分支），使用一根 QSFP 到 SFP+ 光纤或铜分支缆线
-* 最终版本：对于 Nexus 3132Q-V 到 Nexus 3132Q-V （ QSFP28 到 QSFP28 ），请使用两根 QSFP28 光纤或铜缆直连缆线
+* 具有 10 GbE 集群连接的节点需要 QSFP 转 SFP+ 光纤分支电缆或 QSFP 转 SFP+ 铜缆分支电缆。
+* 具有 40/100 GbE 集群连接的节点需要支持 QSFP/QSFP28 的光模块，并配备光纤电缆或 QSFP/QSFP28 铜缆直连电缆。
 
 
-NetApp 双轴电缆与 Cisco Nexus 3132Q-V 交换机不兼容。
+适用的ISL布线如下：
 
-如果您当前的 CN1610 配置使用 NetApp 双轴电缆进行集群节点到交换机连接或 ISL 连接，并且您希望在环境中继续使用双轴电缆，则需要购买 Cisco 双轴电缆。或者，您也可以使用光缆进行 ISL 连接和集群节点到交换机连接。
-
-.关于所用示例
-此过程中的示例介绍如何将CN1610交换机更换为Cisco Nexus 3132Q-V交换机。您可以对其他较旧的Cisco交换机使用这些步骤(经过修改)。
-
-操作步骤 还使用以下交换机和节点命名：
-
-* 根据不同版本的 ONTAP ，命令输出可能会有所不同。
-* 要更换的CN1610交换机为*CL1*和*CL2*。
-* 用于替代CN1610交换机的Nexus 3132Q-V交换机为*C1*和*C2*。
-* *n1_clus1*是连接到节点*n1*的集群交换机1 (CL1或C1)的第一个集群逻辑接口(LIF)。
-* *n1_clus2*是连接到节点*n1*的集群交换机2 (CL2或C2)的第一个集群LIF。
-* *n1_clus3*是连接到节点*n1*的集群交换机2 (CL2或C2)的第二个LIF。
-* *n1_clus4*是连接到节点*n1*的集群交换机1 (CL1或C1)的第二个LIF。
-* 10 GbE 和 40/100 GbE 端口的数量在上提供的参考配置文件（ RCF ）中定义 https://mysupport.netapp.com/NOW/download/software/sanswitch/fcp/Cisco/netapp_cnmn/download.shtml["Cisco ® 集群网络交换机参考配置文件下载"^] 页面。
-* 节点包括*n1*、*n2*、*n3*和*n4*。
+* 起始端：对于 CN1610 到 CN1610（SFP+ 到 SFP+），四根 SFP+ 光纤或铜缆直连电缆
+* 临时方案：对于 CN1610 到 Nexus 3132Q-V（QSFP 转四个 SFP+ 分支），使用一根 QSFP 转 SFP+ 光纤或铜缆分支电缆
+* 最后：对于 Nexus 3132Q-V 到 Nexus 3132Q-V（QSFP28 到 QSFP28）的连接，需要两根 QSFP28 光纤或铜缆直连电缆。
 
 
-此操作步骤 中的示例使用四个节点：
+NetApp双绞线电缆与Cisco Nexus 3132Q-V 交换机不兼容。
 
-* 两个节点使用四个10 GbE集群互连端口：* e0a*、* e0b*、* e0c*和* e0d*。
-* 其他两个节点使用两个40 GbE集群互连端口：*e4A*和*e4e*。
+如果您的当前 CN1610 配置使用NetApp双绞线电缆进行集群节点到交换机的连接或 ISL 连接，并且您想继续在您的环境中使用双绞线，则需要采购Cisco双绞线电缆。或者，您可以使用光纤电缆同时进行 ISL 连接和集群节点到交换机的连接。
+
+.关于所使用的示例
+本流程中的示例描述了如何用Cisco Nexus 3132Q-V 交换机替换 CN1610 交换机。您可以对这些步骤（稍作修改）用于其他较旧的Cisco交换机。
+
+该过程还使用了以下交换机和节点命名规则：
+
+* 命令输出可能因ONTAP版本不同而有所差异。
+* 需要更换的 CN1610 交换机是 *CL1* 和 *CL2*。
+* 用于替换 CN1610 交换机的 Nexus 3132Q-V 交换机是 *C1* 和 *C2*。
+* *n1_clus1* 是连接到节点 *n1* 的集群交换机 1 (CL1 或 C1) 的第一个集群逻辑接口 (LIF)。
+* *n1_clus2* 是连接到节点 *n1* 的集群交换机 2 (CL2 或 C2) 的第一个集群 LIF。
+* *n1_clus3* 是连接到节点 *n1* 的集群交换机 2 (CL2 或 C2) 的第二个 LIF。
+* *n1_clus4* 是连接到节点 *n1* 的集群交换机 1 (CL1 或 C1) 的第二个 LIF。
+* 10 GbE 和 40/100 GbE 端口的数量在参考配置文件 (RCF) 中定义，该文件可在以下位置获取： https://mysupport.netapp.com/NOW/download/software/sanswitch/fcp/Cisco/netapp_cnmn/download.shtml["Cisco集群网络交换机参考配置文件下载"^]页。
+* 这些节点是 *n1*、*n2*、*n3* 和 *n4*。
+
+
+本流程中的示例使用了四个节点：
+
+* 两个节点使用四个 10 GbE 集群互连端口：*e0a*、*e0b*、*e0c* 和 *e0d*。
+* 另外两个节点使用两个 40 GbE 集群互连端口：*e4a* 和 *e4e*。
 +
-link:https://hwu.netapp.com/["Hardware Universe"^]列出了平台上的实际集群端口。
+这link:https://hwu.netapp.com/["Hardware Universe"^]列出平台上的实际集群端口。
 
 
 
 .下一步是什么？
-link:cn5596-prepare-to-migrate.html["准备迁移"](英文)
+link:cn5596-prepare-to-migrate.html["做好迁移准备"]。

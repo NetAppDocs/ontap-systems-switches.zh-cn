@@ -2,21 +2,21 @@
 permalink: switch-cisco-3232c/cn5596-complete-migration.html 
 sidebar: sidebar 
 keywords: cisco 3232c, cluster switches 
-summary: 您可以将 Cisco Nexus 3232C 交换机用作 AFF 或 FAS 集群中的集群交换机。 
+summary: 您可以在AFF或FAS集群中使用Cisco Nexus 3232C 交换机作为集群交换机。 
 ---
-= 完成从5596交换机到3232C交换机的迁移
+= 完成从 5596 交换机到 3232C 交换机的迁移
 :allow-uri-read: 
 :icons: font
 :imagesdir: ../media/
 
 
 [role="lead"]
-完成以下步骤以完成Nexus 5596交换机到Nexus 3232C交换机的迁移。
+完成以下步骤，即可完成 Nexus 5596 交换机向 Nexus 3232C 交换机的迁移。
 
 .步骤
-. 验证是否监控了正确的集群交换机：
+. 确认已对正确的集群交换机进行监控：
 +
-`ssystem cluster-switch show`
+`system cluster-switch show`
 
 +
 .显示示例
@@ -47,11 +47,11 @@ C2                          cluster-network    10.10.1.104      NX3232C
 2 entries were displayed.
 ----
 ====
-. 如果禁止自动创建案例，请通过调用 AutoSupport 消息重新启用它：
+. 如果您已禁用自动创建案例功能，请通过调用AutoSupport消息重新启用该功能：
 +
-`ssystem node AutoSupport invoke -node * -type all -message MAINT=end`
+`system node autosupport invoke -node * -type all -message MAINT=END`
 
 
 
 .下一步是什么？
-link:../switch-cshm/config-overview.html["配置交换机运行状况监控"](英文)
+link:../switch-cshm/config-overview.html["配置交换机健康监控"]。

@@ -2,46 +2,46 @@
 permalink: switch-nvidia-sn2100-storage/install-onie-mode-sn2100-storage.html 
 sidebar: sidebar 
 keywords: install cumulus onie mode, sn2100 SN2100 switches setup, cumulus linux, onie mode 
-summary: '可以在交换机运行Cumulus Linux或ONIE时安装Cumulus Linux (CL)操作系统。' 
+summary: '当交换机运行 Cumulus Linux 或 ONIE 时，可以安装 Cumulus Linux (CL) 操作系统。' 
 ---
-= 在ONIE模式下安装Cumulus Linux
+= 以 ONIE 模式安装 Cumulus Linux
 :allow-uri-read: 
 :icons: font
 :imagesdir: ../media/
 
 
 [role="lead"]
-当交换机以ONIE模式运行时、请按照此操作步骤 安装Cumulus Linux (CL)操作系统。
+当交换机运行在 ONIE 模式下时，请按照以下步骤安装 Cumulus Linux (CL) 操作系统。
 
 
-NOTE: 可以在交换机运行Cumulus Linux或ONIE时安装Cumulus Linux (CL)操作系统(请参见 link:install-cumulus-mode-sn2100-storage.html["在Cumulus模式下安装"]）。
+NOTE: Cumulus Linux (CL) 操作系统可以在交换机运行 Cumulus Linux 或 ONIE 时安装（参见link:install-cumulus-mode-sn2100-storage.html["以 Cumulus 模式安装"]）。
 
 .关于此任务
-您可以使用开放网络安装环境(Open Network Install Environment、ONIE)安装Cumulus Linux、以便自动发现网络安装程序映像。这有助于采用可选择的操作系统来保护交换机的系统模式、例如、Cumulus Linux。使用ONIE安装Cumulus Linux的最简单方法是使用本地HTTP发现。
+您可以使用开放网络安装环境 (ONIE) 安装 Cumulus Linux，该环境允许自动发现网络安装程序映像。这有助于实现通过操作系统选择（例如 Cumulus Linux）来保护交换机的系统模型。使用 ONIE 安装 Cumulus Linux 最简单的方法是通过本地 HTTP 发现。
 
 
-NOTE: 如果主机已启用IPv6、请确保其运行的是Web服务器。如果主机启用了IPv4、请确保它除了运行Web服务器之外还运行DHCP。
+NOTE: 如果您的主机支持 IPv6，请确保它正在运行 Web 服务器。如果您的主机支持 IPv4，请确保除了 Web 服务器之外，它还运行 DHCP 服务。
 
-此操作步骤 演示了管理员在ONIE中启动后如何升级Cumulus Linux。
+本过程演示了管理员在 ONIE 启动后如何升级 Cumulus Linux。
 
 .步骤
-. 将Cumulus Linux安装文件下载到Web服务器的根目录。将此文件重命名为`onie-installer`。
-. 使用以太网缆线将主机连接到交换机的管理以太网端口。
-. 打开交换机电源。交换机将下载ONIE映像安装程序并启动。安装完成后、终端窗口将显示Cumulus Linux登录提示。
+. 将 Cumulus Linux 安装文件下载到 Web 服务器的根目录。重命名此文件 `onie-installer`。
+. 使用以太网线将主机连接到交换机的管理以太网端口。
+. 打开开关电源。交换机下载 ONIE 镜像安装程序并启动。安装完成后，终端窗口中会出现 Cumulus Linux 登录提示符。
 +
 
-NOTE: 每次安装Cumulus Linux时、都会擦除并重建整个文件系统结构。
+NOTE: 每次安装 Cumulus Linux 时，整个文件系统结构都会被擦除并重建。
 
-. 重新启动SN2100交换机：
+. 重启SN2100交换机：
 +
 [listing, subs="+quotes"]
 ----
 cumulus@cumulus:mgmt:~$ *sudo reboot*
 ----
-. 在GNU Grub屏幕上按* Esc *键以中断正常启动过程、选择* ONIE*并按* Enter键。
-. 在显示的下一个屏幕上、选择*。onIE：install OS*。
-. ONIE安装程序发现过程将运行搜索自动安装。按*输入*以临时停止此过程。
-. 发现过程停止后：
+. 在 GNU GRUB 屏幕上按 *Esc* 键中断正常的启动过程，选择 *ONIE* 并按 *Enter* 键。
+. 在显示的下一个屏幕上，选择 *ONIE：安装操作系统*。
+. ONIE 安装程序发现过程会运行以搜索自动安装程序。按 *Enter* 键暂时停止该进程。
+. 当发现过程停止时：
 +
 [listing, subs="+quotes"]
 ----
@@ -50,7 +50,7 @@ discover: installer mode detected.
 Stopping: discover...start-stop-daemon: warning: killing process 427:
 No such process done.
 ----
-. 如果DHCP服务正在网络上运行、请验证是否已正确分配IP地址、子网掩码和默认网关：
+. 如果您的网络正在运行 DHCP 服务，请验证 IP 地址、子网掩码和默认网关是否已正确分配：
 +
 `ifconfig eth0`
 
@@ -79,15 +79,15 @@ default         10.233.204.1    0.0.0.0         UG    0      0      0   eth0
 10.233.204.0    *               255.255.254.0   U     0      0      0   eth0
 ----
 ====
-. 如果手动定义了IP地址方案、请执行以下操作：
+. 如果 IP 地址方案是手动定义的，请执行以下操作：
 +
 [listing, subs="+quotes"]
 ----
 ONIE:/ # *ifconfig eth0 10.233.204.71 netmask 255.255.254.0*
 ONIE:/ # *route add default gw 10.233.204.1*
 ----
-. 重复步骤9以验证是否正确输入了静态信息。
-. 安装Cumulus Linux：
+. 重复步骤 9 以验证静态信息是否已正确输入。
+. 安装 Cumulus Linux：
 +
 [listing, subs="+quotes"]
 ----
@@ -104,7 +104,7 @@ ONIE:/ # *route*
   ...
   ...
 ----
-. 安装完成后、登录到交换机：
+. 安装完成后，登录交换机：
 +
 .显示示例
 [%collapsible]
@@ -120,7 +120,7 @@ New password: *<new_password>*
 Retype new password: *<new_password>*
 ----
 ====
-. 验证Cumulus Linux版本：
+. 请验证 Cumulus Linux 版本：
 +
 `net show version`
 

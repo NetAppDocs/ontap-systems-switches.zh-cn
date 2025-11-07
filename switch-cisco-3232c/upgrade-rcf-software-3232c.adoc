@@ -4,38 +4,38 @@ sidebar: sidebar
 keywords: ssh, requirement, cluster, switch, health, monitor, cshm, log, collection, feature, cisco 3232c 
 summary: '使用集群交换机健康监视器 (CSHM) 和日志收集功能时需要 SSH。要在Cisco 3232c 集群交换机上启用 SSH，您需要先生成 SSH 密钥，然后启用 SSH。' 
 ---
-= 升级参考配置文件(RCF)
+= 升级您的参考配置文件 (RCF)
 :allow-uri-read: 
 :icons: font
 :imagesdir: ../media/
 
 
 [role="lead"]
-如果操作交换机上安装了现有版本的RCF文件、则可以升级RCF版本。
+当您的运行交换机上已安装了现有版本的 RCF 文件时，您需要升级 RCF 版本。
 
 .开始之前
-确保您已具备以下条件：
+请确保您拥有以下物品：
 
 * 交换机配置的当前备份。
-* 一个完全正常运行的集群(日志中没有错误或类似问题)。
-* 当前的RC框架。
-* 如果要更新RC框架 版本、则需要在RCIF中配置一个能够反映所需启动映像的启动配置。
+* 一个功能齐全的集群（日志中没有错误或类似问题）。
+* 当前的RCF。
+* 如果您要更新 RCF 版本，则需要在 RCF 中进行启动配置，以反映所需的启动映像。
 +
-如果您需要更改启动配置以反映当前启动映像，则必须在重新应用 RCF 之前进行更改，以便在将来重新启动时实例化正确的版本。
+如果需要更改启动配置以反映当前的启动映像，则必须在重新应用 RCF 之前进行更改，以便在以后的重启中实例化正确的版本。
 
 
 
 
-NOTE: 在此操作步骤 期间、不需要可操作的交换机间链路(ISL)。这是设计上的原因、因为RCF版本更改可能会暂时影响ISL连接。为了确保集群无中断运行、以下操作步骤 会在对目标交换机执行步骤时将所有集群LIF迁移到运行中的配对交换机。
+NOTE: 在此过程中不需要任何可操作的交换机间链路 (ISL)。这是设计使然，因为 RCF 版本的更改可能会暂时影响 ISL 连接。为确保集群运行不中断，以下步骤将所有集群 LIF 迁移到运行伙伴交换机，同时在目标交换机上执行相应步骤。
 
 
-CAUTION: 在安装新的交换机软件版本和 RCF 之前，您必须擦除交换机设置并执行基本配置。您必须使用串行控制台连接到交换机、或者在擦除交换机设置之前保留了基本配置信息。
+CAUTION: 安装新的交换机软件版本和 RCF 之前，必须清除交换机设置并执行基本配置。您必须使用串行控制台连接到交换机，或者在擦除交换机设置之前保留基本配置信息。
 
 
 
-== 第1步：准备升级
+== 第一步：准备升级
 
-. 显示连接到集群交换机的每个节点上的集群端口：
+. 显示每个节点上连接到集群交换机的集群端口：
 +
 `network device-discovery show`
 
@@ -66,7 +66,7 @@ cluster1::*>
 ====
 . 检查每个集群端口的管理和运行状态。
 +
-.. 验证所有集群端口是否均已启动且状态正常：
+.. 确认集群所有端口均已启动且状态正常：
 +
 `network port show –role cluster`
 
@@ -109,7 +109,7 @@ e0b       Cluster      Cluster          up   9000  auto/10000 healthy  false
 cluster1::*>
 ----
 ====
-.. 验证所有集群接口（ LIF ）是否均位于主端口上：
+.. 确认所有集群接口（LIF）都位于主端口上：
 +
 `network interface show -role cluster`
 
@@ -136,9 +136,9 @@ Cluster
 cluster1::*>
 ----
 ====
-.. 验证集群是否同时显示两个集群交换机的信息：
+.. 确认集群显示两个集群交换机的信息：
 +
-`ssystem cluster-switch show -is-monitoring-enableed-Operational true`
+`system cluster-switch show -is-monitoring-enabled-operational true`
 
 +
 .显示示例
@@ -168,7 +168,7 @@ cs2                         cluster-network    10.233.205.93    NX3232C
 ====
 
 
-. 在集群 LIF 上禁用自动还原。
+. 禁用集群 LIF 的自动回滚功能。
 +
 [listing, subs="+quotes"]
 ----
@@ -178,9 +178,9 @@ cluster1::*> *network interface modify -vserver Cluster -lif * -auto-revert fals
 
 
 
-== 第2步：配置端口
+== 步骤 2：配置端口
 
-. 在集群交换机 CS2 上，关闭连接到节点集群端口的端口。
+. 在集群交换机 cs2 上，关闭连接到节点集群端口的端口。
 +
 [listing, subs="+quotes"]
 ----
@@ -193,7 +193,7 @@ cs2# *exit*
 ----
 +
 
-CAUTION: 确保关闭*所有*连接的集群端口以避免出现任何网络连接问题。 https://kb.netapp.com/on-prem/ontap/OHW/OHW-KBs/Node_out_of_quorum_when_migrating_cluster_lif_during_switch_OS_upgrade["在交换机操作系统升级期间迁移集群LIF时、节点丢失仲裁"^]有关详细信息、请参见知识库文章。
+CAUTION: 请务必关闭所有已连接的集群端口，以避免任何网络连接问题。请参阅知识库文章 https://kb.netapp.com/on-prem/ontap/OHW/OHW-KBs/Node_out_of_quorum_when_migrating_cluster_lif_during_switch_OS_upgrade["在切换操作系统升级期间迁移集群 LIF 时，节点脱离仲裁。"^]更多详情请见下文。
 
 . 验证集群端口是否已故障转移到集群交换机 cs1 上托管的端口。这可能需要几秒钟。
 +
@@ -243,12 +243,12 @@ cluster1-04          true    true          false
 cluster1::*>
 ----
 ====
-. 如果尚未保存当前交换机配置的副本、请将以下命令的输出复制到文本文件中：
+. 如果您尚未保存当前交换机配置，请将以下命令的输出复制到文本文件中：
 +
-`s如何运行配置`
+`show running-config`
 
-. 记录当前之间的任何自定义添加 `running-config`以及正在使用的 RCF 文件（例如您组织的 SNMP 配置）。
-. 将基本配置详细信息保存到 `write_erase.cfg`bootflash 上的文件。
+. 记录当前版本与当前版本之间的任何自定义添加内容。 `running-config`以及正在使用的 RCF 文件（例如贵组织的 SNMP 配置）。
+. 保存基本配置详细信息 `write_erase.cfg`启动闪存上的文件。
 +
 [NOTE]
 ====
@@ -278,13 +278,13 @@ cluster1::*>
 `cs2# echo "hardware access-list tcam region qos 256" >> bootflash:write_erase.cfg`
 
 +
-请参阅知识库文章 https://kb.netapp.com/on-prem/Switches/Cisco-KBs/How_to_clear_configuration_on_a_Cisco_interconnect_switch_while_retaining_remote_connectivity["如何在保持远程连接的同时清除Cisco互连交换机上的配置"^]了解更多详情。
+请参阅知识库文章 https://kb.netapp.com/on-prem/Switches/Cisco-KBs/How_to_clear_configuration_on_a_Cisco_interconnect_switch_while_retaining_remote_connectivity["如何在保持远程连接的情况下清除Cisco互连交换机上的配置"^]更多详情请见下文。
 
-. 验证 `write_erase.cfg`文件按预期填充：
+. 确认 `write_erase.cfg`文件已按预期填充：
 +
 `*show file bootflash:write_erase.cfg*`
 
-. 发出 `write erase`命令来删除当前保存的配置：
+. 问题 `write erase`清除当前已保存配置的命令：
 +
 `cs2# *write erase*`
 
@@ -294,7 +294,7 @@ cluster1::*>
 +
 `Do you wish to proceed anyway? (y/n)  [n] *y*`
 
-. 将先前保存的基本配置复制到启动配置中。
+. 将之前保存的基本配置复制到启动配置中。
 +
 `cs2# *copy bootflash:write_erase.cfg startup-config*`
 
@@ -305,16 +305,16 @@ cluster1::*>
 +
 `This command will reboot the system. (y/n)?  [n] *y*`
 
-. 再次访问管理IP地址后、通过SSH登录到交换机。
+. 管理 IP 地址恢复正常后，通过 SSH 登录交换机。
 +
-您可能需要更新与SSH密钥相关的主机文件条目。
+您可能需要更新与 SSH 密钥相关的 hosts 文件条目。
 
-. 使用以下传输协议之一将 RCF 复制到交换机 cs2 的 bootflash：FTP、TFTP、SFTP 或 SCP。有关Cisco命令的更多信息，请参阅 https://www.cisco.com/c/en/us/support/switches/nexus-3000-series-switches/products-installation-guides-list.html["《 Cisco Nexus 3000 系列 NX-OS 命令参考》"^]指南。
+. 使用以下传输协议之一将 RCF 复制到交换机 cs2 的 bootflash：FTP、TFTP、SFTP 或 SCP。有关Cisco命令的更多信息，请参阅 https://www.cisco.com/c/en/us/support/switches/nexus-3000-series-switches/products-installation-guides-list.html["Cisco Nexus 3000 系列 NX-OS 命令参考"^]指南。
 +
 .显示示例
 [%collapsible]
 ====
-此示例显示了使用 TFTP 将 RCF 复制到交换机 CS2 上的 bootflash 。
+此示例展示了如何使用 TFTP 将 RCF 文件复制到交换机 cs2 的启动闪存中：
 
 [listing, subs="+quotes"]
 ----
@@ -326,15 +326,15 @@ TFTP get operation was successful
 Copy complete, now saving to disk (please wait)...
 ----
 ====
-. 将先前下载的 RCF 应用于 bootflash 。
+. 将之前下载的 RCF 文件应用到启动闪存中。
 +
-有关 Cisco 命令的详细信息，请参见中的相应指南 https://www.cisco.com/c/en/us/support/switches/nexus-3000-series-switches/products-installation-guides-list.html["《 Cisco Nexus 3000 系列 NX-OS 命令参考》"^] 指南。
+有关Cisco命令的更多信息，请参阅 https://www.cisco.com/c/en/us/support/switches/nexus-3000-series-switches/products-installation-guides-list.html["Cisco Nexus 3000 系列 NX-OS 命令参考"^]指南。
 
 +
 .显示示例
 [%collapsible]
 ====
-此示例显示了正在交换机 CS2 上安装的 RCF 文件 `Nexus 3232C_RCF_v1.6-Cluster-HA-Breakout 。 txt` ：
+此示例展示了 RCF 文件 `Nexus_3232C_RCF_v1.6-Cluster-HA-Breakout.txt`正在交换机 cs2 上安装：
 
 [listing, subs="+quotes"]
 ----
@@ -347,42 +347,42 @@ cs2# *copy Nexus_3232C_RCF_v1.6-Cluster-HA-Breakout.txt running-config echo-comm
 请务必仔细阅读 RCF 的 *安装说明*、*重要说明* 和 *横幅* 部分。您必须阅读并遵循这些说明以确保交换机的正确配置和操作。
 
 ====
-. 验证 RCF 文件是否为正确的较新版本：
+. 请确认 RCF 文件是否为最新版本：
 +
-`s如何运行配置`
+`show running-config`
 
 +
-在检查输出以确认您的 RCF 正确无误时，请确保以下信息正确无误：
+检查输出结果以验证是否拥有正确的 RCF 时，请确保以下信息正确：
 
 +
-** RCF 横幅
+** RCF横幅
 ** 节点和端口设置
-** 自定义
+** 定制
 +
-输出因站点配置而异。检查端口设置，并参阅发行说明，了解您安装的 RCF 的任何特定更改。
+输出结果会根据您的网站配置而有所不同。检查端口设置，并参考发行说明，了解您安装的 RCF 版本是否有任何特定更改。
 
 
 
-. 将先前的所有自定义设置重新应用于交换机配置。link:cabling-considerations-3232c.html["查看布线和配置注意事项"]有关所需的任何进一步更改的详细信息、请参见。
-. 验证 RCF 版本和交换机设置是否正确后，将 running-config 文件复制到 startup-config 文件。
+. 将之前对交换机配置所做的任何自定义设置重新应用。请参阅link:cabling-considerations-3232c.html["审查布线和配置注意事项"]有关任何后续变更的详细信息。
+. 确认 RCF 版本和交换机设置正确后，将运行配置文件复制到启动配置文件。
 +
-有关 Cisco 命令的详细信息，请参见中的相应指南 https://www.cisco.com/c/en/us/support/switches/nexus-3000-series-switches/products-installation-guides-list.html["《 Cisco Nexus 3000 系列 NX-OS 命令参考》"^] 指南。
+有关Cisco命令的更多信息，请参阅 https://www.cisco.com/c/en/us/support/switches/nexus-3000-series-switches/products-installation-guides-list.html["Cisco Nexus 3000 系列 NX-OS 命令参考"^]指南。
 
 +
 [listing]
 ----
 cs2# copy running-config startup-config [########################################] 100% Copy complete
 ----
-. 重新启动交换机 CS2 。您可以忽略交换机重新启动时在节点上报告的 " 集群端口关闭 " 事件。
+. 重启交换机cs2。交换机重启期间，您可以忽略节点上报告的“集群端口关闭”事件。
 +
 [listing, subs="+quotes"]
 ----
 cs2# *reload*
 This command will reboot the system. (y/n)?  [n] *y*
 ----
-. 验证集群上集群端口的运行状况。
+. 检查集群上集群端口的运行状况。
 +
-.. 验证集群中所有节点上的 e0d 端口是否均已启动且运行正常：
+.. 验证集群中所有节点的 e0d 端口是否已启动且运行状况良好：
 +
 `network port show -role cluster`
 
@@ -424,7 +424,7 @@ e0d       Cluster      Cluster          up   9000  auto/100000 healthy false
 8 entries were displayed.
 ----
 ====
-.. 从集群验证交换机运行状况（此操作可能不会显示交换机 CS2 ，因为 LIF 不驻留在 e0d 上）。
+.. 从集群验证交换机的健康状况（这可能不会显示交换机 cs2，因为 LIF 没有归位到 e0d）。
 +
 .显示示例
 [%collapsible]
@@ -470,16 +470,16 @@ cs2                         cluster-network    10.233.205.91    N3K-C3232C
 +
 [NOTE]
 ====
-根据交换机上先前加载的 RCF 版本，您可能会在 cs1 交换机控制台上观察到以下输出 2020 年 11 月 17 日 16:07:18 cs1 %$ VDC-1 %$ %STP-2-UNBLOCK_CONSIST_PORT：解除 VLAN0092 上的端口 port-channel1 的阻塞。端口一致性已恢复。 2020 年 11 月 17 日 16:07:23 cs1 %$ VDC-1 %$ %STP-2-BLOCK_PVID_PEER：阻塞 VLAN0001 上的端口通道 1。对等 VLAN 不一致。 2020 年 11 月 17 日 16:07:23 cs1 %$ VDC-1 %$ %STP-2-BLOCK_PVID_LOCAL：阻塞 VLAN0092 上的端口通道 1。本地vlan不一致。
+根据交换机上先前加载的 RCF 版本，您可能会在 cs1 交换机控制台上观察到以下输出 2020 年 11 月 17 日 16:07:18 cs1 %$ VDC-1 %$ %STP-2-UNBLOCK_CONSIST_PORT：解除 VLAN0092 上的端口 port-channel1 的阻塞。端口一致性已恢复。2020 年 11 月 17 日 16:07:23 cs1 %$ VDC-1 %$ %STP-2-BLOCK_PVID_PEER：阻塞 VLAN0001 上的端口通道 1。对等 VLAN 不一致。2020 年 11 月 17 日 16:07:23 cs1 %$ VDC-1 %$ %STP-2-BLOCK_PVID_LOCAL：阻塞 VLAN0092 上的端口通道 1。本地vlan不一致。
 
 ====
 
 
 +
 
-NOTE: 集群节点报告运行状况可能需要长达5分钟的时间。
+NOTE: 集群节点最多可能需要 5 分钟才能报告为健康状态。
 
-. 在集群交换机 CS1 上，关闭连接到节点集群端口的端口。
+. 在集群交换机 cs1 上，关闭连接到节点集群端口的端口。
 +
 .显示示例
 [%collapsible]
@@ -492,7 +492,7 @@ cs1(config)# *interface eth1/1/1-2,eth1/7-8*
 cs1(config-if-range)# *shutdown*
 ----
 ====
-. 验证集群 LIF 是否已迁移到交换机 CS2 上托管的端口。这可能需要几秒钟的时间。
+. 确认集群 LIF 已迁移到交换机 cs2 上托管的端口。这可能需要几秒钟。
 +
 `network interface show -role cluster`
 
@@ -541,7 +541,7 @@ cluster1::*>
 ----
 ====
 . 在交换机 cs1 上重复步骤 4 至 19。
-. 在集群 LIF 上启用自动还原。
+. 启用集群 LIF 的自动回滚功能。
 +
 [listing, subs="+quotes"]
 ----
@@ -551,9 +551,9 @@ cluster1::*> *network interface modify -vserver Cluster -lif * -auto-revert true
 
 
 
-== 第3步：验证集群网络配置和集群运行状况
+== 步骤 3：验证集群网络配置和集群健康状况
 
-. 验证连接到集群端口的交换机端口是否为*已启动*。
+. 确认连接到集群端口的交换机端口已启用。
 +
 `show interface brief | grep up`
 
@@ -574,9 +574,9 @@ Eth1/8        1       eth  trunk  up      none                   100G(D) --
 .
 ----
 ====
-. 验证 CS1 和 CS2 之间的 ISL 是否正常运行：
+. 验证 cs1 和 cs2 之间的 ISL 连接是否正常：
 +
-`s如何执行端口通道摘要`
+`show port-channel summary`
 
 +
 .显示示例
@@ -601,7 +601,7 @@ Group Port-       Type     Protocol  Member Ports
 cs1#
 ----
 ====
-. 验证集群 LIF 是否已还原到其主端口：
+. 确认集群 LIF 已恢复到其原端口：
 +
 `network interface show -role cluster`
 
@@ -629,7 +629,7 @@ cluster1::*>
 ----
 ====
 +
-如果任何集群LIF未返回到其主端口、请手动还原它们：
+如果任何集群 LIFS 尚未返回其主端口，请手动将其恢复：
 `network interface revert -vserver _vserver_name_ -lif _lif_name_`
 
 . 验证集群是否运行正常：
@@ -653,12 +653,12 @@ cluster1-04          true    true          false
 cluster1::*>
 ----
 ====
-. 验证远程集群接口的连接：
+. 验证远程集群接口的连接性：
 
 
 [role="tabbed-block"]
 ====
-.ONTAP 9.9.1及更高版本
+.ONTAP 9.9.1 及更高版本
 --
 您可以使用 `network interface check cluster-connectivity`命令启动集群连接性的可访问性检查，然后显示详细信息：
 `network interface check cluster-connectivity start`和 `network interface check cluster-connectivity show`
@@ -667,7 +667,7 @@ cluster1::*>
 ----
 cluster1::*> *network interface check cluster-connectivity start*
 ----
-*注：*请等待几秒钟、然后再运行 `show`命令以显示详细信息。
+*注意：*运行程序前请等待几秒钟 `show`显示详细信息的命令。
 
 [listing, subs="+quotes"]
 ----

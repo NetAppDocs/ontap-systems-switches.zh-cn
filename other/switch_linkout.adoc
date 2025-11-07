@@ -2,7 +2,7 @@
 permalink: other/switch_linkout.html 
 sidebar: sidebar 
 keywords: cisco, Nexus 5596, CN1601 
-summary: 您可以将这些链接用于其他交换机型号。 
+summary: 您可以使用这些链接查找其他交换机型号。 
 ---
 = 早期型号
 :allow-uri-read: 
@@ -11,13 +11,13 @@ summary: 您可以将这些链接用于其他交换机型号。
 
 
 [role="lead"]
-您可以使用这些链接查找早期型号的集群和存储交换机的文档。这些链接会将您带到不同的文档站点。
+您可以使用这些链接查找早期型号的集群交换机和存储交换机的文档。这些链接会将您带到另一个文档网站。
 
 * https://mysupport.netapp.com/documentation/docweb/index.html?productID=62376&language=en-US["Cisco Nexus 5596"]
 * https://mysupport.netapp.com/documentation/docweb/index.html?productID=62373&language=en-USNetApp["CN1601"]
 
 
 
-NOTE: NetApp不再提供Nexus 5596UP/5596T集群交换机、但Cisco仅支持有限的Tim。
+NOTE: NetApp已停止销售 Nexus 5596UP/5596T 集群交换机，但Cisco将在有限的时间内提供支持。
 
-有关硬件支持已结束的AFF 和FAS 交换机型号的文档、可在中供客户使用 https://mysupport.netapp.com/documentation/productsatoz/index.html?archive=true["归档"]。
+已停止硬件支持的AFF和FAS交换机型号的相关文档可供客户使用。 https://mysupport.netapp.com/documentation/productsatoz/index.html?archive=true["归档"] 。

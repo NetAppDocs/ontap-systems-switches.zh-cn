@@ -2,52 +2,52 @@
 permalink: switch-cisco-92300/migrate-to-2n-switched.html 
 sidebar: sidebar 
 keywords: 2-node switched Cisco 92300YC cluster switch migration 
-summary: 如果您有一个现有的双节点无交换机集群环境，则可以使用 Cisco Nexus 92300YC 交换机迁移到双节点有交换机集群环境，以便可以扩展到集群中的两个节点以上。 
+summary: 如果您已有双节点无交换机集群环境，则可以使用Cisco Nexus 92300YC 交换机迁移到双节点有交换机集群环境，以便能够将集群扩展到两个以上节点。 
 ---
-= 迁移到使用Cisco Nexus 92300YC交换机的双节点交换集群
+= 迁移到使用Cisco Nexus 92300YC 交换机的双节点交换集群
 :allow-uri-read: 
 :icons: font
 :imagesdir: ../media/
 
 
 [role="lead"]
-如果您有一个现有的双节点无交换机集群环境、则可以使用Cisco Nexus 92300YC交换机迁移到双节点_switched_cluster环境、以便可以扩展到集群中的两个节点以上。
+如果您已经拥有一个双节点无交换机集群环境，则可以使用Cisco Nexus 92300YC 交换机迁移到双节点有交换机集群环境，从而使集群能够扩展到两个节点以上。
 
-您使用的操作步骤取决于每个控制器上是有两个专用集群网络端口，还是每个控制器上有一个集群端口。记录的过程适用于使用光纤或双轴端口的所有节点、但如果节点使用板载10 Gb Base-T RJ45端口作为集群网络端口、则此交换机不支持此过程。
+具体操作步骤取决于每个控制器上是有两个专用集群网络端口还是只有一个集群端口。记录的过程适用于所有使用光纤或双绞线端口的节点，但如果节点使用板载 10Gb BASE-T RJ45 端口作为集群网络端口，则此交换机不支持此过程。
 
-大多数系统需要在每个控制器上使用两个专用集群网络端口。
-
-
-NOTE: 迁移完成后，您可能需要安装所需的配置文件以支持 92300YC 集群交换机的集群交换机健康监视器 (CSHM)。看link:../switch-cshm/cshm-overview.html["交换机健康监测（CSHM）"] 。
+大多数系统需要在每个控制器上设置两个专用的集群网络端口。
 
 
+NOTE: 迁移完成后，您可能需要安装所需的配置文件，以支持 92300YC 集群交换机的集群交换机健康监视器 (CSHM)。看link:../switch-cshm/cshm-overview.html["交换机健康监测 (CSHM)"]。
 
-== 查看要求
+
+
+== 审查要求
 
 .开始之前
-确保您已具备以下条件：
+请确保您拥有以下物品：
 
-对于双节点无交换机配置、请确保：
+对于双节点无交换机配置，请确保：
 
-* 双节点无交换机配置已正确设置并正常运行。
-* 这些节点运行的是ONTAP 9.6及更高版本。
-* 所有集群端口均处于*启动*状态。
-* 所有集群逻辑接口(LIF)均处于*启动*状态、并位于其主端口上。
+* 双节点无交换机配置已正确设置并运行正常。
+* 这些节点运行的是ONTAP 9.6 及更高版本。
+* 集群所有端口均处于*开启*状态。
+* 所有集群逻辑接口（LIF）均处于 *up* 状态，并位于其所属端口上。
 
 
-对于Cisco Nexus 92300YC交换机配置：
+对于Cisco Nexus 92300YC 交换机配置：
 
-* 这两台交换机都具有管理网络连接。
+* 两台交换机都具备管理网络连接功能。
 * 可以通过控制台访问集群交换机。
-* Nexus 92300YC节点到节点交换机和交换机到交换机连接使用双轴或光缆。
+* Nexus 92300YC 节点到节点交换机和交换机到交换机的连接使用双绞线或光纤电缆。
 +
-https://hwu.netapp.com/SWITCH/INDEX["Hardware Universe —交换机"^] 包含有关布线的详细信息。
+https://hwu.netapp.com/SWITCH/INDEX["Hardware Universe- 交换机"^]包含更多关于布线的信息。
 
-* 交换机间链路(ISL)缆线连接到两个92300YC交换机上的端口1/65和1/66。
-* 两个92300YC交换机的初始自定义均已完成。这样：
+* 交换机间链路 (ISL) 电缆连接到两个 92300YC 交换机上的端口 1/65 和 1/66。
+* 两台 92300YC 交换机的初始定制工作已完成。因此：
 +
-** 92300YC 交换机正在运行最新版本的软件
-** 参考配置文件(Reference Configuration Files、RCF)将应用于交换机新交换机上配置的任何站点自定义设置、例如SMTP、SNMP和SSH。
+** 92300YC交换机运行的是最新版本的软件。
+** 参考配置文件 (RCF) 应用于交换机。任何站点自定义，如 SMTP、SNMP 和 SSH，均在新交换机上进行配置。
 
 
 
@@ -57,45 +57,45 @@ https://hwu.netapp.com/SWITCH/INDEX["Hardware Universe —交换机"^] 包含有
 == 迁移交换机
 
 .关于示例
-此操作步骤中的示例使用以下集群交换机和节点命名：
+本流程中的示例使用以下集群交换机和节点命名规则：
 
-* 923300 YC 交换机的名称是 CS1 和 CS2 。
-* 集群 SVM 的名称是 node1 和 node2 。
-* LIF 的名称分别是节点 1 上的 node1_clus1 和 node1_clus2 以及节点 2 上的 node2_clus1 和 node2_clus2 。
-* `cluster1 ：：： * >` 提示符指示集群的名称。
-* 此操作步骤中使用的集群端口为 e0a 和 e0b 。
+* 92300YC 交换机的名称是 cs1 和 cs2。
+* 聚类SVM的名称分别为node1和node2。
+* 节点 1 上的 LIF 名称分别为 node1_clus1 和 node1_clus2，节点 2 上的 LIF 名称分别为 node2_clus1 和 node2_clus2。
+* 这 `cluster1::*>`prompt 指示集群名称。
+* 此过程中使用的集群端口为 e0a 和 e0b。
 +
-https://hwu.netapp.com["Hardware Universe"^] 包含有关平台的实际集群端口的最新信息。
+https://hwu.netapp.com["Hardware Universe"^]包含有关您平台实际集群端口的最新信息。
 
 
 
 
 
-=== 第1步：准备迁移
+=== 步骤 1：准备迁移
 
-. 将权限级别更改为高级，在系统提示您继续时输入 `y` ：
+. 将权限级别更改为高级，输入 `y`当系统提示继续时：
 +
 `set -privilege advanced`
 
 +
-此时将显示高级提示符（` * >` ）。
+高级提示(`*>`出现。
 
-. 如果在此集群上启用了 AutoSupport ，则通过调用 AutoSupport 消息禁止自动创建案例：
+. 如果此集群上启用了AutoSupport ，则通过调用AutoSupport消息来抑制自动创建案例：
 +
-`ssystem node AutoSupport invoke -node * -type all -message MAINT=xh`
-
-+
-其中 x 是维护时段的持续时间，以小时为单位。
+`system node autosupport invoke -node * -type all -message MAINT=xh`
 
 +
+其中 x 为维护窗口的持续时间（小时）。
 
-NOTE: AutoSupport 消息会通知技术支持此维护任务，以便在维护窗口期间禁止自动创建案例。
++
+
+NOTE: AutoSupport消息会通知技术支持此维护任务，以便在维护窗口期间抑制自动创建案例。
 
 +
 .显示示例
 [%collapsible]
 ====
-以下命令将禁止自动创建案例 2 小时：
+以下命令可抑制自动创建案件两小时：
 
 [listing, subs="+quotes"]
 ----
@@ -106,17 +106,17 @@ cluster1::*> *system node autosupport invoke -node * -type all -message MAINT=2h
 
 
 
-=== 第2步：配置缆线和端口
+=== 步骤 2：配置线缆和端口
 
-. 在新集群交换机 CS1 和 CS2 上禁用所有面向节点的端口（而不是 ISL 端口）。
+. 禁用新集群交换机 cs1 和 cs2 上所有面向节点的端口（非 ISL 端口）。
 +
-不得禁用 ISL 端口。
+您不得禁用 ISL 端口。
 
 +
 .显示示例
 [%collapsible]
 ====
-以下示例显示了交换机 CS1 上面向节点的端口 1 到 64 已禁用：
+以下示例显示交换机 cs1 上面向节点的端口 1 到 64 已禁用：
 
 [listing, subs="+quotes"]
 ----
@@ -126,15 +126,15 @@ cs1(config)# *interface e/1-64*
 cs1(config-if-range)# *shutdown*
 ----
 ====
-. 验证 ISL 和两个 923300 YC 交换机 CS1 和 CS2 之间的 ISL 上的物理端口是否已在端口 1/65 和 1/66 上启动：
+. 验证两个 92300YC 交换机 cs1 和 cs2 之间的 ISL 以及 ISL 上的物理端口在端口 1/65 和 1/66 上是否处于启动状态：
 +
-`s如何执行端口通道摘要`
+`show port-channel summary`
 
 +
 .显示示例
 [%collapsible]
 ====
-以下示例显示交换机 CS1 上的 ISL 端口已启动：
+以下示例表明交换机 cs1 上的 ISL 端口已启动：
 
 [listing, subs="+quotes"]
 ----
@@ -154,7 +154,7 @@ Group Port-       Type     Protocol  Member Ports
 --------------------------------------------------------------------------------
 1     Po1(SU)     Eth      LACP      Eth1/65(P)   Eth1/66(P)
 ----
-+以下示例显示交换机CS2上的ISL端口已启动：
+以下示例表明交换机 cs2 上的 ISL 端口已启动：
 
 +
 
@@ -177,18 +177,18 @@ Group Port-       Type     Protocol  Member Ports
 1     Po1(SU)     Eth      LACP      Eth1/65(P)   Eth1/66(P)
 ----
 ====
-. 显示相邻设备的列表：
+. 显示相邻设备列表：
 +
-`s如何使用 cdp 邻居`
+`show cdp neighbors`
 
 +
-此命令可提供有关连接到系统的设备的信息。
+此命令提供有关连接到系统的设备的信息。
 
 +
 .显示示例
 [%collapsible]
 ====
-以下示例列出了交换机 CS1 上的相邻设备：
+以下示例列出了交换机 cs1 上的相邻设备：
 
 [listing, subs="+quotes"]
 ----
@@ -205,7 +205,7 @@ cs2(FDO220329V5)    Eth1/66        175    R S I s   N9K-C92300YC  Eth1/66
 
 Total entries displayed: 2
 ----
-+以下示例列出了交换机CS2上的相邻设备：
+以下示例列出了交换机 cs2 上的相邻设备：
 
 +
 
@@ -225,12 +225,12 @@ cs1(FDO220329KU)    Eth1/66        177    R S I s   N9K-C92300YC  Eth1/66
 Total entries displayed: 2
 ----
 ====
-. 验证所有集群端口是否均已启动：
+. 请确认集群所有端口均已启动：
 +
-`network port show -ipspace cluster`
+`network port show -ipspace Cluster`
 
 +
-对于 `Link` ，每个端口均应显示 up ；对于 `Health Status` ，每个端口均应显示 Healthy 。
+每个端口都应该显示出来。 `Link`而且对身体有益 `Health Status`。
 
 +
 .显示示例
@@ -259,12 +259,12 @@ e0b       Cluster      Cluster          up   9000  auto/10000 healthy
 4 entries were displayed.
 ----
 ====
-. 验证所有集群 LIF 是否均已启动且正常运行：
+. 确认所有集群 LIF 都已启动并正常运行：
 +
-`network interface show -vserver cluster`
+`network interface show -vserver Cluster`
 
 +
-对于 `，每个集群 LIF 均应显示 true ，表示为 Home` ，并将 `S状态管理 /Oper` 设置为 up/up
+每个聚类 LIF 都应该显示为 true `Is Home`并且拥有 `Status Admin/Oper`向上/向上
 
 +
 .显示示例
@@ -285,9 +285,9 @@ Cluster
 4 entries were displayed.
 ----
 ====
-. 验证是否已在所有集群 LIF 上启用自动还原：
+. 确认所有集群 LIF 都已启用自动回滚功能：
 +
-`network interface show - vserver cluster -fields auto-revert`
+`network interface show -vserver Cluster -fields auto-revert`
 
 +
 .显示示例
@@ -309,17 +309,17 @@ Cluster
 4 entries were displayed.
 ----
 ====
-. 从 node1 上的集群端口 e0a 断开缆线连接，然后使用 923300 YC 交换机支持的相应布线方式将 e0a 连接到集群交换机 CS1 上的端口 1 。
+. 断开节点 1 上的集群端口 e0a 的电缆，然后使用 92300YC 交换机支持的适当电缆将 e0a 连接到集群交换机 cs1 上的端口 1。
 +
-。 https://hwu.netapp.com/SWITCH/INDEX["Hardware Universe - 交换机 _"^] 包含有关布线的详细信息。
+这 https://hwu.netapp.com/SWITCH/INDEX["硬件宇宙 - 交换机"^]包含更多关于布线的信息。
 
-. 从节点 2 上的集群端口 e0a 断开缆线连接，然后使用 923300 YC 交换机支持的相应布线方式将 e0a 连接到集群交换机 CS1 上的端口 2 。
-. 启用集群交换机 CS1 上面向节点的所有端口。
+. 断开节点 2 上的集群端口 e0a 的电缆，然后使用 92300YC 交换机支持的适当电缆将 e0a 连接到集群交换机 cs1 上的端口 2。
+. 启用集群交换机 cs1 上所有面向节点的端口。
 +
 .显示示例
 [%collapsible]
 ====
-以下示例显示交换机 CS1 上的端口 1/1 到 1/64 已启用：
+以下示例显示交换机 cs1 上的端口 1/1 到 1/64 已启用：
 
 [listing, subs="+quotes"]
 ----
@@ -329,15 +329,15 @@ cs1(config)# *interface e1/1-64*
 cs1(config-if-range)# *no shutdown*
 ----
 ====
-. 验证所有集群 LIF 是否均已启动且正常运行，并在 `Is Home` 中显示为 true ：
+. 验证所有集群 LIF 是否都已启动、运行正常，并且显示为 true。 `Is Home` ：
 +
-`network interface show -vserver cluster`
+`network interface show -vserver Cluster`
 
 +
 .显示示例
 [%collapsible]
 ====
-以下示例显示 node1 和 node2 上的所有 LIF 均已启动，并且 `为 Home` 结果为 true ：
+以下示例表明，节点 1 和节点 2 上的所有 LIF 都已启动，并且 `Is Home`结果属实：
 
 [listing, subs="+quotes"]
 ----
@@ -355,7 +355,7 @@ Cluster
 4 entries were displayed.
 ----
 ====
-. 显示有关集群中节点状态的信息：
+. 显示集群中节点的状态信息：
 +
 `cluster show`
 
@@ -363,7 +363,7 @@ Cluster
 .显示示例
 [%collapsible]
 ====
-以下示例显示了有关集群中节点的运行状况和资格的信息：
+以下示例显示了集群中节点的健康状况和资格信息：
 
 [listing, subs="+quotes"]
 ----
@@ -377,14 +377,14 @@ node2                true    true          false
 2 entries were displayed.
 ----
 ====
-. 断开缆线与 node1 上的集群端口 e0b 的连接，然后使用 923300 YC 交换机支持的相应布线方式将 e0b 连接到集群交换机 CS2 上的端口 1 。
-. 从节点 2 上的集群端口 e0b 断开缆线连接，然后使用 923300 YC 交换机支持的相应布线方式将 e0b 连接到集群交换机 CS2 上的端口 2 。
-. 启用集群交换机 CS2 上面向节点的所有端口。
+. 断开节点 1 上的集群端口 e0b 的电缆，然后使用 92300YC 交换机支持的适当电缆将 e0b 连接到集群交换机 cs2 上的端口 1。
+. 断开节点 2 上的集群端口 e0b 的电缆，然后使用 92300YC 交换机支持的适当电缆将 e0b 连接到集群交换机 cs2 上的端口 2。
+. 启用集群交换机 cs2 上所有面向节点的端口。
 +
 .显示示例
 [%collapsible]
 ====
-以下示例显示交换机 CS2 上的端口 1/1 到 1/64 已启用：
+以下示例显示交换机 cs2 上的端口 1/1 到 1/64 已启用：
 
 [listing, subs="+quotes"]
 ----
@@ -398,17 +398,17 @@ cs2(config-if-range)# *no shutdown*
 
 
 
-=== 第3步：验证配置
+=== 步骤 3：验证配置
 
-. 验证所有集群端口是否均已启动：
+. 请确认集群所有端口均已启动：
 +
-`network port show -ipspace cluster`
+`network port show -ipspace Cluster`
 
 +
 .显示示例
 [%collapsible]
 ====
-以下示例显示 node1 和 node2 上的所有集群端口均已启动：
+以下示例表明节点 1 和节点 2 上的所有集群端口均已启动：
 
 [listing, subs="+quotes"]
 ----
@@ -433,19 +433,19 @@ e0b       Cluster      Cluster          up   9000  auto/10000 healthy  false
 4 entries were displayed.
 ----
 ====
-. 验证 `Is Home` 的所有接口是否均显示 true ：
+. 验证所有接口是否都显示为 true `Is Home` ：
 +
-`network interface show -vserver cluster`
+`network interface show -vserver Cluster`
 
 +
 
-NOTE: 完成此操作可能需要几分钟时间。
+NOTE: 这可能需要几分钟才能完成。
 
 +
 .显示示例
 [%collapsible]
 ====
-以下示例显示 node1 和 node2 上的所有 LIF 均已启动，并且 `为 Home` 结果为 true ：
+以下示例表明节点 1 和节点 2 上的所有 LIF 都已启动，并且 `Is Home`结果属实：
 
 [listing, subs="+quotes"]
 ----
@@ -463,15 +463,15 @@ Cluster
 4 entries were displayed.
 ----
 ====
-. 验证两个节点与每个交换机之间是否有一个连接：
+. 确认两个节点都分别与每个交换机建立了一条连接：
 +
-`s如何使用 cdp 邻居`
+`show cdp neighbors`
 
 +
 .显示示例
 [%collapsible]
 ====
-以下示例显示了这两个交换机的相应结果：
+以下示例显示了两种开关的正确结果：
 
 [listing, subs="+quotes"]
 ----
@@ -509,7 +509,7 @@ cs1(FDO220329KU)
 Total entries displayed: 4
 ----
 ====
-. 显示有关集群中发现的网络设备的信息：
+. 显示集群中已发现的网络设备信息：
 +
 `network device-discovery show -protocol cdp`
 
@@ -533,19 +533,19 @@ node1      /cdp
 4 entries were displayed.
 ----
 ====
-. 验证这些设置是否已禁用：
+. 请确认这些设置已禁用：
 +
 `network options switchless-cluster show`
 
 +
 
-NOTE: 完成此命令可能需要几分钟的时间。等待 " 三分钟生命周期到期 " 公告。
+NOTE: 命令可能需要几分钟才能完成。等待“3分钟生命即将结束”的公告。
 
 +
 .显示示例
 [%collapsible]
 ====
-以下示例中的 false 输出显示配置设置已禁用：
+以下示例中的错误输出表明配置设置已被禁用：
 
 [listing, subs="+quotes"]
 ----
@@ -561,7 +561,7 @@ Enable Switchless Cluster: false
 .显示示例
 [%collapsible]
 ====
-以下示例显示了有关集群中节点的运行状况和资格的信息：
+以下示例显示了集群中节点的健康状况和资格信息：
 
 [listing, subs="+quotes"]
 ----
@@ -573,22 +573,22 @@ node1                true    true          false
 node2                true    true          false
 ----
 ====
-. 验证远程集群接口的连接：
+. 验证远程集群接口的连接性：
 
 
 [role="tabbed-block"]
 ====
-.ONTAP 9.9.1及更高版本
+.ONTAP 9.9.1 及更高版本
 --
-您可以使用 `network interface check cluster-connectivity` 命令启动集群连接的可访问性检查、然后显示详细信息：
+你可以使用 `network interface check cluster-connectivity`执行命令以启动集群连接性检查，然后显示详细信息：
 
-`network interface check cluster-connectivity start` 和 `network interface check cluster-connectivity show`
+`network interface check cluster-connectivity start`和 `network interface check cluster-connectivity show`
 
 [listing, subs="+quotes"]
 ----
 cluster1::*> *network interface check cluster-connectivity start*
 ----
-*注：*请等待几秒钟、然后再运行 `show`命令以显示详细信息。
+*注意：*运行程序前请等待几秒钟 `show`显示详细信息的命令。
 
 [listing, subs="+quotes"]
 ----
@@ -606,7 +606,7 @@ node2
 --
 .所有ONTAP版本
 --
-对于所有ONTAP版本、您还可以使用 `cluster ping-cluster -node <name>` 用于检查连接的命令：
+对于所有ONTAP版本，您也可以使用 `cluster ping-cluster -node <name>`检查连接性的命令：
 
 `cluster ping-cluster -node <name>`
 
@@ -640,9 +640,9 @@ RPC status:
 ----
 --
 ====
-. [[STEP8]]如果禁止自动创建案例、请通过调用AutoSupport消息重新启用：
+. [[步骤8]] 如果您已禁用自动创建案例功能，请通过调用AutoSupport消息重新启用该功能：
 +
-`ssystem node AutoSupport invoke -node * -type all -message MAINT=end`
+`system node autosupport invoke -node * -type all -message MAINT=END`
 
 +
 .显示示例
@@ -653,11 +653,11 @@ RPC status:
 cluster1::*> *system node autosupport invoke -node * -type all -message MAINT=END*
 ----
 ====
-. 将权限级别重新更改为 admin ：
+. 将权限级别改回管理员：
 +
 `set -privilege admin`
 
 
 
 .下一步是什么？
-link:../switch-cshm/config-overview.html["配置交换机运行状况监控"](英文)
+link:../switch-cshm/config-overview.html["配置交换机健康监控"]。

@@ -2,48 +2,48 @@
 permalink: switch-nvidia-sn2100/migrate-cisco-storage-switch-sn2100-cluster.html 
 sidebar: sidebar 
 keywords: migrating to a storage switch with NVIDIA SN2100 storage switches, how to migrate 
-summary: 您可以将ONTAP 集群中较早的Cisco交换机无中断迁移到NVIDIA SN2100存储交换机。 
+summary: 您可以将ONTAP集群中较旧的Cisco交换机无中断地迁移到NVIDIA SN2100 存储交换机。 
 ---
-= 从Cisco存储交换机迁移到NVIDIA SN2100存储交换机
+= 将存储交换机从Cisco)迁移到NVIDIA) SN2100 存储交换机
 :allow-uri-read: 
 :icons: font
 :imagesdir: ../media/
 
 
 [role="lead"]
-您可以从ONTAP 集群的旧版Cisco交换机迁移到NVIDIA SN2100存储交换机。这是一个无中断操作步骤。
+您可以将ONTAP集群中的旧款Cisco交换机迁移到NVIDIA SN2100 存储交换机。这是一个非破坏性的过程。
 
 
 
-== 查看要求
+== 审查要求
 
-在将某些旧的Cisco交换机更换为NVIDIA SN2100存储交换机时、您必须了解某些配置信息、端口连接和布线要求。请参见 link:configure-overview-sn2100-cluster.html["NVIDIA SN2100交换机安装和配置概述"]。
+当您用NVIDIA SN2100 存储交换机替换一些较旧的Cisco交换机时，您必须了解某些配置信息、端口连接和布线要求。看link:configure-overview-sn2100-cluster.html["NVIDIA SN2100交换机的安装和配置概述"]。
 
 .支持的交换机
 支持以下存储交换机：
 
-* Cisco Nexus 9336C-x2
-* Cisco Nexus 3232C
+* CiscoNexus 9336C-FX2
+* CiscoNexus 3232C
 
 
-有关支持的端口及其配置的详细信息、请参见 https://hwu.netapp.com/["Hardware Universe"^]。
+有关支持的端口及其配置的详细信息，请参阅 https://hwu.netapp.com/["Hardware Universe"^]。
 
-.您需要的内容
+.你需要什么
 确保：
 
 * 现有集群已正确设置并正常运行。
-* 所有存储端口均处于运行状态、以确保无中断运行。
-* NVIDIA SN2100存储交换机在安装了正确版本的Cumulus Linux并应用了参考配置文件(Reference Configuration File、RCF)的情况下进行配置和运行。
-* 现有存储网络配置具有以下功能：
+* 所有存储端口均处于开启状态，以确保运行不中断。
+* NVIDIA SN2100 存储交换机已配置并运行在正确版本的 Cumulus Linux 下，并应用了参考配置文件 (RCF)。
+* 现有存储网络配置如下：
 +
-** 使用两个旧版 Cisco 交换机的冗余且功能完备的 NetApp 集群。
-** 管理连接以及对旧 Cisco 交换机和新交换机的控制台访问。
-** 与集群LIF处于*启动*状态的所有集群LIF均位于其主端口上。
-** ISL 端口已启用，并已在旧的 Cisco 交换机之间以及新交换机之间进行布线。
+** 使用较旧的Cisco交换机构建冗余且功能齐全的NetApp集群。
+** 对旧款Cisco交换机和新款交换机的管理连接和控制台访问。
+** 集群中所有处于 *up* 状态的 LIF 都位于其主端口上。
+** ISL 端口已启用，并且已在旧款Cisco交换机和新款交换机之间连接了线缆。
 
 
-* NVIDIA SN2100交换机上的某些端口配置为以100 GbE运行。
-* 您已规划、迁移并记录了从节点到NVIDIA SN2100存储交换机的100 GbE连接。
+* NVIDIA SN2100 交换机上的某些端口配置为以 100 GbE 运行。
+* 您已规划、迁移并记录了从节点到NVIDIA SN2100 存储交换机的 100 GbE 连接。
 
 
 
@@ -51,49 +51,49 @@ summary: 您可以将ONTAP 集群中较早的Cisco交换机无中断迁移到NVI
 == 迁移交换机
 
 .关于示例
-在此操作步骤 中、使用Cisco Nexus 9336C-x2存储交换机作为示例命令和输出。
+在此过程中，使用Cisco Nexus 9336C-FX2 存储交换机作为示例命令和输出。
 
-此操作步骤中的示例使用以下交换机和节点命名：
+本流程中的示例使用以下开关和节点命名规则：
 
-* 现有的Cisco Nexus 9336C-fx2存储交换机为_S1_和_S2_。
-* 新的NVIDIA SN2100存储交换机为_sw1_和_SW2_。
-* 节点为 _node1_ 和 _node2_ 。
-* 集群 LIF 分别是节点 1 上的 _node1_clus1_ 和 _node1_clus2_ 以及节点 2 上的 _node2_clus1_ 和 _node2_clus2_ 。
-* `cluster1 ：：： * >` 提示符指示集群的名称。
-* 此操作步骤 中使用的网络端口为_e5a和_e5b_。
-* 分支端口的格式为：swp1s0-3。例如、swp1上的四个分支端口为_swp1s0_、_swp1s1_、_swp1s2_和_swp1s3_。
-* 交换机S2首先由交换机SW2取代、然后交换机S1由交换机sw1取代。
+* 现有的Cisco Nexus 9336C-FX2 存储交换机型号为 _S1_ 和 _S2_。
+* 新的NVIDIA SN2100 存储交换机型号为 _sw1_ 和 _sw2_。
+* 节点分别为 _node1_ 和 _node2_。
+* 节点 1 上的集群 LIF 分别为 _node1_clus1_ 和 _node1_clus2_，节点 2 上的集群 LIF 分别为 _node2_clus1_ 和 _node2_clus2_。
+* 这 `cluster1::*>`prompt 指示集群名称。
+* 此过程中使用的网络端口为_e5a_和_e5b_。
+* 分支端口采用以下格式：swp1s0-3。例如，swp1 上的四个分支端口分别是 _swp1s0_、_swp1s1_、_swp1s2_ 和 _swp1s3_。
+* 首先将交换机 S2 替换为交换机 sw2，然后将交换机 S1 替换为交换机 sw1。
 +
-** 然后、节点和S2之间的布线将从S2断开、并重新连接到SW2。
-** 然后、节点和S1之间的布线将从S1断开、并重新连接到sw1。
+** 然后断开节点与 S2 之间的电缆与 S2 的连接，并重新连接到 sw2。
+** 然后断开节点与 S1 之间的电缆与 S1 的连接，并重新连接到 sw1。
 
 
 
 
 
 
-=== 第1步：准备迁移
+=== 步骤 1：准备迁移
 
-. 如果启用了AutoSupport 、则通过调用AutoSupport 消息禁止自动创建案例：
+. 如果启用了AutoSupport，则通过调用AutoSupport消息来阻止自动创建案例：
 +
-`ssystem node AutoSupport invoke -node * -type all -message MAINT=xh`
+`system node autosupport invoke -node * -type all -message MAINT=xh`
 
 +
-其中 _x_ 是维护时段的持续时间，以小时为单位。
+其中 _x_ 为维护窗口的持续时间（小时）。
 
-. 将权限级别更改为高级，在系统提示您继续时输入 * y* ： `set -privilege advanced`
+. 将权限级别更改为高级，并在提示继续时输入 *y*： `set -privilege advanced`
 +
-此时将显示高级提示符（ * > ）。
+出现高级提示符（*>）。
 
 
 
 
 
-=== 第2步：配置端口和布线
+=== 步骤二：配置端口和线缆
 
 . 确定每个存储接口的管理或运行状态。
 +
-对于`S状态`、每个端口都应显示已启用。
+每个端口都应显示为已启用。 `Status` 。
 
 +
 显示网络端口属性：
@@ -124,7 +124,7 @@ node2
 cluster1::*>
 ----
 ====
-. 从节点的角度来看、每个节点上的存储端口均使用命令以以下方式连接到现有存储交换机：
+. 从节点的角度来看，每个节点上的存储端口通过以下命令连接到现有的存储交换机：
 +
 `network device-discovery show -protocol lldp`
 
@@ -146,7 +146,7 @@ node2      /lldp
             e5b    S2 (7c:ad:4f:98:8e:3c)    Eth1/2           -
 ----
 ====
-. 在交换机S1和S2上、存储端口和交换机会使用命令以以下方式(从交换机的角度)进行连接：
+. 在交换机 S1 和 S2 上，存储端口和交换机通过以下命令连接（从交换机的角度来看）：
 +
 `show lldp neighbors`
 
@@ -183,7 +183,7 @@ SHFGB2017000269       Eth1/12        120         S                
 SHFGB2017000269       Eth1/13        120         S                   e0b
 ----
 ====
-. 在交换机SW2上、关闭连接到磁盘架存储端口和节点的端口。
+. 在交换机 sw2 上，关闭连接到磁盘柜存储端口和节点的端口。
 +
 .显示示例
 [%collapsible]
@@ -195,8 +195,8 @@ cumulus@sw2:~$ *net pending*
 cumulus@sw2:~$ *net commit*
 ----
 ====
-. 使用NVIDIA SN2100支持的适当布线方式、将控制器和磁盘架的节点存储端口从旧交换机S2移至新交换机SW2。
-. 在交换机SW2上、启动连接到节点和磁盘架存储端口的端口。
+. 将控制器和磁盘柜的节点存储端口从旧交换机 S2 移至新交换机 sw2，使用NVIDIA SN2100 支持的适当电缆。
+. 在交换机 sw2 上，启动连接到节点存储端口和磁盘柜的端口。
 +
 .显示示例
 [%collapsible]
@@ -208,7 +208,7 @@ cumulus@sw2:~$ *net pending*
 cumulus@sw2:~$ *net commit*
 ----
 ====
-. 现在、从节点的角度来看、每个节点上的存储端口均以以下方式连接到交换机：
+. 从节点的角度来看，每个节点上的存储端口现在按以下方式连接到交换机：
 +
 .显示示例
 [%collapsible]
@@ -229,7 +229,7 @@ node2      /lldp
             e5b    sw2 (b8:ce:f6:19:1a:7e)   swp2           -
 ----
 ====
-. 验证网络端口属性：
+. 请验证网络端口属性：
 +
 `storage port show`
 
@@ -256,7 +256,7 @@ node2
 cluster1::*>
 ----
 ====
-. 在交换机SW2上、验证所有节点存储端口是否均已启动：
+. 在交换机 sw2 上，确认所有节点存储端口均已启动：
 +
 .显示示例
 [%collapsible]
@@ -279,7 +279,7 @@ UP     swp6    100G  9216   Trunk/L2   SHFFG1826000102 (e0b)   Master: bridge(UP
 ...
 ----
 ====
-. 在交换机sw1上、关闭连接到节点和磁盘架存储端口的端口。
+. 在交换机 sw1 上，关闭连接到节点和磁盘柜存储端口的端口。
 +
 .显示示例
 [%collapsible]
@@ -291,8 +291,8 @@ cumulus@sw1:~$ *net pending*
 cumulus@sw1:~$ *net commit*
 ----
 ====
-. 使用NVIDIA SN2100支持的适当布线方式、将控制器的节点存储端口和磁盘架从旧交换机S1移至新交换机sw1。
-. 在交换机sw1上、启动连接到节点和磁盘架存储端口的端口。
+. 使用NVIDIA SN2100 支持的适当线缆，将控制器的节点存储端口和磁盘柜从旧交换机 S1 移至新交换机 sw1。
+. 在交换机 sw1 上，启动连接到节点存储端口和磁盘柜的端口。
 +
 .显示示例
 [%collapsible]
@@ -304,7 +304,7 @@ cumulus@sw1:~$ *net pending*
 cumulus@sw1:~$ *net commit*
 ----
 ====
-. 现在、从节点的角度来看、每个节点上的存储端口均以以下方式连接到交换机：
+. 从节点的角度来看，每个节点上的存储端口现在按以下方式连接到交换机：
 +
 .显示示例
 [%collapsible]
@@ -330,7 +330,7 @@ node2      /lldp
 `storage port show`
 
 +
-每个端口都应显示enabled for `State`和enabled for `StStatus`。
+每个端口都应显示为已启用。 `State`并已启用 `Status`。
 
 +
 .显示示例
@@ -355,7 +355,7 @@ node2
 cluster1::*>
 ----
 ====
-. 在交换机SW2上、验证所有节点存储端口是否均已启动：
+. 在交换机 sw2 上，确认所有节点存储端口均已启动：
 +
 .显示示例
 [%collapsible]
@@ -378,7 +378,7 @@ UP     swp6    100G  9216   Trunk/L2   SHFFG1826000102 (e0b)   Master: bridge(UP
 ...
 ----
 ====
-. 验证两个节点与每个交换机之间是否有一个连接：
+. 确认两个节点都分别与每个交换机建立了一条连接：
 +
 `net show lldp`
 
@@ -386,7 +386,7 @@ UP     swp6    100G  9216   Trunk/L2   SHFFG1826000102 (e0b)   Master: bridge(UP
 .显示示例
 [%collapsible]
 ====
-以下示例显示了这两个交换机的相应结果：
+以下示例显示了两种开关的正确结果：
 
 [listing, subs="+quotes"]
 ----
@@ -417,11 +417,11 @@ swp6       100G   Trunk/L2  SHFFG1826000102        e0b
 
 
 
-=== 第3步：完成操作步骤
+=== 步骤 3：完成该步骤
 
-. 为以太网交换机运行状况监控器日志收集功能创建密码：
+. 为以太网交换机健康监控日志收集功能创建密码：
 +
-`s系统交换机以太网日志设置密码`
+`system switch ethernet log setup-password`
 
 +
 .显示示例
@@ -453,7 +453,7 @@ Enter the password: *<enter switch password>*
 Enter the password again: *<enter switch password>*
 ----
 ====
-. 启用以太网交换机运行状况监控器日志收集功能：
+. 启用以太网交换机健康监控日志收集功能：
 +
 `system switch ethernet log modify -device _<switch-name>_ -log-request true`
 
@@ -477,7 +477,7 @@ Enabling cluster switch log collection.
 ----
 ====
 +
-等待10分钟、然后检查日志收集是否完成：
+等待 10 分钟，然后检查日志收集是否完成：
 
 +
 `system switch ethernet log show`
@@ -499,14 +499,14 @@ Index  Switch                       Log Timestamp        Status
 ====
 +
 
-CAUTION: 如果其中任一命令返回错误或日志收集未完成、请联系NetApp支持部门。
+CAUTION: 如果这些命令中的任何一个返回错误，或者日志收集未完成，请联系NetApp支持。
 
-. 将权限级别重新更改为 admin ：
+. 将权限级别改回管理员：
 +
 `set -privilege admin`
 
-. 如果禁止自动创建案例，请通过调用 AutoSupport 消息重新启用它：
+. 如果您已禁用自动创建案例功能，请通过调用AutoSupport消息重新启用该功能：
 +
-`ssystem node AutoSupport invoke -node * -type all -message MAINT=end`
+`system node autosupport invoke -node * -type all -message MAINT=END`
 
 

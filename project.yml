@@ -14,11 +14,11 @@ sidebar:
   entries:
   - title: ONTAP硬件系统的 Switch 文档
     url: "/index.html"
-  - title: 入门
+  - title: 开始使用
     entries:
-    - title: 新增功能
+    - title: 什么是新的
       url: "/whats-new.html"
-    - title: 了解ONTAP 系统交换机
+    - title: 了解ONTAP系统交换机
       url: "/get-started/learn-switch-concept.html"
     - title: 启动并运行
       url: "/get-started/get-up-and-running.html"
@@ -42,9 +42,9 @@ sidebar:
     url: "/shared/index.html"
     entries:
     - section: switch-cisco-9336c-fx2-shared
-      pdf-filename: switch-cisco-9336c-902-storage
+      pdf-filename: 思科9336c-fx2存储交换机
   - section: switch-cshm
-  - title: 可用性终止的交换机
+  - title: 可用性终止开关
     entries:
     - title: 概述
       url: "/overview-eod.html"

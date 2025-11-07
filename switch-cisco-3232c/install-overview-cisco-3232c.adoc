@@ -2,7 +2,7 @@
 permalink: switch-cisco-3232c/install-overview-cisco-3232c.html 
 sidebar: sidebar 
 keywords: install, cisco nexus 3232c switch, 
-summary: 在配置Cisco Nexus 3232c交换机之前、请查看此过程的概述以及术语。 
+summary: 在配置Cisco Nexus 3232c 交换机之前，请先查看流程概述和命名规则。 
 ---
 = Cisco Nexus 3232C 交换机的安装和设置工作流程
 :allow-uri-read: 
@@ -11,7 +11,7 @@ summary: 在配置Cisco Nexus 3232c交换机之前、请查看此过程的概述
 
 
 [role="lead"]
-Cisco Nexus 3232C交换机可用作AFF 或FAS 集群中的集群交换机。通过集群交换机、您可以使用两个以上的节点构建ONTAP 集群。
+Cisco Nexus 3232C 交换机可用作AFF或FAS集群中的集群交换机。集群交换机允许您构建具有两个以上节点的ONTAP集群。
 
 按照这些工作流程步骤安装和设置您的Cisco Nexus 3232C 交换机。
 
@@ -19,18 +19,18 @@ Cisco Nexus 3232C交换机可用作AFF 或FAS 集群中的集群交换机。通�
 [role="quick-margin-para"]
 查看 3232C 集群交换机的配置要求。
 
-.image:https://raw.githubusercontent.com/NetAppDocs/common/main/media/number-2.png["两个"]link:required-documentation-3232c.html["所需文档"]
+.image:https://raw.githubusercontent.com/NetAppDocs/common/main/media/number-2.png["两个"]link:required-documentation-3232c.html["所需文件"]
 [role="quick-margin-para"]
 查看特定的交换机和控制器文档以设置您的 3232C 交换机和ONTAP集群。
 
-.image:https://raw.githubusercontent.com/NetAppDocs/common/main/media/number-3.png["三个"]link:smart-call-home-3232c.html["智能自动通报要求"]
+.image:https://raw.githubusercontent.com/NetAppDocs/common/main/media/number-3.png["三"]link:smart-call-home-3232c.html["智能呼叫中心的要求"]
 [role="quick-margin-para"]
 查看Cisco Smart Call Home 功能的要求，该功能用于监控网络上的硬件和软件组件。
 
-.image:https://raw.githubusercontent.com/NetAppDocs/common/main/media/number-4.png["四个"]link:install-hardware-workflow.html["Install the hardware"]
+.image:https://raw.githubusercontent.com/NetAppDocs/common/main/media/number-4.png["四个"]link:install-hardware-workflow.html["安装硬件"]
 [role="quick-margin-para"]
 安装交换机硬件。
 
-.image:https://raw.githubusercontent.com/NetAppDocs/common/main/media/number-5.png["五个"]link:configure-software-overview-3232c-cluster.html["配置软件"]
+.image:https://raw.githubusercontent.com/NetAppDocs/common/main/media/number-5.png["五"]link:configure-software-overview-3232c-cluster.html["配置软件"]
 [role="quick-margin-para"]
 配置交换机软件。

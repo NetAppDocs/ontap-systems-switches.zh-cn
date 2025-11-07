@@ -5,7 +5,7 @@ indexpage:
   keywords: AFX systems switches, cisco nexus switches, cluster switches, ontap clusters
   lead: AFX 系统交换机使您能够构建具有两个以上节点的ONTAP集群。这些Cisco Nexus 9000 平台交换机为NetApp ONTAP环境中的可扩展集群互连解决方案提供了基础。
   tiles:
-  - title: 入门
+  - title: 开始使用
     links:
     - title: CiscoNexus 9332D-GX2B
       url: "../switch-cisco-9332d-gx2b/configure-switch-overview-9332d-cluster.html"

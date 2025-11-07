@@ -2,36 +2,36 @@
 permalink: switch-nvidia-sn2100-storage/install-rcf-sn2100-storage.html 
 sidebar: sidebar 
 keywords: install rcf script, python script, sn2100 SN2100 switches, cumulus 
-summary: 按照此操作步骤 安装RCF脚本。 
+summary: 按照以下步骤安装 RCF 脚本。 
 ---
-= 安装或升级RCF脚本
+= 安装或升级 RCF 脚本
 :allow-uri-read: 
 :icons: font
 :imagesdir: ../media/
 
 
 [role="lead"]
-按照以下过程安装或升级RCF脚本。
+请按照以下步骤安装或升级 RCF 脚本。
 
 .开始之前
-在安装或升级RCF脚本之前、请确保交换机上具有以下可用项：
+在安装或升级 RCF 脚本之前，请确保交换机上具备以下条件：
 
-* 已安装Cumulus Linux 4.4.3。
-* 通过DHCP定义或手动配置的IP地址、子网掩码和默认网关。
-
-
-.当前RCF脚本版本
-有两个RCF脚本可用于集群和存储应用程序。每个的操作步骤 是相同的。
-
-* 集群：* MSN2100-RFP-v1._x_-Cluster*
-* 存储：* MSN2100-RFP-v1._x_-Storage*
+* 已安装 Cumulus Linux 4.4.3。
+* IP 地址、子网掩码和默认网关通过 DHCP 定义或手动配置。
 
 
+.当前 RCF 脚本版本
+有两个 RCF 脚本可用于集群和存储应用。每种情况的处理步骤都相同。
 
-NOTE: 以下示例操作步骤 显示了如何下载并应用集群交换机的RCF脚本。
+* 集群：*MSN2100-RCF-v1._x_-Cluster*
+* 存储：*MSN2100-RCF-v1._x_-存储*
 
 
-NOTE: 示例命令输出使用交换机管理IP地址10.233.204.71、网络掩码255.255.254.0和默认网关10.233.204.1。
+
+NOTE: 以下示例步骤展示了如何下载和应用集群交换机的 RCF 脚本。
+
+
+NOTE: 示例命令输出使用交换机管理 IP 地址 10.233.204.71，子网掩码 255.255.254.0 和默认网关 10.233.204.1。
 
 .步骤
 . 显示SN2100交换机上的可用接口：
@@ -68,7 +68,7 @@ ADMDN  swp15  N/A  9216   NotConfigured
 ADMDN  swp16  N/A  9216   NotConfigured
 ----
 ====
-. 将RCF python脚本复制到交换机：
+. 将 RCF Python 脚本复制到交换机：
 +
 [listing, subs="+quotes"]
 ----
@@ -79,7 +79,7 @@ cumulus@cumulus:mgmt:/tmp$ *scp _<user>@<host:/<path>_/MSN2100-RCF-v1.8-Cluster*
 ssologin@10.233.204.71's password:
 MSN2100-RCF-v1.8-Cluster                 100% 8607   111.2KB/s         00:00
 ----
-. 应用RCF python脚本*。MSN2100-RCF-v1.8-Cluster*：
+. 应用 RCF Python 脚本 *MSN2100-RCF-v1.8-Cluster*：
 +
 [listing, subs="+quotes"]
 ----
@@ -101,14 +101,14 @@ Step 12: Configure SNMP
 Step 13: Reboot the switch
 ----
 +
-RCF脚本将完成上述步骤。
+RCF脚本会完成上述步骤。
 
 +
 
-NOTE: 对于无法更正的任何RCF python脚本问题、请联系 https://mysupport.netapp.com/["NetApp 支持"^] 以获得帮助。
+NOTE: 如果遇到任何无法解决的 RCF Python 脚本问题，请联系我们。 https://mysupport.netapp.com/["NetApp 支持"^]寻求帮助。
 
-. 将先前的所有自定义设置重新应用于交换机配置。link:cabling-considerations-sn2100-storage.html["查看布线和配置注意事项"]有关所需的任何进一步更改的详细信息、请参见。
-. 重新启动后验证配置：
+. 将之前对交换机配置所做的任何自定义设置重新应用。请参阅link:cabling-considerations-sn2100-storage.html["审查布线和配置注意事项"]有关任何后续变更的详细信息。
+. 重启后验证配置：
 +
 `net show interface all`
 
@@ -179,7 +179,7 @@ switch-priority  TC  ETS
 5                 5  DWRR 43%
 ----
 ====
-. 验证接口中收发器的信息：
+. 请核对接口中收发器的信息：
 +
 `net show interface pluggables`
 
@@ -198,7 +198,7 @@ swp15      0x11 (QSFP28)  Amphenol     112-00573        APF21109348001
 swp16      0x11 (QSFP28)  Amphenol     112-00573        APF21109347895  B0
 ----
 ====
-. 验证每个节点是否都与每个交换机建立了连接：
+. 确认每个节点都与每个交换机有连接：
 +
 `net show lldp`
 
@@ -218,9 +218,9 @@ swp15      100G   BondMember  sw13                    swp15
 swp16      100G   BondMember  sw14                    swp16
 ----
 ====
-. 验证集群上集群端口的运行状况。
+. 检查集群上集群端口的运行状况。
 +
-.. 验证集群中所有节点上的 e0d 端口是否均已启动且运行正常：
+.. 验证集群中所有节点的 e0d 端口是否已启动且运行状况良好：
 +
 `network port show -role cluster`
 
@@ -249,7 +249,7 @@ e3a       Cluster      Cluster          up   9000  auto/10000 healthy  false
 e3b       Cluster      Cluster          up   9000  auto/10000 healthy  false
 ----
 ====
-.. 从集群验证交换机运行状况(此操作可能不会显示交换机SW2、因为LIF不驻留在e0d上)。
+.. 从集群验证交换机的健康状况（这可能不会显示交换机 sw2，因为 LIF 没有归位到 e0d）。
 +
 .显示示例
 [%collapsible]

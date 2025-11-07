@@ -4,7 +4,7 @@ permalink: switch-cisco-9336c-fx2-shared/cable-9336c-shared.html
 keywords: shared storage cluster switch cable 
 summary: 使用布线图完成控制器和交换机之间的布线。 
 ---
-= 填写Cisco Nexus 9336C-x2布线工作表
+= 完成Cisco Nexus 9336C-FX2 布线工作表
 :hardbreaks:
 :allow-uri-read: 
 :nofooter: 
@@ -14,60 +14,60 @@ summary: 使用布线图完成控制器和交换机之间的布线。
 
 
 [role="lead"]
-使用以下布线图完成控制器和交换机之间的布线。
+请使用以下布线图完成控制器和交换机之间的布线。
 
 
 
-== 使用缆线连接交换机连接的NS224存储
+== NS224 电缆存储作为交换机连接
 
-如果要使用缆线将 NS224 存储作为交换机连接，请按照交换机连接图进行操作：
+如果要将 NS224 存储设备以交换机连接方式进行布线，请按照交换机连接图进行操作：
 
-image:9336c_image1.jpg["交换机连接"]
+image:9336c_image1.jpg["开关连接"]
 
-请参见 https://hwu.netapp.com/Switch/Index["Hardware Universe"] 有关交换机端口的详细信息。
-
-
-
-== 使用缆线将NS224存储作为直连存储
-
-如果要将 NS224 存储连接为直连存储，而不是使用共享交换机存储端口，请按照直连图进行操作：
-
-image:9336c_image2.jpg["直连"]
-
-请参见 https://hwu.netapp.com/Switch/Index["Hardware Universe"] 有关交换机端口的详细信息。
+参见 https://hwu.netapp.com/Switch/Index["Hardware Universe"]有关交换机端口的更多信息。
 
 
 
-== Cisco Nexus 9336C-x2 布线工作表
+== NS224 电缆存储作为直接连接
 
-如果要记录受支持的平台，则必须参考填写好的布线工作表示例，填写空布线工作表。
+如果要将 NS224 存储设备以直连方式连接，而不是使用共享交换机存储端口，请按照直连接线图进行操作：
 
-每对交换机上的端口定义示例如下：
+image:9336c_image2.jpg["直连式"]
+
+参见 https://hwu.netapp.com/Switch/Index["Hardware Universe"]有关交换机端口的更多信息。
+
+
+
+== Cisco Nexus 9336C-FX2 布线工作表
+
+如果要记录支持的平台，则必须使用已完成的示例布线工作表作为指南，填写空白的布线工作表。
+
+每对交换机上的示例端口定义如下：
 
 image:cabling_worksheet.jpg["布线工作表"]
 
 其中：
 
-* 100 G ISL 连接到交换机 A 端口 35
-* 100 G ISL 连接到交换机 A 端口 36
-* 100 G ISL 连接到交换机 B 端口 35
-* 100 G ISL 连接到交换机 B 端口 36
+* 100G ISL 至交换机 A 端口 35
+* 100G ISL 连接至交换机 A 端口 36
+* 100G ISL 连接至交换机 B 端口 35
+* 100G ISL 连接至交换机 B 端口 36
 
 
 
 
-== 空布线工作表
+== 空白布线工作表
 
-您可以使用空白布线工作表记录支持用作集群节点的平台。Hardware Universe 的 " 支持的集群连接 " 表定义了平台使用的集群端口。
+您可以使用空白的布线工作表来记录集群中支持的节点平台。Hardware Universe的“支持的集群连接”表定义了平台使用的集群端口。
 
-image:blank_cabling_worksheet.jpg["空布线工作表"]
+image:blank_cabling_worksheet.jpg["空白布线工作表"]
 
 其中：
 
-* 100 G ISL 连接到交换机 A 端口 35
-* 100 G ISL 连接到交换机 A 端口 36
-* 100 G ISL 连接到交换机 B 端口 35
-* 100 G ISL 连接到交换机 B 端口 36
+* 100G ISL 至交换机 A 端口 35
+* 100G ISL 连接至交换机 A 端口 36
+* 100G ISL 连接至交换机 B 端口 35
+* 100G ISL 连接至交换机 B 端口 36
 
 
 .下一步

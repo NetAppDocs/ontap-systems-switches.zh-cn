@@ -2,34 +2,34 @@
 permalink: switch-bes-53248/configure-reqs-bes53248.html 
 sidebar: sidebar 
 keywords: bes, cluster, switch, port, assignment, table, configure, bes-53428 cluster switch port assignments - bes-53428 switches 
-summary: 您可以参考 BES-53248 集群交换机端口分配表来配置集群。 
+summary: 您可以参考 BES-53248 集群交换机端口分配表来配置您的集群。 
 ---
-= BES-53248集群交换机的配置要求
+= BES-53248 集群交换机的配置要求
 :allow-uri-read: 
 :icons: font
 :imagesdir: ../media/
 
 
 [role="lead"]
-对于BES-53248交换机安装和维护、请务必查看EFOS和ONTAP 支持和配置要求。
+对于 BES-53248 交换机的安装和维护，请务必查看 EFOS 和ONTAP支持和配置要求。
 
 
 
-== EFOS和ONTAP 支持
+== EFOS 和ONTAP支持
 
-请参见 https://hwu.netapp.com/Switch/Index["NetApp Hardware Universe"^] 和 https://mysupport.netapp.com/site/info/broadcom-cluster-switch["Broadcom交换机兼容性列表"^] 了解与BES-53248交换机的EFOS和ONTAP 兼容性信息。EFOS和ONTAP 支持可能因BES-53248交换机的特定计算机类型而异。有关所有BES-52348交换机类型的详细信息、请参阅 link:components-bes53248.html["BES-53248集群交换机的组件和部件号"]。
+参见 https://hwu.netapp.com/Switch/Index["NetApp Hardware Universe"^]和 https://mysupport.netapp.com/site/info/broadcom-cluster-switch["博通交换机兼容性矩阵"^]有关 BES-53248 交换机的 EFOS 和ONTAP兼容性信息。 EFOS 和ONTAP支持可能因 BES-53248 交换机的具体机器类型而异。有关所有 BES-52348 交换机型号的详细信息，请参阅link:components-bes53248.html["BES-53248 集群开关的组件和零件编号"]。
 
 
 
 == 配置要求
 
-要配置集群、您需要为集群交换机提供适当数量和类型的缆线和缆线连接器。根据您最初配置的集群交换机类型、您需要使用随附的控制台缆线连接到交换机控制台端口。
+要配置集群，您需要集群交换机的相应数量和类型的电缆和电缆连接器。根据您最初配置的集群交换机的类型，您需要使用随附的控制台电缆连接到交换机控制台端口。
 
 
 
 === 集群交换机端口分配
 
-您可以参考Broadcom支持的BES-53248集群交换机端口分配表来配置集群。
+您可以参考博通支持的 BES-53248 集群交换机端口分配表来配置您的集群。
 
 [cols="1,2"]
 |===
@@ -39,46 +39,46 @@ summary: 您可以参考 BES-53248 集群交换机端口分配表来配置集群
  a| 
 01-16
  a| 
-10/25GbE集群端口节点、基本配置
+10/25GbE 集群端口节点，基本配置
 
 
 
  a| 
 17-48
  a| 
-10/25GbE集群端口节点、带许可证
+10/25GbE 集群端口节点，带许可证
 
 
 
  a| 
 49-54
  a| 
-从右到左添加了40/100GbE集群端口节点和许可证
+40/100GbE 集群端口节点（含许可证），从右至左依次添加
 
 
 
  a| 
 55-56
  a| 
-100GbE 集群交换机间链路（ ISL ）端口，基本配置
+100GbE 集群交换机间链路 (ISL) 端口，基本配置
 
 |===
-请参见 https://hwu.netapp.com/Switch/Index["Hardware Universe"] 有关交换机端口的详细信息。
+参见 https://hwu.netapp.com/Switch/Index["Hardware Universe"]有关交换机端口的更多信息。
 
 
 
 === 端口组速度限制
 
-* 在BES-53248集群交换机上、48个10/25GbE (SFP28/SFP+)端口组合为12个4端口组、如下所示：端口1-4、5-8、9-12、13-16、17-20、21-24、25-28、29-32、33-36、37-40、41-44和45-48。
-* 在四端口组中的所有端口之间， SFP28/SFP+ 端口速度必须相同（ 10GbE 或 25GbE ）。
+* 在 BES-53248 集群交换机上，48 个 10/25GbE (SFP28/SFP+) 端口组合成 12 个 4 端口组，如下：端口 1-4、5-8、9-12、13-16、17-20、21-24、25-28、29-32、33-36、37-40、41-44 和 45-48。
+* 4 端口组中所有端口的 SFP28/SFP+ 端口速度必须相同（10GbE 或 25GbE）。
 
 
 
 
 === 其他要求
 
-* 如果您购买了其他许可证、请参见 link:configure-licenses.html["激活新的许可证端口"] 有关如何激活它们的详细信息。
-* 如果SSH处于活动状态、则必须在运行命令后手动重新启用它 `erase startup-config` 并重新启动交换机。
+* 如果您购买了额外的许可证，请参阅link:configure-licenses.html["激活新授权端口"]有关如何激活它们的详细信息。
+* 如果 SSH 已启用，则运行该命令后必须手动重新启用它。 `erase startup-config`并重启交换机。
 
 
 .下一步

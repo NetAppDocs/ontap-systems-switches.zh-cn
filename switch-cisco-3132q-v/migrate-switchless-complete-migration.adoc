@@ -2,7 +2,7 @@
 permalink: switch-cisco-3132q-v/migrate-switchless-complete-migration.html 
 sidebar: sidebar 
 keywords: cisco 3132q-v, cluster switches 
-summary: 您可以在AFF或FAS集群中使用Cisco Nexus 3132q-v交换机作为集群交换机。 
+summary: 您可以在AFF或FAS集群中使用Cisco Nexus 3132q-v 交换机作为集群交换机。 
 ---
 = 完成从双节点无交换机集群到双节点有交换机集群的迁移
 :allow-uri-read: 
@@ -11,7 +11,7 @@ summary: 您可以在AFF或FAS集群中使用Cisco Nexus 3132q-v交换机作为�
 
 
 [role="lead"]
-按照以下步骤完成从无交换机集群到双节点有交换机集群的迁移。
+按照以下步骤完成从无交换机集群到双节点交换机集群的迁移。
 
 .步骤
 . 显示每个节点上每个集群端口所连接的集群交换机端口号：
@@ -36,9 +36,9 @@ n2         /cdp
             e4e    C2                  Ethernet1/8      N3K-C3132Q-V
 ----
 ====
-. 显示已发现和受监控的集群交换机：
+. 显示已发现和监控的集群交换机：
 +
-`ssystem cluster-switch show`
+`system cluster-switch show`
 
 +
 .显示示例
@@ -69,37 +69,37 @@ C2                          cluster-network      10.10.1.102    NX3132V
 2 entries were displayed.
 ----
 ====
-. 在任何节点上禁用双节点无交换机配置设置：
+. 禁用任意节点上的双节点无交换机配置设置：
 +
-`网络选项 switchless-cluster`
+`network options switchless-cluster`
 
 +
 [listing]
 ----
 network options switchless-cluster modify -enabled false
 ----
-. 验证是否已 `switchless-cluster` 选项已禁用。
+. 确认 `switchless-cluster`此选项已被禁用。
 +
 [listing]
 ----
 network options switchless-cluster show
 ----
-. 验证远程集群接口的连接：
+. 验证远程集群接口的连接性：
 
 
 [role="tabbed-block"]
 ====
-.ONTAP 9.9.1及更高版本
+.ONTAP 9.9.1 及更高版本
 --
-您可以使用 `network interface check cluster-connectivity` 命令启动集群连接的可访问性检查、然后显示详细信息：
+你可以使用 `network interface check cluster-connectivity`执行命令以启动集群连接性检查，然后显示详细信息：
 
-`network interface check cluster-connectivity start` 和 `network interface check cluster-connectivity show`
+`network interface check cluster-connectivity start`和 `network interface check cluster-connectivity show`
 
 [listing, subs="+quotes"]
 ----
 cluster1::*> *network interface check cluster-connectivity start*
 ----
-*注：*请等待几秒钟、然后再运行show命令显示详细信息。
+*注意：*运行 show 命令显示详细信息之前，请等待几秒钟。
 
 [listing, subs="+quotes"]
 ----
@@ -118,7 +118,7 @@ n2
 --
 .所有ONTAP版本
 --
-对于所有ONTAP版本、您还可以使用 `cluster ping-cluster -node <name>` 用于检查连接的命令：
+对于所有ONTAP版本，您也可以使用 `cluster ping-cluster -node <name>`检查连接性的命令：
 
 `cluster ping-cluster -node <name>`
 
@@ -151,11 +151,11 @@ RPC status:
 ----
 --
 ====
-. [[STEP6]]如果禁止自动创建案例、请通过调用AutoSupport消息重新启用：
+. [[step6]]如果您已禁用自动创建案例功能，请通过调用AutoSupport消息重新启用该功能：
 +
-`ssystem node AutoSupport invoke -node * -type all -message MAINT=end`
+`system node autosupport invoke -node * -type all -message MAINT=END`
 
 
 
 .下一步是什么？
-link:../switch-cshm/config-overview.html["配置交换机运行状况监控"](英文)
+link:../switch-cshm/config-overview.html["配置交换机健康监控"]。

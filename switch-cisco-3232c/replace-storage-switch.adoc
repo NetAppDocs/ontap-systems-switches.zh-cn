@@ -2,62 +2,63 @@
 permalink: switch-cisco-3232c/replace-storage-switch.html 
 sidebar: sidebar 
 keywords: replace, cisco nexus, 3232c storage switch 
-summary: 您可以通过执行一系列特定任务无中断地更换有故障的 Cisco Nexus 3232C 存储交换机。 
+summary: 您可以按照特定步骤，在不中断业务的情况下更换有缺陷的Cisco Nexus 3232C 存储交换机。 
 ---
-= 更换 Cisco Nexus 3232C 存储交换机
+= 更换一台Cisco Nexus 3232C 存储交换机
 :allow-uri-read: 
 :icons: font
 :imagesdir: ../media/
 
 
 [role="lead"]
-按照以下步骤更换出现故障的Cisco Nexus 3232C存储交换机。这是一个无中断操作步骤。
+按照以下步骤更换有缺陷的Cisco Nexus 3232C 存储交换机。这是一个非破坏性的过程。
 
 
 
-== 查看要求
+== 审查要求
 
-现有网络配置必须具有以下特征：
+现有网络配置必须具备以下特征：
 
-* Cisco 以太网交换机页面会为您的交换机提供最新的 RCF 和 NX-OS 版本。
-* 两台交换机上必须存在管理连接。
+* Cisco以太网交换机页面包含交换机上最新的 RCF 和 NX-OS 版本。
+* 两台交换机都必须具备管理连接功能。
 +
 [NOTE]
 ====
-确保已完成所有故障排除步骤，以确认您的交换机需要更换。
+请确保已完成所有故障排除步骤，以确认您的交换机需要更换。
 
 ====
 
 
-更换用的 Cisco Nexus 3232C 交换机必须具有以下特征：
+替换用的CiscoNexus 3232C 交换机必须具备以下特性：
 
-* 管理网络连接必须正常工作。
-* 必须能够通过控制台访问更换用的交换机。
+* 管理网络连接必须正常。
+* 必须具备对更换开关的控制台访问权限。
 * 必须将相应的 RCF 和 NX-OS 操作系统映像加载到交换机上。
-* 必须完成交换机的初始自定义。
+* 交换机的初始定制必须完成。
 
 
 
 
-== 更换交换机
+== 更换开关
 
-此操作步骤 将第二个 Nexus 3232C 存储交换机 S2 替换为新的 3232C 交换机 NS2 。这两个节点分别为 node1 和 node2 。
+此过程将第二个 Nexus 3232C 存储交换机 S2 替换为新的 3232C 交换机 NS2。这两个节点分别是节点1和节点2。
 
 
 
-=== 第1步：确认要更换的交换机为S2
+=== 步骤 1：确认待更换的开关是 S2
 
-. 如果在此集群上启用了 AutoSupport ，请通过调用 AutoSupport 消息来禁止自动创建案例： `ssystem node AutoSupport invoke -node * -type all - message MAINT=xh`
+. 如果此集群上启用了AutoSupport ，则通过调用AutoSupport消息来抑制自动创建案例：
+`system node autosupport invoke -node * -type all - message MAINT=xh`
 +
-_x_ 是维护时段的持续时间，以小时为单位。
+_x_ 是维护窗口的持续时间，单位为小时。
 
 +
 [NOTE]
 ====
-AutoSupport 消息会通知技术支持此维护任务，以便在维护窗口期间禁止自动创建案例。
+AutoSupport消息会通知技术支持此维护任务，以便在维护窗口期间抑制自动创建案例。
 
 ====
-. 检查存储节点端口的运行状况，确保已连接到存储交换机 S1 ：
+. 检查存储节点端口的运行状况，确保与存储交换机S1有连接：
 +
 `storage port show -port-type ENET`
 
@@ -83,7 +84,7 @@ node2
                    e7b  ENET  storage      0 enabled  offline     30
 ----
 ====
-. 验证存储交换机S1是否可用：
+. 确认存储交换机 S1 可用：
 +
 `network device-discovery show`
 
@@ -115,7 +116,7 @@ node2/lldp
             e4e    node1                     e4e               -
 ----
 ====
-. 运行 `show lldp neighbors` 命令确认您可以同时看到节点和所有磁盘架：
+. 运行 `show lldp neighbors`在工作交换机上执行命令，确认可以看到两个节点和所有机架：
 +
 `show lldp neighbors`
 
@@ -142,9 +143,9 @@ SHFGD2008000022         Eth1/8          120        S           e0a
 
 
 
-=== 第2步：配置布线
+=== 步骤二：配置线缆
 
-. 【五】验证存储系统中的磁盘架端口：
+. [[五]]检查存储系统中的货架端口：
 +
 `storage shelf port show -fields remote-device,remote-port`
 
@@ -168,15 +169,15 @@ shelf  id  remote-port  remote-device
 3.20   3   -            -
 ----
 ====
-. 拔下连接到存储交换机 S2 的所有缆线。
-. 将所有缆线重新连接到更换用的交换机 NS2 。
+. 拆下连接到存储交换机 S2 的所有电缆。
+. 将所有电缆重新连接到替换交换机 NS2。
 
 
 
 
-=== 第3步：验证交换机NS2上的所有设备配置
+=== 步骤 3：验证交换机 NS2 上的所有设备配置
 
-. 验证存储节点端口的运行状况：
+. 验证存储节点端口的健康状况：
 +
 `storage port show -port-type ENET`
 
@@ -202,7 +203,7 @@ node2
                    e7b  ENET  storage    100 enabled  online        30
 ----
 ====
-. 验证两个交换机是否均可用：
+. 确认两个交换机均可用：
 +
 `network device-discovery show`
 
@@ -238,7 +239,7 @@ node2/lldp
             e7b    NS2                       Ethernet1/2       -
 ----
 ====
-. 验证存储系统中的磁盘架端口：
+. 检查存储系统中的货架端口：
 +
 `storage shelf port show -fields remote-device,remote-port`
 
@@ -261,11 +262,11 @@ shelf id remote-port remote-device
 3.20  3  Ethernet1/8 NS2
 ----
 ====
-. 如果禁止自动创建案例，请通过调用 AutoSupport 消息重新启用它：
+. 如果您已禁用自动创建案例功能，请通过调用AutoSupport消息重新启用该功能：
 +
-`ssystem node AutoSupport invoke -node * -type all -message MAINT=end`
+`system node autosupport invoke -node * -type all -message MAINT=END`
 
 
 
 .下一步是什么？
-link:../switch-cshm/config-overview.html["配置交换机运行状况监控"]
+link:../switch-cshm/config-overview.html["配置交换机健康监控"]

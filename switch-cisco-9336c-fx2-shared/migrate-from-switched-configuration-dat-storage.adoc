@@ -4,7 +4,7 @@ permalink: switch-cisco-9336c-fx2-shared/migrate-from-switched-configuration-dat
 keywords:  
 summary:  
 ---
-= 从具有直连存储的交换式配置进行迁移
+= 从交换式配置迁移到直连存储
 :hardbreaks:
 :allow-uri-read: 
 :nofooter: 
@@ -14,83 +14,83 @@ summary:
 
 
 [role="lead"]
-您可以通过添加两个新的共享交换机从具有直连存储的交换配置进行迁移。
+您可以通过添加两个新的共享交换机，从具有直连存储的交换式配置迁移到共享式配置。
 
 .支持的交换机
 支持以下交换机：
 
-* Nexus 9336C-x2
+* Nexus 9336C-FX2
 * Nexus 3232C
 
 
-此操作步骤中支持的 ONTAP 和 NX-OS 版本位于 Cisco 以太网交换机页面上。请参见 https://mysupport.netapp.com/site/info/cisco-ethernet-switch["Cisco 以太网交换机"]。
+此过程中支持的ONTAP和 NX-OS 版本请参见Cisco以太网交换机页面。看 https://mysupport.netapp.com/site/info/cisco-ethernet-switch["Cisco以太网交换机"]。
 
 .连接端口
 交换机使用以下端口连接到节点：
 
-* Nexus 9336C-x2 ：
+* Nexus 9336C-FX2：
 +
-** 端口 1-3 ：分支模式（ 4x10G ）集群内端口，内部 E1/1/1-4 ， E1/2/1-4 ， E1/3/1-4
-** 端口 4 - 6 ：分支模式（ 4x25G ）集群内 /HA 端口，内部 E1/4/1-4 ， E1/5/1-4 ， E1/6/1-4
-** 端口 7-34 ： 40/100GbE 集群内 /HA 端口，内部 E1/7-34
+** 端口 1-3：分支模式 (4x10G) 集群内端口，内部 e1/1/1-4、e1/2/1-4、e1/3/1-4
+** 端口 4-6：分支模式 (4x25G) 集群内/高可用性端口，内部 e1/4/1-4、e1/5/1-4、e1/6/1-4
+** 端口 7-34：40/100GbE 集群内/高可用性端口，内部 e1/7-34
 
 
-* Nexus 3232C ：
+* Nexus 3232C：
 +
-** 端口 1-30 ： 10/40/100 GbE
+** 端口 1-30：10/40/100 GbE
 
 
-* 交换机使用以下交换机间链路（ ISL ）端口：
+* 这些交换机使用以下交换机间链路（ISL）端口：
 +
-** 端口 int E1/35-36 ： Nexus 9336C-x2
-** 端口 E1/31-32 ： Nexus 3232C
+** 端口 int e1/35-36：Nexus 9336C-FX2
+** 端口 e1/31-32：Nexus 3232C
 
 
 
 
-。 https://hwu.netapp.com["Hardware Universe"] 包含有关所有集群交换机支持的布线的信息。
+这 https://hwu.netapp.com["Hardware Universe"]包含有关所有集群交换机支持的布线信息。
 
-.您需要的内容
-* 确保您已完成以下任务：
+.你需要什么
+* 请确保您已完成以下任务：
 +
-** 已将Nexus 9336C-FX2交换机上的某些端口配置为以100 GbE运行。
-** 计划、迁移和记录从节点到Nexus 9336C-x2交换机的100 GbE连接。
-** 无中断地将其他Cisco集群交换机从ONTAP 集群迁移到Cisco Nexus 9336C-x2网络交换机。
+** 将 Nexus 9336C-FX2 交换机上的一些端口配置为以 100 GbE 运行。
+** 规划、迁移并记录了从节点到 Nexus 9336C-FX2 交换机的 100 GbE 连接。
+** 将其他Cisco集群交换机从ONTAP集群无中断地迁移到Cisco Nexus 9336C-FX2 网络交换机。
 
 
-* 现有交换机网络已正确设置并正常运行。
-* 所有端口均处于*启动*状态、以确保无中断运行。
-* Nexus 9336C-FX2交换机在安装的正确NX-OS版本以及应用的参考配置文件(Reference Configuration File、RCF)下进行配置和运行。
+* 现有交换网络已正确设置并正常运行。
+* 所有端口均处于*开启*状态，以确保运行不中断。
+* Nexus 9336C-FX2 交换机已配置并运行在已安装的正确版本的 NX-OS 和已应用的参考配置文件 (RCF) 下。
 * 现有网络配置如下：
 +
-** 使用两个旧版 Cisco 交换机的冗余且功能完备的 NetApp 集群。
-** 管理连接以及对旧 Cisco 交换机和新交换机的控制台访问。
-** 与集群 LIF 处于 * 启动 * 状态的所有集群 LIF 均位于其主端口上。
-** ISL 端口已启用，并已在其他 Cisco 交换机之间以及新交换机之间进行布线。
+** 使用较旧的Cisco交换机构建冗余且功能齐全的NetApp集群。
+** 对旧款Cisco交换机和新款交换机的管理连接和控制台访问。
+** 集群中所有处于 *up* 状态的 LIF 都位于其主端口上。
+** ISL 端口已启用，并且已在其他Cisco交换机之间以及新交换机之间连接了电缆。
 
 
 
 
 .关于示例
-此操作步骤中的示例使用以下交换机和节点命名：
+本流程中的示例使用以下开关和节点命名规则：
 
-* 现有 Cisco Nexus 3232C 集群交换机为 _c1_ 和 _c2_ 。
-* 新的 Nexus 9336C-f2 交换机为 _SH1_ 和 _SH2_ 。
-* 节点为 _node1_ 和 _node2_ 。
-* 集群 LIF 分别是节点 1 上的 _node1_clus1_ 和 _node1_clus2_ 以及节点 2 上的 _node2_clus1_ 和 _node2_clus2_ 。
-* 交换机 C2 首先由交换机 SH2 取代，然后交换机 C1 由交换机 SH1 取代。
+* 现有的Cisco Nexus 3232C 集群交换机是 _c1_ 和 _c2_。
+* 新的 Nexus 9336C-FX2 交换机型号为 _sh1_ 和 _sh2_。
+* 节点分别为 _node1_ 和 _node2_。
+* 节点 1 上的集群 LIF 分别为 _node1_clus1_ 和 _node1_clus2_，节点 2 上的集群 LIF 分别为 _node2_clus1_ 和 _node2_clus2_。
+* 首先将交换机 c2 替换为交换机 sh2，然后将交换机 c1 替换为交换机 sh1。
 
 
 .步骤
-. 如果在此集群上启用了 AutoSupport ，则通过调用 AutoSupport 消息禁止自动创建案例：
+. 如果此集群上启用了AutoSupport ，则通过调用AutoSupport消息来抑制自动创建案例：
 +
 `system node autosupport invoke -node * -type all -message MAINT=x h`
 
 +
-其中 x 是维护时段的持续时间，以小时为单位。
+其中 x 为维护窗口的持续时间（小时）。
 
 . 检查每个集群端口的管理和运行状态。
-. 验证所有集群端口是否均已启动且状态正常：
+. 确认集群所有端口均已启动且状态正常：
 +
 `network port show –role cluster`
 
@@ -122,7 +122,7 @@ cluster1::*>
 ====
 
 
-. 【第4步】验证所有集群接口(LIF)是否均位于主端口上：
+. [[步骤4]]验证所有集群接口（LIF）是否都在主端口上：
 +
 `network interface show -role cluster`
 
@@ -147,9 +147,9 @@ cluster1::*>
 ====
 
 
-. 【第5步】验证集群是否同时显示两个集群交换机的信息：
+. [[步骤5]]验证集群是否显示两个集群交换机的信息：
 +
-`ssystem cluster-switch show -is-monitoring-enableed-Operational true`
+`system cluster-switch show -is-monitoring-enabled-operational true`
 
 +
 .显示示例
@@ -179,7 +179,7 @@ cluster1::*>
 ====
 
 
-. 【第 6 步】在集群 LIF 上禁用自动还原。
+. [[step6]]禁用集群 LIF 的自动还原功能。
 +
 .显示示例
 [%collapsible]
@@ -191,7 +191,7 @@ cluster1::*> *network interface modify -vserver Cluster -lif * -auto-revert fals
 ====
 
 
-. 【第7步】关闭C2交换机。
+. [[step7]]关闭 c2 交换机。
 +
 .显示示例
 [%collapsible]
@@ -206,12 +206,12 @@ c2(config)# *shutdown*
 ====
 
 
-. 【第8步】验证集群LIF是否已迁移到集群交换机SH1上托管的端口：
+. [[步骤8]]验证集群 LIF 是否已迁移到集群交换机 sh1 上托管的端口：
 +
 `network interface show -role cluster`
 
 +
-这可能需要几秒钟的时间。
+这可能需要几秒钟。
 
 +
 .显示示例
@@ -234,9 +234,9 @@ cluster1::*>
 ====
 
 
-. 【第 9 步】将交换机 C2 更换为新交换机 SH2 并重新连接新交换机。
-. 验证 SH2 上的端口是否已备份。* 注意 * LIF 仍位于交换机 C1 上。
-. 关闭C1交换机。
+. [[step9]]将交换机 c2 替换为新的交换机 sh2，并重新连接新交换机的电缆。
+. 请确认 sh2 上的端口是否已恢复正常。  *注意* LIF 仍然在交换机 c1 上。
+. 关闭 c1 交换机。
 +
 .显示示例
 [%collapsible]
@@ -251,7 +251,7 @@ c1(config)# *shutdown*
 ====
 
 
-. 【第 12 步】验证集群 LIF 是否已迁移到集群交换机 SH2 上托管的端口。这可能需要几秒钟的时间。
+. [[step12]]验证集群 LIF 是否已迁移到集群交换机 sh2 上托管的端口。这可能需要几秒钟。
 +
 .显示示例
 [%collapsible]
@@ -273,9 +273,9 @@ cluster1::*>
 ====
 
 
-. 【第 13 步】将交换机 C1 更换为新交换机 SH1 ，然后重新为新交换机布线。
-. 验证 SH1 上的端口是否已备份。* 注意 * LIF 仍位于交换机 C2 上。
-. 在集群 LIF 上启用自动还原：
+. [[step13]]将交换机 c1 更换为新的交换机 sh1，并重新连接新交换机的电缆。
+. 请确认 sh1 上的端口是否已恢复正常。  *注意* LIF 仍然在交换机 c2 上。
+. 启用集群 LIF 的自动回滚功能：
 +
 .显示示例
 [%collapsible]
@@ -287,7 +287,7 @@ cluster1::*> *network interface modify -vserver Cluster -lif * -auto-revert True
 ====
 
 
-. 【第16步】验证集群是否运行正常：
+. [[步骤16]]验证集群是否健康：
 +
 `cluster show`
 

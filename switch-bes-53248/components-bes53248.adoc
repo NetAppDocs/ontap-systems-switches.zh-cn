@@ -2,33 +2,33 @@
 permalink: switch-bes-53248/components-bes53248.html 
 sidebar: sidebar 
 keywords: cluster-mode,supported versions,switches supported,cluster network,efos 
-summary: 对于BES-53248交换机安装和维护、请务必查看组件列表和部件号。 
+summary: 对于 BES-53248 交换机的安装和维护，请务必查看组件和部件编号列表。 
 ---
-= BES-53248集群交换机的组件和部件号
+= BES-53248 集群开关的组件和零件编号
 :allow-uri-read: 
 :icons: font
 :imagesdir: ../media/
 
 
 [role="lead"]
-对于BES-53248交换机安装和维护、请务必查看组件列表和部件号。
+对于 BES-53248 交换机的安装和维护，请务必查看组件和部件编号列表。
 
-下表列出了BES-53248集群交换机组件的部件号、问题描述 以及最低EFOS和ONTAP 版本、包括机架安装导轨套件详细信息。
+下表列出了 BES-53248 集群交换机组件的零件号、描述以及最低 EFOS 和ONTAP版本，包括机架安装导轨套件的详细信息。
 
 
-NOTE: 对于部件号*X190005-B*和*X190005R-B*，至少需要EFOS版本*3.10.0.3*。
+NOTE: 部件号 *X190005-B* 和 *X190005R-B* 需要最低 EFOS 版本 *3.10.0.3*。
 
 [cols="20,40,20,20"]
 |===
-| 部件号 | Description | 最低EFOS版本 | 最低ONTAP 版本 
+| 零件编号 | 描述 | 最低 EFOS 版本 | 最低ONTAP版本 
 
 
  a| 
 X190005-B
  a| 
-BES-53248-B/IX8、CLSW、16PT10/C5GB、PTSX (PTSX =端口侧排气)
+BES-53248-B/IX8、CLSW、16PT10/25GB、PTSX（PTSX = 端口侧排气）
  a| 
-3.10.0.3.
+3.10.0.3
  a| 
 9.8
 
@@ -37,9 +37,9 @@ BES-53248-B/IX8、CLSW、16PT10/C5GB、PTSX (PTSX =端口侧排气)
  a| 
 X190005R-B
  a| 
-BES-53248-B/IX8、CLSW、16PT10/C5GB、PSIN (PSIN =端口侧进气)
+BES-53248-B/IX8、CLSW、16PT10/25GB、PSIN（PSIN = 端口侧进气）
  a| 
-3.10.0.3.
+3.10.0.3
  a| 
 9.8
 
@@ -48,29 +48,29 @@ BES-53248-B/IX8、CLSW、16PT10/C5GB、PSIN (PSIN =端口侧进气)
  a| 
 X190005
  a| 
-BES-53248，CLSW，16Pt1025GB，PTSX，BRDCM支持
+BES-53248、CLSW、16Pt10/25GB、PTSX、BRDCM SUPP
  a| 
-3.4.4.6.
+3.4.4.6
  a| 
-9.5P8.
+9.5P8
 
 
 
  a| 
-X190005r
+X190005R
  a| 
-BES-53248，CLSW，16Pt1025GB，PSIN，BRDCM支持
+BES-53248、CLSW、16Pt10/25GB、PSIN、BRDCM SUPP
  a| 
-3.4.4.6.
+3.4.4.6
  a| 
-9.5P8.
+9.5P8
 
 
 
  a| 
-X-RAIL 4Post-190005
+X-RAIL-4POST-190005
  a| 
-19 英寸 Ozeki 4 柱机架安装导轨套件
+Ozeki 4柱19英寸机架安装导轨套件
  a| 
 不适用
  a| 
@@ -82,24 +82,24 @@ IMPORTANT: 请注意以下有关机器类型的信息：
 
 [cols="50,50"]
 |===
-| 计算机类型 | 最低EFOS版本 
+| 机器类型 | 最低 EFOS 版本 
 
 
  a| 
 BES-53248A1
-| 3.4.4.6. 
+| 3.4.4.6 
 
 
  a| 
 BES-53248A2
-| 3.10.0.3. 
+| 3.10.0.3 
 
 
  a| 
 BES-53248A3
-| 3.10.0.3. 
+| 3.10.0.3 
 |===
-您可以使用命令确定特定计算机类型： `show version`
+您可以使用以下命令确定您的具体机器类型： `show version`
 
 .显示示例
 [%collapsible]

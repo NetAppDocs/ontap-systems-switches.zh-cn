@@ -2,7 +2,7 @@
 permalink: switch-bes-53248/configure-licenses.html 
 sidebar: sidebar 
 keywords: bes, cluster, switch, base, model, license, 10gbe, 25gbe, 100gbe, port, add, purchasing, purchase, install licenses for bes-53248 cluster switches - bes-53248 switches 
-summary: BES-53248 集群交换机基本型号已获得 16 个 10GbE 或 25GbE 端口和 2 个 100GbE 端口的许可。可以通过购买更多许可证来添加新端口。 
+summary: BES-53248 集群交换机基本型号授权配备 16 个 10GbE 或 25GbE 端口和 2 个 100GbE 端口。可以通过购买更多许可证来添加新端口。 
 ---
 = 安装 BES-53248 集群交换机的许可证
 :allow-uri-read: 
@@ -11,10 +11,10 @@ summary: BES-53248 集群交换机基本型号已获得 16 个 10GbE 或 25GbE �
 
 
 [role="lead"]
-BES-53248 集群交换机基本型号已获得 16 个 10GbE 或 25GbE 端口和 2 个 100GbE 端口的许可。您可以通过购买更多许可证来添加新端口。
+BES-53248 集群交换机基本型号授权配备 16 个 10GbE 或 25GbE 端口和 2 个 100GbE 端口。您可以通过购买更多许可证来添加新端口。
 
 
-CAUTION: 对于EFOS 3-16及更高版本，请按照中的安装步骤进行操作link:efos-install-rcf-license-file.html["安装参考配置文件(Reference Configuration File、RCF)和许可证文件"]。
+CAUTION: 对于 EFOS 3.12 及更高版本，请按照以下安装步骤进行操作：link:efos-install-rcf-license-file.html["安装参考配置文件 (RCF) 和许可证文件"] 。
 
 
 
@@ -24,13 +24,13 @@ CAUTION: 对于EFOS 3-16及更高版本，请按照中的安装步骤进行操�
 
 [cols="1,2,3"]
 |===
-| 许可证类型 | 许可证详细信息 | 支持的固件版本 
+| 许可证类型 | 许可证详情 | 支持的固件版本 
 
 
  a| 
 SW-BES-53248A2-8P-2P
  a| 
-Broadcom 8pt-10G25G + 2pt-40G100G许可密钥、X190005/R
+博通 8PT-10G25G + 2PT-40G100G 许可证密钥，X190005/R
  a| 
 EFOS 3.4.4.6 及更高版本
 
@@ -39,7 +39,7 @@ EFOS 3.4.4.6 及更高版本
  a| 
 SW-BES-53248A2-8P-1025G
  a| 
-Broadcom 8端口10G25G许可密钥，X190005/R
+博通8端口10G25G许可证密钥，X190005/R
  a| 
 EFOS 3.4.4.6 及更高版本
 
@@ -48,7 +48,7 @@ EFOS 3.4.4.6 及更高版本
  a| 
 SW-BES53248A2-6P-40-100G
  a| 
-Broadcom 6端口40G100G许可密钥，X190005/R
+博通 6 端口 40G/100G 许可证密钥，X190005/R
  a| 
 EFOS 3.4.4.6 及更高版本
 
@@ -57,17 +57,17 @@ EFOS 3.4.4.6 及更高版本
 
 == 旧版许可证
 
-下表列出了可在BES-53248集群交换机上使用的原有许可证：
+下表列出了可在 BES-53248 集群交换机上使用的旧版许可证：
 
 [cols="1,2,3"]
 |===
-| 许可证类型 | 许可证详细信息 | 支持的固件版本 
+| 许可证类型 | 许可证详情 | 支持的固件版本 
 
 
  a| 
 SW-BES-53248A1-G1-8P-LIC
  a| 
-Broadcom 8P 10-25 ， 2P40-100 许可证密钥， X190005/R
+Broadcom 8P 10-25,2P40-100 许可证密钥，X190005/R
  a| 
 EFOS 3.4.3.3 及更高版本
 
@@ -76,25 +76,25 @@ EFOS 3.4.3.3 及更高版本
  a| 
 SW-BES-53248A1-G1-16P-LIC
  a| 
-Broadcom 16P 10-25 ， 4P40-100 许可证密钥， X190005/R
+Broadcom 16P 10-25,4P40-100 许可证密钥，X190005/R
  a| 
 EFOS 3.4.3.3 及更高版本
 
 
 
  a| 
-SW-BES-53248A1-G1-24P 许可证
+SW-BES-53248A1-G1-24P-LIC
  a| 
-Broadcom 24P 10-25 ， 6P40-100 许可证密钥， X190005/R
+Broadcom 24P 10-25,6P40-100 许可证密钥，X190005/R
  a| 
 EFOS 3.4.3.3 及更高版本
 
 
 
  a| 
-SW-BES542400-40-100G-LIC
+SW-BES54248-40-100G-LIC
  a| 
-Broadcom 6 端口 40G100G 许可证密钥， X190005/R
+博通 6 端口 40G/100G 许可证密钥，X190005/R
  a| 
 EFOS 3.4.4.6 及更高版本
 
@@ -103,25 +103,25 @@ EFOS 3.4.4.6 及更高版本
  a| 
 SW-BES53248-8P-10G25G-LIC
  a| 
-Broadcom 8 端口 10G25G 许可证密钥， X190005/R
+博通8端口10G25G许可证密钥，X190005/R
  a| 
 EFOS 3.4.4.6 及更高版本
 
 
 
  a| 
-SW-BES53248/16P-1025G-LIC
+SW-BES53248-16P-1025G-LIC
  a| 
-Broadcom 16 端口 10G25G 许可证密钥， X190005/R
+博通 16 端口 10G25G 许可证密钥，X190005/R
  a| 
 EFOS 3.4.4.6 及更高版本
 
 
 
  a| 
-SW-BES532424-24P-1025G-LIC
+SW-BES53248-24P-1025G-LIC
  a| 
-Broadcom 24 端口 10G25G 许可证密钥， X190005/R
+博通 24 端口 10G/25G 许可证密钥，X190005/R
  a| 
 EFOS 3.4.4.6 及更高版本
 
@@ -133,11 +133,11 @@ NOTE: 基本配置不需要许可证。
 
 == 安装许可证文件
 
-按照以下步骤为BES-53248集群交换机安装许可证。
+请按照以下步骤安装 BES-53248 集群交换机的许可证。
 
 .步骤
 . 将集群交换机连接到管理网络。
-. 使用 `ping` 命令验证与托管 EFOS ，许可证和 RCF 文件的服务器的连接。
+. 使用 `ping`用于验证与托管 EFOS、许可证和 RCF 文件的服务器的连接性的命令。
 +
 .显示示例
 [%collapsible]
@@ -152,9 +152,9 @@ Pinging 172.19.2.1 with 0 bytes of data:
 Reply From 172.19.2.1: icmp_seq = 0. time= 5910 usec.
 ----
 ====
-. 检查交换机 CS2 上的当前许可证使用情况：
+. 检查交换机 CS2 的当前许可证使用情况：
 +
-`s如何许可`
+`show license`
 
 +
 .显示示例
@@ -174,13 +174,13 @@ No license file found.
 ====
 . 安装许可证文件。
 +
-重复此步骤可加载更多许可证并使用不同的密钥索引编号。
+重复此步骤以加载更多许可证并使用不同的密钥索引号。
 
 +
 .显示示例
 [%collapsible]
 ====
-以下示例使用 SFTP 将许可证文件复制到密钥索引 1 。
+以下示例使用 SFTP 将许可证文件复制到密钥索引 1。
 
 [listing, subs="+quotes"]
 ----
@@ -202,9 +202,9 @@ File transfer in progress. Management access will be blocked for the duration of
 License Key transfer operation completed successfully. System reboot is required.
 ----
 ====
-. 显示所有当前许可证信息，并在重新启动交换机 CS2 之前记下许可证状态：
+. 显示所有当前许可证信息，并在交换机 cs2 重启前记录许可证状态：
 +
-`s如何许可`
+`show license`
 
 +
 .显示示例
@@ -223,12 +223,12 @@ License Index  License Type      Status
 1              Port              License valid but not applied
 ----
 ====
-. 显示所有已许可的端口：
+. 显示所有已授权端口：
 +
-`s如何全部端口 | 排除断开`
+`show port all | exclude Detach`
 
 +
-只有在重新启动交换机后，才会显示其他许可证文件中的端口。
+交换机重启后才会显示附加许可证文件中的端口。
 
 +
 .显示示例
@@ -261,9 +261,9 @@ Intf      Type   Mode      Mode       Status     Status Trap    Mode   Timeout
 0/56             Disable   Auto                  Down   Enable  Enable long
 ----
 ====
-. 重新启动交换机：
+. 重启交换机：
 +
-`re负载`
+`reload`
 
 +
 .显示示例
@@ -282,9 +282,9 @@ Configuration Saved!
 Are you sure you would like to reset the system? (y/n) *y*
 ----
 ====
-. 检查新许可证是否处于活动状态，并注意此许可证是否已应用：
+. 请检查新许可证是否已激活，并确认许可证已应用：
 +
-`s如何许可`
+`show license`
 
 +
 .显示示例
@@ -306,7 +306,7 @@ License Index  License Type              Status
 ====
 . 检查所有新端口是否可用：
 +
-`s如何全部端口 | 排除断开`
+`show port all | exclude Detach`
 
 +
 .显示示例
@@ -348,15 +348,15 @@ Intf      Type   Mode      Mode       Status     Status Trap    Mode   Timeout
 
 
 
-CAUTION: 安装其他许可证时、必须手动配置新接口。请勿将RCF重新应用于现有工作正常的生产交换机。
+CAUTION: 安装其他许可证时，必须手动配置新接口。不要对现有正在运行的生产交换机重新应用 RCF。
 
 
 
-== 对安装问题进行故障排除
+== 排查安装问题
 
-如果在安装许可证时出现问题、请在运行之前运行以下调试命令 `copy` 命令。
+如果在安装许可证时出现问题，请在运行以下命令之前运行以下调试命令： `copy`再次发出命令。
 
-要使用的调试命令：`debug transfer`和`debug license`
+可使用的调试命令： `debug transfer`和 `debug license`
 
 .显示示例
 [%collapsible]
@@ -369,7 +369,7 @@ Debug transfer output is enabled.
 Enabled capability licensing debugging.
 ----
 ====
-运行时 `copy` 命令 `debug transfer` 和 `debug license` options enabled、将返回日志输出。
+当你运行 `copy`使用命令 `debug transfer`和 `debug license`启用这些选项后，将返回日志输出。
 
 .显示示例
 [%collapsible]
@@ -399,32 +399,32 @@ CAPABILITY LICENSING : Fri Sep 11 13:41:32 2020: Feature not found in license fi
 CAPABILITY LICENSING : Fri Sep 11 13:41:32 2020: Applying license file 1.
 ----
 ====
-在调试输出中检查以下内容：
+请检查调试输出中的以下内容：
 
-* 检查序列号是否匹配： `s序列号 QTCU38290012 匹配。`
-* 检查交换机型号是否匹配： `model BES-53248 matched 。`
-* 检查指定的许可证索引是否以前未使用过。如果已使用许可证索引，则返回以下错误： `License file /mnt/download//license.date.1 already exists.`
-* 端口许可证不是功能许可证。因此，应遵循以下语句：在索引为 1.` 的许可证文件中未找到 `功能
+* 请检查序列号是否匹配： `Serial number QTFCU38290012 matched.`
+* 检查交换机型号是否匹配： `Model BES-53248 matched.`
+* 检查指定的许可证索引是否之前未被使用过。如果许可证索引已被使用，则会返回以下错误： `License file /mnt/download//license.dat.1 already exists.`
+* 端口许可证并非功能许可证。因此，预期会出现以下语句： `Feature not found in license file with index = 1.`
 
 
-使用 `copy` 用于将端口许可证备份到服务器的命令：
+使用 `copy`将端口许可证备份到服务器的命令：
 
 [listing, subs="+quotes"]
 ----
 (cs2)# *copy nvram:license-key 1 scp://<UserName>@<IP_address>/saved_license_1.dat*
 ----
 
-CAUTION: 如果需要将交换机软件从 3.4.4.6 版降级，则许可证将被删除。这是预期行为。
+CAUTION: 如果需要将交换机软件从 3.4.4.6 版本降级，则许可证将被移除。此行为是预期的。
 
-在还原到软件的旧版本之前，您必须安装相应的旧版许可证。
+在恢复到软件的旧版本之前，您必须先安装相应的旧版本许可证。
 
 
 
-== 激活新许可的端口
+== 激活新授权的端口
 
-要激活新许可的端口、您需要编辑最新版本的RCF并取消注释适用的端口详细信息。
+要激活新授权的端口，您需要编辑最新版本的 RCF 文件，并取消注释相应的端口详细信息。
 
-默认许可证会激活端口 0/1 到 0/16 以及从 0/55 到 0/56 ，而新许可的端口将位于端口 0/17 到 0/54 之间，具体取决于可用许可证的类型和数量。例如、要激活SW-BES54244-40-100G-LIC许可证、必须取消注释RCF中的以下部分：
+默认许可证激活端口 0/1 至 0/16 和 0/55 至 0/56，而新授权的端口将根据可用许可证的类型和数量在端口 0/17 至 0/54 之间。例如，要激活 SW-BES54248-40-100G-LIC 许可证，您必须取消注释 RCF 中的以下部分：
 
 .显示示例
 [%collapsible]
@@ -531,7 +531,7 @@ exit
 ----
 ====
 
-NOTE: 对于介于0/49到0/54之间的高速端口、取消对每个端口的注释、但仅对RCF中每个端口的一个*速度*行进行注释、如示例所示：*速度100G全双工*或*速度40G全双工*。对于介于 0/17 到 0/48 之间的低速度端口，激活相应的许可证后，取消对整个 8 端口部分的注释。
+NOTE: 对于 0/49 到 0/54 之间的高速端口（含 0/49 和 0/54），取消注释每个端口，但每个端口的 RCF 中仅取消注释一行 *speed*，可以是：*speed 100G 全双工* 或 *speed 40G 全双工*，如示例所示。对于 0/17 到 0/48 之间的低速端口（含 0/17 和 0/48），当激活相应的许可证后，请取消注释整个 8 端口部分。
 
 .下一步是什么？
 安装许可证后，您可以 link:configure-install-rcf.html["安装参考配置文件（RCF）"] 或者 link:upgrade-rcf.html["升级 RCF"]。

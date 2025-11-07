@@ -16,19 +16,19 @@ summary: 在配置Cisco Nexus SN2100 交换机之前，请查看以下信息。
 
 
 .关于此任务
-* 您必须使用串行控制台连接到交换机。
+* 您必须使用串口控制台连接到交换机。
 * 您必须拥有 root 密码才能使用 sudo 访问命令。
 
 
 
-NOTE: 有关安装 Cumulus Linux 的更多信息，请参阅link:configure-software-overview-sn2100-cluster.html["NVIDIA SN2100交换机的软件安装工作流"]。
+NOTE: 有关安装 Cumulus Linux 的更多信息，请参阅link:configure-software-overview-sn2100-cluster.html["NVIDIA SN2100交换机的软件安装工作流程"]。
 
 .步骤
 [role="tabbed-block"]
 ====
 .Cumulus Linux 5.10 及更早版本
 --
-. 从 Cumulus 控制台，使用命令下载并排队交换机软件安装 `onie-install -a -i`后面跟着交换机软件的文件路径，例如：
+. 从 Cumulus 控制台，使用以下命令下载交换机软件并将其添加到安装队列中。 `onie-install -a -i`后面是交换机软件的文件路径，例如：
 +
 [listing, subs="+quotes"]
 ----
@@ -46,7 +46,7 @@ cumulus@sw1:mgmt:~$ *sudo reboot*
 ----
 +
 
-NOTE: 交换机重新启动并进入交换机软件安装，这需要一些时间。安装完成后，交换机重新启动并保持在 `log-in`迅速的。
+NOTE: 交换机重新启动并进入交换机软件安装，这需要一些时间。安装完成后，交换机重启并保持在该状态。 `log-in`迅速的。
 
 
 
@@ -72,7 +72,7 @@ Do you want to continue? [y/n] *y*
 ----
 
 
-查看NVIDIA https://docs.nvidia.com/networking-ethernet-software/cumulus-linux-511/Installation-Management/Factory-Reset/["恢复出厂设置"^]文档以了解更多详细信息。
+请参阅NVIDIA https://docs.nvidia.com/networking-ethernet-software/cumulus-linux-511/Installation-Management/Factory-Reset/["恢复出厂设置"^]更多详情请参阅相关文档。
 
 --
 ====

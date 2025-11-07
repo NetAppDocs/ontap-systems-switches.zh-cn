@@ -2,19 +2,19 @@
 permalink: switch-cshm/monitor-troubleshoot.html 
 sidebar: sidebar 
 keywords: cshm, cluster, storage, switch logs, debugging, collection 
-summary: 您可以使用以下命令... 
+summary: 您可以使用以下命令…… 
 ---
-= 对警报进行故障排除
+= 故障排除警报
 :allow-uri-read: 
 :icons: font
 :imagesdir: ../media/
 
 
 [role="lead"]
-如果在集群中检测到以太网交换机出现故障、风险或严重情况、则会发出警报。
+如果集群中的以太网交换机检测到故障、风险或严重情况，则会发出警报。
 
-如果出现引发的警报、则系统运行状况状态会报告集群的降级状态。发出的警报包括对降级的系统运行状况做出响应所需的信息。
+如果发出警报，系统健康状况报告集群状态下降。发出的警报包含您需要应对系统健康状况下降的信息。
 
-要查看可用的以太网交换机运行状况监控器警报、请运行以下命令： `system health alert definition show -monitor ethernet-switch`
+要查看可用的以太网交换机健康监控警报，请运行以下命令： `system health alert definition show -monitor ethernet-switch`
 
-有关警报的高级解决方案详细信息、请参见知识库文章 https://kb.netapp.com/on-prem/ontap/OHW/OHW-KBs/Cluster_Switch_Health_Monitor_CSHM_Alert_Resolution_Guide["《交换机运行状况监控器警报解决指南》"^] 。
+请参阅知识库文章 https://kb.netapp.com/on-prem/ontap/OHW/OHW-KBs/Cluster_Switch_Health_Monitor_CSHM_Alert_Resolution_Guide["Switch 健康监控器警报解决指南"^]有关警报的高级解析详情。

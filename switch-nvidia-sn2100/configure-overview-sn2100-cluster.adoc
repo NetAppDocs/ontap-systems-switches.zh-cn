@@ -2,7 +2,7 @@
 permalink: switch-nvidia-sn2100/configure-overview-sn2100-cluster.html 
 sidebar: sidebar 
 keywords: sn2100 SN2100 switches setup, sn2100 SN2100 switches install, cumulus linux 
-summary: NVIDIA SN2100交换机是一款运行Cumulus Linux的10/25/40/100 GbE以太网交换机。SN2100交换机通过不同的交换机对为ONTAP 9.10.1中的集群和存储应用程序提供服务。 
+summary: NVIDIA SN2100 交换机是一款运行 Cumulus Linux 的 10/25/40/100 GbE 以太网交换机。  SN2100 交换机通过不同的交换机对为ONTAP 9.10.1 中的集群和存储应用提供服务。 
 ---
 = NVIDIA SN2100 交换机的安装和设置工作流程
 :allow-uri-read: 
@@ -11,7 +11,7 @@ summary: NVIDIA SN2100交换机是一款运行Cumulus Linux的10/25/40/100 GbE�
 
 
 [role="lead"]
-NVIDIA SN2100是一款集群交换机、可用于构建具有两个以上节点的ONTAP 集群。
+NVIDIA SN2100 是一款集群交换机，可让您构建具有两个以上节点的ONTAP集群。
 
 按照以下工作流程步骤安装并设置NVIDIA SN2100 交换机。
 
@@ -23,14 +23,14 @@ NVIDIA SN2100是一款集群交换机、可用于构建具有两个以上节点�
 [role="quick-margin-para"]
 查看 SN2100 集群交换机的组件和零件编号。
 
-.image:https://raw.githubusercontent.com/NetAppDocs/common/main/media/number-3.png["三个"]link:required-documentation-sn2100-cluster.html["审查所需文件"]
+.image:https://raw.githubusercontent.com/NetAppDocs/common/main/media/number-3.png["三"]link:required-documentation-sn2100-cluster.html["审查所需文件"]
 [role="quick-margin-para"]
 查看特定的交换机和控制器文档以设置您的 SN2100 交换机和ONTAP集群。
 
-.image:https://raw.githubusercontent.com/NetAppDocs/common/main/media/number-4.png["四个"]link:install-hardware-workflow.html["Install the hardware"]
+.image:https://raw.githubusercontent.com/NetAppDocs/common/main/media/number-4.png["四个"]link:install-hardware-workflow.html["安装硬件"]
 [role="quick-margin-para"]
 安装交换机硬件。
 
-.image:https://raw.githubusercontent.com/NetAppDocs/common/main/media/number-5.png["五个"]link:configure-software-overview-sn2100-cluster.html["配置软件"]
+.image:https://raw.githubusercontent.com/NetAppDocs/common/main/media/number-5.png["五"]link:configure-software-overview-sn2100-cluster.html["配置软件"]
 [role="quick-margin-para"]
 配置交换机软件。

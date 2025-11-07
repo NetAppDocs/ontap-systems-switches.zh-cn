@@ -2,45 +2,45 @@
 permalink: switch-cisco-3232c/replace-cluster-switch.html 
 sidebar: sidebar 
 keywords: replace, cisco nexus 3232c, cluster switch 
-summary: 您可以通过执行一系列特定任务无中断地更换集群中有故障的 Cisco Nexus 3232C 交换机。 
+summary: 您可以通过执行一系列特定任务，在不中断业务的情况下更换集群中出现故障的Cisco Nexus 3232C 交换机。 
 ---
-= 更换 Cisco Nexus 3232C 集群交换机
+= 更换Cisco Nexus 3232C 集群交换机
 :allow-uri-read: 
 :icons: font
 :imagesdir: ../media/
 
 
 [role="lead"]
-按照以下步骤更换集群中有故障的Cisco Nexus 3232C交换机。这是一个无中断操作步骤。
+按照以下步骤更换集群中出现故障的Cisco Nexus 3232C 交换机。这是一个非破坏性的过程。
 
 
 
-== 查看要求
+== 审查要求
 
-.您需要的内容
-确保现有集群和网络配置具有以下特征：
+.你需要什么
+请确保现有集群和网络配置具有以下特征：
 
-* Nexus 3232C集群基础架构在两台交换机上都是冗余的、并可完全正常运行。
+* Nexus 3232C 集群基础设施是冗余的，并且在两个交换机上都能完全正常运行。
 +
-Cisco 以太网交换机页面会为您的交换机提供最新的 RCF 和 NX-OS 版本。
+Cisco以太网交换机页面包含交换机上最新的 RCF 和 NX-OS 版本。
 
-* 所有集群端口都必须处于 * 启动 * 状态。
-* 两台交换机上必须存在管理连接。
-* 所有集群逻辑接口(LIF)均处于*启动*状态、不会迁移。
+* 集群中的所有端口必须处于*up*状态。
+* 两台交换机都必须具备管理连接功能。
+* 所有集群逻辑接口（LIF）均处于*up*状态，且未进行迁移。
 
 
-更换用的Cisco Nexus 3232C交换机具有以下特征：
+替换用的CiscoNexus 3232C 交换机具有以下特点：
 
 * 管理网络连接正常。
-* 可以通过控制台访问替代交换机。
-* 相应的RCF和NX-OS操作系统映像将加载到交换机上。
-* 交换机的初始自定义已完成。
+* 已具备对替换开关的控制台访问权限。
+* 将相应的 RCF 和 NX-OS 操作系统映像加载到交换机上。
+* 交换机的初始定制已完成。
 
 
-.有关详细信息 ...
-请参见以下内容：
+.了解更多信息
+请参阅以下内容：
 
-* link:https://mysupport.netapp.com/site/info/cisco-ethernet-switch["Cisco 以太网交换机"^]
+* link:https://mysupport.netapp.com/site/info/cisco-ethernet-switch["Cisco以太网交换机"^]
 * link:http://hwu.netapp.com["Hardware Universe"^]
 
 
@@ -48,64 +48,64 @@ Cisco 以太网交换机页面会为您的交换机提供最新的 RCF 和 NX-OS
 
 == 启用控制台日志记录
 
-NetApp强烈建议您在使用的设备上启用控制台日志记录、并在更换交换机时采取以下措施：
+NetApp强烈建议您在使用的设备上启用控制台日志记录，并在更换交换机时执行以下操作：
 
-* 在维护期间保持AutoSupport处于启用状态。
-* 在维护之前和之后触发维护AutoSupport ，以在维护期间禁用案例创建。请参阅此知识库文章link:https://kb.netapp.com/Support_Bulletins/Customer_Bulletins/SU92["SU92：如何禁止在计划维护时段自动创建案例"^]了解更多详情。
-* 为任何 CLI 会话启用会话日志记录。有关如何启用会话日志记录的说明，请参阅此知识库文章中的“日志记录会话输出”部分link:https://kb.netapp.com/on-prem/ontap/Ontap_OS/OS-KBs/How_to_configure_PuTTY_for_optimal_connectivity_to_ONTAP_systems["如何配置PuTTY以优化与ONTAP系统的连接"^]。
-
-
+* 维护期间请保持AutoSupport功能启用。
+* 在维护前后触发维护AutoSupport，以在维护期间禁用案例创建。请参阅这篇知识库文章link:https://kb.netapp.com/Support_Bulletins/Customer_Bulletins/SU92["SU92：如何在计划维护窗口期间抑制自动创建案例"^]更多详情请见下文。
+* 启用所有 CLI 会话的会话日志记录。有关如何启用会话日志记录的说明，请查看此知识库文章中的“记录会话输出”部分。link:https://kb.netapp.com/on-prem/ontap/Ontap_OS/OS-KBs/How_to_configure_PuTTY_for_optimal_connectivity_to_ONTAP_systems["如何配置 PuTTY 以获得与ONTAP系统的最佳连接"^] 。
 
 
-== 更换交换机
+
+
+== 更换开关
 
 .关于此任务
-此替代操作步骤 介绍了以下情形：
+此更换流程描述了以下情况：
 
-* 集群最初将四个节点连接到两个 Nexus 3232C 集群交换机 CL1 和 CL2 。
-* 您计划将集群交换机 CL2 更换为 C2 （步骤 1 至 21 ）：
+* 该集群最初有四个节点连接到两个 Nexus 3232C 集群交换机 CL1 和 CL2。
+* 您计划将集群开关 CL2 更换为 C2（步骤 1 至 21）：
 +
-** 在每个节点上，您可以将连接到集群交换机 CL2 的集群 LIF 迁移到连接到集群交换机 CL1 的集群端口。
-** 您从集群交换机 CL2 上的所有端口断开布线，然后将布线重新连接到替代集群交换机 C2 上的相同端口。
-** 您可以还原每个节点上迁移的集群 LIF 。
+** 在每个节点上，将连接到集群交换机 CL2 的集群 LIF 迁移到连接到集群交换机 CL1 的集群端口。
+** 断开集群交换机 CL2 上所有端口的电缆，然后将电缆重新连接到替换集群交换机 C2 上的相同端口。
+** 您需要在每个节点上还原已迁移的集群 LIF。
 
 
 
 
 .关于示例
-此替代操作步骤 将第二个Nexus 3232C集群交换机CL2替换为新的3232C交换机C2。
+此更换程序将第二个 Nexus 3232C 集群交换机 CL2 更换为新的 3232C 交换机 C2。
 
-此操作步骤中的示例使用以下交换机和节点命名：
+本流程中的示例使用以下开关和节点命名规则：
 
-* 四个节点分别为 n1 ， n2 ， n3 和 n4 。
-* N1_clus1 是连接到节点 n1 的集群交换机 C1 的第一个集群逻辑接口（ LIF ）。
-* N1_clus2 是连接到节点 n1 的集群交换机 CL2 或 C2 的第一个集群 LIF 。
-* n1_clus3 是连接到节点 n1 的集群交换机 C2 的第二个 LIF 。 -
-* n1_clus4 是连接到节点 n1 的集群交换机 CL1 的第二个 LIF 。
-
-
-10 GbE 和 40/100 GbE 端口的数量在参考配置文件 (RCF) 中定义，可从link:https://mysupport.netapp.com/site/products/all/details/cisco-cluster-storage-switch/downloads-tab["Cisco ® 集群网络交换机参考配置文件下载"^]。
-
-此替代操作步骤 中的示例使用四个节点。其中两个节点使用四个 10 Gb 集群互连端口： e0a ， e0b ， e0c 和 e0d 。其他两个节点使用两个 40 Gb 集群互连端口： E4A 和 e4e 。请参见 link:https://hwu.netapp.com["Hardware Universe"^] 验证适用于您的平台的集群端口是否正确。
+* 这四个节点分别是 n1、n2、n3 和 n4。
+* n1_clus1 是连接到节点 n1 的集群交换机 C1 的第一个集群逻辑接口 (LIF)。
+* n1_clus2 是连接到节点 n1 的集群交换机 CL2 或 C2 的第一个集群 LIF。
+* n1_clus3 是连接到节点 n1 的集群交换机 C2 的第二个 LIF。
+* n1_clus4 是连接到集群交换机 CL1 的第二个 LIF，用于节点 n1。
 
 
+10 GbE 和 40/100 GbE 端口的数量在参考配置文件 (RCF) 中定义，这些文件可在以下网址获取：link:https://mysupport.netapp.com/site/products/all/details/cisco-cluster-storage-switch/downloads-tab["Cisco集群网络交换机参考配置文件下载"^] 。
 
-=== 第1步：显示集群端口并将其迁移到交换机
+本替换过程中的示例使用了四个节点。其中两个节点使用四个 10 GB 集群互连端口：e0a、e0b、e0c 和 e0d。另外两个节点使用两个 40 GB 集群互连端口：e4a 和 e4e。参见link:https://hwu.netapp.com["Hardware Universe"^]验证您的平台是否拥有正确的集群端口。
 
-. 如果在此集群上启用了 AutoSupport ，则通过调用 AutoSupport 消息禁止自动创建案例：
+
+
+=== 步骤 1：显示集群端口并将其迁移到交换机
+
+. 如果此集群上启用了AutoSupport ，则通过调用AutoSupport消息来抑制自动创建案例：
 +
-`ssystem node AutoSupport invoke -node * -type all - 消息 MAINT=xh`
+`system node autosupport invoke -node * -type all - message MAINT=xh`
 
 +
-_x_ 是维护时段的持续时间，以小时为单位。
+_x_ 是维护窗口的持续时间，单位为小时。
 
 +
 [NOTE]
 ====
-AutoSupport 消息会通知技术支持此维护任务，以便在维护窗口期间禁止自动创建案例。
+AutoSupport消息会通知技术支持此维护任务，以便在维护窗口期间抑制自动创建案例。
 
 ====
-. 显示有关配置中设备的信息：
+. 显示配置中设备的相关信息：
 +
 `network device-discovery show`
 
@@ -191,7 +191,7 @@ e4a       Cluster      Cluster          up   9000 auto/40000  -
 e4e       Cluster      Cluster          up   9000 auto/40000  -
 ----
 ====
-.. 显示有关逻辑接口（ LIF ）的信息：
+.. 显示有关逻辑接口（LIF）的信息：
 +
 `network interface show -role cluster`
 
@@ -220,9 +220,9 @@ Cluster
             n4_clus2   up/up      10.10.0.12/24      n4            e0e     true
 ----
 ====
-.. 显示发现的集群交换机：
+.. 显示已发现的集群交换机：
 +
-`ssystem cluster-switch show`
+`system cluster-switch show`
 
 +
 .显示示例
@@ -252,25 +252,25 @@ CL2                         cluster-network    10.10.1.102      NX3232C
 ====
 
 
-. 验证新 Nexus 3232C 交换机上是否安装了相应的 RCF 和映像，并进行任何必要的站点自定义。
+. 确认新的 Nexus 3232C 交换机上已安装相应的 RCF 和映像，并进行任何必要的站点自定义。
 +
-.. 转到 NetApp 支持站点。
+.. 请访问NetApp支持网站。
 +
 http://mysupport.netapp.com/["mysupport.netapp.com"^]
 
-.. 转到 * Cisco 以太网交换机 * 页面，并记下表中所需的软件版本。
+.. 前往 * Cisco以太网交换机 * 页面，并记下表格中所需的软件版本。
 +
-https://mysupport.netapp.com/site/info/cisco-ethernet-switch["Cisco 以太网交换机"^]
+https://mysupport.netapp.com/site/info/cisco-ethernet-switch["Cisco以太网交换机"^]
 
-.. 下载适当版本的 RCF 。
-.. 单击 * 问题描述 * 页面上的 * 继续 * ，接受许可协议，然后导航到 * 下载 * 页面。
-.. 从 * Cisco ® 集群和管理网络交换机参考配置文件下载 * 页面下载正确版本的映像软件。
+.. 下载相应版本的RCF。
+.. 在“描述”页面上点击“继续”，接受许可协议，然后导航到“下载”页面。
+.. 从 * Cisco® 集群和管理网络交换机参考配置文件下载 * 页面下载正确版本的映像软件。
 +
-link:https://mysupport.netapp.com/site/products/all/details/cisco-cluster-storage-switch/downloads-tab["Cisco ® 集群和管理网络交换机参考配置文件下载"^]
+link:https://mysupport.netapp.com/site/products/all/details/cisco-cluster-storage-switch/downloads-tab["Cisco集群和管理网络交换机参考配置文件下载"^]
 
 
 
-. 将集群 LIF 迁移到连接到替代交换机 C2 的物理节点端口：
+. 将集群 LIF 迁移到连接到替换交换机 C2 的物理节点端口：
 +
 `network interface migrate -vserver _vserver-name_ -lif _lif-name_ -source-node _node-name_ -destination-node _node-name_ -destination-port _port-name_`
 
@@ -278,7 +278,7 @@ link:https://mysupport.netapp.com/site/products/all/details/cisco-cluster-storag
 .显示示例
 [%collapsible]
 ====
-您必须逐个迁移所有集群 LIF ，如以下示例所示：
+您必须按照以下示例所示，逐个迁移所有集群 LIF：
 
 [listing, subs="+quotes"]
 ----
@@ -296,7 +296,7 @@ cluster::*> *network interface migrate -vserver Cluster -lif n4_clus2 -source-no
 node n4 -destination-port e4a*
 ----
 ====
-. 验证集群端口的状态及其主端口名称：
+. 验证集群端口的状态及其所属目录：
 +
 `network interface show -role cluster`
 
@@ -326,7 +326,7 @@ Cluster
             n4_clus2   up/up      10.10.0.12/24      n4            e4a     false
 ----
 ====
-. 关闭物理连接到原始交换机CL2的集群互连端口：
+. 关闭与原始交换机 CL2 物理连接的集群互连端口：
 +
 `network port modify -node _node-name_ -port _port-name_ -up-admin false`
 
@@ -334,7 +334,7 @@ Cluster
 .显示示例
 [%collapsible]
 ====
-以下示例显示了所有节点上的集群互连端口均已关闭：
+以下示例显示集群互连端口在所有节点上均已关闭：
 
 [listing, subs="+quotes"]
 ----
@@ -346,22 +346,22 @@ cluster::*> *network port modify -node n3 -port e4e -up-admin false*
 cluster::*> *network port modify -node n4 -port e4e -up-admin false*
 ----
 ====
-. 验证远程集群接口的连接：
+. 验证远程集群接口的连接性：
 
 
 [role="tabbed-block"]
 ====
-.ONTAP 9.9.1及更高版本
+.ONTAP 9.9.1 及更高版本
 --
-您可以使用 `network interface check cluster-connectivity` 命令启动集群连接的可访问性检查、然后显示详细信息：
+你可以使用 `network interface check cluster-connectivity`执行命令以启动集群连接性检查，然后显示详细信息：
 
-`network interface check cluster-connectivity start` 和 `network interface check cluster-connectivity show`
+`network interface check cluster-connectivity start`和 `network interface check cluster-connectivity show`
 
 [listing, subs="+quotes"]
 ----
 cluster1::*> *network interface check cluster-connectivity start*
 ----
-*注：*请等待几秒钟、然后再运行 `show`命令以显示详细信息。
+*注意：*运行程序前请等待几秒钟 `show`显示详细信息的命令。
 
 [listing, subs="+quotes"]
 ----
@@ -389,7 +389,7 @@ n3
 --
 .所有ONTAP版本
 --
-对于所有ONTAP版本、您还可以使用 `cluster ping-cluster -node <name>` 用于检查连接的命令：
+对于所有ONTAP版本，您也可以使用 `cluster ping-cluster -node <name>`检查连接性的命令：
 
 `cluster ping-cluster -node <name>`
 
@@ -457,11 +457,11 @@ Larger than PMTU communication succeeds on 32 path(s) RPC status:
 ====
 
 
-=== 第2步：将ISL迁移到交换机CL1和C2
+=== 步骤 2：将 ISL 迁移到交换机 CL1 和 C2
 
-. 关闭集群交换机 CL1 上的端口 1/31 和 1/32 。
+. 关闭集群交换机 CL1 上的端口 1/31 和 1/32。
 +
-有关 Cisco 命令的详细信息，请参见中列出的指南 https://www.cisco.com/c/en/us/support/switches/nexus-3000-series-switches/products-command-reference-list.html["Cisco Nexus 3000 系列 NX-OS 命令参考"^]。
+有关Cisco命令的更多信息，请参阅以下位置列出的指南： https://www.cisco.com/c/en/us/support/switches/nexus-3000-series-switches/products-command-reference-list.html["Cisco Nexus 3000 系列 NX-OS 命令参考"^] 。
 
 +
 .显示示例
@@ -477,11 +477,11 @@ Larger than PMTU communication succeeds on 32 path(s) RPC status:
 (CL1)#
 ----
 ====
-. 拔下连接到集群交换机 CL2 的所有缆线，然后将其重新连接到所有节点的替代交换机 C2 。
-. 从集群交换机 CL2 上的端口 E1/31 和 E1/32 中拔下交换机间链路（ ISL ）缆线，然后将其重新连接到替代交换机 C2 上的相同端口。
-. 启动集群交换机 CL1 上的 ISL 端口 1/31 和 1/32 。
+. 拆下连接到集群交换机 CL2 的所有电缆，并将它们重新连接到所有节点的替换交换机 C2。
+. 从集群交换机 CL2 的 e1/31 和 e1/32 端口拆下交换机间链路 (ISL) 电缆，然后将它们重新连接到替换交换机 C2 的相同端口。
+. 启动集群交换机 CL1 上的 ISL 端口 1/31 和 1/32。
 +
-有关 Cisco 命令的详细信息，请参见中列出的指南 https://www.cisco.com/c/en/us/support/switches/nexus-3000-series-switches/products-command-reference-list.html["Cisco Nexus 3000 系列 NX-OS 命令参考"^]。
+有关Cisco命令的更多信息，请参阅以下位置列出的指南： https://www.cisco.com/c/en/us/support/switches/nexus-3000-series-switches/products-command-reference-list.html["Cisco Nexus 3000 系列 NX-OS 命令参考"^] 。
 
 +
 .显示示例
@@ -497,12 +497,12 @@ Larger than PMTU communication succeeds on 32 path(s) RPC status:
 (CL1)#
 ----
 ====
-. 验证 ISL 在 CL1 上是否已启动。
+. 确认 ISL 已在 CL1 上运行。
 +
-有关 Cisco 命令的详细信息，请参见中列出的指南 https://www.cisco.com/c/en/us/support/switches/nexus-3000-series-switches/products-command-reference-list.html["Cisco Nexus 3000 系列 NX-OS 命令参考"^]。
+有关Cisco命令的更多信息，请参阅以下位置列出的指南： https://www.cisco.com/c/en/us/support/switches/nexus-3000-series-switches/products-command-reference-list.html["Cisco Nexus 3000 系列 NX-OS 命令参考"^] 。
 
 +
-端口 Eth1/31 和 Eth1/32 应指示 ` （ P ）` ，这意味着 ISL 端口在端口通道中已启动：
+端口 Eth1/31 和 Eth1/32 应指示 `(P)`这意味着 ISL 端口已在端口通道中启动：
 
 +
 .显示示例
@@ -524,15 +524,15 @@ Group Port-        Type   Protocol  Member Ports
 1     Po1(SU)      Eth    LACP      Eth1/31(P)   Eth1/32(P)
 ----
 ====
-. 验证集群交换机 C2 上的 ISL 是否已启动。
+. 确认集群交换机 C2 上的 ISL 是否已启动。
 +
-有关 Cisco 命令的详细信息，请参见中列出的指南 https://www.cisco.com/c/en/us/support/switches/nexus-3000-series-switches/products-command-reference-list.html["Cisco Nexus 3000 系列 NX-OS 命令参考"^]。
+有关Cisco命令的更多信息，请参阅以下位置列出的指南： https://www.cisco.com/c/en/us/support/switches/nexus-3000-series-switches/products-command-reference-list.html["Cisco Nexus 3000 系列 NX-OS 命令参考"^] 。
 
 +
 .显示示例
 [%collapsible]
 ====
-端口Eth1/31和Eth1/32应指示(P)、表示端口通道中的两个ISL端口均已启动。
+端口 Eth1/31 和 Eth1/32 应显示 (P)，这意味着两个 ISL 端口在端口通道中都已启动。
 
 [listing, subs="+quotes"]
 ----
@@ -549,7 +549,7 @@ Group Port-        Type   Protocol  Member Ports
 1     Po1(SU)      Eth    LACP      Eth1/31(P)   Eth1/32(P)
 ----
 ====
-. 在所有节点上、启动连接到替代交换机C2的所有集群互连端口：
+. 在所有节点上，启动连接到替换交换机 C2 的所有集群互连端口：
 +
 `network port modify -node _node-name_ -port _port-name_ -up-admin true`
 
@@ -571,9 +571,9 @@ cluster::*> *network port modify -node n4 -port e4e -up-admin true*
 
 
 
-=== 第3步：将所有LIF还原到最初分配的端口
+=== 步骤 3：将所有 LIF 恢复到最初分配的端口
 
-. 还原所有节点上所有迁移的集群互连 LIF ：
+. 还原所有节点上所有已迁移的集群互连 LIF：
 +
 `network interface revert -vserver cluster -lif _lif-name_`
 
@@ -581,7 +581,7 @@ cluster::*> *network port modify -node n4 -port e4e -up-admin true*
 .显示示例
 [%collapsible]
 ====
-您必须逐个还原所有集群互连 LIF ，如以下示例所示：
+您必须逐个还原所有集群互连 LIF，如下例所示：
 
 [listing, subs="+quotes"]
 ----
@@ -593,7 +593,7 @@ Cluster::*> *network interface revert -vserver cluster -lif n3_clus2*
 Cluster::*> *network interface revert -vserver cluster -lif n4_clus2*
 ----
 ====
-. 验证集群互连端口现在是否已还原到其主端口：
+. 请确认集群互连端口已恢复到其原始设置：
 +
 `network interface show`
 
@@ -601,7 +601,7 @@ Cluster::*> *network interface revert -vserver cluster -lif n4_clus2*
 .显示示例
 [%collapsible]
 ====
-以下示例显示所有 LIF 均已成功还原，因为 `Current Port` 列下列出的端口在 `is Home` 列中的状态为 `true` 。如果端口的值为 `false` ，则表示尚未还原 LIF 。
+以下示例表明所有 LIF 都已成功还原，因为列出的端口位于 `Current Port`列具有以下状态 `true`在 `Is Home`柱子。如果端口的值为 `false`LIF尚未被撤销。
 
 [listing, subs="+quotes"]
 ----
@@ -625,7 +625,7 @@ Cluster
              n4_clus2   up/up      10.10.0.12/24      n4            e4e     true
 ----
 ====
-. 验证集群端口是否已连接：
+. 请确认集群端口已连接：
 +
 `network port show -role cluster`
 
@@ -672,22 +672,22 @@ e4a       Cluster      Cluster          up   9000 auto/40000  -
 e4e       Cluster      Cluster          up   9000 auto/40000  -        -
 ----
 ====
-. 验证远程集群接口的连接：
+. 验证远程集群接口的连接性：
 
 
 [role="tabbed-block"]
 ====
-.ONTAP 9.9.1及更高版本
+.ONTAP 9.9.1 及更高版本
 --
-您可以使用 `network interface check cluster-connectivity` 命令启动集群连接的可访问性检查、然后显示详细信息：
+你可以使用 `network interface check cluster-connectivity`执行命令以启动集群连接性检查，然后显示详细信息：
 
-`network interface check cluster-connectivity start` 和 `network interface check cluster-connectivity show`
+`network interface check cluster-connectivity start`和 `network interface check cluster-connectivity show`
 
 [listing, subs="+quotes"]
 ----
 cluster1::*> *network interface check cluster-connectivity start*
 ----
-*注：*请等待几秒钟、然后再运行 `show`命令以显示详细信息。
+*注意：*运行程序前请等待几秒钟 `show`显示详细信息的命令。
 
 [listing, subs="+quotes"]
 ----
@@ -715,7 +715,7 @@ n3
 --
 .所有ONTAP版本
 --
-对于所有ONTAP版本、您还可以使用 `cluster ping-cluster -node <name>` 用于检查连接的命令：
+对于所有ONTAP版本，您也可以使用 `cluster ping-cluster -node <name>`检查连接性的命令：
 
 `cluster ping-cluster -node <name>`
 
@@ -783,9 +783,9 @@ Larger than PMTU communication succeeds on 32 path(s) RPC status:
 ====
 
 
-=== 第4步：验证所有端口和LIF是否均已正确迁移
+=== 步骤 4：验证所有端口和 LIF 是否已正确迁移
 
-. 输入以下命令以显示有关配置中设备的信息：
+. 输入以下命令，显示配置中设备的信息：
 +
 您可以按任意顺序执行以下命令：
 
@@ -793,7 +793,7 @@ Larger than PMTU communication succeeds on 32 path(s) RPC status:
 ** `network device-discovery show`
 ** `network port show -role cluster`
 ** `network interface show -role cluster`
-** `ssystem cluster-switch show`
+** `system cluster-switch show`
 
 
 +
@@ -905,19 +905,19 @@ C2                          cluster-network    10.10.1.103      NX3232C
             Version Source: CDP 3 entries were displayed.
 ----
 ====
-. 如果未自动删除更换的集群交换机 CL2 ，请将其删除：
+. 如果已更换的集群开关 CL2 没有自动移除，请将其删除：
 +
-`ssystem cluster-switch delete -device cluster-switch-name`
+`system cluster-switch delete -device cluster-switch-name`
 
-. 验证是否监控了正确的集群交换机：
+. 确认已对正确的集群交换机进行监控：
 +
-`ssystem cluster-switch show`
+`system cluster-switch show`
 
 +
 .显示示例
 [%collapsible]
 ====
-以下示例显示了集群交换机受到监控，因为 `受监控` 状态为 `true` 。
+以下示例表明，集群交换机受到监控，因为 `Is Monitored`状态是 `true`。
 
 [listing, subs="+quotes"]
 ----
@@ -939,11 +939,11 @@ C2                          cluster-network    10.10.1.103      NX3232C
            Version Source: CDP
 ----
 ====
-. 如果禁止自动创建案例，请通过调用 AutoSupport 消息重新启用它：
+. 如果您已禁用自动创建案例功能，请通过调用AutoSupport消息重新启用该功能：
 +
-`ssystem node AutoSupport invoke -node * -type all -message MAINT=end`
+`system node autosupport invoke -node * -type all -message MAINT=END`
 
 
 
 .下一步是什么？
-link:../switch-cshm/config-overview.html["配置交换机运行状况监控"](英文)
+link:../switch-cshm/config-overview.html["配置交换机健康监控"]。

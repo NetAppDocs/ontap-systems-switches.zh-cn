@@ -2,7 +2,7 @@
 permalink: switch-nvidia-sn2100/required-documentation-sn2100-cluster.html 
 sidebar: sidebar 
 keywords: nvidia SN2100 switches 
-summary: 对于NVIDIA SN2100交换机安装和维护、请务必查看所有建议的文档。 
+summary: 对于NVIDIA SN2100 交换机的安装和维护，请务必查看所有推荐的文档。 
 ---
 = NVIDIA SN2100交换机的文档要求
 :allow-uri-read: 
@@ -11,30 +11,30 @@ summary: 对于NVIDIA SN2100交换机安装和维护、请务必查看所有建�
 
 
 [role="lead"]
-对于NVIDIA SN2100交换机安装和维护、请务必查看所有建议的文档。
+对于NVIDIA SN2100 交换机的安装和维护，请务必查看所有推荐的文档。
 
 [cols="1,2"]
 |===
-| 标题 | Description 
+| 标题 | 描述 
 
 
  a| 
-https://docs.nvidia.com/networking/display/sn2000pub/Installation["NVIDIA交换机安装指南"^]
+https://docs.nvidia.com/networking/display/sn2000pub/Installation["NVIDIA开关安装指南"^]
  a| 
-介绍如何安装NVIDIA SN2100交换机。
+介绍如何安装NVIDIA SN2100 交换机。
 
 
 
  a| 
-https://library.netapp.com/ecm/ecm_download_file/ECMLP2876580["《NS224 NVMe驱动器架布线指南》"^]
+https://library.netapp.com/ecm/ecm_download_file/ECMLP2876580["NS224 NVMe 硬盘架布线指南"^]
  a| 
-显示如何为驱动器架配置布线的概述和插图。
+概述和图示，展示如何配置驱动器机架的布线。
 
 
 
  a| 
 https://hwu.netapp.com/["NetApp Hardware Universe"^]
  a| 
-用于确认您的平台型号支持的硬件、例如存储交换机和缆线。
+允许您确认平台型号支持的硬件，例如存储交换机和电缆。
 
 |===

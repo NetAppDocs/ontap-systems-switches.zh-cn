@@ -2,35 +2,36 @@
 permalink: switch-bes-53248/CSHM_snmpv3.html 
 sidebar: sidebar 
 keywords: SNMP,SNMPv3,SNMPv3 setup,BES-53248 Broadcom setup,BES-3248 switches configuration,EFOS 
-summary: 'SNMPv3可与以太网交换机运行状况监控器(CSHM)结合使用。' 
+summary: 'SNMPv3 可以与以太网交换机健康监视器 (CSHM) 一起使用。' 
 ---
-= 配置SNMPv3
+= 配置 SNMPv3
 :allow-uri-read: 
 :icons: font
 :imagesdir: ../media/
 
 
 [role="lead"]
-按照此操作步骤配置SNMPv3、此SNMPv3支持以太网交换机运行状况监控(CSHM)。
+按照以下步骤配置 SNMPv3，SNMPv3 支持以太网交换机健康监控 (CSHM)。
 
 .关于此任务
-以下命令可在Broadcom BES-53248交换机上配置SNMPv3用户名：
+以下命令用于在 Broadcom BES-53248 交换机上配置 SNMPv3 用户名：
 
-* 对于*no authentication (无身份验证)*：
+* 对于*无需身份验证*的情况：
 `snmp-server user SNMPv3UserNoAuth NETWORK-OPERATOR noauth`
-* 对于*MD5/SHA身份验证*：
+* 用于 *MD5/SHA 认证*：
 `snmp-server user SNMPv3UserAuth NETWORK-OPERATOR [auth-md5|auth-sha]`
-* 对于采用AES/DES加密的*MD5/SHA身份验证*：
+* 用于*MD5/SHA认证与AES/DES加密*：
 `snmp-server user SNMPv3UserAuthEncrypt NETWORK-OPERATOR [auth-md5|auth-sha] [priv-aes128|priv-des]`
 
 
-以下命令会在ONTAP 端配置SNMPv3用户名：`cluster1：：：*> security login create -user-or-group-name _SNMPv3用户_-application snmp -authentication-method USM -remote-switch-ipaddress _address_`
+以下命令在ONTAP端配置 SNMPv3 用户名：
+`cluster1::*> security login create -user-or-group-name _SNMPv3_USER_ -application snmp -authentication-method usm -remote-switch-ipaddress _ADDRESS_`
 
-以下命令将使用CSHM建立SNMPv3用户名：
+以下命令用于在 CSHM 中建立 SNMPv3 用户名：
 `cluster1::*> system switch ethernet modify -device _DEVICE_ -snmp-version SNMPv3 -community-or-username _SNMPv3_USER_`
 
 .步骤
-. 在交换机上设置SNMPv3用户以使用身份验证和加密：
+. 在交换机上配置 SNMPv3 用户以使用身份验证和加密：
 +
 `show snmp status`
 
@@ -50,7 +51,7 @@ summary: 'SNMPv3可与以太网交换机运行状况监控器(CSHM)结合使用�
 <username>        network-admin      MD5  AES128 8000113d03d8c497710bee
 ----
 ====
-. 在ONTAP 端设置SNMPv3用户：
+. 在ONTAP端设置 SNMPv3 用户：
 +
 `security login create -user-or-group-name <username> -application snmp -authentication-method usm -remote-switch-ipaddress 10.231.80.212`
 
@@ -77,7 +78,7 @@ Enter privacy protocol password (minimum 8 characters long):
 Enter privacy protocol password again:
 ----
 ====
-. 将CSHM配置为使用新SNMPv3用户进行监控：
+. 配置 CSHM 以使用新的 SNMPv3 用户进行监控：
 +
 `system switch ethernet show-all -device "sw1" -instance`
 
@@ -108,7 +109,7 @@ cluster1::*>
 cluster1::*> *system switch ethernet modify -device "sw1" -snmp-version SNMPv3 -community-or-username <username>*
 ----
 ====
-. 确认要使用新创建的SNMPv3用户查询的序列号与CSHM轮询周期完成后上一步中详述的序列号相同。
+. 在 CSHM 轮询周期结束后，验证使用新创建的 SNMPv3 用户查询的序列号是否与上一步中详细说明的序列号相同。
 +
 `system switch ethernet polling-interval show`
 

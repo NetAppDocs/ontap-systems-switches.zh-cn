@@ -15,62 +15,62 @@ summary: '更换集群网络中有缺陷的 Nexus 9364d-gx2a 交换机是一个�
 
 
 
-== 查看要求
+== 审查要求
 
-在执行交换机更换之前、请确保：
+更换开关之前，请确保：
 
-* 您已验证交换机序列号、以确保更换了正确的交换机。
-* 在现有集群和网络基础架构上：
+* 您已核实交换机序列号，以确保更换的是正确的交换机。
+* 在现有集群和网络基础设施的基础上：
 +
-** 现有集群已通过验证可完全正常运行、并且至少有一个完全连接的集群交换机。
-** 所有集群端口均已启动。
-** 所有集群逻辑接口(LIF)均已启动并位于其主端口上。
-** ONTAP `cluster ping-cluster -node <node-name>`命令必须表明所有路径上的基本连接和大于 PMTU 的通信均成功。
+** 现有集群已验证功能完全正常，至少有一个完全连接的集群交换机。
+** 集群所有端口均已启动。
+** 所有集群逻辑接口（LIF）均已启动并位于其所属端口上。
+** ONTAP `cluster ping-cluster -node <node-name>`命令必须表明所有路径上的基本连接和大于 PMTU 的通信均已成功。
 
 
 * 在 Nexus 9364D-GX2A 替换交换机上：
 +
-** 替代交换机上的管理网络连接正常工作。
-** 可以通过控制台访问替代交换机。
+** 替换交换机的管理网络连接功能正常。
+** 已具备对替换开关的控制台访问权限。
 ** 节点连接是端口 1/1 至 1/62。
 ** 端口 1/63 和 1/64 上的所有交换机间链路 (ISL) 端口均被禁用。
-** 所需的参考配置文件(Reference Configuration File、RCF)和NX-OS操作系统映像交换机将加载到此交换机上。
-** 开关的初始定制已完成，详见link:setup-switch-9364d-cluster.html["配置 9364D-GX2A 集群交换机"]。
+** 将所需的参考配置文件 (RCF) 和 NX-OS 操作系统映像交换机加载到交换机上。
+** 交换机的初始定制工作已完成，详情如下：link:setup-switch-9364d-cluster.html["配置 9364D-GX2A 集群交换机"] 。
 +
-先前的所有站点自定义设置(例如STP、SNMP和SSH)都会复制到新交换机。
+之前站点的所有自定义设置，如 STP、SNMP 和 SSH，都会复制到新交换机上。
 
 
 
-* 您已执行命令从托管集群LIF的节点迁移集群LIF。
+* 您已执行将集群 LIF 从其所在的节点迁移的命令。
 
 
 
 
 == 启用控制台日志记录
 
-NetApp强烈建议您在使用的设备上启用控制台日志记录、并在更换交换机时采取以下措施：
+NetApp强烈建议您在使用的设备上启用控制台日志记录，并在更换交换机时执行以下操作：
 
-* 在维护期间保持AutoSupport处于启用状态。
-* 在维护前后触发维护AutoSupport、以便在维护期间禁用案例创建。请参见此知识库文章 https://kb.netapp.com/Support_Bulletins/Customer_Bulletins/SU92["SU92：如何禁止在计划维护时段自动创建案例"^] 了解更多详细信息。
-* 为所有命令行界面会话启用会话日志记录。有关如何启用会话日志记录的说明、请查看此知识库文章中的"记录会话输出"一节 https://kb.netapp.com/on-prem/ontap/Ontap_OS/OS-KBs/How_to_configure_PuTTY_for_optimal_connectivity_to_ONTAP_systems["如何配置PuTTY以优化与ONTAP系统的连接"^]。
-
-
+* 维护期间请保持AutoSupport功能启用。
+* 在维护前后触发维护AutoSupport，以在维护期间禁用案例创建。请参阅这篇知识库文章 https://kb.netapp.com/Support_Bulletins/Customer_Bulletins/SU92["SU92：如何在计划维护窗口期间抑制自动创建案例"^]更多详情请见下文。
+* 启用所有 CLI 会话的会话日志记录。有关如何启用会话日志记录的说明，请查看此知识库文章中的“记录会话输出”部分。 https://kb.netapp.com/on-prem/ontap/Ontap_OS/OS-KBs/How_to_configure_PuTTY_for_optimal_connectivity_to_ONTAP_systems["如何配置 PuTTY 以获得与ONTAP系统的最佳连接"^] 。
 
 
-== 更换交换机
+
+
+== 更换开关
 
 .关于示例
-此操作步骤中的示例使用以下交换机和节点命名：
+本流程中的示例使用以下开关和节点命名规则：
 
 * 现有的 Nexus 9364D-GX2A 交换机的名称为 cs1 和 cs2。
 * 新的 Nexus 9364D-GX2A 交换机的名称是 newcs2。
 * 节点名称为node1-01、node1-02、node1-03和node1-04。
 * 对于 node1-01，集群 LIF 名称为 node1-01_clus1 和 node1-01_clus2；对于 node1-02，集群 LIF 名称为 node1-02_clus1 和 node1-02_clus2；对于 node1-03，集群 LIF 名称为 node1-03_clus1 和 node1-03_clus2；对于 node1-04，集群 LIF 名称为 node1-04_clus1 和 node1-04_clus2。
-* 对所有集群节点进行更改的提示为 cluster1 ：：： * > 。
+* 对所有集群节点进行更改的提示是 cluster1::*>
 
 
 .关于此任务
-以下操作步骤基于以下集群网络拓扑：
+以下步骤基于以下集群网络拓扑结构：
 
 .显示示例
 [%collapsible]
@@ -208,33 +208,33 @@ Total entries displayed: 18
 ====
 
 
-=== 第1步：准备更换
+=== 第一步：准备更换
 
-. 如果在此集群上启用了 AutoSupport ，则通过调用 AutoSupport 消息禁止自动创建案例：
+. 如果此集群上启用了AutoSupport ，则通过调用AutoSupport消息来抑制自动创建案例：
 +
-`ssystem node AutoSupport invoke -node * -type all -message MAINT=xh`
-
-+
-其中 x 是维护时段的持续时间，以小时为单位。
+`system node autosupport invoke -node * -type all -message MAINT=xh`
 
 +
-
-NOTE: AutoSupport 消息会通知技术支持此维护任务，以便在维护窗口期间禁止自动创建案例。
-
-. 在交换机 newcs2 上安装相应的 RCF 和映像，并进行必要的站点准备。
-+
-如有必要，请验证，下载并安装适用于新交换机的 RCF 和 NX-OS 软件的相应版本。如果您已确认新交换机设置正确，并且不需要更新 RCF 和 NX-OS 软件，请继续执行步骤 2 。
+其中 x 为维护窗口的持续时间（小时）。
 
 +
-.. 转至 NetApp 支持站点上的 _NetApp 集群和管理网络交换机参考配置文件问题描述 Page_ 。
-.. 单击 _Cluster Network and Management Network Compatibility Matrix _ 的链接，然后记下所需的交换机软件版本。
-.. 单击浏览器的后退箭头返回到问题描述页面，单击 * 继续 * ，接受许可协议，然后转到下载页面。
-.. 按照下载页面上的步骤下载与您要安装的 ONTAP 软件版本对应的正确 RCF 和 NX-OS 文件。
 
+NOTE: AutoSupport消息会通知技术支持此维护任务，以便在维护窗口期间抑制自动创建案例。
 
-. 在新交换机上，以 admin 身份登录并关闭将连接到节点集群接口的所有端口（端口 1/1 到 1/64 ）。
+. 在交换机上安装相应的 RCF 和映像，newcs2，并进行任何必要的现场准备。
 +
-如果要更换的交换机无法正常工作并已关闭电源，请转至步骤 4 。集群节点上的 LIF 应已故障转移到每个节点的另一个集群端口。
+如有必要，请验证、下载并安装适用于新交换机的 RCF 和 NX-OS 软件的相应版本。如果您已确认新交换机设置正确，并且不需要更新 RCF 和 NX-OS 软件，请继续执行步骤 2。
+
++
+.. 前往NetApp支持网站上的 _NetApp 集群和管理网络交换机参考配置文件说明页面_。
+.. 点击链接查看“集群网络和管理网络兼容性矩阵”，然后记下所需的交换机软件版本。
+.. 点击浏览器后退箭头返回描述页面，点击*继续*，接受许可协议，然后前往下载页面。
+.. 请按照下载页面上的步骤，下载与您要安装的ONTAP软件版本相对应的正确 RCF 和 NX-OS 文件。
+
+
+. 在新交换机上，以管理员身份登录并关闭所有将连接到节点集群接口的端口（端口 1/1 到 1/64）。
++
+如果您要更换的开关无法正常工作且已断电，请转到步骤 4。集群节点上的 LIF 应该已经针对每个节点故障转移到另一个集群端口。
 
 +
 .显示示例
@@ -263,7 +263,7 @@ newcs2(config-if-range)# exit
 newcs2(config)# exit
 ----
 ====
-. 验证所有集群 LIF 是否均已启用自动还原：
+. 确认所有集群 LIF 都已启用自动回滚功能：
 +
 [source, cli]
 ----
@@ -292,9 +292,9 @@ Cluster      node1-04_clus2   true
 8 entries were displayed.
 ----
 ====
-. 验证远程集群接口的连接：
+. 验证远程集群接口的连接性：
 +
-.. 您可以使用 `network interface check cluster-connectivity show`命令显示集群连接可访问性检查的详细信息：
+.. 你可以使用 `network interface check cluster-connectivity show`用于显示集群连接性可访问性检查详细信息的命令：
 +
 [source, cli]
 ----
@@ -363,7 +363,7 @@ RPC status:
 
 
 
-=== 第2步：配置缆线和端口
+=== 步骤 2：配置线缆和端口
 
 . 关闭 Nexus 9364D-GX2A 交换机 cs1 上的 ISL 端口 1/63 和 1/64。
 +
@@ -423,7 +423,7 @@ network port show ipspace Cluster
 .显示示例
 [%collapsible]
 ====
-输出应类似于以下内容：
+输出结果应与以下内容类似：
 
 [listing]
 ----
@@ -467,14 +467,14 @@ e7b       Cluster      Cluster          up   9000  auto/100000 healthy false
 8 entries were displayed.
 ----
 ====
-. 在上一步中使用的同一节点上，使用 network interface revert 命令还原与上一步中的端口关联的集群 LIF 。
+. 在上一步中使用的同一节点上，使用 network interface revert 命令还原与上一步中的端口关联的集群 LIF。
 +
 .显示示例
 [%collapsible]
 ====
 在此示例中，如果 Home 值为 true 且端口为 e7b，则 node1-01 上的 LIF node1-01_clus2 成功恢复。
 
-以下命令返回 LIF `node1-01_clus2`在 `node1-01`到母港 `e7a`并显示有关两个节点上的 LIF 的信息。如果两个集群接口的 Is Home 列均为真，并且显示正确的端口分配，则启动第一个节点成功，在本例中 `e7a`和 `e7b`在节点1-01上。
+以下命令返回 LIF `node1-01_clus2`在 `node1-01`回到母港 `e7a`并显示有关两个节点上 LIF 的信息。如果两个集群接口的“是否为 Home”列均为 true，并且它们显示正确的端口分配，则表示第一个节点启动成功。 `e7a`和 `e7b`在节点 1-01 上。
 
 [listing, subs="+quotes"]
 ----
@@ -493,7 +493,7 @@ Cluster
             .
 ----
 ====
-. 显示有关集群中节点的信息：
+. 显示集群中节点的相关信息：
 +
 `cluster show`
 
@@ -501,7 +501,7 @@ Cluster
 .显示示例
 [%collapsible]
 ====
-此示例显示此集群中 node1 和 node2 的节点运行状况为 true ：
+此示例表明，该集群中节点 1 和节点 2 的节点健康状况为真：
 
 [listing, subs="+quotes"]
 ----
@@ -515,7 +515,7 @@ node1-03      true    true
 node1-04      true    true
 ----
 ====
-. 验证所有物理集群端口是否均已启动：
+. 确认所有物理集群端口均已启动：
 +
 [source, cli]
 ----
@@ -550,9 +550,9 @@ e7b       Cluster      Cluster          up   9000  auto/100000 healthy false
 .
 ----
 ====
-. 验证远程集群接口的连接：
+. 验证远程集群接口的连接性：
 +
-.. 您可以使用 `network interface check cluster-connectivity show`命令显示集群连接可访问性检查的详细信息：
+.. 你可以使用 `network interface check cluster-connectivity show`用于显示集群连接性可访问性检查详细信息的命令：
 +
 [source, cli]
 ----
@@ -624,13 +624,13 @@ RPC status:
 
 
 
-=== 第3步：验证配置
+=== 步骤 3：验证配置
 
 . 验证集群上所有端口的健康状况。
 +
 .. *集群端口*
 +
-... 验证集群中所有节点上的集群端口是否均已启动且运行正常：
+... 确认集群中所有节点的集群端口均已启动且运行状况良好：
 +
 [source, cli]
 ----
@@ -980,11 +980,11 @@ shelf id connector-state remote-port    remote-device
 
 
 
-. 如果禁止自动创建案例，请通过调用 AutoSupport 消息重新启用它：
+. 如果您已禁用自动创建案例功能，请通过调用AutoSupport消息重新启用该功能：
 +
-`ssystem node AutoSupport invoke -node * -type all -message MAINT=end`
+`system node autosupport invoke -node * -type all -message MAINT=END`
 
 
 
 .下一步是什么？
-更换开关后，您link:../switch-cshm/config-overview.html["配置交换机健康监控"]。
+更换完开关后，你link:../switch-cshm/config-overview.html["配置交换机健康监控"]。

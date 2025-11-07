@@ -2,7 +2,7 @@
 permalink: switch-cisco-9336c-fx2/configure-switch-overview-9336c-cluster.html 
 sidebar: sidebar 
 keywords: switches, initial installation, configure switch-cisco-9336c-fx2 switch 
-summary: Cisco Nexus 9336C-x2集群交换机安装和配置概述 
+summary: Cisco Nexus 9336C-FX2 集群交换机的安装和配置概述 
 ---
 = Cisco Nexus 9336C-FX2 和 9336C-FX2-T 集群交换机的安装和设置工作流程
 :allow-uri-read: 
@@ -25,7 +25,7 @@ Cisco Nexus 9336C-FX2（36 个端口）是高端口密度集群/存储/数据交
 [role="quick-margin-para"]
 查看 9336C-FX2 和 9336C-FX2-T 集群交换机的组件和部件号。
 
-.image:https://raw.githubusercontent.com/NetAppDocs/common/main/media/number-3.png["三个"]link:required-documentation-9336c-cluster.html["审查所需文件"]
+.image:https://raw.githubusercontent.com/NetAppDocs/common/main/media/number-3.png["三"]link:required-documentation-9336c-cluster.html["审查所需文件"]
 [role="quick-margin-para"]
 查看特定的交换机和控制器文档以设置 9336C-FX2 和 9336C-FX2-T 交换机和ONTAP集群。
 
@@ -33,10 +33,10 @@ Cisco Nexus 9336C-FX2（36 个端口）是高端口密度集群/存储/数据交
 [role="quick-margin-para"]
 查看Cisco Smart Call Home 功能的要求，该功能用于监控网络上的硬件和软件组件。
 
-.image:https://raw.githubusercontent.com/NetAppDocs/common/main/media/number-5.png["五个"]link:install-hardware-workflow.html["Install the hardware"]
+.image:https://raw.githubusercontent.com/NetAppDocs/common/main/media/number-5.png["五"]link:install-hardware-workflow.html["安装硬件"]
 [role="quick-margin-para"]
 安装交换机硬件。
 
-.image:https://raw.githubusercontent.com/NetAppDocs/common/main/media/number-6.png["六个"]link:configure-software-overview-9336c-cluster.html["配置软件"]
+.image:https://raw.githubusercontent.com/NetAppDocs/common/main/media/number-6.png["六"]link:configure-software-overview-9336c-cluster.html["配置软件"]
 [role="quick-margin-para"]
 配置交换机软件。

@@ -2,33 +2,33 @@
 permalink: switch-cisco-3132q-v/cn5596-configure-ports.html 
 sidebar: sidebar 
 keywords: cisco 3132q-v, cluster switches 
-summary: 您可以在AFF或FAS集群中使用Cisco Nexus 3132q-v交换机作为集群交换机。 
+summary: 您可以在AFF或FAS集群中使用Cisco Nexus 3132q-v 交换机作为集群交换机。 
 ---
-= 配置端口以从5596交换机迁移到3132Q-V交换机
+= 配置端口以从 5596 交换机迁移到 3132Q-V 交换机
 :allow-uri-read: 
 :icons: font
 :imagesdir: ../media/
 
 
 [role="lead"]
-请按照以下步骤配置端口、以便从Nexus 5596交换机迁移到新的Nexus 3132Q-V交换机。
+按照以下步骤配置端口，以便从 Nexus 5596 交换机迁移到新的 Nexus 3132Q-V 交换机。
 
 .步骤
-. 在所有节点上，拔下连接到 Nexus 5596 交换机 CL2 的所有缆线。
+. 在所有节点上，移除连接到 Nexus 5596 交换机 CL2 的所有电缆。
 +
-使用支持的布线方式，将所有节点上已断开连接的端口重新连接到 Nexus 3132Q-V 交换机 C2 。
+使用支持的电缆，将所有节点上断开的端口重新连接到 Nexus 3132Q-V 交换机 C2。
 
-. 拔下 Nexus 5596 交换机 CL2 上的所有缆线。
+. 从 Nexus 5596 交换机 CL2 上移除所有电缆。
 +
-连接相应的 Cisco QSFP 到 SFP+ 细分缆线，将新 Cisco 3132Q-V 交换机 C2 上的端口 1/24 连接到现有 Nexus 5596 CL1 上的端口 45 到 48 。
+将合适的Cisco QSFP 转 SFP+ 分线电缆连接到新的Cisco 3132Q-V 交换机 C2 的端口 1/24 和现有 Nexus 5596 CL1 的端口 45 至 48。
 
-. 验证接口 eth1/45-48 在其运行配置中是否已具有 `channel-group 1 mode active` 。
-. 启动活动 Nexus 5596 交换机 CL1 上的 ISL 端口 45 到 48 。
+. 确认接口 eth1/45-48 是否已存在 `channel-group 1 mode active`在其运行配置中。
+. 在活动的 Nexus 5596 交换机 CL1 上启用 ISL 端口 45 至 48。
 +
 .显示示例
 [%collapsible]
 ====
-以下示例显示正在启动 ISL 端口 45 到 48 ：
+以下示例展示了如何启动 ISL 的 45 至 48 号端口：
 
 [listing]
 ----
@@ -40,15 +40,15 @@ summary: 您可以在AFF或FAS集群中使用Cisco Nexus 3132q-v交换机作为�
 (CL1)#
 ----
 ====
-. 验证 Nexus 5596 交换机 CL1 上的 ISL 是否为 `up` ：
+. 确认 ISL 是否为 `up`在 Nexus 5596 交换机 CL1 上：
 +
-`s如何执行端口通道摘要`
+`show port-channel summary`
 
 +
 .显示示例
 [%collapsible]
 ====
-端口 eth1/45 到 eth1/48 应指示（ P ），表示端口通道中的 ISL 端口为 `up` ：
+eth1/45 至 eth1/48 端口应标有 (P)，表示 ISL 端口为 `up`在端口通道中：
 
 [listing]
 ----
@@ -69,15 +69,15 @@ Group Port-        Type   Protocol  Member Ports
                                     Eth1/47(P)   Eth1/48(P)
 ----
 ====
-. 验证 3132Q-V 交换机 C2 上的 ISL 是否为 `up` ：
+. 确认 ISL 是否为 `up`在 3132Q-V 开关 C2 上：
 +
-`s如何执行端口通道摘要`
+`show port-channel summary`
 
 +
 .显示示例
 [%collapsible]
 ====
-端口 eth1/24/1 ， eth1/24/2 ， eth1/24/3 和 eth1/24/4 应指示（ P ），表示 ISL 端口在端口通道中为 `up` ：
+端口 eth1/24/1、eth1/24/2、eth1/24/3 和 eth1/24/4 应标有 (P)，表示 ISL 端口为 `up`在端口通道中：
 
 [listing]
 ----
@@ -105,7 +105,7 @@ Group Port-        Type   Protocol  Member Ports
 .显示示例
 [%collapsible]
 ====
-以下示例显示了节点 n1 和 n2 上正在启动的指定端口：
+以下示例展示了如何在节点 n1 和 n2 上启动指定的端口：
 
 [listing]
 ----
@@ -115,15 +115,15 @@ cluster::*> network port modify -node n2 -port e0b -up-admin true
 cluster::*> network port modify -node n2 -port e0c -up-admin true
 ----
 ====
-. 在所有节点上，还原连接到 C2 的所有已迁移集群互连 LIF ：
+. 在所有节点上，还原所有已迁移的连接到 C2 的集群互连 LIF：
 +
-`网络接口还原`
+`network interface revert`
 
 +
 .显示示例
 [%collapsible]
 ====
-以下示例显示了要还原到节点 n1 和 n2 上主端口的已迁移集群 LIF ：
+以下示例显示了迁移后的集群 LIF 如何恢复到节点 n1 和 n2 上的原端口：
 
 [listing]
 ----
@@ -133,7 +133,7 @@ cluster::*> network interface revert -vserver Cluster -lif n2_clus2
 cluster::*> network interface revert -vserver Cluster -lif n2_clus3
 ----
 ====
-. 验证所有集群互连端口现在是否均已还原到其主端口：
+. 请确认所有集群互连端口均已恢复到其原始设置：
 +
 `network interface show`
 
@@ -141,7 +141,7 @@ cluster::*> network interface revert -vserver Cluster -lif n2_clus3
 .显示示例
 [%collapsible]
 ====
-以下示例显示 clus2 上的 LIF 已还原到其主端口，并显示，如果当前端口列中的端口在 `is Home` 列中的状态为 `true` ，则 LIF 已成功还原。如果 `为主页` 值为 `false` ，则表示尚未还原 LIF 。
+以下示例表明 clus2 上的 LIF 已恢复到其源端口，并且如果“当前端口”列中的端口状态为“已恢复”，则表示 LIF 已成功恢复。 `true`在 `Is Home`柱子。如果 `Is Home`值是 `false`LIF尚未被撤销。
 
 [listing]
 ----
@@ -162,7 +162,7 @@ Cluster
 8 entries were displayed.
 ----
 ====
-. 验证集群端口是否已连接：
+. 请确认集群端口已连接：
 +
 `network port show`
 
@@ -170,7 +170,7 @@ Cluster
 .显示示例
 [%collapsible]
 ====
-以下示例显示了上一个 `network port modify` 命令的结果，确认所有集群互连均为 `up` ：
+以下示例展示了前一个结果。 `network port modify`命令，验证所有集群互连是否都已连接 `up`：
 
 [listing]
 ----
@@ -198,22 +198,22 @@ e0d       Cluster      Cluster          up   9000  auto/10000 -        -
 8 entries were displayed.
 ----
 ====
-. 验证远程集群接口的连接：
+. 验证远程集群接口的连接性：
 
 
 [role="tabbed-block"]
 ====
-.ONTAP 9.9.1及更高版本
+.ONTAP 9.9.1 及更高版本
 --
-您可以使用 `network interface check cluster-connectivity` 命令启动集群连接的可访问性检查、然后显示详细信息：
+你可以使用 `network interface check cluster-connectivity`执行命令以启动集群连接性检查，然后显示详细信息：
 
-`network interface check cluster-connectivity start` 和 `network interface check cluster-connectivity show`
+`network interface check cluster-connectivity start`和 `network interface check cluster-connectivity show`
 
 [listing, subs="+quotes"]
 ----
 cluster1::*> *network interface check cluster-connectivity start*
 ----
-*注：*请等待几秒钟、然后再运行show命令显示详细信息。
+*注意：*运行 show 命令显示详细信息之前，请等待几秒钟。
 
 [listing, subs="+quotes"]
 ----
@@ -232,7 +232,7 @@ n2
 --
 .所有ONTAP版本
 --
-对于所有ONTAP版本、您还可以使用 `cluster ping-cluster -node <name>` 用于检查连接的命令：
+对于所有ONTAP版本，您也可以使用 `cluster ping-cluster -node <name>`检查连接性的命令：
 
 `cluster ping-cluster -node <name>`
 
@@ -281,15 +281,15 @@ RPC status:
 ----
 --
 ====
-. [[Step12]]在集群中的每个节点上、迁移与要替换的第一个Nexus 5596交换机CL1关联的接口：
+. [[step12]]在集群中的每个节点上，迁移与第一个要替换的 Nexus 5596 交换机 CL1 关联的接口：
 +
-`网络接口迁移`
+`network interface migrate`
 
 +
 .显示示例
 [%collapsible]
 ====
-以下示例显示了节点 n1 和 n2 上要迁移的端口或 LIF ：
+以下示例显示了节点 n1 和 n2 上正在迁移的端口或 LIF：
 
 [listing]
 ----
@@ -311,7 +311,7 @@ destination-node n2 -destination-port e0c
 .显示示例
 [%collapsible]
 ====
-以下示例显示所需的集群 LIF 已迁移到集群交换机 C2 上托管的相应集群端口：
+以下示例表明，所需的集群 LIF 已迁移到集群交换机 C2 上托管的相应集群端口：
 
 [listing]
 ----
@@ -341,7 +341,7 @@ Cluster
 .显示示例
 [%collapsible]
 ====
-以下示例显示了节点 n1 和 n2 上正在关闭的指定端口：
+以下示例显示了如何在节点 n1 和 n2 上关闭指定的端口：
 
 [listing]
 ----
@@ -351,15 +351,15 @@ cluster::*> network port modify -node n2 -port e0a -up-admin false
 cluster::*> network port modify -node n2 -port e0d -up-admin false
 ----
 ====
-. 关闭活动3132Q-V交换机C2上的ISL端口24、31和32：
+. 关闭活动 3132Q-V 交换机 C2 上的 ISL 端口 24、31 和 32：
 +
-`s下行`
+`shutdown`
 
 +
 .显示示例
 [%collapsible]
 ====
-以下示例显示了如何关闭 ISL 24 ， 31 和 32 ：
+以下示例展示了如何关闭 ISL 24、31 和 32：
 
 [listing]
 ----
@@ -374,15 +374,15 @@ C2(config-if)# exit
 C2#
 ----
 ====
-. 在所有节点上，拔下连接到 Nexus 5596 交换机 CL1 的所有缆线。
+. 在所有节点上，移除连接到 Nexus 5596 交换机 CL1 的所有电缆。
 +
-使用支持的布线方式，将所有节点上已断开连接的端口重新连接到 Nexus 3132Q-V 交换机 C1 。
+使用支持的电缆，将所有节点上断开的端口重新连接到 Nexus 3132Q-V 交换机 C1。
 
-. 从 Nexus 3132Q-V C2 端口 E1/24 拔下 QSFP 分支缆线。
+. 从 Nexus 3132Q-V C2 端口 e1/24 上移除 QSFP 分线电缆。
 +
-使用支持的 Cisco QSFP 光纤或直连缆线将 C1 上的端口 E1/31 和 E1/32 连接到 C2 上的端口 E1/31 和 E1/32 。
+使用支持的Cisco QSFP 光纤或直连电缆，将 C1 上的端口 e1/31 和 e1/32 连接到 C2 上的端口 e1/31 和 e1/32。
 
-. 还原端口24上的配置并删除C2上的临时端口通道2：
+. 恢复端口 24 的配置，并移除 C2 上的临时端口通道 2：
 +
 [listing]
 ----
@@ -400,12 +400,12 @@ C2# copy running-config startup-config
 [########################################] 100%
 Copy Complete.
 ----
-. 启动 C2 上的 ISL 端口 31 和 32 ，即活动的 3132Q-V 交换机： `no shutdown`
+. 在 C2（活动的 3132Q-V 交换机）上启用 ISL 端口 31 和 32： `no shutdown`
 +
 .显示示例
 [%collapsible]
 ====
-以下示例显示了如何在 3132Q-V 交换机 C2 上启动 ISL 31 和 32 ：
+以下示例展示了如何在 3132Q-V 交换机 C2 上启动 ISL 31 和 32：
 
 [listing]
 ----
@@ -422,4 +422,4 @@ Copy Complete.
 
 
 .下一步是什么？
-link:cn5596-complete-migration.html["完成迁移"](英文)
+link:cn5596-complete-migration.html["完成迁移"]。

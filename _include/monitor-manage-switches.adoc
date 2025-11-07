@@ -1,24 +1,24 @@
-= 创建一个交换机条目、以便ONTAP可以对其进行监控
+= 创建交换机条目，以便ONTAP可以对其进行监控。
 :allow-uri-read: 
 
 
 
 
-== 创建一个交换机条目、以便ONTAP可以对其进行监控
+== 创建交换机条目，以便ONTAP可以对其进行监控。
 
-使用 `system switch ethernet create`命令为指定的以太网交换机手动配置和启用监控。如果ONTAP未自动添加交换机、或者您之前删除了交换机并希望重新添加它、则此功能非常有用。
+使用 `system switch ethernet create`手动配置并启用指定以太网交换机的监控命令。如果ONTAP没有自动添加交换机，或者您之前删除了交换机并想重新添加它，这将很有帮助。
 
 [source, cli]
 ----
 system switch ethernet create -device DeviceName -address 1.2.3.4 -snmp-version SNMPv2c -community-or-username cshm1! -model NX3132V -type cluster-network
 ----
-典型的示例是添加一个名为[DeviceName]的交换机、IP地址为1.2.3.4、SNMPv2c凭据设置为* cshm1！*。如果要配置存储交换机、请使用、 `-type storage-network`而不是 `-type cluster-network`。
+一个典型的例子是添加一个名为 [DeviceName] 的交换机，其 IP 地址为 1.2.3.4，SNMPv2c 凭据设置为 *cshm1!*。使用 `-type storage-network`而不是 `-type cluster-network`如果您正在配置存储交换机。
 
 
 
-== 禁用监控而不删除交换机
+== 禁用监控而不删除开关
 
-如果要暂停或停止监控某个交换机、但仍保留该交换机以供将来监控、请修改其参数、而不是将其 `is-monitoring-enabled-admim`删除。
+如果您想暂停或停止对某个交换机的监控，但仍希望保留该交换机以供将来监控，请修改其设置。 `is-monitoring-enabled-admim`保留参数而不是删除它。
 
 例如：
 
@@ -26,22 +26,22 @@ system switch ethernet create -device DeviceName -address 1.2.3.4 -snmp-version 
 ----
 system switch ethernet modify -device DeviceName -is-monitoring-enabled-admin false
 ----
-这样、您就可以保留交换机详细信息和配置、而无需生成新警报或重新发现。
+这样可以保留交换机的详细信息和配置，而不会生成新的警报或重新发现。
 
 
 
-== 删除不再需要的交换机
+== 移除不再需要的开关
 
- `system switch ethernet delete`用于删除已断开连接或不再需要的交换机：
+使用 `system switch ethernet delete`删除已断开连接或不再需要的开关：
 
 [source, cli]
 ----
 system switch ethernet delete -device DeviceName
 ----
-默认情况下、只有当ONTAP当前未通过CDP或LDP检测到交换机时、此命令才会成功。要删除已发现的交换机、请使用 `-force`参数：
+默认情况下，只有当ONTAP当前未通过 CDP 或 LLDP 检测到交换机时，此命令才会成功。要移除已发现的交换机，请使用 `-force`范围：
 
 [source, cli]
 ----
 system switch ethernet delete -device DeviceName -force
 ----
-使用时 `-force`、如果ONTAP再次检测到该交换机、则可能会自动重新添加该交换机。
+什么时候 `-force`如果使用该开关， ONTAP再次检测到该开关时，可能会自动重新添加该开关。

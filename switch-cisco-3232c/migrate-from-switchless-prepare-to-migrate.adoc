@@ -2,29 +2,29 @@
 permalink: switch-cisco-3232c/migrate-from-switchless-prepare-to-migrate.html 
 sidebar: sidebar 
 keywords: cisco 3232c, cluster switches 
-summary: 您可以将 Cisco Nexus 3232C 交换机用作 AFF 或 FAS 集群中的集群交换机。 
+summary: 您可以在AFF或FAS集群中使用Cisco Nexus 3232C 交换机作为集群交换机。 
 ---
-= 准备从双节点无交换机集群迁移到双节点有交换机集群
+= 做好从双节点无交换机集群迁移到双节点有交换机集群的准备
 :allow-uri-read: 
 :icons: font
 :imagesdir: ../media/
 
 
 [role="lead"]
-请按照以下步骤准备双节点无交换机集群、以便迁移到包含Cisco Nexus 3232C集群网络交换机的双节点有交换机集群。
+按照以下步骤准备您的双节点无交换机集群，以迁移到包含Cisco Nexus 3232C 集群网络交换机的双节点交换集群。
 
 .步骤
-. 如果在此集群上启用了 AutoSupport ，则通过调用 AutoSupport 消息禁止自动创建案例：
+. 如果此集群上启用了AutoSupport ，则通过调用AutoSupport消息来抑制自动创建案例：
 +
-`ssystem node AutoSupport invoke -node * -type all - 消息 MAINT=xh`
+`system node autosupport invoke -node * -type all - message MAINT=xh`
 
 +
-_x_ 是维护时段的持续时间，以小时为单位。
+_x_ 是维护窗口的持续时间，单位为小时。
 
 +
 [NOTE]
 ====
-AutoSupport 消息会通知技术支持此维护任务，以便在维护窗口期间禁止自动创建案例。
+AutoSupport消息会通知技术支持此维护任务，以便在维护窗口期间抑制自动创建案例。
 
 ====
 . 确定每个集群接口的管理或运行状态：
@@ -58,7 +58,7 @@ e4e       Cluster      Cluster          up   9000 auto/40000  -
 4 entries were displayed.
 ----
 ====
-.. 显示有关逻辑接口及其指定主节点的信息：
+.. 显示有关逻辑接口及其指定归属节点的信息：
 +
 `network interface show -role cluster`
 
@@ -90,7 +90,7 @@ Cluster
 .显示示例
 [%collapsible]
 ====
-以下示例中的输出显示已启用无交换机集群检测：
+以下示例的输出表明已启用无交换机集群检测：
 
 [listing, subs="+quotes"]
 ----
@@ -100,34 +100,34 @@ Enable Switchless Cluster Detection: true
 ====
 
 
-. 验证新的 3232C 交换机上是否安装了适当的 RCF 和映像，并进行任何必要的站点自定义，例如添加用户，密码和网络地址。
+. 确认新的 3232C 交换机上已安装相应的 RCF 和映像，并进行任何必要的站点自定义，例如添加用户、密码和网络地址。
 +
-此时必须准备两个交换机。如果您需要升级 RCF 和映像软件，必须按照以下步骤进行操作：
+此时您必须准备好这两个开关。如果需要升级 RCF 和镜像软件，必须按照以下步骤操作：
 
 +
-.. 转到 NetApp 支持站点上的 _Cisco 以太网交换机 _ 页面。
+.. 请访问NetApp支持网站上的 _Cisco 以太网交换机_ 页面。
 +
-link:https://mysupport.netapp.com/site/info/cisco-ethernet-switch/["Cisco 以太网交换机"^]
+link:https://mysupport.netapp.com/site/info/cisco-ethernet-switch/["Cisco以太网交换机"^]
 
-.. 请记下该页面上的表中的交换机和所需的软件版本。
-.. 下载适当版本的 RCF 。
-.. 在*Description*页上选择*CONTINUOD*，接受许可协议，然后按照*Download*页上的说明下载RCB。
-.. 下载相应版本的映像软件。
+.. 请记下您交换机的型号以及该页表格中所需的软件版本。
+.. 下载相应版本的RCF。
+.. 在“描述”页面上选择“继续”，接受许可协议，然后按照“下载”页面上的说明下载 RCF。
+.. 下载相应版本的图像处理软件。
 +
 link:https://mysupport.netapp.com/site/products/all/details/cisco-cluster-storage-switch/downloads-tab["Cisco集群和管理网络交换机参考配置文件下载"^]
 
 
 
-. 在*Description*页上选择*CONTINUOD*，接受许可协议，然后按照*Download*页上的说明下载RCB。
-. 在 Nexus 3232C 交换机 C1 和 C2 上，禁用所有面向节点的端口 C1 和 C2 ，但不要禁用 ISL 端口 E1/31 - 32 。
+. 在“描述”页面上选择“继续”，接受许可协议，然后按照“下载”页面上的说明下载 RCF。
+. 在 Nexus 3232C 交换机 C1 和 C2 上，禁用所有面向节点的端口 C1 和 C2，但不要禁用 ISL 端口 e1/31-32。
 +
-有关Cisco命令的详细信息，请参见中的以下列表 https://www.cisco.com/c/en/us/support/switches/nexus-3000-series-switches/products-command-reference-list.html["Cisco Nexus 3000 系列 NX-OS 命令参考"^]。
+有关Cisco命令的更多信息，请参阅以下列表。 https://www.cisco.com/c/en/us/support/switches/nexus-3000-series-switches/products-command-reference-list.html["Cisco Nexus 3000 系列 NX-OS 命令参考"^] 。
 
 +
 .显示示例
 [%collapsible]
 ====
-以下示例显示了在 Nexus 3232C 集群交换机 C1 和 C2 上使用 RCF `NX3232_RCF_v1.0_24p10g_24p100g.txt` 中支持的配置禁用端口 1 到 30 ：
+以下示例展示了如何使用 RCF 支持的配置，在 Nexus 3232C 集群交换机 C1 和 C2 上禁用端口 1 到 30。 `NX3232_RCF_v1.0_24p10g_24p100g.txt` ：
 
 [listing, subs="+quotes"]
 ----
@@ -147,19 +147,19 @@ C2(config-if-range)# exit
 C2(config)# exit
 ----
 ====
-. 使用支持的布线将 C1 上的端口 1/31 和 1/32 连接到 C2 上的相同端口。
-. 验证 C1 和 C2 上的 ISL 端口是否正常运行：
+. 使用支持的电缆将 C1 上的端口 1/31 和 1/32 连接到 C2 上的相同端口。
+. 请确认C1和C2上的ISL端口是否正常工作：
 +
-`s如何执行端口通道摘要`
+`show port-channel summary`
 
 +
-有关Cisco命令的详细信息，请参见中的以下列表 https://www.cisco.com/c/en/us/support/switches/nexus-3000-series-switches/products-command-reference-list.html["Cisco Nexus 3000 系列 NX-OS 命令参考"^]。
+有关Cisco命令的更多信息，请参阅以下列表。 https://www.cisco.com/c/en/us/support/switches/nexus-3000-series-switches/products-command-reference-list.html["Cisco Nexus 3000 系列 NX-OS 命令参考"^] 。
 
 +
 .显示示例
 [%collapsible]
 ====
-以下示例显示了 Cisco `s如何使用 port-channel summary` 命令来验证 C1 和 C2 上的 ISL 端口是否正常运行：
+以下示例展示了Cisco `show port-channel summary`用于验证 C1 和 C2 上的 ISL 端口是否正常运行的命令：
 
 [listing, subs="+quotes"]
 ----
@@ -191,13 +191,13 @@ Group Port-        Type   Protocol  Member Ports
 ====
 . 显示交换机上相邻设备的列表。
 +
-有关Cisco命令的详细信息，请参见中的以下列表 https://www.cisco.com/c/en/us/support/switches/nexus-3000-series-switches/products-command-reference-list.html["Cisco Nexus 3000 系列 NX-OS 命令参考"^]。
+有关Cisco命令的更多信息，请参阅以下列表。 https://www.cisco.com/c/en/us/support/switches/nexus-3000-series-switches/products-command-reference-list.html["Cisco Nexus 3000 系列 NX-OS 命令参考"^] 。
 
 +
 .显示示例
 [%collapsible]
 ====
-以下示例显示了 Cisco 命令 `s如何使用 cdp neighbors` 显示交换机上的相邻设备：
+以下示例展示了Cisco命令 `show cdp neighbors`用于显示交换机上的相邻设备：
 
 [listing, subs="+quotes"]
 ----
@@ -219,7 +219,7 @@ C1                 Eth1/32        178    R S I s     N3K-C3232C  Eth1/32
 Total entries displayed: 2
 ----
 ====
-. 显示每个节点上的集群端口连接：
+. 显示每个节点上的集群端口连接情况：
 +
 `network device-discovery show`
 
@@ -227,7 +227,7 @@ Total entries displayed: 2
 .显示示例
 [%collapsible]
 ====
-以下示例显示了为双节点无交换机集群配置显示的集群端口连接：
+以下示例显示了双节点无交换机集群配置的集群端口连接情况：
 
 [listing, subs="+quotes"]
 ----
@@ -246,4 +246,4 @@ n2         /cdp
 
 
 .下一步是什么？
-link:migrate-from-switchless-configure-ports.html["配置端口"](英文)
+link:migrate-from-switchless-configure-ports.html["配置端口"]。

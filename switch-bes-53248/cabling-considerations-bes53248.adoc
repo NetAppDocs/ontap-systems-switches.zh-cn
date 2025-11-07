@@ -2,106 +2,106 @@
 permalink: switch-bes-53248/cabling-considerations-bes53248.html 
 sidebar: sidebar 
 keywords: BES-53248 cabling setup, BES-53248 switches configuration, efos 
-summary: 在配置Broadcom BES-53248交换机之前、请查看以下信息。 
+summary: 在配置博通BES-53248交换机之前，请查看以下信息。 
 ---
-= 查看布线和配置注意事项
+= 审查布线和配置注意事项
 :allow-uri-read: 
 :icons: font
 :imagesdir: ../media/
 
 
 [role="lead"]
-在配置Broadcom BES-53248交换机之前、请查看以下注意事项。
+在配置博通BES-53248交换机之前，请查看以下注意事项。
 
 
 
 == 集群端口交换机分配
 
-您可以使用Broadcom支持的BES-53248集群交换机端口分配表作为配置集群的指南。
+您可以参考博通支持的 BES-53248 集群交换机端口分配表来配置您的集群。
 
 |===
 
 
-| *交换机端口* | *端口使用情况* 
+| *交换端口* | *端口使用情况* 
 
 
  a| 
 0-16
  a| 
-10/25GbE集群端口节点、基本配置
+10/25GbE 集群端口节点，基本配置
 
 
 
  a| 
 17-48
  a| 
-10/25GbE集群端口节点、带许可证
+10/25GbE 集群端口节点，带许可证
 
 
 
  a| 
 49-54
  a| 
-从右到左添加了40/100GbE集群端口节点和许可证
+40/100GbE 集群端口节点（含许可证），从右至左依次添加
 
 
 
  a| 
 55-56
  a| 
-100GbE 集群交换机间链路（ ISL ）端口，基本配置
+100GbE 集群交换机间链路 (ISL) 端口，基本配置
 
 |===
-请参见 https://hwu.netapp.com/Switch/Index["Hardware Universe"^] 有关交换机端口的详细信息。
+参见 https://hwu.netapp.com/Switch/Index["Hardware Universe"^]有关交换机端口的更多信息。
 
 
 
 == 端口组速度限制
 
-* 在BES-53248集群交换机上、48个10/25GbE (SFP28/SFP+)端口组合为12个4端口组、如下所示：端口1-4、5-8、9-12、13-16、17-20、21-24、25-28、29-32、33-36、37-40、41-44和45-48。
-* 在四端口组中的所有端口之间， SFP28/SFP+ 端口速度必须相同（ 10GbE 或 25GbE ）。
-* 如果4端口组中的速度不同、则交换机端口将无法正常运行。
+* 在 BES-53248 集群交换机上，48 个 10/25GbE (SFP28/SFP+) 端口组合成 12 个 4 端口组，如下：端口 1-4、5-8、9-12、13-16、17-20、21-24、25-28、29-32、33-36、37-40、41-44 和 45-48。
+* 4 端口组中所有端口的 SFP28/SFP+ 端口速度必须相同（10GbE 或 25GbE）。
+* 如果 4 个端口组中的速度不同，交换机端口将无法正常工作。
 
 
 
 
-== FEC要求
+== 联邦选举委员会 (FEC) 要求
 
-* 对于使用铜缆的25G端口、请参见下表以了解详细信息。
+* 对于采用铜缆的 25G 端口，详情请参见下表。
 +
-如果控制器端为 `auto`，开关端设置为FEC 25G。
+如果控制器端是 `auto`交换机侧设置为 FEC 25G。
 
 +
-image::../media/FEC_copper_table.jpg[使用铜缆的25G端口]
+image::../media/FEC_copper_table.jpg[25G 端口，采用铜缆]
 
-* 对于使用光纤/光缆的25G端口、请参见下表以了解详细信息：
+* 对于采用光纤/光缆的 25G 端口，详情请参见下表：
 +
-image::../media/FEC_fiber_table.jpg[使用光纤/光缆的25G端口]
+image::../media/FEC_fiber_table.jpg[25G端口，配备光纤/光缆]
 
 
 
 
 
-=== Bootarg实施
+=== Bootarg 实现
 
-使用以下命令将25G端口FEC设置为任一 `auto` 或 `fc`根据需要：
+使用以下命令将 25G 端口的 FEC 设置为以下任一值： `auto`或者 `fc`根据需要：
 
 [listing]
 ----
 systemshell -node <node> -command sudo sysctl dev.ice.<X>.requested_fec=<auto/fc>
 ----
-* 设置为时 *`auto`*：
+* 设置为*`auto`*:
 +
-** 。 `auto` 设置会立即将设置传播到硬件、无需重新启动。
-** 条件 `bootarg.cpk_fec_fc_eXx already exists`，它将从布塔格存储中删除。
-** 重新启动后、 `auto` 设置自起一直保持不变 `auto` 是默认FEC设置。
+** 这 `auto`该设置会立即将设置传播到硬件，无需重启。
+** 如果 `bootarg.cpk_fec_fc_eXx already exists`它从启动参数存储中删除。
+** 重启后， `auto`设置保持不变，因为 `auto`这是默认的FEC设置。
 
 
-* 设置为时 *`fc`*：
+* 设置为*`fc`*:
 +
-** 。 `FC-FEC` 设置会立即将设置传播到硬件、无需重新启动。
-** 新的 `bootarg.cpk_fec_fc_eXx` 创建时、值设置为"TRUE"。
-** 重新启动后、 `FC-FEC` 设置保持不变，以便使用驱动程序代码。
+** 这 `FC-FEC`该设置会立即将设置传播到硬件，无需重启。
+** 新的 `bootarg.cpk_fec_fc_eXx`创建时，其值设置为“true”。
+** 重启后， `FC-FEC`驱动程序代码仍需使用该设置。
 
 
 

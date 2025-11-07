@@ -2,32 +2,32 @@
 permalink: switch-bes-53248/replace-switch.html 
 sidebar: sidebar 
 keywords: replace, replacing, defective, broadcom-supported, bes, cluster, switch, network, nondisruptive, procedure, ndu, replace a broadcom-supported bes-53428 cluster switch - bes-53428 switches 
-summary: 在集群网络中更换 Broadcom 支持的故障 BES-53248 集群交换机是无中断操作步骤 \ （ NDU\ ）。 
+summary: '在集群网络中更换有缺陷的博通支持的 BES-53248 集群交换机是一个非中断程序 \(NDU\)。' 
 ---
-= 更换Broadcom支持的BES-53248集群交换机
+= 更换博通支持的 BES-53248 集群交换机
 :allow-uri-read: 
 :icons: font
 :imagesdir: ../media/
 
 
 [role="lead"]
-按照以下步骤更换集群网络中有缺陷的Broadcom支持的BES-53248集群交换机。这是无中断操作步骤 (NDU)。
+按照以下步骤更换集群网络中出现故障的博通支持的 BES-53248 集群交换机。这是一个无中断程序 (NDU)。
 
 .关于示例
-此操作步骤中的示例使用以下交换机和节点命名：
+本流程中的示例使用以下开关和节点命名规则：
 
-* 现有 BES-53248 交换机的名称是 `CS1` 和 `CS2` 。
-* 新 BES-53248 交换机的名称是 `newcs2` 。
-* 节点名称为 `node1` 和 `node2` 。
-* 每个节点上的集群端口分别命名为 `e0a` 和 `e0b` 。
-* 集群 LIF 名称是 node1 的 `node1_clus1` 和 `node1_clus2` ， node2 的 `node2_clus1` 和 `node2_clus2` 。
-* 对所有集群节点进行更改的提示为 `cluster1 ：： >`
+* 现有BES-53248交换机的名称是 `cs1`和 `cs2`。
+* 新型BES-53248交换机的名称是 `newcs2`。
+* 节点名称是 `node1`和 `node2`。
+* 每个节点上的集群端口都命名为 `e0a`和 `e0b`。
+* 集群 LIF 名称为 `node1_clus1`和 `node1_clus2`对于节点1，以及 `node2_clus1`和 `node2_clus2`对于节点2。
+* 提示对所有集群节点进行更改 `cluster1::>`
 
 
-.关于拓扑
-此操作步骤 基于以下集群网络拓扑：
+.关于拓扑结构
+此流程基于以下集群网络拓扑结构：
 
-.显示示例拓扑
+.展示示例拓扑
 [%collapsible]
 ====
 [listing, subs="+quotes"]
@@ -103,38 +103,38 @@ cs1                      0/56      179       R          BES-53248        0/56
 ----
 ====
 .步骤
-. 查看 link:replace-switch-reqs.html["更换要求"]。
-. 如果在此集群上启用了 AutoSupport ，则通过调用 AutoSupport 消息禁止自动创建案例：
+. 复习link:replace-switch-reqs.html["更换要求"]。
+. 如果此集群上启用了AutoSupport ，则通过调用AutoSupport消息来抑制自动创建案例：
 +
-`ssystem node AutoSupport invoke -node * -type all -message MAINT=xh`
-
-+
-其中 _x_ 是维护时段的持续时间，以小时为单位。
+`system node autosupport invoke -node * -type all -message MAINT=xh`
 
 +
-
-NOTE: AutoSupport 消息会通知技术支持此维护任务，以便在维护窗口期间禁止自动创建案例。
-
-. 在交换机newcs2上安装相应的参考配置文件(Reference Configuration File、RCF)和映像、并进行必要的站点准备。
-+
-如有必要，请验证，下载并安装适用于新交换机的 RCF 和 EFOS 软件的相应版本。如果您已确认新交换机设置正确，并且不需要更新 RCF 和 EFOS 软件，请继续执行步骤 2 。
-
-+
-.. 您可以从下载适用于集群交换机的 Broadcom EFOS 软件 https://www.broadcom.com/support/bes-switch["Broadcom 以太网交换机支持"^] 站点按照下载页面上的步骤下载要安装的 ONTAP 软件版本的 EFOS 文件。
-.. 可从获取相应的 RCF https://mysupport.netapp.com/site/products/all/details/broadcom-cluster-switches/downloads-tab["Broadcom 集群交换机"^] 页面。按照下载页面上的步骤下载适用于您要安装的 ONTAP 软件版本的正确 RCF 。
-
-
-. 在新交换机上、以身份登录 `admin` 并关闭将连接到节点集群接口的所有端口(端口1到16)。
-+
-
-NOTE: 如果您为其他端口购买了额外的许可证，请同时关闭这些端口。
-
-+
-如果要更换的交换机无法正常工作并已关闭电源，则集群节点上的 LIF 应已故障转移到每个节点的另一个集群端口。
+其中 _x_ 为维护窗口的持续时间（小时）。
 
 +
 
-NOTE: 要进入 `enable` 模式，不需要密码。
+NOTE: AutoSupport消息会通知技术支持此维护任务，以便在维护窗口期间抑制自动创建案例。
+
+. 在交换机 newcs2 上安装相应的参考配置文件 (RCF) 和映像，并进行任何必要的站点准备。
++
+如有必要，请验证、下载并安装适用于新交换机的 RCF 和 EFOS 软件的相应版本。如果您已确认新交换机设置正确，并且不需要更新 RCF 和 EFOS 软件，请继续执行步骤 2。
+
++
+.. 您可以从以下位置下载适用于您的集群交换机的 Broadcom EFOS 软件： https://www.broadcom.com/support/bes-switch["博通以太网交换机支持"^]地点。请按照下载页面上的步骤，下载与您要安装的ONTAP软件版本相对应的 EFOS 文件。
+.. 可从以下途径获得相应的 RCF： https://mysupport.netapp.com/site/products/all/details/broadcom-cluster-switches/downloads-tab["博通集群交换机"^]页。请按照下载页面上的步骤，下载与您要安装的ONTAP软件版本相匹配的正确 RCF 文件。
+
+
+. 在新交换机上，以以下身份登录： `admin`并关闭所有将连接到节点集群接口的端口（端口 1 至 16）。
++
+
+NOTE: 如果您购买了其他端口的额外许可证，也请关闭这些端口。
+
++
+如果您要更换的交换机无法正常工作且已断电，则集群节点上的 LIF 应该已经故障转移到每个节点的另一个集群端口。
+
++
+
+NOTE: 无需密码即可进入 `enable`模式。
 
 +
 .显示示例
@@ -153,12 +153,12 @@ Password:
 (newcs2)#
 ----
 ====
-. 验证所有集群 LIF 是否已启用 `auto-revert` ：
+. 确认所有集群 LIF 都已 `auto-revert`已启用：
 +
-`network interface show - vserver cluster -fields auto-revert`
+`network interface show -vserver Cluster -fields auto-revert`
 
 +
-.显示示例拓扑
+.展示示例拓扑
 [%collapsible]
 ====
 [listing, subs="+quotes"]
@@ -174,9 +174,9 @@ Cluster   node2_clus1  true
 Cluster   node2_clus2  true
 ----
 ====
-. 关闭 BES-53248 交换机 CS1 上的 ISL 端口 0/55 和 0/56 ：
+. 关闭 BES-53248 交换机 cs1 上的 ISL 端口 0/55 和 0/56：
 +
-.显示示例拓扑
+.展示示例拓扑
 [%collapsible]
 ====
 [listing, subs="+quotes"]
@@ -186,16 +186,16 @@ Cluster   node2_clus2  true
 (cs1)(interface 0/55-0/56)# *shutdown*
 ----
 ====
-. 拔下 BES-53248 CS2 交换机上的所有缆线，然后将其连接到 BES-53248 newcs2 交换机上的相同端口。
-. 启动 CS1 和 newcs2 交换机之间的 ISL 端口 0/55 和 0/56 ，然后验证端口通道操作状态。
+. 从 BES-53248 cs2 交换机上移除所有电缆，然后将它们连接到 BES-53248 newcs2 交换机上的相同端口。
+. 在 cs1 和 newcs2 交换机之间启动 ISL 端口 0/55 和 0/56，然后验证端口通道运行状态。
 +
-端口通道1/1的链路状态应为*启动*、并且端口活动标题下的所有成员端口均应为True。
+端口通道 1/1 的链路状态应为 *up*，并且所有成员端口在“端口活动”标题下都应为 True。
 
 +
 .显示示例
 [%collapsible]
 ====
-此示例将启用 ISL 端口 0/55 和 0/56 ，并显示交换机 CS1 上端口通道 1/1 的链路状态：
+此示例启用 ISL 端口 0/55 和 0/56，并显示交换机 cs1 上端口通道 1/1 的链路状态：
 
 [listing, subs="+quotes"]
 ----
@@ -223,10 +223,10 @@ Ports  Timeout       Speed      Active
        partner/long
 ----
 ====
-. 在新交换机 newcs2 上，重新启用连接到节点集群接口（端口 1 到 16 ）的所有端口。
+. 在新交换机 newcs2 上，重新启用所有连接到节点集群接口的端口（端口 1 到 16）。
 +
 
-NOTE: 如果您为其他端口购买了额外的许可证，请同时关闭这些端口。
+NOTE: 如果您购买了其他端口的额外许可证，也请关闭这些端口。
 
 +
 .显示示例
@@ -244,15 +244,15 @@ Password:
 (newcs2)(config)# *exit*
 ----
 ====
-. 验证端口e0b是否为*启动*：
+. 确认端口 e0b 是否已启用：
 +
-`network port show -ipspace cluster`
+`network port show -ipspace Cluster`
 
 +
 .显示示例
 [%collapsible]
 ====
-输出应类似于以下内容：
+输出结果应与以下内容类似：
 
 [listing, subs="+quotes"]
 ----
@@ -275,14 +275,14 @@ e0a       Cluster      Cluster          up   9000  auto/10000  healthy  false
 e0b       Cluster      Cluster          up   9000  auto/auto   -        false
 ----
 ====
-. 在上一步使用的同一节点上，等待 node1 上的集群 LIF node1_clus2 自动还原。
+. 在与上一步相同的节点上，等待节点 1 上的集群 LIF node1_clus2 自动恢复。
 +
 .显示示例
 [%collapsible]
 ====
-在此示例中，如果 `为 Home` 为 `true` 且端口为 e0b ，则 node1 上的 LIF node1_clus2 将成功还原。
+在本例中，如果节点 1 上的 LIF node1_clus2 被成功撤销，则 `Is Home`是 `true`端口为 e0b。
 
-以下命令显示两个节点上的 LIF 的相关信息。如果两个集群接口的 `为 Home` 为 `true` 且显示正确的端口分配，则会成功启动第一个节点，此示例中为 node1 上的 `e0a` 和 `e0b` 。
+以下命令显示有关两个节点上 LIF 的信息。如果满足以下条件，则启动第一个节点即为成功： `Is Home`是 `true`在本例中，两个集群接口都显示了正确的端口分配。 `e0a`和 `e0b`在节点1上。
 
 [listing, subs="+quotes"]
 ----
@@ -298,7 +298,7 @@ Cluster
             node2_clus2  up/up      169.254.19.183/16  node2      e0a     false
 ----
 ====
-. 显示有关集群中节点的信息：
+. 显示集群中节点的相关信息：
 +
 `cluster show`
 
@@ -306,7 +306,7 @@ Cluster
 .显示示例
 [%collapsible]
 ====
-此示例显示此集群中 `node1` 和 `node2` 的节点运行状况为 `true` ：
+此示例显示了节点健康状况 `node1`和 `node2`该集群中是 `true`：
 
 [listing, subs="+quotes"]
 ----
@@ -317,7 +317,7 @@ node1  true     true          true
 node2  true     true          true
 ----
 ====
-. 确认以下集群网络配置：
+. 请确认以下集群网络配置：
 +
 `network port show`
 
@@ -363,7 +363,7 @@ Cluster
 ====
 . 验证集群网络是否运行正常：
 +
-`s如何使用 isdp 邻居`
+`show isdp neighbors`
 
 +
 .显示示例
@@ -393,9 +393,9 @@ cs1          0/55    179         R             BES-53248   0/55
 cs1          0/56    179         R             BES-53248   0/56
 ----
 ====
-. 如果禁止自动创建案例，请通过调用 AutoSupport 消息重新启用它：
+. 如果您已禁用自动创建案例功能，请通过调用AutoSupport消息重新启用该功能：
 +
-`ssystem node AutoSupport invoke -node * -type all -message MAINT=end`
+`system node autosupport invoke -node * -type all -message MAINT=END`
 
 
 

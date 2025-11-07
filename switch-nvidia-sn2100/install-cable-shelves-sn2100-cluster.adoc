@@ -2,22 +2,22 @@
 permalink: switch-nvidia-sn2100/install-cable-shelves-sn2100-cluster.html 
 sidebar: sidebar 
 keywords: sn2100 cabling setup, msn2100 sn2100 switches configuration, cumulus linux 
-summary: '如果您的系统需要将NS224驱动器架作为交换机连接存储(而不是直连存储)进行布线、请使用此处提供的信息。' 
+summary: 如果您的系统需要将 NS224 驱动器架作为交换机连接存储（而不是直接连接存储）进行布线，请使用此处提供的信息。 
 ---
-= 将NS224磁盘架作为交换机连接的存储进行布线
+= 将 NS224 机架连接成交换机连接的存储设备
 :allow-uri-read: 
 :icons: font
 :imagesdir: ../media/
 
 
 [role="lead"]
-如果您的系统需要将NS224驱动器架作为交换机连接存储(而不是直连存储)进行布线、请使用此处提供的信息。
+如果您的系统需要将 NS224 驱动器架作为交换机连接存储（而不是直接连接存储）进行布线，请使用此处提供的信息。
 
-* 使用缆线将 NS224 驱动器架连接到存储交换机：
+* NS224 电缆驱动货架通过存储交换机：
 +
-https://library.netapp.com/ecm/ecm_download_file/ECMLP2876580["为交换机连接的NS224驱动器架布线"^]
+https://library.netapp.com/ecm/ecm_download_file/ECMLP2876580["连接NS224驱动器机架的电缆交换机"^]
 
-* 确认您的平台型号支持的硬件，例如存储交换机和缆线：
+* 请确认您的平台型号支持的硬件，例如存储交换机和线缆：
 +
 https://hwu.netapp.com/["NetApp Hardware Universe"^]
 

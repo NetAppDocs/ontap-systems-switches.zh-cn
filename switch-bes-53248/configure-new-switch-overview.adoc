@@ -2,7 +2,7 @@
 permalink: switch-bes-53248/configure-new-switch-overview.html 
 sidebar: sidebar 
 keywords: BES-53248 switches, initial installation, configure new bes-53248 switch 
-summary: 在配置BES-53248集群交换机之前、请查看配置概述。 
+summary: 在配置 BES-53248 集群交换机之前，请查看配置概述。 
 ---
 = BES-53248 交换机的安装和设置工作流程
 :allow-uri-read: 
@@ -11,7 +11,7 @@ summary: 在配置BES-53248集群交换机之前、请查看配置概述。
 
 
 [role="lead"]
-BES-53248是一款裸机交换机、设计用于2到24个节点的ONTAP 集群。
+BES-53248 是一款裸金属交换机，设计用于 2 到 24 个节点的ONTAP集群。
 
 按照这些工作流程步骤安装和设置您的 BES-53248 交换机。
 
@@ -21,16 +21,16 @@ BES-53248是一款裸机交换机、设计用于2到24个节点的ONTAP 集群�
 
 .image:https://raw.githubusercontent.com/NetAppDocs/common/main/media/number-2.png["两个"]link:components-bes53248.html["查看组件和零件编号"]
 [role="quick-margin-para"]
-查看 BES-53248 集群交换机的组件和部件号。
+查看 BES-53248 集群交换机的组件和零件编号。
 
-.image:https://raw.githubusercontent.com/NetAppDocs/common/main/media/number-3.png["三个"]link:required-documentation-bes53248.html["审查所需文件"]
+.image:https://raw.githubusercontent.com/NetAppDocs/common/main/media/number-3.png["三"]link:required-documentation-bes53248.html["审查所需文件"]
 [role="quick-margin-para"]
 查看特定的交换机和控制器文档以设置您的 BES-53248 交换机和ONTAP集群。
 
-.image:https://raw.githubusercontent.com/NetAppDocs/common/main/media/number-4.png["四个"]link:install-hardware-workflow.html["Install the hardware"]
+.image:https://raw.githubusercontent.com/NetAppDocs/common/main/media/number-4.png["四个"]link:install-hardware-workflow.html["安装硬件"]
 [role="quick-margin-para"]
 安装交换机硬件。
 
-.image:https://raw.githubusercontent.com/NetAppDocs/common/main/media/number-5.png["五个"]link:configure-software-overview-bes53248.html["配置软件"]
+.image:https://raw.githubusercontent.com/NetAppDocs/common/main/media/number-5.png["五"]link:configure-software-overview-bes53248.html["配置软件"]
 [role="quick-margin-para"]
 配置交换机软件。

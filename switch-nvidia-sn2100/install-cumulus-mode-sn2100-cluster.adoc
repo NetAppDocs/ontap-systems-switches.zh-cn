@@ -2,32 +2,32 @@
 permalink: switch-nvidia-sn2100/install-cumulus-mode-sn2100-cluster.html 
 sidebar: sidebar 
 keywords: install cumulus mode, sn2100 SN2100 switches setup, cumulus linux, cumulus mode 
-summary: '可以在交换机运行Cumulus Linux或ONIE时安装Cumulus Linux (CL)操作系统。' 
+summary: '当交换机运行 Cumulus Linux 或 ONIE 时，可以安装 Cumulus Linux (CL) 操作系统。' 
 ---
-= 在Cumulus模式下安装Cumulus Linux
+= 以 Cumulus 模式安装 Cumulus Linux
 :allow-uri-read: 
 :icons: font
 :imagesdir: ../media/
 
 
 [role="lead"]
-当交换机在Cumulus模式下运行时、请按照此操作步骤 安装Cumulus Linux (CL)操作系统。
+当交换机运行在 Cumulus 模式下时，请按照以下步骤安装 Cumulus Linux (CL) 操作系统。
 
 
-NOTE: 可以在交换机运行Cumulus Linux或ONIE时安装Cumulus Linux (CL)操作系统(请参见 link:install-onie-mode-sn2100-cluster.html["在ONIE模式下安装"]）。
+NOTE: Cumulus Linux (CL) 操作系统可以在交换机运行 Cumulus Linux 或 ONIE 时安装（参见link:install-onie-mode-sn2100-cluster.html["以 ONIE 模式安装"]）。
 
 .开始之前
-确保您已具备以下条件：
+请确保您拥有以下物品：
 
-* 中级Linux知识。
-* 熟悉基本文本编辑、UNIX文件权限和进程监控。预安装了各种文本编辑器、包括 `vi` 和 `nano`。
-* 访问Linux或UNIX Shell。如果您运行的是Windows、请使用Linux环境作为命令行工具与Cumulus Linux进行交互。
-* 对于NVIDIA SN2100交换机控制台访问、串行控制台交换机上的波特率要求设置为115200、如下所示：
+* 具备中级Linux知识。
+* 熟悉基本的文本编辑、UNIX 文件权限和进程监控。预装了多种文本编辑器，包括 `vi`和 `nano`。
+* 能够访问 Linux 或 UNIX shell。如果您运行的是 Windows 系统，请使用 Linux 环境作为与 Cumulus Linux 交互的命令行工具。
+* 对于NVIDIA SN2100 交换机控制台访问，串行控制台交换机的波特率要求设置为 115200，具体如下：
 +
 ** 115200 波特
-** 8 个数据位
-** 1 个停止位
-** 奇偶校验：无
+** 8 位数据
+** 1 停止位
+** 奇偶性：无
 ** 流量控制：无
 
 
@@ -37,19 +37,19 @@ NOTE: 可以在交换机运行Cumulus Linux或ONIE时安装Cumulus Linux (CL)操
 请注意以下事项：
 
 
-NOTE: 每次安装Cumulus Linux时、都会擦除并重建整个文件系统结构。
+NOTE: 每次安装 Cumulus Linux 时，整个文件系统结构都会被擦除并重建。
 
 
-CAUTION: 累积用户帐户的默认密码为*累积用户*。首次登录到Cumulus Linux时、必须更改此默认密码。在安装新映像之前、请务必更新所有自动化脚本。Cumulus Linux提供了命令行选项、用于在安装过程中自动更改默认密码。
+CAUTION: Cumulus 用户帐户的默认密码是 *cumulus*。首次登录 Cumulus Linux 时，必须更改此默认密码。安装新镜像之前，请务必更新所有自动化脚本。  Cumulus Linux 提供命令行选项，可在安装过程中自动更改默认密码。
 
 .步骤
 [role="tabbed-block"]
 ====
 .Cumulus Linux 4.4.3
 --
-. 登录到交换机。
+. 登录到该交换机。
 +
-首次登录到交换机时、需要使用的用户名/密码为*累积us*/*累积us* `sudo` 特权。
+首次登录交换机需要用户名/密码为 *cumulus*/*cumulus*。 `sudo`特权。
 
 +
 [listing, subs="+quotes"]
@@ -62,7 +62,7 @@ Current password: *cumulus*
 New password: *<new_password>*
 Retype new password: *<new_password>*
 ----
-. 检查Cumulus Linux版本： `net show system`
+. 检查 Cumulus Linux 版本： `net show system`
 +
 [listing, subs="+quotes"]
 ----
@@ -84,14 +84,14 @@ ONIE Version..... 2019.11-5.2.0020-115200
 Base MAC Address. 04:3F:72:43:92:80
 Manufacturer..... Mellanox
 ----
-. 配置主机名、IP地址、子网掩码和默认网关。只有在重新启动控制台/SSH会话后、新主机名才会生效。
+. 配置主机名、IP地址、子网掩码和默认网关。新的主机名只有在重启控制台/SSH会话后才会生效。
 +
 
-NOTE: 一个Cumulus Linux交换机至少可提供一个名为`eth0`的专用以太网管理端口。此接口专用于带外管理。默认情况下、管理接口使用DHCPv4进行寻址。
+NOTE: Cumulus Linux 交换机至少提供一个专用的以太网管理端口，称为 `eth0`。此接口专门用于带外管理。默认情况下，管理接口使用 DHCPv4 进行地址分配。
 
 +
 
-CAUTION: 请勿在主机名中使用下划线(_)、撇号(')或非ASCII字符。
+CAUTION: 主机名中不要使用下划线（_）、撇号（'）或非 ASCII 字符。
 
 +
 [listing, subs="+quotes"]
@@ -103,9 +103,9 @@ cumulus@cumulus:mgmt:~$ *net pending*
 cumulus@cumulus:mgmt:~$ *net commit*
 ----
 +
-此命令会同时修改`/etc/hostname`和`/etc/hosts`文件。
+此命令会同时修改以下两项： `/etc/hostname`和 `/etc/hosts`文件。
 
-. 确认主机名、IP地址、子网掩码和默认网关已更新。
+. 请确认主机名、IP 地址、子网掩码和默认网关已更新。
 +
 [listing, subs="+quotes"]
 ----
@@ -126,27 +126,27 @@ unreachable default metric 4278198272
 10.233.204.0/23 dev eth0 proto kernel scope link src 10.233.204.71
 127.0.0.0/8 dev mgmt proto kernel scope link src 127.0.0.1
 ----
-. 设置交换机上的日期、时间、时区和NTP服务器。
+. 在交换机上设置日期、时间、时区和 NTP 服务器。
 +
-.. 验证当前时区：
+.. 请确认当前时区：
 +
 [listing, subs="+quotes"]
 ----
 cumulus@sw1:~$ *cat /etc/timezone*
 ----
-.. 更新到新时区：
+.. 更新至新的时区：
 +
 [listing, subs="+quotes"]
 ----
 cumulus@sw1:~$ *sudo dpkg-reconfigure --frontend noninteractive tzdata*
 ----
-.. 验证当前时区：
+.. 请确认您当前的时区：
 +
 [listing, subs="+quotes"]
 ----
 cumulus@switch:~$ *date +%Z*
 ----
-.. 要使用引导式向导设置时区、请运行以下命令：
+.. 要使用引导式向导设置时区，请运行以下命令：
 +
 [listing, subs="+quotes"]
 ----
@@ -158,13 +158,13 @@ cumulus@sw1:~$ *sudo dpkg-reconfigure tzdata*
 ----
 cumulus@switch:~$ *sudo date -s "Tue Oct 28 00:37:13 2023"*
 ----
-.. 将软件时钟的当前值设置为硬件时钟：
+.. 将软件时钟的当前值设置为硬件时钟的值：
 +
 [listing, subs="+quotes"]
 ----
 cumulus@switch:~$ *sudo hwclock -w*
 ----
-.. 根据需要添加NTP服务器：
+.. 如有需要，请添加 NTP 服务器：
 +
 [listing, subs="+quotes"]
 ----
@@ -172,14 +172,14 @@ cumulus@sw1:~$ *net add time ntp server _<cumulus.network.ntp.org>_ iburst*
 cumulus@sw1:~$ *net pending*
 cumulus@sw1:~$ *net commit*
 ----
-.. 验证系统是否 `ntpd`正在运行：
+.. 确认 `ntpd`正在系统上运行：
 +
 [listing, subs="+quotes"]
 ----
 cumulus@sw1:~$ *ps -ef | grep ntp*
 ntp       4074     1  0 Jun20 ?        00:00:33 /usr/sbin/ntpd -p /var/run/ntpd.pid -g -u 101:102
 ----
-.. 指定NTP源接口。默认情况下，NTP使用的源接口为 `eth0`。您可以按如下所示配置其他NTP源接口：
+.. 指定NTP源接口。默认情况下，NTP 使用的源接口是 `eth0`。您可以按如下方式配置不同的 NTP 源接口：
 +
 [listing, subs="+quotes"]
 ----
@@ -189,31 +189,31 @@ cumulus@sw1:~$ *net commit*
 ----
 
 
-. 安装Cumulus Linux 4.5.3：
+. 安装 Cumulus Linux 4.4.3：
 +
 [listing, subs="+quotes"]
 ----
 cumulus@sw1:mgmt:~$ *sudo onie-install -a -i http://_<web-server>/<path>_/cumulus-linux-4.4.3-mlx-amd64.bin*
 ----
 +
-安装程序将开始下载。出现提示时、键入*。
+安装程序开始下载。出现提示时，请输入 *y*。
 
-. 重新启动NVIDIA SN2100交换机：
+. 重启NVIDIA SN2100交换机：
 +
 [listing, subs="+quotes"]
 ----
 cumulus@sw1:mgmt:~$ *sudo reboot*
 ----
-. 安装将自动启动、并显示以下Grub屏幕选项。请勿*选择*。
+. 安装会自动开始，并出现以下 GRUB 屏幕选项。请勿进行任何选择。
 +
 ** Cumulus-Linux GNU/Linux
 ** ONIE：安装操作系统
-** Cumulus-install
+** 积云安装
 ** Cumulus-Linux GNU/Linux
 
 
-. 重复步骤1至4以登录。
-. 验证Cumulus Linux版本是否为4.5.3： `net show version`
+. 重复步骤 1 至 4 登录。
+. 请确认 Cumulus Linux 版本为 4.4.3： `net show version`
 +
 [listing, subs="+quotes"]
 ----
@@ -223,7 +223,7 @@ DISTRIB_ID="Cumulus Linux"
 DISTRIB_RELEASE=*4.4.3*
 DISTRIB_DESCRIPTION=*"Cumulus Linux 4.4.3"*
 ----
-. 创建新用户并将此用户添加到 `sudo` 组。只有在重新启动控制台/SSH会话后、此用户才会生效。
+. 创建一个新用户并将该用户添加到 `sudo`团体。该用户仅在控制台/SSH会话重启后生效。
 +
 `sudo adduser --ingroup netedit admin`
 
@@ -273,9 +273,9 @@ admin@sw1:mgmt:~$
 --
 .Cumulus Linux 5.4.0
 --
-. 登录到交换机。
+. 登录到该交换机。
 +
-首次登录到交换机时、需要使用的用户名/密码为*累积us*/*累积us* `sudo` 特权。
+首次登录交换机需要用户名/密码为 *cumulus*/*cumulus*。 `sudo`特权。
 
 +
 [listing, subs="+quotes"]
@@ -288,7 +288,7 @@ Current password: *cumulus*
 New password: *<new_password>*
 Retype new password: *<new_password>*
 ----
-. 检查Cumulus Linux版本： `nv show system`
+. 检查 Cumulus Linux 版本： `nv show system`
 +
 [listing, subs="+quotes"]
 ----
@@ -300,14 +300,14 @@ build               Cumulus Linux 5.3.0  system build version
 uptime              6 days, 8:37:36      system uptime
 timezone            Etc/UTC              system time zone
 ----
-. 配置主机名、IP地址、子网掩码和默认网关。只有在重新启动控制台/SSH会话后、新主机名才会生效。
+. 配置主机名、IP地址、子网掩码和默认网关。新的主机名只有在重启控制台/SSH会话后才会生效。
 +
 
-NOTE: 一个Cumulus Linux交换机至少可提供一个名为`eth0`的专用以太网管理端口。此接口专用于带外管理。默认情况下、管理接口使用DHCPv4进行寻址。
+NOTE: Cumulus Linux 交换机至少提供一个专用的以太网管理端口，称为 `eth0`。此接口专门用于带外管理。默认情况下，管理接口使用 DHCPv4 进行地址分配。
 
 +
 
-CAUTION: 请勿在主机名中使用下划线(_)、撇号(')或非ASCII字符。
+CAUTION: 主机名中不要使用下划线（_）、撇号（'）或非 ASCII 字符。
 
 +
 [listing, subs="+quotes"]
@@ -319,9 +319,9 @@ cumulus@cumulus:mgmt:~$ *nv config apply*
 cumulus@cumulus:mgmt:~$ *nv config save*
 ----
 +
-此命令会同时修改`/etc/hostname`和`/etc/hosts`文件。
+此命令会同时修改以下两项： `/etc/hostname`和 `/etc/hosts`文件。
 
-. 确认主机名、IP地址、子网掩码和默认网关已更新。
+. 请确认主机名、IP 地址、子网掩码和默认网关已更新。
 +
 [listing, subs="+quotes"]
 ----
@@ -342,7 +342,7 @@ unreachable default metric 4278198272
 10.233.204.0/23 dev eth0 proto kernel scope link src 10.233.204.71
 127.0.0.0/8 dev mgmt proto kernel scope link src 127.0.0.1
 ----
-. 设置交换机上的时区、日期、时间和NTP服务器。
+. 在交换机上设置时区、日期、时间和 NTP 服务器。
 +
 .. 设置时区：
 +
@@ -351,13 +351,13 @@ unreachable default metric 4278198272
 cumulus@sw1:~$ *nv set system timezone US/Eastern*
 cumulus@sw1:~$ *nv config apply*
 ----
-.. 验证当前时区：
+.. 请确认您当前的时区：
 +
 [listing, subs="+quotes"]
 ----
 cumulus@switch:~$ *date +%Z*
 ----
-.. 要使用引导式向导设置时区、请运行以下命令：
+.. 要使用引导式向导设置时区，请运行以下命令：
 +
 [listing, subs="+quotes"]
 ----
@@ -369,13 +369,13 @@ cumulus@sw1:~$ *sudo dpkg-reconfigure tzdata*
 ----
 cumulus@sw1:~$ *sudo date -s "Tue Oct 28 00:37:13 2023"*
 ----
-.. 将软件时钟的当前值设置为硬件时钟：
+.. 将软件时钟的当前值设置为硬件时钟的值：
 +
 [listing, subs="+quotes"]
 ----
 cumulus@sw1:~$ *sudo hwclock -w*
 ----
-.. 根据需要添加NTP服务器：
+.. 如有需要，请添加 NTP 服务器：
 +
 [listing, subs="+quotes"]
 ----
@@ -385,16 +385,16 @@ cumulus@sw1:~$ *nv config apply*
 cumulus@sw1:~$ *nv config save*
 ----
 +
-请参阅知识库文章link:https://kb.netapp.com/on-prem/Switches/Nvidia-KBs/NTP_Server_configuration_is_not_working_with_NVIDIA_SN2100_Switches["NTP 服务器配置不适用于 NVIDIA SN2100 交换机"^]了解更多详情。
+请参阅知识库文章link:https://kb.netapp.com/on-prem/Switches/Nvidia-KBs/NTP_Server_configuration_is_not_working_with_NVIDIA_SN2100_Switches["NTP 服务器配置与NVIDIA SN2100 交换机不兼容。"^]更多详情请见下文。
 
-.. 验证系统是否 `ntpd`正在运行：
+.. 确认 `ntpd`正在系统上运行：
 +
 [listing, subs="+quotes"]
 ----
 cumulus@sw1:~$ *ps -ef | grep ntp*
 ntp       4074     1  0 Jun20 ?        00:00:33 /usr/sbin/ntpd -p /var/run/ntpd.pid -g -u 101:102
 ----
-.. 指定NTP源接口。默认情况下，NTP使用的源接口为 `eth0`。您可以按如下所示配置其他NTP源接口：
+.. 指定NTP源接口。默认情况下，NTP 使用的源接口是 `eth0`。您可以按如下方式配置不同的 NTP 源接口：
 +
 [listing, subs="+quotes"]
 ----
@@ -403,31 +403,31 @@ cumulus@sw1:~$ *nv config apply*
 ----
 
 
-. 安装CUMULUS Linux 5.4.0：
+. 安装 Cumulus Linux 5.4.0：
 +
 [listing, subs="+quotes"]
 ----
 cumulus@sw1:mgmt:~$ *sudo onie-install -a -i http://_<web-server>/<path>_/cumulus-linux-5.4-mlx-amd64.bin*
 ----
 +
-安装程序将开始下载。出现提示时、键入*。
+安装程序开始下载。出现提示时，请输入 *y*。
 
-. 重新启动NVIDIA SN2100交换机：
+. 重启NVIDIA SN2100交换机：
 +
 [listing, subs="+quotes"]
 ----
 cumulus@sw1:mgmt:~$ *sudo reboot*
 ----
-. 安装将自动启动、并显示以下Grub屏幕选项。请勿*选择*。
+. 安装会自动开始，并出现以下 GRUB 屏幕选项。请勿进行任何选择。
 +
 ** Cumulus-Linux GNU/Linux
 ** ONIE：安装操作系统
-** Cumulus-install
+** 积云安装
 ** Cumulus-Linux GNU/Linux
 
 
-. 重复步骤1至4以登录。
-. 验证积云Linux版本是否为5.4.0： `nv show system`
+. 重复步骤 1 至 4 登录。
+. 请确认 Cumulus Linux 版本为 5.4.0： `nv show system`
 +
 [listing, subs="+quotes"]
 ----
@@ -439,7 +439,7 @@ build               Cumulus Linux 5.4.0  system build version
 uptime              6 days, 13:37:36     system uptime
 timezone            Etc/UTC              system time zone
 ----
-. 验证每个节点是否都与每个交换机建立了连接：
+. 确认每个节点都与每个交换机有连接：
 +
 [listing, subs="+quotes"]
 ----
@@ -452,7 +452,7 @@ swp2s1     25G    Trunk/L2    node1                               e0a
 swp15      100G   BondMember  sw2                                 swp15
 swp16      100G   BondMember  sw2                                 swp16
 ----
-. 创建新用户并将此用户添加到 `sudo` 组。只有在重新启动控制台/SSH会话后、此用户才会生效。
+. 创建一个新用户并将该用户添加到 `sudo`团体。该用户仅在控制台/SSH会话重启后生效。
 +
 `sudo adduser --ingroup netedit admin`
 
@@ -497,7 +497,7 @@ http://www.cumulusnetworks.com/support
 The registered trademark Linux (R) is used pursuant to a sublicense from LMI, the exclusive licensee of Linus Torvalds, owner of the mark on a world-wide basis.
 admin@sw1:mgmt:~$
 ----
-. 添加供管理员用户访问的其他用户组 `nv` 命令：
+. 添加其他用户组以供管理员用户访问 `nv`命令：
 +
 [listing, subs="+quotes"]
 ----
@@ -508,16 +508,16 @@ cumulus@sw1:mgmt:~$ *sudo adduser admin nvshow*
      Done.
 ----
 +
-请参见 https://docs.nvidia.com/networking-ethernet-software/cumulus-linux-54/System-Configuration/Authentication-Authorization-and-Accounting/User-Accounts/["NVIDIA用户帐户"^] 有关详细信息 ...
+看 https://docs.nvidia.com/networking-ethernet-software/cumulus-linux-54/System-Configuration/Authentication-Authorization-and-Accounting/User-Accounts/["NVIDIA用户帐户"^]了解更多信息。
 
 
 
 --
 .Cumulus Linux 5.11.0
 --
-. 登录到交换机。
+. 登录到该交换机。
 +
-首次登录到交换机时，需要Privileges提供*cumulus*/*cumulus*的用户名/密码 `sudo`。
+首次登录交换机时，需要输入用户名/密码 *cumulus*/*cumulus*。 `sudo`特权。
 
 +
 [listing, subs="+quotes"]
@@ -530,7 +530,7 @@ Current password: *cumulus*
 New password: *<new_password>*
 Retype new password: *<new_password>*
 ----
-. 检查Cumulus Linux版本： `nv show system`
+. 检查 Cumulus Linux 版本： `nv show system`
 +
 [listing, subs="+quotes"]
 ----
@@ -542,14 +542,14 @@ build               Cumulus Linux 5.4.0  system build version
 uptime              6 days, 8:37:36      system uptime
 timezone            Etc/UTC              system time zone
 ----
-. 配置主机名、IP地址、子网掩码和默认网关。只有在重新启动控制台/SSH会话后、新主机名才会生效。
+. 配置主机名、IP地址、子网掩码和默认网关。新的主机名只有在重启控制台/SSH会话后才会生效。
 +
 
-NOTE: 一个Cumulus Linux交换机至少可提供一个名为`eth0`的专用以太网管理端口。此接口专用于带外管理。默认情况下、管理接口使用DHCPv4进行寻址。
+NOTE: Cumulus Linux 交换机至少提供一个专用的以太网管理端口，称为 `eth0`。此接口专门用于带外管理。默认情况下，管理接口使用 DHCPv4 进行地址分配。
 
 +
 
-CAUTION: 请勿在主机名中使用下划线(_)、撇号(')或非ASCII字符。
+CAUTION: 主机名中不要使用下划线（_）、撇号（'）或非 ASCII 字符。
 
 +
 [listing, subs="+quotes"]
@@ -561,9 +561,9 @@ cumulus@cumulus:mgmt:~$ *nv config apply*
 cumulus@cumulus:mgmt:~$ *nv config save*
 ----
 +
-此命令会同时修改`/etc/hostname`和`/etc/hosts`文件。
+此命令会同时修改以下两项： `/etc/hostname`和 `/etc/hosts`文件。
 
-. 确认主机名、IP地址、子网掩码和默认网关已更新。
+. 请确认主机名、IP 地址、子网掩码和默认网关已更新。
 +
 [listing, subs="+quotes"]
 ----
@@ -584,7 +584,7 @@ unreachable default metric 4278198272
 10.233.204.0/23 dev eth0 proto kernel scope link src 10.233.204.71
 127.0.0.0/8 dev mgmt proto kernel scope link src 127.0.0.1
 ----
-. 设置交换机上的时区、日期、时间和NTP服务器。
+. 在交换机上设置时区、日期、时间和 NTP 服务器。
 +
 .. 设置时区：
 +
@@ -593,13 +593,13 @@ unreachable default metric 4278198272
 cumulus@sw1:~$ *nv set system timezone US/Eastern*
 cumulus@sw1:~$ *nv config apply*
 ----
-.. 验证当前时区：
+.. 请确认您当前的时区：
 +
 [listing, subs="+quotes"]
 ----
 cumulus@switch:~$ *date +%Z*
 ----
-.. 要使用引导式向导设置时区、请运行以下命令：
+.. 要使用引导式向导设置时区，请运行以下命令：
 +
 [listing, subs="+quotes"]
 ----
@@ -611,13 +611,13 @@ cumulus@sw1:~$ *sudo dpkg-reconfigure tzdata*
 ----
 cumulus@sw1:~$ *sudo date -s "Tue Oct 28 00:37:13 2023"*
 ----
-.. 将软件时钟的当前值设置为硬件时钟：
+.. 将软件时钟的当前值设置为硬件时钟的值：
 +
 [listing, subs="+quotes"]
 ----
 cumulus@sw1:~$ *sudo hwclock -w*
 ----
-.. 根据需要添加NTP服务器：
+.. 如有需要，请添加 NTP 服务器：
 +
 [listing, subs="+quotes"]
 ----
@@ -627,16 +627,16 @@ cumulus@sw1:~$ *nv config apply*
 cumulus@sw1:~$ *nv config save*
 ----
 +
-请参阅知识库文章link:https://kb.netapp.com/on-prem/Switches/Nvidia-KBs/NTP_Server_configuration_is_not_working_with_NVIDIA_SN2100_Switches["NTP 服务器配置不适用于 NVIDIA SN2100 交换机"^]了解更多详情。
+请参阅知识库文章link:https://kb.netapp.com/on-prem/Switches/Nvidia-KBs/NTP_Server_configuration_is_not_working_with_NVIDIA_SN2100_Switches["NTP 服务器配置与NVIDIA SN2100 交换机不兼容。"^]更多详情请见下文。
 
-.. 验证系统是否 `ntpd`正在运行：
+.. 确认 `ntpd`正在系统上运行：
 +
 [listing, subs="+quotes"]
 ----
 cumulus@sw1:~$ *ps -ef | grep ntp*
 ntp       4074     1  0 Jun20 ?        00:00:33 /usr/sbin/ntpd -p /var/run/ntpd.pid -g -u 101:102
 ----
-.. 指定NTP源接口。默认情况下，NTP使用的源接口为 `eth0`。您可以按如下所示配置其他NTP源接口：
+.. 指定NTP源接口。默认情况下，NTP 使用的源接口是 `eth0`。您可以按如下方式配置不同的 NTP 源接口：
 +
 [listing, subs="+quotes"]
 ----
@@ -645,31 +645,31 @@ cumulus@sw1:~$ *nv config apply*
 ----
 
 
-. 安装CUMULUS Linux 5.11.0：
+. 安装 Cumulus Linux 5.11.0：
 +
 [listing, subs="+quotes"]
 ----
 cumulus@sw1:mgmt:~$ *sudo onie-install -a -i http://_<web-server>/<path>_/cumulus-linux-5.11.0-mlx-amd64.bin*
 ----
 +
-安装程序将开始下载。出现提示时、键入*。
+安装程序开始下载。出现提示时，请输入 *y*。
 
-. 重新启动NVIDIA SN2100交换机：
+. 重启NVIDIA SN2100交换机：
 +
 [listing, subs="+quotes"]
 ----
 cumulus@sw1:mgmt:~$ *sudo reboot*
 ----
-. 安装将自动启动、并显示以下Grub屏幕选项。请勿*选择*。
+. 安装会自动开始，并出现以下 GRUB 屏幕选项。请勿进行任何选择。
 +
 ** Cumulus-Linux GNU/Linux
 ** ONIE：安装操作系统
-** Cumulus-install
+** 积云安装
 ** Cumulus-Linux GNU/Linux
 
 
-. 重复步骤1至4以登录。
-. 验证积云Linux版本是否为5.11.0：
+. 重复步骤 1 至 4 登录。
+. 请确认 Cumulus Linux 版本为 5.11.0：
 +
 `nv show system`
 
@@ -700,7 +700,7 @@ version
   image             5.11.0
   onie              2019.11-5.2.0020-115200
 ----
-. 验证每个节点是否都与每个交换机建立了连接：
+. 确认每个节点都与每个交换机有连接：
 +
 [listing, subs="+quotes"]
 ----
@@ -718,7 +718,7 @@ swp16      100G   swp   sw6                                       swp16
 ----
 
 
-有关详细信息、请参见 https://docs.nvidia.com/networking-ethernet-software/cumulus-linux-511/System-Configuration/Authentication-Authorization-and-Accounting/User-Accounts/["NVIDIA用户帐户"^] 。
+看 https://docs.nvidia.com/networking-ethernet-software/cumulus-linux-511/System-Configuration/Authentication-Authorization-and-Accounting/User-Accounts/["NVIDIA用户帐户"^]了解更多信息。
 
 --
 ====

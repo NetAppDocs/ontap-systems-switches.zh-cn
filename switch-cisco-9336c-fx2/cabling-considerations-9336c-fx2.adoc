@@ -2,9 +2,9 @@
 permalink: switch-cisco-9336c-fx2/cabling-considerations-9336c-fx2.html 
 sidebar: sidebar 
 keywords: 9336c-fx2 cabling setup, 9336c-fx2 switches configuration, nx-os 
-summary: 在配置Cisco 9334c-查 对交换机之前、请查看以下信息。 
+summary: 在配置Cisco 9336C-FX2 交换机之前，请查看以下信息。 
 ---
-= 查看布线和配置注意事项
+= 审查布线和配置注意事项
 :allow-uri-read: 
 :icons: font
 :imagesdir: ../media/
@@ -15,9 +15,9 @@ summary: 在配置Cisco 9334c-查 对交换机之前、请查看以下信息。
 
 
 
-== 支持NVIDIA CX6、CX6-DX和CX7以太网端口
+== 支持NVIDIA CX6、CX6-DX 和 CX7 以太网端口
 
-如果使用NVIDIA ConnectX-6 (CX6)、ConnectX-6 Dx (CX6-DX)或ConnectX-7 (CX7) NIC端口将交换机端口连接到ONTAP控制器、则必须对交换机端口速度进行硬编码。
+如果使用NVIDIA ConnectX-6 (CX6)、ConnectX-6 Dx (CX6-DX) 或 ConnectX-7 (CX7) NIC 端口将交换机端口连接到ONTAP控制器，则必须硬编码交换机端口速度。
 
 [listing, subs="+quotes"]
 ----
@@ -32,17 +32,17 @@ summary: 在配置Cisco 9334c-查 对交换机之前、请查看以下信息。
 *Save the changes:*
 (cs1)# *copy running-config startup-config*
 ----
-请参见 https://hwu.netapp.com/Switch/Index["Hardware Universe"^] 有关交换机端口的详细信息。
+参见 https://hwu.netapp.com/Switch/Index["Hardware Universe"^]有关交换机端口的更多信息。
 
 
 
-== 25GbE FEC要求
+== 25GbE FEC 要求
 
 
 
-=== FAS2820 e0a/e0b端口
+=== FAS2820 e0a/e0b 端口
 
-FAS2820 e0a 和 e0b 端口需要更改 FEC 配置才能与 9336C-FX2 和 9336C-FX2-T 交换机端口连接。对于交换机端口 e0a 和 e0b，fec 设置设为 `rs-cons16`。
+FAS2820 e0a 和 e0b 端口需要更改 FEC 配置才能与 9336C-FX2 和 9336C-FX2-T 交换机端口连接。对于交换机端口 e0a 和 e0b，FEC 设置设为： `rs-cons16` 。
 
 [listing, subs="+quotes"]
 ----
@@ -55,8 +55,8 @@ FAS2820 e0a 和 e0b 端口需要更改 FEC 配置才能与 9336C-FX2 和 9336C-F
 ----
 
 
-== 由于TCAM资源问题、端口未链接
+== 由于 TCAM 资源的原因，端口无法连接。
 
 在 9336C-FX2 和 9336C-FX2-T 交换机上，交换机使用的配置中配置的三态内容寻址存储器 (TCAM) 资源已耗尽。
 
-请参见知识库文章 https://kb.netapp.com/on-prem/Switches/Cisco-KBs/Ports_do_not_link_up_on_Cisco_Nexus_9336C-FX2_due_to_TCAM_resources["由于TCAM资源的原因、Cisco Nexus 9334C-算 上的端口未链接"^] 有关如何解决此问题描述的详细信息。
+请参阅知识库文章 https://kb.netapp.com/on-prem/Switches/Cisco-KBs/Ports_do_not_link_up_on_Cisco_Nexus_9336C-FX2_due_to_TCAM_resources["由于 TCAM 资源问题， Cisco Nexus 9336C-FX2 上的端口无法连接。"^]有关如何解决此问题的详细信息，请参阅相关说明。

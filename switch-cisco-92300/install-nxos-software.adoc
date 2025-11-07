@@ -2,7 +2,7 @@
 permalink: switch-cisco-92300/install-nxos-software.html 
 sidebar: sidebar 
 keywords: install nx-os,nx-os configure 
-summary: 您可以使用此操作步骤在 Nexus 92300YC 交换机上安装 NX-OS 软件。 
+summary: 您可以按照以下步骤在 Nexus 92300YC 交换机上安装 NX-OS 软件。 
 ---
 = 安装 NX-OS 软件
 :allow-uri-read: 
@@ -11,55 +11,55 @@ summary: 您可以使用此操作步骤在 Nexus 92300YC 交换机上安装 NX-O
 
 
 [role="lead"]
-按照此操作步骤 在Nexus 92300YC交换机上安装NX-OS软件。
+按照以下步骤在 Nexus 92300YC 交换机上安装 NX-OS 软件。
 
-NX-OS 是 Cisco Systems 提供的 Nexus 系列以太网交换机和 MDS 系列光纤通道（ FC ）存储区域网络交换机的网络操作系统。
+NX-OS 是Cisco系统公司提供的 Nexus 系列以太网交换机和 MDS 系列光纤通道 (FC) 存储区域网络交换机的网络操作系统。
 
 
 
-== 查看要求
+== 审查要求
 
 .支持的端口和节点连接
-* Nexus 92300YC 交换机支持的交换机间链路（ ISL ）为端口 1/65 和 1/66 。
-* Nexus 92300YC 交换机支持的节点连接为端口 1/1 到 1/66 。
+* Nexus 92300YC 交换机支持的交换机间链路 (ISL) 为端口 1/65 和 1/66。
+* Nexus 92300YC 交换机支持的节点连接为端口 1/1 至 1/66。
 
 
 .开始之前
-确保您已具备以下条件：
+请确保您拥有以下物品：
 
-* 适用于NetApp 支持站点 中交换机的NetApp Cisco NX-OS软件、可从获取 http://mysupport.netapp.com/["mysupport.netapp.com"]
-* 一个完全正常运行的集群(日志中没有错误或类似问题)。
-* link:https://mysupport.netapp.com/site/info/cisco-ethernet-switch["Cisco 以太网交换机页面"^]。有关支持的ONTAP 和NX-OS版本、请参见交换机兼容性表。
+* 您可以从NetApp支持网站获取适用于您交换机的NetApp Cisco NX-OS 软件。 http://mysupport.netapp.com/["mysupport.netapp.com"]
+* 一个功能齐全的集群（日志中没有错误或类似问题）。
+* link:https://mysupport.netapp.com/site/info/cisco-ethernet-switch["Cisco以太网交换机页面"^]。请查阅交换机兼容性表格，了解支持的ONTAP和 NX-OS 版本。
 
 
 
 
 == 安装软件
 
-此操作步骤中的示例使用两个节点，但一个集群中最多可以有 24 个节点。
+本流程中的示例使用了两个节点，但集群中最多可以有 24 个节点。
 
 .关于示例
-此操作步骤中的示例使用以下交换机和节点命名：
+本流程中的示例使用以下开关和节点命名规则：
 
-* Nexus 92300YC 交换机名称为 `CS1` 和 `CS2` 。
-* 此操作步骤中使用的示例将在第二个交换机 _* CS2* 上启动升级。 _
-* 集群 LIF 名称是 node1 的 `node1_clus1` 和 `node1_clus2` ， node2 的 `node2_clus1` 和 `node2_clus2` 。
-* IP 空间名称是 `Cluster` 。
-* `cluster1 ：：： * >` 提示符指示集群的名称。
-* 每个节点上的集群端口分别命名为 `e0a` 和 `e0b` 。
+* Nexus 92300YC 交换机的名称是 `cs1`和 `cs2`。
+* 本过程中使用的示例从第二个交换机 _*cs2* 开始升级。
+* 集群 LIF 名称为 `node1_clus1`和 `node1_clus2`对于节点1，以及 `node2_clus1`和 `node2_clus2`对于节点2。
+* IP空间名称是 `Cluster`。
+* 这 `cluster1::*>`prompt 指示集群名称。
+* 每个节点上的集群端口都命名为 `e0a`和 `e0b`。
 +
-请参见 link:https://hwu.netapp.com/Home/Index["Hardware Universe^ _"] 您的平台支持的实际集群端口。
+参见link:https://hwu.netapp.com/Home/Index["硬件宇宙"]针对您的平台实际支持的集群端口。
 
 
 
 .步骤
 . 将集群交换机连接到管理网络。
-. 使用 `ping` 命令验证与托管 NX-OS 软件和 RCF 的服务器的连接。
+. 使用 `ping`用于验证与托管 NX-OS 软件和 RCF 的服务器的连接性的命令。
 +
 .显示示例
 [%collapsible]
 ====
-此示例验证交换机是否可以通过 IP 地址 172.19.2.1 访问服务器：
+此示例验证交换机可以访问 IP 地址为 172.19.2.1 的服务器：
 
 [listing, subs="+quotes"]
 ----
@@ -110,9 +110,9 @@ Copy complete, now saving to disk (please wait)...
 Copy complete.
 ----
 ====
-. 验证正在运行的 NX-OS 软件版本：
+. 请确认NX-OS软件的运行版本：
 +
-`s如何使用版本`
+`show version`
 
 +
 .显示示例
@@ -171,9 +171,9 @@ Active Package(s):
 cs2#
 ----
 ====
-. 安装 NX-OS 映像。
+. 安装 NX-OS 镜像。
 +
-安装映像文件会导致每次重新启动交换机时加载该映像文件。
+安装镜像文件后，每次交换机重启时都会加载该文件。
 
 +
 .显示示例
@@ -244,9 +244,9 @@ Warning: please do not remove or power off the module at this time.
 Finishing the upgrade, switch will reboot in 10 seconds.
 ----
 ====
-. 在交换机重新启动后验证 NX-OS 软件的新版本：
+. 交换机重启后，请验证NX-OS软件的新版本：
 +
-`s如何使用版本`
+`show version`
 
 +
 .显示示例
@@ -304,7 +304,7 @@ plugin
 Active Package(s):
 ----
 ====
-. 升级 EPLD 映像并重新启动交换机。
+. 升级EPLD镜像并重启交换机。
 +
 .显示示例
 [%collapsible]
@@ -356,7 +356,7 @@ EPLDs upgraded.
 Module 1 EPLD upgrade is successful.
 ----
 ====
-. 交换机重新启动后，重新登录并验证是否已成功加载新版本的 EPLD 。
+. 交换机重启后，再次登录并验证新版本的 EPLD 是否已成功加载。
 +
 .显示示例
 [%collapsible]

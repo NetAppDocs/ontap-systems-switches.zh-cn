@@ -2,66 +2,66 @@
 permalink: switch-cisco-92300/install-nxos-overview.html 
 sidebar: sidebar 
 keywords: install nx-os rcf cisco nx 92300yc cluster switch 
-summary: Cisco Nexus 92300YC 集群交换机上必须安装 Cisco NX-OS 软件和参考配置文件 \ （ RCF\ ）。 
+summary: '必须在Cisco Nexus 92300YC 集群交换机上安装Cisco NX-OS 软件和参考配置文件 \(RCFs\)。' 
 ---
-= 准备安装NX-OS软件和参考配置文件(Reference Configuration File、RCF)
+= 准备安装 NX-OS 软件和参考配置文件 (RCF)
 :allow-uri-read: 
 :icons: font
 :imagesdir: ../media/
 
 
 [role="lead"]
-在安装NX-OS软件和参考配置文件(Reference Configuration File、RCF)之前、请遵循此操作步骤。
+在安装 NX-OS 软件和参考配置文件 (RCF) 之前，请按照以下步骤操作。
 
 .开始之前
-确保您已具备以下条件：
+请确保您拥有以下物品：
 
-* 一个完全正常运行的集群(日志中没有错误或类似问题)。
-* 可从获取相应的软件和升级指南 https://www.cisco.com/c/en/us/support/switches/nexus-9000-series-switches/series.html#InstallandUpgrade["Cisco Nexus 9000 系列交换机"^]。
+* 一个功能齐全的集群（日志中没有错误或类似问题）。
+* 相应的软件和升级指南可从以下渠道获取： https://www.cisco.com/c/en/us/support/switches/nexus-9000-series-switches/series.html#InstallandUpgrade["CiscoNexus 9000 系列交换机"^] 。
 
 
 .关于示例
-此操作步骤中的示例使用两个节点。这些节点使用两个10GbE集群互连端口 `e0a` 和 `e0b`。请参见 https://hwu.netapp.com/SWITCH/INDEX["Hardware Universe"^] 验证平台上的集群端口是否正确。
+本流程中的示例使用了两个节点。这些节点使用两个 10GbE 集群互连端口 `e0a`和 `e0b`。参见 https://hwu.netapp.com/SWITCH/INDEX["Hardware Universe"^]验证平台上的集群端口是否正确。
 
-此操作步骤中的示例使用以下交换机和节点命名：
+本流程中的示例使用以下开关和节点命名规则：
 
-* 这两台 Cisco 交换机的名称分别为 `CS1` 和 `CS2` 。
-* 节点名称为 `node1` 和 `node2` 。
-* 集群 LIF 名称是 node1 的 `node1_clus1` 和 `node1_clus2` ， node2 的 `node2_clus1` 和 `node2_clus2` 。
-* `cluster1 ：：： * >` 提示符指示集群的名称。
+* 这两台Cisco交换机的名称是： `cs1`和 `cs2`。
+* 节点名称是 `node1`和 `node2`。
+* 集群 LIF 名称为 `node1_clus1`和 `node1_clus2`对于节点1和 `node2_clus1`和 `node2_clus2`对于节点2。
+* 这 `cluster1::*>`prompt 指示集群名称。
 
 
 .关于此任务
-操作步骤要求同时使用 ONTAP 命令和 Cisco Nexus 9000 系列交换机命令；除非另有说明，否则使用 ONTAP 命令。根据不同版本的 ONTAP ，命令输出可能会有所不同。
+该过程需要同时使用ONTAP命令和Cisco Nexus 9000 系列交换机命令；除非另有说明，否则使用ONTAP命令。命令输出可能因ONTAP版本不同而有所差异。
 
 .步骤
-. 将权限级别更改为高级，在系统提示您继续时输入 * y * ：
+. 将权限级别更改为高级，并在提示继续时输入 *y*：
 +
 `set -privilege advanced`
 
 +
-此时将显示高级提示符（` * >` ）。
+高级提示(`*>`出现。
 
-. 如果在此集群上启用了 AutoSupport ，则通过调用 AutoSupport 消息禁止自动创建案例：
+. 如果此集群上启用了AutoSupport ，则通过调用AutoSupport消息来抑制自动创建案例：
 +
-`ssystem node AutoSupport invoke -node * -type all -message MAINT=xh`
-
-+
-其中 _x_ 是维护时段的持续时间，以小时为单位。
+`system node autosupport invoke -node * -type all -message MAINT=xh`
 
 +
-
-NOTE: AutoSupport 消息会通知技术支持此维护任务，以便在维护窗口期间禁止自动创建案例。
+其中 _x_ 为维护窗口的持续时间（小时）。
 
 +
-以下命令将禁止自动创建案例 2 小时：
+
+NOTE: AutoSupport消息会通知技术支持此维护任务，以便在维护窗口期间抑制自动创建案例。
+
++
+以下命令可抑制自动创建案件两小时：
 
 +
 [listing]
 ----
 cluster1:> **system node autosupport invoke -node * -type all -message MAINT=2h**
 ----
-. 显示在每个集群互连交换机的每个节点上配置了多少个集群互连接口： `network device-discovery show -protocol cdp`
+. 显示每个节点上每个集群互连交换机配置的集群互连接口数量： `network device-discovery show -protocol cdp`
 +
 .显示示例
 [%collapsible]
@@ -85,7 +85,7 @@ node1      /cdp
 ====
 . 检查每个集群接口的管理或运行状态。
 +
-.. 显示网络端口属性：  `network port show –ipspace Cluster`
+.. 显示网络端口属性： `network port show –ipspace Cluster`
 +
 .显示示例
 [%collapsible]
@@ -111,7 +111,7 @@ e0b       Cluster      Cluster          up   9000  auto/10000 healthy
 4 entries were displayed.
 ----
 ====
-.. 显示有关 LIF 的信息： `network interface show - Vserver Cluster`
+.. 显示有关 LIF 的信息： `network interface show -vserver Cluster`
 +
 .显示示例
 [%collapsible]
@@ -134,22 +134,22 @@ Cluster
 ====
 
 
-. 验证远程集群接口的连接：
+. 验证远程集群接口的连接性：
 
 
 [role="tabbed-block"]
 ====
-.ONTAP 9.9.1及更高版本
+.ONTAP 9.9.1 及更高版本
 --
-您可以使用 `network interface check cluster-connectivity` 命令启动集群连接的可访问性检查、然后显示详细信息：
+你可以使用 `network interface check cluster-connectivity`执行命令以启动集群连接性检查，然后显示详细信息：
 
-`network interface check cluster-connectivity start` 和 `network interface check cluster-connectivity show`
+`network interface check cluster-connectivity start`和 `network interface check cluster-connectivity show`
 
 [listing, subs="+quotes"]
 ----
 cluster1::*> *network interface check cluster-connectivity start*
 ----
-*注：*请等待几秒钟、然后再运行 `show`命令以显示详细信息。
+*注意：*运行程序前请等待几秒钟 `show`显示详细信息的命令。
 
 [listing, subs="+quotes"]
 ----
@@ -167,7 +167,7 @@ node2
 --
 .所有ONTAP版本
 --
-对于所有ONTAP版本、您还可以使用 `cluster ping-cluster -node <name>` 用于检查连接的命令：
+对于所有ONTAP版本，您也可以使用 `cluster ping-cluster -node <name>`检查连接性的命令：
 
 `cluster ping-cluster -node <name>`
 
@@ -200,9 +200,9 @@ RPC status:
 ----
 --
 ====
-. [[STEP6]]验证是否已在所有集群Lifs上启用自动还原命令：
+. [[步骤6]] 验证所有集群 LIF 上是否已启用自动还原命令：
 +
-`network interface show - vserver cluster -fields auto-revert`
+`network interface show -vserver Cluster -fields auto-revert`
 
 +
 .显示示例

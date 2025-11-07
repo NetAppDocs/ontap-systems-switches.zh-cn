@@ -1,59 +1,59 @@
 ---
 section: switch-cisco-92300
-title: Cisco Nexus 92300YC
+title: CiscoNexus 92300YC
 entries:
-- title: 入门
-  pdf-filename: 概述_923.00年
+- title: 开始使用
+  pdf-filename: Overview_92300yc
   entries:
-  - title: 快速入门
+  - title: 快速启动
     url: "/switch-cisco-92300/install-overview-cisco-92300.html"
   - title: 配置要求
     url: "/switch-cisco-92300/configure-reqs-92300.html"
-  - title: 组件和部件号
+  - title: 组件和零件编号
     url: "/switch-cisco-92300/components-92300.html"
-  - title: 所需文档
+  - title: 所需文件
     url: "/switch-cisco-92300/required-documentation-92300.html"
-  - title: 智能自动通报要求
+  - title: 智能呼叫中心的要求
     url: "/switch-cisco-92300/smart-call-home-92300.html"
 - title: 安装硬件
-  pdf-filename: install_hardhardware _ 923.00年
+  pdf-filename: Install_hardware_92300yc
   entries:
   - title: 硬件安装工作流程
     url: "/switch-cisco-92300/install-hardware-workflow.html"
-  - title: 完成布线工作表
+  - title: 完整的布线工作表
     url: "/switch-cisco-92300/setup-worksheet-92300yc.html"
-  - title: 安装交换机
+  - title: 安装开关
     url: "/switch-cisco-92300/install-switch-92300yc.html"
-  - title: 将交换机安装在NetApp机柜中
+  - title: 在NetApp机柜中安装交换机
     url: "/switch-cisco-92300/install-switch-netapp-cabinet-92300yc.html"
-  - title: 查看布线和配置
+  - title: 检查布线和配置
     url: "/switch-cisco-92300/cabling-considerations-92300.html"
 - title: 配置软件
-  pdf-filename: CONFIG_SOFTWARE_923.00年
+  pdf-filename: Configure_software_92300yc
   entries:
-  - title: 软件安装工作流
+  - title: 软件安装工作流程
     url: "/switch-cisco-92300/configure-software-overview-92300-cluster.html"
   - title: 配置交换机
     url: "/switch-cisco-92300/configure-install-initial.html"
-  - title: 准备安装NX-OS和RCF
+  - title: 准备安装 NX-OS 和 RCF
     url: "/switch-cisco-92300/install-nxos-overview.html"
-  - title: 安装NX-OS
+  - title: 安装 NX-OS
     url: "/switch-cisco-92300/install-nxos-software.html"
-  - title: 安装RCF配置文件
+  - title: 安装 RCF 配置文件
     url: "/switch-cisco-92300/install-the-rcf-file.html"
   - title: 验证 SSH 配置
     url: "/switch-cisco-92300/configure-ssh-keys.html"
 - title: 迁移交换机
-  pdf-filename: migration_switchs_923.00年
+  pdf-filename: Migrate_switches_92300yc
   entries:
   - title: 迁移到双节点交换集群
     url: "/switch-cisco-92300/migrate-to-2n-switched.html"
-  - title: 从旧版Cisco交换机迁移
+  - title: 从旧的Cisco交换机迁移
     url: "/switch-cisco-92300/migrate-to-92300yc.html"
-- title: 更换交换机
-  pdf-filename: REPLACE _switchs_923.00年
+- title: 更换开关
+  pdf-filename: Replace_switches_92300yc
   entries:
-  - title: 更换交换机
+  - title: 更换开关
     url: "/switch-cisco-92300/replace-92300yc.html"
-  - title: 将集群交换机更换为无交换机连接
+  - title: 用无开关连接取代集群开关
     url: "/switch-cisco-92300/migrate-to-switchless-cluster-interconnect.html"

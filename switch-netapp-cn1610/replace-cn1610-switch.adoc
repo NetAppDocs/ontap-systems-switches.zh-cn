@@ -2,60 +2,60 @@
 permalink: switch-netapp-cn1610/replace-cn1610-switch.html 
 sidebar: sidebar 
 keywords: replace, netapp cn1610, cluster switch 
-summary: 您可以通过执行一系列特定任务来无系统地更换出现故障的NetApp CN1610集群交换机。 
+summary: 您可以通过执行特定步骤序列，以非中断方式更换有缺陷的NetApp CN1610 集群交换机。 
 ---
-= 更换NetApp CN1610集群交换机
+= 更换NetApp CN1610 集群交换机
 :allow-uri-read: 
 :icons: font
 :imagesdir: ../media/
 
 
 [role="lead"]
-按照以下步骤更换集群网络中有故障的NetApp CN1610交换机。这是无中断操作步骤(NDU)。
+请按照以下步骤更换集群网络中出现故障的NetApp CN1610 交换机。这是一个非侵入性手术（NDU）。
 
 
 
-== 查看要求
+== 审查要求
 
 .开始之前
-在执行交换机更换之前、在当前环境中以及在现有集群和网络基础架构的替代交换机上执行交换机更换之前、必须满足以下条件：
+在进行交换机更换之前，必须满足以下条件：在当前环境和待更换交换机上，现有集群和网络基础设施均需满足这些条件：
 
-* 必须使用至少一个完全连接的集群交换机验证现有集群是否完全正常运行。
-* 所有集群端口都必须为*已启动*。
-* 所有集群逻辑接口(Logical Interface、)都必须已启动且尚未迁移。
-* ONTAP集群 `ping-cluster -node node1` 命令必须指示所有路径上的基本连接和大于PTU的通信均已成功。
+* 必须验证现有集群功能完全正常，至少有一个完全连接的集群交换机。
+* 集群中的所有端口必须处于启用状态。
+* 集群中的所有逻辑接口（LIF）必须处于启用状态，且不得已被迁移。
+* ONTAP集群 `ping-cluster -node node1`命令必须表明所有路径上的基本连接和大于 PMTU 的通信均已成功。
 
 
 
 
 == 启用控制台日志记录
 
-NetApp强烈建议您在使用的设备上启用控制台日志记录、并在更换交换机时采取以下措施：
+NetApp强烈建议您在使用的设备上启用控制台日志记录，并在更换交换机时执行以下操作：
 
-* 在维护期间保持AutoSupport处于启用状态。
-* 在维护前后触发维护AutoSupport、以便在维护期间禁用案例创建。请参见此知识库文章 https://kb.netapp.com/Support_Bulletins/Customer_Bulletins/SU92["SU92：如何禁止在计划维护时段自动创建案例"^] 了解更多详细信息。
-* 为所有命令行界面会话启用会话日志记录。有关如何启用会话日志记录的说明、请查看此知识库文章中的"记录会话输出"一节 https://kb.netapp.com/on-prem/ontap/Ontap_OS/OS-KBs/How_to_configure_PuTTY_for_optimal_connectivity_to_ONTAP_systems["如何配置PuTTY以优化与ONTAP系统的连接"^]。
-
-
+* 维护期间请保持AutoSupport功能启用。
+* 在维护前后触发维护AutoSupport，以在维护期间禁用案例创建。请参阅这篇知识库文章 https://kb.netapp.com/Support_Bulletins/Customer_Bulletins/SU92["SU92：如何在计划维护窗口期间抑制自动创建案例"^]更多详情请见下文。
+* 启用所有 CLI 会话的会话日志记录。有关如何启用会话日志记录的说明，请查看此知识库文章中的“记录会话输出”部分。 https://kb.netapp.com/on-prem/ontap/Ontap_OS/OS-KBs/How_to_configure_PuTTY_for_optimal_connectivity_to_ONTAP_systems["如何配置 PuTTY 以获得与ONTAP系统的最佳连接"^] 。
 
 
-== 更换交换机
+
+
+== 更换开关
 
 .关于此任务
-您必须执行命令，从托管集群 LIF 的节点迁移集群 LIF 。
+您必须从集群 LIF 所在的节点执行迁移集群 LIF 的命令。
 
-此操作步骤中的示例使用以下集群交换机和节点命名：
+本流程中的示例使用以下集群交换机和节点命名规则：
 
-* 两个CN1610集群交换机的名称是 `cs1` 和 `cs2`。
-* 要更换的CN1610交换机(故障交换机)的名称是 `old_cs1`。
-* 新CN1610交换机(替代交换机)的名称为 `new_cs1`。
-* 未被替换的配对交换机的名称是 `cs2`。
+* 这两个 CN1610 集群交换机的名称是 `cs1`和 `cs2`。
+* 待更换的CN1610交换机（故障交换机）的名称是 `old_cs1`。
+* 新型CN1610交换机（替代交换机）的名称是 `new_cs1`。
+* 未被替换的伙伴交换机的名称是 `cs2`。
 
 
 .步骤
-. 确认启动配置文件与正在运行的配置文件匹配。您必须将这些文件保存在本地、以便在替换期间使用。
+. 确认启动配置文件与运行配置文件一致。您必须将这些文件保存到本地，以便在替换过程中使用。
 +
-以下示例中的配置命令适用于FastPath 1.2.0.7：
+以下示例中的配置命令适用于 FASTPATH 1.2.0.7：
 
 +
 .显示示例
@@ -68,9 +68,9 @@ NetApp强烈建议您在使用的设备上启用控制台日志记录、并在�
 (old_cs1)# *show startup-config*
 ----
 ====
-. 创建运行配置文件的副本。
+. 创建运行配置文件副本。
 +
-以下示例中的命令适用于FastPath 1.2.0.7：
+以下示例中的命令适用于 FASTPATH 1.2.0.7：
 
 +
 .显示示例
@@ -85,9 +85,9 @@ Config script created successfully.
 
 
 
-NOTE: 您可以使用除以外的任何文件名 `CN1610_CS_RCF_v1.2.scr`。文件名的扩展名必须为*.scR*。
+NOTE: 您可以使用除以下任何文件名之外的任何文件名。 `CN1610_CS_RCF_v1.2.scr` 。文件名必须带有 *.scr* 扩展名。
 
-. [[STEP3]]将交换机的运行配置文件保存到外部主机、以便为更换做好准备。
+. [[step3]]将交换机的运行配置文件保存到外部主机，以便进行更换。
 +
 .显示示例
 [%collapsible]
@@ -97,26 +97,26 @@ NOTE: 您可以使用除以外的任何文件名 `CN1610_CS_RCF_v1.2.scr`。文�
 (old_cs1)# *copy nvram:script filename.scr scp://<Username>@<remote_IP_address>/path_to_file/filename.scr*
 ----
 ====
-. 确认交换机和ONTAP版本在兼容性列表中匹配。请参见 https://mysupport.netapp.com/site/info/netapp-cluster-switch["NetApp CN1601 和 CN1610 交换机"^] 页面以了解详细信息。
-. 从 https://mysupport.netapp.com/site/products/all/details/netapp-cluster-switches/downloads-tab["软件下载页面"^] 在NetApp 支持站点 上、选择NetApp集群交换机以下载相应的RC框架 和快速路径版本。
-. 使用FastPath、RCF和已保存配置设置简单文件传输协议(TFTP)服务器 `.scr` 文件、以便与新交换机一起使用。
-. 将串行端口(交换机右侧标有"IOIOI"的RJ-45连接器)连接到具有终端仿真的可用主机。
-. 在主机上、设置串行终端连接设置：
+. 请核对交换机和ONTAP版本是否在兼容性矩阵中匹配。参见 https://mysupport.netapp.com/site/info/netapp-cluster-switch["NetApp CN1601 和 CN1610 交换机"^]详情请见页面。
+. 从 https://mysupport.netapp.com/site/products/all/details/netapp-cluster-switches/downloads-tab["软件下载页面"^]在NetApp支持网站上，选择NetApp集群交换机，下载相应的 RCF 和 FASTPATH 版本。
+. 使用 FASTPATH、RCF 和已保存的配置设置简单文件传输协议 (TFTP) 服务器 `.scr`用于新交换机的文件。
+. 将串行端口（交换机右侧标有“IOIOI”的 RJ-45 连接器）连接到具有终端仿真功能的可用主机。
+. 在主机上，设置串口终端连接：
 +
-.. 9600 波特
-.. 8 个数据位
-.. 1 个停止位
-.. 奇偶校验：无
+.. 9600波特
+.. 8 位数据
+.. 1 停止位
+.. 奇偶性：无
 .. 流量控制：无
 
 
 . 将管理端口（交换机左侧的 RJ-45 扳手端口）连接到 TFTP 服务器所在的同一网络。
-. 准备使用TFTP服务器连接到网络。
+. 准备连接到网络和 TFTP 服务器。
 +
-如果您使用的是动态主机配置协议(DHCP)、则此时不必为交换机配置IP地址。默认情况下、服务端口设置为使用DHCP。对于IPv4和IPv6协议设置、网络管理端口设置为none。如果扳手端口连接到具有DHCP服务器的网络、则会自动配置服务器设置。
+如果您使用的是动态主机配置协议 (DHCP)，则目前无需为交换机配置 IP 地址。服务端口默认设置为使用 DHCP。 IPv4 和 IPv6 协议设置中的网络管理端口均设置为“无”。如果您的扳手端口连接到具有 DHCP 服务器的网络，则服务器设置将自动配置。
 
 +
-要设置静态IP地址、应使用serviceport协议、网络协议和serviceport IP命令。
+要设置静态 IP 地址，您应该使用 serviceport protocol、network protocol 和 serviceport ip 命令。
 
 +
 .显示示例
@@ -127,13 +127,13 @@ NOTE: 您可以使用除以外的任何文件名 `CN1610_CS_RCF_v1.2.scr`。文�
 (new_cs1)# *serviceport ip <ipaddr> <netmask> <gateway>*
 ----
 ====
-. (可选)如果TFTP服务器位于笔记本电脑上、则使用标准以太网缆线将CN1610交换机连接到笔记本电脑、然后使用备用IP地址在同一网络中配置其网络端口。
+. 如果 TFTP 服务器位于笔记本电脑上，则可以选择使用标准以太网线将 CN1610 交换机连接到笔记本电脑，然后使用备用 IP 地址在同一网络中配置其网络端口。
 +
-您可以使用 `ping` 命令以验证地址。如果无法建立连接、则应使用非路由网络、并使用IP 192.168.x或172.16.x配置服务端口您可以稍后将服务端口重新配置为生产管理IP地址。
+你可以使用 `ping`用于验证地址的命令。如果无法建立连接，则应使用非路由网络，并使用 IP 192.168.x 或 172.16.x 配置服务端口。稍后您可以将服务端口重新配置为生产管理 IP 地址。
 
-. (可选)验证并安装适用于新交换机的RCN和FastPath软件版本。如果您已确认新交换机设置正确、并且不需要更新RCIF和FastPath软件、则应转至步骤13。
+. （可选）验证并安装适用于新交换机的 RCF 和 FASTPATH 软件的相应版本。如果您已确认新交换机已正确设置，并且不需要更新 RCF 和 FASTPATH 软件，则应转到步骤 13。
 +
-.. 验证新交换机设置。
+.. 请验证新的交换机设置。
 +
 .显示示例
 [%collapsible]
@@ -144,7 +144,7 @@ NOTE: 您可以使用除以外的任何文件名 `CN1610_CS_RCF_v1.2.scr`。文�
 (new_cs1)# *show version*
 ----
 ====
-.. 将RC框架 下载到新交换机。
+.. 将 RCF 文件下载到新交换机。
 +
 .显示示例
 [%collapsible]
@@ -173,7 +173,7 @@ Configuration script validated.
 File transfer operation completed successfully.
 ----
 ====
-.. 验证RC框架 是否已下载到交换机。
+.. 确认 RCF 已下载到交换机。
 +
 .显示示例
 [%collapsible]
@@ -193,7 +193,7 @@ latest_config.scr                 2356
 ====
 
 
-. 将RC框架 应用于CN1610交换机。
+. 将 RCF 应用于 CN1610 交换机。
 +
 .显示示例
 [%collapsible]
@@ -212,7 +212,7 @@ After the script is applied, those settings will be active in the running-config
 ----
 ====
 +
-.. 保存运行配置文件、以便在重新启动交换机时将其作为启动配置文件。
+.. 保存运行配置文件，以便重启交换机时将其设为启动配置文件。
 +
 .显示示例
 [%collapsible]
@@ -230,7 +230,7 @@ Config file 'startup-config' created successfully.
 Configuration Saved!
 ----
 ====
-.. 将映像下载到CN1610交换机。
+.. 将镜像下载到 CN1610 交换机。
 +
 .显示示例
 [%collapsible]
@@ -254,9 +254,9 @@ TFTP Code transfer starting...
 File transfer operation completed successfully.
 ----
 ====
-.. 重新启动交换机以运行新的活动启动映像。
+.. 通过重启交换机来运行新的活动启动映像。
 +
-必须为步骤6中的命令重新启动交换机、以反映新映像。输入reLoad命令后、您可能会看到两个可能的响应视图。
+必须重启交换机，步骤 6 中的命令才能反映新的映像。输入重新加载命令后，可能会看到两种不同的响应视图。
 
 +
 .显示示例
@@ -279,7 +279,7 @@ Cluster Interconnect Infrastructure
 User:admin Password: (new_cs1) >*enable*
 ----
 ====
-.. 将保存的配置文件从旧交换机复制到新交换机。
+.. 将旧交换机上保存的配置文件复制到新交换机上。
 +
 .显示示例
 [%collapsible]
@@ -289,7 +289,7 @@ User:admin Password: (new_cs1) >*enable*
 (new_cs1)# *copy tftp://<server_ip_address>/<filename>.scr nvram:script <filename>.scr*
 ----
 ====
-.. 将先前保存的配置应用于新交换机。
+.. 将之前保存的配置应用到新交换机。
 +
 .显示示例
 [%collapsible]
@@ -307,7 +307,7 @@ Config file 'startup-config' created successfully.
 Configuration Saved!
 ----
 ====
-.. 将运行配置文件保存到启动配置文件。
+.. 将运行配置文件保存到启动配置文件中。
 +
 .显示示例
 [%collapsible]
@@ -319,17 +319,18 @@ Configuration Saved!
 ====
 
 
-. 如果在此集群上启用了 AutoSupport ，请通过调用 AutoSupport 消息来禁止自动创建案例： `ssystem node AutoSupport invoke -node * -type all - message MAINT=xh`
+. 如果此集群上启用了AutoSupport ，则通过调用AutoSupport消息来抑制自动创建案例：
+`system node autosupport invoke -node * -type all - message MAINT=xh`
 +
-_x_ 是维护时段的持续时间，以小时为单位。
+_x_ 是维护窗口的持续时间，单位为小时。
 
 +
 [NOTE]
 ====
-AutoSupport 消息会通知技术支持此维护任务，以便在维护窗口期间禁止自动创建案例。
+AutoSupport消息会通知技术支持此维护任务，以便在维护窗口期间抑制自动创建案例。
 
 ====
-. 在新交换机new_cs1上、以管理员用户身份登录、然后关闭连接到节点集群接口的所有端口(端口1到12)。
+. 在新交换机 new_cs1 上，以管理员用户身份登录，并关闭所有连接到节点集群接口的端口（端口 1 到 12）。
 +
 .显示示例
 [%collapsible]
@@ -347,9 +348,9 @@ Password:
 (new_cs1)# *write memory*
 ----
 ====
-. 从连接到old_CS1交换机的端口迁移集群的集群的Sifs。
+. 将集群 LIF 从连接到 old_cs1 交换机的端口迁移。
 +
-您必须将每个集群LIF从其当前节点的管理界面进行迁移。
+您必须从当前节点的管理界面迁移每个集群 LIF。
 
 +
 .显示示例
@@ -361,7 +362,7 @@ cluster::> *set -privilege advanced*
 cluster::> *network interface migrate -vserver <vserver_name> -lif <Cluster_LIF_to_be_moved> - sourcenode <current_node> -dest-node <current_node> -dest-port <cluster_port_that_is_UP>*
 ----
 ====
-. 验证所有集群SIFs是否均已移至每个节点上的相应集群端口。
+. 确认所有集群 LIF 都已移动到每个节点上的相应集群端口。
 +
 .显示示例
 [%collapsible]
@@ -371,7 +372,7 @@ cluster::> *network interface migrate -vserver <vserver_name> -lif <Cluster_LIF_
 cluster::> *network interface show -role cluster*
 ----
 ====
-. 关闭连接到更换的交换机的集群端口。
+. 关闭连接到您更换的交换机的集群端口。
 +
 .显示示例
 [%collapsible]
@@ -381,7 +382,7 @@ cluster::> *network interface show -role cluster*
 cluster::*> *network port modify -node <node_name> -port <port_to_admin_down> -up-admin false*
 ----
 ====
-. 验证集群的运行状况。
+. 验证集群的健康状况。
 +
 .显示示例
 [%collapsible]
@@ -391,7 +392,7 @@ cluster::*> *network port modify -node <node_name> -port <port_to_admin_down> -u
 cluster::*> *cluster show*
 ----
 ====
-. 验证端口是否已关闭。
+. 请确认端口已关闭。
 +
 .显示示例
 [%collapsible]
@@ -401,7 +402,7 @@ cluster::*> *cluster show*
 cluster::*> *cluster ping-cluster -node <node_name>*
 ----
 ====
-. 在交换机CS2上、关闭ISL端口13到16。
+. 在交换机 cs2 上，关闭 ISL 端口 13 至 16。
 +
 .显示示例
 [%collapsible]
@@ -414,9 +415,9 @@ cluster::*> *cluster ping-cluster -node <node_name>*
 (cs2)# *show port-channel 3/1*
 ----
 ====
-. 验证存储管理员是否已准备好更换交换机。
-. 拔下old_CS1交换机上的所有缆线、然后将这些缆线连接到new_CS1交换机上的相同端口。
-. 在CS2交换机上、打开ISL端口13到16。
+. 确认存储管理员是否已准备好更换交换机。
+. 从 old_cs1 交换机上拆下所有电缆，然后将电缆连接到 new_cs1 交换机上的相同端口。
+. 在 cs2 交换机上，启用 ISL 端口 13 至 16。
 +
 .显示示例
 [%collapsible]
@@ -428,7 +429,7 @@ cluster::*> *cluster ping-cluster -node <node_name>*
 (cs2)(interface 0/13-0/16)# *no shutdown*
 ----
 ====
-. 启动新交换机上与集群节点关联的端口。
+. 启用新交换机上与集群节点关联的端口。
 +
 .显示示例
 [%collapsible]
@@ -440,7 +441,7 @@ cluster::*> *cluster ping-cluster -node <node_name>*
 (new_cs1)(interface 0/13-0/16)# *no shutdown*
 ----
 ====
-. 在单个节点上、启动连接到更换的交换机的集群节点端口、然后确认链路已启动。
+. 在单个节点上，启动连接到被替换交换机的集群节点端口，然后确认链路已建立。
 +
 .显示示例
 [%collapsible]
@@ -451,9 +452,9 @@ cluster::*> *network port modify -node node1 -port <port_to_be_onlined> -up-admi
 cluster::*> *network port show -role cluster*
 ----
 ====
-. 在同一节点上还原步骤25中与该端口关联的集群生命周期。
+. 还原与步骤 25 中端口关联的集群 LIF。
 +
-在此示例中、如果"Is Home"列为true、则会成功还原node1上的SIF。
+在本例中，如果“Is Home”列为真，则节点 1 上的 LIF 将成功还原。
 
 +
 .显示示例
@@ -465,8 +466,8 @@ cluster::*> *network interface revert -vserver node1 -lif <cluster_lif_to_be_rev
 cluster::*> *network interface show -role cluster*
 ----
 ====
-. 如果第一个节点的集群LIF已启动并还原到其主端口、请重复步骤25和26以启动集群端口并还原集群中其他节点上的集群LIF。
-. 显示有关集群中节点的信息。
+. 如果第一个节点的集群 LIF 已启动并恢复到其主端口，则重复步骤 25 和 26 以启动集群端口并恢复集群中其他节点的集群 LIF。
+. 显示集群中节点的相关信息。
 +
 .显示示例
 [%collapsible]
@@ -476,7 +477,7 @@ cluster::*> *network interface show -role cluster*
 cluster::*> *cluster show*
 ----
 ====
-. 确认更换的交换机上的启动配置文件和运行配置文件正确无误。此配置文件应与步骤1中的输出一致。
+. 确认更换后的交换机上的启动配置文件和运行配置文件是否正确。此配置文件应与步骤 1 中的输出相匹配。
 +
 .显示示例
 [%collapsible]
@@ -488,8 +489,8 @@ cluster::*> *cluster show*
 (new_cs1)# *show startup-config*
 ----
 ====
-. 如果禁止自动创建案例，请通过调用 AutoSupport 消息重新启用它：
+. 如果您已禁用自动创建案例功能，请通过调用AutoSupport消息重新启用该功能：
 +
-`ssystem node AutoSupport invoke -node * -type all -message MAINT=end`
+`system node autosupport invoke -node * -type all -message MAINT=END`
 
 

@@ -2,7 +2,7 @@
 permalink: switch-cisco-3232c/cn1610-migrate-to-3232c-overview.html 
 sidebar: sidebar 
 keywords: install, cisco nexus 3232c switch, 
-summary: 在配置Cisco Nexus 3232c交换机之前、请查看此过程的概述以及术语。 
+summary: 在配置Cisco Nexus 3232c 交换机之前，请先查看流程概述和命名规则。 
 ---
 = 迁移要求
 :allow-uri-read: 
@@ -10,15 +10,15 @@ summary: 在配置Cisco Nexus 3232c交换机之前、请查看此过程的概述
 
 
 [role="lead"]
-Cisco Nexus 3232C交换机可用作AFF 或FAS 集群中的集群交换机。通过集群交换机、您可以使用两个以上的节点构建ONTAP 集群。
+Cisco Nexus 3232C 交换机可用作AFF或FAS集群中的集群交换机。集群交换机允许您构建具有两个以上节点的ONTAP集群。
 
 
-NOTE: 操作步骤 要求同时使用 ONTAP 命令和 Cisco Nexus 3000 系列交换机命令；除非另有说明，否则使用 ONTAP 命令。
+NOTE: 该过程需要同时使用ONTAP命令和Cisco Nexus 3000 系列交换机命令；除非另有说明，否则使用ONTAP命令。
 
-如有必要、请参见以下内容了解详细信息：
+如有需要，请参阅以下内容了解更多信息：
 
 * link:https://mysupport.netapp.com/site/products/all/details/netapp-cluster-switches/docs-tab["NetApp CN1601 和 CN1610"^]
-* link:https://mysupport.netapp.com/site/info/cisco-ethernet-switch["Cisco 以太网交换机"^]
+* link:https://mysupport.netapp.com/site/info/cisco-ethernet-switch["Cisco以太网交换机"^]
 * link:http://hwu.netapp.com["Hardware Universe"^]
 
 
@@ -28,81 +28,81 @@ NOTE: 操作步骤 要求同时使用 ONTAP 命令和 Cisco Nexus 3000 系列交
 
 集群交换机支持以下节点连接：
 
-* NetApp CN1610 ：端口 0/1 到 0/12 （ 10 GbE ）
-* Cisco Nexus 3232C ：端口 E1/1-30 （ 40 或 100 或 4x10GbE ）
+* NetApp CN1610：端口 0/1 至 0/12 (10 GbE)
+* Cisco Nexus 3232C：端口 e1/1-30（40 或 100 或 4x10GbE）
 
 
-集群交换机使用以下交换机间链路（ ISL ）端口。
+集群交换机使用以下交换机间链路 (ISL) 端口。
 
-* NetApp CN1610 ：端口 0/13 至 0/16 （ 10 GbE ）
-* Cisco Nexus 3232C ：端口 1/31 至 32 （ 100GbE ）
+* NetApp CN1610：端口 0/13 至 0/16 (10 GbE)
+* Cisco Nexus 3232C：端口 1/31-32 (100GbE)
 
 
 [NOTE]
 ====
-您必须在 Cisco Nexus 3232C 集群交换机上使用 4 根 10G 分支缆线。
+在Cisco Nexus 3232C 集群交换机上必须使用 4x10G 分支电缆。
 
 ====
-下表显示了从 NetApp CN1610 交换机过渡到 Cisco Nexus 3232C 集群交换机时每个阶段所需的布线连接：
+下表显示了从NetApp CN1610 交换机过渡到Cisco Nexus 3232C 集群交换机时，每个阶段所需的布线连接：
 
 |===
-| 阶段 | Description | 所需的缆线 
+| 阶段 | 描述 | 所需电缆 
 
 
  a| 
 初始
  a| 
-CN1610 到 CN1610 （ SFP+ 到 SFP+ ）
+CN1610 至 CN1610（SFP+ 至 SFP+）
  a| 
-4 根 SFP+ 光纤或铜缆直连缆线
+4根SFP+光纤或铜缆直连电缆
 
 
 
  a| 
 过渡
  a| 
-CN1610 到 3232C （ QSFP 到 SFP+ ）
+CN1610 至 3232C（QSFP 至 SFP+）
  a| 
-1 根 QSFP 和 4 根 SFP+ 光纤或铜缆分支缆线
+1根QSFP和4根SFP+光纤或铜缆分支电缆
 
 
 
  a| 
-最终
+终稿
  a| 
-3232C 到 3232C （ QSFP 到 QSFP ）
+3232C 至 3232C（QSFP 至 QSFP）
  a| 
-2 根 QSFP 光纤或铜缆直连缆线
+2根QSFP光纤或铜缆直连电缆
 
 |===
-您必须下载适用的参考配置文件（RCF）。  10 GbE 和 40/100 GbE 端口的数量在以下 RCF 中定义：link:https://mysupport.netapp.com/site/products/all/details/cisco-cluster-storage-switch/downloads-tab["Cisco ® 集群网络交换机参考配置文件下载"^] 。
+您必须已下载适用的参考配置文件（RCF）。  10 GbE 和 40/100 GbE 端口的数量在可用的 RCF 中定义。link:https://mysupport.netapp.com/site/products/all/details/cisco-cluster-storage-switch/downloads-tab["Cisco集群网络交换机参考配置文件下载"^] 。
 
-此过程中支持的ONTAP和 NX-OS 版本列于link:https://mysupport.netapp.com/site/info/cisco-ethernet-switch["Cisco 以太网交换机"^]。
+此流程支持的ONTAP和 NX-OS 版本列于此处。link:https://mysupport.netapp.com/site/info/cisco-ethernet-switch["Cisco以太网交换机"^] 。
 
-此过程中支持的ONTAP和 FASTPATH 版本列于link:https://mysupport.netapp.com/site/products/all/details/netapp-cluster-switches/docs-tab["NetApp CN1601 和 CN1610 交换机"^]。
+此流程支持的ONTAP和 FASTPATH 版本列于此处link:https://mysupport.netapp.com/site/products/all/details/netapp-cluster-switches/docs-tab["NetApp CN1601 和 CN1610 交换机"^]。
 
-.关于所用示例
-迁移过程中的示例使用四个节点：
+.关于所使用的示例
+迁移过程中的示例使用了四个节点：
 
-* 两个节点使用四个10 GbE集群互连端口：* e0a*、* e0b*、* e0c*和* e0d*。
-* 其他两个节点使用两根40 GbE集群互连光缆：* e4A*和* e4e*。
+* 两个节点使用四个 10 GbE 集群互连端口：*e0a*、*e0b*、*e0c* 和 *e0d*。
+* 另外两个节点使用两条 40 GbE 集群互连光纤电缆：*e4a* 和 *e4e*。
 +
-link:https://hwu.netapp.com/["_SIL_ Hardware Universe"^]提供了有关适用于您的平台的集群光缆的信息。
+这link:https://hwu.netapp.com/["硬件宇宙"^]包含有关您平台集群光纤电缆的信息。
 
 
 
-此操作步骤中的示例使用以下交换机和节点命名：
+本流程中的示例使用以下开关和节点命名规则：
 
-* 节点包括*n1*、*n2*、*n3*和*n4*。
-* 根据不同版本的 ONTAP 软件，命令输出可能会有所不同。
-* 要更换的CN1610交换机为*CL1*和*CL2*。
-* 用于替代CN1610交换机的Nexus 3232C交换机为*C1*和*C2*。
-* *n1_clus1*是连接到节点*n1*的集群交换机1 (CL1或C1)的第一个集群逻辑接口(LIF)。
-* *n1_clus2*是连接到节点*n1*的集群交换机2 (CL2或C2)的第一个集群LIF。
-* *n1_clus3*是连接到节点*n1*的集群交换机2 (CL2或C2)的第二个LIF。
-* *n1_clus4*是连接到节点*n1*的集群交换机1 (CL1或C1)的第二个LIF。
-* 10 GbE 和 40/100 GbE 端口的数量在参考配置文件 (RCF) 中定义，可从link:https://mysupport.netapp.com/site/products/all/details/cisco-cluster-storage-switch/downloads-tab["Cisco ® 集群网络交换机参考配置文件下载"^]。
+* 这些节点是 *n1*、*n2*、*n3* 和 *n4*。
+* 命令输出可能因ONTAP软件版本不同而有所差异。
+* 需要更换的 CN1610 交换机是 *CL1* 和 *CL2*。
+* 用于替换 CN1610 交换机的 Nexus 3232C 交换机是 *C1* 和 *C2*。
+* *n1_clus1* 是连接到节点 *n1* 的集群交换机 1 (CL1 或 C1) 的第一个集群逻辑接口 (LIF)。
+* *n1_clus2* 是连接到节点 *n1* 的集群交换机 2 (CL2 或 C2) 的第一个集群 LIF。
+* *n1_clus3* 是连接到节点 *n1* 的集群交换机 2 (CL2 或 C2) 的第二个 LIF。
+* *n1_clus4* 是连接到节点 *n1* 的集群交换机 1 (CL1 或 C1) 的第二个 LIF。
+* 10 GbE 和 40/100 GbE 端口的数量在参考配置文件 (RCF) 中定义，这些文件可在以下网址获取：link:https://mysupport.netapp.com/site/products/all/details/cisco-cluster-storage-switch/downloads-tab["Cisco集群网络交换机参考配置文件下载"^] 。
 
 
 .下一步是什么？
-link:cn1610-prepare-to-migrate.html["准备迁移"](英文)
+link:cn1610-prepare-to-migrate.html["做好迁移准备"]。

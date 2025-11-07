@@ -4,7 +4,7 @@ permalink: switch-cisco-9336c-fx2-shared/install-9336c-shared.html
 keywords:  
 summary:  
 ---
-= 安装Cisco Nexus 9336C-x2共享交换机
+= 安装Cisco Nexus 9336C-FX2 共享交换机
 :hardbreaks:
 :allow-uri-read: 
 :nofooter: 
@@ -14,23 +14,23 @@ summary:
 
 
 [role="lead"]
-按照以下说明配置Cisco Nexus 9336C-x2共享交换机。
+请按照以下说明配置Cisco Nexus 9336C-FX2 共享交换机。
 
 .开始之前
-确保您已具备以下条件：
+请确保您拥有以下物品：
 
-* 所需的共享交换机文档、控制器文档和ONTAP 文档。请参见 link:required-documentation-9336c-shared.html["Cisco Nexus 9336C-x2共享交换机的文档要求"] 和 https://docs.netapp.com/us-en/ontap/index.html["NetApp ONTAP 文档"^]。
-* 适用的许可证、网络和配置信息以及缆线。
-* 已完成布线工作表。请参见 link:cable-9336c-shared.html["填写Cisco Nexus 9336C-x2布线工作表"]。有关布线的详细信息、请参见 https://hwu.netapp.com["Hardware Universe"]。
+* 需要共享交换机文档、控制器文档和ONTAP文档。看link:required-documentation-9336c-shared.html["Cisco Nexus 9336C-FX2 共享交换机的文档要求"]和 https://docs.netapp.com/us-en/ontap/index.html["NetApp ONTAP 文档"^]。
+* 适用的许可证、网络和配置信息以及线缆。
+* 已完成布线工作表。看link:cable-9336c-shared.html["完成Cisco Nexus 9336C-FX2 布线工作表"]。有关布线的更多信息，请参阅 https://hwu.netapp.com["Hardware Universe"]。
 
 
 .步骤
-. 将交换机，控制器和 NS224 NVMe 存储架装入机架。
+. 将交换机、控制器和 NS224 NVMe 存储架安装到机架上。
 +
-请参见link:../switch-cisco-9336c-fx2/install-switch-and-passthrough-panel-9336c-cluster.html["机架安装说明"]、了解如何将交换机安装在NetApp机柜中。
+参见link:../switch-cisco-9336c-fx2/install-switch-and-passthrough-panel-9336c-cluster.html["货架安装说明"]学习如何将交换机安装到NetApp机柜中。
 
-. 打开交换机，控制器和 NS224 NVMe 存储架的电源。
+. 打开交换机、控制器和 NS224 NVMe 存储架的电源。
 
 
 .下一步是什么？
-或者，您可以link:install-switch-and-passthrough-panel-9336c-shared.html["在NetApp机柜中安装Cisco Nexus 9336C-x2交换机"]。否则，转到link:setup-and-configure-9336c-shared.html["配置交换机"]。
+（可选） link:install-switch-and-passthrough-panel-9336c-shared.html["在NetApp机柜中安装Cisco Nexus 9336C-FX2 交换机"]。否则，请前往 link:setup-and-configure-9336c-shared.html["配置交换机"]。

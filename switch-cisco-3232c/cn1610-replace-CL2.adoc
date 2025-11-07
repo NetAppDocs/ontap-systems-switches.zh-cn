@@ -2,19 +2,19 @@
 permalink: switch-cisco-3232c/cn1610-replace-CL2.html 
 sidebar: sidebar 
 keywords: cisco 3232c, cluster switches 
-summary: 您可以将 Cisco Nexus 3232C 交换机用作 AFF 或 FAS 集群中的集群交换机。 
+summary: 您可以在AFF或FAS集群中使用Cisco Nexus 3232C 交换机作为集群交换机。 
 ---
-= 将CN1610交换机CL2更换为3232C交换机C2
+= 将 CN1610 交换机 CL2 更换为 3232C 交换机 C2
 :allow-uri-read: 
 :icons: font
 :imagesdir: ../media/
 
 
 [role="lead"]
-按照以下步骤将CN1610 (CL2)交换机更换为Nexus 3232C (C2)交换机。
+按照以下步骤将您的 CN1610 (CL2) 交换机更换为 Nexus 3232C (C2) 交换机。
 
 .步骤
-. 关闭物理连接到交换机 CL2 的集群互连端口：
+. 关闭与交换机 CL2 物理连接的集群互连端口：
 +
 `network port modify -node _node-name_ -port _port-name_ -up-admin false`
 
@@ -22,7 +22,7 @@ summary: 您可以将 Cisco Nexus 3232C 交换机用作 AFF 或 FAS 集群中的
 .显示示例
 [%collapsible]
 ====
-以下示例显示了关闭节点 n1 和节点 n2 的四个集群互连端口：
+以下示例显示了节点 n1 和节点 n2 的四个集群互连端口被关闭的情况：
 
 [listing, subs="+quotes"]
 ----
@@ -32,22 +32,22 @@ cluster::*> *network port modify -node n2 -port e0b -up-admin false*
 cluster::*> *network port modify -node n2 -port e0c -up-admin false*
 ----
 ====
-. 验证远程集群接口的连接：
+. 验证远程集群接口的连接性：
 
 
 [role="tabbed-block"]
 ====
-.ONTAP 9.9.1及更高版本
+.ONTAP 9.9.1 及更高版本
 --
-您可以使用 `network interface check cluster-connectivity` 命令启动集群连接的可访问性检查、然后显示详细信息：
+你可以使用 `network interface check cluster-connectivity`执行命令以启动集群连接性检查，然后显示详细信息：
 
-`network interface check cluster-connectivity start` 和 `network interface check cluster-connectivity show`
+`network interface check cluster-connectivity start`和 `network interface check cluster-connectivity show`
 
 [listing, subs="+quotes"]
 ----
 cluster1::*> *network interface check cluster-connectivity start*
 ----
-*注：*请等待几秒钟、然后再运行 `show`命令以显示详细信息。
+*注意：*运行程序前请等待几秒钟 `show`显示详细信息的命令。
 
 [listing, subs="+quotes"]
 ----
@@ -66,7 +66,7 @@ n2
 --
 .所有ONTAP版本
 --
-对于所有ONTAP版本、您还可以使用 `cluster ping-cluster -node <name>` 用于检查连接的命令：
+对于所有ONTAP版本，您也可以使用 `cluster ping-cluster -node <name>`检查连接性的命令：
 
 `cluster ping-cluster -node <name>`
 
@@ -115,15 +115,15 @@ RPC status:
 ----
 --
 ====
-. [[STEP3]]使用适当的命令关闭活动CN1610交换机CL1上的ISL端口13到16。
+. [[step3]] 使用适当的命令关闭活动 CN1610 交换机 CL1 上的 ISL 端口 13 至 16。
 +
-有关 Cisco 命令的详细信息，请参见中列出的指南 https://www.cisco.com/c/en/us/support/switches/nexus-3000-series-switches/products-command-reference-list.html["Cisco Nexus 3000 系列 NX-OS 命令参考"^]。
+有关Cisco命令的更多信息，请参阅以下位置列出的指南： https://www.cisco.com/c/en/us/support/switches/nexus-3000-series-switches/products-command-reference-list.html["Cisco Nexus 3000 系列 NX-OS 命令参考"^] 。
 
 +
 .显示示例
 [%collapsible]
 ====
-以下示例显示 CN1610 交换机 CL1 上的 ISL 端口 13 到 16 将关闭：
+以下示例显示 CN1610 交换机 CL1 上的 ISL 端口 13 至 16 已关闭：
 
 [listing, subs="+quotes"]
 ----
@@ -135,15 +135,15 @@ RPC status:
 (CL1)#
 ----
 ====
-. 在 CL1 和 C2 之间构建临时 ISL ：
+. 在 CL1 和 C2 之间建立临时 ISL：
 +
-有关 Cisco 命令的详细信息，请参见中列出的指南 https://www.cisco.com/c/en/us/support/switches/nexus-3000-series-switches/products-command-reference-list.html["Cisco Nexus 3000 系列 NX-OS 命令参考"^]。
+有关Cisco命令的更多信息，请参阅以下位置列出的指南： https://www.cisco.com/c/en/us/support/switches/nexus-3000-series-switches/products-command-reference-list.html["Cisco Nexus 3000 系列 NX-OS 命令参考"^] 。
 
 +
 .显示示例
 [%collapsible]
 ====
-以下示例显示了使用 Cisco `sswitching port mode trunk` 命令在 CL1 （端口 13-16 ）和 C2 （端口 E1/24/1-4 ）之间构建的临时 ISL ：
+以下示例展示了如何使用Cisco在 CL1（端口 13-16）和 C2（端口 e1/24/1-4）之间建立临时 ISL。 `switchport mode trunk`命令：
 
 [listing, subs="+quotes"]
 ----
@@ -161,32 +161,32 @@ C2(config-if-range)# *exit*
 C2(config-if)# *exit*
 ----
 ====
-. 拔下所有节点上连接到 CN1610 交换机 CL2 的缆线。
+. 拆下所有节点上连接到 CN1610 交换机 CL2 的电缆。
 +
-使用支持的布线方式，您必须将所有节点上已断开连接的端口重新连接到 Nexus 3232C 交换机 C2 。
+使用支持的线缆，您必须将所有节点上断开的端口重新连接到 Nexus 3232C 交换机 C2。
 
-. 从 CN1610 交换机 CL1 上的端口 13 到 16 拔下四根 ISL 缆线。
+. 从 CN1610 交换机 CL1 的 13 至 16 号端口移除四根 ISL 电缆。
 +
-您必须使用适当的 Cisco QSFP28 到 SFP+ 分支缆线将新 Cisco 3232C 交换机 C2 上的端口 1/24 连接到现有 CN1610 交换机 CL1 上的端口 13 到 16 。
+您必须将合适的Cisco QSFP28 转 SFP+ 分线电缆连接到新的Cisco 3232C 交换机 C2 上的端口 1/24 和现有 CN1610 交换机 CL1 上的端口 13 至 16。
 
 +
 [NOTE]
 ====
-在将任何缆线重新连接到新的 Cisco 3232C 交换机时，使用的缆线必须是光纤缆线或 Cisco 双轴缆线。
+将任何电缆重新连接到新的Cisco 3232C 交换机时，使用的电缆必须是光纤或Cisco双绞线电缆。
 
 ====
-. 通过在活动 CN1610 交换机上配置 ISL 接口 3/1 以禁用静态模式，使 ISL 成为动态 ISL 。
+. 通过配置活动 CN1610 交换机上的 ISL 接口 3/1 来禁用静态模式，使 ISL 动态化。
 +
-当这两台交换机上启动ISL时、此配置与3232C交换机C2上的ISL配置匹配。
+当两个交换机上都启动 ISL 时，此配置与 3232C 交换机 C2 上的 ISL 配置相匹配。
 
 +
-有关 Cisco 命令的详细信息，请参见中列出的指南 https://www.cisco.com/c/en/us/support/switches/nexus-3000-series-switches/products-command-reference-list.html["Cisco Nexus 3000 系列 NX-OS 命令参考"^]。
+有关Cisco命令的更多信息，请参阅以下位置列出的指南： https://www.cisco.com/c/en/us/support/switches/nexus-3000-series-switches/products-command-reference-list.html["Cisco Nexus 3000 系列 NX-OS 命令参考"^] 。
 
 +
 .显示示例
 [%collapsible]
 ====
-以下示例显示了为使 ISL 成为动态接口而配置的 ISL 接口 3/1 ：
+以下示例展示了如何配置 ISL 接口 3/1 以使 ISL 动态化：
 
 [listing, subs="+quotes"]
 ----
@@ -198,15 +198,15 @@ C2(config-if)# *exit*
 (CL1)#
 ----
 ====
-. 在活动的 CN1610 交换机 CL1 上启动 ISL 13 到 16 。
+. 在活动的 CN1610 交换机 CL1 上启动 ISL 13 至 16。
 +
-有关 Cisco 命令的详细信息，请参见中列出的指南 https://www.cisco.com/c/en/us/support/switches/nexus-3000-series-switches/products-command-reference-list.html["Cisco Nexus 3000 系列 NX-OS 命令参考"^]。
+有关Cisco命令的更多信息，请参阅以下位置列出的指南： https://www.cisco.com/c/en/us/support/switches/nexus-3000-series-switches/products-command-reference-list.html["Cisco Nexus 3000 系列 NX-OS 命令参考"^] 。
 
 +
 .显示示例
 [%collapsible]
 ====
-以下示例显示了端口通道接口 1/1 上的 ISL 端口 13 到 16 ：
+以下示例显示了在端口通道接口 3/1 上启动 ISL 端口 13 至 16：
 
 [listing, subs="+quotes"]
 ----
@@ -218,15 +218,15 @@ C2(config-if)# *exit*
 (CL1)#
 ----
 ====
-. ` CN1610 交换机 CL1 上的 ISL 是否为 `up 。
+. 确认 ISL 是否为 `up`在 CN1610 交换机 CL1 上。
 +
-对于端口 0/13 到 0/16 ， "Link State" 应为 `up` ， "Type" 应为 `DDynamic` ， "Port Active" 列应为 `True` 。
+“链路状态”应为 `Up`“类型”应为 `Dynamic`并且“端口活动”列应为： `True`适用于端口 0/13 至 0/16。
 
 +
 .显示示例
 [%collapsible]
 ====
-以下示例显示了在 CN1610 交换机 CL1 上验证为 `up` 的 ISL ：
+以下示例展示了 ISL 的验证过程 `up`在 CN1610 交换机 CL1 上：
 
 [listing, subs="+quotes"]
 ----
@@ -252,21 +252,21 @@ Ports  Timeout       Speed       Active
        partner/long
 ----
 ====
-. 验证ISL是否为 `up` 在3232C交换机C2上：
+. 确认 ISL 是否为 `up`在 3232C 交换机 C2 上：
 +
-`s如何执行端口通道摘要`
+`show port-channel summary`
 
 +
-有关 Cisco 命令的详细信息，请参见中列出的指南 https://www.cisco.com/c/en/us/support/switches/nexus-3000-series-switches/products-command-reference-list.html["Cisco Nexus 3000 系列 NX-OS 命令参考"^]。
+有关Cisco命令的更多信息，请参阅以下位置列出的指南： https://www.cisco.com/c/en/us/support/switches/nexus-3000-series-switches/products-command-reference-list.html["Cisco Nexus 3000 系列 NX-OS 命令参考"^] 。
 
 +
-端口 Eth1/24/1 到 Eth1/24/4 应指示 ` （ P ）` ，表示端口通道中的所有四个 ISL 端口均已启动。Eth1/31 和 Eth1/32 应指示 ` （ D ）` ，因为它们未连接。
+端口 Eth1/24/1 至 Eth1/24/4 应指示 `(P)`这意味着所有四个 ISL 端口都在端口通道中运行。  Eth1/31 和 eth1/32 应表示 `(D)`因为它们之间没有联系。
 
 +
 .显示示例
 [%collapsible]
 ====
-以下示例显示了 3232C 交换机 C2 上被验证为 `up` 的 ISL ：
+以下示例展示了 ISL 的验证过程 `up`在 3232C 交换机 C2 上：
 
 [listing, subs="+quotes"]
 ----
@@ -287,7 +287,7 @@ Group Port-       Type     Protocol  Member Ports
                                      Eth1/24/4(P)
 ----
 ====
-. 启动所有节点上连接到3232C交换机C2的所有集群互连端口：
+. 在所有节点上启用连接到 3232C 交换机 C2 的所有集群互连端口：
 +
 `network port modify -node _node-name_ -port _port-name_ -up-admin true`
 
@@ -295,7 +295,7 @@ Group Port-       Type     Protocol  Member Ports
 .显示示例
 [%collapsible]
 ====
-以下示例显示了如何启动连接到 3232C 交换机 C2 的集群互连端口：
+以下示例展示了如何启动连接到 3232C 交换机 C2 的集群互连端口：
 
 [listing, subs="+quotes"]
 ----
@@ -305,7 +305,7 @@ cluster::*> *network port modify -node n2 -port e0b -up-admin true*
 cluster::*> *network port modify -node n2 -port e0c -up-admin true*
 ----
 ====
-. 还原所有节点上连接到C2的所有已迁移集群互连LIF：
+. 撤销所有已迁移的、连接到所有节点上 C2 的集群互连 LIF：
 +
 `network interface revert -vserver cluster -lif _lif-name_`
 
@@ -321,7 +321,7 @@ cluster::*> *network interface revert -vserver cluster -lif n2_clus2*
 cluster::*> *network interface revert -vserver cluster -lif n2_clus3*
 ----
 ====
-. 验证所有集群互连端口是否均已还原到其主端口：
+. 确认所有集群互连端口都已恢复到其原始端口：
 +
 `network interface show -role cluster`
 
@@ -329,7 +329,7 @@ cluster::*> *network interface revert -vserver cluster -lif n2_clus3*
 .显示示例
 [%collapsible]
 ====
-以下示例显示， clus2 上的 LIF 将还原到其主端口；如果 "Current Port" 列中的端口在 "Is Home" 列中的状态为 `true` ，则 LIF 将成功还原。如果 "Is Home" 值为 `false` ，则不会还原 LIF 。
+以下示例表明 clus2 上的 LIF 已恢复到其源端口；如果“当前端口”列中的端口状态为“已恢复”，则表示 LIF 已成功恢复。 `true`在“是否在家”一栏中。如果“是否在家”的值为 `false`那么 LIF 就不会被撤销。
 
 [listing, subs="+quotes"]
 ----
@@ -351,7 +351,7 @@ Cluster
 8 entries were displayed.
 ----
 ====
-. 验证所有集群端口是否均已连接：
+. 确认集群所有端口均已连接：
 +
 `network port show -role cluster`
 
@@ -359,7 +359,7 @@ Cluster
 .显示示例
 [%collapsible]
 ====
-以下示例显示了验证所有集群互连是否为 `up` 的输出：
+以下示例显示了验证所有集群互连是否正常的输出结果。 `up` ：
 
 [listing, subs="+quotes"]
 ----
@@ -387,22 +387,22 @@ e0d   cluster   cluster     up    9000  auto/10000     -
 8 entries were displayed.
 ----
 ====
-. 验证远程集群接口的连接：
+. 验证远程集群接口的连接性：
 
 
 [role="tabbed-block"]
 ====
-.ONTAP 9.9.1及更高版本
+.ONTAP 9.9.1 及更高版本
 --
-您可以使用 `network interface check cluster-connectivity` 命令启动集群连接的可访问性检查、然后显示详细信息：
+你可以使用 `network interface check cluster-connectivity`执行命令以启动集群连接性检查，然后显示详细信息：
 
-`network interface check cluster-connectivity start` 和 `network interface check cluster-connectivity show`
+`network interface check cluster-connectivity start`和 `network interface check cluster-connectivity show`
 
 [listing, subs="+quotes"]
 ----
 cluster1::*> *network interface check cluster-connectivity start*
 ----
-*注：*请等待几秒钟、然后再运行 `show`命令以显示详细信息。
+*注意：*运行程序前请等待几秒钟 `show`显示详细信息的命令。
 
 [listing, subs="+quotes"]
 ----
@@ -421,7 +421,7 @@ n2
 --
 .所有ONTAP版本
 --
-对于所有ONTAP版本、您还可以使用 `cluster ping-cluster -node <name>` 用于检查连接的命令：
+对于所有ONTAP版本，您也可以使用 `cluster ping-cluster -node <name>`检查连接性的命令：
 
 `cluster ping-cluster -node <name>`
 
@@ -470,7 +470,7 @@ RPC status:
 ----
 --
 ====
-. [[STEP16]]迁移与第一个CN1610交换机CL1关联的LI：
+. [[步骤16]] 迁移与第一个 CN1610 交换机 CL1 关联的 LIF：
 +
 `network interface migrate -vserver cluster -lif _lif-name_ -source-node _node-name_`
 
@@ -478,7 +478,7 @@ RPC status:
 .显示示例
 [%collapsible]
 ====
-您必须分别将每个集群 LIF 迁移到集群交换机 C2 上托管的相应集群端口，如以下示例所示：
+您必须将每个集群 LIF 单独迁移到集群交换机 C2 上托管的相应集群端口，如下例所示：
 
 [listing, subs="+quotes"]
 ----
@@ -495,4 +495,4 @@ cluster::*> *network interface migrate -vserver cluster -lif n2_clus4 -source-no
 
 
 .下一步是什么？
-link:cn1610-replace-CL1.html["将CN1610交换机CL1更换为3232C交换机C1"](英文)
+link:cn1610-replace-CL1.html["将 CN1610 交换机 CL1 更换为 3232C 交换机 C1"]。

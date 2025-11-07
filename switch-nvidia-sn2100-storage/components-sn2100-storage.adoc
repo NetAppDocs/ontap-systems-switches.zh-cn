@@ -2,7 +2,7 @@
 permalink: switch-nvidia-sn2100-storage/components-sn2100-storage.html 
 sidebar: sidebar 
 keywords: nvidia SN2100 switches 
-summary: 对于NVIDIA SN2100交换机安装和维护、请务必查看机柜和导轨套件的组件列表和部件号。 
+summary: 对于NVIDIA SN2100 交换机的安装和维护，请务必查看机柜和导轨套件的组件和部件号列表。 
 ---
 = NVIDIA SN2100交换机的组件和部件号
 :allow-uri-read: 
@@ -11,68 +11,68 @@ summary: 对于NVIDIA SN2100交换机安装和维护、请务必查看机柜和�
 
 
 [role="lead"]
-对于NVIDIA SN2100交换机安装和维护、请务必查看机柜和导轨套件的组件列表和部件号。
+对于NVIDIA SN2100 交换机的安装和维护，请务必查看机柜和导轨套件的组件和部件号列表。
 
 
 
-== 机柜详细信息
+== 内阁细节
 
-您可以在NVIDIA双/单交换机机柜中使用随交换机提供的标准支架安装NVIDIA SN2100交换机(X190006/X190106)。
+您可以使用交换机附带的标准支架，将NVIDIA SN2100 交换机 (X190006/X190106) 安装到NVIDIA双/单交换机机柜中。
 
 
 
-== 导轨套件详细信息
+== 铁路套件详情
 
-下表列出了MSN2100交换机和导轨套件的部件号和问题描述 ：
+下表列出了 MSN2100 开关和导轨套件的零件编号和描述：
 
 [cols="1,2"]
 |===
-| 部件号 | Description 
+| 零件编号 | 描述 
 
 
  a| 
 X190006-PE
  a| 
-集群交换机、NVIDIA SN2100、16磅100G、PTSX
+集群交换机， NVIDIA SN2100，16PT 100G，PTSX
 
 
 
  a| 
 X190006-PI
  a| 
-集群交换机、NVIDIA SN2100、16磅100G、PSIN
+集群交换机， NVIDIA SN2100，16PT 100G，PSIN
 
 
 
  a| 
 X190106-FE-PE
  a| 
-交换机、NVIDIA SN2100、16磅100G、PTSX、前端
+交换机、 NVIDIA SN2100、16PT 100G、PTSX、前端
 
 
 
  a| 
 X190106-FE-PI
  a| 
-交换机、NVIDIA SN2100、16磅100G、PSIN、前端
+交换机， NVIDIA SN2100，16PT 100G，PSIN，前端
 
 
 
  a| 
-X-MTEF套件D
+X-MTEF-KIT-D
  a| 
-导轨套件、NVIDIA并排双交换机
+Rail Kit， NVIDIA双开关并排
 
 
 
  a| 
 X-MTEF-KIT-E
  a| 
-导轨套件、NVIDIA单交换机、短深度
+NVIDIA单开关短深度导轨套件
 
 |===
 
-NOTE: 有关详细信息、请参见NVIDIA文档 https://docs.nvidia.com/networking/display/sn2000pub/Installation["安装SN2100交换机和导轨套件"^]。
+NOTE: 有关详细信息，请参阅NVIDIA文档。 https://docs.nvidia.com/networking/display/sn2000pub/Installation["安装您的 SN2100 道岔和导轨套件"^] 。
 
 .下一步
 确认组件和零件编号后，您可以进行审核。 link:required-documentation-sn2100-storage.html["所需文件"]。

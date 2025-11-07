@@ -2,24 +2,24 @@
 permalink: switch-cisco-3132q-v/cn1610-complete-migration.html 
 sidebar: sidebar 
 keywords: cisco 3132q-v, cluster switches 
-summary: 您可以在AFF或FAS集群中使用Cisco Nexus 3132q-v交换机作为集群交换机。 
+summary: 您可以在AFF或FAS集群中使用Cisco Nexus 3132q-v 交换机作为集群交换机。 
 ---
-= 完成从CN1610交换机到Nexus 3132Q-V交换机的迁移
+= 完成从 CN1610 交换机到 Nexus 3132Q-V 交换机的迁移
 :allow-uri-read: 
 :icons: font
 :imagesdir: ../media/
 
 
 [role="lead"]
-完成以下步骤以完成CN1610交换机到Nexus 3132Q-V交换机的迁移。
+完成以下步骤，以最终完成 CN1610 交换机向 Nexus 3132Q-V 交换机的迁移。
 
 .步骤
-. 验证ISL连接是否为 `up` 在3132Q-V交换机C2上：
+. 确认 ISL 连接是否正常 `up`在 3132Q-V 开关 C2 上：
 +
-`s如何执行端口通道摘要`
+`show port-channel summary`
 
 +
-端口 Eth1/31 和 Eth1/32 应指示 ` （ P ）` ，这意味着端口通道中的两个 ISL 端口均为 `up` 。
+端口 Eth1/31 和 Eth1/32 应指示 `(P)`这意味着两个 ISL 端口都是 `up`在端口通道中。
 
 +
 .显示示例
@@ -42,7 +42,7 @@ Group Port-       Type     Protocol  Member Ports
 1     Po1(SU)     Eth      LACP      Eth1/31(P)   Eth1/32(P)
 ----
 ====
-. 启动所有节点上连接到新3132Q-V交换机C1的所有集群互连端口：
+. 在所有节点上启用连接到新的 3132Q-V 交换机 C1 的所有集群互连端口：
 +
 `network port modify`
 
@@ -50,7 +50,7 @@ Group Port-       Type     Protocol  Member Ports
 .显示示例
 [%collapsible]
 ====
-以下示例显示了如何启动连接到新的 3132Q-V 交换机 C1 的所有集群互连端口：
+以下示例展示了如何启动连接到新的 3132Q-V 交换机 C1 的所有集群互连端口：
 
 [listing]
 ----
@@ -60,7 +60,7 @@ cluster::*> network port modify -node n2 -port e0a -up-admin true
 cluster::*> network port modify -node n2 -port e0d -up-admin true
 ----
 ====
-. 验证集群节点端口的状态：
+. 验证集群节点端口状态：
 +
 `network port show`
 
@@ -68,7 +68,7 @@ cluster::*> network port modify -node n2 -port e0d -up-admin true
 .显示示例
 [%collapsible]
 ====
-以下示例验证新 3132Q-V 交换机 C1 上 n1 和 n2 上的所有集群互连端口是否均为 `up` ：
+以下示例验证了新的 3132Q-V 交换机 C1 上的 n1 和 n2 上的所有集群互连端口均已连接。 `up` ：
 
 [listing]
 ----
@@ -96,15 +96,15 @@ e0d   cluster   cluster    up    9000  auto/10000     -        -
 8 entries were displayed.
 ----
 ====
-. 还原所有节点上最初连接到C1的所有已迁移集群互连LIF：
+. 撤销所有已迁移的集群互连 LIF，这些 LIF 最初连接到所有节点上的 C1：
 +
-`网络接口还原`
+`network interface revert`
 
 +
 .显示示例
 [%collapsible]
 ====
-以下示例显示了如何将迁移的集群 LIF 还原到其主端口：
+以下示例展示了如何将迁移后的集群 LIF 还原到其原始端口：
 
 [listing]
 ----
@@ -114,7 +114,7 @@ cluster::*> network interface revert -vserver Cluster -lif n2_clus1
 cluster::*> network interface revert -vserver Cluster -lif n2_clus4
 ----
 ====
-. 验证接口现在是否为主：
+. 请确认接口已连接到主服务器：
 +
 `network interface show`
 
@@ -122,7 +122,7 @@ cluster::*> network interface revert -vserver Cluster -lif n2_clus4
 .显示示例
 [%collapsible]
 ====
-以下示例显示了 n1 和 n2 的集群互连接口状态为 `up` 和 `is home` ：
+以下示例显示了集群互连接口的状态： `up`和 `Is home`对于 n1 和 n2：
 
 [listing]
 ----
@@ -145,22 +145,22 @@ Cluster
 8 entries were displayed.
 ----
 ====
-. 验证远程集群接口的连接：
+. 验证远程集群接口的连接性：
 
 
 [role="tabbed-block"]
 ====
-.ONTAP 9.9.1及更高版本
+.ONTAP 9.9.1 及更高版本
 --
-您可以使用 `network interface check cluster-connectivity` 命令启动集群连接的可访问性检查、然后显示详细信息：
+你可以使用 `network interface check cluster-connectivity`执行命令以启动集群连接性检查，然后显示详细信息：
 
-`network interface check cluster-connectivity start` 和 `network interface check cluster-connectivity show`
+`network interface check cluster-connectivity start`和 `network interface check cluster-connectivity show`
 
 [listing, subs="+quotes"]
 ----
 cluster1::*> *network interface check cluster-connectivity start*
 ----
-*注：*请等待几秒钟、然后再运行show命令显示详细信息。
+*注意：*运行 show 命令显示详细信息之前，请等待几秒钟。
 
 [listing, subs="+quotes"]
 ----
@@ -179,7 +179,7 @@ n2
 --
 .所有ONTAP版本
 --
-对于所有ONTAP版本、您还可以使用 `cluster ping-cluster -node <name>` 用于检查连接的命令：
+对于所有ONTAP版本，您也可以使用 `cluster ping-cluster -node <name>`检查连接性的命令：
 
 `cluster ping-cluster -node <name>`
 
@@ -229,18 +229,18 @@ RPC status:
 ----
 --
 ====
-. [[STEP7]]通过向Nexus 3132Q-V集群交换机添加节点来扩展集群。
-. 显示有关配置中的设备的信息：
+. [[step7]]通过向 Nexus 3132Q-V 集群交换机添加节点来扩展集群。
+. 显示配置中设备的信息：
 +
 ** `network device-discovery show`
 ** `network port show -role cluster`
 ** `network interface show -role cluster`
-** `ssystem cluster-switch show`
+** `system cluster-switch show`
 +
 .显示示例
 [%collapsible]
 ====
-以下示例显示了节点 n3 和 n4 ，其中 40 GbE 集群端口分别连接到两个 Nexus 3132Q-V 集群交换机上的端口 E1/7 和 E1/8 ，并且两个节点均已加入集群。使用的 40 GbE 集群互连端口为 E4A 和 e4e 。
+以下示例显示了节点 n3 和 n4，它们分别通过 40 GbE 集群端口连接到 Nexus 3132Q-V 集群交换机的 e1/7 和 e1/8 端口，并且这两个节点都已加入集群。使用的 40 GbE 集群互连端口为 e4a 和 e4e。
 
 [listing]
 ----
@@ -372,15 +372,15 @@ CL2                         cluster-network  10.10.1.102    CN1610
 ====
 
 
-. 如果未自动删除更换的 CN1610 交换机，请将其卸下：
+. 如果更换后的 CN1610 交换机没有自动移除，请将其移除：
 +
-`ssystem cluster-switch delete`
+`system cluster-switch delete`
 
 +
 .显示示例
 [%collapsible]
 ====
-以下示例显示了如何删除 CN1610 交换机：
+以下示例展示了如何拆卸 CN1610 开关：
 
 [listing]
 ----
@@ -389,7 +389,7 @@ cluster::> system cluster-switch delete -device CL1
 cluster::> system cluster-switch delete -device CL2
 ----
 ====
-. 在每个节点上将集群 clus1 和 clus4 配置为 ` 自动还原` 并确认：
+. 配置集群 clus1 和 clus4 为 `-auto-revert`在每个节点上确认：
 +
 .显示示例
 [%collapsible]
@@ -402,9 +402,9 @@ cluster::*> network interface modify -vserver node2 -lif clus1 -auto-revert true
 cluster::*> network interface modify -vserver node2 -lif clus4 -auto-revert true
 ----
 ====
-. 验证是否监控了正确的集群交换机：
+. 确认已对正确的集群交换机进行监控：
 +
-`ssystem cluster-switch show`
+`system cluster-switch show`
 
 +
 .显示示例
@@ -435,11 +435,11 @@ C2                          cluster-network    10.10.1.104      NX3132V
 2 entries were displayed.
 ----
 ====
-. 【｛step43_replacecn1610]]如果您禁止自动创建案例、请通过调用AutoSupport 消息重新启用它：
+. [[step43_replacecn1610]]如果您已禁用自动创建案例，请通过调用AutoSupport消息重新启用它：
 +
-`ssystem node AutoSupport invoke -node * -type all -message MAINT=end`
+`system node autosupport invoke -node * -type all -message MAINT=END`
 
 
 
 .下一步是什么？
-link:../switch-cshm/config-overview.html["配置交换机运行状况监控"](英文)
+link:../switch-cshm/config-overview.html["配置交换机健康监控"]。

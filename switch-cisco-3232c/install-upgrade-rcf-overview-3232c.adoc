@@ -4,7 +4,7 @@ sidebar: sidebar
 keywords: ssh, requirement, cluster, switch, health, monitor, cshm, log, collection, feature, cisco 3232c 
 summary: '使用集群交换机健康监视器 (CSHM) 和日志收集功能时需要 SSH。要在Cisco 3232c 集群交换机上启用 SSH，您需要先生成 SSH 密钥，然后启用 SSH。' 
 ---
-= 安装或升级参考配置文件(Reference Configuration File、RCF)概述
+= 安装或升级参考配置文件 (RCF) 概述
 :allow-uri-read: 
 :icons: font
 :imagesdir: ../media/
@@ -13,95 +13,95 @@ summary: '使用集群交换机健康监视器 (CSHM) 和日志收集功能时�
 [role="lead"]
 首次设置 Nexus 3232C 交换机后，安装参考配置文件 (RCF)。当您的交换机上安装了现有版本的 RCF 文件时，您可以升级您的 RCF 版本。
 
-有关安装或升级RC框架 的详细信息、请参见知识库文章link:https://kb.netapp.com/on-prem/Switches/Cisco-KBs/How_to_clear_configuration_on_a_Cisco_interconnect_switch_while_retaining_remote_connectivity["如何在保持远程连接的同时清除Cisco互连交换机上的配置"^]。
+请参阅知识库文章link:https://kb.netapp.com/on-prem/Switches/Cisco-KBs/How_to_clear_configuration_on_a_Cisco_interconnect_switch_while_retaining_remote_connectivity["如何在保持远程连接的情况下清除Cisco互连交换机上的配置"^]安装或升级 RCF 时，有关更多信息，请参阅以下内容。
 
-.可用的RC框架 配置
-下表介绍了可用于不同配置的RCF。选择适用于您的配置的RC框架。
+.可用的 RCF 配置
+下表描述了不同配置可用的 RCF。选择适用于您配置的 RCF。
 
-有关特定端口和VLAN使用情况的详细信息、请参阅RC框架 中的横幅和重要说明部分。
+有关具体端口和 VLAN 使用详情，请参阅 RCF 中的横幅和重要说明部分。
 
 [cols="1,2"]
 |===
-| RC框架 名称 | Description 
+| RCF 名称 | 描述 
 
 
  a| 
-2-cluster-ha-Breakout
+2-集群-HA-突破
  a| 
-支持两个ONTAP集群、其中至少包含八个节点、包括使用共享集群+HA端口的节点。
-
-
-
- a| 
-4-Cluster-HA-Breakout
- a| 
-支持四个ONTAP集群、其中至少包含四个节点、包括使用共享集群+HA端口的节点。
+支持至少八个节点的两个ONTAP集群，包括使用共享 Cluster+HA 端口的节点。
 
 
 
  a| 
-1-Cluster-HA
+4-集群-HA-突破
  a| 
-所有端口均配置为40/100GbE。支持端口上的共享集群/HA流量。AFF A320、AFF A250和FAS500f系统需要。此外、所有端口均可用作专用集群端口。
-
-
-
- a| 
-1-Cluster-HA-Breakout
- a| 
-端口配置为4个10GbE分支端口、4个25GbE分支端口(100GbE交换机上的RCF1.6以上)和40/100GbE端口。支持在使用共享集群/HA端口的节点的端口上传输共享集群/HA流量：AFF A320、AFF A250和FAS500f系统。此外、所有端口均可用作专用集群端口。
+支持至少四个节点的四个ONTAP集群，包括使用共享 Cluster+HA 端口的节点。
 
 
 
  a| 
-集群-高可用性-存储
+1-集群-HA
  a| 
-端口配置为40/100GbE用于集群+HA、4x10GbE分支用于集群、4x25GbE分支用于集群+HA、100GbE用于每个存储HA对。
+所有端口均配置为 40/100GbE。支持端口上的共享集群/高可用性流量。 AFF A320、 AFF A250和FAS500f系统需要此组件。此外，所有端口均可用作专用集群端口。
+
+
+
+ a| 
+1-集群-HA-突破
+ a| 
+端口配置为 4x10GbE 分支、4x25GbE 分支（100GbE 交换机上的 RCF 1.6+）和 40/100GbE。支持使用共享集群/HA端口的节点在端口上共享集群/HA流量： AFF A320、 AFF A250和FAS500f系统。此外，所有端口均可用作专用集群端口。
+
+
+
+ a| 
+集群高可用性存储
+ a| 
+端口配置为：集群+HA 40/100GbE，集群 4x10GbE 分支，集群+HA 4x25GbE 分支，以及每个存储 HA 对 100GbE。
 
 
 
  a| 
 集群
  a| 
-具有4个10GbE端口(分支)和40/100GbE端口的不同分配的两种RC框架。除AFF A320、AFF A250和FAS500f系统外、所有FAS/AFA节点均受支持。
+两种 RCF 版本，分别分配了不同的 4x10GbE 端口（分支）和 40/100GbE 端口。除了AFF A320、 AFF A250和FAS500f系统之外，所有FAS/ AFF节点均受支持。
 
 
 
  a| 
 存储
  a| 
-所有端口均配置为使用100GbE NVMe存储连接。
+所有端口均配置为 100GbE NVMe 存储连接。
 
 |===
 .建议的文档
-* link:https://mysupport.netapp.com/site/info/cisco-ethernet-switch["Cisco以太网交换机(NSS)"^]
+* link:https://mysupport.netapp.com/site/info/cisco-ethernet-switch["Cisco以太网交换机（NSS）"^]
 +
-有关NetApp 支持站点 上支持的ONTAP和RC框架 版本、请参见交换机兼容性表。请注意、RC框架 中的命令语法与特定NX-OS版本中的语法之间可能存在命令相关性。
+请参阅NetApp支持网站上的交换机兼容性表格，了解支持的ONTAP和 RCF 版本。请注意，RCF 中的命令语法与特定版本的 NX-OS 中的语法之间可能存在命令依赖关系。
 
-* link:https://www.cisco.com/c/en/us/support/switches/nexus-3000-series-switches/products-installation-guides-list.html["Cisco Nexus 3000 系列交换机"^]
+* link:https://www.cisco.com/c/en/us/support/switches/nexus-3000-series-switches/products-installation-guides-list.html["CiscoNexus 3000 系列交换机"^]
 +
-有关Cisco交换机升级和降级过程的完整文档、请参阅Cisco网站上提供的相应软件和升级指南。
+有关Cisco交换机升级和降级程序的完整文档，请参阅Cisco网站上提供的相应软件和升级指南。
 
 
 
 .关于示例
-此操作步骤中的示例使用以下交换机和节点命名：
+本流程中的示例使用以下开关和节点命名规则：
 
-* 两个Cisco交换机的名称分别为*CS1*和*CS2*。
-* 节点名称为*集群1-01*、*集群1-02*、*集群1-03*和*集群1-04*。
-* 集群LIF名称包括*集群1-01_clus1*、*集群1-01_clus2*、*集群1-02_clus1*、*集群1-02_clus2*、*集群1-03_clus1*、*集群1-03_clus2*、*集群1-04_clus1*和*集群1-04_clus1*。
-* `cluster1 ：：： * >` 提示符指示集群的名称。
-
-
-此操作步骤 中的示例使用四个节点。这些节点使用两个10GbE集群互连端口*e0a*和*e0b*。请参见 https://hwu.netapp.com/SWITCH/INDEX["Hardware Universe"^]以验证平台上的集群端口是否正确。
+* 这两个Cisco交换机的名称分别是 *cs1* 和 *cs2*。
+* 节点名称分别为 *cluster1-01*、*cluster1-02*、*cluster1-03* 和 *cluster1-04*。
+* 集群 LIF 名称为 *cluster1-01_clus1*、*cluster1-01_clus2*、*cluster1-02_clus1*、*cluster1-02_clus2*、*cluster1-03_clus1*、*cluster1-03_clus2*、*cluster1-04_clus1* 和 *cluster1-04_clus2*。
+* 这 `cluster1::*>`prompt 指示集群名称。
 
 
-NOTE: 根据不同版本的 ONTAP ，命令输出可能会有所不同。
+本流程中的示例使用了四个节点。这些节点使用两个 10GbE 集群互连端口 *e0a* 和 *e0b*。参见 https://hwu.netapp.com/SWITCH/INDEX["Hardware Universe"^]验证平台上的集群端口是否正确。
 
-有关可用 RCF 配置的详细信息，请参阅link:configure-software-overview-3232c-cluster.html["软件安装工作流"]。
+
+NOTE: 命令输出可能因ONTAP版本不同而有所差异。
+
+有关可用 RCF 配置的详细信息，请参阅link:configure-software-overview-3232c-cluster.html["软件安装工作流程"]。
 
 .使用的命令
-操作步骤 要求同时使用 ONTAP 命令和 Cisco Nexus 3000 系列交换机命令；除非另有说明，否则使用 ONTAP 命令。
+该过程需要同时使用ONTAP命令和Cisco Nexus 3000 系列交换机命令；除非另有说明，否则使用ONTAP命令。
 
 .下一步是什么？
 在您查看安装 RCF 或升级 RCF 程序后，您link:install-rcf-software-3232c.html["安装 RCF"]或者link:upgrade-rcf-software-3232c.html["升级您的 RCF"]按要求。

@@ -1,103 +1,103 @@
 ---
 section: switch-cisco-3132q-v
-title: Cisco Nexus 3132Q-V
+title: CiscoNexus 3132Q-V
 entries:
-- title: 入门
+- title: 开始使用
   pdf-filename: 概述_3132q-v
   entries:
-  - title: 快速入门
+  - title: 快速启动
     url: "/switch-cisco-3132q-v/install-overview-cisco-3132qv.html"
   - title: 配置要求
     url: "/switch-cisco-3132q-v/configure-reqs-3132q.html"
-  - title: 所需文档
+  - title: 所需文件
     url: "/switch-cisco-3132q-v/required-documentation-3132q.html"
-  - title: 智能自动通报要求
+  - title: 智能呼叫中心的要求
     url: "/switch-cisco-3132q-v/smart-call-home-3132q.html"
 - title: 安装硬件
-  pdf-filename: install_hardhardware _ 3132q-v
+  pdf-filename: 安装硬件 3132q-v
   entries:
   - title: 硬件安装工作流程
     url: "/switch-cisco-3132q-v/install-hardware-workflow.html"
-  - title: 完成布线工作表
+  - title: 完整的布线工作表
     url: "/switch-cisco-3132q-v/setup-worksheet-3132q.html"
-  - title: 安装交换机
+  - title: 安装开关
     url: "/switch-cisco-3132q-v/install-switch-3132qv.html"
-  - title: 将交换机安装在NetApp机柜中
+  - title: 在NetApp机柜中安装交换机
     url: "/switch-cisco-3132q-v/install-cisco-nexus-3132qv.html"
-  - title: 查看布线和配置
+  - title: 检查布线和配置
     url: "/switch-cisco-3132q-v/cabling-considerations-3132q-v.html"
 - title: 配置软件
-  pdf-filename: CONFIG_SOFTWARE_3132q-v
+  pdf-filename: 配置软件_3132q-v
   entries:
-  - title: 软件安装工作流
+  - title: 软件安装工作流程
     url: "/switch-cisco-3132q-v/configure-software-overview-3132q-v-cluster.html"
   - title: 配置交换机
     url: "/switch-cisco-3132q-v/setup-switch.html"
-  - title: 准备安装NX-OS软件和RCF
+  - title: 准备安装 NX-OS 软件和 RCF
     url: "/switch-cisco-3132q-v/prepare-install-cisco-nexus-3132q.html"
   - title: 安装 NX-OS 软件
     url: "/switch-cisco-3132q-v/install-nx-os-software-3132q-v.html"
-  - title: 安装或升级RC框架
+  - title: 安装或升级 RCF
     pdf-filename: 安装升级
     entries:
-    - title: 安装或升级RC框架 概述
+    - title: 安装或升级 RCF 概述
       url: "/switch-cisco-3132q-v/install-upgrade-rcf-overview-3132q-v.html"
-    - title: 安装RCF
+    - title: 安装 RCF
       url: "/switch-cisco-3132q-v/install-rcf-software-3132q-v.html"
-    - title: 升级RC框架 版本
+    - title: 升级您的 RCF 版本
       url: "/switch-cisco-3132q-v/upgrade-rcf-3132q-v.html"
   - title: 验证 SSH 配置
     url: "/switch-cisco-3132q-v/configure-ssh-keys.html"
   - title: 将交换机重置为出厂默认设置
     url: "/switch-cisco-3132q-v/reset-switch-3132q-v.html"
 - title: 迁移交换机
-  pdf-filename: migration_switchs_3132q-v
+  pdf-filename: 迁移交换机 3132q-v
   entries:
   - title: CN1610交换机迁移
     pdf-filename: CN1610_switch_migration
     entries:
-    - title: CN1610交换机迁移工作流
+    - title: CN1610交换机迁移工作流程
       url: "/switch-cisco-3132q-v/cn1610-migrate-workflow.html"
     - title: 迁移要求
       url: "/switch-cisco-3132q-v/cn1610-migrate-requirements.html"
-    - title: 准备迁移
+    - title: 做好迁移准备
       url: "/switch-cisco-3132q-v/cn1610-prepare-to-migrate.html"
     - title: 配置端口
       url: "/switch-cisco-3132q-v/cn1610-configure-ports.html"
     - title: 完成迁移
       url: "/switch-cisco-3132q-v/cn1610-complete-migration.html"
-  - title: Cisco Nexus 5596交换机迁移
+  - title: Cisco Nexus 5596 交换机迁移
     pdf-filename: CN5596_switch_migration
     entries:
-    - title: Cisco Nexus 5596交换机迁移工作流
+    - title: Cisco Nexus 5596 交换机迁移工作流程
       url: "/switch-cisco-3132q-v/cn5596-migrate-workflow.html"
     - title: 迁移要求
       url: "/switch-cisco-3132q-v/cn5596-migrate-requirements.html"
-    - title: 准备迁移
+    - title: 做好迁移准备
       url: "/switch-cisco-3132q-v/cn5596-prepare-to-migrate.html"
     - title: 配置端口
       url: "/switch-cisco-3132q-v/cn5596-configure-ports.html"
     - title: 完成迁移
       url: "/switch-cisco-3132q-v/cn5596-complete-migration.html"
-  - title: 从无交换机集群迁移到双节点有交换机集群
-    pdf-filename: migration_from switchless至switched_cluster
+  - title: 从无交换机集群迁移到双节点交换式集群
+    pdf-filename: 从无交换机集群迁移到有交换机集群
     entries:
-    - title: 从无交换机迁移到双节点交换工作流
+    - title: 从无交换机工作流程迁移到双节点交换工作流程
       url: "/switch-cisco-3132q-v/migrate-switchless-to-switched-workflow.html"
     - title: 迁移要求
       url: "/switch-cisco-3132q-v/migrate-switchless-to-switched-requirements.html"
-    - title: 准备迁移
+    - title: 做好迁移准备
       url: "/switch-cisco-3132q-v/migrate-switchless-prepare-to-migrate.html"
     - title: 配置端口
       url: "/switch-cisco-3132q-v/migrate-switchless-configure-ports.html"
     - title: 完成迁移
       url: "/switch-cisco-3132q-v/migrate-switchless-complete-migration.html"
-- title: 更换交换机
-  pdf-filename: REPLACE _switchs_3132q-v
+- title: 更换开关
+  pdf-filename: 替换开关 3132q-v
   entries:
-  - title: 更换要求
+  - title: 替换要求
     url: "/switch-cisco-3132q-v/switch-requirements.html"
-  - title: 更换3132Q-V开关
+  - title: 更换 3132Q-V 开关
     url: "/switch-cisco-3132q-v/replace-cisco-nexus-3132q-v.html"
-  - title: 将集群交换机更换为无交换机连接
+  - title: 用无开关连接取代集群开关
     url: "/switch-cisco-3132q-v/migrate-to-switchless-cluster-interconnect.html"

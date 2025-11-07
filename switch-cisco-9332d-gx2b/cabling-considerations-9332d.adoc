@@ -4,7 +4,7 @@ sidebar: sidebar
 keywords: 9332d-gx2b cabling setup, 9332d-gx2b switches configuration, nx-os 
 summary: 在配置Cisco 9332D-GX2B 交换机之前，请查看以下信息。 
 ---
-= 查看布线和配置注意事项
+= 审查布线和配置注意事项
 :allow-uri-read: 
 :icons: font
 :imagesdir: ../media/
@@ -29,4 +29,4 @@ summary: 在配置Cisco 9332D-GX2B 交换机之前，请查看以下信息。
 (cs1)(config)# *exit*
 (cs1)# *copy running-config startup-config*
 ----
-请参见 https://hwu.netapp.com/Switch/Index["Hardware Universe"^] 有关交换机端口的详细信息。
+参见 https://hwu.netapp.com/Switch/Index["Hardware Universe"^]有关交换机端口的更多信息。

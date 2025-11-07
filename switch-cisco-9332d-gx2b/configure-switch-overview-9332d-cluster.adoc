@@ -9,7 +9,7 @@ summary: Cisco 9332D-GX2B 集群交换机安装和配置概述
 
 
 [role="lead"]
-Cisco 9332D-GX2B 交换机是Cisco Nexus 9000 平台的一部分。  AFX 系统交换机允许您构建具有两个以上节点的ONTAP集群。
+Cisco 9332D-GX2B 交换机是Cisco Nexus 9000 平台的一部分。AFX 系统交换机允许您构建具有两个以上节点的ONTAP集群。
 
 按照这些工作流程步骤安装和设置您的Cisco 9332D-GX2B 交换机。
 
@@ -21,14 +21,14 @@ Cisco 9332D-GX2B 交换机是Cisco Nexus 9000 平台的一部分。  AFX 系统�
 [role="quick-margin-para"]
 查看特定的交换机和控制器文档以设置您的 9332D-GX2B 交换机和ONTAP集群。
 
-.image:https://raw.githubusercontent.com/NetAppDocs/common/main/media/number-3.png["三个"]link:smart-call-9332d-cluster.html["查看 Smart Call Home 要求"]
+.image:https://raw.githubusercontent.com/NetAppDocs/common/main/media/number-3.png["三"]link:smart-call-9332d-cluster.html["查看 Smart Call Home 要求"]
 [role="quick-margin-para"]
 查看Cisco Smart Call Home 功能的要求，该功能用于监控网络上的硬件和软件组件。
 
-.image:https://raw.githubusercontent.com/NetAppDocs/common/main/media/number-4.png["四个"]link:install-hardware.html["Install the hardware"]
+.image:https://raw.githubusercontent.com/NetAppDocs/common/main/media/number-4.png["四个"]link:install-hardware.html["安装硬件"]
 [role="quick-margin-para"]
 安装交换机硬件。
 
-.image:https://raw.githubusercontent.com/NetAppDocs/common/main/media/number-5.png["五个"]link:configure-software-overview-9332d-cluster.html["配置软件"]
+.image:https://raw.githubusercontent.com/NetAppDocs/common/main/media/number-5.png["五"]link:configure-software-overview-9332d-cluster.html["配置软件"]
 [role="quick-margin-para"]
 配置交换机软件。

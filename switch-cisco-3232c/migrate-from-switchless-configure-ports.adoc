@@ -2,16 +2,16 @@
 permalink: switch-cisco-3232c/migrate-from-switchless-configure-ports.html 
 sidebar: sidebar 
 keywords: cisco 3232c, cluster switches 
-summary: 您可以将 Cisco Nexus 3232C 交换机用作 AFF 或 FAS 集群中的集群交换机。 
+summary: 您可以在AFF或FAS集群中使用Cisco Nexus 3232C 交换机作为集群交换机。 
 ---
-= 配置端口以从双节点无交换机集群迁移到双节点有交换机集群
+= 配置端口，以便从双节点无交换机集群迁移到双节点交换式集群。
 :allow-uri-read: 
 :icons: font
 :imagesdir: ../media/
 
 
 [role="lead"]
-请按照以下步骤配置端口、以便从双节点无交换机集群迁移到Nexus 3232C交换机上的双节点有交换机集群。
+按照以下步骤配置端口，以便从双节点无交换机集群迁移到 Nexus 3232C 交换机上的双节点交换集群。
 
 .步骤
 . 将 n1_clus1 和 n2_clus1 LIF 迁移到其目标节点的物理端口：
@@ -22,7 +22,7 @@ summary: 您可以将 Cisco Nexus 3232C 交换机用作 AFF 或 FAS 集群中的
 .显示示例
 [%collapsible]
 ====
-您必须对每个本地节点执行命令，如以下示例所示：
+您必须对每个本地节点执行该命令，如下例所示：
 
 [listing, subs="+quotes"]
 ----
@@ -40,7 +40,7 @@ cluster::*> *network interface migrate -vserver cluster -lif n2_clus1 -source-no
 .显示示例
 [%collapsible]
 ====
-以下示例显示了 n1_clus1 的 "Is Home" 状态，而 n2_clus1 LIF 在迁移完成后变为 "false" ：
+以下示例显示，迁移完成后，n1_clus1 和 n2_clus1 LIF 的“Is Home”状态已变为“false”：
 
 [listing, subs="+quotes"]
 ----
@@ -65,7 +65,7 @@ Cluster
 .显示示例
 [%collapsible]
 ====
-您必须对每个端口执行命令，如以下示例所示：
+您必须对每个端口执行该命令，如下例所示：
 
 [listing, subs="+quotes"]
 ----
@@ -73,22 +73,22 @@ cluster::*> *network port modify -node n1 -port e4a -up-admin false*
 cluster::*> *network port modify -node n2 -port e4a -up-admin false*
 ----
 ====
-. 验证远程集群接口的连接：
+. 验证远程集群接口的连接性：
 
 
 [role="tabbed-block"]
 ====
-.ONTAP 9.9.1及更高版本
+.ONTAP 9.9.1 及更高版本
 --
-您可以使用 `network interface check cluster-connectivity` 命令启动集群连接的可访问性检查、然后显示详细信息：
+你可以使用 `network interface check cluster-connectivity`执行命令以启动集群连接性检查，然后显示详细信息：
 
-`network interface check cluster-connectivity start` 和 `network interface check cluster-connectivity show`
+`network interface check cluster-connectivity start`和 `network interface check cluster-connectivity show`
 
 [listing, subs="+quotes"]
 ----
 cluster1::*> *network interface check cluster-connectivity start*
 ----
-*注：*请等待几秒钟、然后再运行 `show`命令以显示详细信息。
+*注意：*运行程序前请等待几秒钟 `show`显示详细信息的命令。
 
 [listing, subs="+quotes"]
 ----
@@ -107,7 +107,7 @@ n2
 --
 .所有ONTAP版本
 --
-对于所有ONTAP版本、您还可以使用 `cluster ping-cluster -node <name>` 用于检查连接的命令：
+对于所有ONTAP版本，您也可以使用 `cluster ping-cluster -node <name>`检查连接性的命令：
 
 `cluster ping-cluster -node <name>`
 
@@ -137,23 +137,23 @@ Larger than PMTU communication succeeds on 4 path(s) RPC status:
 ----
 --
 ====
-. [[STEP5]]从节点n1上的e4a上拔下缆线。
+. [[step5]] 断开节点 n1 上 e4a 的电缆。
 +
-您可以参考正在运行的配置，并使用 Nexus 3232C 交换机支持的布线方式将交换机 C1 上的第一个 40 GbE 端口（本示例中的端口 1/7 ）连接到 n1 上的 E4A 。
+您可以参考运行配置，并将交换机 C1 上的第一个 40 GbE 端口（本例中为端口 1/7）连接到 n1 上的 e4a，使用 Nexus 3232C 交换机支持的电缆。
 
-. 断开节点 n2 上 E4A 的缆线。
+. 断开节点 n2 上 e4a 的电缆。
 +
-您可以参考运行配置，并使用支持的布线方式将 E4A 连接到 C1 端口 1/8 上的下一个可用 40 GbE 端口。
+您可以参考运行配置，使用支持的电缆将 e4a 连接到 C1 上的下一个可用的 40 GbE 端口 1/8。
 
-. 启用 C1 上面向节点的所有端口。
+. 启用 C1 上所有面向节点的端口。
 +
-有关 Cisco 命令的详细信息，请参见中列出的指南 https://www.cisco.com/c/en/us/support/switches/nexus-3000-series-switches/products-command-reference-list.html["Cisco Nexus 3000 系列 NX-OS 命令参考"^]。
+有关Cisco命令的更多信息，请参阅以下位置列出的指南： https://www.cisco.com/c/en/us/support/switches/nexus-3000-series-switches/products-command-reference-list.html["Cisco Nexus 3000 系列 NX-OS 命令参考"^] 。
 
 +
 .显示示例
 [%collapsible]
 ====
-以下示例显示了使用 RCF `NX3232_RCF_v1.0_24p10g_26p100g.txt` 中支持的配置在 Nexus 3232C 集群交换机 C1 和 C2 上启用端口 1 到 30 ：
+以下示例展示了如何使用 RCF 中支持的配置，在 Nexus 3232C 集群交换机 C1 和 C2 上启用端口 1 到 30。 `NX3232_RCF_v1.0_24p10g_26p100g.txt` ：
 
 [listing, subs="+quotes"]
 ----
@@ -164,7 +164,7 @@ C1(config-if-range)# *exit*
 C1(config)# *exit*
 ----
 ====
-. 在每个节点上启用第一个集群端口 E4A ：
+. 在每个节点上启用第一个集群端口 e4a：
 +
 `network port modify -node _node-name_ -port _port-name_ -up-admin true`
 
@@ -178,7 +178,7 @@ cluster::*> *network port modify -node n1 -port e4a -up-admin true*
 cluster::*> *network port modify -node n2 -port e4a -up-admin true*
 ----
 ====
-. 验证两个节点上的集群是否均已启动：
+. 确认两个节点上的集群都已启动：
 +
 `network port show -role cluster`
 
@@ -209,7 +209,7 @@ e4e       Cluster      Cluster          up   9000 auto/40000  -
 4 entries were displayed.
 ----
 ====
-. 对于每个节点，还原所有迁移的集群互连 LIF ：
+. 对于每个节点，还原所有已迁移的集群互连 LIF：
 +
 `network interface revert -vserver cluster -lif _lif-name_`
 
@@ -217,7 +217,7 @@ e4e       Cluster      Cluster          up   9000 auto/40000  -
 .显示示例
 [%collapsible]
 ====
-您必须分别将每个 LIF 还原到其主端口，如以下示例所示：
+您必须将每个 LIF 分别恢复到其原始端口，如下例所示：
 
 [listing, subs="+quotes"]
 ----
@@ -225,12 +225,12 @@ cluster::*> *network interface revert -vserver cluster -lif n1_clus1*
 cluster::*> *network interface revert -vserver cluster -lif n2_clus1*
 ----
 ====
-. 验证所有 LIF 现在是否均已还原到其主端口：
+. 请确认所有 LIF 都已恢复到其原端口：
 +
 `network interface show -role cluster`
 
 +
-对于 `Current Port` 列中列出的所有端口， `Is Home` 列应显示值 `true` 。如果显示的值为 `false` ，则表示端口尚未还原。
+这 `Is Home`该列应显示以下值： `true`对于列表中列出的所有端口 `Current Port`柱子。如果显示的值为 `false`端口尚未恢复。
 
 +
 .显示示例
@@ -251,7 +251,7 @@ Cluster
 4 entries were displayed.
 ----
 ====
-. 显示每个节点上的集群端口连接：
+. 显示每个节点上的集群端口连接情况：
 +
 `network device-discovery show`
 
@@ -273,7 +273,7 @@ n2         /cdp
             e4e    n1                  e4e              FAS9000
 ----
 ====
-. 将 clus2 迁移到每个节点控制台上的端口 E4A ：
+. 将 clus2 迁移到每个节点控制台上的 e4a 端口：
 +
 `network interface migrate cluster -lif _lif-name_ -source-node _source-node-name_ -destination-node _destination-node-name_ -destination-port _destination-port-name_`
 
@@ -281,7 +281,7 @@ n2         /cdp
 .显示示例
 [%collapsible]
 ====
-您必须将每个 LIF 单独迁移到其主端口，如以下示例所示：
+您必须按照以下示例所示，将每个 LIF 单独迁移到其所属端口：
 
 [listing, subs="+quotes"]
 ----
@@ -291,7 +291,7 @@ cluster::*> *network interface migrate -vserver cluster -lif n2_clus2 -source-no
 -destination-node n2 -destination-port e4a*
 ----
 ====
-. 关闭两个节点上的集群端口 clus2 LIF ：
+. 关闭两个节点上的集群端口 clus2 LIF：
 +
 `network port modify`
 
@@ -299,7 +299,7 @@ cluster::*> *network interface migrate -vserver cluster -lif n2_clus2 -source-no
 .显示示例
 [%collapsible]
 ====
-以下示例显示了将指定端口设置为 `false` 将关闭两个节点上的端口：
+以下示例显示了如何设置指定的端口 `false`关闭两个节点上的端口：
 
 [listing, subs="+quotes"]
 ----
@@ -330,20 +330,20 @@ Cluster
 4 entries were displayed.
 ----
 ====
-. 断开节点 n1 上 e4e 的缆线。
+. 断开节点 n1 上 e4e 的电缆。
 +
-您可以参考正在运行的配置，并使用适用于 Nexus 3232C 交换机型号的相应布线方式将交换机 C2 上的第一个 40 GbE 端口（本示例中的端口 1/7 ）连接到节点 n1 上的 e4e 。
+您可以参考运行配置，将交换机 C2 上的第一个 40 GbE 端口（本例中为端口 1/7）连接到节点 n1 上的 e4e，使用适用于 Nexus 3232C 交换机型号的适当电缆。
 
-. 断开节点 n2 上 e4e 的缆线。
+. 断开节点 n2 上 e4e 的电缆。
 +
-您可以参考正在运行的配置，并使用适合 Nexus 3232C 交换机型号的相应布线方式将 e4e 连接到 C2 上的下一个可用 40 GbE 端口端口端口端口端口，即端口 1/8 。
+您可以参考运行配置，使用适用于 Nexus 3232C 交换机型号的适当电缆，将 e4e 连接到 C2 上的下一个可用 40 GbE 端口（端口 1/8）。
 
-. 在 C2 上启用所有面向节点的端口。
+. 启用 C2 上所有面向节点的端口。
 +
 .显示示例
 [%collapsible]
 ====
-以下示例显示了在 Nexus 3132Q-V 集群交换机 C1 和 C2 上使用 RCF `NX32C_RCF_v1.0_24p10g_26p100g.txt` 中支持的配置启用端口 1 到 30 ：
+以下示例展示了如何使用 RCF 支持的配置在 Nexus 3132Q-V 集群交换机 C1 和 C2 上启用端口 1 到 30。 `NX3232C_RCF_v1.0_24p10g_26p100g.txt` ：
 
 [listing, subs="+quotes"]
 ----
@@ -354,7 +354,7 @@ C2(config-if-range)# *exit*
 C2(config)# *exit*
 ----
 ====
-. 在每个节点上启用第二个集群端口 e4e ：
+. 在每个节点上启用第二个集群端口 e4e：
 +
 `network port modify`
 
@@ -362,7 +362,7 @@ C2(config)# *exit*
 .显示示例
 [%collapsible]
 ====
-以下示例显示了每个节点上启动的第二个集群端口 e4e ：
+以下示例展示了如何在每个节点上启动第二个集群端口 e4e：
 
 [listing, subs="+quotes"]
 ----
@@ -370,15 +370,15 @@ cluster::*> *network port modify -node n1 -port e4e -up-admin true*
 cluster::*> *network port modify -node n2 -port e4e -up-admin true*s
 ----
 ====
-. 对于每个节点，还原所有迁移的集群互连 LIF ：
+. 对于每个节点，还原所有已迁移的集群互连 LIF：
 +
-`网络接口还原`
+`network interface revert`
 
 +
 .显示示例
 [%collapsible]
 ====
-以下示例显示了要还原到其主端口的已迁移 LIF 。
+以下示例显示已迁移的 LIF 恢复到其原端口。
 
 [listing, subs="+quotes"]
 ----
@@ -389,4 +389,4 @@ cluster::*> *network interface revert -vserver Cluster -lif n2_clus2*
 
 
 .下一步是什么？
-link:migrate-from-switchless-complete-migration.html["完成迁移"](英文)
+link:migrate-from-switchless-complete-migration.html["完成迁移"]。

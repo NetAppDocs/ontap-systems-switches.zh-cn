@@ -2,9 +2,9 @@
 permalink: switch-cisco-9336c-fx2/smart-call-9336c-cluster.html 
 sidebar: sidebar 
 keywords: cisco smart call,small call home 
-summary: 智能自动通报功能可监控网络上的硬件和软件组件，以生成基于电子邮件的关键系统情况通知。当设备上发生事件时，智能自动通报会向目标配置文件中配置的所有收件人发出警报。 
+summary: Smart Call Home 监控您网络上的硬件和软件组件，并在出现关键系统状况时通过电子邮件发出通知。当您的设备上发生事件时，Smart Call Home 会向您目标配置文件中配置的所有接收者发出警报。 
 ---
-= 智能自动通报要求
+= 智能呼叫中心的要求
 :allow-uri-read: 
 :icons: font
 :imagesdir: ../media/
@@ -19,11 +19,11 @@ Smart Call Home 监控您网络上的硬件和软件组件。当发生关键系�
 
 在使用 Smart Call Home 之前，请注意以下要求：
 
-* 电子邮件服务器必须已就位。
-* 交换机必须与电子邮件服务器建立 IP 连接。
-* 必须配置联系人姓名（ SNMP 服务器联系人），电话号码和街道地址信息。要确定收到的消息的来源，必须执行此操作。
-* CCO ID 必须与贵公司的相应 Cisco SMARTnet 服务合同相关联。
-* 要注册设备，必须已安装 Cisco SMARTnet 服务。
+* 必须架设邮件服务器。
+* 交换机必须与邮件服务器建立IP连接。
+* 必须配置联系人姓名（SNMP 服务器联系人）、电话号码和街道地址信息。这是为了确定所接收消息的来源。
+* CCO ID 必须与贵公司适用的Cisco SMARTnet 服务合同关联。
+* 设备必须安装Cisco SMARTnet 服务才能注册。
 
 
-。 http://www.cisco.com/c/en/us/products/switches/index.html["Cisco 支持站点"^] 包含有关用于配置智能自动通报的命令的信息。
+这 http://www.cisco.com/c/en/us/products/switches/index.html["Cisco支持网站"^]包含有关配置智能呼叫中心命令的信息。

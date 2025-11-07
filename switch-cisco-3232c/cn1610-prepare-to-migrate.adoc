@@ -2,32 +2,32 @@
 permalink: switch-cisco-3232c/cn1610-prepare-to-migrate.html 
 sidebar: sidebar 
 keywords: cisco 3232c, cluster switches 
-summary: 您可以将 Cisco Nexus 3232C 交换机用作 AFF 或 FAS 集群中的集群交换机。 
+summary: 您可以在AFF或FAS集群中使用Cisco Nexus 3232C 交换机作为集群交换机。 
 ---
-= 准备从CN1610交换机3232C交换机迁移
+= 准备从 CN1610 交换机迁移到 3232C 交换机
 :allow-uri-read: 
 :icons: font
 :imagesdir: ../media/
 
 
 [role="lead"]
-请按照以下步骤准备将CN1610交换机迁移到Cisco Nexus 3232C交换机。
+按照以下步骤准备将 CN1610 交换机迁移到Cisco Nexus 3232C 交换机。
 
 .步骤
-. 如果在此集群上启用了 AutoSupport ，则通过调用 AutoSupport 消息禁止自动创建案例：
+. 如果此集群上启用了AutoSupport ，则通过调用AutoSupport消息来抑制自动创建案例：
 +
-`ssystem node AutoSupport invoke -node * -type all -message MAINT=xh`
+`system node autosupport invoke -node * -type all -message MAINT=xh`
 
 +
-_x_ 是维护时段的持续时间，以小时为单位。
+_x_ 是维护窗口的持续时间，单位为小时。
 
 +
 [NOTE]
 ====
-此消息会通知技术支持此维护任务，以便在维护窗口期间禁止自动创建案例。
+该消息通知技术支持部门此维护任务，以便在维护期间禁止自动创建案例。
 
 ====
-. 显示有关配置中设备的信息：
+. 显示配置中设备的相关信息：
 +
 `network device-discovery show`
 
@@ -35,7 +35,7 @@ _x_ 是维护时段的持续时间，以小时为单位。
 .显示示例
 [%collapsible]
 ====
-以下示例显示了在每个节点中为每个集群互连交换机配置了多少个集群互连接口：
+以下示例显示了每个节点上每个集群互连交换机配置的集群互连接口数量：
 
 [listing, subs="+quotes"]
 ----
@@ -93,7 +93,7 @@ e0d   cluster   cluster    up    9000  auto/10000     -
 8 entries were displayed.
 ----
 ====
-.. 显示有关逻辑接口的信息：
+.. 显示逻辑接口信息：
 +
 `network interface show -role cluster`
 
@@ -121,9 +121,9 @@ Cluster
  8 entries were displayed.
 ----
 ====
-.. 显示有关已发现的集群交换机的信息：
+.. 显示已发现的集群交换机的相关信息：
 +
-`ssystem cluster-switch show`
+`system cluster-switch show`
 
 +
 .显示示例
@@ -154,19 +154,19 @@ CL2                           cluster-network  10.10.1.102   CN1610
 ====
 
 
-. 根据您的需求，验证是否在新的 3232C 交换机上安装了适当的 RCF 和映像，并进行任何必要的站点自定义。
+. 确认已根据您的要求在新 3232C 交换机上安装了相应的 RCF 和映像，并进行任何必要的站点自定义。
 +
-此时应准备好两个交换机。如果需要升级 RCF 和映像，必须完成以下操作步骤 ：
+此时您应该准备好这两个交换机。如果需要升级 RCF 和镜像，则必须完成以下步骤：
 
 +
-.. 看link:https://mysupport.netapp.com/site/info/cisco-ethernet-switch["Cisco 以太网交换机"^]在NetApp支持站点上。
-.. 请记下该页面上的表中的交换机和所需的软件版本。
-.. 下载适当版本的 RCF 。
-.. 在*Description*页上选择*CONTINUOD*，接受许可协议，然后按照*Download*页上的说明下载RCB。
-.. 下载相应版本的图像软件link:https://mysupport.netapp.com/site/products/all/details/cisco-cluster-storage-switch/downloads-tab["Cisco ® 集群和管理网络交换机参考配置文件下载"^]。
+.. 看link:https://mysupport.netapp.com/site/info/cisco-ethernet-switch["Cisco以太网交换机"^]在NetApp支持网站上。
+.. 请记下您交换机的型号以及该页表格中所需的软件版本。
+.. 下载相应版本的RCF。
+.. 在“描述”页面上选择“继续”，接受许可协议，然后按照“下载”页面上的说明下载 RCF。
+.. 请从以下网址下载相应版本的图像处理软件：link:https://mysupport.netapp.com/site/products/all/details/cisco-cluster-storage-switch/downloads-tab["Cisco集群和管理网络交换机参考配置文件下载"^] 。
 
 
-. 迁移与您计划更换的第二个CN1610交换机关联的Cifs：
+. 迁移与计划替换的第二个 CN1610 交换机关联的 LIF：
 +
 `network interface migrate -vserver _vserver-name_ -lif _lif-name_ -source-node _source-node-name_ destination-node _destination-node-name_ -destination-port _destination-port-name_`
 
@@ -174,7 +174,7 @@ CL2                           cluster-network  10.10.1.102   CN1610
 .显示示例
 [%collapsible]
 ====
-您必须分别迁移每个 LIF ，如以下示例所示：
+您必须按照以下示例所示，逐个迁移每个 LIF：
 
 [listing, subs="+quotes"]
 ----
@@ -188,7 +188,7 @@ cluster::*> *network interface migrate -vserver cluster -lif n2_clus3 -source-no
 -destination-node  n2  -destination-port  e0d*
 ----
 ====
-. 验证集群的运行状况：
+. 验证集群健康状况：
 +
 `network interface show -role cluster`
 
@@ -219,4 +219,4 @@ Cluster
 
 
 .下一步是什么？
-link:cn1610-replace-CL2.html["将CN1610交换机CL2更换为3232C交换机C2"](英文)
+link:cn1610-replace-CL2.html["将 CN1610 交换机 CL2 更换为 3232C 交换机 C2"]。

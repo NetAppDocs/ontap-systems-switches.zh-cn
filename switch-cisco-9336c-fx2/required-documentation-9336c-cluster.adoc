@@ -2,7 +2,7 @@
 sidebar: sidebar 
 permalink: switch-cisco-9336c-fx2/required-documentation-9336c-cluster.html 
 keywords: shared storage cluster switch 
-summary: 对于Cisco Nexus 9336C-x2交换机安装和维护、请务必查看特定的交换机和控制器文档、以设置Cisco 93336-x2交换机和ONTAP 集群。 
+summary: 对于Cisco Nexus 9336C-FX2 交换机的安装和维护，请务必查看特定的交换机和控制器文档以设置您的Cisco 9336-FX2 交换机和ONTAP集群。 
 ---
 = Cisco Nexus 9336C-FX2 和 9336C-FX2-T 交换机的文档要求
 :hardbreaks:
@@ -18,121 +18,121 @@ summary: 对于Cisco Nexus 9336C-x2交换机安装和维护、请务必查看特
 
 
 
-== 交换机文档
+== 切换文档
 
-要设置Cisco Nexus 9336C-FX2 和 9336C-FX2-T 交换机，您需要以下文档 https://www.cisco.com/c/en/us/support/switches/nexus-9000-series-switches/series.html["Cisco Nexus 9000 系列交换机支持"^]页：
+要设置Cisco Nexus 9336C-FX2 和 9336C-FX2-T 交换机，您需要以下文档： https://www.cisco.com/c/en/us/support/switches/nexus-9000-series-switches/series.html["Cisco Nexus 9000 系列交换机支持"^]页：
 
 [cols="1,2"]
 |===
-| 文档标题 | Description 
+| 文档标题 | 描述 
 
 
  a| 
-_Nexus 9000 系列硬件安装指南 _
+Nexus 9000 系列硬件安装指南
  a| 
-提供有关站点要求，交换机硬件详细信息和安装选项的详细信息。
-
-
-
- a| 
-_Cisco Nexus 9000 系列交换机软件配置指南 _ （选择适用于交换机上安装的 NX-OS 版本的指南）
- a| 
-提供为 ONTAP 操作配置交换机之前所需的初始交换机配置信息。
+提供有关站点要求、交换机硬件详情和安装选项的详细信息。
 
 
 
  a| 
-_Cisco Nexus 9000 系列 NX-OS 软件升级和降级指南 _ （选择适用于交换机上安装的 NX-OS 版本的指南）
+Cisco Nexus 9000 系列交换机软件配置指南（请选择与您的交换机上安装的 NX-OS 版本相对应的指南）
  a| 
-提供有关如何根据需要将交换机降级为 ONTAP 支持的交换机软件的信息。
-
-
-
- a| 
-_Cisco Nexus 9000 系列 NX-OS 命令参考主索引 _
- a| 
-提供 Cisco 提供的各种命令参考的链接。
+提供在配置交换机以进行ONTAP操作之前所需的初始交换机配置信息。
 
 
 
  a| 
-_Cisco Nexus 9000 MIB 参考 _
+Cisco Nexus 9000 系列 NX-OS 软件升级和降级指南（请选择与您的交换机上安装的 NX-OS 版本相对应的指南）
  a| 
-介绍 Nexus 9000 交换机的管理信息库（ Management Information Base ， MIB ）文件。
-
-
-
- a| 
-_Nexus 9000 系列 NX-OS 系统消息参考 _
- a| 
-介绍 Cisco Nexus 9000 系列交换机的系统消息，信息性消息以及可能有助于诊断链路，内部硬件或系统软件问题的其他消息。
+提供有关如何将交换机降级到ONTAP支持的交换机软件（如有必要）的信息。
 
 
 
  a| 
-_Cisco Nexus 9000 系列 NX-OS 发行说明（为交换机上安装的 NX-OS 版本选择注释） _
+Cisco Nexus 9000 系列 NX-OS 命令参考主索引
  a| 
-介绍 Cisco Nexus 9000 系列的功能，错误和限制。
+提供指向Cisco提供的各种命令参考的链接。
 
 
 
  a| 
-Cisco Nexus 9000 系列的合规性和安全信息
+Cisco Nexus 9000 MIB 参考
  a| 
-提供 Nexus 9000 系列交换机的国际机构合规性，安全性和法定信息。
+描述 Nexus 9000 交换机的管理信息库 (MIB) 文件。
+
+
+
+ a| 
+Nexus 9000 系列 NX-OS 系统消息参考
+ a| 
+描述Cisco Nexus 9000 系列交换机的系统消息，包括信息性消息和其他可能有助于诊断链路、内部硬件或系统软件问题的消息。
+
+
+
+ a| 
+Cisco Nexus 9000 系列 NX-OS 版本说明（请选择交换机上已安装的 NX-OS 版本对应的说明）
+ a| 
+描述了CiscoNexus 9000 系列的功能、缺陷和局限性。
+
+
+
+ a| 
+Cisco Nexus 9000 系列的法规遵从性和安全信息
+ a| 
+提供 Nexus 9000 系列交换机的国际机构合规性、安全性和法规信息。
 
 |===
 
 
 == ONTAP 系统文档
 
-要设置 ONTAP 系统，您需要以下适用于您的操作系统版本的文档 https://docs.netapp.com/ontap-9/index.jsp["ONTAP 9."^] 。
+要设置ONTAP系统，您需要以下适用于您操作系统版本的文档。 https://docs.netapp.com/ontap-9/index.jsp["ONTAP 9"^] 。
 
 [cols="1,2"]
 |===
-| Name | Description 
+| 名称 | 描述 
 
 
  a| 
-特定于控制器的安装和设置说明
+控制器专用_安装和设置说明_
  a| 
-介绍如何安装 NetApp 硬件。
+介绍如何安装NetApp硬件。
 
 
 
  a| 
 ONTAP 文档
  a| 
-提供有关 ONTAP 版本各个方面的详细信息。
+提供有关ONTAP版本各个方面的详细信息。
 
 
 
  a| 
 https://hwu.netapp.com["Hardware Universe"^]
  a| 
-提供 NetApp 硬件配置和兼容性信息。
+提供NetApp硬件配置和兼容性信息。
 
 |===
 
 
-== 导轨套件和机柜文档
+== 轨道套件和机柜文档
 
-要在NetApp机柜中安装Cisco 9333-FX2交换机、请参见以下硬件文档。
+要在NetApp机柜中安装Cisco 9336-FX2 交换机，请参阅以下硬件文档。
 
 [cols="1,2"]
 |===
-| Name | Description 
+| 名称 | 描述 
 
 
  a| 
-https://library.netapp.com/ecm/ecm_download_file/ECMM1280394["42U 系统机柜，深度指南"^]
+https://library.netapp.com/ecm/ecm_download_file/ECMM1280394["42U 系统机柜，深导轨"^]
  a| 
-介绍与 42U 系统机柜关联的 FRU ，并提供维护和 FRU 更换说明。
+描述与 42U 系统机柜相关的 FRU，并提供维护和 FRU 更换说明。
 
 
 
  a| 
-link:install-switch-and-passthrough-panel-9336c-cluster.html["在NetApp机柜中安装Cisco 9333-FX2交换机"^]
+link:install-switch-and-passthrough-panel-9336c-cluster.html["在NetApp机柜中安装一台Cisco 9336-FX2 交换机。"^]
  a| 
 介绍如何在四柱NetApp机柜中安装Cisco Nexus 9336C-FX2 和 9336C-FX2-T 交换机。
 

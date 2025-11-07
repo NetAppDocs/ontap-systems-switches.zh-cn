@@ -4,7 +4,7 @@ permalink: switch-cisco-9336c-fx2-shared/replace-9336c-fx2-shared.html
 keywords:  
 summary:  
 ---
-= 更换 Cisco Nexus 9336C-x2 共享交换机
+= 更换Cisco Nexus 9336C-FX2 共享交换机
 :hardbreaks:
 :allow-uri-read: 
 :nofooter: 
@@ -14,49 +14,49 @@ summary:
 
 
 [role="lead"]
-您可以更换有故障的Nexus 9336C-x2共享交换机。这是无中断操作步骤 (NDU)。
+您可以更换有缺陷的 Nexus 9336C-FX2 共享交换机。这是一个无中断程序 (NDU)。
 
 .开始之前
-在执行交换机更换之前、请确保：
+更换开关之前，请确保：
 
-* 在现有集群和网络基础架构中：
+* 在现有的集群和网络基础设施中：
 +
-** 现有集群已通过验证可完全正常运行、并且至少有一个完全连接的集群交换机。
-** 所有集群端口均为*启动*。
-** 所有集群逻辑接口(LIF)均为*启动*并位于其主端口上。
-** ONTAP cluster ping-cluster -node node1 命令必须指示所有路径上的基本连接以及大于 PMTU 的通信均成功。
+** 现有集群已验证功能完全正常，至少有一个完全连接的集群交换机。
+** 集群所有端口均已启动。
+** 所有集群逻辑接口（LIF）均已启动并位于其所属端口上。
+** ONTAP集群 ping-cluster -node node1 命令必须表明所有路径上的基本连接和大于 PMTU 的通信均已成功。
 
 
-* 对于Nexus 9336C-x2更换交换机：
+* 适用于 Nexus 9336C-FX2 的替换开关：
 +
-** 替代交换机上的管理网络连接正常工作。
-** 可以通过控制台访问替代交换机。
-** 节点连接为端口 1/1 到 1/34 ：
-** 端口1/35和1/36上的所有交换机间链路(ISL)端口均已禁用。
-** 所需的参考配置文件(Reference Configuration File、RCF)和NX-OS操作系统映像交换机将加载到此交换机上。
-** 之前的任何站点自定义设置，例如 STP ， SNMP 和 SSH ，都应复制到新交换机。
+** 替换交换机的管理网络连接功能正常。
+** 已具备对替换开关的控制台访问权限。
+** 节点连接端口为 1/1 至 1/34：
+** 端口 1/35 和 1/36 上的所有交换机间链路 (ISL) 端口均已禁用。
+** 将所需的参考配置文件 (RCF) 和 NX-OS 操作系统映像交换机加载到交换机上。
+** 之前站点的所有自定义设置，如 STP、SNMP 和 SSH，都应该复制到新交换机上。
 
 
 
 
 .关于示例
-您必须执行命令，从托管集群 LIF 的节点迁移集群 LIF 。
+您必须从集群 LIF 所在的节点执行迁移集群 LIF 的命令。
 
-此操作步骤中的示例使用以下交换机和节点命名：
+本流程中的示例使用以下开关和节点命名规则：
 
-* 现有 Nexus 9336C-f2 交换机的名称是 _SH1_ 和 _SH2_ 。
-* 新 Nexus 9336C-fx2 交换机的名称是 _newsh1_ 和 _newsh2_ 。
-* 节点名称为 _node1_ 和 _node2_ 。
-* 每个节点上的集群端口均名为 _e3A_ 和 _e3b_ 。
-* 集群 LIF 名称是 node1 的 `node1_clus1` 和 `node1_clus2` ， node2 的 `node2_clus1` 和 `node2_clus2` 。
-* 对所有集群节点进行更改的提示为 cluster1 ：：： * > 。
+* 现有的 Nexus 9336C-FX2 交换机的名称是 _sh1_ 和 _sh2_。
+* 新款 Nexus 9336C-FX2 交换机的名称是 _newsh1_ 和 _newsh2_。
+* 节点名称为 _node1_ 和 _node2_。
+* 每个节点上的集群端口分别命名为_e3a_和_e3b_。
+* 集群 LIF 名称为 `node1_clus1`和 `node1_clus2`对于节点1，以及 `node2_clus1`和 `node2_clus2`对于节点2。
+* 对所有集群节点进行更改的提示是 cluster1::*>。
 +
 
-NOTE: 以下操作步骤基于以下网络拓扑：
+NOTE: 以下步骤基于以下网络拓扑结构：
 
 
 
-.显示示例拓扑
+.展示示例拓扑
 [%collapsible]
 ====
 [listing, subs="+quotes"]
@@ -131,23 +131,23 @@ Total entries displayed: 4
 ----
 ====
 .步骤
-. 如果在此集群上启用了 AutoSupport ，则通过调用 AutoSupport 消息禁止自动创建案例：
+. 如果此集群上启用了AutoSupport ，则通过调用AutoSupport消息来抑制自动创建案例：
 +
-`ssystem node AutoSupport invoke -node * -type all -message MAINT=xh`
+`system node autosupport invoke -node * -type all -message MAINT=xh`
 
 +
-其中 x 是维护时段的持续时间，以小时为单位。
+其中 x 为维护窗口的持续时间（小时）。
 
-. 可选：在交换机 newsh2 上安装相应的 RCF 和映像，并进行必要的站点准备。
+. 可选：在交换机上安装相应的 RCF 和映像、newsh2，并进行任何必要的站点准备。
 +
-.. 如有必要，请验证，下载并安装适用于新交换机的 RCF 和 NX-OS 软件的相应版本。如果您已确认新交换机设置正确，并且不需要更新 RCF 和 NX-OS 软件，请继续执行 <<step3,第 3 步>>。
-.. 转至 NetApp 支持站点上的 NetApp 集群和管理网络交换机参考配置文件问题描述页面。
-.. 单击 "Cluster Network and Management Network Compatibility Matrix （集群网络和管理网络兼容性表） " 的链接，然后记下所需的交换机软件版本。
-.. 单击浏览器的后退箭头以返回到问题描述页面，单击继续，接受许可协议，然后转到下载页面。
-.. 按照下载页面上的步骤下载与您要安装的 ONTAP 软件版本对应的正确 RCF 和 NX-OS 文件。
+.. 如有必要，请验证、下载并安装适用于新交换机的 RCF 和 NX-OS 软件的相应版本。如果您已确认新交换机设置正确，且无需更新 RCF 和 NX-OS 软件，请继续。<<step3,第 3 步>> 。
+.. 前往NetApp支持网站上的NetApp集群和管理网络交换机参考配置文件说明页面。
+.. 点击集群网络和管理网络兼容性矩阵的链接，然后记下所需的交换机软件版本。
+.. 点击浏览器后退箭头返回描述页面，点击继续，接受许可协议，然后前往下载页面。
+.. 请按照下载页面上的步骤，下载与您要安装的ONTAP软件版本相对应的正确 RCF 和 NX-OS 文件。
 
 
-. 在新交换机上，以 admin 身份登录并关闭将连接到节点集群接口（端口 1/1 到 1/34 ）的所有端口。如果要更换的交换机无法正常工作并已关闭电源，请转至 <<step4,第 4 步>>。集群节点上的 LIF 应已故障转移到每个节点的另一个集群端口。
+. [[step3]]在新交换机上，以管理员身份登录，并关闭所有将连接到节点集群接口的端口（端口 1/1 到 1/34）。如果您要更换的开关无法正常工作且已断电，请转到：<<step4,第 4 步>> 。集群节点上的 LIF 应该已经针对每个节点故障转移到另一个集群端口。
 +
 .显示示例
 [%collapsible]
@@ -162,7 +162,7 @@ newsh2(config-if-range)# *shutdown*
 ====
 
 
-. 【第 4 步】验证所有集群 LIF 是否均已启用自动还原。
+. [[step4]]验证所有集群 LIF 是否都已启用自动恢复功能。
 +
 `network interface show - vserver Cluster -fields auto-revert`
 
@@ -185,22 +185,22 @@ Cluster      node2_clus2   true
 ====
 
 
-. [[STEP5]]验证远程集群接口的连接：
+. [[步骤5]] 验证远程集群接口的连接性：
 
 
 [role="tabbed-block"]
 ====
-.ONTAP 9.9.1及更高版本
+.ONTAP 9.9.1 及更高版本
 --
-您可以使用 `network interface check cluster-connectivity` 命令启动集群连接的可访问性检查、然后显示详细信息：
+你可以使用 `network interface check cluster-connectivity`执行命令以启动集群连接性检查，然后显示详细信息：
 
-`network interface check cluster-connectivity start` 和 `network interface check cluster-connectivity show`
+`network interface check cluster-connectivity start`和 `network interface check cluster-connectivity show`
 
 [listing, subs="+quotes"]
 ----
 cluster1::*> *network interface check cluster-connectivity start*
 ----
-*注：*请等待几秒钟、然后再运行 `show`命令以显示详细信息。
+*注意：*运行程序前请等待几秒钟 `show`显示详细信息的命令。
 
 [listing, subs="+quotes"]
 ----
@@ -218,7 +218,7 @@ node2
 --
 .所有ONTAP版本
 --
-对于所有ONTAP版本、您还可以使用 `cluster ping-cluster -node <name>` 用于检查连接的命令：
+对于所有ONTAP版本，您也可以使用 `cluster ping-cluster -node <name>`检查连接性的命令：
 
 `cluster ping-cluster -node <name>`
 
@@ -251,7 +251,7 @@ RPC status:
 ----
 --
 ====
-. 【第 6 步】关闭 Nexus 9336C-x2 交换机 SH1 上的 ISL 端口 1/35 和 1/36 。
+. [[step6]]关闭 Nexus 9336C-FX2 交换机 sh1 上的 ISL 端口 1/35 和 1/36。
 +
 .显示示例
 [%collapsible]
@@ -266,16 +266,16 @@ sh1(config-if-range)# *shutdown*
 ====
 
 
-. 【第 7 步】从 Nexus 9336C-x2 SH2 交换机上拔下所有缆线，然后将其连接到 Nexus C9336C-Fx2 newsh2 交换机上的相同端口。
-. 启动 SH1 和 newsh2 交换机之间的 ISL 端口 1/35 和 1/36 ，然后验证端口通道操作状态。
+. [[step7]]从 Nexus 9336C-FX2 sh2 交换机上拆下所有电缆，然后将它们连接到 Nexus C9336C-FX2 newsh2 交换机上的相同端口。
+. 在 sh1 和 newsh2 交换机之间启动 ISL 端口 1/35 和 1/36，然后验证端口通道运行状态。
 +
-端口通道应指示 PO1 （ SU ），成员端口应指示 Eth1/35 （ P ）和 Eth1/36 （ P ）。
+Port-Channel 应指示 Po1(SU)，成员端口应指示 Eth1/35(P) 和 Eth1/36(P)。
 
 +
 .显示示例
 [%collapsible]
 ====
-此示例将启用 ISL 端口 1/35 和 1/36 ，并显示交换机 SH1 上的端口通道摘要。
+此示例启用 ISL 端口 1/35 和 1/36，并在交换机 sh1 上显示端口通道摘要。
 
 [listing, subs="+quotes"]
 ----
@@ -303,15 +303,15 @@ sh1 (config-if-range)#
 ====
 
 
-. 【第9步】验证所有节点上的端口e3b是否已启动：
+. 步骤9：验证所有节点上的 e3b 端口是否已启用：
 +
-`network port show -ipspace cluster`
+`network port show ipspace Cluster`
 
 +
 .显示示例
 [%collapsible]
 ====
-输出应如下所示：
+输出结果应如下所示：
 
 [listing, subs="+quotes"]
 ----
@@ -337,12 +337,12 @@ e3b       Cluster      Cluster          up   9000  auto/auto    -        false
 ====
 
 
-. 在上一步使用的同一节点上，使用 network interface revert 命令还原上一步中与端口关联的集群 LIF 。
+. [[step10]]在上一步中使用的同一节点上，使用 network interface revert 命令还原与上一步中的端口关联的集群 LIF。
 +
-在此示例中，如果 Home 值为 true 且端口为 e3b ，则 node1 上的 LIF node1_clus2 将成功还原。
+在本例中，如果 Home 值为 true 且端口为 e3b，则节点 1 上的 LIF node1_clus2 将成功还原。
 
 +
-以下命令会将 node1 上的 LIF node1_clus2 返回到主端口 E3a ，并显示有关两个节点上的 LIF 的信息。如果两个集群接口的 "Is Home" 列均为 * true * ，并且显示正确的端口分配，则可以成功启动第一个节点，在此示例中， node1 上的 E3a 和 e3b 。
+以下命令将节点 1 上的 LIF node1_clus2 返回到主端口 e3a，并显示有关两个节点上 LIF 的信息。如果两个集群接口的“Is Home”列均为*true*，并且它们显示正确的端口分配（在本例中为节点 1 上的 e3a 和 e3b），则启动第一个节点成功。
 
 +
 .显示示例
@@ -365,7 +365,7 @@ Cluster
 ====
 
 
-. 【第11步】显示集群中节点的相关信息：
+. [[step11]]显示集群中节点的相关信息：
 +
 `cluster show`
 
@@ -373,7 +373,7 @@ Cluster
 .显示示例
 [%collapsible]
 ====
-此示例显示此集群中 node1 和 node2 的节点运行状况为 true ：
+此示例表明，该集群中节点 1 和节点 2 的节点健康状况为真：
 
 [listing, subs="+quotes"]
 ----
@@ -386,9 +386,9 @@ node2         true    true
 ====
 
 
-. 【第12步】验证所有物理集群端口是否均已启动：
+. 步骤12：验证所有物理集群端口是否都已启动：
 +
-`network port show -ipspace cluster`
+`network port show ipspace Cluster`
 
 +
 .显示示例
@@ -417,22 +417,22 @@ e3b       Cluster      Cluster          up    9000  auto/100000  healthy  false
 ====
 
 
-. [[STEP13]]验证远程集群接口的连接：
+. [[步骤13]] 验证远程集群接口的连接性：
 
 
 [role="tabbed-block"]
 ====
-.ONTAP 9.9.1及更高版本
+.ONTAP 9.9.1 及更高版本
 --
-您可以使用 `network interface check cluster-connectivity` 命令启动集群连接的可访问性检查、然后显示详细信息：
+你可以使用 `network interface check cluster-connectivity`执行命令以启动集群连接性检查，然后显示详细信息：
 
-`network interface check cluster-connectivity start` 和 `network interface check cluster-connectivity show`
+`network interface check cluster-connectivity start`和 `network interface check cluster-connectivity show`
 
 [listing, subs="+quotes"]
 ----
 cluster1::*> *network interface check cluster-connectivity start*
 ----
-*注：*请等待几秒钟、然后再运行 `show`命令以显示详细信息。
+*注意：*运行程序前请等待几秒钟 `show`显示详细信息的命令。
 
 [listing, subs="+quotes"]
 ----
@@ -450,7 +450,7 @@ node2
 --
 .所有ONTAP版本
 --
-对于所有ONTAP版本、您还可以使用 `cluster ping-cluster -node <name>` 用于检查连接的命令：
+对于所有ONTAP版本，您也可以使用 `cluster ping-cluster -node <name>`检查连接性的命令：
 
 `cluster ping-cluster -node <name>`
 
@@ -483,7 +483,7 @@ RPC status:
 ----
 --
 ====
-. 【第14步】确认以下集群网络配置：
+. [[步骤14]]确认以下集群网络配置：
 +
 `network port show`
 
@@ -562,9 +562,9 @@ Total entries displayed: 4
 ====
 
 
-. [[Step15]]将存储端口从旧交换机sh2移至新交换机newsh2。
-. 验证连接到 HA 对 1 共享交换机 newsh2 的存储是否运行正常。
-. 验证连接到HA对2共享交换机newsh2的存储是否运行正常：
+. [[step15]]将存储端口从旧交换机 sh2 移至新交换机 newsh2。
+. 验证连接到 HA 对 1 的存储设备（共享交换机 newsh2）是否正常。
+. 请确认连接到 HA 对 2 的共享交换机 newsh2 的存储设备运行状况良好：
 +
 `storage port show -port-type ENET`
 
@@ -593,7 +593,7 @@ node2
 ====
 
 
-. [[Step18]]验证磁盘架布线是否正确：
+. 步骤18：确认货架上的电缆连接是否正确：
 +
 `storage shelf port show -fields remote- device,remote-port`
 
@@ -619,11 +619,11 @@ shelf id remote-port  remote-device
 ====
 
 
-. [[STEP19]]移除旧交换机SH2。
-. 对交换机 SH1 和新交换机 newsh1 重复上述步骤。
-. 如果禁止自动创建案例，请通过调用 AutoSupport 消息重新启用它：
+. [[step19]]移除旧交换机sh2。
+. 对交换机 sh1 和新交换机 newsh1 重复这些步骤。
+. 如果您已禁用自动创建案例功能，请通过调用AutoSupport消息重新启用该功能：
 +
-`ssystem node AutoSupport invoke -node * -type all -message MAINT=end`
+`system node autosupport invoke -node * -type all -message MAINT=END`
 
 
 

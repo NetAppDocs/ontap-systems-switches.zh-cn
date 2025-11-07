@@ -2,7 +2,7 @@
 permalink: get-started/learn-switch-concept.html 
 sidebar: sidebar 
 keywords:  
-summary: 了解集群、存储和共享交换机。 
+summary: 了解集群交换机、存储交换机和共享交换机。 
 ---
 = 了解 AFX 系统、集群、存储和共享交换机
 :allow-uri-read: 
@@ -13,16 +13,16 @@ summary: 了解集群、存储和共享交换机。
 [role="lead"]
 NetApp提供 AFX 系统、集群、存储和共享交换机，可实现内部通信，并能够在集群内无中断地移动数据和网络接口。
 
-"前端"交换机提供与主机存储的连接、而"后端"集群交换机则提供两个或更多NetApp控制器之间的连接。
+“前端”交换机提供与主机存储的连接，而“后端”集群交换机提供两个或多个NetApp控制器之间的连接。
 
 
-NOTE: 仅支持经过NetApp验证的后端交换机(从NetApp订购)。
+NOTE: 仅支持经NetApp验证的后端交换机（从NetApp订购）。
 
 
 
 == AFX 系统交换机
 
-AFX 系统交换机允许您创建快速、节能且节省空间的网络交换机。它们体积小、端口密度高，非常适合处理大型网络。这些端口支持不同的速度，并且可以分成多个连接。  NetApp支持的 AFX 系统交换机包括：
+AFX 系统交换机允许您创建快速、节能且节省空间的网络交换机。它们体积小、端口密度高，非常适合处理大型网络。这些端口支持不同的速度，并且可以分成多个连接。NetApp支持的 AFX 系统交换机包括：
 
 * CiscoNexus 9332D-GX2B
 * CiscoNexus 9364D-GX2A
@@ -32,10 +32,10 @@ AFX 系统交换机允许您创建快速、节能且节省空间的网络交换�
 
 == 集群交换机
 
-通过集群交换机、您可以使用两个以上的节点构建ONTAP 集群。NetApp支持的集群交换机包括：
+集群交换机允许您构建具有两个以上节点的ONTAP集群。NetApp支持的集群交换机包括：
 
-* Broadcom BES-53248
-* Cisco Nexus 9336C-x2
+* 博通 BES-53248
+* CiscoNexus 9336C-FX2
 * NVIDIA SN2100
 
 
@@ -43,9 +43,9 @@ AFX 系统交换机允许您创建快速、节能且节省空间的网络交换�
 
 == 存储交换机
 
-通过存储交换机、您可以在存储区域网络(SAN)中的服务器和存储阵列之间路由数据。NetApp支持的存储交换机包括：
+存储交换机允许您在存储区域网络 (SAN) 中的服务器和存储阵列之间路由数据。  NetApp支持的存储交换机包括：
 
-* Cisco Nexus 9336C-x2
+* CiscoNexus 9336C-FX2
 * NVIDIA SN2100
 
 
@@ -53,19 +53,19 @@ AFX 系统交换机允许您创建快速、节能且节省空间的网络交换�
 
 == 共享交换机
 
-通过共享交换机、您可以通过支持使用共享集群和存储RCF将集群和存储功能组合到共享交换机配置中。NetApp支持的共享交换机为：
+共享交换机允许您将集群和存储功能合并到共享交换机配置中，支持使用共享集群和存储 RCF。  NetApp支持的共享交换机是：
 
-* Cisco Nexus 9336C-x2
-
-
+* CiscoNexus 9336C-FX2
 
 
-== 可用性终止
 
-以下存储交换机不再可供购买、但仍受支持：
 
-* Cisco Nexus 3232C
-* Cisco Nexus 3132Q-V
-* Cisco Nexus 92300YC
+== 停止供应
+
+以下存储交换机已停止销售，但仍提供支持：
+
+* CiscoNexus 3232C
+* CiscoNexus 3132Q-V
+* CiscoNexus 92300YC
 * NetApp CN1610
 

@@ -2,16 +2,16 @@
 sidebar: sidebar 
 permalink: whats-new.html 
 keywords: new, switches, fas, aff systems 
-summary: 了解适用于FAS 和AFF 系统的新交换机。 
+summary: 了解FAS和AFF系统的新型交换机。 
 ---
-= 交换机的新增功能
+= 交换机有什么新变化
 :allow-uri-read: 
 :icons: font
 :imagesdir: ./media/
 
 
 [role="lead"]
-了解适用于FAS 和AFF 系统的新交换机。有关交换机的其他信息，请参见 https://hwu.netapp.com/Switch/Index["NetApp Hardware Universe"^]。
+了解FAS和AFF系统的新型交换机。有关交换机的更多信息，请参阅 https://hwu.netapp.com/Switch/Index["NetApp Hardware Universe"^]。
 
 
 
@@ -19,7 +19,7 @@ summary: 了解适用于FAS 和AFF 系统的新交换机。
 
 [cols="25h,~,~"]
 |===
-| 交换机 | Description | 可从一开始使用 
+| 交换机 | 描述 | 可开始 
 
 
  a| 
@@ -45,7 +45,7 @@ ONTAP 9.17.1
  a| 
 支持 10/25/40/100GbE 集群配置和 100GbE 存储（交换机连接存储）配置。
  a| 
-ONTAP 9.10.1.
+ONTAP 9.10.1
 
 
 
@@ -54,54 +54,54 @@ ONTAP 9.10.1.
  a| 
 支持 10/25/40/100GbE 集群配置和 100GbE 存储（交换机连接存储）配置。
  a| 
-ONTAP 9.10.1.
+ONTAP 9.10.1
 
 
 
  a| 
-16端口100GbE NVIDIA交换机(X190006-PE和X190006-PI)
+16端口100GbE NVIDIA交换机（X190006-PE和X190006-PI）
  a| 
-NVIDIA SN2100集群互连交换机和存储交换机支持、包括对MetroCluster IP配置的支持。
+支持NVIDIA SN2100 集群互连交换机和存储交换机，包括支持MetroCluster IP 配置。
  a| 
-ONTAP 9.10.1.
+ONTAP 9.10.1
 
 
 
  a| 
-36端口100GbE Cisco交换机(X190200-CS-PE和X190200-CS-PI)
+36端口100GbECisco交换机（X190200-CS-PE和X190200-CS-PI）
  a| 
-支持在同一对 Cisco Nexus 9336C-x2 交换机上使用共享基础架构（集群， HA 和交换机连接存储），包括支持 MetroCluster IP 配置。
+支持在同一对Cisco Nexus 9336C-FX2 交换机上共享基础架构（集群、HA 和交换机附加存储），包括对MetroCluster IP 配置的支持。
  a| 
 ONTAP 9.9.1
 
 
 
  a| 
-36端口100GbE Cisco交换机(X190200-CS-PE和X190200-CS-PI)、(X190210-FE-PE和X190210-FE-PI)
+36端口100GbECisco交换机（X190200-CS-PE和X190200-CS-PI），（X190210-FE-PE和X190210-FE-PI）
  a| 
-Cisco Nexus 9334C-拧 动集群互连交换机和存储交换机支持AFF和ASA存储系统以及前端数据连接。
- a| 
-ONTAP 9.8
-
-
-
- a| 
-Broadcom BES-53248 交换机（ X190005 和 X190005R ）
- a| 
-Broadcom BES-53248集群互连交换机支持、适用于FAS具有10GbE/GbE和40/100GbE端口的AFF控制器。
+Cisco Nexus 9336C-FX2 集群互连交换机和存储交换机支持AFF和ASA存储系统，以及前端数据连接。
  a| 
 ONTAP 9.8
 
 
 
  a| 
-36端口100GbE Cisco交换机(X190200)和32端口100GbE Cisco交换机(X190100和X190100R)
+博通 BES-53248 交换机（X190005 和 X190005R）
  a| 
-支持使用Cisco Nexus 3232C存储交换机连接NS224 NVMe驱动器架AFF和ASA存储系统：
+Broadcom BES-53248 集群互连交换机支持AFF/ FAS控制器，具有 10/25GbE 和 40/100GbE 端口。
+ a| 
+ONTAP 9.8
 
-* AFF A800/AFF ASA A800
-* AFF A700/AFF ASA A700
-* AFF A400/AFF ASA A400
+
+
+ a| 
+36端口100GbECisco交换机（X190200）和32端口100GbECisco交换机（X190100和X190100R）
+ a| 
+Cisco Nexus 3232C 存储交换机支持连接 NS224 NVMe 驱动器架AFF和ASA存储系统：
+
+* AFF A800/ AFF ASA A800
+* AFF A700/ AFF ASA A700
+* AFF A400/ AFF ASA A400
 * AFF A320
 
  a| 

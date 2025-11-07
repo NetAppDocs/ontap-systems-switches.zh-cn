@@ -4,7 +4,7 @@ permalink: switch-cisco-9336c-fx2-shared/prepare-nxos-rcf-9336c-shared.html
 keywords:  
 summary:  
 ---
-= 准备安装NX-OS软件和RCF
+= 准备安装 NX-OS 软件和 RCF
 :hardbreaks:
 :allow-uri-read: 
 :nofooter: 
@@ -14,57 +14,57 @@ summary:
 
 
 [role="lead"]
-在安装NX-OS软件和参考配置文件(Reference Configuration File、RCF)之前、请遵循此操作步骤。
+在安装 NX-OS 软件和参考配置文件 (RCF) 之前，请按照以下步骤操作。
 
 .建议的文档
-* link:https://mysupport.netapp.com/site/info/cisco-ethernet-switch["Cisco 以太网交换机页面"^]
+* link:https://mysupport.netapp.com/site/info/cisco-ethernet-switch["Cisco以太网交换机页面"^]
 +
-有关支持的ONTAP 和NX-OS版本、请参见交换机兼容性表。
+请查阅交换机兼容性表格，了解支持的ONTAP和 NX-OS 版本。
 
 * link:https://www.cisco.com/c/en/us/support/switches/nexus-9000-series-switches/products-installation-guides-list.html["软件升级和降级指南"^]
 +
-有关Cisco交换机升级和降级过程的完整文档、请参阅Cisco网站上提供的相应软件和升级指南。
+有关Cisco交换机升级和降级程序的完整文档，请参阅Cisco网站上提供的相应软件和升级指南。
 
-* link:https://www.cisco.com/c/dam/en/us/td/docs/dcn/tools/nexus-9k3k-issu-matrix/index.html["Cisco Nexus 9000和3000升级和ISSU列表"^]
+* link:https://www.cisco.com/c/dam/en/us/td/docs/dcn/tools/nexus-9k3k-issu-matrix/index.html["Cisco Nexus 9000 和 3000 升级和 ISSU 矩阵"^]
 +
-根据您当前和目标版本提供有关 Nexus 9000 系列交换机上的 Cisco NX-OS 软件的中断升级/降级的信息。
+根据您当前和目标版本，提供有关 Nexus 9000 系列交换机上Cisco NX-OS 软件的中断式升级/降级的信息。
 
 +
-在页面上，选择“*中断升级”，然后从下拉列表中选择当前版本和目标版本。
+在页面上，选择“中断式升级”，然后从下拉列表中选择当前版本和目标版本。
 
 
 
 .关于示例
-此操作步骤中的示例使用以下交换机和节点命名：
+本流程中的示例使用以下开关和节点命名规则：
 
-* 两个 Cisco 交换机的名称分别为 CS1 和 CS2 。
-* 节点名称为 cluster1-01 和 cluster1-02 。
-* 集群 LIF 名称分别为 cluster1-01 和 cluster1-01 的 cluster1-01_clus1 和 cluster1-01_clus2 以及 cluster1-02 的 cluster1-02_clus1 和 cluster1-02_clus2 。
-* `cluster1 ：：： * >` 提示符指示集群的名称。
+* 这两个Cisco交换机的名称分别是 cs1 和 cs2。
+* 节点名称为 cluster1-01 和 cluster1-02。
+* 集群 LIF 名称分别为 cluster1-01_clus1 和 cluster1-01_clus2（对应集群 1-01）以及 cluster1-02_clus1 和 cluster1-02_clus2（对应集群 1-02）。
+* 这 `cluster1::*>`prompt 指示集群名称。
 
 
 .关于此任务
-操作步骤要求同时使用 ONTAP 命令和 Cisco Nexus 9000 系列交换机命令；除非另有说明，否则使用 ONTAP 命令。
+该过程需要同时使用ONTAP命令和Cisco Nexus 9000 系列交换机命令；除非另有说明，否则使用ONTAP命令。
 
 .步骤
-. 如果在此集群上启用了 AutoSupport ，请通过调用 AutoSupport 消息来禁止自动创建案例： `ssystem node AutoSupport invoke -node * -type all -message MAINT=x h`
+. 如果此集群上启用了AutoSupport ，则通过调用AutoSupport消息来抑制自动创建案例： `system node autosupport invoke -node * -type all -message MAINT=x h`
 +
-其中 x 是维护时段的持续时间，以小时为单位。
+其中 x 为维护窗口的持续时间（小时）。
 
 +
 
-NOTE: AutoSupport 消息会通知技术支持此维护任务，以便在维护窗口期间禁止自动创建案例。
+NOTE: AutoSupport消息会通知技术支持此维护任务，以便在维护窗口期间抑制自动创建案例。
 
-. 将权限级别更改为高级，在系统提示您继续时输入 * y * ：
+. 将权限级别更改为高级，并在提示继续时输入 *y*：
 +
 [source, cli]
 ----
 set -privilege advanced
 ----
 +
-此时将显示高级提示符（` * >` ）。
+高级提示(`*>`出现。
 
-. 显示每个集群互连交换机的每个节点中配置的集群互连接口数量：
+. 显示每个节点上每个集群互连交换机配置的集群互连接口数量：
 +
 [source, cli]
 ----
@@ -152,22 +152,22 @@ Cluster
 ====
 
 
-. 验证远程集群接口的连接：
+. 验证远程集群接口的连接性：
 
 
 [role="tabbed-block"]
 ====
-.ONTAP 9.9.1及更高版本
+.ONTAP 9.9.1 及更高版本
 --
-您可以使用 `network interface check cluster-connectivity` 命令启动集群连接的可访问性检查、然后显示详细信息：
+你可以使用 `network interface check cluster-connectivity`执行命令以启动集群连接性检查，然后显示详细信息：
 
-`network interface check cluster-connectivity start` 和 `network interface check cluster-connectivity show`
+`network interface check cluster-connectivity start`和 `network interface check cluster-connectivity show`
 
 [listing, subs="+quotes"]
 ----
 cluster1::*> *network interface check cluster-connectivity start*
 ----
-*注：*请等待几秒钟、然后再运行 `show`命令以显示详细信息。
+*注意：*运行程序前请等待几秒钟 `show`显示详细信息的命令。
 
 [listing, subs="+quotes"]
 ----
@@ -185,7 +185,7 @@ node2
 --
 .所有ONTAP版本
 --
-对于所有ONTAP版本、您还可以使用 `cluster ping-cluster -node <name>` 用于检查连接的命令：
+对于所有ONTAP版本，您也可以使用 `cluster ping-cluster -node <name>`检查连接性的命令：
 
 `cluster ping-cluster -node <name>`
 
@@ -218,7 +218,7 @@ RPC status:
 ----
 --
 ====
-. [[STEP6]]验证是否已在所有集群Lifs上启用自动还原命令：
+. [[步骤6]] 验证所有集群 LIF 上是否已启用自动还原命令：
 +
 [source, cli]
 ----

@@ -4,7 +4,7 @@ permalink: switch-cisco-9336c-fx2-shared/migrate-from-switchless-cluster-dat-sto
 keywords:  
 summary:  
 ---
-= 从具有直连存储的无交换机集群迁移
+= 从无交换机集群迁移到直连存储
 :hardbreaks:
 :allow-uri-read: 
 :nofooter: 
@@ -14,42 +14,42 @@ summary:
 
 
 [role="lead"]
-您可以通过添加两个新的共享交换机从具有直连存储的无交换机集群进行迁移。
+您可以通过添加两个新的共享交换机，从无交换机集群（采用直连存储）迁移到共享集群。
 
-您使用的操作步骤取决于每个控制器上是有两个专用集群网络端口，还是每个控制器上有一个集群端口。记录的过程适用于使用光纤或双轴端口的所有节点、但如果节点使用板载10 Gb Base-T RJ45端口作为集群网络端口、则此交换机不支持此过程。
+具体操作步骤取决于每个控制器上是有两个专用集群网络端口还是只有一个集群端口。记录的过程适用于所有使用光纤或 Twinax 端口的节点，但如果节点使用板载 10Gb BASE-T RJ45 端口作为集群网络端口，则此交换机不支持此过程。
 
-大多数系统需要在每个控制器上使用两个专用集群网络端口。请参见 https://mysupport.netapp.com/site/info/cisco-ethernet-switch["Cisco 以太网交换机"] 有关详细信息 ...
+大多数系统需要在每个控制器上设置两个专用的集群网络端口。看 https://mysupport.netapp.com/site/info/cisco-ethernet-switch["Cisco以太网交换机"]了解更多信息。
 
-如果您现有的双节点无交换机集群环境，则可以使用 Cisco Nexus 9336C-FX2 交换机迁移到双节点有交换机集群环境，以便可以扩展到集群中的两个节点以上。
+如果您已有双节点无交换机集群环境，则可以使用Cisco Nexus 9336C-FX2 交换机迁移到双节点有交换机集群环境，以便能够将集群扩展到两个以上节点。
 
 
 
-== 查看要求
+== 审查要求
 
 确保：
 
 * 对于双节点无交换机配置：
 +
-** 双节点无交换机配置已正确设置并正常运行。
-** 这些节点运行的是ONTAP 9.8及更高版本。
-** 所有集群端口均处于*启动*状态。
-** 所有集群逻辑接口(LIF)均处于*启动*状态、并位于其*主端口上。
+** 双节点无交换机配置已正确设置并运行正常。
+** 这些节点运行的是ONTAP 9.8 及更高版本。
+** 集群所有端口均处于*开启*状态。
+** 所有集群逻辑接口（LIF）均处于 *up* 状态，并位于其 *home* 端口上。
 
 
-* 对于Cisco Nexus 9336C-x2交换机配置：
+* 对于Cisco Nexus 9336C-FX2 交换机配置：
 +
-** 这两台交换机都具有管理网络连接。
+** 两台交换机都具备管理网络连接功能。
 ** 可以通过控制台访问集群交换机。
-** Nexus 9336C-f2节点到节点交换机和交换机到交换机连接使用双轴电缆或光缆。
-** NetApp https://hwu.netapp.com["Hardware Universe"] 包含有关布线的详细信息。
-** 交换机间链路(ISL)缆线连接到两个9336C-x2交换机上的端口1/35和1/36。
+** Nexus 9336C-FX2 节点到节点交换机和交换机到交换机连接使用 Twinax 或光纤电缆。
+** NetApp https://hwu.netapp.com["Hardware Universe"]包含更多关于布线的信息。
+** 交换机间链路 (ISL) 电缆连接到两个 9336C-FX2 交换机上的端口 1/35 和 1/36。
 
 
-* 9336C-x2交换机的初始自定义已完成。这样：
+* 9336C-FX2交换机的初步定制工作已完成。因此：
 +
-** 9336C-x2 交换机正在运行最新版本的软件
-** 参考配置文件（ Reference Configuration Files ， RCF ）已应用于交换机
-** 在新交换机上配置任何站点自定义、例如SMTP、SNMP和SSH。
+** 9336C-FX2交换机运行的是最新版本的软件
+** 参考配置文件 (RCF) 已应用于交换机
+** 任何站点定制，如 SMTP、SNMP 和 SSH，都在新交换机上进行配置。
 
 
 
@@ -59,41 +59,41 @@ summary:
 == 迁移交换机
 
 .关于示例
-此操作步骤中的示例使用以下集群交换机和节点命名：
+本流程中的示例使用以下集群交换机和节点命名规则：
 
-* 9336C-fx2 交换机的名称是 _CS1_ 和 _CS2_ 。
-* 集群 SVM 的名称是 _node1_ 和 _node2_ 。
-* LIF 的名称分别是节点 1 上的 _node1_clus1_ 和 _node1_clus2_ 以及节点 2 上的 _node2_clus1_ 和 _node2_clus2_ 。
-* cluster1 ：：： * > 提示符指示集群的名称。
-* 根据 AFF A400 控制器，此操作步骤中使用的集群端口为 _e3A_ 和 _e3b_ 。。 https://hwu.netapp.com["Hardware Universe"] 包含有关平台的实际集群端口的最新信息。
-
-
+* 9336C-FX2 交换机的名称是 _cs1_ 和 _cs2_。
+* 聚类SVM的名称为_node1_和_node2_。
+* 节点 1 上的 LIF 名称分别为 _node1_clus1_ 和 _node1_clus2_，节点 2 上的 LIF 名称分别为 _node2_clus1_ 和 _node2_clus2_。
+* cluster1::*> 提示符指示集群的名称。
+* 根据AFF A400控制器，此过程中使用的集群端口为 _e3a_ 和 _e3b_。这 https://hwu.netapp.com["Hardware Universe"]包含有关您平台实际集群端口的最新信息。
 
 
-=== 第1步：从直接连接的无交换机集群迁移
 
-. 如果在此集群上启用了 AutoSupport ，请通过调用 AutoSupport 消息来禁止自动创建案例： `ssystem node AutoSupport invoke -node * -type all -message MAINT=xh` 。
+
+=== 步骤 1：从无交换机的集群迁移到直连式集群
+
+. 如果此集群上启用了AutoSupport ，则通过调用AutoSupport消息来抑制自动创建案例： `system node autosupport invoke -node * -type all -message MAINT=xh` 。
 +
-其中 x 是维护时段的持续时间，以小时为单位。
+其中 x 为维护窗口的持续时间（小时）。
 
 
 
 
-NOTE: AutoSupport 消息会通知技术支持此维护任务，以便在维护窗口期间禁止自动创建案例。
+NOTE: AutoSupport消息会通知技术支持此维护任务，以便在维护窗口期间抑制自动创建案例。
 
-. 【第2步】将权限级别更改为高级、在系统提示您继续时输入y：
+. 步骤2：将权限级别更改为高级，并在提示继续时输入y：
 +
 `set -privilege advanced`
 
 +
-此时将显示高级提示符（ * > ）。
+出现高级提示符（*>）。
 
-. 在新集群交换机 CS1 和 CS2 上禁用所有面向节点的端口（而不是 ISL 端口）。不得禁用 ISL 端口。
+. 禁用新集群交换机 cs1 和 cs2 上所有面向节点的端口（非 ISL 端口）。您不得禁用 ISL 端口。
 +
 .显示示例
 [%collapsible]
 ====
-以下示例显示了交换机 CS1 上面向节点的端口 1 到 34 已禁用：
+以下示例显示交换机 cs1 上面向节点的端口 1 到 34 已禁用：
 
 [listing, subs="+quotes"]
 ----
@@ -105,15 +105,15 @@ cs1(config-if-range)# *shutdown*
 ====
 
 
-. 【第4步】验证端口1/35和1/36上的ISL和两个9336C-x2交换机CS1和CS2之间的ISL物理端口是否已启动：
+. [[step4]]验证两个 9336C-FX2 交换机 cs1 和 cs2 之间的 ISL 以及 ISL 上的物理端口 1/35 和 1/36 是否已启动：
 +
-`s如何执行端口通道摘要`
+`show port-channel summary`
 
 +
 .显示示例
 [%collapsible]
 ====
-以下示例显示交换机 CS1 上的 ISL 端口已启动：
+以下示例表明交换机 cs1 上的 ISL 端口已启动：
 
 [listing, subs="+quotes"]
 ----
@@ -132,7 +132,7 @@ Group Port-       Type     Protocol  Member Ports
 --------------------------------------------------------------------------------
 1     Po1(SU)     Eth      LACP      Eth1/35(P)   Eth1/36(P)
 ----
-以下示例显示交换机 CS2 上的 ISL 端口已启动：
+以下示例表明交换机 cs2 上的 ISL 端口已启动：
 
 [listing, subs="+quotes"]
 ----
@@ -154,18 +154,18 @@ Group Port-       Type     Protocol  Member Ports
 ====
 
 
-. 【第5步】显示相邻设备的列表：
+. 【步骤5】显示相邻设备列表：
 +
-`s如何使用 cdp 邻居`
+`show cdp neighbors`
 
 +
-此命令可提供有关连接到系统的设备的信息。
+此命令提供有关连接到系统的设备的信息。
 
 +
 .显示示例
 [%collapsible]
 ====
-以下示例列出了交换机 CS1 上的相邻设备：
+以下示例列出了交换机 cs1 上的相邻设备：
 
 [listing, subs="+quotes"]
 ----
@@ -179,7 +179,7 @@ cs2                Eth1/35        175    R S I s     N9K-C9336C    Eth1/35
 cs2                Eth1/36        175    R S I s     N9K-C9336C    Eth1/36
 Total entries displayed: 2
 ----
-以下示例列出了交换机 CS2 上的相邻设备：
+以下示例列出了交换机 cs2 上的相邻设备：
 
 [listing, subs="+quotes"]
 ----
@@ -197,12 +197,12 @@ Total entries displayed: 2
 ====
 
 
-. 【第6步】验证所有集群端口是否均已启动：
+. 步骤6：验证集群所有端口是否都已启动：
 +
 `network port show - ipspace Cluster`
 
 +
-每个端口都应显示为"Link"(链路)和"Health"(运行状况良好)。
+每个端口的“连接”状态应显示为“已连接”，“健康状况”状态应显示为“正常”。
 
 +
 .显示示例
@@ -230,12 +230,12 @@ e3b       Cluster      Cluster          up   9000  auto/100000 healthy
 ====
 
 
-. 【第7步】验证所有集群LIF是否均已启动且正常运行：
+. 步骤7：验证所有集群LIF是否已启动并正常运行：
 +
 `network interface show - vserver Cluster`
 
 +
-对于 `为 Home` ，每个集群 LIF 均应显示 true ，并且状态为 Admin/Oper 为 up/up 。
+每个聚类 LIF 都应该显示为 true `Is Home`并且管理员/操作员状态为 up/up。
 
 +
 .显示示例
@@ -257,7 +257,7 @@ Cluster
 ====
 
 
-. 【第8步】验证是否已在所有集群LIF上启用自动还原：
+. [[步骤8]]验证所有集群 LIF 是否已启用自动回滚功能：
 +
 `network interface show - vserver Cluster -fields auto-revert`
 
@@ -281,17 +281,17 @@ Cluster
 ====
 
 
-. 【第 9 步】从 node1 上的集群端口 E3A 断开缆线连接，然后使用 9336C-x2 交换机支持的适当布线方式将 E3A 连接到集群交换机 CS1 上的端口 1 。
+. [[step9]]断开节点 1 上的集群端口 e3a 的电缆，然后使用 9336C-FX2 交换机支持的适当电缆将 e3a 连接到集群交换机 cs1 上的端口 1。
 +
-NetApp https://hwu.netapp.com["Hardware Universe"] 包含有关布线的详细信息。
+NetApp https://hwu.netapp.com["Hardware Universe"]包含更多关于布线的信息。
 
-. 从节点 2 上的集群端口 E3A 断开缆线连接，然后使用 9336C-x2 交换机支持的相应布线方式将 E3A 连接到集群交换机 CS1 上的端口 2 。
-. 启用集群交换机 CS1 上面向节点的所有端口。
+. 断开节点 2 上的集群端口 e3a 的电缆，然后使用 9336C-FX2 交换机支持的适当电缆将 e3a 连接到集群交换机 cs1 上的端口 2。
+. 启用集群交换机 cs1 上所有面向节点的端口。
 +
 .显示示例
 [%collapsible]
 ====
-以下示例显示交换机 CS1 上的端口 1/1 到 1/34 已启用：
+以下示例显示交换机 cs1 上的端口 1/1 到 1/34 已启用：
 
 [listing, subs="+quotes"]
 ----
@@ -303,7 +303,7 @@ cs1(config-if-range)# *no shutdown*
 ====
 
 
-. 【第12步】验证所有集群LIF是否均为*已启动*、正常运行且显示为true `Is Home`：
+. [[步骤12]]验证所有集群 LIF 是否已启动、运行正常，并且显示为 true。 `Is Home` ：
 +
 `network interface show - vserver Cluster`
 
@@ -311,7 +311,7 @@ cs1(config-if-range)# *no shutdown*
 .显示示例
 [%collapsible]
 ====
-以下示例显示 node1 和 node2 上的所有 LIF 均为 * 上 * ，并且 `为主目录` 结果为 * 上 * ：
+以下示例表明，节点 1 和节点 2 上的所有 LIF 都已启动。 `Is Home`结果属实：
 
 [listing, subs="+quotes"]
 ----
@@ -329,7 +329,7 @@ Cluster
 ====
 
 
-. 【第13步】显示有关集群中节点状态的信息：
+. [[step13]]显示集群中节点的状态信息：
 +
 `cluster show`
 
@@ -337,7 +337,7 @@ Cluster
 .显示示例
 [%collapsible]
 ====
-以下示例显示了有关集群中节点的运行状况和资格的信息：
+以下示例显示了集群中节点的健康状况和资格信息：
 
 [listing, subs="+quotes"]
 ----
@@ -351,14 +351,14 @@ node2                true    true          false
 ====
 
 
-. 【第 14 步】从 node1 上的集群端口 e3b 拔下缆线，然后使用 9336C-x2 交换机支持的适当布线方式将 e3b 连接到集群交换机 CS2 上的端口 1 。
-. 断开节点 2 上集群端口 e3b 的缆线连接，然后使用 9336C-x2 交换机支持的相应布线方式将 e3b 连接到集群交换机 CS2 上的端口 2 。
-. 启用集群交换机 CS2 上面向节点的所有端口。
+. [[step14]]断开节点 1 上的集群端口 e3b 的电缆，然后使用 9336C-FX2 交换机支持的适当电缆将 e3b 连接到集群交换机 cs2 上的端口 1。
+. 断开节点 2 上的集群端口 e3b 的电缆，然后使用 9336C-FX2 交换机支持的适当电缆将 e3b 连接到集群交换机 cs2 上的端口 2。
+. 启用集群交换机 cs2 上所有面向节点的端口。
 +
 .显示示例
 [%collapsible]
 ====
-以下示例显示交换机 CS2 上的端口 1/1 到 1/34 已启用：
+以下示例显示交换机 cs2 上的端口 1/1 到 1/34 已启用：
 
 [listing, subs="+quotes"]
 ----
@@ -370,7 +370,7 @@ cs2(config-if-range)# *no shutdown*
 ====
 
 
-. 【第17步】验证所有集群端口是否均已启动：
+. 步骤17：验证集群所有端口是否都已启动。
 +
 `network port show - ipspace Cluster`
 
@@ -378,7 +378,7 @@ cs2(config-if-range)# *no shutdown*
 .显示示例
 [%collapsible]
 ====
-以下示例显示 node1 和 node2 上的所有集群端口均已启动：
+以下示例表明节点 1 和节点 2 上的所有集群端口均已启动：
 
 [listing, subs="+quotes"]
 ----
@@ -404,19 +404,19 @@ e3b       Cluster      Cluster          up   9000  auto/100000 healthy  false
 ====
 
 
-. 【第18步】验证所有接口是否均为true `Is Home`：
+. 步骤18：验证所有接口是否都显示为 true。 `Is Home` ：
 +
 `network interface show - vserver Cluster`
 
 +
 
-NOTE: 完成此操作可能需要几分钟时间。
+NOTE: 这可能需要几分钟才能完成。
 
 +
 .显示示例
 [%collapsible]
 ====
-以下示例显示 node1 和 node2 上的所有 LIF 均为 * 上 * ，并且 `为主目录` 结果为 true ：
+以下示例表明，节点 1 和节点 2 上的所有 LIF 都已启动。 `Is Home`结果属实：
 
 [listing, subs="+quotes"]
 ----
@@ -434,15 +434,15 @@ Cluster
 ====
 
 
-. 【第19步】验证两个节点各自与每个交换机之间是否有一个连接：
+. 步骤19：验证两个节点是否都与每个交换机有一条连接：
 +
-`s如何使用 cdp 邻居`
+`show cdp neighbors`
 
 +
 .显示示例
 [%collapsible]
 ====
-以下示例显示了这两个交换机的相应结果：
+以下示例显示了两种开关的正确结果：
 
 [listing, subs="+quotes"]
 ----
@@ -472,7 +472,7 @@ Total entries displayed: 4
 ====
 
 
-. 【第20步】显示有关集群中发现的网络设备的信息：
+. [[step20]]显示集群中已发现的网络设备信息：
 +
 `network device-discovery show -protocol cdp`
 
@@ -498,7 +498,7 @@ node1       /cdp
 ====
 
 
-. 【第21步】验证HA对1 (和HA对2)的存储配置是否正确且无错误：
+. [[step21]]验证 HA 对 1（和 HA 对 2）的存储配置是否正确且无错误：
 +
 `system switch ethernet show`
 
@@ -534,16 +534,16 @@ storage::*>
 ====
 
 
-. 【第22步】验证这些设置是否已禁用：
+. 步骤22：确认这些设置已禁用：
 +
 `network options switchless-cluster show`
 
 +
 
-NOTE: 完成此命令可能需要几分钟的时间。等待 " 三分钟生命周期到期 " 公告。
+NOTE: 命令可能需要几分钟才能完成。等待“剩余3分钟生命即将耗尽”的公告。
 
 +
-以下示例中的 `false` 输出显示配置设置已禁用：
+这 `false`以下示例的输出表明配置设置已被禁用：
 
 +
 .显示示例
@@ -557,7 +557,7 @@ Enable Switchless Cluster: false
 ====
 
 
-. 【第23步】验证集群中节点成员的状态：
+. [[步骤23]]验证集群中节点成员的状态：
 +
 `cluster show`
 
@@ -565,7 +565,7 @@ Enable Switchless Cluster: false
 .显示示例
 [%collapsible]
 ====
-以下示例显示了有关集群中节点的运行状况和资格的信息：
+以下示例显示了集群中节点的健康状况和资格信息：
 
 [listing, subs="+quotes"]
 ----
@@ -576,22 +576,22 @@ node1                true    true          false
 node2                true    true          false
 ----
 ====
-. 验证远程集群接口的连接：
+. 验证远程集群接口的连接性：
 
 
 [role="tabbed-block"]
 ====
-.ONTAP 9.9.1及更高版本
+.ONTAP 9.9.1 及更高版本
 --
-您可以使用 `network interface check cluster-connectivity` 命令启动集群连接的可访问性检查、然后显示详细信息：
+你可以使用 `network interface check cluster-connectivity`执行命令以启动集群连接性检查，然后显示详细信息：
 
-`network interface check cluster-connectivity start` 和 `network interface check cluster-connectivity show`
+`network interface check cluster-connectivity start`和 `network interface check cluster-connectivity show`
 
 [listing, subs="+quotes"]
 ----
 cluster1::*> *network interface check cluster-connectivity start*
 ----
-*注：*请等待几秒钟、然后再运行 `show`命令以显示详细信息。
+*注意：*运行程序前请等待几秒钟 `show`显示详细信息的命令。
 
 [listing, subs="+quotes"]
 ----
@@ -609,7 +609,7 @@ node2
 --
 .所有ONTAP版本
 --
-对于所有ONTAP版本、您还可以使用 `cluster ping-cluster -node <name>` 用于检查连接的命令：
+对于所有ONTAP版本，您也可以使用 `cluster ping-cluster -node <name>`检查连接性的命令：
 
 `cluster ping-cluster -node <name>`
 
@@ -641,7 +641,7 @@ RPC status:
 ----
 --
 ====
-. [[STEP25]]将权限级别重新更改为admin：
+. 步骤25：将权限级别改回管理员：
 +
 `set -privilege admin`
 
@@ -649,18 +649,18 @@ RPC status:
 
 
 
-=== 第2步：设置共享交换机
+=== 步骤 2：设置共享交换机
 
-此操作步骤中的示例使用以下交换机和节点命名：
+本流程中的示例使用以下开关和节点命名规则：
 
-* 两个共享交换机的名称分别为 _SH1_ 和 _SH2_ 。
-* 节点为 _node1_ 和 _node2_ 。
+* 两个共享交换机的名称分别为 _sh1_ 和 _sh2_。
+* 节点分别为 _node1_ 和 _node2_。
 
 
 
-NOTE: 操作步骤要求同时使用 ONTAP 命令和 Cisco Nexus 9000 系列交换机命令，除非另有说明，否则会使用 ONTAP 命令。
+NOTE: 该过程需要同时使用ONTAP命令和Cisco Nexus 9000 系列交换机命令，除非另有说明，否则使用ONTAP命令。
 
-. 验证HA对1 (和HA对2)的存储配置是否正确且无错误：
+. 验证 HA 对 1（以及 HA 对 2）的存储配置是否正确且无错误：
 +
 `system switch ethernet show`
 
@@ -694,7 +694,7 @@ sh2
 storage::*>
 ----
 ====
-. 验证存储节点端口是否运行正常：
+. 确认存储节点端口运行正常：
 +
 `storage port show -port-type ENET`
 
@@ -723,10 +723,10 @@ node2
 ====
 
 
-. 【第 3 步】将 HA 对 1 的 NSM224 路径 A 端口移至 SH1 端口范围 11-22 。
-. 安装从 HA 对 1 节点 1 路径 A 到 SH1 端口范围 11-22 的缆线。例如， AFF A400 上的存储端口路径为 e0c 。
-. 安装从 HA 对 1 节点 2 路径 A 到 SH1 端口范围 11-22 的缆线。
-. 验证节点端口是否运行正常：
+. [[step3]]将 HA 对 1、NSM224 路径 A 端口移至 sh1 端口范围 11-22。
+. 安装一条从 HA 对 1、节点 1、路径 A 到 sh1 端口范围 11-22 的电缆。例如， AFF A400上的路径 A 存储端口为 e0c。
+. 安装一条从 HA 对 1、节点 2、路径 A 到 sh1 端口范围 11-22 的电缆。
+. 确认节点端口运行正常：
 +
 `storage port show -port-type ENET`
 
@@ -753,7 +753,7 @@ node2
         e5b     ENET  storage           100      enabled  online        30
 ----
 ====
-. 检查集群是否没有存储交换机或布线问题：
+. 检查集群是否存在存储交换机或线缆问题：
 +
 `system health alert show -instance`
 
@@ -767,10 +767,10 @@ storage::*> *system health alert show -instance*
 There are no entries matching your query.
 ----
 ====
-. 将HA对1的NSM224路径B端口移至SH2端口范围11-22。
-. 安装从 HA 对 1 节点 1 路径 B 到 SH2 端口范围 11-22 的缆线。例如， AFF A400 上的路径 B 存储端口为 e5b 。
-. 安装从 HA 对 1 节点 2 路径 B 到 SH2 端口范围 11-22 的缆线。
-. 验证节点端口是否运行正常：
+. 将 HA 对 1、NSM224 路径 B 端口移至 sh2 端口范围 11-22。
+. 安装一条从 HA 对 1、节点 1、路径 B 到 sh2 端口范围 11-22 的电缆。例如， AFF A400上的 B 路径存储端口为 e5b。
+. 安装一条从 HA 对 1、节点 2、路径 B 到 sh2 端口范围 11-22 的电缆。
+. 确认节点端口运行正常：
 +
 `storage port show -port-type ENET`
 
@@ -831,7 +831,7 @@ sh2
 storage::*>
 ----
 ====
-. 重新配置HA对1上未使用的(控制器)二级存储端口、使其从存储连接到网络连接。如果直接连接了多个 NS224 ，则应重新配置一些端口。
+. 将 HA 对 1 上未使用的（控制器）辅助存储端口从存储重新配置为网络。如果直接连接了多个 NS224，则需要重新配置某些端口。
 +
 .显示示例
 [%collapsible]
@@ -842,16 +842,16 @@ storage port modify –node [node name] –port [port name] –mode network
 ----
 ====
 +
-将存储端口置于广播域中：
+将存储端口放入广播域：
 
 +
-** `network port broadcast-domain create` （根据需要创建新域）
-** `network port broadcast-domain add-ports` （用于向现有域添加端口）
+** `network port broadcast-domain create`（如有需要，创建新域名）
+** `network port broadcast-domain add-ports`（向现有域添加端口）
 
 
-. 如果禁止自动创建案例，请通过调用 AutoSupport 消息重新启用它：
+. 如果您已禁用自动创建案例功能，请通过调用AutoSupport消息重新启用该功能：
 +
-`ssystem node AutoSupport invoke -node * -type all -message MAINT=end`
+`system node autosupport invoke -node * -type all -message MAINT=END`
 
 
 

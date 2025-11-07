@@ -2,20 +2,20 @@
 permalink: switch-nvidia-sn2100-storage/configure-sn2100-storage.html 
 sidebar: sidebar 
 keywords: switches hardware installation 
-summary: 要安装BES-53248硬件、请参阅NVIDIA的文档。 
+summary: 要安装 BES-53248 硬件，请参阅 NVIDIA 的文档。 
 ---
-= 配置NVIDIA SN2100交换机
+= 配置NVIDIA SN2100 交换机
 :allow-uri-read: 
 :icons: font
 :imagesdir: ../media/
 
 
 [role="lead"]
-要配置SN2100交换机、请参阅NVIDIA的文档。
+要配置 SN2100 交换机，请参阅 NVIDIA 的文档。
 
 .步骤
-. 查看 link:configure-reqs-sn2100-storage.html["配置要求"]。
-. 按照中的说明进行操作 https://docs.nvidia.com/networking/display/sn2000pub/System+Bring-Up["NVIDIA系统启动。"^]。
+. 复习link:configure-reqs-sn2100-storage.html["配置要求"]。
+. 按照以下说明操作 https://docs.nvidia.com/networking/display/sn2000pub/System+Bring-Up["NVIDIA系统启动。"^]。
 
 
 .下一步是什么？

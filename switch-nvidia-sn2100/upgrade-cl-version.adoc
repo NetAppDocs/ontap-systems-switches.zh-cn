@@ -2,29 +2,29 @@
 permalink: switch-nvidia-sn2100/upgrade-cl-version.html 
 sidebar: sidebar 
 keywords: nvidia SN2100 switches 
-summary: 完成以下步骤以升级您的Cumulus Linux版本。 
+summary: 请按照以下步骤升级您的 Cumulus Linux 版本。 
 ---
-= 升级Cumulus Linux版本
+= 升级 Cumulus Linux 版本
 :allow-uri-read: 
 :icons: font
 :imagesdir: ../media/
 
 
 [role="lead"]
-完成以下操作步骤 以根据需要升级您的Cumulus Linux版本。
+按照以下步骤升级您的 Cumulus Linux 版本（如有需要）。
 
 .开始之前
-确保您已具备以下条件：
+请确保您拥有以下物品：
 
-* 中级Linux知识。
-* 熟悉基本文本编辑、UNIX文件权限和进程监控。预安装了各种文本编辑器、包括 `vi` 和 `nano`。
-* 访问Linux或UNIX Shell。如果您运行的是Windows、请使用Linux环境作为命令行工具与Cumulus Linux进行交互。
-* 对于NVIDIA SN2100交换机控制台访问、串行控制台交换机上的波特率要求设置为115200、如下所示：
+* 具备中级Linux知识。
+* 熟悉基本的文本编辑、UNIX 文件权限和进程监控。预装了多种文本编辑器，包括 `vi`和 `nano`。
+* 能够访问 Linux 或 UNIX shell。如果您运行的是 Windows 系统，请使用 Linux 环境作为与 Cumulus Linux 交互的命令行工具。
+* 对于NVIDIA SN2100 交换机控制台访问，串行控制台交换机的波特率要求设置为 115200，具体如下：
 +
 ** 115200 波特
-** 8 个数据位
-** 1 个停止位
-** 奇偶校验：无
+** 8 位数据
+** 1 停止位
+** 奇偶性：无
 ** 流量控制：无
 
 
@@ -34,12 +34,12 @@ summary: 完成以下步骤以升级您的Cumulus Linux版本。
 请注意以下事项：
 
 
-NOTE: 每次升级Cumulus Linux时、都会擦除并重建整个文件系统结构。现有配置将被擦除。在更新Cumulus Linux之前、您必须保存并记录交换机配置。
+NOTE: 每次 Cumulus Linux 升级时，整个文件系统结构都会被擦除并重建。您现有的配置将被清除。在更新 Cumulus Linux 之前，必须保存并记录交换机配置。
 
 
-CAUTION: 累积用户帐户的默认密码为*累积用户*。首次登录到Cumulus Linux时、必须更改此默认密码。在安装新映像之前、您必须更新所有自动化脚本。Cumulus Linux提供了命令行选项、用于在安装过程中自动更改默认密码。
+CAUTION: Cumulus 用户帐户的默认密码是 *cumulus*。首次登录 Cumulus Linux 时，必须更改此默认密码。安装新镜像之前，必须先更新所有自动化脚本。  Cumulus Linux 提供命令行选项，可在安装过程中自动更改默认密码。
 
-有关详细信息、请参见 https://docs.nvidia.com/networking-ethernet-software/cumulus-linux-510/Installation-Management/Installing-a-New-Cumulus-Linux-Image/["安装新的积云Linux映像"^]。
+看 https://docs.nvidia.com/networking-ethernet-software/cumulus-linux-510/Installation-Management/Installing-a-New-Cumulus-Linux-Image/["安装新的 Cumulus Linux 镜像"^]欲了解更多信息。
 
 .步骤
 [role="tabbed-block"]
@@ -47,32 +47,32 @@ CAUTION: 累积用户帐户的默认密码为*累积用户*。首次登录到Cum
 .Cumulus Linux 4.4.x 至 Cumulus Linux 5.4.0
 --
 . 将集群交换机连接到管理网络。
-. 使用 ping 命令验证与托管 Cumulus Linux 和 RCF 的服务器的连接。
-. 显示连接到集群交换机的每个节点上的集群端口：
+. 使用 ping 命令验证与托管 Cumulus Linux 和 RCF 的服务器的连接性。
+. 显示每个节点上连接到集群交换机的集群端口：
 +
 `network device-discovery show`
 
 . 检查每个集群端口的管理和运行状态。
 +
-.. 验证所有集群端口是否均已启动且状态正常：
+.. 确认集群所有端口均已启动且状态正常：
 +
 `network port show -role cluster`
 
-.. 验证所有集群接口（ LIF ）是否均位于主端口上：
+.. 确认所有集群接口（LIF）都位于主端口上：
 +
 `network interface show -role cluster`
 
-.. 验证集群是否同时显示两个集群交换机的信息：
+.. 确认集群显示两个集群交换机的信息：
 +
-`ssystem cluster-switch show -is-monitoring-enableed-Operational true`
+`system cluster-switch show -is-monitoring-enabled-operational true`
 
 
 
-. 在集群 LIF 上禁用自动还原。在目标交换机上执行升级过程时、这些集群Cifs将故障转移到配对集群交换机并保留在该交换机上：
+. 禁用集群 LIF 的自动回滚功能。集群 LIF 会故障转移到伙伴集群交换机，并在您对目标交换机执行升级过程时保留在该交换机上：
 +
-`network interface modify -vserver cluster -lif *-auto-revert false`
+`network interface modify -vserver Cluster -lif * -auto-revert false`
 
-. 检查当前的Cumulus Linux版本和连接的端口：
+. 检查当前 Cumulus Linux 版本和已连接的端口：
 +
 [listing, subs="+quotes"]
 ----
@@ -109,7 +109,7 @@ UP     swp6    100G  9216   Trunk/L2    SHFFG1826000102 (e0b)   Master: bridge(U
 .
 .
 ----
-. 下载Cumulux Linux 5.4.0映像：
+. 下载 Cumulux Linux 5.4.0 镜像：
 +
 [listing, subs="+quotes"]
 ----
@@ -135,7 +135,7 @@ Are you sure (y/N)? *y*
 Activating staged installer...done.
 Reboot required to take effect.
 ----
-. 重新启动交换机：
+. 重启交换机：
 +
 [listing, subs="+quotes"]
 ----
@@ -158,7 +158,7 @@ Welcome to NVIDIA Cumulus (R) Linux (R)
 
 ZTP in progress. To disable, do 'ztp -d'
 ----
-. 检查Cumulus Linux版本： `nv show system`
+. 检查 Cumulus Linux 版本： `nv show system`
 +
 [listing, subs="+quotes"]
 ----
@@ -182,7 +182,7 @@ Warning: The following files have been changed since the last save, and they WIL
 .
 .
 ----
-. 注销并再次登录到交换机、以便在提示符处查看更新后的交换机名称：
+. 注销并重新登录交换机，即可在提示符处看到更新后的交换机名称：
 +
 [listing, subs="+quotes"]
 ----
@@ -217,7 +217,7 @@ unreachable default metric 4278198272
 10.231.80.0/22 dev eth0 proto kernel scope link src 10.231.80.206
 127.0.0.0/8 dev mgmt proto kernel scope link src 127.0.0.1
 ----
-. 创建新用户并将此用户添加到 `sudo` 组。只有在重新启动控制台/SSH会话后、此用户才会生效。
+. 创建一个新用户并将该用户添加到 `sudo`团体。该用户仅在控制台/SSH会话重启后生效。
 +
 `sudo adduser --ingroup netedit admin`
 
@@ -262,7 +262,7 @@ http://www.cumulusnetworks.com/support
 The registered trademark Linux (R) is used pursuant to a sublicense from LMI, the exclusive licensee of Linus Torvalds, owner of the mark on a world-wide basis.
 admin@sw1:mgmt:~$
 ----
-. 添加供管理员用户访问的其他用户组 `nv` 命令：
+. 添加其他用户组以供管理员用户访问 `nv`命令：
 +
 [listing, subs="+quotes"]
 ----
@@ -273,7 +273,7 @@ cumulus@sw1:mgmt:~$ *sudo adduser admin nvshow*
      Done.
 ----
 +
-请参见 https://docs.nvidia.com/networking-ethernet-software/cumulus-linux-54/System-Configuration/Authentication-Authorization-and-Accounting/User-Accounts/["NVIDIA用户帐户"^] 有关详细信息 ...
+看 https://docs.nvidia.com/networking-ethernet-software/cumulus-linux-54/System-Configuration/Authentication-Authorization-and-Accounting/User-Accounts/["NVIDIA用户帐户"^]了解更多信息。
 
 
 
@@ -281,32 +281,32 @@ cumulus@sw1:mgmt:~$ *sudo adduser admin nvshow*
 .Cumulus Linux 5.x 至 Cumulus Linux 5.4.0
 --
 . 将集群交换机连接到管理网络。
-. 使用 ping 命令验证与托管 Cumulus Linux 和 RCF 的服务器的连接。
-. 显示连接到集群交换机的每个节点上的集群端口：
+. 使用 ping 命令验证与托管 Cumulus Linux 和 RCF 的服务器的连接性。
+. 显示每个节点上连接到集群交换机的集群端口：
 +
 `network device-discovery show`
 
 . 检查每个集群端口的管理和运行状态。
 +
-.. 验证所有集群端口是否均已启动且状态正常：
+.. 确认集群所有端口均已启动且状态正常：
 +
 `network port show -role cluster`
 
-.. 验证所有集群接口（ LIF ）是否均位于主端口上：
+.. 确认所有集群接口（LIF）都位于主端口上：
 +
 `network interface show -role cluster`
 
-.. 验证集群是否同时显示两个集群交换机的信息：
+.. 确认集群显示两个集群交换机的信息：
 +
-`ssystem cluster-switch show -is-monitoring-enableed-Operational true`
+`system cluster-switch show -is-monitoring-enabled-operational true`
 
 
 
-. 在集群 LIF 上禁用自动还原。在目标交换机上执行升级过程时、这些集群Cifs将故障转移到配对集群交换机并保留在该交换机上：
+. 禁用集群 LIF 的自动回滚功能。集群 LIF 会故障转移到伙伴集群交换机，并在您对目标交换机执行升级过程时保留在该交换机上：
 +
-`network interface modify -vserver cluster -lif *-auto-revert false`
+`network interface modify -vserver Cluster -lif * -auto-revert false`
 
-. 检查当前的Cumulus Linux版本和连接的端口：
+. 检查当前 Cumulus Linux 版本和已连接的端口：
 +
 [listing, subs="+quotes"]
 ----
@@ -333,7 +333,7 @@ Interface     MTU   Speed State Remote Host         Remote Port- Type      Summa
 + swp15      9216 100G    up sw2                      swp15       swp
 + swp16      9216 100G    up sw2                      swp16       swp
 ----
-. 下载Cumulux Linux 5.4.0映像：
+. 下载 Cumulux Linux 5.4.0 镜像：
 +
 [listing, subs="+quotes"]
 ----
@@ -359,7 +359,7 @@ Are you sure (y/N)? *y*
 Activating staged installer...done.
 Reboot required to take effect.
 ----
-. 重新启动交换机：
+. 重启交换机：
 +
 [listing, subs="+quotes"]
 ----
@@ -382,7 +382,7 @@ Welcome to NVIDIA Cumulus (R) Linux (R)
 
 ZTP in progress. To disable, do 'ztp -d'
 ----
-. 检查Cumulus Linux版本： `nv show system`
+. 检查 Cumulus Linux 版本： `nv show system`
 +
 [listing, subs="+quotes"]
 ----
@@ -406,7 +406,7 @@ Warning: The following files have been changed since the last save, and they WIL
 .
 .
 ----
-. 注销并重新登录到交换机、以便在提示符处查看更新后的交换机名称：
+. 注销并重新登录交换机，即可在提示符处看到更新后的交换机名称：
 +
 [listing, subs="+quotes"]
 ----
@@ -442,7 +442,7 @@ unreachable default metric 4278198272
 10.231.80.0/22 dev eth0 proto kernel scope link src 10.231.80.206
 127.0.0.0/8 dev mgmt proto kernel scope link src 127.0.0.1
 ----
-. 创建新用户并将此用户添加到 `sudo` 组。只有在重新启动控制台/SSH会话后、此用户才会生效。
+. 创建一个新用户并将该用户添加到 `sudo`团体。该用户仅在控制台/SSH会话重启后生效。
 +
 `sudo adduser --ingroup netedit admin`
 
@@ -487,7 +487,7 @@ http://www.cumulusnetworks.com/support
 The registered trademark Linux (R) is used pursuant to a sublicense from LMI, the exclusive licensee of Linus Torvalds, owner of the mark on a world-wide basis.
 admin@sw1:mgmt:~$
 ----
-. 添加供管理员用户访问的其他用户组 `nv` 命令：
+. 添加其他用户组以供管理员用户访问 `nv`命令：
 +
 [listing, subs="+quotes"]
 ----
@@ -498,7 +498,7 @@ cumulus@sw1:mgmt:~$ *sudo adduser admin nvshow*
      Done.
 ----
 +
-请参见 https://docs.nvidia.com/networking-ethernet-software/cumulus-linux-54/System-Configuration/Authentication-Authorization-and-Accounting/User-Accounts/["NVIDIA用户帐户"^] 有关详细信息 ...
+看 https://docs.nvidia.com/networking-ethernet-software/cumulus-linux-54/System-Configuration/Authentication-Authorization-and-Accounting/User-Accounts/["NVIDIA用户帐户"^]了解更多信息。
 
 
 
@@ -506,32 +506,32 @@ cumulus@sw1:mgmt:~$ *sudo adduser admin nvshow*
 .Cumulus Linux 5.4.0 至 Cumulus Linux 5.11.0
 --
 . 将集群交换机连接到管理网络。
-. 使用 ping 命令验证与托管 Cumulus Linux 和 RCF 的服务器的连接。
-. 显示连接到集群交换机的每个节点上的集群端口：
+. 使用 ping 命令验证与托管 Cumulus Linux 和 RCF 的服务器的连接性。
+. 显示每个节点上连接到集群交换机的集群端口：
 +
 `network device-discovery show`
 
 . 检查每个集群端口的管理和运行状态。
 +
-.. 验证所有集群端口是否均已启动且状态正常：
+.. 确认集群所有端口均已启动且状态正常：
 +
 `network port show -role cluster`
 
-.. 验证所有集群接口（ LIF ）是否均位于主端口上：
+.. 确认所有集群接口（LIF）都位于主端口上：
 +
 `network interface show -role cluster`
 
-.. 验证集群是否同时显示两个集群交换机的信息：
+.. 确认集群显示两个集群交换机的信息：
 +
-`ssystem cluster-switch show -is-monitoring-enableed-Operational true`
+`system cluster-switch show -is-monitoring-enabled-operational true`
 
 
 
-. 在集群 LIF 上禁用自动还原。在目标交换机上执行升级过程时、这些集群Cifs将故障转移到配对集群交换机并保留在该交换机上：
+. 禁用集群 LIF 的自动回滚功能。集群 LIF 会故障转移到伙伴集群交换机，并在您对目标交换机执行升级过程时保留在该交换机上：
 +
-`network interface modify -vserver cluster -lif *-auto-revert false`
+`network interface modify -vserver Cluster -lif * -auto-revert false`
 
-. 检查当前的Cumulus Linux版本和连接的端口：
+. 检查当前 Cumulus Linux 版本和已连接的端口：
 +
 [listing, subs="+quotes"]
 ----
@@ -558,7 +558,7 @@ Interface     MTU   Speed State Remote Host         Remote Port- Type      Summa
 + swp15      9216 100G    up sw2                      swp15       swp
 + swp16      9216 100G    up sw2                      swp16       swp
 ----
-. 下载Cumulux Linux 5.11.0映像：
+. 下载 Cumulux Linux 5.11.0 镜像：
 +
 [listing, subs="+quotes"]
 ----
@@ -584,7 +584,7 @@ Are you sure (y/N)? *y*
 Activating staged installer...done.
 Reboot required to take effect.
 ----
-. 重新启动交换机：
+. 重启交换机：
 +
 [listing, subs="+quotes"]
 ----
@@ -607,7 +607,7 @@ Welcome to NVIDIA Cumulus (R) Linux (R)
 
 ZTP in progress. To disable, do 'ztp -d'
 ----
-. 检查Cumulus Linux版本： `nv show system`
+. 检查 Cumulus Linux 版本： `nv show system`
 +
 [listing, subs="+quotes"]
 ----
@@ -631,7 +631,7 @@ Warning: The following files have been changed since the last save, and they WIL
 .
 .
 ----
-. 注销并再次登录交换机，即可在提示符下看到更新后的交换机名称：
+. 注销并重新登录交换机，即可在提示符处看到更新后的交换机名称：
 +
 [listing, subs="+quotes"]
 ----

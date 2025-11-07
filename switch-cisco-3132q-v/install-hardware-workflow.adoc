@@ -15,16 +15,16 @@ summary: 在配置Cisco Nexus 3132Q-V 集群交换机之前，请查看配置概
 
 .image:https://raw.githubusercontent.com/NetAppDocs/common/main/media/number-1.png["一个"]link:setup-worksheet-3132q.html["完成布线工作表"]
 [role="quick-margin-para"]
-示例布线工作表提供了从交换机到控制器的建议端口分配示例。空白工作表提供了一个模板、可用于设置集群。
+示例布线工作表提供了从交换机到控制器的推荐端口分配示例。空白工作表提供了一个模板，您可以在设置集群时使用该模板。
 
-.image:https://raw.githubusercontent.com/NetAppDocs/common/main/media/number-2.png["两个"]link:install-switch-3132qv.html["安装交换机"]
+.image:https://raw.githubusercontent.com/NetAppDocs/common/main/media/number-2.png["两个"]link:install-switch-3132qv.html["安装开关"]
 [role="quick-margin-para"]
 安装 3132Q-V 交换机。
 
-.image:https://raw.githubusercontent.com/NetAppDocs/common/main/media/number-3.png["三个"]link:install-cisco-nexus-3132qv.html["将交换机安装到NetApp机柜中"]
+.image:https://raw.githubusercontent.com/NetAppDocs/common/main/media/number-3.png["三"]link:install-cisco-nexus-3132qv.html["将交换机安装在NetApp机柜中"]
 [role="quick-margin-para"]
 根据需要在NetApp机柜中安装 3132Q-V 交换机和直通面板。
 
-.image:https://raw.githubusercontent.com/NetAppDocs/common/main/media/number-4.png["四个"]link:cabling-considerations-3132q-v.html["查看布线和配置"]
+.image:https://raw.githubusercontent.com/NetAppDocs/common/main/media/number-4.png["四个"]link:cabling-considerations-3132q-v.html["检查布线和配置"]
 [role="quick-margin-para"]
 审查对NVIDIA以太网端口的支持。

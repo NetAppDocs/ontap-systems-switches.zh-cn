@@ -14,40 +14,40 @@ summary: 如果您还没有所需的配置信息和文档，则需要在设置�
 按照以下步骤安装Cisco Nexus 9336C-FX2 和 9336C-FX2-T 存储交换机。
 
 .开始之前
-确保您已具备以下条件：
+请确保您拥有以下物品：
 
-* 访问安装站点上的HTTP、FTP或TFTP服务器、以下载适用的NX-OS和参考配置文件(RCF)版本。
-* 适用的NX-OS版本、从下载 https://software.cisco.com/download/home["Cisco 软件下载"^] 页面。
-* 适用的许可证、网络和配置信息以及缆线。
-* 已完成 link:setup-worksheet-9336c-storage.html["布线工作表"]。
-* 从NetApp 支持站点 下载的适用NetApp集群网络和管理网络RCF、网址为 http://mysupport.netapp.com/["mysupport.netapp.com"^]。所有 Cisco 集群网络和管理网络交换机均采用标准的 Cisco 出厂默认配置。这些交换机还具有最新版本的 NX-OS 软件，但未加载 RCF 。
-* 所需的交换机文档。请参见 link:required-documentation-9336c-storage.html["所需文档"] 有关详细信息 ...
+* 在安装现场访问 HTTP、FTP 或 TFTP 服务器，以下载适用的 NX-OS 和参考配置文件 (RCF) 版本。
+* 适用的NX-OS版本，可从以下网址下载： https://software.cisco.com/download/home["Cisco软件下载"^]页。
+* 适用的许可证、网络和配置信息以及线缆。
+* 完全的link:setup-worksheet-9336c-storage.html["布线工作表"]。
+* 可从NetApp支持站点下载适用的NetApp集群网络和管理网络 RCF。 http://mysupport.netapp.com/["mysupport.netapp.com"^] 。所有Cisco集群网络和管理网络交换机均采用Cisco标准出厂默认配置。这些交换机也具有当前版本的 NX-OS 软件，但未加载 RCF。
+* 需要提供交换机文档。看link:required-documentation-9336c-storage.html["所需文件"]了解更多信息。
 
 
 .步骤
-. 将集群网络和管理网络交换机和控制器装入机架。
+. 将集群网络和管理网络交换机及控制器安装到机架上。
 +
 [cols="1,2"]
 |===
-| 如果要安装 ... | 那么 ... 
+| 如果您正在安装…… | 操作 
 
 
  a| 
-NetApp 系统机柜中的 Cisco Nexus 9336C-x2
+NetApp系统机柜中的Cisco Nexus 9336C-FX2
  a| 
-请参见 link:install-switch-and-passthrough-panel-9336c-storage.html["将交换机安装在NetApp机柜中"] 有关在NetApp机柜中安装交换机的说明。
+看link:install-switch-and-passthrough-panel-9336c-storage.html["在NetApp机柜中安装交换机"]有关在NetApp机柜中安装交换机的说明。
 
 
 
  a| 
 电信机架中的设备
  a| 
-请参见交换机硬件安装指南和 NetApp 安装和设置说明中提供的过程。
+请参阅交换机硬件安装指南和NetApp安装设置说明中提供的步骤。
 
 |===
-. 使用已完成的布线工作表将集群网络和管理网络交换机连接到控制器。
-. 打开集群网络以及管理网络交换机和控制器的电源。
+. 使用已完成的布线工作表，将集群网络和管理网络交换机连接到控制器。
+. 启动集群网络和管理网络交换机及控制器。
 
 
 .下一步是什么？
-或者，您可以link:install-switch-and-passthrough-panel-9336c-storage.html["在NetApp机柜中安装Cisco Nexus 9336C-x2交换机"]。否则，转到link:setup-switch-9336c-storage.html["配置交换机"]。
+（可选） link:install-switch-and-passthrough-panel-9336c-storage.html["在NetApp机柜中安装Cisco Nexus 9336C-FX2 交换机"]。否则，请前往 link:setup-switch-9336c-storage.html["配置交换机"]。

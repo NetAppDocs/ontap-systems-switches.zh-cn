@@ -4,49 +4,49 @@ sidebar: sidebar
 keywords: cisco, nx-os, software, reference, configuration, file, rcf, install, fx2, cluster, switch, install nx-os software and rcfs on cisco nexus 9336-fx2 cluster switches - cisco nexus 9336x-fx2 
 summary: '必须在Cisco Nexus 9332D-GX2B 集群交换机上安装Cisco NX-OS 软件和参考配置文件 \(RCFs\)。' 
 ---
-= 准备安装NX-OS软件和RCF
+= 准备安装 NX-OS 软件和 RCF
 :allow-uri-read: 
 
 
 [role="lead"]
-在安装NX-OS软件和参考配置文件(Reference Configuration File、RCF)之前、请遵循此操作步骤。
+在安装 NX-OS 软件和参考配置文件 (RCF) 之前，请按照以下步骤操作。
 
 .关于示例
-此操作步骤中的示例使用以下交换机和节点命名：
+本流程中的示例使用以下开关和节点命名规则：
 
-* 两个 Cisco 交换机的名称分别为 CS1 和 CS2 。
+* 这两个Cisco交换机的名称分别是 cs1 和 cs2。
 * 节点名称为node1-01、node1-02、node1-03和node1-04。
 * 集群 LIF 名称为：
 +
 ** node1-01 的 node1-01_clus1 和 node1-01_clus2
-** node1-02_clus1 和 node1-02_clus2 用于 node1-02
+** node1-02 的 node1-02_clus1 和 node1-02_clus2
 ** node1-03 的 node1-03_clus1 和 node1-03_clus2
 ** node1-04 的 node1-04_clus1 和 node1-04_clus2
 
 
-* `cluster1 ：：： * >` 提示符指示集群的名称。
+* 这 `cluster1::*>`prompt 指示集群名称。
 
 
 .关于此任务
-操作步骤要求同时使用 ONTAP 命令和 Cisco Nexus 9000 系列交换机命令；除非另有说明，否则使用 ONTAP 命令。
+该过程需要同时使用ONTAP命令和Cisco Nexus 9000 系列交换机命令；除非另有说明，否则使用ONTAP命令。
 
 .步骤
-. 如果在此集群上启用了 AutoSupport ，请通过调用 AutoSupport 消息来禁止自动创建案例： `ssystem node AutoSupport invoke -node * -type all -message MAINT=x h`
+. 如果此集群上启用了AutoSupport ，则通过调用AutoSupport消息来抑制自动创建案例： `system node autosupport invoke -node * -type all -message MAINT=x h`
 +
-其中 x 是维护时段的持续时间，以小时为单位。
+其中 x 为维护窗口的持续时间（小时）。
 
 +
 
-NOTE: AutoSupport 消息会通知技术支持此维护任务，以便在维护窗口期间禁止自动创建案例。
+NOTE: AutoSupport消息会通知技术支持此维护任务，以便在维护窗口期间抑制自动创建案例。
 
-. 将权限级别更改为高级，在系统提示您继续时输入 * y * ：
+. 将权限级别更改为高级，并在提示继续时输入 *y*：
 +
 [source, cli]
 ----
 set -privilege advanced
 ----
 +
-此时将显示高级提示符（` * >` ）。
+高级提示(`*>`出现。
 
 . 检查各港口的行政及营运状况。
 +
@@ -372,7 +372,7 @@ shelf id connector-state remote-port    remote-device
 
 . 验证远程集群接口的连接性。
 +
-.. 您可以使用 `network interface check cluster-connectivity show`命令显示集群连接可访问性检查的详细信息：
+.. 你可以使用 `network interface check cluster-connectivity show`用于显示集群连接性可访问性检查详细信息的命令：
 +
 [source, cli]
 ----
@@ -483,4 +483,4 @@ Cluster node1-04_clus2     true
 
 
 .下一步是什么？
-准备好安装 NX-OS 软件和 RCF 后，您link:install-nxos-software-9332d-cluster.html["安装或升级 NX-OS 软件"]。
+准备好安装 NX-OS 软件和 RCF 后，您 link:install-nxos-software-9332d-cluster.html["安装或升级 NX-OS 软件"]。

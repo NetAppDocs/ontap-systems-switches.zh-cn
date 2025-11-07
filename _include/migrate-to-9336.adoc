@@ -1,113 +1,113 @@
-= 查看要求
+= 审查要求
 :allow-uri-read: 
 
 
 
 
-== 查看要求
+== 审查要求
 
 确保：
 
-* 您已验证交换机序列号、以确保迁移的交换机正确无误。
-* Nexus 9336C -FX2交换机上的某些端口配置为以10GbE或40GbE速度运行。
-* 已规划、迁移和记录从节点到Nexus 9336C -FX2集群交换机的10GbE和40GbE连接。
-* 集群完全正常运行(日志中不应出现任何错误或类似问题)。
-* Cisco Nexus 9336C-x2交换机的初始自定义已完成、以便：
+* 您已核实交换机序列号，以确保迁移的是正确的交换机。
+* Nexus 9336C-FX2 交换机上的一些端口配置为以 10GbE 或 40GbE 运行。
+* 节点到 Nexus 9336C-FX2 集群交换机的 10GbE 和 40GbE 连接已经过规划、迁移和记录。
+* 集群运行正常（日志中不应有任何错误或类似问题）。
+* Cisco Nexus 9336C-FX2 交换机的初始定制工作已完成，具体如下：
 +
-** 9336C-FX2交换机正在运行建议的最新软件版本。
-** 确认参考配置文件(Reference Configuration Files、RCF)已完全应用于任何新交换机、然后再将这些交换机迁移到新交换机。
-** 在转移网络流量之前、请检查两台交换机上的运行和启动配置。
-** 任何站点自定义、例如DNS、NTP、SMTP、SNMP、和SSH。
+** 9336C-FX2 交换机运行的是最新推荐版本的软件。
+** 在将 LIF 迁移到新交换机之前，请确认参考配置文件 (RCF) 已完全应用到所有新交换机。
+** 在转移网络流量之前，请检查两台交换机的运行配置和启动配置。
+** 任何站点定制，如 DNS、NTP、SMTP、SNMP 和 SSH，都在新交换机上进行配置。
 
 
-* 您可以访问上的交换机兼容性表 https://mysupport.netapp.com/site/info/cisco-ethernet-switch["Cisco 以太网交换机"^] 页面上显示了受支持的 ONTAP ， NX-OS 和 RCF 版本。
-* 您已查看Cisco网站上有关Cisco交换机升级和降级过程的相应软件和升级指南、网址为 https://www.cisco.com/c/en/us/support/switches/nexus-9000-series-switches/series.html["Cisco Nexus 9000 系列交换机支持"^] 页面。
+* 您可以通过以下方式访问交换机兼容性表： https://mysupport.netapp.com/site/info/cisco-ethernet-switch["Cisco以太网交换机"^]支持的ONTAP、NX-OS 和 RCF 版本页面。
+* 您已查阅Cisco网站上提供的有关Cisco交换机升级和降级步骤的相应软件和升级指南。 https://www.cisco.com/c/en/us/support/switches/nexus-9000-series-switches/series.html["Cisco Nexus 9000 系列交换机支持"^]页。
 
 
 
-NOTE: 如果要更改AFF A800或AFF C800系统上e0a和e1a集群端口的端口速度、则可能会在速度转换后看到接收到格式错误的数据包。请参见  https://mysupport.netapp.com/site/bugs-online/product/ONTAP/BURT/1570339["错误1570339"^] 和知识库文章 https://kb.netapp.com/onprem/ontap/hardware/CRC_errors_on_T6_ports_after_converting_from_40GbE_to_100GbE["从40GbE转换到100GbE后、在调整端口配置为36的端口上出现CRC错误"^] 以获得指导。
+NOTE: 如果您更改AFF A800或AFF C800系统上 e0a 和 e1a 集群端口的端口速度，您可能会观察到速度转换后接收到格式错误的包。看 https://mysupport.netapp.com/site/bugs-online/product/ONTAP/BURT/1570339["漏洞编号 1570339"^]以及知识库文章 https://kb.netapp.com/onprem/ontap/hardware/CRC_errors_on_T6_ports_after_converting_from_40GbE_to_100GbE["将 40GbE 转换为 100GbE 后，T6 端口出现 CRC 错误"^]供参考。
 
 
 
 == 迁移交换机
 
 .关于示例
-此操作步骤中的示例使用两个节点。这些节点使用两个 10GbE 集群互连端口 e0a 和 e0b 。请参见 https://hwu.netapp.com/["Hardware Universe"^] 验证平台上的集群端口是否正确。
+本流程中的示例使用了两个节点。这些节点使用两个 10GbE 集群互连端口 e0a 和 e0b。参见 https://hwu.netapp.com/["Hardware Universe"^]验证平台上的集群端口是否正确。
 
 
-NOTE: 根据不同版本的ONTAP 、命令输出可能会有所不同。
+NOTE: 命令输出可能因ONTAP版本不同而有所差异。
 
-此操作步骤中的示例使用以下交换机和节点命名：
+本流程中的示例使用以下开关和节点命名规则：
 
-* 现有两个Cisco交换机的名称分别为*CS1*和*CS2*
-* 新的Nexus 9336C-x2集群交换机为* CS1-new*和* CS2-new*。
-* 节点名称为*节点1 *和*节点2 *。
-* 节点1的集群LIF名称分别为*节点1_clus1*和*节点1_clus2*、节点2的集群LIF名称分别为*节点2_clus1*和*节点2_clus2*。
-* cluster1：：：*)*提示符用于指示集群的名称。
+* 现有的两台Cisco交换机的名称分别为 *cs1* 和 *cs2*。
+* 新的 Nexus 9336C-FX2 集群交换机是 *cs1-new* 和 *cs2-new*。
+* 节点名称分别为 *node1* 和 *node2*。
+* 节点 1 的集群 LIF 名称为 *node1_clus1* 和 *node1_clus2*，节点 2 的集群 LIF 名称为 *node2_clus1* 和 *node2_clus2*。
+* *cluster1::*>* 提示符指示集群的名称。
 
 
-在此操作步骤 期间、请参见以下示例：
+在此过程中，请参考以下示例：
 
 image::../media/Initial_setup.png[初始交换机设置]
 
 .关于此任务
-操作步骤 需要同时使用ONTAP 命令和 https://www.cisco.com/c/en/us/support/switches/nexus-9000-series-switches/series.html["Nexus 9000系列交换机"^] 命令；除非另有说明、否则使用ONTAP 命令。
+该过程需要同时使用ONTAP命令和 https://www.cisco.com/c/en/us/support/switches/nexus-9000-series-switches/series.html["Nexus 9000系列交换机"^]命令；除非另有说明，否则使用ONTAP命令。
 
-此操作步骤包括以下情形：
+本流程涵盖以下情况：
 
-* 交换机CS2将首先替换为交换机CS2-new。
+* 首先将交换机 cs2 替换为交换机 cs2-new。
 +
-** 关闭集群节点的端口。必须同时关闭所有端口、以避免集群不稳定。
+** 关闭集群节点的端口。为避免集群不稳定，所有端口必须同时关闭。
 +
-*** 所有集群的集群Sifs都会故障转移到新交换机CS2-new。
+*** 所有集群 LIF 故障转移到新交换机 cs2-new。
 
 
-** 然后、从CS2断开节点和CS2之间的布线、并重新连接到CS2-new。
+** 然后断开节点与 cs2 之间的电缆与 cs2 的连接，并重新连接到 cs2-new。
 
 
-* 交换机CS1由交换机CS1-new取代。
+* 交换机 cs1 被交换机 cs1-new 替换。
 +
-** 关闭集群节点的端口。必须同时关闭所有端口、以避免集群不稳定。
+** 关闭集群节点的端口。为避免集群不稳定，所有端口必须同时关闭。
 +
-*** 所有集群的集群Sifs都会故障转移到新交换机CS1-new。
+*** 所有集群 LIF 故障转移到新交换机 cs1-new。
 
 
-** 然后、从CS1断开节点和CS1之间的布线、并重新连接到CS1-new。
-
-
-
-
-
-NOTE: 在此操作步骤 期间、不需要可操作的交换机间链路(ISL)。这是设计上的原因、因为RCF版本更改可能会暂时影响ISL连接。为了确保集群无中断运行、以下过程会在对目标交换机执行步骤时将所有集群LIFs故障转移到正常运行的配对交换机。
+** 然后断开节点与 cs1 之间的电缆，并将其重新连接到 cs1-new。
 
 
 
-=== 第1步：准备迁移
 
-. 如果在此集群上启用了 AutoSupport ，请通过调用 AutoSupport 消息来禁止自动创建案例： `ssystem node AutoSupport invoke -node * -type all -message MAINT=xh`
+
+NOTE: 在此过程中不需要任何可操作的交换机间链路 (ISL)。这是设计使然，因为 RCF 版本的更改可能会暂时影响 ISL 连接。为确保集群运行不中断，以下步骤会在目标交换机上执行步骤的同时，将所有集群 LIF 故障转移到运行伙伴交换机。
+
+
+
+=== 步骤 1：准备迁移
+
+. 如果此集群上启用了AutoSupport ，则通过调用AutoSupport消息来抑制自动创建案例： `system node autosupport invoke -node * -type all -message MAINT=xh`
 +
-其中 _x_ 是维护时段的持续时间，以小时为单位。
+其中 _x_ 为维护窗口的持续时间（小时）。
 
 +
 
-NOTE: AutoSupport 消息会通知技术支持此维护任务，以便在维护窗口期间禁止自动创建案例。
+NOTE: AutoSupport消息会通知技术支持此维护任务，以便在维护窗口期间抑制自动创建案例。
 
-. 将权限级别更改为高级，在系统提示您继续时输入 * y * ：
+. 将权限级别更改为高级，并在提示继续时输入 *y*：
 +
 `set -privilege advanced`
 
 +
-此时将显示高级提示符（ * > ）。
+出现高级提示符（*>）。
 
 
 
 
 
-=== 第2步：配置端口和布线
+=== 步骤二：配置端口和线缆
 
-. 在新交换机上、确认交换机CS1-new和CS2-new之间的ISL已布线且运行状况良好：
+. 在新交换机上，确认交换机 cs1-new 和 cs2-new 之间的 ISL 线缆连接正常：
 +
-`s如何执行端口通道摘要`
+`show port-channel summary`
 
 +
 .显示示例
@@ -170,9 +170,9 @@ node2      /cdp
 ====
 . 确定每个集群端口的管理或运行状态。
 +
-.. 验证所有集群端口是否均已启动且状态正常：
+.. 确认集群所有端口均已启动且状态正常：
 +
-`network port show -ipspace cluster`
+`network port show -ipspace Cluster`
 
 +
 .显示示例
@@ -199,9 +199,9 @@ e0a       Cluster      Cluster          up   9000  auto/10000 healthy  false
 e0b       Cluster      Cluster          up   9000  auto/10000 healthy  false
 ----
 ====
-.. 验证所有集群接口(LIF)是否位于其主端口上：
+.. 确认所有集群接口（LIF）都已连接到其所属端口：
 +
-`network interface show -vserver cluster`
+`network interface show -vserver Cluster`
 
 +
 .显示示例
@@ -221,9 +221,9 @@ Cluster
             node2_clus2  up/up      169.254.19.183/16  node2       e0b     true
 ----
 ====
-.. 验证集群是否同时显示两个集群交换机的信息：
+.. 确认集群显示两个集群交换机的信息：
 +
-`ssystem cluster-switch show -is-monitoring-enableed-Operational true`
+`system cluster-switch show -is-monitoring-enabled-operational true`
 
 +
 .显示示例
@@ -253,18 +253,18 @@ cs2                         cluster-network     10.233.205.93   N5K-C5596UP
 ====
 
 
-. [[STEP_4]]对集群Lifs禁用自动还原。
+. [[step_4]]禁用集群 LIF 的自动还原功能。
 +
-在此过程中禁用自动还原后、集群LUN不会自动移回其主端口。它们会保留在当前端口上、而该端口会继续正常运行。
-
-+
-`network interface modify -vserver cluster -lif *-auto-revert false`
+禁用此过程的自动恢复功能后，集群 LIF 将不会自动移回其主端口。只要该港口继续正常运营，他们就会继续使用该港口。
 
 +
+`network interface modify -vserver Cluster -lif * -auto-revert false`
 
-NOTE: 禁用自动还原可确保ONTAP仅在交换机端口稍后关闭时对集群LUN进行故障转移。
++
 
-. 在集群交换机CS2上、关闭连接到*所有*节点的集群端口的端口、以便对集群Lifs进行故障转移：
+NOTE: 禁用自动恢复功能可确保ONTAP仅在交换机端口稍后关闭时才发生故障转移集群 LIF。
+
+. 在集群交换机 cs2 上，关闭连接到*所有*节点集群端口的端口，以便进行集群 LIF 的故障转移：
 +
 [listing, subs="+quotes"]
 ----
@@ -275,9 +275,9 @@ cs2(config-if-range)# *exit*
 cs2(config)# *exit*
 cs2#
 ----
-. 验证集群SIFs是否已故障转移到集群交换机CS1上托管的端口。这可能需要几秒钟的时间。
+. 验证集群 LIF 是否已故障转移到集群交换机 cs1 上托管的端口。这可能需要几秒钟。
 +
-`network interface show -vserver cluster`
+`network interface show -vserver Cluster`
 
 +
 .显示示例
@@ -313,9 +313,9 @@ node1      true    true          false
 node2      true    true          false
 ----
 ====
-. 如果集群的SIF已故障转移到交换机CS1且集群运行状况良好，请转至<<step_10,步骤。10>>。如果某些集群lifs运行不正常或集群运行不正常、您可以回滚与交换机CS2的连接、如下所示：
+. 如果集群 LIF 已故障转移到交换机 cs1 且集群运行状况良好，请转到<<step_10,步。10>>。如果某些集群 LIF 不正常或集群不正常，您可以按如下方式回滚与交换机 cs2 的连接：
 +
-.. 启动连接到*all*节点的集群端口的端口：
+.. 启动连接到*所有*节点集群端口的端口：
 +
 [listing, subs="+quotes"]
 ----
@@ -326,9 +326,9 @@ cs2(config-if-range)# *exit*
 cs2(config)# *exit*
 cs2#
 ----
-.. 验证集群SIFs是否已故障转移到集群交换机CS1上托管的端口。这可能需要几秒钟的时间。
+.. 验证集群 LIF 是否已故障转移到集群交换机 cs1 上托管的端口。这可能需要几秒钟。
 +
-`network interface show -vserver cluster`
+`network interface show -vserver Cluster`
 
 +
 .显示示例
@@ -366,17 +366,17 @@ node2      true    true          false
 ====
 
 
-. 恢复LIF和集群运行状况后，从重新启动该进程<<step_4,步骤。4>>。
-. [[STEP_10]]将所有集群节点连接缆线从旧的CS2交换机移至新的CS2-new交换机。
+. 恢复 LIF 和集群健康状况后，重新启动该过程。<<step_4,步。4>> 。
+. [[step_10]]将所有集群节点连接电缆从旧的 cs2 交换机移至新的 cs2-new 交换机。
 +
-*集群节点连接电缆已移至CS2-new交换机*
+*集群节点连接线缆已移至cs2-new交换机*
 
 +
-image::../media/new_switch_cs1.png[已将集群节点连接缆线移至CS2新交换机]
+image::../media/new_switch_cs1.png[集群节点连接线缆已移至 cs2-new 交换机]
 
-. 确认已移至CS2-NEW的网络连接的运行状况：
+. 确认迁移到 cs2-new 的网络连接是否正常：
 +
-`network port show -ipspace cluster`
+`network port show -ipspace Cluster`
 
 +
 .显示示例
@@ -404,9 +404,9 @@ e0b       Cluster      Cluster          up   9000  auto/10000 healthy  false
 ----
 ====
 +
-移动的所有集群端口都应已启动。
+所有已迁移的集群端口都应该已启用。
 
-. 检查集群端口上的邻居信息：
+. 检查集群端口的邻居信息：
 +
 `network device-discovery show -protocol cdp`
 
@@ -431,16 +431,16 @@ node2      /cdp
 ----
 ====
 +
-验证移动的集群端口是否将CS2-new交换机视为邻居。
+确认迁移后的集群端口是否将 cs2-new 交换机视为邻居。
 
-. 从交换机CS2-NEW的角度确认交换机端口连接：
+. 从交换机 cs2-new 的角度确认交换机端口连接：
 +
 [listing, subs="+quotes"]
 ----
 cs2-new# *show interface brief*
 cs2-new# *show cdp neighbors*
 ----
-. 在集群交换机CS1上、关闭连接到*所有*节点的集群端口的端口、以便对集群LI进行故障转移。
+. 在集群交换机 cs1 上，关闭连接到所有节点集群端口的端口，以便集群 LIF 进行故障转移。
 +
 [listing, subs="+quotes"]
 ----
@@ -452,11 +452,11 @@ cs1(config)# *exit*
 cs1#
 ----
 +
-所有集群的Sifs都会故障转移到CS2新交换机。
+所有集群 LIF 故障转移到 cs2-new 交换机。
 
-. 验证集群SIFs是否已故障转移到交换机CS2-NEW上托管的端口。这可能需要几秒钟的时间：
+. 验证集群 LIF 是否已故障转移到交换机 cs2-new 上托管的端口。这可能需要几秒钟：
 +
-`network interface show -vserver cluster`
+`network interface show -vserver Cluster`
 
 +
 .显示示例
@@ -492,16 +492,16 @@ node1      true    true          false
 node2      true    true          false
 ----
 ====
-. 将集群节点连接缆线从CS1移至新的CS1新交换机。
+. 将集群节点连接电缆从 cs1 移至新的 cs1-new 交换机。
 +
-*集群节点连接电缆已移至CS1-new交换机*
+*集群节点连接线缆已移至 cs1-new 交换机*
 
 +
-image::../media/new_switch_cs2.png[集群节点连接缆线移至CS1新交换机]
+image::../media/new_switch_cs2.png[集群节点连接线缆已移至 cs1-new 交换机]
 
-. 确认已移至CS1-NEW的网络连接的运行状况：
+. 确认迁移到 cs1-new 的网络连接的健康状况：
 +
-`network port show -ipspace cluster`
+`network port show -ipspace Cluster`
 
 +
 .显示示例
@@ -529,9 +529,9 @@ e0b       Cluster      Cluster          up   9000  auto/10000 healthy  false
 ----
 ====
 +
-移动的所有集群端口都应已启动。
+所有已迁移的集群端口都应该已启用。
 
-. 检查集群端口上的邻居信息：
+. 检查集群端口的邻居信息：
 +
 `network device-discovery show`
 
@@ -555,18 +555,18 @@ node2      /cdp
 ----
 ====
 +
-验证移动的集群端口是否将CS1-new交换机视为邻居。
+确认移动后的集群端口是否将 cs1-new 交换机视为邻居。
 
-. 从交换机CS1-NEW的角度确认交换机端口连接：
+. 从交换机 cs1-new 的角度确认交换机端口连接：
 +
 [listing, subs="+quotes"]
 ----
 cs1-new# *show interface brief*
 cs1-new# *show cdp neighbors*
 ----
-. 验证CS1-NEW和CS2-NEW之间的ISL是否仍正常运行：
+. 验证 cs1-new 和 cs2-new 之间的 ISL 是否仍然正常运行：
 +
-`s如何执行端口通道摘要`
+`show port-channel summary`
 
 +
 .显示示例
@@ -609,43 +609,43 @@ Group Port-       Type     Protocol  Member Ports
 
 
 
-=== 第3步：验证配置
+=== 步骤 3：验证配置
 
-. 在集群 LIF 上启用自动还原。
+. 启用集群 LIF 的自动回滚功能。
 +
-`network interface modify -vserver cluster -lif *-auto-revert true`
+`network interface modify -vserver Cluster -lif * -auto-revert true`
 
-. 验证集群LIF是否已还原到其主端口(这可能需要一分钟时间)：
+. 验证集群 LIF 是否已恢复到其原端口（这可能需要一分钟）：
 +
-`network interface show -vserver cluster`
-
-+
-如果集群LIF尚未还原到其主端口、请手动还原它们：
+`network interface show -vserver Cluster`
 
 +
-`network interface revert -vserver cluster -lif *`
+如果集群 LIF 尚未恢复到其主端口，请手动恢复它们：
+
++
+`network interface revert -vserver Cluster -lif *`
 
 . 验证集群是否运行正常：
 +
 `cluster show`
 
-. 验证远程集群接口的连接：
+. 验证远程集群接口的连接性：
 
 
 [role="tabbed-block"]
 ====
-.ONTAP 9.9.1及更高版本
+.ONTAP 9.9.1 及更高版本
 --
-您可以使用 `network interface check cluster-connectivity` 命令启动集群连接的可访问性检查、然后显示详细信息：
+你可以使用 `network interface check cluster-connectivity`执行命令以启动集群连接性检查，然后显示详细信息：
 
-`network interface check cluster-connectivity start` 和 `network interface check cluster-connectivity show`
+`network interface check cluster-connectivity start`和 `network interface check cluster-connectivity show`
 
 [listing, subs="+quotes"]
 ----
 cluster1::*> *network interface check cluster-connectivity start*
 ----
 
-NOTE: 等待几秒钟后再运行 `show`命令显示详细信息。
+NOTE: 运行前请等待几秒钟 `show`显示详细信息的命令。
 
 [listing, subs="+quotes"]
 ----
@@ -664,7 +664,7 @@ node2
 --
 .所有ONTAP版本
 --
-对于所有ONTAP版本、您还可以使用 `cluster ping-cluster -node <name>` 用于检查连接的命令：
+对于所有ONTAP版本，您也可以使用 `cluster ping-cluster -node <name>`检查连接性的命令：
 
 `cluster ping-cluster -node <name>`
 
@@ -697,7 +697,7 @@ RPC status:
 ----
 --
 ====
-. [[STEP5]]如果禁止自动创建案例、请通过调用AutoSupport消息重新启用： `system node autosupport invoke -node * -type all -message MAINT=END`
+. [[步骤5]]如果您已禁用自动创建案例功能，请通过调用AutoSupport消息重新启用该功能： `system node autosupport invoke -node * -type all -message MAINT=END`
 
 
 .下一步是什么？

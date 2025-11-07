@@ -18,91 +18,91 @@ summary: 对于Cisco Nexus 9364d-gx2a 交换机的安装和维护，请务必查
 
 
 
-== 交换机文档
+== 切换文档
 
-要设置Cisco Nexus 9364D-GX2A 交换机，您需要以下文档 https://www.cisco.com/c/en/us/support/switches/nexus-9000-series-switches/series.html["Cisco Nexus 9000 系列交换机支持"^]页：
+要设置Cisco Nexus 9364D-GX2A 交换机，您需要以下文档： https://www.cisco.com/c/en/us/support/switches/nexus-9000-series-switches/series.html["Cisco Nexus 9000 系列交换机支持"^]页：
 
 [cols="1,2"]
 |===
-| 文档标题 | Description 
+| 文档标题 | 描述 
 
 
  a| 
 link:https://www.cisco.com/c/en/us/td/docs/dcn/hw/nx-os/nexus9000/9364d-gx2a/cisco-nexus-9364d-gx2a-nx-os-mode-switch-hardware-installation-guide/m_installing_chassis_2ru_duvel.html["Cisco Nexus 9364D-GX2A NX-OS 模式交换机硬件安装指南"^]
  a| 
-提供有关站点要求，交换机硬件详细信息和安装选项的详细信息。
+提供有关站点要求、交换机硬件详情和安装选项的详细信息。
 
 
 
  a| 
-link:https://www.cisco.com/c/en/us/support/switches/nexus-9000-series-switches/products-installation-and-configuration-guides-list.html["《 Cisco Nexus 9000 系列交换机软件配置指南》"^]（选择安装在您的交换机上的 NX-OS 版本的指南）
+link:https://www.cisco.com/c/en/us/support/switches/nexus-9000-series-switches/products-installation-and-configuration-guides-list.html["Cisco Nexus 9000 系列交换机软件配置指南"^]（请选择与您的交换机上安装的 NX-OS 版本相对应的指南）
  a| 
-提供为 ONTAP 操作配置交换机之前所需的初始交换机配置信息。
-
-
-
- a| 
-link:https://www.cisco.com/c/en/us/td/docs/dcn/nx-os/nexus9000/101x/upgrade/cisco-nexus-9000-nx-os-software-upgrade-downgrade-guide-101x.html["《 Cisco Nexus 9000 系列 NX-OS 软件升级和降级指南》"^]（选择安装在您的交换机上的 NX-OS 版本的指南）
- a| 
-提供有关如何根据需要将交换机降级为 ONTAP 支持的交换机软件的信息。
+提供在配置交换机以进行ONTAP操作之前所需的初始交换机配置信息。
 
 
 
  a| 
-link:https://www.cisco.com/c/en/us/td/docs/dcn/nx-os/nexus9000/102x/command-reference/config/b_n9k_config_commands_1021.html["《 Cisco Nexus 9000 系列 NX-OS 命令参考》"^]
+link:https://www.cisco.com/c/en/us/td/docs/dcn/nx-os/nexus9000/101x/upgrade/cisco-nexus-9000-nx-os-software-upgrade-downgrade-guide-101x.html["Cisco Nexus 9000 系列 NX-OS 软件升级和降级指南"^]（请选择与您的交换机上安装的 NX-OS 版本相对应的指南）
  a| 
-提供 Cisco 提供的各种命令参考的链接。
+提供有关如何将交换机降级到ONTAP支持的交换机软件（如有必要）的信息。
+
+
+
+ a| 
+link:https://www.cisco.com/c/en/us/td/docs/dcn/nx-os/nexus9000/102x/command-reference/config/b_n9k_config_commands_1021.html["Cisco Nexus 9000 系列 NX-OS 命令参考"^]
+ a| 
+提供指向Cisco提供的各种命令参考的链接。
 
 
 
  a| 
 link:https://www.cisco.com/c/en/us/support/switches/nexus-9000-series-switches/products-system-message-guides-list.html["Cisco Nexus 9000 系列 NX-OS 系统消息参考"^]
  a| 
-介绍 Cisco Nexus 9000 系列交换机的系统消息，信息性消息以及可能有助于诊断链路，内部硬件或系统软件问题的其他消息。
+描述Cisco Nexus 9000 系列交换机的系统消息，包括信息性消息和其他可能有助于诊断链路、内部硬件或系统软件问题的消息。
 
 
 
  a| 
-link:https://www.cisco.com/c/en/us/support/switches/nexus-9000-series-switches/products-release-notes-list.html["《 Cisco Nexus 9000 系列 NX-OS 发行说明》"^]（选择交换机上安装的 NX-OS 版本的注释）
+link:https://www.cisco.com/c/en/us/support/switches/nexus-9000-series-switches/products-release-notes-list.html["Cisco Nexus 9000 系列 NX-OS 发行说明"^]（请选择交换机上安装的 NX-OS 版本对应的说明）
  a| 
-介绍 Cisco Nexus 9000 系列的功能，错误和限制。
+描述了CiscoNexus 9000 系列的功能、缺陷和局限性。
 
 
 
  a| 
-link:https://www.cisco.com/c/en/us/td/docs/switches/datacenter/mds9000/hw/regulatory/compliance/RCSI.html?dtid=osscdc000283&linkclickid=srch["Cisco Nexus 9000 系列的合规性和安全信息"^]
+link:https://www.cisco.com/c/en/us/td/docs/switches/datacenter/mds9000/hw/regulatory/compliance/RCSI.html?dtid=osscdc000283&linkclickid=srch["Cisco Nexus 9000 系列的法规遵从性和安全信息"^]
  a| 
-提供 Nexus 9000 系列交换机的国际机构合规性，安全性和法定信息。
+提供 Nexus 9000 系列交换机的国际机构合规性、安全性和法规信息。
 
 |===
 
 
 == ONTAP 系统文档
 
-要设置ONTAP系统，您需要从 https://docs.netapp.com/ontap-9/index.jsp["ONTAP 9 文档中心"^]。
+要设置ONTAP系统，您需要以下适用于您操作系统版本的文档： https://docs.netapp.com/ontap-9/index.jsp["ONTAP 9 文档中心"^] 。
 
 [cols="1,2"]
 |===
-| Name | Description 
+| 名称 | 描述 
 
 
  a| 
 https://docs.netapp.com/us-en/ontap-afx/index.html["AFX 系统文档"^]
  a| 
-介绍如何安装 NetApp 硬件。
+介绍如何安装NetApp硬件。
 
 
 
  a| 
 https://docs.netapp.com/us-en/ontap-family/["ONTAP 文档"^]
  a| 
-提供有关 ONTAP 版本各个方面的详细信息。
+提供有关ONTAP版本各个方面的详细信息。
 
 
 
  a| 
 https://hwu.netapp.com["Hardware Universe"^]
  a| 
-提供 NetApp 硬件配置和兼容性信息。
+提供NetApp硬件配置和兼容性信息。
 
 |===

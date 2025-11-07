@@ -2,55 +2,55 @@
 permalink: switch-cisco-92300/install-nxos-rcf.html 
 sidebar: sidebar 
 keywords: install rcf,rcf configure 
-summary: 首次设置 Nexus 92300YC 交换机后，您可以安装 RCF 。 
+summary: 首次设置 Nexus 92300YC 交换机后，您可以安装 RCF。 
 ---
-= 安装参考配置文件（ RCF ）
+= 安装参考配置文件（RCF）
 :allow-uri-read: 
 :icons: font
 :imagesdir: ../media/
 
 
 [role="lead"]
-首次设置 Nexus 92300YC 交换机后，您可以安装 RCF 。
+首次设置 Nexus 92300YC 交换机后，您可以安装 RCF。
 
-.交换机和节点命名
-此操作步骤中的示例使用以下交换机和节点命名：
+.交换机和节点命名法
+本流程中的示例使用以下开关和节点命名规则：
 
-* 这两台 Cisco 交换机的名称分别为 `CS1` 和 `CS2` 。
-* 节点名称为 `node1` 和 `node2` 。
-* 集群 LIF 名称是 node1 的 `node1_clus1` 和 `node1_clus2` ， node2 的 `node2_clus1` 和 `node2_clus2` 。
-* `cluster1 ：：： * >` 提示符指示集群的名称。
-* 每个节点上的集群端口分别命名为 `e0a` 和 `e0b` 。
+* 这两台Cisco交换机的名称是： `cs1`和 `cs2`。
+* 节点名称是 `node1`和 `node2`。
+* 集群 LIF 名称为 `node1_clus1`和 `node1_clus2`对于节点1和 `node2_clus1`和 `node2_clus2`对于节点2。
+* 这 `cluster1::*>`prompt 指示集群名称。
+* 每个节点上的集群端口都命名为 `e0a`和 `e0b`。
 +
-请参见 link:https://hwu.netapp.com/Home/Index["Hardware Universe^ _"] 您的平台支持的实际集群端口。
+参见link:https://hwu.netapp.com/Home/Index["硬件宇宙"]针对您的平台实际支持的集群端口。
 
 
 
 .支持的端口和节点连接
-* Nexus 92300YC 交换机支持的交换机间链路（ ISL ）为端口 1/65 和 1/66 。
-* Nexus 92300YC 交换机支持的节点连接为端口 1/1 到 1/66 。
-* 此操作步骤中的示例使用两个节点。这些节点使用两个10GbE集群互连端口 `e0a` 和 `e0b`。请参见 https://hwu.netapp.com/SWITCH/INDEX["Hardware Universe"^] 验证平台上的集群端口是否正确。
+* Nexus 92300YC 交换机支持的交换机间链路 (ISL) 为端口 1/65 和 1/66。
+* Nexus 92300YC 交换机支持的节点连接为端口 1/1 至 1/66。
+* 本流程中的示例使用了两个节点。这些节点使用两个 10GbE 集群互连端口 `e0a`和 `e0b`。参见 https://hwu.netapp.com/SWITCH/INDEX["Hardware Universe"^]验证平台上的集群端口是否正确。
 
 
 .开始之前
-* 您必须具有当前 RCF 。
+* 您必须持有最新的 RCF。
 * 集群必须完全正常运行（日志中不应有任何错误或类似问题）。
-* 如果您仅安装 NX-OS 并保留当前 RCF 版本，则必须在 RCF 中检查或设置所需的启动配置，以反映所需的启动映像。
-* 如果您需要更改启动配置以反映当前启动映像，则必须在重新应用 RCF 之前进行更改，以便在将来重新启动时实例化正确的版本。
-* 您必须已查看上的交换机兼容性表 https://support.netapp.com/NOW/download/software/cm_switches/["Cisco 以太网交换机"^] 页面上显示了受支持的 ONTAP ， NX-OS 和 RCF 版本。
+* 如果您仅安装 NX-OS 并保留当前的 RCF 版本，则必须已在 RCF 中检查或设置所需的启动配置，以反映所需的启动映像。
+* 如果需要更改启动配置以反映当前的启动映像，则必须在重新应用 RCF 之前进行更改，以便在以后的重启中实例化正确的版本。
+* 您一定查阅过交换机兼容性表格。 https://support.netapp.com/NOW/download/software/cm_switches/["Cisco以太网交换机"^]支持的ONTAP、NX-OS 和 RCF 版本页面。
 * RCF 中的命令语法与 NX-OS 版本中的命令语法之间可能存在命令依赖关系。
 
 
 .关于此任务
-操作步骤要求同时使用 ONTAP 命令和 Cisco Nexus 9000 系列交换机命令；除非另有说明，否则使用 ONTAP 命令。
+该过程需要同时使用ONTAP命令和Cisco Nexus 9000 系列交换机命令；除非另有说明，否则使用ONTAP命令。
 
-根据不同版本的 ONTAP ，命令输出可能会有所不同。
+命令输出可能因ONTAP版本不同而有所差异。
 
 .步骤
 . 将集群交换机连接到管理网络。
-. 使用 ping 命令验证与托管 RCF 的服务器的连接。
+. 使用 ping 命令验证与托管 RCF 的服务器的连接性。
 +
-此示例验证交换机是否可以通过 IP 地址 172.19.2.1 访问服务器：
+此示例验证交换机可以访问 IP 地址为 172.19.2.1 的服务器：
 
 +
 [listing, subs="+quotes"]
@@ -60,7 +60,7 @@ Pinging 172.19.2.1 with 0 bytes of data:
 
 Reply From 172.19.2.1: icmp_seq = 0. time= 5910 usec.
 ----
-. 将 RCF 复制到 Nexus 92300YC 交换机：
+. 将 RCF 文件复制到 Nexus 92300YC 交换机：
 +
 [listing, subs="+quotes"]
 ----
@@ -110,7 +110,7 @@ Copy complete.
 ----
 . 在交换机上验证 RCF 是否已成功合并：
 +
-`s如何运行配置`
+`show running-config`
 
 +
 [listing, subs="+quotes"]
@@ -149,7 +149,7 @@ banner motd #
 *                                                                              *
 ********************************************************************************
 ----
-. 保存正在运行的配置，使其在重新启动交换机时成为启动配置：
+. 保存运行配置，以便重启交换机时将其作为启动配置：
 +
 [listing, subs="+quotes"]
 ----
@@ -159,7 +159,7 @@ cs2# *copy running-config startup-config*
 Copy complete, now saving to disk (please wait)...
 Copy complete.
 ----
-. 对于 ONTAP 9.6P8 及更高版本，使用以下命令启用以太网交换机运行状况监控器日志收集功能以收集交换机相关的日志文件： `ssystem cluster-switch log setup-password` 和 `ssystem cluster-switch log enable-Collection`
+. 对于ONTAP 9.6P8 及更高版本，请使用以下命令启用以太网交换机运行状况监视器日志收集功能，以收集与交换机相关的日志文件： `system cluster-switch log setup-password`和 `system cluster-switch log enable-collection`
 +
 [listing, subs="+quotes"]
 ----
@@ -197,9 +197,9 @@ Enabling cluster switch log collection.
 
 cluster1::*>
 ----
-. 重新启动交换机并验证正在运行的配置是否正确：
+. 重启交换机并验证运行配置是否正确：
 +
-`re负载`
+`reload`
 
 +
 [listing, subs="+quotes"]

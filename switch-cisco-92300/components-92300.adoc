@@ -2,7 +2,7 @@
 permalink: switch-cisco-92300/components-92300.html 
 sidebar: sidebar 
 keywords: cisco nexus 92300YC 
-summary: 如果要使用两个以上的节点构建 ONTAP 集群，则需要两个受支持的集群网络交换机。您可以使用其他管理交换机，这些交换机是可选的。 
+summary: 如果要构建包含两个以上节点的ONTAP集群，则需要两个受支持的集群网络交换机。您还可以使用额外的管理交换机，这些交换机是可选的。 
 ---
 = Cisco Nexus 92300YC 交换机的组件和部件号
 :allow-uri-read: 
@@ -11,61 +11,61 @@ summary: 如果要使用两个以上的节点构建 ONTAP 集群，则需要两�
 
 
 [role="lead"]
-对于Cisco Nexus 92300YC交换机安装和维护、请务必查看所有交换机组件和部件号。请参见 https://hwu.netapp.com/SWITCH/INDEX["Hardware Universe"^] 了解详细信息。
+对于Cisco Nexus 92300YC 交换机的安装和维护，请务必查看所有交换机组件和部件号。查看 https://hwu.netapp.com/SWITCH/INDEX["Hardware Universe"^]了解详情。
 
-下表列出了 92300YC 交换机，风扇和电源的部件号和问题描述：
+下表列出了 92300YC 交换机、风扇和电源的部件号和描述：
 
 [cols="1,2"]
 |===
-| 部件号 | Description 
+| 零件编号 | 描述 
 
 
  a| 
-190003.
+190003
  a| 
-Cisco 92300YC ， CLSW ， 48Pt10/25GB ， 18Pt100G ， PTSX （ PTSX = 端口侧排气）
+Cisco 92300YC、CLSW、48Pt10/25GB、18Pt100G、PTSX（PTSX = 端口侧排气）
 
 
 
  a| 
 190003R
  a| 
-Cisco 92300YC ， CLSW ， 48Pt10/25GB ， 18Pt100G ， PSIN （ PSIN = 端口侧进气）
+Cisco 92300YC、CLSW、48Pt10/25GB、18Pt100G、PSIN（PSIN = 端口侧输入）
 
 
 
  a| 
-X-NXA-Fan-35CFM-B
+X-NXA-FAN-35CFM-B
  a| 
-风扇， Cisco N9K 端口侧进气气流
-
-
-
- a| 
-X-NXA-Fan-35CFM-F
- a| 
-风扇， Cisco N9K 端口侧排气
+风扇，CiscoN9K 端口侧进气气流
 
 
 
  a| 
-X-NXA-PAC — 650W-B
+X-NXA-FAN-35CFM-F
  a| 
-电源， Cisco 650W —端口侧进气
+风扇，CiscoN9K 端口侧排气气流
 
 
 
  a| 
-X-NXA-PAC — 650W-F
+X-NXA-PAC-650W-B
  a| 
-电源， Cisco 650W —端口侧排气
+电源，Cisco650W - 端口侧进线
+
+
+
+ a| 
+X-NXA-PAC-650W-F
+ a| 
+电源，Cisco650W - 端口侧排气
 
 |===
-Cisco Nexus 92300YC 交换机气流详细信息：
+Cisco Nexus 92300YC 交换机气流详情：
 
-* 端口端排气气流(标准空气)—冷空气通过冷通道中的风扇和电源模块进入机箱、并通过热通道中的机箱端口端进行排气。端口端的排气气流，蓝色。
-* 端口侧进气气流(反向空气)—冷空气通过冷通道的端口端进入机箱、并通过热通道中的风扇和电源模块进行排气。端口侧进气气流，具有红色。
+* 端口侧排气气流（标准空气）——冷空气通过冷通道中的风扇和电源模块进入机箱，并通过机箱端口端的热通道排出。左舷排气气流呈蓝色。
+* 端口侧进气气流（逆向气流）——冷空气从冷通道的端口端进入机箱，然后通过热通道的风扇和电源模块排出。左舷进气口采用酒红色涂装。
 
 
 .下一步
-link:required-documentation-92300.html["所需文档"] 。
+link:required-documentation-92300.html["所需文件"]。

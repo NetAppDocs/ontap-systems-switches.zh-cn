@@ -2,68 +2,68 @@
 permalink: switch-nvidia-sn2100-storage/replace-sn2100-switch-storage.html 
 sidebar: sidebar 
 keywords: replacing, replace, defective, nvidia, switch, cluster, network, nondisruptive, procedure, ndu, replace a nvidia sn2100 cluster switch - nvidia SN2100 
-summary: '更换无中断操作步骤 中存在故障的NVIDIA SN2100存储交换机\(NDU\)。' 
+summary: '以非中断程序 (NDU) 更换有缺陷的NVIDIA SN2100 存储交换机。' 
 ---
-= 更换NVIDIA SN2100存储交换机
+= 更换NVIDIA SN2100 存储交换机
 :allow-uri-read: 
 :icons: font
 :imagesdir: ../media/
 
 
 [role="lead"]
-您可以更换有故障的NVIDIA SN2100存储交换机。这是一个无中断操作步骤。
+您可以更换有缺陷的NVIDIA SN2100 存储交换机。这是一个非破坏性的过程。
 
 .开始之前
-在NVIDIA SN2100存储交换机上安装Cumulus软件和RCF之前、请确保：
+在NVIDIA SN2100 存储交换机上安装 Cumulus 软件和 RCF 之前，请确保：
 
-* 您的系统可以支持NVIDIA SN2100存储交换机。
-* 您已下载适用的RCF。
+* 您的系统可以支持NVIDIA SN2100 存储交换机。
+* 您已下载适用的 RCF 文件。
 
 
-。 http://hwu.netapp.com["Hardware Universe"^] 提供支持的端口及其配置的完整详细信息。
+这 http://hwu.netapp.com["Hardware Universe"^]提供所支持的端口及其配置的完整详细信息。
 
-现有网络配置必须具有以下特征：
+现有网络配置必须具备以下特征：
 
-* 完成所有故障排除步骤以确认您需要更换开关。
-* 确保两个交换机上都存在管理连接。
+* 完成所有故障排除步骤，以确认是否需要更换交换机。
+* 确保两台交换机都具备管理连接。
 +
 
-NOTE: 确保已完成所有故障排除步骤，以确认您的交换机需要更换。
+NOTE: 请确保已完成所有故障排除步骤，以确认您的交换机需要更换。
 
 
 
-更换用的NVIDIA SN2100交换机必须具有以下特征：
+替换用的NVIDIA SN2100交换机必须具备以下特性：
 
 * 管理网络连接正常。
 * 您可以使用控制台访问替换交换机。
-* 相应的RCF和Cumulus操作系统映像将加载到交换机上。
-* 交换机的初始自定义已完成。
+* 将相应的 RCF 和 Cumulus 操作系统映像加载到交换机上。
+* 交换机的初始定制已完成。
 
 
-.操作步骤摘要
-此操作步骤 将第二个NVIDIA SN2100存储交换机SW2替换为新的NVIDIA SN2100交换机nsw2。这两个节点分别为 node1 和 node2 。
+.程序概要
+此过程将第二个NVIDIA SN2100 存储交换机 sw2 替换为新的NVIDIA SN2100 交换机 nsw2。这两个节点分别是节点1和节点2。
 
 完成步骤：
 
-* 确认要更换的交换机为SW2。
-* 断开交换机SW2的缆线。
-* 将缆线重新连接到交换机nsw2。
-* 验证交换机nsw2上的所有设备配置。
+* 确认要更换的开关是 sw2。
+* 断开交换机sw2上的电缆。
+* 重新连接电缆至交换机 nsw2。
+* 请核实交换机 nsw2 上的所有设备配置。
 
 
 .步骤
-. 如果在此集群上启用了 AutoSupport ，则通过调用 AutoSupport 消息禁止自动创建案例：
+. 如果此集群上启用了AutoSupport ，则通过调用AutoSupport消息来抑制自动创建案例：
 +
-`ssystem node AutoSupport invoke -node * -type all - 消息 MAINT=xh`
+`system node autosupport invoke -node * -type all - message MAINT=xh`
 
 +
-_x_ 是维护时段的持续时间，以小时为单位。
+_x_ 是维护窗口的持续时间，单位为小时。
 
-. 将权限级别更改为高级，在系统提示您继续时输入 * y * ：
+. 将权限级别更改为高级，并在提示继续时输入 *y*：
 +
 `set -privilege advanced`
 
-. 检查存储节点端口的健康状态，确认与存储交换机S1的连接：
+. 检查存储节点端口的健康状态，以确认与存储交换机S1的连接：
 +
 `storage port show -port-type ENET`
 
@@ -90,7 +90,7 @@ node2
 cluster1::*>
 ----
 ====
-. 验证存储交换机sw1是否可用：
+. 确认存储交换机sw1是否可用：
 +
 `network device-discovery show -protocol lldp`
 
@@ -121,7 +121,7 @@ Press <space> to page down, <return> for next line, or 'q' to quit...
 10 entries were displayed.
 ----
 ====
-. 运行 `net show interface` 命令确认您可以同时看到节点和所有磁盘架：
+. 运行 `net show interface`在工作交换机上执行命令，确认可以看到两个节点和所有机架：
 +
 `net show interface`
 
@@ -148,7 +148,7 @@ UP     swp6    100G  9216   Trunk/L2   SHFFG1826000102 (e0b)   Master: bridge(UP
 ...
 ----
 ====
-. 验证存储系统中的磁盘架端口：
+. 检查存储系统中的货架端口：
 +
 `storage shelf port show -fields remote-device, remote-port`
 
@@ -172,9 +172,9 @@ shelf   id  remote-port   remote-device
 cluster1::*>
 ----
 ====
-. 拔下连接到存储交换机SW2的所有缆线。
-. 将所有缆线重新连接到更换用的交换机nsw2。
-. 重新检查存储节点端口的运行状况：
+. 移除连接到存储交换机sw2的所有电缆。
+. 将所有电缆重新连接到替换交换机 nsw2。
+. 请重新检查存储节点端口的运行状况：
 +
 `storage port show -port-type ENET`
 
@@ -201,7 +201,7 @@ node2
 cluster1::*>
 ----
 ====
-. 验证两个交换机是否均可用：
+. 确认两个交换机均可用：
 +
 `net device-discovery show -protocol lldp`
 
@@ -233,7 +233,7 @@ Press <space> to page down, <return> for next line, or 'q' to quit...
 10 entries were displayed.
 ----
 ====
-. 验证存储系统中的磁盘架端口：
+. 检查存储系统中的货架端口：
 +
 `storage shelf port show -fields remote-device, remote-port`
 
@@ -257,13 +257,13 @@ shelf   id    remote-port     remote-device
 cluster1::*>
 ----
 ====
-. 将权限级别重新更改为 admin ：
+. 将权限级别改回管理员：
 +
 `set -privilege admin`
 
-. 如果禁止自动创建案例，请通过调用 AutoSupport 消息重新启用它：
+. 如果您已禁用自动创建案例功能，请通过调用AutoSupport消息重新启用该功能：
 +
-`ssystem node AutoSupport invoke -node * -type all -message MAINT=end`
+`system node autosupport invoke -node * -type all -message MAINT=END`
 
 
 

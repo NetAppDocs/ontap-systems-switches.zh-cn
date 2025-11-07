@@ -2,27 +2,27 @@
 permalink: switch-cisco-3132q-v/cn5596-prepare-to-migrate.html 
 sidebar: sidebar 
 keywords: cisco 3132q-v, cluster switches 
-summary: 您可以在AFF或FAS集群中使用Cisco Nexus 3132q-v交换机作为集群交换机。 
+summary: 您可以在AFF或FAS集群中使用Cisco Nexus 3132q-v 交换机作为集群交换机。 
 ---
-= 准备从Nexus 5596交换机迁移到Nexus 3132Q-V交换机
+= 准备从 Nexus 5596 交换机迁移到 Nexus 3132Q-V 交换机
 :allow-uri-read: 
 :icons: font
 :imagesdir: ../media/
 
 
 [role="lead"]
-请按照以下步骤准备Cisco Nexus 5596交换机、以便迁移到Cisco Nexus 3132Q-V交换机。
+请按照以下步骤准备将Cisco Nexus 5596 交换机迁移到Cisco Nexus 3132Q-V 交换机。
 
 .步骤
-. 如果在此集群上启用了 AutoSupport ，请通过调用 AutoSupport 消息来禁止自动创建案例： `ssystem node AutoSupport invoke -node * -type all -message MAINT=xh`
+. 如果此集群上启用了AutoSupport ，则通过调用AutoSupport消息来抑制自动创建案例： `system node autosupport invoke -node * -type all -message MAINT=xh`
 +
-_x_ 是维护时段的持续时间，以小时为单位。
+_x_ 是维护窗口的持续时间，单位为小时。
 
 +
 
-NOTE: 此消息会通知技术支持此维护任务，以便在维护窗口期间禁止自动创建案例。
+NOTE: 该消息通知技术支持部门此维护任务，以便在维护期间禁止自动创建案例。
 
-. 显示有关配置中设备的信息：
+. 显示配置中设备的相关信息：
 +
 `network device-discovery show`
 
@@ -30,7 +30,7 @@ NOTE: 此消息会通知技术支持此维护任务，以便在维护窗口期�
 .显示示例
 [%collapsible]
 ====
-以下示例显示了在每个节点中为每个集群互连交换机配置了多少个集群互连接口：
+以下示例显示了每个节点上每个集群互连交换机配置的集群互连接口数量：
 
 [listing]
 ----
@@ -61,7 +61,7 @@ n2         /cdp
 .显示示例
 [%collapsible]
 ====
-以下示例显示了系统上的网络端口属性：
+以下示例显示系统上的网络端口属性：
 
 [listing]
 ----
@@ -89,12 +89,13 @@ e0d       Cluster      Cluster          up   9000  auto/10000 -        -
 8 entries were displayed.
 ----
 ====
-.. 显示有关逻辑接口的信息： + `network interface show`
+.. 显示逻辑接口信息：+
+`network interface show`
 +
 .显示示例
 [%collapsible]
 ====
-以下示例显示了有关系统上所有 LIF 的常规信息：
+以下示例显示系统中所有 LIF 的一般信息：
 
 [listing]
 ----
@@ -115,7 +116,8 @@ Cluster
 8 entries were displayed.
 ----
 ====
-.. 显示有关已发现集群交换机的信息： + `ssystem cluster-switch show`
+.. 显示已发现的集群交换机的相关信息：+
+`system cluster-switch show`
 +
 .显示示例
 [%collapsible]
@@ -148,7 +150,7 @@ CL2                           cluster-network    10.10.1.102     NX5596
 ====
 
 
-. 在两个节点上的集群 LIF clus1 和 clus2 上将 ` -auto-revert` 参数设置为 `false` ：
+. 设置 `-auto-revert`参数 `false`在两个节点上的集群 LIF clus1 和 clus2 上：
 +
 `network interface modify`
 
@@ -164,33 +166,33 @@ cluster::*> network interface modify -vserver node2 -lif clus1 -auto-revert fals
 cluster::*> network interface modify -vserver node2 -lif clus2 -auto-revert false
 ----
 ====
-. 根据您的需求，验证是否在新的 3132Q-V 交换机上安装了适当的 RCF 和映像，并进行必要的站点自定义，例如用户和密码，网络地址等。
+. 确认已根据您的要求在新 3132Q-V 交换机上安装了相应的 RCF 和映像，并进行必要的站点自定义，例如用户和密码、网络地址等。
 +
-此时必须准备两个交换机。如果需要升级 RCF 和映像，请按照以下步骤操作：
+此时您必须准备好这两个开关。如果需要升级 RCF 和镜像，请按照以下步骤操作：
 
 +
-.. 前往link:https://mysupport.netapp.com/site/info/cisco-ethernet-switch["Cisco 以太网交换机"^]在NetApp支持站点上。
-.. 请记下该页面上的表中的交换机和所需的软件版本。
-.. 下载适当版本的 RCF 。
-.. 在*Description*页上选择*CONTINUOD*，接受许可协议，然后按照*Download*页上的说明下载RCB。
-.. 下载相应版本的映像软件。
+.. 前往link:https://mysupport.netapp.com/site/info/cisco-ethernet-switch["Cisco以太网交换机"^]在NetApp支持网站上。
+.. 请记下您交换机的型号以及该页表格中所需的软件版本。
+.. 下载相应版本的RCF。
+.. 在“描述”页面上选择“继续”，接受许可协议，然后按照“下载”页面上的说明下载 RCF。
+.. 下载相应版本的图像处理软件。
 +
-请参见__Cluster and Management ONTAP交换机参考配置文件__Download页面，然后选择相应的版本。
+请参阅“__ONTAP 8.x 或更高版本集群和管理网络交换机参考配置文件__下载”页面，然后选择相应的版本。
 
 +
-要查找正确的版本，请参见 _Cluster ONTAP 8.x 或更高版本的集群网络交换机下载页面 _ 。
+要查找正确的版本，请参阅_ONTAP 8.x 或更高版本集群网络交换机下载页面_。
 
 
 
-. 迁移与要更换的第二个 Nexus 5596 交换机关联的 LIF ：
+. 迁移与待替换的第二台 Nexus 5596 交换机相关的 LIF：
 +
-`网络接口迁移`
+`network interface migrate`
 
 +
 .显示示例
 [%collapsible]
 ====
-以下示例显示了 n1 和 n2 ，但必须在所有节点上执行 LIF 迁移：
+以下示例显示了 n1 和 n2，但 LIF 迁移必须在所有节点上执行：
 
 [listing]
 ----
@@ -204,7 +206,7 @@ cluster::*> network interface migrate -vserver Cluster -lif n2_clus3 -source-nod
 destination-node n2 -destination-port e0d
 ----
 ====
-. 验证集群的运行状况：
+. 验证集群健康状况：
 +
 `network interface show`
 
@@ -212,7 +214,7 @@ destination-node n2 -destination-port e0d
 .显示示例
 [%collapsible]
 ====
-以下示例显示了上一个 `network interface migrate` 命令的结果：
+以下示例展示了前一个结果。 `network interface migrate`命令：
 
 [listing]
 ----
@@ -233,7 +235,7 @@ Cluster
 8 entries were displayed.
 ----
 ====
-. 关闭物理连接到交换机 CL2 的集群互连端口：
+. 关闭与交换机 CL2 物理连接的集群互连端口：
 +
 `network port modify`
 
@@ -241,7 +243,7 @@ Cluster
 .显示示例
 [%collapsible]
 ====
-以下命令会关闭 n1 和 n2 上的指定端口，但必须关闭所有节点上的端口：
+以下命令关闭 n1 和 n2 上的指定端口，但必须关闭所有节点上的端口：
 
 [listing]
 ----
@@ -251,22 +253,22 @@ cluster::*> network port modify -node n2 -port e0b -up-admin false
 cluster::*> network port modify -node n2 -port e0c -up-admin false
 ----
 ====
-. 验证远程集群接口的连接：
+. 验证远程集群接口的连接性：
 
 
 [role="tabbed-block"]
 ====
-.ONTAP 9.9.1及更高版本
+.ONTAP 9.9.1 及更高版本
 --
-您可以使用 `network interface check cluster-connectivity` 命令启动集群连接的可访问性检查、然后显示详细信息：
+你可以使用 `network interface check cluster-connectivity`执行命令以启动集群连接性检查，然后显示详细信息：
 
-`network interface check cluster-connectivity start` 和 `network interface check cluster-connectivity show`
+`network interface check cluster-connectivity start`和 `network interface check cluster-connectivity show`
 
 [listing, subs="+quotes"]
 ----
 cluster1::*> *network interface check cluster-connectivity start*
 ----
-*注：*请等待几秒钟、然后再运行show命令显示详细信息。
+*注意：*运行 show 命令显示详细信息之前，请等待几秒钟。
 
 [listing, subs="+quotes"]
 ----
@@ -285,7 +287,7 @@ n2
 --
 .所有ONTAP版本
 --
-对于所有ONTAP版本、您还可以使用 `cluster ping-cluster -node <name>` 用于检查连接的命令：
+对于所有ONTAP版本，您也可以使用 `cluster ping-cluster -node <name>`检查连接性的命令：
 
 `cluster ping-cluster -node <name>`
 
@@ -334,12 +336,12 @@ RPC status:
 ----
 --
 ====
-. [[Step10]]关闭活动Nexus 5596交换机CL1上的ISL端口41到48：
+. [[step10]]关闭活动 Nexus 5596 交换机 CL1 上的 ISL 端口 41 至 48：
 +
 .显示示例
 [%collapsible]
 ====
-以下示例显示了如何关闭 Nexus 5596 交换机 CL1 上的 ISL 端口 41 到 48 ：
+以下示例展示了如何关闭 Nexus 5596 交换机 CL1 上的 ISL 端口 41 至 48：
 
 [listing]
 ----
@@ -352,14 +354,14 @@ RPC status:
 ----
 ====
 +
-如果要更换Nexus 5010或5020、请为ISL指定适当的端口号。
+如果您要更换 Nexus 5010 或 5020，请指定 ISL 的相应端口号。
 
-. 在 CL1 和 C2 之间构建临时 ISL 。
+. 在 CL1 和 C2 之间建立临时 ISL。
 +
 .显示示例
 [%collapsible]
 ====
-以下示例显示了在 CL1 和 C2 之间设置的临时 ISL ：
+以下示例展示了如何在 CL1 和 C2 之间建立临时 ISL：
 
 [listing]
 ----
@@ -380,4 +382,4 @@ C2(config-if)# exit
 
 
 .下一步是什么？
-link:cn5596-configure-ports.html["配置端口"](英文)
+link:cn5596-configure-ports.html["配置端口"]。

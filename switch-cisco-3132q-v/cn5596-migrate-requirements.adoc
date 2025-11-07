@@ -2,7 +2,7 @@
 permalink: switch-cisco-3132q-v/cn5596-migrate-requirements.html 
 sidebar: sidebar 
 keywords: install, cisco nexus 3132q-v switch, 
-summary: 在配置Cisco Nexus 3132q-v交换机之前、请查看此过程和术语的概述。 
+summary: 在配置Cisco Nexus 3132q-v 交换机之前，请先查看流程概述和命名规则。 
 ---
 = 迁移要求
 :allow-uri-read: 
@@ -10,127 +10,127 @@ summary: 在配置Cisco Nexus 3132q-v交换机之前、请查看此过程和术�
 
 
 [role="lead"]
-Cisco Nexus 3132Q-V交换机可用作AFF 或FAS 集群中的集群交换机。通过集群交换机、您可以使用两个以上的节点构建ONTAP 集群。
+Cisco Nexus 3132Q-V 交换机可用作AFF或FAS集群中的集群交换机。集群交换机允许您构建具有两个以上节点的ONTAP集群。
 
 [NOTE]
 ====
-操作步骤 要求同时使用 ONTAP 命令和 Cisco Nexus 3000 系列交换机命令；除非另有说明，否则使用 ONTAP 命令。
+该过程需要同时使用ONTAP命令和Cisco Nexus 3000 系列交换机命令；除非另有说明，否则使用ONTAP命令。
 
 ====
-有关详细信息，请参见
+有关详细信息，请参阅：For more information, see:
 
-* link:https://mysupport.netapp.com/site/info/cisco-ethernet-switch["Cisco 以太网交换机"^]
+* link:https://mysupport.netapp.com/site/info/cisco-ethernet-switch["Cisco以太网交换机"^]
 * link:http://hwu.netapp.com["Hardware Universe"^]
 
 
 
 
-== Cisco Nexus 5596要求
+== Cisco Nexus 5596 要求
 
 集群交换机使用以下端口连接到节点：
 
-* Nexus 5596：端口E1/1-40 (10 GbE)
-* Nexus 3132Q-V：端口E1/1-30 (10/40/100 GbE)
+* Nexus 5596：端口 e1/1-40 (10 GbE)
+* Nexus 3132Q-V：端口 e1/1-30 (10/40/100 GbE)
 
 
-集群交换机使用以下交换机间链路（ ISL ）端口：
+集群交换机使用以下交换机间链路 (ISL) 端口：
 
-* Nexus 5596：端口E1/41-48 (10 GbE)
-* Nexus 3132Q-V：端口E1/31-32 (40/100 GbE)
-
-
-link:https://hwu.netapp.com/["_SIL_ Hardware Universe"^]包含有关支持使用缆线连接到Nexus 3132Q-V交换机的信息：
-
-* 具有 10 GbE 集群连接的节点需要使用 QSFP 到 SFP+ 光纤分支电缆或 QSFP 到 SFP+ 铜分支电缆。
-* 具有 40/100 GbE 集群连接的节点需要使用光缆或 QSFP28 铜缆支持的 QSFP/QSFP28 光纤模块。
+* Nexus 5596：端口 e1/41-48 (10 GbE)
+* Nexus 3132Q-V：端口 e1/31-32 (40/100 GbE)
 
 
-集群交换机使用适当的 ISL 布线：
+这link:https://hwu.netapp.com/["硬件宇宙"^]包含有关 Nexus 3132Q-V 交换机支持的布线信息：
 
-* 起始： Nexus 5596 （ SFP+ 到 SFP+ ）
+* 具有 10 GbE 集群连接的节点需要 QSFP 转 SFP+ 光纤分支电缆或 QSFP 转 SFP+ 铜缆分支电缆。
+* 具有 40/100 GbE 集群连接的节点需要支持 QSFP/QSFP28 光模块，并配备光纤电缆或 QSFP/QSFP28 铜缆直连电缆。
+
+
+集群交换机使用相应的ISL电缆：
+
+* 起始端：Nexus 5596（SFP+ 至 SFP+）
 +
-** 8 根 SFP+ 光纤或铜缆直连缆线
+** 8根SFP+光纤或铜缆直连线缆
 
 
-* 中间： Nexus 5596 到 Nexus 3132Q-V （ QSFP 到 4xSFP+ 细分）
+* 中期调整：Nexus 5596 至 Nexus 3132Q-V（QSFP 至 4xSFP+ 突破）
 +
-** 1 根 QSFP 到 SFP+ 光纤分出或铜缆分出缆线
+** 1根QSFP转SFP+光纤分支线或铜缆分支线
 
 
-* 最终结果： Nexus 3132Q-V 到 Nexus 3132Q-V （ QSFP28 到 QSFP28 ）
+* 最终版：Nexus 3132Q-V 至 Nexus 3132Q-V（QSFP28 至 QSFP28）
 +
-** 2 根 QSFP28 光纤或铜缆直连缆线
+** 2根QSFP28光纤或铜缆直连电缆
 
 
-* 在 Nexus 3132Q-V 交换机上，您可以在 40/100 千兆以太网或 4 个 10 千兆以太网模式下运行 QSFP/QSFP28 端口。
+* 在 Nexus 3132Q-V 交换机上，您可以将 QSFP/QSFP28 端口操作为 40/100 千兆以太网或 4 x 10 千兆以太网模式。
 +
-默认情况下， 40/100 千兆以太网模式下有 32 个端口。这 40 个千兆以太网端口按照 2 元组命名约定进行编号。例如，第二个 40 千兆以太网端口编号为 1/2 。
-
-+
-将配置从 40 千兆以太网更改为 10 千兆以太网的过程称为 _break_ ，将配置从 10 千兆以太网更改为 40 千兆以太网的过程称为 _breakin 。
+默认情况下，40/100 千兆以太网模式下有 32 个端口。这 40 个千兆以太网端口采用二元组命名规则进行编号。例如，第二个 40 千兆以太网端口编号为 1/2。
 
 +
-将 40/100 千兆以太网端口拆分为 10 千兆以太网端口时，生成的端口将使用三元组命名约定进行编号。例如，第二个 40/100 千兆以太网端口的分出端口编号为 1/2/1 ， 1/2/2 ， 1/2/3 和 1/2/4 。
+将 40 千兆以太网配置更改为 10 千兆以太网的过程称为 _breakout_，将 10 千兆以太网配置更改为 40 千兆以太网的过程称为 _breakin_。
 
-* Nexus 3132Q-V 交换机左侧有 2 个 SFP+ 端口，称为 1/33 和 1/34 。
-* 您已将 Nexus 3132Q-V 交换机上的某些端口配置为以 10 GbE 或 40/100 GbE 运行。
++
+当您将 40/100 千兆以太网端口拆分为 10 千兆以太网端口时，生成的端口将使用三元组命名规则进行编号。例如，第二个 40/100 千兆以太网端口的分线端口编号为 1/2/1、1/2/2、1/2/3 和 1/2/4。
+
+* Nexus 3132Q-V 交换机的左侧有 2 个 SFP+ 端口，分别称为 1/33 和 1/34。
+* 您已将 Nexus 3132Q-V 交换机上的一些端口配置为以 10 GbE 或 40/100 GbE 运行。
 +
 [NOTE]
 ====
-您可以使用 `interface breakout module 1 port 1-6 map 10g-4x` 命令将前六个端口细分为 4x10 GbE 模式。同样，您也可以使用 `no interface breakout module 1 port 1-6 map 10g-4x` 命令对分支配置中的前六个 QSFP + 端口进行重新分组。
+您可以使用以下方法将前六个端口划分为 4x10 GbE 模式： `interface breakout module 1 port 1-6 map 10g-4x`命令。同样，您可以使用以下方法将前六个 QSFP+ 端口从分支配置中重新分组： `no interface breakout module 1 port 1-6 map 10g-4x`命令。
 
 ====
-* 您已完成从节点到 Nexus 3132Q-V 集群交换机的 10 GbE 和 40/100 GbE 连接的规划，迁移并阅读了相关文档。
-* 此过程中支持的ONTAP和 NX-OS 版本如下：link:https://mysupport.netapp.com/site/info/cisco-ethernet-switch["Cisco 以太网交换机"^] 。
+* 您已完成规划、迁移，并阅读了有关从节点到 Nexus 3132Q-V 集群交换机的 10 GbE 和 40/100 GbE 连接的必要文档。
+* 此流程支持的ONTAP和 NX-OS 版本如下：link:https://mysupport.netapp.com/site/info/cisco-ethernet-switch["Cisco以太网交换机"^] 。
 
 
-.关于所用示例
-本操作步骤 中的示例介绍了如何将 Cisco Nexus 5596 交换机更换为 Cisco Nexus 3132Q-V 交换机。您可以对其他较旧的Cisco交换机使用这些步骤(经过修改)。
+.关于所使用的示例
+本流程中的示例描述了如何用Cisco Nexus 3132Q-V 交换机替换Cisco Nexus 5596 交换机。您可以对这些步骤（稍作修改）用于其他较旧的Cisco交换机。
 
-操作步骤 还使用以下交换机和节点命名：
+该过程还使用了以下交换机和节点命名规则：
 
-* 根据不同版本的 ONTAP ，命令输出可能会有所不同。
-* 要更换的Nexus 5596交换机为*CL1*和*CL2*。
-* 用于替代Nexus 5596交换机的Nexus 3132Q-V交换机为*C1*和*C2*。
-* *n1_clus1*是连接到节点*n1*的集群交换机1 (CL1或C1)的第一个集群逻辑接口(LIF)。
-* *n1_clus2*是连接到节点*n1*的集群交换机2 (CL2或C2)的第一个集群LIF。
-* *n1_clus3*是连接到节点*n1*的集群交换机2 (CL2或C2)的第二个LIF。
-* *n1_clus4*是连接到节点*n1*的集群交换机1 (CL1或C1)的第二个LIF。
-* 10 GbE 和 40/100 GbE 端口的数量在以下位置提供的参考配置文件 (RCF) 中定义：link:https://mysupport.netapp.com/site/products/all/details/cisco-cluster-storage-switch/downloads-tab["Cisco ® 集群网络交换机参考配置文件下载"^] 。
-* 节点包括*n1*、*n2*、*n3*和*n4*。
+* 命令输出可能因ONTAP版本不同而有所差异。
+* 需要更换的 Nexus 5596 交换机是 *CL1* 和 *CL2*。
+* 用于替换 Nexus 5596 交换机的 Nexus 3132Q-V 交换机是 *C1* 和 *C2*。
+* *n1_clus1* 是连接到节点 *n1* 的集群交换机 1 (CL1 或 C1) 的第一个集群逻辑接口 (LIF)。
+* *n1_clus2* 是连接到节点 *n1* 的集群交换机 2 (CL2 或 C2) 的第一个集群 LIF。
+* *n1_clus3* 是连接到节点 *n1* 的集群交换机 2 (CL2 或 C2) 的第二个 LIF。
+* *n1_clus4* 是连接到节点 *n1* 的集群交换机 1 (CL1 或 C1) 的第二个 LIF。
+* 10 GbE 和 40/100 GbE 端口的数量在参考配置文件 (RCF) 中定义，这些文件可在以下位置获取：link:https://mysupport.netapp.com/site/products/all/details/cisco-cluster-storage-switch/downloads-tab["Cisco集群网络交换机参考配置文件下载"^] 。
+* 这些节点是 *n1*、*n2*、*n3* 和 *n4*。
 
 
-此操作步骤 中的示例使用四个节点：
+本流程中的示例使用了四个节点：
 
-* 两个节点使用四个10 GbE集群互连端口：* e0a*、* e0b*、* e0c*和* e0d*。
-* 其他两个节点使用两个40 GbE集群互连端口：*e4A*和*e4e*。
+* 两个节点使用四个 10 GbE 集群互连端口：*e0a*、*e0b*、*e0c* 和 *e0d*。
+* 另外两个节点使用两个 40 GbE 集群互连端口：*e4a* 和 *e4e*。
 +
-link:https://hwu.netapp.com/["_SIL_ Hardware Universe"^]列出了平台上的实际集群端口。
+这link:https://hwu.netapp.com/["硬件宇宙"^]列出平台上的实际集群端口。
 
 
 
 .涵盖的场景
-此操作步骤 包括以下情形：
+本流程涵盖以下几种情况：
 
-* 集群首先连接两个节点，并在两个 Nexus 5596 集群交换机中正常运行。
-* 要替换为 C2 的集群交换机 CL2 （步骤 1 至 19 ）：
+* 集群由两个节点组成，这两个节点通过两个 Nexus 5596 集群交换机连接并运行。
+* 将集群开关 CL2 替换为 C2（步骤 1 至 19）：
 +
-** 连接到 CL2 的所有节点上的所有集群端口和 LIF 上的流量都会迁移到连接到 CL1 的第一个集群端口和 LIF 上。
-** 从连接到 CL2 的所有节点上的所有集群端口断开布线，然后使用支持的断开布线将端口重新连接到新的集群交换机 C2 。
-** 断开 CL1 和 CL2 之间 ISL 端口之间的布线，然后使用支持的断开布线将端口从 CL1 重新连接到 C2 。
-** 还原所有节点上连接到 C2 的所有集群端口和 LIF 上的流量。
+** 连接到 CL2 的所有节点上的所有集群端口和 LIF 的流量将迁移到连接到 CL1 的第一个集群端口和 LIF 上。
+** 断开连接到 CL2 的所有节点上所有集群端口的电缆，然后使用支持的分支电缆将端口重新连接到新的集群交换机 C2。
+** 断开 CL1 和 CL2 之间的 ISL 端口之间的电缆，然后使用支持的分支电缆将端口从 CL1 重新连接到 C2。
+** 所有节点上连接到 C2 的所有集群端口和 LIF 上的流量均被回滚。
 
 
-* 要替换为C2的集群交换机CL2。
+* 集群开关 CL2 将被 C2 替换。
 +
-** 连接到 CL1 的所有节点上的所有集群端口或 LIF 上的流量都会迁移到连接到 C2 的第二个集群端口或 LIF 上。
-** 断开与 CL1 连接的所有节点上所有集群端口的布线，并使用支持的断开布线方式重新连接到新的集群交换机 C1 。
-** 断开 CL1 和 C2 之间 ISL 端口之间的布线，并使用支持的布线从 C1 重新连接到 C2 。
-** 系统将还原所有节点上连接到 C1 的所有集群端口或 LIF 上的流量。
+** 连接到 CL1 的所有节点上的所有集群端口或 LIF 上的流量将迁移到连接到 C2 的第二个集群端口或 LIF 上。
+** 断开连接到 CL1 的所有节点上所有集群端口的电缆，并使用支持的分支电缆重新连接到新的集群交换机 C1。
+** 断开 CL1 和 C2 之间的 ISL 端口之间的电缆，然后使用支持的电缆从 C1 重新连接到 C2。
+** 所有节点上连接到 C1 的所有集群端口或 LIF 上的流量将被回滚。
 
 
-* 集群中添加了两个FAS9000节点、其中的示例显示了集群详细信息。
+* 集群中新增了两个FAS9000节点，并提供了集群详细信息的示例。
 
 
 .下一步是什么？
-link:cn5596-prepare-to-migrate.html["准备迁移"](英文)
+link:cn5596-prepare-to-migrate.html["做好迁移准备"]。

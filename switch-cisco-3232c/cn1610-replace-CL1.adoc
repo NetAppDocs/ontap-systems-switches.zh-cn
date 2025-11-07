@@ -2,19 +2,19 @@
 permalink: switch-cisco-3232c/cn1610-replace-CL1.html 
 sidebar: sidebar 
 keywords: cisco 3232c, cluster switches 
-summary: 您可以将 Cisco Nexus 3232C 交换机用作 AFF 或 FAS 集群中的集群交换机。 
+summary: 您可以在AFF或FAS集群中使用Cisco Nexus 3232C 交换机作为集群交换机。 
 ---
-= 将CN1610交换机CL1更换为3232C交换机C1
+= 将 CN1610 交换机 CL1 更换为 3232C 交换机 C1
 :allow-uri-read: 
 :icons: font
 :imagesdir: ../media/
 
 
 [role="lead"]
-按照以下步骤将CN1610 (CL1)交换机更换为Nexus 3232C (C1)交换机。
+按照以下步骤将您的 CN1610 (CL1) 交换机更换为 Nexus 3232C (C1) 交换机。
 
 .步骤
-. 验证集群的状态：
+. 验证集群状态：
 +
 `network interface show -role cluster`
 
@@ -22,7 +22,7 @@ summary: 您可以将 Cisco Nexus 3232C 交换机用作 AFF 或 FAS 集群中的
 .显示示例
 [%collapsible]
 ====
-以下示例显示所需的集群 LIF 已迁移到集群交换机 C2 上托管的相应集群端口：
+以下示例表明，所需的集群 LIF 已迁移到集群交换机 C2 上托管的相应集群端口：
 
 [listing, subs="+quotes"]
 ----
@@ -44,7 +44,7 @@ Cluster
 8 entries were displayed.
 ----
 ====
-. 关闭所有节点上连接到CL1的节点端口：
+. 关闭所有节点上连接到 CL1 的节点端口：
 +
 `network port modify -node _node-name_ -port _port-name_ -up-admin false`
 
@@ -52,7 +52,7 @@ Cluster
 .显示示例
 [%collapsible]
 ====
-以下示例显示了节点 n1 和 n2 上正在关闭的特定端口：
+以下示例显示了节点 n1 和 n2 上特定端口的关闭情况：
 
 [listing, subs="+quotes"]
 ----
@@ -62,15 +62,15 @@ cluster::*> *network port modify -node n2 -port e0a -up-admin false*
 cluster::*> *network port modify -node n2 -port e0d -up-admin false*
 ----
 ====
-. 关闭活动 3232C 交换机 C2 上的 ISL 端口 24 ， 31 和 32 。
+. 关闭活动 3232C 交换机 C2 上的 ISL 端口 24、31 和 32。
 +
-有关 Cisco 命令的详细信息，请参见中列出的指南 https://www.cisco.com/c/en/us/support/switches/nexus-3000-series-switches/products-command-reference-list.html["Cisco Nexus 3000 系列 NX-OS 命令参考"^]。
+有关Cisco命令的更多信息，请参阅以下位置列出的指南： https://www.cisco.com/c/en/us/support/switches/nexus-3000-series-switches/products-command-reference-list.html["Cisco Nexus 3000 系列 NX-OS 命令参考"^] 。
 
 +
 .显示示例
 [%collapsible]
 ====
-以下示例显示了活动 3232C 交换机 C2 上的 ISL 24 ， 31 和 32 正在关闭：
+以下示例显示了在活动 3232C 交换机 C2 上关闭 ISL 24、31 和 32：
 
 [listing, subs="+quotes"]
 ----
@@ -85,23 +85,23 @@ C2(config)# *exit*
 C2#
 ----
 ====
-. 拔下所有节点上连接到 CN1610 交换机 CL1 的缆线。
+. 拆下所有节点上连接到 CN1610 交换机 CL1 的电缆。
 +
-使用适当的布线方式，您必须将所有节点上已断开连接的端口重新连接到 Nexus 3232C 交换机 C1 。
+使用合适的线缆，必须将所有节点上断开的端口重新连接到 Nexus 3232C 交换机 C1。
 
-. 从 Nexus 3232C C2 端口 E1/24 拔下 QSFP28 缆线。
+. 从 Nexus 3232C C2 端口 e1/24 上移除 QSFP28 电缆。
 +
-您必须使用受支持的 Cisco QSFP28 光缆或直连缆线将 C1 上的端口 E1/31 和 E1/32 连接到 C2 上的端口 E1/31 和 E1/32 。
+您必须使用支持的Cisco QSFP28 光纤或直连电缆将 C1 上的端口 e1/31 和 e1/32 连接到 C2 上的端口 e1/31 和 e1/32。
 
-. 还原端口 24 上的配置并删除 C2 上的临时端口通道 2 ：
+. 恢复端口 24 的配置，并移除 C2 上的临时端口通道 2：
 +
-有关 Cisco 命令的详细信息，请参见中列出的指南 https://www.cisco.com/c/en/us/support/switches/nexus-3000-series-switches/products-command-reference-list.html["Cisco Nexus 3000 系列 NX-OS 命令参考"^]。
+有关Cisco命令的更多信息，请参阅以下位置列出的指南： https://www.cisco.com/c/en/us/support/switches/nexus-3000-series-switches/products-command-reference-list.html["Cisco Nexus 3000 系列 NX-OS 命令参考"^] 。
 
 +
 .显示示例
 [%collapsible]
 ====
-以下示例显示了要复制到 `start-configuration` 文件的 `Running-configuration` 文件：
+以下示例展示了 `running-configuration`文件正在复制到 `startup-configuration`文件：
 
 [listing, subs="+quotes"]
 ----
@@ -128,15 +128,15 @@ C2# copy running-config startup-config
 Copy Complete.
 ----
 ====
-. 启动 C2 上的 ISL 端口 31 和 32 ，这是活动的 3232C 交换机。
+. 在活动 3232C 交换机 C2 上启用 ISL 端口 31 和 32。
 +
-有关 Cisco 命令的详细信息，请参见中列出的指南 https://www.cisco.com/c/en/us/support/switches/nexus-3000-series-switches/products-command-reference-list.html["Cisco Nexus 3000 系列 NX-OS 命令参考"^]。
+有关Cisco命令的更多信息，请参阅以下位置列出的指南： https://www.cisco.com/c/en/us/support/switches/nexus-3000-series-switches/products-command-reference-list.html["Cisco Nexus 3000 系列 NX-OS 命令参考"^] 。
 
 +
 .显示示例
 [%collapsible]
 ====
-以下示例显示了 3232C 交换机 C2 上的 ISL 31 和 32 ：
+以下示例显示了 ISL 31 和 32 被引入到 3232C 交换机 C2 上：
 
 [listing, subs="+quotes"]
 ----
@@ -150,15 +150,15 @@ C2# copy running-config startup-config
 Copy Complete.
 ----
 ====
-. 验证 3232C 交换机 C2 上的 ISL 连接是否为 `up` 。
+. 确认 ISL 连接是否正常 `up`在 3232C 开关 C2 上。
 +
-有关 Cisco 命令的详细信息，请参见中列出的指南 https://www.cisco.com/c/en/us/support/switches/nexus-3000-series-switches/products-command-reference-list.html["Cisco Nexus 3000 系列 NX-OS 命令参考"^]。
+有关Cisco命令的更多信息，请参阅以下位置列出的指南： https://www.cisco.com/c/en/us/support/switches/nexus-3000-series-switches/products-command-reference-list.html["Cisco Nexus 3000 系列 NX-OS 命令参考"^] 。
 
 +
 .显示示例
 [%collapsible]
 ====
-以下示例显示了要验证的 ISL 连接。端口 Eth1/31 和 Eth1/32 表示 ` （ P ）` ，表示端口通道中的两个 ISL 端口均为 `up` ：
+以下示例展示了 ISL 连接的验证过程。端口 Eth1/31 和 Eth1/32 指示 `(P)`这意味着两个 ISL 端口都是 `up`在端口通道中：
 
 [listing, subs="+quotes"]
 ----
@@ -189,7 +189,7 @@ Group Port-       Type     Protocol  Member Ports
 1     Po1(SU)     Eth      LACP      Eth1/31(P)   Eth1/32(P)
 ----
 ====
-. 启动所有节点上连接到新3232C交换机C1的所有集群互连端口：
+. 在所有节点上启用连接到新的 3232C 交换机 C1 的所有集群互连端口：
 +
 `network port modify -node _node-name_ -port _port-name_ -up-admin true`
 
@@ -197,7 +197,7 @@ Group Port-       Type     Protocol  Member Ports
 .显示示例
 [%collapsible]
 ====
-以下示例显示了连接到要启动的新 3232C 交换机 C1 的所有集群互连端口：
+以下示例显示了连接到新 3232C 交换机 C1 的所有集群互连端口的启动情况：
 
 [listing, subs="+quotes"]
 ----
@@ -207,7 +207,7 @@ cluster::*> *network port modify -node n2 -port e0a -up-admin true*
 cluster::*> *network port modify -node n2 -port e0d -up-admin true*
 ----
 ====
-. 验证集群节点端口的状态：
+. 验证集群节点端口状态：
 +
 `network port show -role cluster`
 
@@ -215,7 +215,7 @@ cluster::*> *network port modify -node n2 -port e0d -up-admin true*
 .显示示例
 [%collapsible]
 ====
-以下示例显示了验证新 3232C 交换机 C1 上节点 n1 和 n2 上的集群互连端口是否为 `up` 的输出：
+以下示例显示了验证新 3232C 交换机 C1 上节点 n1 和 n2 的集群互连端口是否正常工作的输出。 `up` ：
 
 [listing, subs="+quotes"]
 ----
@@ -246,4 +246,4 @@ e0d   cluster   cluster    up    9000  auto/10000     -
 
 
 .下一步是什么？
-link:cn1610-complete-migration.html["完成迁移"](英文)
+link:cn1610-complete-migration.html["完成迁移"]。

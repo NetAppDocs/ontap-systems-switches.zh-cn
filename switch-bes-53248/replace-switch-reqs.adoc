@@ -2,7 +2,7 @@
 permalink: switch-bes-53248/replace-switch-reqs.html 
 sidebar: sidebar 
 keywords: replace, replacing, defective, broadcom-supported, bes, cluster, switch, network, nondisruptive, procedure, ndu, replace a broadcom-supported bes-53428 cluster switch - bes-53428 switches 
-summary: 在集群网络中更换 Broadcom 支持的故障 BES-53248 集群交换机是无中断操作步骤 \ （ NDU\ ）。 
+summary: '在集群网络中更换有缺陷的博通支持的 BES-53248 集群交换机是一个非中断程序 \(NDU\)。' 
 ---
 = 更换要求
 :allow-uri-read: 
@@ -11,50 +11,50 @@ summary: 在集群网络中更换 Broadcom 支持的故障 BES-53248 集群交�
 
 
 [role="lead"]
-在更换交换机之前、请确保当前环境和替代交换机满足以下条件。
+更换交换机之前，请确保当前环境和待更换的交换机满足以下条件。
 
 
 
-== 现有集群和网络基础架构
-
-请确保：
-
-* 现有集群已通过验证可完全正常运行、并且至少有一个完全连接的集群交换机。
-* 所有集群端口均为*启动*。
-* 所有集群逻辑接口(LIF)在管理和操作上均为*启动*并位于其主端口上。
-* ONTAP `cluster ping-cluster -node node1` 命令必须指示设置、 `basic connectivity` 和 `larger than PMTU communication`、已在所有路径上成功。
-
-
-
-
-== BES-53248更换集群交换机
+== 现有集群和网络基础设施
 
 请确保：
 
-* 替代交换机上的管理网络连接正常工作。
-* 可以通过控制台访问替代交换机。
-* 节点连接为端口 0/1 到 0/16 ，并具有默认许可。
-* 端口0/55和0/56上的所有交换机间链路(ISL)端口均已禁用。
-* 所需的参考配置文件(Reference Configuration File、RCF)和EFOS操作系统交换机映像将加载到交换机上。
-* 交换机的初始自定义已完成、如中所述 link:configure-install-initial.html["配置BES-53248集群交换机"]。
+* 现有集群已验证功能完全正常，至少有一个完全连接的集群交换机。
+* 集群所有端口均已启动。
+* 所有集群逻辑接口（LIF）在管理和运行上均已*启动*，并且位于其主端口上。
+* ONTAP `cluster ping-cluster -node node1`命令必须表明设置， `basic connectivity`和 `larger than PMTU communication`在所有道路上都取得了成功。
 
 
-先前的所有站点自定义设置(例如STP、SNMP和SSH)都会复制到新交换机。
+
+
+== BES-53248 替换式集群开关
+
+请确保：
+
+* 替换交换机的管理网络连接功能正常。
+* 已具备对替换开关的控制台访问权限。
+* 节点连接使用端口 0/1 至 0/16，采用默认许可。
+* 端口 0/55 和 0/56 上的所有交换机间链路 (ISL) 端口均已禁用。
+* 所需的参考配置文件（RCF）和 EFOS 操作系统交换机映像已加载到交换机上。
+* 交换机的初始定制工作已完成，详情如下：link:configure-install-initial.html["配置 BES-53248 集群交换机"] 。
+
+
+之前站点的所有自定义设置，如 STP、SNMP 和 SSH，都会复制到新交换机上。
 
 
 
 == 启用控制台日志记录
 
-NetApp强烈建议您在使用的设备上启用控制台日志记录、并在更换交换机时采取以下措施：
+NetApp强烈建议您在使用的设备上启用控制台日志记录，并在更换交换机时执行以下操作：
 
-* 在维护期间保持AutoSupport处于启用状态。
-* 在维护前后触发维护AutoSupport、以便在维护期间禁用案例创建。请参见此知识库文章 https://kb.netapp.com/Support_Bulletins/Customer_Bulletins/SU92["SU92：如何禁止在计划维护时段自动创建案例"^] 了解更多详细信息。
-* 为所有命令行界面会话启用会话日志记录。有关如何启用会话日志记录的说明、请查看此知识库文章中的"记录会话输出"一节 https://kb.netapp.com/on-prem/ontap/Ontap_OS/OS-KBs/How_to_configure_PuTTY_for_optimal_connectivity_to_ONTAP_systems["如何配置PuTTY以优化与ONTAP系统的连接"^]。
-
-
+* 维护期间请保持AutoSupport功能启用。
+* 在维护前后触发维护AutoSupport，以在维护期间禁用案例创建。请参阅这篇知识库文章 https://kb.netapp.com/Support_Bulletins/Customer_Bulletins/SU92["SU92：如何在计划维护窗口期间抑制自动创建案例"^]更多详情请见下文。
+* 启用所有 CLI 会话的会话日志记录。有关如何启用会话日志记录的说明，请查看此知识库文章中的“记录会话输出”部分。 https://kb.netapp.com/on-prem/ontap/Ontap_OS/OS-KBs/How_to_configure_PuTTY_for_optimal_connectivity_to_ONTAP_systems["如何配置 PuTTY 以获得与ONTAP系统的最佳连接"^] 。
 
 
-== 有关详细信息 ...
+
+
+== 了解更多信息
 
 * https://mysupport.netapp.com/["NetApp 支持站点"^]
 * https://hwu.netapp.com/Home/Index["NetApp Hardware Universe"^]

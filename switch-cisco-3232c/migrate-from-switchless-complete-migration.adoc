@@ -2,24 +2,24 @@
 permalink: switch-cisco-3232c/migrate-from-switchless-complete-migration.html 
 sidebar: sidebar 
 keywords: cisco 3232c, cluster switches 
-summary: 您可以将 Cisco Nexus 3232C 交换机用作 AFF 或 FAS 集群中的集群交换机。 
+summary: 您可以在AFF或FAS集群中使用Cisco Nexus 3232C 交换机作为集群交换机。 
 ---
-= 完成从双节点无交换机集群到双节点有交换机集群的迁移
+= 完成从双节点无交换机集群到双节点交换式集群的迁移
 :allow-uri-read: 
 :icons: font
 :imagesdir: ../media/
 
 
 [role="lead"]
-完成以下步骤以完成将双节点无交换机集群迁移到Nexus 32C交换机上的双节点有交换机集群的过程。
+完成以下步骤，以最终将双节点无交换机集群迁移到 Nexus 3232C 交换机上的双节点有交换机集群。
 
 .步骤
-. 验证所有集群互连端口现在是否均已还原到其主端口：
+. 确认所有集群互连端口均已恢复为其原始端口：
 +
 `network interface show -role cluster`
 
 +
-对于 `Current Port` 列中列出的所有端口， `Is Home` 列应显示值 `true` 。如果显示的值为 `false` ，则表示端口尚未还原。
+这 `Is Home`该列应显示以下值： `true`对于列表中列出的所有端口 `Current Port`柱子。如果显示的值为 `false`端口尚未恢复。
 
 +
 .显示示例
@@ -40,11 +40,11 @@ Cluster
 4 entries were displayed.
 ----
 ====
-. 验证所有集群互连端口是否均处于 `up` 状态：
+. 确认所有集群互连端口均已连接。 `up`状态：
 +
 `network port show -role cluster`
 
-. 显示每个集群端口通过其连接到每个节点的集群交换机端口号：
+. 显示集群交换机端口号，每个集群端口通过这些端口连接到每个节点：
 +
 `network device-discovery show`
 
@@ -66,9 +66,9 @@ n2          /cdp
             e4e    C2                  Ethernet1/8      N3K-C3232C
 ----
 ====
-. 显示已发现和受监控的集群交换机：
+. 显示已发现和监控的集群交换机：
 +
-`ssystem cluster-switch show`
+`system cluster-switch show`
 
 +
 .显示示例
@@ -95,26 +95,26 @@ Software Version: Cisco Nexus Operating System (NX-OS) Software, Version 7.0(3)I
 Version Source: CDP 2 entries were displayed.
 ----
 ====
-. 验证无交换机集群检测是否已将无交换机集群选项更改为已禁用：
+. 确认无交换机集群检测已将无交换机集群选项更改为禁用：
 +
 `network options switchless-cluster show`
 
-. 验证远程集群接口的连接：
+. 验证远程集群接口的连接性：
 
 
 [role="tabbed-block"]
 ====
-.ONTAP 9.9.1及更高版本
+.ONTAP 9.9.1 及更高版本
 --
-您可以使用 `network interface check cluster-connectivity` 命令启动集群连接的可访问性检查、然后显示详细信息：
+你可以使用 `network interface check cluster-connectivity`执行命令以启动集群连接性检查，然后显示详细信息：
 
-`network interface check cluster-connectivity start` 和 `network interface check cluster-connectivity show`
+`network interface check cluster-connectivity start`和 `network interface check cluster-connectivity show`
 
 [listing, subs="+quotes"]
 ----
 cluster1::*> *network interface check cluster-connectivity start*
 ----
-*注：*请等待几秒钟、然后再运行 `show`命令以显示详细信息。
+*注意：*运行程序前请等待几秒钟 `show`显示详细信息的命令。
 
 [listing, subs="+quotes"]
 ----
@@ -133,7 +133,7 @@ n2
 --
 .所有ONTAP版本
 --
-对于所有ONTAP版本、您还可以使用 `cluster ping-cluster -node <name>` 用于检查连接的命令：
+对于所有ONTAP版本，您也可以使用 `cluster ping-cluster -node <name>`检查连接性的命令：
 
 `cluster ping-cluster -node <name>`
 
@@ -163,11 +163,11 @@ Larger than PMTU communication succeeds on 4 path(s) RPC status:
 ----
 --
 ====
-. [[STEP7]]如果禁止自动创建案例、请通过调用AutoSupport消息重新启用：
+. [[步骤7]] 如果您已禁用自动创建案例功能，请通过调用AutoSupport消息重新启用该功能：
 +
-`ssystem node AutoSupport invoke -node * -type all -message MAINT=end`
+`system node autosupport invoke -node * -type all -message MAINT=END`
 
 
 
 .下一步是什么？
-link:../switch-cshm/config-overview.html["配置交换机运行状况监控"](英文)
+link:../switch-cshm/config-overview.html["配置交换机健康监控"]。

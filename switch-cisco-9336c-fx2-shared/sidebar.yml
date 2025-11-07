@@ -1,56 +1,56 @@
 ---
 section: switch-cisco-9336c-fx2-shared
-title: Cisco Nexus 9336C-x2
+title: CiscoNexus 9336C-FX2
 entries:
-- title: 入门
+- title: 开始使用
   entries:
-  - title: 快速入门
+  - title: 快速启动
     url: "/switch-cisco-9336c-fx2-shared/configure-switch-overview-9336c-shared.html"
   - title: 配置要求
     url: "/switch-cisco-9336c-fx2-shared/configure-reqs-9336c-shared.html"
-  - title: 组件和部件号
+  - title: 组件和零件编号
     url: "/switch-cisco-9336c-fx2-shared/components-9336c-shared.html"
-  - title: 所需文档
+  - title: 所需文件
     url: "/switch-cisco-9336c-fx2-shared/required-documentation-9336c-shared.html"
-- title: Install the hardware
-  pdf-filename: install_hardhardware _9336c-FX2 -共享
+- title: 安装硬件
+  pdf-filename: 安装硬件 9336c-fx2-共享
   entries:
   - title: 硬件安装工作流程
     url: "/switch-cisco-9336c-fx2-shared/install-hardware-workflow.html"
-  - title: 完成布线工作表
+  - title: 完整的布线工作表
     url: "/switch-cisco-9336c-fx2-shared/cable-9336c-shared.html"
-  - title: 安装交换机
+  - title: 安装开关
     url: "/switch-cisco-9336c-fx2-shared/install-9336c-shared.html"
-  - title: 将交换机安装在NetApp机柜中
+  - title: 在NetApp机柜中安装交换机
     url: "/switch-cisco-9336c-fx2-shared/install-switch-and-passthrough-panel-9336c-shared.html"
 - title: 配置软件
-  pdf-filename: configure软件_9336c-FX2共享
+  pdf-filename: 配置软件 9336c-fx2-共享
   entries:
-  - title: 软件安装工作流
+  - title: 软件安装工作流程
     url: "/switch-cisco-9336c-fx2-shared/configure-software-overview-9336c-shared.html"
   - title: 配置交换机
     url: "/switch-cisco-9336c-fx2-shared/setup-and-configure-9336c-shared.html"
-  - title: 准备安装NX-OS软件和RCF
+  - title: 准备安装 NX-OS 软件和 RCF
     url: "/switch-cisco-9336c-fx2-shared/prepare-nxos-rcf-9336c-shared.html"
-  - title: 安装NX-OS软件
+  - title: 安装 NX-OS 软件
     url: "/switch-cisco-9336c-fx2-shared/install-nxos-software-9336c-shared.html"
-  - title: 安装RCF
+  - title: 安装 RCF
     url: "/switch-cisco-9336c-fx2-shared/install-nxos-rcf-9336c-shared.html"
-  - title: 升级RC框架 版本
+  - title: 升级您的 RCF 版本
     url: "/switch-cisco-9336c-fx2-shared/upgrade-rcf-software-9336c-shared.html"
   - title: 将交换机重置为出厂默认设置
     url: "/switch-cisco-9336c-fx2-shared/reset-switch-9336c-shared.html"
 - title: 迁移交换机
-  pdf-filename: migrate交换机_9336c-FX2共享
+  pdf-filename: 迁移交换机 9336c-fx2-shared
   entries:
   - title: 从无交换机DAS集群迁移
     url: "/switch-cisco-9336c-fx2-shared/migrate-from-switchless-cluster-dat-storage.html"
-  - title: 从切换的DAS配置迁移
+  - title: 从已切换的 DAS 配置迁移
     url: "/switch-cisco-9336c-fx2-shared/migrate-from-switched-configuration-dat-storage.html"
-  - title: 从无交换机SAT配置迁移
+  - title: 从无交换机的SAT配置迁移
     url: "/switch-cisco-9336c-fx2-shared/migrate-from-switchless-configuration-sat-storage.html"
-  - title: 从交换式SAT集群迁移
+  - title: 从已切换的 SAT 集群迁移
     url: "/switch-cisco-9336c-fx2-shared/migrate-from-switched-cluster-sat-storage.html"
-- title: 更换交换机
-  pdf-filename: REPLACE switchs_9336c-FX2 - Shared
+- title: 更换开关
+  pdf-filename: 替换交换机 9336c-fx2-shared
   url: "/switch-cisco-9336c-fx2-shared/replace-9336c-fx2-shared.html"

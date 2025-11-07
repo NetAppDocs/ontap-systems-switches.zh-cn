@@ -2,7 +2,7 @@
 sidebar: sidebar 
 permalink: switch-cisco-9336c-fx2/configure-reqs-9336c-cluster.html 
 keywords: shared storage cluster switch 
-summary: 从 ONTAP 9.1.1 开始，您可以使用 Cisco Nexus 9336C-f2 交换机将存储和集群功能结合到共享交换机方案中。 
+summary: 从ONTAP 9.9.1 开始，您可以使用Cisco Nexus 9336C-FX2 交换机将存储和集群功能组合到共享交换机场景中。 
 ---
 = Cisco Nexus 9336C-FX2 和 9336C-FX2-T 集群交换机的配置要求
 :hardbreaks:
@@ -22,21 +22,21 @@ summary: 从 ONTAP 9.1.1 开始，您可以使用 Cisco Nexus 9336C-f2 交换机
 
 [role="tabbed-block"]
 ====
-.ONTAP 9.9.1及更高版本
+.ONTAP 9.9.1 及更高版本
 --
-从 ONTAP 9.1.1 开始，您可以使用 Cisco Nexus 9336C-f2 交换机将存储和集群功能组合到共享交换机配置中。
+从ONTAP 9.9.1 开始，您可以使用Cisco Nexus 9336C-FX2 交换机将存储和集群功能组合到共享交换机配置中。
 
-如果要使用两个以上的节点构建 ONTAP 集群，则需要两个受支持的网络交换机。
+如果要构建包含两个以上节点的ONTAP集群，则需要两个受支持的网络交换机。
 
 
-NOTE: 以太网交换机运行状况监控器不支持ONTAP 9.13.1P8及更早版本、9.14.1P3及更早版本或NX-OS 10.3 (4a)(M)版。
+NOTE: 以太网交换机健康监视器不支持ONTAP 9.13.1P8 及更早版本、9.14.1P3 及更早版本或 NX-OS 版本 10.3(4a)(M)。
 
 --
 .ONTAP 9.10.1 及更高版本
 --
 此外，从ONTAP 9.10.1 开始，您可以使用Cisco Nexus 9336C-FX2-T 交换机将存储和集群功能组合到共享交换机配置中。
 
-如果要使用两个以上的节点构建 ONTAP 集群，则需要两个受支持的网络交换机。
+如果要构建包含两个以上节点的ONTAP集群，则需要两个受支持的网络交换机。
 
 --
 ====
@@ -46,8 +46,8 @@ NOTE: 以太网交换机运行状况监控器不支持ONTAP 9.13.1P8及更早版
 
 请确保：
 
-* 您的交换机具有适当数量和类型的缆线和缆线连接器。请参见 https://hwu.netapp.com["Hardware Universe"^]。
-* 根据您最初配置的交换机类型、您需要使用随附的控制台缆线连接到交换机控制台端口。
+* 您拥有适合您的交换机的数量和类型的电缆和电缆连接器。参见 https://hwu.netapp.com["Hardware Universe"^]。
+* 根据您最初配置的交换机类型，您需要使用附带的控制台电缆连接到交换机控制台端口。
 
 
 
@@ -56,13 +56,13 @@ NOTE: 以太网交换机运行状况监控器不支持ONTAP 9.13.1P8及更早版
 
 所有交换机配置都需要以下网络信息。
 
-* 用于管理网络流量的 IP 子网
+* 管理网络流量的 IP 子网
 * 每个存储系统控制器和所有适用交换机的主机名和 IP 地址
-* 大多数存储系统控制器通过 e0M 接口连接到以太网服务端口（扳手图标）进行管理。在 AFF A800 和 AFF A700s 系统上， e0M 接口使用专用以太网端口。
-* 请参见 https://hwu.netapp.com["Hardware Universe"^] 以获取最新信息。
+* 大多数存储系统控制器通过连接到以太网服务端口（扳手图标）通过 e0M 接口进行管理。在AFF A800和AFF A700s系统中，e0M 接口使用专用以太网端口。
+* 请参阅 https://hwu.netapp.com["Hardware Universe"^]获取最新信息。
 
 
-有关交换机初始配置的详细信息，请参见以下指南： https://www.cisco.com/c/en/us/td/docs/dcn/hw/nx-os/nexus9000/9336c-fx2-e/cisco-nexus-9336c-fx2-e-nx-os-mode-switch-hardware-installation-guide.html["《 Cisco Nexus 9336C-x2 安装和升级指南》"^]。
+有关交换机初始配置的更多信息，请参阅以下指南： https://www.cisco.com/c/en/us/td/docs/dcn/hw/nx-os/nexus9000/9336c-fx2-e/cisco-nexus-9336c-fx2-e-nx-os-mode-switch-hardware-installation-guide.html["Cisco Nexus 9336C-FX2 安装和升级指南"^] 。
 
 .下一步
-查看配置要求后，您可以确认您的link:components-9336c-cluster.html["组件和零件编号"]。
+在您查看完配置要求后，您可以确认您的配置。 link:components-9336c-cluster.html["组件和零件编号"]。

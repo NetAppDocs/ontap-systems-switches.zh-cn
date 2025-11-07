@@ -2,16 +2,16 @@
 permalink: switch-bes-53248/migrate-cn1610.html 
 sidebar: sidebar 
 keywords: CN1610, CN1610 replacing, migrate from CN1610 
-summary: 要将集群中的现有 CN1610 集群交换机更换为支持 Broadcom 的 BES-53248 集群交换机，您必须执行一系列特定的任务。 
+summary: 要将集群中现有的 CN1610 集群交换机替换为 Broadcom 支持的 BES-53248 集群交换机，必须执行一系列特定的任务。 
 ---
-= 将CN1610集群交换机迁移到BES-53248集群交换机
+= 将 CN1610 集群交换机迁移到 BES-53248 集群交换机
 :allow-uri-read: 
 :icons: font
 :imagesdir: ../media/
 
 
 [role="lead"]
-要将集群中的CN1610集群交换机迁移到受Broadcom支持的BES-53248集群交换机、请查看迁移要求、然后按照迁移操作步骤 进行操作。
+要将集群中的 CN1610 集群交换机迁移到 Broadcom 支持的 BES-53248 集群交换机，请先查看迁移要求，然后按照迁移程序进行操作。
 
 支持以下集群交换机：
 
@@ -21,18 +21,18 @@ summary: 要将集群中的现有 CN1610 集群交换机更换为支持 Broadcom
 
 
 
-== 查看要求
+== 审查要求
 
-验证您的配置是否满足以下要求：
+请确认您的配置符合以下要求：
 
-* BES-53248交换机上的某些端口配置为以10GbE运行。
-* 已规划、迁移和记录从节点到BES-53248集群交换机的10GbE连接。
-* 集群完全正常运行(日志中不应出现任何错误或类似问题)。
-* BES-53248交换机的初始自定义完成、以便：
+* BES-53248 交换机上的某些端口配置为以 10GbE 运行。
+* 节点到 BES-53248 集群交换机的 10GbE 连接已经过规划、迁移和记录。
+* 集群运行正常（日志中不应有任何错误或类似问题）。
+* BES-53248 交换机的初始定制工作已完成，具体如下：
 +
-** BES-53248交换机正在运行建议的最新版本的EFOS软件。
-** 参考配置文件(Reference Configuration Files、RCF)已应用于交换机。
-** 任何站点自定义、例如DNS、NTP、SMTP、SNMP、和SSH。
+** BES-53248 交换机运行的是最新推荐版本的 EFOS 软件。
+** 交换机已应用参考配置文件（RCF）。
+** 任何站点定制，如 DNS、NTP、SMTP、SNMP 和 SSH，都在新交换机上进行配置。
 
 
 
@@ -43,11 +43,11 @@ summary: 要将集群中的现有 CN1610 集群交换机更换为支持 Broadcom
 
 集群交换机支持以下节点连接：
 
-* NetApp CN1610：端口0/1到0/12 (10GbE)
-* BES-53248：端口0/1-0/16 (10GbE/25GbE)
+* NetApp CN1610：端口 0/1 至 0/12 (10GbE)
+* BES-53248：端口 0/1-0/16（10GbE/25GbE）
 +
 
-NOTE: 可以通过购买端口许可证来激活其他端口。
+NOTE: 可通过购买端口许可证激活其他端口。
 
 
 
@@ -55,109 +55,109 @@ NOTE: 可以通过购买端口许可证来激活其他端口。
 
 === ISL 端口
 
-集群交换机使用以下交换机间链路（ ISL ）端口：
+集群交换机使用以下交换机间链路（ISL）端口：
 
-* NetApp CN1610：端口0/13到0/16 (10GbE)
-* BES-53248：端口0/55-0/56 (100GbE)
-
-
-。 https://hwu.netapp.com/Home/Index["_NetApp Hardware Universe"^] 包含有关ONTAP 兼容性、支持的EFOS固件以及BES-53248集群交换机布线的信息。
+* NetApp CN1610：端口 0/13 至 0/16 (10GbE)
+* BES-53248：端口 0/55-0/56 (100GbE)
 
 
+这 https://hwu.netapp.com/Home/Index["NetApp硬件世界"^]包含有关ONTAP兼容性、支持的 EFOS 固件以及与 BES-53248 集群交换机的布线的信息。
 
-=== ISL布线
 
-相应的 ISL 布线如下所示：
 
-* * 起始： * 对于 CN1610 到 CN1610 （ SFP+ 到 SFP+ ），需要四根 SFP+ 光纤或铜缆直连缆线。
-* * 最终版本： * 对于 BES-53248 到 BES-53248 （ QSFP28 到 QSFP28 ），需要两根 QSFP28 光纤收发器 / 光纤或铜缆直连缆线。
+=== ISL 布线
+
+适用的ISL布线如下：
+
+* *起始：*对于 CN1610 到 CN1610（SFP+ 到 SFP+），四根 SFP+ 光纤或铜缆直连电缆。
+* *最终：*对于 BES-53248 到 BES-53248（QSFP28 到 QSFP28），两个 QSFP28 光收发器/光纤或铜缆直接连接电缆。
 
 
 
 
 == 迁移交换机
 
-按照此操作步骤 将CN1610集群交换机迁移到BES-53248集群交换机。
+按照以下步骤将 CN1610 集群交换机迁移到 BES-53248 集群交换机。
 
 .关于示例
-此操作步骤中的示例使用以下交换机和节点命名：
+本流程中的示例使用以下开关和节点命名规则：
 
-* 这些示例使用两个节点、每个节点部署两个10 GbE集群互连端口： `e0a` 和 `e0b`。
-* 根据不同版本的 ONTAP 软件，命令输出可能会有所不同。
-* 要更换的 CN1610 交换机为 `CL1` 和 `CL2` 。
-* 用于更换 CN1610 交换机的 BES-53248 交换机为 `CS1` 和 `CS2` 。
-* 节点为 `node1` 和 `node2` 。
-* 交换机 CL2 首先由 CS2 取代，然后由 CL1 取代 CS1 。
-* BES-53248 交换机预加载了受支持的参考配置文件（ Reference Configuration File ， RCF ）和以太网阵列操作系统（ Ethernet Fabric OS ， EFOS ）版本，并在端口 55 和 56 上连接了 ISL 缆线。
-* 集群 LIF 名称是 node1 的 `node1_clus1` 和 `node1_clus2` ， node2 的 `node2_clus1` 和 `node2_clus2` 。
+* 示例使用了两个节点，每个节点部署了两个 10 GbE 集群互连端口： `e0a`和 `e0b`。
+* 命令输出可能因ONTAP软件版本不同而有所差异。
+* 需要更换的CN1610交换机有： `CL1`和 `CL2`。
+* 用于替代 CN1610 交换机的 BES-53248 交换机是 `cs1`和 `cs2`。
+* 节点是 `node1`和 `node2`。
+* 首先将开关 CL2 替换为 cs2，然后将 CL1 替换为 cs1。
+* BES-53248 交换机预装了受支持的参考配置文件 (RCF) 和以太网交换矩阵操作系统 (EFOS) 版本，ISL 电缆连接在端口 55 和 56 上。
+* 集群 LIF 名称为 `node1_clus1`和 `node1_clus2`对于节点1，以及 `node2_clus1`和 `node2_clus2`对于节点2。
 
 
 .关于此任务
-此操作步骤包括以下情形：
+本流程涵盖以下情况：
 
-* 集群从两个节点连接到两个 CN1610 集群交换机开始。
-* CN1610 交换机 CL2 由 BES-53248 交换机 CS2 取代：
+* 集群由两个节点组成，这两个节点连接到两个 CN1610 集群交换机。
+* CN1610 交换机 CL2 被 BES-53248 交换机 cs2 取代：
 +
-** 关闭集群节点的端口。必须同时关闭所有端口、以避免集群不稳定。
-** 从连接到 CL2 的所有节点上的所有集群端口断开缆线连接，然后使用支持的缆线将端口重新连接到新的集群交换机 CS2 。
+** 关闭集群节点的端口。为避免集群不稳定，所有端口必须同时关闭。
+** 断开连接到 CL2 的所有节点上所有集群端口的电缆，然后使用支持的电缆将端口重新连接到新的集群交换机 cs2。
 
 
-* CN1610 交换机 CL1 由 BES-53248 交换机 CS1 取代：
+* CN1610 交换机 CL1 被 BES-53248 交换机 cs1 取代：
 +
-** 关闭集群节点的端口。必须同时关闭所有端口、以避免集群不稳定。
-** 从连接到 CL1 的所有节点上的所有集群端口断开缆线连接，然后使用支持的缆线将端口重新连接到新的集群交换机 CS1 。
+** 关闭集群节点的端口。为避免集群不稳定，所有端口必须同时关闭。
+** 断开连接到 CL1 的所有节点上所有集群端口的电缆，然后使用支持的电缆将端口重新连接到新的集群交换机 cs1。
 
 
 
 
 
-NOTE: 在此操作步骤 期间、不需要可操作的交换机间链路(ISL)。这是设计上的原因、因为RCF版本更改可能会暂时影响ISL连接。为了确保集群无中断运行、以下操作步骤 会在对目标交换机执行步骤时将所有集群LIF迁移到运行中的配对交换机。
+NOTE: 在此过程中不需要任何可操作的交换机间链路 (ISL)。这是设计使然，因为 RCF 版本的更改可能会暂时影响 ISL 连接。为确保集群运行不中断，以下步骤将所有集群 LIF 迁移到运行伙伴交换机，同时在目标交换机上执行相应步骤。
 
 
 
-=== 第1步：准备迁移
+=== 步骤 1：准备迁移
 
-. 如果在此集群上启用了 AutoSupport ，则通过调用 AutoSupport 消息禁止自动创建案例：
+. 如果此集群上启用了AutoSupport ，则通过调用AutoSupport消息来抑制自动创建案例：
 +
-`ssystem node AutoSupport invoke -node * -type all -message MAINT=xh`
-
-+
-其中 x 是维护时段的持续时间，以小时为单位。
+`system node autosupport invoke -node * -type all -message MAINT=xh`
 
 +
-
-NOTE: AutoSupport 消息会通知技术支持此维护任务，以便在维护窗口期间禁止自动创建案例。
+其中 x 为维护窗口的持续时间（小时）。
 
 +
-以下命令将禁止自动创建案例 2 小时：
+
+NOTE: AutoSupport消息会通知技术支持此维护任务，以便在维护窗口期间抑制自动创建案例。
+
++
+以下命令可抑制自动创建案件两小时：
 
 +
 [listing]
 ----
 cluster1::*> system node autosupport invoke -node * -type all -message MAINT=2h
 ----
-. 将权限级别更改为高级，在系统提示您继续时输入 * y * ：
+. 将权限级别更改为高级，并在提示继续时输入 *y*：
 +
 `set -privilege advanced`
 
 +
-此时将显示高级提示符（ * > ）。
+出现高级提示符（*>）。
 
 
 
 
 
-=== 第2步：配置端口和布线
+=== 步骤二：配置端口和线缆
 
-. 在新交换机上、确认交换机CS1和CS2之间的ISL已布线且运行状况良好：
+. 在新交换机上，确认交换机 cs1 和 cs2 之间的 ISL 线缆连接正常且运行良好：
 +
-`s如何使用端口通道`
+`show port-channel`
 
 +
 .显示示例
 [%collapsible]
 ====
-以下示例显示交换机CS1上的ISL端口为*上*：
+以下示例表明交换机 cs1 上的 ISL 端口已启用：
 
 [listing, subs="+quotes"]
 ----
@@ -180,7 +180,7 @@ Ports  Timeout       Speed      Active
        partner/long
 (cs1) #
 ----
-以下示例显示交换机CS2上的ISL端口为*上*：
+以下示例表明交换机 cs2 上的 ISL 端口已启用：
 
 [listing, subs="+quotes"]
 ----
@@ -211,7 +211,7 @@ Ports  Timeout       Speed      Active
 .显示示例
 [%collapsible]
 ====
-以下示例显示了在每个节点中为每个集群互连交换机配置了多少个集群互连接口：
+以下示例显示了每个节点上每个集群互连交换机配置的集群互连接口数量：
 
 [listing, subs="+quotes"]
 ----
@@ -229,9 +229,9 @@ node1      /cdp
 ====
 . 确定每个集群接口的管理或运行状态。
 +
-.. 验证所有集群端口是否均为 `up` 使用 `healthy` 状态：
+.. 确认所有集群端口都已连接 `up`与一个 `healthy`地位：
 +
-`network port show -ipspace cluster`
+`network port show -ipspace Cluster`
 
 +
 .显示示例
@@ -258,9 +258,9 @@ e0a       Cluster      Cluster          up   9000  auto/10000 healthy  false
 e0b       Cluster      Cluster          up   9000  auto/10000 healthy  false
 ----
 ====
-.. 验证所有集群接口(LIF)是否位于其主端口上：
+.. 确认所有集群接口（LIF）都已连接到其所属端口：
 +
-`network interface show -vserver cluster`
+`network interface show -vserver Cluster`
 
 +
 .显示示例
@@ -282,14 +282,14 @@ Cluster
 ====
 
 
-. 验证集群是否同时显示两个集群交换机的信息：
+. 确认集群显示两个集群交换机的信息：
 
 
 [role="tabbed-block"]
 ====
 .ONTAP 9.8 及更高版本
 --
-从ONTAP 9.8开始、请使用以下命令： `system switch ethernet show -is-monitoring-enabled-operational true`
+从ONTAP 9.8 开始，使用以下命令： `system switch ethernet show -is-monitoring-enabled-operational true`
 
 [listing, subs="+quotes"]
 ----
@@ -312,9 +312,9 @@ CL2                           cluster-network  10.10.1.102   CN1610
 cluster1::*>
 ----
 --
-.ONTAP 9.7 及更早版本
+.ONTAP 9.7 及更低版本
 --
-对于ONTAP 9.7及更早版本、请使用命令： `system cluster-switch show -is-monitoring-enabled-operational true`
+对于ONTAP 9.7 及更早版本，请使用以下命令： `system cluster-switch show -is-monitoring-enabled-operational true`
 
 [listing, subs="+quotes"]
 ----
@@ -338,13 +338,13 @@ cluster1::*>
 ----
 --
 ====
-. [[STEP5]]对集群Lifs禁用自动还原。
+. [[step5]]禁用集群 LIF 的自动还原功能。
 +
 [listing, subs="+quotes"]
 ----
 cluster1::*> *network interface modify -vserver Cluster -lif * -auto-revert false*
 ----
-. 在集群交换机CL2上、关闭连接到节点集群端口的端口、以便对集群LI进行故障转移：
+. 在集群交换机 CL2 上，关闭连接到节点集群端口的端口，以便进行集群 LIF 的故障转移：
 +
 [listing, subs="+quotes"]
 ----
@@ -355,9 +355,9 @@ cluster1::*> *network interface modify -vserver Cluster -lif * -auto-revert fals
 (CL2)(Config)# *exit*
 (CL2)#
 ----
-. 验证集群LIFs是否已故障转移到集群交换机CL1上托管的端口。这可能需要几秒钟的时间。
+. 确认集群 LIF 已故障转移到集群交换机 CL1 上托管的端口。这可能需要几秒钟。
 +
-`network interface show -vserver cluster`
+`network interface show -vserver Cluster`
 
 +
 .显示示例
@@ -393,10 +393,10 @@ node1      true    true          false
 node2      true    true          false
 ----
 ====
-. 将所有集群节点连接缆线从旧的CL2交换机移至新的CS2交换机。
-. 确认已移至CS2的网络连接的运行状况：
+. 将所有集群节点连接电缆从旧的 CL2 交换机移至新的 cs2 交换机。
+. 确认迁移到 cs2 的网络连接状况：
 +
-`network port show -ipspace cluster`
+`network port show -ipspace Cluster`
 
 +
 .显示示例
@@ -424,9 +424,9 @@ e0b       Cluster      Cluster          up   9000  auto/10000 healthy  false
 ----
 ====
 +
-已移动的所有集群端口均应为 `up`。
+所有已迁移的集群端口都应该是 `up`。
 
-. 检查集群端口上的邻居信息：
+. 检查集群端口的邻居信息：
 +
 `network device-discovery show -protocol cdp`
 
@@ -448,14 +448,14 @@ node1      /cdp
             e0b    cs2                       0/1               BES-53248
 ----
 ====
-. 从交换机CS2的角度确认交换机端口连接运行状况良好：
+. 从交换机 CS2 的角度确认交换机端口连接是否正常：
 +
 [listing, subs="+quotes"]
 ----
 cs2# *show interface all*
 cs2# *show isdp neighbors*
 ----
-. 在集群交换机CL1上、关闭连接到节点集群端口的端口、以便对集群LI进行故障转移：
+. 在集群交换机 CL1 上，关闭连接到节点集群端口的端口，以便进行集群 LIF 的故障转移：
 +
 [listing, subs="+quotes"]
 ----
@@ -467,11 +467,11 @@ cs2# *show isdp neighbors*
 (CL1)#
 ----
 +
-所有集群的集群Sifs都会故障转移到CS2交换机。
+所有集群 LIF 故障转移到 cs2 交换机。
 
-. 验证集群SIFs是否已故障转移到交换机CS2上托管的端口。这可能需要几秒钟的时间：
+. 验证集群 LIF 是否已故障转移到交换机 cs2 上托管的端口。这可能需要几秒钟：
 +
-`network interface show -vserver cluster`
+`network interface show -vserver Cluster`
 
 +
 .显示示例
@@ -507,10 +507,10 @@ node1      true    true          false
 node2      true    true          false
 ----
 ====
-. 将集群节点连接缆线从CL1移至新的CS1交换机。
-. 确认已移至CS1的网络连接的运行状况：
+. 将集群节点连接电缆从 CL1 移至新的 cs1 交换机。
+. 确认已迁移至 cs1 的网络连接的健康状况：
 +
-`network port show -ipspace cluster`
+`network port show -ipspace Cluster`
 
 +
 .显示示例
@@ -538,9 +538,9 @@ e0b       Cluster      Cluster          up   9000  auto/10000 healthy  false
 ----
 ====
 +
-已移动的所有集群端口均应为 `up`。
+所有已迁移的集群端口都应该是 `up`。
 
-. 检查集群端口上的邻居信息：
+. 检查集群端口的邻居信息：
 +
 `network device-discovery show`
 
@@ -562,22 +562,22 @@ node2      /cdp
             e0b    cs2                       0/2               BES-53248
 ----
 ====
-. 从交换机CS1的角度确认交换机端口连接运行状况良好：
+. 从交换机 CS1 的角度确认交换机端口连接是否正常：
 +
 [listing, subs="+quotes"]
 ----
 cs1# *show interface all*
 cs1# *show isdp neighbors*
 ----
-. 验证CS1和CS2之间的ISL是否仍正常运行：
+. 确认 cs1 和 cs2 之间的 ISL 连接仍然正常运行：
 +
-`s如何使用端口通道`
+`show port-channel`
 
 +
 .显示示例
 [%collapsible]
 ====
-以下示例显示交换机CS1上的ISL端口为*上*：
+以下示例表明交换机 cs1 上的 ISL 端口已启用：
 
 [listing, subs="+quotes"]
 ----
@@ -600,7 +600,7 @@ Ports  Timeout       Speed      Active
        partner/long
 (cs1) #
 ----
-以下示例显示交换机CS2上的ISL端口为*上*：
+以下示例表明交换机 cs2 上的 ISL 端口已启用：
 
 [listing, subs="+quotes"]
 ----
@@ -623,14 +623,14 @@ Ports  Timeout       Speed      Active
        partner/long
 ----
 ====
-. 如果更换后的CN1610交换机未自动删除、请从集群的交换机表中删除这些交换机：
+. 如果被替换的 CN1610 交换机没有自动删除，则将其从集群的交换机表中删除：
 
 
 [role="tabbed-block"]
 ====
 .ONTAP 9.8 及更高版本
 --
-从ONTAP 9.8开始、请使用以下命令： `system switch ethernet delete -device _device-name_`
+从ONTAP 9.8 开始，使用以下命令： `system switch ethernet delete -device _device-name_`
 
 [listing]
 ----
@@ -638,9 +638,9 @@ cluster::*> system switch ethernet delete -device CL1
 cluster::*> system switch ethernet delete -device CL2
 ----
 --
-.ONTAP 9.7 及更早版本
+.ONTAP 9.7 及更低版本
 --
-对于ONTAP 9.7及更早版本、请使用命令： `system cluster-switch delete -device _device-name_`
+对于ONTAP 9.7 及更早版本，请使用以下命令： `system cluster-switch delete -device _device-name_`
 
 [listing]
 ----
@@ -651,44 +651,44 @@ cluster::*> system cluster-switch delete -device CL2
 ====
 
 
-=== 第3步：验证配置
+=== 步骤 3：验证配置
 
-. 在集群 LIF 上启用自动还原。
+. 启用集群 LIF 的自动回滚功能。
 +
 [listing, subs="+quotes"]
 ----
 cluster1::*> *network interface modify -vserver Cluster -lif * -auto-revert true*
 ----
-. 验证集群LIF是否已还原到其主端口(这可能需要一分钟时间)：
+. 验证集群 LIF 是否已恢复到其原端口（这可能需要一分钟）：
 +
-`network interface show -vserver cluster`
+`network interface show -vserver Cluster`
 
 +
-如果集群LIF尚未还原到其主端口、请手动还原它们：
+如果集群 LIF 尚未恢复到其主端口，请手动恢复它们：
 
 +
-`network interface revert -vserver cluster -lif *`
+`network interface revert -vserver Cluster -lif *`
 
 . 验证集群是否运行正常：
 +
 `cluster show`
 
-. 验证远程集群接口的连接：
+. 验证远程集群接口的连接性：
 
 
 [role="tabbed-block"]
 ====
-.ONTAP 9.9.1及更高版本
+.ONTAP 9.9.1 及更高版本
 --
-您可以使用 `network interface check cluster-connectivity` 命令启动集群连接的可访问性检查、然后显示详细信息：
+你可以使用 `network interface check cluster-connectivity`执行命令以启动集群连接性检查，然后显示详细信息：
 
-`network interface check cluster-connectivity start` 和 `network interface check cluster-connectivity show`
+`network interface check cluster-connectivity start`和 `network interface check cluster-connectivity show`
 
 [listing, subs="+quotes"]
 ----
 cluster1::*> *network interface check cluster-connectivity start*
 ----
-*注：*请等待几秒钟、然后再运行 `show`命令以显示详细信息。
+*注意：*运行程序前请等待几秒钟 `show`显示详细信息的命令。
 
 [listing, subs="+quotes"]
 ----
@@ -707,7 +707,7 @@ node2
 --
 .所有ONTAP版本
 --
-对于所有ONTAP版本、您还可以使用 `cluster ping-cluster -node <name>` 用于检查连接的命令：
+对于所有ONTAP版本，您也可以使用 `cluster ping-cluster -node <name>`检查连接性的命令：
 
 `cluster ping-cluster -node <name>`
 
@@ -739,9 +739,9 @@ RPC status:
 ----
 --
 ====
-. [[STEP5]]如果禁止自动创建案例、请通过调用AutoSupport 消息重新启用：
+. [[step5]]如果您已禁用自动创建案例功能，请通过调用AutoSupport消息重新启用该功能：
 +
-`ssystem node AutoSupport invoke -node * -type all -message MAINT=end`
+`system node autosupport invoke -node * -type all -message MAINT=END`
 
 +
 [listing, subs="+quotes"]

@@ -2,113 +2,109 @@
 permalink: switch-bes-53248/upgrade-efos-software.html 
 sidebar: sidebar 
 keywords: BES-53248 cluster switches,upgrading EFOS software 
-summary: '按照以下步骤升级BES-53248集群交换机上的以太网光纤操作系统(Ethernet Fabric OS、EFOS)软件。' 
+summary: '请按照以下步骤升级 BES-53248 集群交换机上的以太网结构操作系统 (EFOS) 软件。' 
 ---
-= 升级EFOS软件
+= 升级 EFOS 软件
 :allow-uri-read: 
 :icons: font
 :imagesdir: ../media/
 
 
 [role="lead"]
-按照以下步骤升级BES-53248集群交换机上的EFOS软件。
+请按照以下步骤升级 BES-53248 集群交换机上的 EFOS 软件。
 
-EFOS软件包括一组高级网络功能和协议、用于开发以太网和IP基础架构系统。此软件架构适用于使用需要全面数据包检查或隔离的应用程序的任何网络组织设备。
+EFOS 软件包含一套用于开发以太网和 IP 基础设施系统的高级网络功能和协议。这种软件架构适用于任何使用需要彻底数据包检查或分离的应用程序的网络组织设备。
 
 
 
 == 准备升级
 
 .开始之前
-* 从下载适用于集群交换机的Broadcom EFOS软件 https://www.broadcom.com/support/bes-switch["Broadcom 以太网交换机支持"^] 站点
-* 查看以下有关EFOS版本的注释。
+* 从以下位置下载适用于您的集群交换机的 Broadcom EFOS 软件： https://www.broadcom.com/support/bes-switch["博通以太网交换机支持"^]地点。
+* 请查看以下有关 EFOS 版本的说明。
 
 
 []
 ====
-* 请注意以下事项： *
+*请注意以下事项：*
 
-* 从 EFOS 3.4.x.x 升级到 EFOS 3.7.x.x 或更高版本时，交换机必须运行 EFOS 3.4.4.6 （或更高版本 3.4.x.x ）。如果您运行的是之前的版本，请先将交换机升级到 EFOS 3.4.4.6 （或更高版本 3.4.x.x ），然后再将交换机升级到 EFOS 3.7.x.x 或更高版本。
-* EFOS 3.4.x.x 和 3.7.x.x 或更高版本的配置有所不同。要将 EFOS 版本从 3.4.x.x 更改为 3.7.x.x 或更高版本，或者反之，则需要将交换机重置为出厂默认值，并重新应用相应 EFOS 版本的 RCF 文件。此操作步骤需要通过串行控制台端口进行访问。
-* 从 EFOS 3.7.x.x 或更高版本开始，可以使用非 FIPS 兼容版本和 FIPS 兼容版本。从不符合FIPS的版本迁移到符合FIPS的版本时、需要执行不同的步骤、反之亦然。将 EFOS 从不符合 FIPS 的版本更改为符合 FIPS 的版本，或者反之，则会将交换机重置为出厂默认值。此操作步骤需要通过串行控制台端口进行访问。
+* 从 EFOS 3.4.xx 升级到 EFOS 3.7.xx 或更高版本时，交换机必须运行 EFOS 3.4.4.6（或更高版本的 3.4.xx）。如果您运行的是之前的版本，请先将交换机升级到 EFOS 3.4.4.6（或更高版本的 3.4.xx），然后再将交换机升级到 EFOS 3.7.xx 或更高版本。
+* EFOS 3.4.xx 和 3.7.xx 或更高版本的配置有所不同。将 EFOS 版本从 3.4.xx 更改为 3.7.xx 或更高版本，反之亦然，需要将交换机重置为出厂默认设置，并（重新）应用相应 EFOS 版本的 RCF 文件。此过程需要通过串行控制台端口进行访问。
+* 从 EFOS 版本 3.7.xx 或更高版本开始，提供不符合 FIPS 标准的版本和符合 FIPS 标准的版本。从不符合 FIPS 标准的版本过渡到符合 FIPS 标准的版本或反之亦然时，需要采取不同的步骤。将 EFOS 从不符合 FIPS 标准的版本更改为符合 FIPS 标准的版本，反之亦然，会将交换机重置为出厂默认设置。此过程需要通过串行控制台端口进行访问。
 
 
 ====
 |===
 
 
-| * 操作步骤 * | * 当前 EFOS 版本 * | * 新 EFOS 版本 * | * 高级步骤 * 
+| *程序* | *当前EFOS版本* | *全新EFOS版本* | *高级步骤* 
 
 
  a| 
-在两个（非） FIPS 兼容版本之间升级 EFOS 的步骤
- a| 
-3.4.x.x
+在两个（非）符合 FIPS 标准的版本之间升级 EFOS 的步骤
  a| 
 3.4.x.x
  a| 
-使用升级新的EFOS映像 <<方法1：升级EFOS>>。
-配置和许可证信息会保留下来。
+3.4.x.x
+ a| 
+使用以下方式升级新的 EFOS 映像<<方法一：升级EFOS>>。配置和许可证信息将被保留。
 
 
 
  a| 
-3.4.4.6 （或更高版本 3.4.x.x ）
+3.4.4.6（或更高版本的 3.4.xx）
  a| 
-不符合 FIPS 的 3.7.x.x 或更高版本
+3.7.xx 或更高版本不符合 FIPS 标准
  a| 
-使用升级EFOS <<方法1：升级EFOS>>。
-将交换机重置为出厂默认设置、并对EFOS 3.7.x.x或更高版本应用RCF文件。
+使用以下方式升级 EFOS<<方法一：升级EFOS>> 。将交换机重置为出厂默认设置，并应用适用于 EFOS 3.7.xx 或更高版本的 RCF 文件。
 
 
 
-.2+| 不符合 FIPS 的 3.7.x.x 或更高版本  a| 
-3.4.4.6 （或更高版本 3.4.x.x ）
+.2+| 3.7.xx 或更高版本不符合 FIPS 标准  a| 
+3.4.4.6（或更高版本的 3.4.xx）
  a| 
-使用降级EFOS <<方法1：升级EFOS>>。
-将交换机重置为出厂默认值、并为EFOS 3.4.x.X应用RCF文件
+使用降级 EFOS<<方法一：升级EFOS>> 。将交换机重置为出厂默认设置，并应用适用于 EFOS 3.4.xx 的 RCF 文件。
 
 
 
  a| 
-不符合 FIPS 的 3.7.x.x 或更高版本
+3.7.xx 或更高版本不符合 FIPS 标准
  a| 
-使用升级新的EFOS映像 <<方法1：升级EFOS>>。配置和许可证信息会保留下来。
+使用以下方式升级新的 EFOS 映像<<方法一：升级EFOS>>。配置和许可证信息将被保留。
 
 
 
  a| 
-符合 3.7.x.x 或更高版本 FIPS
+3.7.xx 或更高版本符合 FIPS 标准
  a| 
-符合 3.7.x.x 或更高版本 FIPS
+3.7.xx 或更高版本符合 FIPS 标准
  a| 
-使用升级新的EFOS映像 <<方法1：升级EFOS>>。
-配置和许可证信息会保留下来。
+使用以下方式升级新的 EFOS 映像<<方法一：升级EFOS>>。配置和许可证信息将被保留。
 
 
 
  a| 
-升级到 / 从 FIPS 兼容 EFOS 版本的步骤
+从符合 FIPS 标准的 EFOS 版本升级到/从符合 FIPS 标准的 EFOS 版本升级的步骤
  a| 
-不符合 FIPS
+不符合FIPS标准
  a| 
-符合 FIPS
+符合FIPS标准
  a| 
-使用升级EFOS映像 <<方法2：使用ONIE操作系统安装升级EFOS>>。交换机配置和许可证信息将丢失。
+使用以下方式升级 EFOS 映像<<方法二：使用 ONIE OS 安装程序升级 EFOS>>。交换机配置和许可证信息将会丢失。
 
 
 
  a| 
-符合 FIPS
+符合FIPS标准
  a| 
-不符合 FIPS
+不符合FIPS标准
 
 |===
 [IMPORTANT]
 ====
-要检查您的EFOS版本是否符合FIPS兼容或非FIPS兼容、请使用 `show fips status` 命令：在以下示例中，*IP_switch_A1*正在使用FIPS兼容的EFOS，而*IP_switch_A2*正在使用非FIPS兼容的EFOS。
+要检查您的 EFOS 版本是否符合 FIPS 标准，请使用以下方法： `show fips status`命令。在以下示例中，*IP_switch_a1* 使用的是符合 FIPS 标准的 EFOS，而 *IP_switch_a2* 使用的是不符合 FIPS 标准的 EFOS。
 
-* 在交换机IP_switch_A1 (FIPS兼容EFOS)上：
+* 在交换机 IP_switch_a1（符合 FIPS 标准的 EFOS）上：
 +
 [listing, subs="+quotes"]
 ----
@@ -116,7 +112,7 @@ IP_switch_a1 # *show fips status*
 
 System running in FIPS mode
 ----
-* 在交换机IP_switch_A2 (非FIPS兼容EFOS)上：
+* 在交换机 IP_switch_a2（非 FIPS 合规 EFOS）上：
 +
 [listing, subs="+quotes"]
 ----
@@ -131,27 +127,27 @@ IP_switch_a2 # *show fips status*
 
 == 升级软件
 
-使用以下方法之一：
+请使用以下方法之一：
 
-* <<方法1：升级EFOS>>。适用于大多数情况(请参见上表)。
-* <<方法2：使用ONIE操作系统安装升级EFOS>>。如果一个EFOS版本符合FIPS、而另一个EFOS版本不符合FIPS、则使用。
-
-
-
-NOTE: 一次升级一个交换机上的EFOS、以确保集群网络持续运行。
+* <<方法一：升级EFOS>>。适用于大多数情况（见上表）。
+* <<方法二：使用 ONIE OS 安装程序升级 EFOS>>。如果一个 EFOS 版本符合 FIPS 标准，而另一个 EFOS 版本不符合 FIPS 标准，则可以使用此方法。
 
 
 
-=== 方法1：升级EFOS
-
-执行以下步骤升级EFOS软件。
+NOTE: 一次升级一台交换机上的 EFOS，以确保集群网络持续运行。
 
 
-IMPORTANT: 请注意，将 BES-53248 集群交换机从 EFOS 3.3.x.x 或 3.4.x.x 升级到 EFOS 3.7.0.4 或 3.8.0.2 后，交换机间链路（ ISL ）和端口通道将标记为 * 关闭 * 状态。这是预期行为、可以安全地继续升级、除非您在自动还原IFs方面遇到问题。有关详细信息、请参见知识库文章： https://kb.netapp.com/Advice_and_Troubleshooting/Data_Storage_Systems/Fabric%2C_Interconnect_and_Management_Switches/BES-53248_Cluster_Switch_NDU_failed_upgrade_to_EFOS_3.7.0.4_and_later["BES-53248集群交换机NDU无法升级到EFOS 3.7.0.4及更高版本"^]。
+
+=== 方法一：升级EFOS
+
+请按照以下步骤升级 EFOS 软件。
+
+
+IMPORTANT: 请注意，将 BES-53248 集群交换机从 EFOS 3.3.xx 或 3.4.xx 升级到 EFOS 3.7.0.4 或 3.8.0.2 后，交换机间链路 (ISL) 和端口通道将被标记为 *Down* 状态。这是预期行为，除非您在自动还原 LIF 时遇到问题，否则可以安全地继续升级。请参阅知识库文章： https://kb.netapp.com/Advice_and_Troubleshooting/Data_Storage_Systems/Fabric%2C_Interconnect_and_Management_Switches/BES-53248_Cluster_Switch_NDU_failed_upgrade_to_EFOS_3.7.0.4_and_later["BES-53248 集群交换机 NDU 升级到 EFOS 3.7.0.4 及更高版本失败"^]更多详情请见下文。
 
 .步骤
 . 将 BES-53248 集群交换机连接到管理网络。
-. 使用 `ping` 命令验证与托管 EFOS ，许可证和 RCF 文件的服务器的连接。
+. 使用 `ping`用于验证与托管 EFOS、许可证和 RCF 文件的服务器的连接性的命令。
 +
 此示例验证交换机是否已连接到 IP 地址为 172.19.2.1 的服务器：
 
@@ -163,7 +159,7 @@ Pinging 172.19.2.1 with 0 bytes of data:
 
 Reply From 172.19.2.1: icmp_seq = 0. time= 5910 usec.
 ----
-. 在集群 LIF 上禁用自动还原。
+. 禁用集群 LIF 的自动回滚功能。
 +
 [source, cli]
 ----
@@ -171,7 +167,7 @@ network interface modify -vserver Cluster -lif * -auto-revert false
 ----
 . 显示活动配置和备份配置的启动映像：
 +
-`s如何启动 var`
+`show bootvar`
 
 +
 .显示示例
@@ -194,7 +190,7 @@ network interface modify -vserver Cluster -lif * -auto-revert false
 
 ----
 ====
-. 将映像文件下载到交换机。
+. 将镜像文件下载到交换机。
 +
 将映像文件复制到备份映像意味着当您重新启动时，该映像将建立正在运行的 EFOS 版本，从而完成更新。
 
@@ -220,7 +216,7 @@ File transfer operation completed successfully.
 ----
 . 显示活动配置和备份配置的启动映像：
 +
-`s如何启动 var`
+`show bootvar`
 
 +
 .显示示例
@@ -254,7 +250,7 @@ Activating image backup ..
 ----
 . 显示活动配置和备份配置的启动映像：
 +
-`s如何启动 var`
+`show bootvar`
 
 +
 .显示示例
@@ -276,9 +272,9 @@ Image Descriptions
     1    3.10.0.3    3.10.0.3            3.10.0.3       3.10.0.3
 ----
 ====
-. 将运行配置保存到启动配置：
+. 将运行配置保存到启动配置中：
 +
-`写入内存`
+`write memory`
 
 +
 .显示示例
@@ -297,9 +293,9 @@ Config file 'startup-config' created successfully.
 Configuration Saved!
 ----
 ====
-. 重新启动交换机：
+. 重启交换机：
 +
-`re负载`
+`reload`
 
 +
 .显示示例
@@ -317,9 +313,9 @@ Configuration Saved!
 System will now restart!
 ----
 ====
-. 重新登录并验证 EFOS 软件的新版本：
+. 请重新登录并验证EFOS软件的新版本：
 +
-`s如何使用版本`
+`show version`
 
 +
 .显示示例
@@ -353,46 +349,46 @@ Additional Packages............................ BGP-4
 ............................................... Prototype Open API
 ----
 ====
-. 对交换机CS1重复步骤5到11。
-. 在集群 LIF 上启用自动还原。
+. 在交换机 cs1 上重复步骤 5 到 11。
+. 启用集群 LIF 的自动回滚功能。
 +
 [source, cli]
 ----
 network interface modify -vserver Cluster -lif * -auto-revert true
 ----
-. 验证集群 LIF 是否已还原到其主端口：
+. 确认集群 LIF 已恢复到其原端口：
 +
 [source, cli]
 ----
 network interface show -role Cluster
 ----
 +
-有关更多详细信息、请参见 link:https://docs.netapp.com/us-en/ontap/networking/revert_a_lif_to_its_home_port.html["将 LIF 还原到其主端口"]。
+更多详情请参见link:https://docs.netapp.com/us-en/ontap/networking/revert_a_lif_to_its_home_port.html["将 LIF 恢复到其母端口"]。
 
 
 
 
 
-=== 方法2：使用ONIE操作系统安装升级EFOS
+=== 方法二：使用 ONIE OS 安装程序升级 EFOS
 
-如果一个 EFOS 版本符合 FIPS ，而另一个 EFOS 版本不符合 FIPS ，则可以执行以下步骤。如果交换机无法启动、可使用以下步骤从ONIE升级非FIPS或FIPS兼容EFOS 3.7.x.x.x.X的映像。
-
-
-NOTE: 此功能仅适用于不符合 FIPS 的 EFOS 3.7.x.x 或更高版本。
+如果一个 EFOS 版本符合 FIPS 标准，而另一个 EFOS 版本不符合 FIPS 标准，则可以执行以下步骤。如果交换机无法启动，可以使用以下步骤从 ONIE 升级非 FIPS 或符合 FIPS 标准的 EFOS 3.7.xx 映像。
 
 
-CAUTION: 如果您使用ONIE OS安装升级EFOS、则配置将重置为出厂默认值并删除许可证。要使交换机恢复正常运行、您必须设置交换机并安装许可证和受支持的RC框架。
+NOTE: 此功能仅适用于不符合 FIPS 标准的 EFOS 3.7.xx 或更高版本。
+
+
+CAUTION: 如果使用 ONIE OS 安装程序升级 EFOS，则配置将重置为出厂默认设置，许可证将被删除。您必须设置交换机并安装许可证和受支持的 RCF，才能使交换机恢复正常运行。
 
 .步骤
-. 在集群 LIF 上禁用自动还原。
+. 禁用集群 LIF 的自动回滚功能。
 +
 [source, cli]
 ----
 network interface modify -vserver Cluster -lif * -auto-revert false
 ----
-. 将交换机启动至 ONIE 安装模式。
+. 将交换机启动到 ONIE 安装模式。
 +
-在启动期间、在看到提示时选择ONIE：
+启动过程中，看到提示时选择 ONIE：
 
 +
 [listing]
@@ -413,7 +409,7 @@ network interface modify -vserver Cluster -lif * -auto-revert false
 +--------------------------------------------------------------------+
 ----
 +
-选择* ONIE*后、交换机将加载并为您提供多个选项。选择*安装OS*。
+选择 *ONIE* 后，开关会加载并向您展示几个选项。选择“安装操作系统”。
 
 +
 [listing]
@@ -434,11 +430,11 @@ network interface modify -vserver Cluster -lif * -auto-revert false
 +--------------------------------------------------------------------+
 ----
 +
-交换机将启动至ONIE安装模式。
+交换机启动进入 ONIE 安装模式。
 
 . 停止 ONIE 发现并配置以太网接口。
 +
-出现以下消息时、按*输入*以调用ONIE控制台：
+当出现以下消息时，按 *Enter* 键打开 ONIE 控制台：
 
 +
 [listing]
@@ -448,7 +444,7 @@ Please press Enter to activate this console. Info: eth0:  Checking link... up.
 ----
 +
 
-NOTE: ONIE发现将继续、并将消息打印到控制台。
+NOTE: ONIE 检测仍在继续，消息会打印到控制台。
 
 +
 [listing]
@@ -459,14 +455,14 @@ discover: installer mode detected.
 Stopping: discover... done.
 ONIE:/ #
 ----
-. 配置以太网接口并使用 `ifconfig eth0 <ipAddress> netmask <netmask> up` 和 `route add default gw <gatewayAddress>` 添加路由
+. 配置以太网接口并添加路由 `ifconfig eth0 <ipAddress> netmask <netmask> up`和 `route add default gw <gatewayAddress>`
 +
 [listing]
 ----
 ONIE:/ # ifconfig eth0 10.10.10.10 netmask 255.255.255.0 up
 ONIE:/ # route add default gw 10.10.10.1
 ----
-. 验证托管 ONIE 安装文件的服务器是否可访问：
+. 请确认托管 ONIE 安装文件的服务器可以访问：
 +
 `ping`
 
@@ -510,11 +506,11 @@ Preparing image archive ... OK.
 ----
 ====
 +
-软件将安装并重新启动交换机。让交换机正常重新启动到新的 EFOS 版本。
+软件安装完成后，交换机将重启。让交换机正常重启进入新的 EFOS 版本。
 
-. 验证是否已安装新的交换机软件：
+. 确认新交换机软件已安装：
 +
-`s如何启动 var`
+`show bootvar`
 
 +
 .显示示例
@@ -534,29 +530,29 @@ unit 	active 	    backup   current-active  next-active
 (cs2) #
 ----
 ====
-. 完成安装。交换机在未应用任何配置的情况下重新启动、并重置为出厂默认值。完成以下步骤以重新配置交换机：
+. 完成安装。交换机重启后未应用任何配置，并重置为出厂默认设置。请按照以下步骤重新配置交换机：
 +
 .. link:configure-licenses.html["安装许可证"]
-.. link:configure-install-rcf.html["安装RCF"]
-.. link:configure-ssh.html["启用 SSH ："]
+.. link:configure-install-rcf.html["安装 RCF"]
+.. link:configure-ssh.html["启用 SSH"]
 .. link:CSHM_log_collection.html["启用日志收集"]
-.. link:CSHM_snmpv3.html["配置SNMPv3以进行监控"]
+.. link:CSHM_snmpv3.html["配置 SNMPv3 进行监控"]
 
 
-. 对交换机CS1重复步骤2到8。
-. 在集群 LIF 上启用自动还原。
+. 在交换机 cs1 上重复步骤 2 至 8。
+. 启用集群 LIF 的自动回滚功能。
 +
 [source, cli]
 ----
 network interface modify -vserver Cluster -lif * -auto-revert true
 ----
-. 验证集群 LIF 是否已还原到其主端口：
+. 确认集群 LIF 已恢复到其原端口：
 +
 [source, cli]
 ----
 network interface show -role Cluster
 ----
 +
-有关更多详细信息、请参见 link:https://docs.netapp.com/us-en/ontap/networking/revert_a_lif_to_its_home_port.html["将 LIF 还原到其主端口"]。
+更多详情请参见link:https://docs.netapp.com/us-en/ontap/networking/revert_a_lif_to_its_home_port.html["将 LIF 恢复到其母端口"]。
 
 

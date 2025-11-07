@@ -2,43 +2,43 @@
 permalink: switch-nvidia-sn2100/upgrade-rcf-sn2100-cluster.html 
 sidebar: sidebar 
 keywords: upgrade rcf script, python script, sn2100 SN2100 switches, cumulus 
-summary: 在安装RCF脚本之前、请确保交换机上具有以下配置 
+summary: 在安装 RCF 脚本之前，请确保交换机上具备以下条件。 
 ---
-= 升级参考配置文件(Reference Configuration File、RCF)脚本
+= 升级参考配置文件 (RCF) 脚本
 :allow-uri-read: 
 :icons: font
 :imagesdir: ../media/
 
 
 [role="lead"]
-按照以下过程升级RCF脚本。
+请按照以下步骤升级 RCF 脚本。
 
 .开始之前
-在升级RCF脚本之前、请确保交换机上具有以下可用项：
+升级 RCF 脚本之前，请确保交换机上具备以下条件：
 
-* 安装了Cumulus Linux。请参见 https://hwu.netapp.com/Switch/Index["Hardware Universe"^] 支持的版本。
-* 通过DHCP定义或手动配置的IP地址、子网掩码和默认网关。
+* Cumulus Linux 已安装。参见 https://hwu.netapp.com/Switch/Index["Hardware Universe"^]适用于支持的版本。
+* IP 地址、子网掩码和默认网关通过 DHCP 定义或手动配置。
 
 
 
-NOTE: 除了管理员用户之外、您还必须在RC框架 中指定一个用户、以专门用于收集日志。
+NOTE: 除了管理员用户之外，您还必须在 RCF 中指定一个专门用于日志收集的用户。
 
-.当前RCF脚本版本
-集群和存储应用程序可以使用两个RC框架 脚本。从第页下载RCF https://mysupport.netapp.com/site/info/nvidia-cluster-switch["NVIDIA SN2100软件下载"^]。每个的操作步骤 是相同的。
+.当前 RCF 脚本版本
+集群和存储应用可以使用两种 RCF 脚本。从 https://mysupport.netapp.com/site/info/nvidia-cluster-switch["NVIDIA SN2100 软件下载"^]页。每种情况的处理步骤都相同。
 
-* 集群：* MSN2100-RCP-v1._x--cluster-HA-Breakout—LCDP*
-* 存储：* MSN2100-RFP-v1._x_-Storage*
+* 集群：*MSN2100-RCF-v1._x_-Cluster-HA-Breakout-LLDP*
+* 存储：*MSN2100-RCF-v1._x_-存储*
 
 
 .关于示例
-以下示例操作步骤 显示了如何下载并应用集群交换机的RCF脚本。
+以下示例步骤展示了如何下载和应用集群交换机的 RCF 脚本。
 
-示例命令输出使用交换机管理IP地址10.233.204.71、网络掩码255.255.254.0和默认网关10.233.204.1。
+示例命令输出使用交换机管理 IP 地址 10.233.204.71，子网掩码 255.255.254.0 和默认网关 10.233.204.1。
 
 .步骤
 [role="tabbed-block"]
 ====
-.Cumulus Linux 5.1.1
+.Cumulus Linux 5.11
 --
 . 显示SN2100交换机上的可用接口：
 +
@@ -59,7 +59,7 @@ Interface     MTU   Speed State Remote Host         Remote Port- Type      Summa
 + swp15      9216 100G    up sw2                      swp15       swp
 + swp16      9216 100G    up sw2                      swp16       swp
 ----
-. 将RCF python脚本复制到交换机。
+. 将 RCF Python 脚本复制到交换机。
 +
 [listing, subs="+quotes"]
 ----
@@ -70,9 +70,9 @@ MSN2100-RCF-v1.x-Cluster-HA-Breakout-LLDP          100% 8607   111.2KB/s        
 ----
 +
 
-NOTE: 虽然 `scp`在示例中使用了、但您可以使用首选的文件传输方法。
+NOTE: 虽然 `scp`示例中使用的是这种方法，您可以使用您喜欢的任何文件传输方法。
 
-. 应用RCF pyPython脚本*MSN2100-RCP-v1._x--Cluster-HA-Breakout－LCDP*。
+. 应用 RCF python 脚本 *MSN2100-RCF-v1._x_-Cluster-HA-Breakout-LLDP*。
 +
 [listing, subs="+quotes"]
 ----
@@ -95,11 +95,11 @@ Step 12: Configure SNMP
 Step 13: Reboot the switch
 ----
 +
-RCF脚本将完成上述示例中列出的步骤。
+RCF 脚本完成了上面示例中列出的步骤。
 
 +
 
-NOTE: 在步骤3*更新上面的MOTD文件*中，命令 `cat /etc/issue` 已运行。这样、您可以验证RCV文件名、RCV版本、要使用的端口以及RCV横幅中的其他重要信息。
+NOTE: 在上述步骤 3“更新 MOTD 文件”中，该命令 `cat /etc/issue`正在运行。这样，您就可以验证 RCF 文件名、RCF 版本、要使用的端口以及 RCF 横幅中的其他重要信息。
 
 +
 例如：
@@ -138,10 +138,10 @@ admin@sw1:mgmt:~$ cat /etc/issue
 ----
 +
 
-NOTE: 对于无法更正的任何RCF python脚本问题、请联系 https://mysupport.netapp.com/["NetApp 支持"^] 以获得帮助。
+NOTE: 如果遇到任何无法解决的 RCF Python 脚本问题，请联系我们。 https://mysupport.netapp.com/["NetApp 支持"^]寻求帮助。
 
-. 将先前的所有自定义设置重新应用于交换机配置。link:cabling-considerations-sn2100-cluster.html["查看布线和配置注意事项"]有关所需的任何进一步更改的详细信息、请参见。
-. 重新启动后验证配置：
+. 将之前对交换机配置所做的任何自定义设置重新应用。请参阅link:cabling-considerations-sn2100-cluster.html["审查布线和配置注意事项"]有关任何后续变更的详细信息。
+. 重启后验证配置：
 +
 [listing, subs="+quotes"]
 ----
@@ -255,9 +255,9 @@ Incomplete Command: set interface swp3-16 link fast-linkupp3-16 link fast-linkup
 ----
 +
 
-NOTE: 列出的例外不会影响性能、可以放心地忽略。
+NOTE: 所列例外情况不影响性能，可以忽略。
 
-. 验证接口中收发器的信息：
+. 请核对接口中收发器的信息：
 +
 [listing, subs="+quotes"]
 ----
@@ -282,7 +282,7 @@ swp6       0x00 None
 swp15      0x11 (QSFP28)  Amphenol     112-00595        APF20279210117  B0
 swp16      0x11 (QSFP28)  Amphenol     112-00595        APF20279210166  B0
 ----
-. 验证每个节点是否都与每个交换机建立了连接：
+. 确认每个节点都与每个交换机有连接：
 +
 [listing, subs="+quotes"]
 ----
@@ -295,9 +295,9 @@ swp2s1     25G    Trunk/L2    node1                 �
 swp15      100G   BondMember  sw2                      swp15
 swp16      100G   BondMember  sw2                      swp16
 ----
-. 验证集群上集群端口的运行状况。
+. 检查集群上集群端口的运行状况。
 +
-.. 验证集群中所有节点上的集群端口是否均已启动且运行正常：
+.. 确认集群中所有节点的集群端口均已启动且运行状况良好：
 +
 [listing, subs="+quotes"]
 ----
@@ -319,7 +319,7 @@ Port      IPspace      Broadcast Domain Link MTU  Admin/Oper  Status   Status
 e3a       Cluster      Cluster          up   9000  auto/10000 healthy  false
 e3b       Cluster      Cluster          up   9000  auto/10000 healthy  false
 ----
-.. 从集群验证交换机运行状况(此操作可能不会显示交换机SW2、因为LIF不驻留在e0d上)。
+.. 从集群验证交换机的健康状况（这可能不会显示交换机 sw2，因为 LIF 没有归位到 e0d）。
 +
 [listing, subs="+quotes"]
 ----
@@ -381,7 +381,7 @@ Interface     MTU   Speed State Remote Host         Remote Port- Type      Summa
 + swp15      9216 100G    up sw2                      swp15       swp
 + swp16      9216 100G    up sw2                      swp16       swp
 ----
-. 将RCF python脚本复制到交换机。
+. 将 RCF Python 脚本复制到交换机。
 +
 [listing, subs="+quotes"]
 ----
@@ -392,9 +392,9 @@ MSN2100-RCF-v1.x-Cluster-HA-Breakout-LLDP          100% 8607   111.2KB/s        
 ----
 +
 
-NOTE: 同时 `scp` 在本示例中、您可以使用首选的文件传输方法。
+NOTE: 尽管 `scp`示例中使用的是这种方法，您可以使用您喜欢的任何文件传输方法。
 
-. 应用RCF pyPython脚本*MSN2100-RCP-v1._x--Cluster-HA-Breakout－LCDP*。
+. 应用 RCF python 脚本 *MSN2100-RCF-v1._x_-Cluster-HA-Breakout-LLDP*。
 +
 [listing, subs="+quotes"]
 ----
@@ -417,11 +417,11 @@ Step 12: Configure SNMP
 Step 13: Reboot the switch
 ----
 +
-RCF脚本将完成上述示例中列出的步骤。
+RCF 脚本完成了上面示例中列出的步骤。
 
 +
 
-NOTE: 在步骤3*更新上面的MOTD文件*中，命令 `cat /etc/issue` 已运行。这样、您可以验证RCV文件名、RCV版本、要使用的端口以及RCV横幅中的其他重要信息。
+NOTE: 在上述步骤 3“更新 MOTD 文件”中，该命令 `cat /etc/issue`正在运行。这样，您就可以验证 RCF 文件名、RCF 版本、要使用的端口以及 RCF 横幅中的其他重要信息。
 
 +
 例如：
@@ -460,10 +460,10 @@ admin@sw1:mgmt:~$ cat /etc/issue
 ----
 +
 
-NOTE: 对于无法更正的任何RCF python脚本问题、请联系 https://mysupport.netapp.com/["NetApp 支持"^] 以获得帮助。
+NOTE: 如果遇到任何无法解决的 RCF Python 脚本问题，请联系我们。 https://mysupport.netapp.com/["NetApp 支持"^]寻求帮助。
 
-. 将先前的所有自定义设置重新应用于交换机配置。link:cabling-considerations-sn2100-cluster.html["查看布线和配置注意事项"]有关所需的任何进一步更改的详细信息、请参见。
-. 重新启动后验证配置：
+. 将之前对交换机配置所做的任何自定义设置重新应用。请参阅link:cabling-considerations-sn2100-cluster.html["审查布线和配置注意事项"]有关任何后续变更的详细信息。
+. 重启后验证配置：
 +
 [listing, subs="+quotes"]
 ----
@@ -577,9 +577,9 @@ Incomplete Command: set interface swp3-16 link fast-linkupp3-16 link fast-linkup
 ----
 +
 
-NOTE: 列出的例外不会影响性能、可以放心地忽略。
+NOTE: 所列例外情况不影响性能，可以安全地忽略。
 
-. 验证接口中收发器的信息：
+. 请核对接口中收发器的信息：
 +
 [listing, subs="+quotes"]
 ----
@@ -604,7 +604,7 @@ swp6       0x00 None
 swp15      0x11 (QSFP28)  Amphenol     112-00595        APF20279210117  B0
 swp16      0x11 (QSFP28)  Amphenol     112-00595        APF20279210166  B0
 ----
-. 验证每个节点是否都与每个交换机建立了连接：
+. 确认每个节点都与每个交换机有连接：
 +
 [listing, subs="+quotes"]
 ----
@@ -617,9 +617,9 @@ swp2s1     25G    Trunk/L2    node1                 �
 swp15      100G   BondMember  sw2                      swp15
 swp16      100G   BondMember  sw2                      swp16
 ----
-. 验证集群上集群端口的运行状况。
+. 检查集群上集群端口的运行状况。
 +
-.. 验证集群中所有节点上的集群端口是否均已启动且运行正常：
+.. 确认集群中所有节点的集群端口均已启动且运行状况良好：
 +
 [listing, subs="+quotes"]
 ----
@@ -641,7 +641,7 @@ Port      IPspace      Broadcast Domain Link MTU  Admin/Oper  Status   Status
 e3a       Cluster      Cluster          up   9000  auto/10000 healthy  false
 e3b       Cluster      Cluster          up   9000  auto/10000 healthy  false
 ----
-.. 从集群验证交换机运行状况(此操作可能不会显示交换机SW2、因为LIF不驻留在e0d上)。
+.. 从集群验证交换机的健康状况（这可能不会显示交换机 sw2，因为 LIF 没有归位到 e0d）。
 +
 [listing, subs="+quotes"]
 ----
@@ -711,7 +711,7 @@ ADMDN  swp14  N/A  9216   NotConfigured
 ADMDN  swp15  N/A  9216   NotConfigured
 ADMDN  swp16  N/A  9216   NotConfigured
 ----
-. 将RCF python脚本复制到交换机。
+. 将 RCF Python 脚本复制到交换机。
 +
 [listing, subs="+quotes"]
 ----
@@ -722,9 +722,9 @@ MSN2100-RCF-v1._x_-Cluster-HA-Breakout-LLDP         100% 8607   111.2KB/s       
 ----
 +
 
-NOTE: 同时 `scp` 在本示例中、您可以使用首选的文件传输方法。
+NOTE: 尽管 `scp`示例中使用的是这种方法，您可以使用您喜欢的任何文件传输方法。
 
-. 应用RCF pyPython脚本*MSN2100-RCP-v1._x--Cluster-HA-Breakout－LCDP*。
+. 应用 RCF python 脚本 *MSN2100-RCF-v1._x_-Cluster-HA-Breakout-LLDP*。
 +
 [listing, subs="+quotes"]
 ----
@@ -746,18 +746,18 @@ Step 12: Configure SNMP
 Step 13: Reboot the switch
 ----
 +
-RCF脚本将完成上述示例中列出的步骤。
+RCF 脚本完成了上面示例中列出的步骤。
 
 +
 
-NOTE: 在步骤3*更新上面的MOTD文件*中，命令 `cat /etc/motd` 已运行。这样、您可以验证RCV文件名、RCV版本、要使用的端口以及RCV横幅中的其他重要信息。
+NOTE: 在上述步骤 3“更新 MOTD 文件”中，该命令 `cat /etc/motd`正在运行。这样，您就可以验证 RCF 文件名、RCF 版本、要使用的端口以及 RCF 横幅中的其他重要信息。
 
 +
 
-NOTE: 对于无法更正的任何RCF python脚本问题、请联系 https://mysupport.netapp.com/["NetApp 支持"^] 以获得帮助。
+NOTE: 如果遇到任何无法解决的 RCF Python 脚本问题，请联系我们。 https://mysupport.netapp.com/["NetApp 支持"^]寻求帮助。
 
-. 将先前的所有自定义设置重新应用于交换机配置。link:cabling-considerations-sn2100-cluster.html["查看布线和配置注意事项"]有关所需的任何进一步更改的详细信息、请参见。
-. 重新启动后验证配置：
+. 将之前对交换机配置所做的任何自定义设置重新应用。请参阅link:cabling-considerations-sn2100-cluster.html["审查布线和配置注意事项"]有关任何后续变更的详细信息。
+. 重启后验证配置：
 +
 [listing, subs="+quotes"]
 ----
@@ -821,7 +821,7 @@ switch-priority  TC  ETS
 2                 2  DWRR 28%
 5                 5  DWRR 43%
 ----
-. 验证接口中收发器的信息：
+. 请核对接口中收发器的信息：
 +
 [listing, subs="+quotes"]
 ----
@@ -833,7 +833,7 @@ swp4       0x11 (QSFP28)  AVAGO        332-00440        AF1815GU05Z 
 swp15      0x11 (QSFP28)  Amphenol     112-00573        APF21109348001  B0
 swp16      0x11 (QSFP28)  Amphenol     112-00573        APF21109347895  B0
 ----
-. 验证每个节点是否都与每个交换机建立了连接：
+. 确认每个节点都与每个交换机有连接：
 +
 [listing, subs="+quotes"]
 ----
@@ -846,9 +846,9 @@ swp4       100G   Trunk/L2    sw2                     e3b
 swp15      100G   BondMember  sw13                    swp15
 swp16      100G   BondMember  sw14                    swp16
 ----
-. 验证集群上集群端口的运行状况。
+. 检查集群上集群端口的运行状况。
 +
-.. 验证集群中所有节点上的集群端口是否均已启动且运行正常：
+.. 确认集群中所有节点的集群端口均已启动且运行状况良好：
 +
 [listing, subs="+quotes"]
 ----
@@ -870,7 +870,7 @@ Port      IPspace      Broadcast Domain Link MTU  Admin/Oper  Status   Status
 e3a       Cluster      Cluster          up   9000  auto/10000 healthy  false
 e3b       Cluster      Cluster          up   9000  auto/10000 healthy  false
 ----
-.. 从集群验证交换机运行状况(此操作可能不会显示交换机SW2、因为LIF不驻留在e0d上)。
+.. 从集群验证交换机的健康状况（这可能不会显示交换机 sw2，因为 LIF 没有归位到 e0d）。
 +
 [listing, subs="+quotes"]
 ----

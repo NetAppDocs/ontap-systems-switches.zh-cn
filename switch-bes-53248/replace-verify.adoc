@@ -2,32 +2,32 @@
 permalink: switch-bes-53248/replace-verify.html 
 sidebar: sidebar 
 keywords: command, verify, operational, bes, cluster, switch, upgrade, verify the configuration after a cluster switch upgrade - bes-53428 switches 
-summary: 您可以使用此处提供的命令验证升级 BES-53248 集群交换机后所有交换机是否均正常运行。 
+summary: 您可以使用此处提供的命令来验证 BES-53248 集群交换机升级后一切是否正常运行。 
 ---
-= 在对BES-53248集群交换机执行EFOS软件或RC框架 升级后、验证ONTAP集群网络
+= 在对 BES-53248 集群交换机进行 EFOS 软件或 RCF 升级后，验证ONTAP集群网络。
 :allow-uri-read: 
 :icons: font
 :imagesdir: ../media/
 
 
 [role="lead"]
-升级适用于BES-53248集群交换机的EFOS软件或RCK后、您可以使用以下命令验证ONTAP集群网络的运行状况。
+升级 EFOS 软件或 RCF for BES-53248 集群交换机后，您可以使用以下命令来验证ONTAP集群网络的运行状况。
 
 .步骤
-. 使用命令显示有关集群上网络端口的信息：
+. 使用以下命令显示集群上的网络端口信息：
 +
 [source, cli]
 ----
 network port show -ipspace Cluster
 ----
 +
-`链接` 必须具有值 `up` 和 `运行状况` 必须为 `运行状况` 。
+`Link`必须具有该值 `up`和 `Health Status`必须是 `healthy`。
 
 +
 .显示示例
 [%collapsible]
 ====
-以下示例显示了命令的输出：
+以下示例显示了该命令的输出结果：
 
 [listing, subs="+quotes"]
 ----
@@ -50,7 +50,7 @@ e0a    Cluster      Cluster          up   9000  auto/10000 healthy  false
 e0b    Cluster      Cluster          up   9000  auto/10000 healthy  false
 ----
 ====
-. 对于每个LIF、请验证 `Is Home` 为 `true` 和 `Status Admin/Oper` 为 `up` 在两个节点上、使用命令：
+. 对于每个 LIF，验证 `Is Home`是 `true`和 `Status Admin/Oper`是 `up`在两个节点上，使用以下命令：
 +
 [source, cli]
 ----
@@ -74,7 +74,7 @@ Cluster
             node2_clus2  up/up    169.254.110.131/16 node2         e0b     true
 ----
 ====
-. 验证是否已 `Health Status` 每个节点的 `true` 使用命令：
+. 确认 `Health Status`每个节点的 `true`使用以下命令：
 +
 `cluster show`
 
