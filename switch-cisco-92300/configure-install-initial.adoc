@@ -162,4 +162,4 @@ Copy complete.
 
 
 .下一步是什么？
-link:install-nxos-overview.html["准备安装 NX-OS 软件和 RCF"]。
+配置好交换机后，您可以…… link:install-nxos-overview.html["准备安装NX-OS软件和RCF"]。

@@ -246,4 +246,4 @@ n2         /cdp
 
 
 .下一步是什么？
-link:migrate-from-switchless-configure-ports.html["配置端口"]。
+做好交换机迁移准备后，您可以……link:migrate-from-switchless-configure-ports.html["配置您的端口"] 。

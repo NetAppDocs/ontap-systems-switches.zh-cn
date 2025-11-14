@@ -389,4 +389,4 @@ cluster::*> *network interface revert -vserver Cluster -lif n2_clus2*
 
 
 .下一步是什么？
-link:migrate-from-switchless-complete-migration.html["完成迁移"]。
+配置好端口后，您可以……link:migrate-from-switchless-complete-migration.html["完成迁移"] 。

@@ -219,4 +219,4 @@ NOTE: 如果此时不保存配置，下次重启交换机时，所有更改都�
 
 
 .下一步是什么？
-配置好交换机之后，你 link:prepare-install-cisco-nexus-3232c.html["准备安装 NX-OS 和 RCF"]。
+配置好交换机后，您可以…… link:prepare-install-cisco-nexus-3232c.html["准备安装 NX-OS 和 RCF"]。

@@ -341,4 +341,4 @@ C2                          cluster-network    10.10.1.104      NX3232C
 
 
 .下一步是什么？
-link:../switch-cshm/config-overview.html["配置交换机健康监控"]。
+完成交换机迁移后，您可以link:../switch-cshm/config-overview.html["配置交换机健康监控"]。

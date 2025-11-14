@@ -68,4 +68,4 @@ summary: 在配置Cisco Nexus 3232c 交换机之前，请先查看流程概述�
 
 ====
 .下一步是什么？
-link:migrate-from-switchless-prepare-to-migrate.html["做好迁移准备"]。
+在您查看完迁移要求后，您可以link:migrate-from-switchless-prepare-to-migrate.html["准备迁移交换机"]。

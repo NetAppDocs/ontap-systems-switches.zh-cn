@@ -609,4 +609,4 @@ Total entries displayed: 4
 
 
 .下一步是什么？
-link:../switch-cshm/config-overview.html["配置交换机健康监控"]。
+验证完 SSH 配置后，您可以…… link:../switch-cshm/config-overview.html["配置交换机健康监控"]。

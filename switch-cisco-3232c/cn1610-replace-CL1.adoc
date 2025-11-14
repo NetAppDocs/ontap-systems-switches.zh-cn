@@ -246,4 +246,4 @@ e0d   cluster   cluster    up    9000  auto/10000     -
 
 
 .下一步是什么？
-link:cn1610-complete-migration.html["完成迁移"]。
+更换 CN1610 交换机 CL1 后，您可以link:cn1610-complete-migration.html["完成迁移"]。

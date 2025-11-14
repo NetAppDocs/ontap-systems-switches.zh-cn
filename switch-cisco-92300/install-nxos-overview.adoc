@@ -227,4 +227,4 @@ Cluster
 
 
 .下一步是什么？
-link:install-nxos-software.html["安装 NX-OS 软件"]。
+准备好安装 NX-OS 软件和 RCF 后，您可以…… link:install-nxos-software.html["安装 NX-OS 软件"]。

@@ -64,4 +64,4 @@ sshServer              1          enabled
 IMPORTANT: 启用 FIPS 时，必须使用以下命令将交换机上的位计数更改为 256。 `ssh key ecdsa 256 force` 。看 https://docs.netapp.com/us-en/ontap/networking/configure_network_security_using_federal_information_processing_standards_@fips@.html#enable-fips["使用 FIPS 配置网络安全"^]更多详情请见下文。
 
 .下一步是什么？
-验证完 SSH 配置后，您link:../switch-cshm/config-overview.html["配置交换机健康监控"]。
+验证完 SSH 配置后，您可以…… link:../switch-cshm/config-overview.html["配置交换机健康监控"]。

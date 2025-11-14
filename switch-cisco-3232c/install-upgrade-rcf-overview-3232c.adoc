@@ -104,4 +104,4 @@ NOTE: 命令输出可能因ONTAP版本不同而有所差异。
 该过程需要同时使用ONTAP命令和Cisco Nexus 3000 系列交换机命令；除非另有说明，否则使用ONTAP命令。
 
 .下一步是什么？
-在您查看安装 RCF 或升级 RCF 程序后，您link:install-rcf-software-3232c.html["安装 RCF"]或者link:upgrade-rcf-software-3232c.html["升级您的 RCF"]按要求。
+在您查看完 RCF 安装或升级流程概述后，您可以link:install-rcf-software-3232c.html["安装 RCF"]或者link:upgrade-rcf-software-3232c.html["升级您的 RCF"]根据需要。

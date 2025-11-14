@@ -1366,4 +1366,4 @@ ISL 连接到交换机 A 端口 66
 
 |===
 .下一步
-link:install-switch-92300yc.html["安装开关"]。
+完成布线工作表后，您可以 link:install-switch-92300yc.html["安装开关"]。

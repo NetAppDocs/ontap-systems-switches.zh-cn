@@ -35,4 +35,4 @@ summary: 如果要构建包含两个以上节点的ONTAP集群，则需要两个
 请参阅 https://hwu.netapp.com["Hardware Universe"^]获取最新信息。
 
 .下一步
-link:components-92300.html["组件和零件编号"]。
+在您查看完配置要求后，您可以确认您的配置。 link:components-92300.html["组件和零件编号"]。

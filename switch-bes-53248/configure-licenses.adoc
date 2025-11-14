@@ -54,6 +54,9 @@ EFOS 3.4.4.6 及更高版本
 
 |===
 
+NOTE: 要使用交易密钥兑换端口许可证密钥文件，请转到link:https://support.broadcom.com/web/csg/license-generation["博通支持的以太网交换机的许可门户"^]页。请参阅知识库文章link:https://kb.netapp.com/on-prem/Switches/Broadcom-KBs/How_to_add_Additional_Port_Licensing_for_the_Broadcom_BES_53248_Switch["如何为博通 BES-53248 交换机添加额外的端口许可"^]更多详情请见下文。
+
+
 
 == 旧版许可证
 

@@ -225,4 +225,4 @@ Cluster
 
 
 .下一步是什么？
-准备好安装 NX-OS 软件和 RCF 后，您 link:install-nx-os-software-3232c.html["安装 NX-OS 软件"]。
+准备好安装 NX-OS 软件和 RCF 后，您可以…… link:install-nx-os-software-3232c.html["安装 NX-OS 软件"]。

@@ -930,4 +930,4 @@ cluster::> system cluster-switch delete -device CL2
 
 
 .下一步是什么？
-link:cn5596-complete-migration.html["完成迁移"]。
+配置好交换机端口后，您可以……link:cn5596-complete-migration.html["完成迁移"] 。
