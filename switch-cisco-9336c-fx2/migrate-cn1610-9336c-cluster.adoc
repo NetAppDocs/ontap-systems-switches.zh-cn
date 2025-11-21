@@ -529,29 +529,108 @@ node2      /cdp
 +
 `cluster1::*> network interface modify -vserver Cluster -lif * -auto-revert true`
 
-. 确认所有集群网络 LIF 都已恢复到其原端口：
+. 在交换机 cs2 上，关闭并重新启动所有集群端口，以触发所有不在它们所属端口上的集群 LIF 的自动恢复。
 +
-`network interface show`
-
-+
-.显示示例
-[%collapsible]
-====
 [listing, subs="+quotes"]
 ----
-cluster1::*> *network interface show -vserver Cluster*
+cs2> *enable*
+cs2# *configure*
+cs2(config)# *interface eth1/1-1/2*
+cs2(config-if-range)# *shutdown*
 
-            Logical    Status     Network            Current       Current Is
-Vserver     Interface  Admin/Oper Address/Mask       Node          Port    Home
------------ ---------- ---------- ------------------ ------------- ------- ----
-Cluster
-            node1_clus1  up/up    169.254.209.69/16  node1         e3a     true
-            node1_clus2  up/up    169.254.49.125/16  node1         e3b     true
-            node2_clus1  up/up    169.254.47.194/16  node2         e3a     true
-            node2_clus2  up/up    169.254.19.183/16  node2         e3b     true
+(Wait for 5-10 seconds before re-enabling the ports)
+
+cs2(config-if-range)# *no shutdown*
+
+(After executing the no shutdown command, the nodes detect the change and begin to auto-revert the cluster LIFs to their home ports)
+
+cs2(config-if-range)# *exit*
+cs2(config)# *exit*
+cs2#
 ----
+. 验证集群 LIF 是否已恢复到其原端口（这可能需要一分钟）：
++
+`network interface show -vserver Cluster`
+
++
+如果集群中的任何 LIF 尚未恢复到其主端口，请手动将其恢复。您必须连接到拥有该 LIF 的本地节点的每个节点管理 LIF 或SP/ BMC系统控制台：
+
++
+`network interface revert -vserver Cluster -lif *`
+
+. 验证集群是否运行正常：
++
+`cluster show`
+
+. 验证远程集群接口的连接性：
+
+
+[role="tabbed-block"]
 ====
-. 将权限级别改回管理员：
+.ONTAP 9.9.1 及更高版本
+--
+你可以使用 `network interface check cluster-connectivity`执行命令以启动集群连接性检查，然后显示详细信息：
+
+`network interface check cluster-connectivity start`和 `network interface check cluster-connectivity show`
+
+[listing, subs="+quotes"]
+----
+cluster1::*> *network interface check cluster-connectivity start*
+----
+
+NOTE: 运行前请等待几秒钟 `show`显示详细信息的命令。
+
+[listing, subs="+quotes"]
+----
+cluster1::*> *network interface check cluster-connectivity show*
+                                  Source          Destination       Packet
+Node   Date                       LIF             LIF               Loss
+------ -------------------------- --------------- ----------------- -----------
+node1
+       3/5/2022 19:21:18 -06:00   node1_clus2      node2_clus1      none
+       3/5/2022 19:21:20 -06:00   node1_clus2      node2_clus2      none
+
+node2
+       3/5/2022 19:21:18 -06:00   node2_clus2      node1_clus1      none
+       3/5/2022 19:21:20 -06:00   node2_clus2      node1_clus2      none
+----
+--
+.所有ONTAP版本
+--
+对于所有ONTAP版本，您也可以使用 `cluster ping-cluster -node <name>`检查连接性的命令：
+
+`cluster ping-cluster -node <name>`
+
+[listing, subs="+quotes"]
+----
+cluster1::*> *cluster ping-cluster -node node2*
+Host is node2
+Getting addresses from network interface table...
+Cluster node1_clus1 169.254.209.69 node1     e0a
+Cluster node1_clus2 169.254.49.125 node1     e0b
+Cluster node2_clus1 169.254.47.194 node2     e0a
+Cluster node2_clus2 169.254.19.183 node2     e0b
+Local = 169.254.47.194 169.254.19.183
+Remote = 169.254.209.69 169.254.49.125
+Cluster Vserver Id = 4294967293
+Ping status:
+
+Basic connectivity succeeds on 4 path(s)
+Basic connectivity fails on 0 path(s)
+................
+Detected 9000 byte MTU on 4 path(s):
+    Local 169.254.19.183 to Remote 169.254.209.69
+    Local 169.254.19.183 to Remote 169.254.49.125
+    Local 169.254.47.194 to Remote 169.254.209.69
+    Local 169.254.47.194 to Remote 169.254.49.125
+Larger than PMTU communication succeeds on 4 path(s)
+RPC status:
+2 paths up, 0 paths down (tcp check)
+2 paths up, 0 paths down (udp check)
+----
+--
+====
+. 步骤6：将权限级别改回管理员：
 +
 `set -privilege admin`
 

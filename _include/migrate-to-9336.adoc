@@ -615,12 +615,31 @@ Group Port-       Type     Protocol  Member Ports
 +
 `network interface modify -vserver Cluster -lif * -auto-revert true`
 
+. 在交换机 cs2 上，关闭并重新启动所有集群端口，以触发所有不在它们所属端口上的集群 LIF 的自动恢复。
++
+[listing, subs="+quotes"]
+----
+cs2> *enable*
+cs2# *configure*
+cs2(config)# *interface eth1/1-1/2*
+cs2(config-if-range)# *shutdown*
+
+(Wait for 5-10 seconds before re-enabling the ports)
+
+cs2(config-if-range)# *no shutdown*
+
+(After executing the no shutdown command, the nodes detect the change and begin to auto-revert the cluster LIFs to their home ports)
+
+cs2(config-if-range)# *exit*
+cs2(config)# *exit*
+cs2#
+----
 . 验证集群 LIF 是否已恢复到其原端口（这可能需要一分钟）：
 +
 `network interface show -vserver Cluster`
 
 +
-如果集群 LIF 尚未恢复到其主端口，请手动恢复它们：
+如果集群中的任何 LIF 尚未恢复到其主端口，请手动将其恢复。您必须连接到拥有该 LIF 的本地节点的每个节点管理 LIF 或SP/ BMC系统控制台：
 
 +
 `network interface revert -vserver Cluster -lif *`
@@ -697,7 +716,7 @@ RPC status:
 ----
 --
 ====
-. [[步骤5]]如果您已禁用自动创建案例功能，请通过调用AutoSupport消息重新启用该功能： `system node autosupport invoke -node * -type all -message MAINT=END`
+. [[步骤6]]如果您已禁用自动创建案例功能，请通过调用AutoSupport消息重新启用该功能： `system node autosupport invoke -node * -type all -message MAINT=END`
 
 
 .下一步是什么？
