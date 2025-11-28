@@ -25,6 +25,10 @@ summary: 首次设置好 Nexus 9336C-FX2 交换机后，即可安装 RCF。您�
 * ONTAP节点集群端口未连接。
 
 
+.可用的 RCF 配置
+* *ClusterStorageRCF* - 支持交换机上的分区集群和两个存储区域（Cluster-Storage RCF 1._xx_）。
+
+
 
 
 == 步骤 1：在交换机上安装 RCF

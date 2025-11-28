@@ -16,13 +16,13 @@ summary: '使用集群交换机健康监视器 (CSHM) 和日志收集功能时�
 请参阅知识库文章link:https://kb.netapp.com/on-prem/Switches/Cisco-KBs/How_to_clear_configuration_on_a_Cisco_interconnect_switch_while_retaining_remote_connectivity["如何在保持远程连接的情况下清除Cisco互连交换机上的配置"^]安装或升级 RCF 时，有关更多信息，请参阅以下内容。
 
 .可用的 RCF 配置
-下表描述了不同配置可用的 RCF。选择适用于您配置的 RCF。
+下表描述了不同配置可用的 RCF。选择适用于您配置的 RCF。看link:https://mysupport.netapp.com/site/info/cisco-ethernet-switch["Cisco以太网交换机"^]了解更多信息。
 
 有关具体端口和 VLAN 使用详情，请参阅 RCF 中的横幅和重要说明部分。
 
 [cols="1,2"]
 |===
-| RCF 名称 | 描述 
+| RCF 配置 | 描述 
 
 
  a| 
@@ -73,12 +73,39 @@ summary: '使用集群交换机健康监视器 (CSHM) 和日志收集功能时�
 所有端口均配置为 100GbE NVMe 存储连接。
 
 |===
+.可用的RCF
+下表列出了 9336C-FX2 和 9336C-FX2-T 交换机的可用 RCF。选择适合您配置的RCF版本。看link:https://mysupport.netapp.com/site/info/cisco-ethernet-switch["Cisco以太网交换机"^]了解更多信息。
+
+[cols="1"]
+|===
+| RCF 名称 
+
+
+ a| 
+集群高可用性突破 RCF 1._xx_
+
+
+
+ a| 
+集群高可用性存储 RCF 1._xx_
+
+
+
+ a| 
+存储 RCF 1._xx_
+
+
+
+ a| 
+MultiCluster-HA RCF 1._xx_
+
+|===
 .建议的文档
 * link:https://mysupport.netapp.com/site/info/cisco-ethernet-switch["Cisco以太网交换机（NSS）"^]
 +
 请参阅NetApp支持网站上的交换机兼容性表格，了解支持的ONTAP和 RCF 版本。请注意，RCF 中的命令语法与特定版本的 NX-OS 中的语法之间可能存在命令依赖关系。
 
-* link:https://www.cisco.com/c/en/us/support/switches/nexus-3000-series-switches/products-installation-guides-list.html["CiscoNexus 3000 系列交换机"^]
+* link:https://www.cisco.com/c/en/us/support/switches/nexus-9000-series-switches/products-installation-guides-list.html["CiscoNexus 9000 系列交换机"^]
 +
 有关Cisco交换机升级和降级程序的完整文档，请参阅Cisco网站上提供的相应软件和升级指南。
 
