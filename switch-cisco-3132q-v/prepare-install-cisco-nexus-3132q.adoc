@@ -16,7 +16,7 @@ summary: 'Cisco Nexus 3132Q-V 集群交换机上必须安装Cisco NX-OS 软件�
 .关于示例
 本流程中的示例使用了两个节点。这些节点使用两个 10GbE 集群互连端口 `e0a`和 `e0b`。
 
-参见link:https://hwu.netapp.com/SWITCH/INDEX["Hardware Universe"^]验证平台上的集群端口是否正确。
+参见link:https://hwu.netapp.com/SWITCH/INDEX["Hardware Universe"^]验证平台上的集群端口是否正确。看 link:https://kb.netapp.com/Support/General_Support/What_additional_information_do_I_need_to_install_my_equipment_that_is_not_in_HWU["安装HWU中没有的设备还需要哪些额外信息？"^] 有关交换机安装要求的更多信息。
 
 
 NOTE: 命令输出可能因ONTAP版本不同而有所差异。

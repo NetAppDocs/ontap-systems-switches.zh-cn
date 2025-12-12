@@ -30,7 +30,7 @@ summary: 您可以在AFF或FAS集群中使用Cisco Nexus 3232C 交换机作为�
 * 大多数存储系统控制器通过连接到以太网服务端口（扳手图标）通过 e0M 接口进行管理。在AFF A800和AFF A700系统中，e0M 接口使用专用以太网端口。
 
 
-请参阅 https://hwu.netapp.com["Hardware Universe"^]获取最新信息。
+请参阅 https://hwu.netapp.com["Hardware Universe"^]获取最新信息。看 link:https://kb.netapp.com/Support/General_Support/What_additional_information_do_I_need_to_install_my_equipment_that_is_not_in_HWU["安装HWU中没有的设备还需要哪些额外信息？"^] 有关交换机安装要求的更多信息。
 
 .下一步
 确认配置要求后，您可以查看以下内容：link:required-documentation-3232c.html["所需文件"] 。

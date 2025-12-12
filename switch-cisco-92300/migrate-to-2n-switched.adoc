@@ -285,9 +285,9 @@ Cluster
 4 entries were displayed.
 ----
 ====
-. 确认所有集群 LIF 都已启用自动回滚功能：
+. 禁用集群所有 LIF 的自动回滚功能：
 +
-`network interface show -vserver Cluster -fields auto-revert`
+`network interface modify -vserver Cluster -lif * -auto-revert false`
 
 +
 .显示示例
@@ -295,16 +295,16 @@ Cluster
 ====
 [listing, subs="+quotes"]
 ----
-cluster1::*> *network interface show -vserver Cluster -fields auto-revert*
+cluster1::*> *network interface modify -vserver Cluster -lif * -auto-revert false*
 
           Logical
-Vserver   Interface     Auto-revert
+Vserver   Interface     auto-revert
 --------- ------------- ------------
 Cluster
-          node1_clus1   true
-          node1_clus2   true
-          node2_clus1   true
-          node2_clus2   true
+          node1_clus1   false
+          node1_clus2   false
+          node2_clus1   false
+          node2_clus2   false
 
 4 entries were displayed.
 ----
@@ -399,6 +399,10 @@ cs2(config-if-range)# *no shutdown*
 
 
 === 步骤 3：验证配置
+
+. 启用集群 LIF 的自动回滚功能。
++
+`*network interface modify -vserver Cluster -lif * -auto-revert true*`
 
 . 请确认集群所有端口均已启动：
 +

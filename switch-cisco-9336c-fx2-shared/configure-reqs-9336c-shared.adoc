@@ -41,7 +41,7 @@ summary: 从ONTAP 9.9.1 开始，您可以使用Cisco Nexus 9336C-FX2 交换机�
 * 管理网络流量的 IP 子网
 * 每个存储系统控制器和所有适用交换机的主机名和 IP 地址
 * 大多数存储系统控制器通过连接到以太网服务端口（扳手图标）通过 e0M 接口进行管理。在AFF A800和AFF A700s系统中，e0M 接口使用专用以太网端口。
-* 请参阅 https://hwu.netapp.com["Hardware Universe"]获取最新信息。
+* 请参阅 https://hwu.netapp.com["Hardware Universe"]获取最新信息。看 link:https://kb.netapp.com/Support/General_Support/What_additional_information_do_I_need_to_install_my_equipment_that_is_not_in_HWU["安装HWU中没有的设备还需要哪些额外信息？"^] 有关交换机安装要求的更多信息。
 
 
 有关交换机初始配置的更多信息，请参阅以下指南： https://www.cisco.com/c/en/us/td/docs/dcn/hw/nx-os/nexus9000/9336c-fx2-e/cisco-nexus-9336c-fx2-e-nx-os-mode-switch-hardware-installation-guide.html["Cisco Nexus 9336C-FX2 安装和升级指南"] 。

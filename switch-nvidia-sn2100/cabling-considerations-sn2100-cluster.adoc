@@ -50,7 +50,7 @@ swp15-16
 100GbE交换机间链路（ISL）端口
 
 |===
-参见 https://hwu.netapp.com/Switch/Index["Hardware Universe"^]有关交换机端口的更多信息。
+参见 link:https://hwu.netapp.com/Switch/Index["Hardware Universe"^] 有关交换机端口的更多信息。
 
 
 
@@ -190,7 +190,7 @@ UP     swp4      100G  9216   Trunk/L2                     Master: bridge(UP)
 
 --
 ====
-请参阅知识库文章 https://kb.netapp.com/Advice_and_Troubleshooting/Data_Storage_Systems/Fabric_Interconnect_and_Management_Switches/NVIDIA_SN2100_switch_fails_to_connect_using_40_100GbE_copper_cable["SN2100交换机无法使用40/100GbE铜缆连接"^]更多详情请见下文。
+请参阅知识库文章link:https://kb.netapp.com/Advice_and_Troubleshooting/Data_Storage_Systems/Fabric_Interconnect_and_Management_Switches/NVIDIA_SN2100_switch_fails_to_connect_using_40_100GbE_copper_cable["SN2100交换机无法使用40/100GbE铜缆连接"^]更多详情请见下文。
 
 在 Cumulus Linux 4.4.2 中，配备 X1151A NIC、X1146A NIC 或板载 100GbE 端口的 SN2100 交换机不支持铜缆连接。例如：
 
@@ -200,24 +200,23 @@ UP     swp4      100G  9216   Trunk/L2                     Master: bridge(UP)
 
 
 
-== QSA适配器
+== QSA 模块
 
-当使用 QSA 适配器连接到平台上的 10GbE/25GbE 集群端口时，链路可能无法建立。
+使用 QSFP+ (40GbE) 转 SFP+ (10GbE) 适配器或 QSFP28 (100GbE) 转 SFP28 (25GbE) 适配器 (QSA) 时，请将其插入非分线 40GbE/100GbE 交换机端口 (swp3-swp14)。请勿将 QSA 模块插入配置为分线端口的端口。
+
+当使用 QSA 模块连接到平台上的 10GbE/25GbE 集群端口时，链路可能无法建立。
 
 要解决此问题，请执行以下操作：
 
-* 对于 10GbE，手动将 swp1s0-3 链路速度设置为 10000，并将自动协商设置为关闭。
-* 对于 25GbE，手动将 swp2s0-3 链路速度设置为 25000，并将自动协商设置为关闭。
+* 对于 10GbE，手动将链路速度设置为 10000，并将自动协商设置为关闭。
+* 对于 25GbE，手动将链路速度设置为 25000，并将自动协商设置为关闭。
 
-
-
-NOTE: 使用 10GbE/25GbE QSA 适配器时，将其插入非分线 40GbE/100GbE 端口（swp3-swp14）。请勿将 QSA 适配器插入配置为分线端口的端口。
 
 
 
 == 设置分支端口的接口速度
 
-根据交换机端口中的收发器，您可能需要将交换机接口的速度设置为固定速度。如果使用 10GbE 和 25GbE 分支端口，请确认自动协商已关闭，并在交换机上设置接口速度。
+根据交换机端口中的收发器，您可能需要将交换机接口的速度设置为固定速度。如果使用 10GbE 和 25GbE 分支端口或 QSA 模块，请确认自动协商已关闭，并在交换机上设置接口速度。
 
 [role="tabbed-block"]
 ====
@@ -332,5 +331,7 @@ UP     swp16      100G  9216   BondMember  cs01 (swp16)     Master: cl
 ----
 --
 ====
+参见 link:https://hwu.netapp.com/Switch/Index["Hardware Universe"^]以及知识库文章 link:https://kb.netapp.com/Support/General_Support/What_additional_information_do_I_need_to_install_my_equipment_that_is_not_in_HWU["安装我的设备（HWU中没有包含这些信息）还需要哪些其他信息？"^] 了解更多信息。
+
 .下一步是什么？
 在您审核完布线和配置要求后，您可以link:install-cable-shelves-sn2100-cluster.html["将 NS224 货架连接成交换机连接的存储设备"]。

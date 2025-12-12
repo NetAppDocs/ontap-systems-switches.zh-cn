@@ -3,7 +3,7 @@ indexpage:
   title: 存储交换机
   summary: 使用本网站上的文档来安装、配置和维护用于ONTAP集群部署的存储交换机。
   keywords: storage switches, cisco nexus switches, cluster switches, ontap clusters
-  lead: 存储交换机使您能够构建具有两个以上节点的ONTAP集群。这些Cisco Nexus 9000 平台交换机为NetApp ONTAP环境中的可扩展集群互连解决方案提供了基础。
+  lead: 存储交换机使您能够构建具有两个以上节点的ONTAP集群。这些以太网存储交换机为NetApp ONTAP环境中的可扩展集群互连解决方案提供了基础。
   tiles:
   - title: 开始使用
     links:
