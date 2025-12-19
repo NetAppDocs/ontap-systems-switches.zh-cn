@@ -445,7 +445,7 @@ Are you sure you would like to reset the system? (y/n) *y*
 
 . 请注意以下事项：
 +
-.. 如果交换机上安装了额外的端口许可证，则必须修改 RCF 以配置额外的许可端口。看link:configure-licenses.html#activate-newly-licensed-ports["激活新授权的端口"]了解详情。
+.. 如果交换机上安装了额外的端口许可证，则必须修改 RCF 以配置额外的许可端口。看 link:configure-licenses.html#activate-newly-licensed-ports["激活新授权的端口"] 详情请见下文。但是，升级到 RCF 1.12 或更高版本时，不再需要进行这些修改，因为所有接口现在都已预先配置。
 .. 记录之前 RCF 中所做的任何自定义设置，并将这些设置应用到新的 RCF 中。例如，设置端口速度或硬编码 FEC 模式。
 
 
