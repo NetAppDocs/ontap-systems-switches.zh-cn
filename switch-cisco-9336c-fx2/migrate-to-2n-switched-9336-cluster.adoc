@@ -311,7 +311,7 @@ cs1(config)# interface e1/1/1-4, e1/2/1-4, e1/3/1-4, e1/4/1-4, e1/5/1-4, e1/6/1-
 cs1(config-if-range)# no shutdown
 ----
 ====
-. 确认所有集群 LIF 均已启动、运行正常并显示为： `true`为了 `Is Home`：
+. 确认所有集群 LIF 都已启动并正常运行：
 +
 `network interface show -vserver Cluster`
 
@@ -319,7 +319,7 @@ cs1(config-if-range)# no shutdown
 .显示示例
 [%collapsible]
 ====
-以下示例表明，节点 1 和节点 2 上的所有 LIF 都已启动，并且 `Is Home`结果属实：
+以下示例显示了 node1 和 node2 上的所有 LIF 都已启动：
 
 [listing]
 ----
@@ -329,9 +329,9 @@ cluster1::*> network interface show -vserver Cluster
 Vserver  Interface    Admin/Oper Address/Mask       Node        Port    Home
 -------- ------------ ---------- ------------------ ----------- ------- ----
 Cluster
-         node1_clus1  up/up      169.254.209.69/16  node1       e0a     true
+         node1_clus1  up/up      169.254.209.69/16  node1       e0b     false
          node1_clus2  up/up      169.254.49.125/16  node1       e0b     true
-         node2_clus1  up/up      169.254.47.194/16  node2       e0a     true
+         node2_clus1  up/up      169.254.47.194/16  node2       e0b     false
          node2_clus2  up/up      169.254.19.183/16  node2       e0b     true
 
 4 entries were displayed.

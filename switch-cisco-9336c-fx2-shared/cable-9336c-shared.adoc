@@ -44,7 +44,7 @@ image:9336c_image2.jpg["直连式"]
 
 每对交换机上的示例端口定义如下：
 
-image:cabling_worksheet.jpg["布线工作表"]
+image:cabling-worksheet.jpg["布线工作表"]
 
 其中：
 
@@ -60,7 +60,7 @@ image:cabling_worksheet.jpg["布线工作表"]
 
 您可以使用空白的布线工作表来记录集群中支持的节点平台。Hardware Universe的“支持的集群连接”表定义了平台使用的集群端口。
 
-image:blank_cabling_worksheet.jpg["空白布线工作表"]
+image:blank-cabling-worksheet.jpg["空白布线工作表"]
 
 其中：
 
