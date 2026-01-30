@@ -1,5 +1,5 @@
 ---
-permalink: switch-cisco-3232c/upgrade-3232c-storage-switches.html 
+permalink: switch-cisco-3232c-storage/upgrade-3232c-storage-switches.html 
 sidebar: sidebar 
 keywords: upgrade, cisco nexus, 3232c storage switch 
 summary: 'Cisco Nexus 3232C 存储交换机可以升级Cisco NX-OS 软件和参考配置文件 (RCF)。' 
@@ -25,8 +25,8 @@ summary: 'Cisco Nexus 3232C 存储交换机可以升级Cisco NX-OS 软件和参�
 +
 如果需要更改启动变量以反映当前的启动映像，则必须在重新应用 RCF 之前进行更改，以便在以后的重启中实例化正确的版本。
 
-* 您已参考了网站上提供的相应软件和升级指南。 http://www.cisco.com/en/US/products/ps9670/prod_installation_guides_list.html["CiscoNexus 3000 系列交换机"^]此页面包含有关Cisco存储升级和降级程序的完整文档。
-* 10 GbE 和 40/100 GbE 端口的数量在参考配置文件 (RCF) 中定义，该文件可在以下位置获取： https://mysupport.netapp.com/site/info/cisco-ethernet-switch["Cisco®以太网交换机"^]页。
+* 您已参考 link:http://www.cisco.com/en/US/products/ps9670/prod_installation_guides_list.html["CiscoNexus 3000 系列交换机"^] 页面上提供的相应软件和升级指南，以获取有关 Cisco 存储升级和降级过程的完整文档。
+* 10 GbE 和 40/100 GbE 端口的数量在 link:https://mysupport.netapp.com/site/info/cisco-ethernet-switch["Cisco®以太网交换机"^] 页面上提供的参考配置文件 (RCF) 中定义。
 
 
 
@@ -141,7 +141,7 @@ There are no entries matching your query.
 
 . 使用以下传输协议之一将交换机 S2 上的 RCF 复制到交换机启动闪存：FTP、HTTP、TFTP、SFTP 或 SCP。
 +
-有关Cisco命令的更多信息，请参阅 https://www.cisco.com/c/en/us/support/switches/nexus-3000-series-switches/products-command-reference-list.html["Cisco Nexus 3000 系列 NX-OS 命令参考"^]。
+有关 Cisco 命令的详细信息，请参见 link:https://www.cisco.com/c/en/us/support/switches/nexus-3000-series-switches/products-command-reference-list.html["Cisco Nexus 3000 系列 NX-OS 命令参考"^] 中的相应指南。
 
 +
 .显示示例
@@ -245,7 +245,7 @@ NOTE: 首次应用 RCF 时，出现 *错误：写入 VSH 命令失败* 消息是
 
 . 确认软件版本和交换机设置正确后，复制以下内容： `running-config`文件到 `startup-config`文件位于交换机 S2 上。
 +
-有关Cisco命令的更多信息，请参阅 https://www.cisco.com/c/en/us/support/switches/nexus-3000-series-switches/products-command-reference-list.html["Cisco Nexus 3000 系列 NX-OS 命令参考"^]。
+有关 Cisco 命令的详细信息，请参见 link:https://www.cisco.com/c/en/us/support/switches/nexus-3000-series-switches/products-command-reference-list.html["Cisco Nexus 3000 系列 NX-OS 命令参考"^] 中的相应指南。
 
 +
 .显示示例
@@ -378,7 +378,7 @@ S2#
 ====
 . 保存配置。
 +
-有关Cisco命令的更多信息，请参阅 https://www.cisco.com/c/en/us/support/switches/nexus-3000-series-switches/products-command-reference-list.html["Cisco Nexus 3000 系列 NX-OS 命令参考"^]。
+有关 Cisco 命令的详细信息，请参见 link:https://www.cisco.com/c/en/us/support/switches/nexus-3000-series-switches/products-command-reference-list.html["Cisco Nexus 3000 系列 NX-OS 命令参考"^] 中的相应指南。
 
 +
 系统提示您重新启动。
@@ -540,3 +540,6 @@ There are no entries matching your query.
 `system node autosupport invoke -node * -type all -message MAINT=END`
 
 
+
+.下一步是什么？
+升级交换机后，即可完成此操作link:../switch-cshm/config-overview.html["配置交换机健康监控"]。

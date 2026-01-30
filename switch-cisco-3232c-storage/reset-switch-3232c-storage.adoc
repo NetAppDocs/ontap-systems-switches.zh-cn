@@ -1,0 +1,49 @@
+---
+permalink: switch-cisco-3232c-storage/reset-switch-3232c-storage.html 
+sidebar: sidebar 
+keywords: 3232C reset switch to factory defaults, 3232C switches configuration, efos 
+summary: 在配置Cisco Nexus 3232C 交换机之前，请查看以下信息。 
+---
+= 将 3232C 存储交换机重置为出厂默认值
+:allow-uri-read: 
+
+
+[role="lead"]
+要将 3232C 存储开关重置为出厂默认值，必须擦除 3232C 存储开关设置。
+
+.关于此任务
+* 您必须使用串口控制台连接到交换机。
+* 此任务会重置管理网络的配置。
+
+
+.步骤
+. 清除现有配置：
++
+`write erase`
+
++
+[listing, subs="+quotes"]
+----
+(cs2)# *write erase*
+
+Warning: This command will erase the startup-configuration.
+Do you wish to proceed anyway? (y/n) [n] *y*
+----
+. 重新加载交换机软件：
++
+`reload`
+
++
+[listing, subs="+quotes"]
+----
+(cs2)# *reload*
+
+This command will reboot the system. (y/n)? [n] *y*
+----
++
+系统重新启动并进入配置向导。在启动过程中，如果收到提示“中止自动配置并继续正常设置？”(yes/no)[n]”，您应该回答*yes*才能继续。
+
+
+
+.下一步
+重置开关后，您可以根据自己的要求link:configure-software-overview-3232c-storage.html["重新配置"]它。

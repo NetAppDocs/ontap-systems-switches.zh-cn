@@ -1,0 +1,52 @@
+---
+permalink: switch-cisco-3232c-storage/install-switch-3232c-storage.html 
+sidebar: sidebar 
+keywords: require, configuration, information, documentation, cluster, management, network, switches, set up the switches - cisco nexus 3232c 
+summary: 按照此步骤安装 Cisco Nexus 3232C 存储交换机。 
+---
+= 安装 3232C 存储交换机
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+按照此步骤设置和配置 Cisco Nexus 3232C 存储交换机。
+
+.开始之前
+请确保您拥有以下物品：
+
+* 在安装现场访问 HTTP、FTP 或 TFTP 服务器，以下载适用的 NX-OS 和参考配置文件 (RCF) 版本。
+* 适用的NX-OS版本，可从以下网址下载： https://software.cisco.com/download/home["Cisco软件下载"^]页。
+* 适用的许可证、网络和配置信息以及线缆。
+* 可从NetApp支持站点下载适用的NetApp集群网络和管理网络 RCF。 http://mysupport.netapp.com/["mysupport.netapp.com"^] 。所有Cisco集群网络和管理网络交换机均采用Cisco标准出厂默认配置。这些交换机也具有当前版本的 NX-OS 软件，但未加载 RCF。
+* link:required-documentation-3232c-storage.html["所需的交换机和ONTAP文档"]。
+
+
+.步骤
+. 将集群网络和管理网络交换机及控制器安装到机架上。
++
+[cols="1,2"]
+|===
+| 如果您正在安装…… | 操作 
+
+
+ a| 
+NetApp系统机柜中的Cisco Nexus 3232C
+ a| 
+有关在NetApp机柜中安装交换机的说明，请参阅《在NetApp机柜中安装Cisco Nexus 3232C 集群交换机和直通面板》指南。
+
+
+
+ a| 
+电信机架中的设备
+ a| 
+请参阅交换机硬件安装指南和NetApp安装设置说明中提供的步骤。
+
+|===
+. 使用已完成的布线工作表，将集群网络和管理网络交换机连接到控制器。
+. 启动集群网络和管理网络交换机及控制器。
+
+
+.下一步是什么？
+安装 3232C 存储开关后，您就可以link:install-cisco-nexus-3232c-storage.html["将开关安装在 NetApp 机柜中"]。

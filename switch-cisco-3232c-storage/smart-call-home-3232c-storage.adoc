@@ -1,0 +1,29 @@
+---
+permalink: switch-cisco-3232c-storage/smart-call-home-3232c-storage.html 
+sidebar: sidebar 
+keywords: cisco 3232c, storage switches 
+summary: 您可以将 Cisco Nexus 3232C 交换机用作 AFF 或 FAS 集群中的交换机。 
+---
+= 智能呼叫中心的要求
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+要使用 Smart Call Home，您必须配置集群网络交换机以通过电子邮件与 Smart Call Home 系统进行通信。此外，您还可以选择设置集群网络交换机，以利用 Cisco 的嵌入式 Smart Call Home 支持功能。
+
+Smart Call Home 监控您网络上的硬件和软件组件。当发生关键系统配置时，它会生成基于电子邮件的通知并向目标配置文件中配置的所有收件人发出警报。
+
+Smart Call Home 监控您网络上的硬件和软件组件。当发生关键系统配置时，它会生成基于电子邮件的通知并向目标配置文件中配置的所有收件人发出警报。
+
+在使用 Smart Call Home 之前，请注意以下要求：
+
+* 必须架设邮件服务器。
+* 交换机必须与邮件服务器建立IP连接。
+* 必须配置联系人姓名（SNMP 服务器联系人）、电话号码和街道地址信息。这是为了确定所接收消息的来源。
+* CCO ID 必须与贵公司适用的Cisco SMARTnet 服务合同关联。
+* 设备必须安装Cisco SMARTnet 服务才能注册。
+
+
+这 http://www.cisco.com/c/en/us/products/switches/index.html["Cisco支持网站"^]包含有关配置智能呼叫中心命令的信息。
