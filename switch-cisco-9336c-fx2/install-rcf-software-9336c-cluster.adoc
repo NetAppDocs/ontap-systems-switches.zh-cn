@@ -167,28 +167,7 @@ cs1# copy running-config startup-config [#######################################
 +
 `*show file bootflash:write_erase.cfg*`
 
-. 问题 `write erase`清除当前已保存配置的命令：
-+
-`cs1# *write erase*`
-
-+
-`Warning: This command will erase the startup-configuration.`
-
-+
-`Do you wish to proceed anyway? (y/n)  [n] *y*`
-
-. 将之前保存的基本配置复制到启动配置中。
-+
-`cs1# *copy bootflash:write_erase.cfg startup-config*.`
-
-. 重启交换机cs1。
-+
-`cs1# *reload*`
-
-+
-`This command will reboot the system. (y/n)?  [n] *y*`
-
-. 在交换机 cs2 上重复步骤 1 至 13。
+. 在交换机 cs2 上重复步骤 1 至 10。
 . 将ONTAP集群中所有节点的集群端口连接到交换机 cs1 和 cs2。
 
 
