@@ -274,7 +274,7 @@ cluster1::*>
 . 保存基本配置详细信息 `write_erase.cfg`启动闪存上的文件。
 +
 
-NOTE: 升级或应用新的 RCF 时，必须清除交换机设置并执行基本配置。您必须连接到交换机串行控制台端口才能重新设置交换机。
+NOTE: 在升级或应用新的 RCF 时，您必须清除交换机设置并执行基本配置。
 
 +
 `cs2# show run | section "switchname" > bootflash:write_erase.cfg`
@@ -303,9 +303,6 @@ NOTE: 升级或应用新的 RCF 时，必须清除交换机设置并执行基本
 
 +
 `cs2# echo "hardware access-list tcam region qos 256" >> bootflash:write_erase.cfg`
-
-+
-请参阅知识库文章 https://kb.netapp.com/on-prem/Switches/Cisco-KBs/How_to_clear_configuration_on_a_Cisco_interconnect_switch_while_retaining_remote_connectivity["如何在保持远程连接的情况下清除Cisco互连交换机上的配置"^]更多详情请见下文。
 
 . 确认 `write_erase.cfg`文件已按预期填充：
 +
