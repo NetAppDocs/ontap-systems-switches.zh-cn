@@ -5763,4 +5763,9 @@
   <block id="6754d52ab3aba634c1d3868f6ff1173b" category="paragraph"><block ref="4b5c6435698a249ed2ca19ecf903991f" prefix="" category="inline-code"></block></block>
   <block id="eff487118c44b434c2174aab2b3a4e1c" category="list-text">重启交换机 cs2。</block>
   <block id="fb14b077ecd3df929fa7f98e0e505f8c" category="admonition">在升级或应用新的 RCF 时，您必须清除交换机设置并执行基本配置。</block>
+  <block id="ece376b7acc25f86ff2e09f80d38755c" category="paragraph">请务必执行以下操作：</block>
+  <block id="9a9e15bbbf81b37074eb3677448baf70" category="list-text">在交换机上运行<block ref="856e0a903a301d6d44f55e6eb5b82200" prefix=" " category="inline-code"></block>命令，查看安装或升级新 NX-OS 软件映像的影响。它验证映像完整性，检查必要的重新启动，评估硬件兼容性，并确认有足够的空间。</block>
+  <block id="1ce0015d97074c710fb18a71c0facacd" category="list-text">查看目标 NX-OS 软件版本的发行说明，查看是否有任何特定要求。</block>
+  <block id="07e8467e284d5ad4e9a20246ae001803" category="list-text">确认您有交换机配置的当前备份。</block>
+  <block id="0280c61cdd286c198feabf97c27f4988" category="list-text">确认您有一个完全正常运行的集群（日志中没有错误或类似问题）。</block>
 </blocks>
