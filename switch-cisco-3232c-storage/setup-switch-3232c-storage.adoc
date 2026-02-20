@@ -16,7 +16,7 @@ summary: 如果您还没有所需的配置信息和文档，则需要在设置�
 .开始之前
 * 在安装现场访问 HTTP、FTP 或 TFTP 服务器，以下载适用的 NX-OS 和参考配置文件 (RCF) 版本。
 * 适用的NX-OS版本，可从以下网址下载： https://software.cisco.com/download/home["Cisco软件下载"^]页。
-* 所需的集群网络和管理网络交换机文档。
+* 所需的网络和管理网络交换机文档。
 +
 有关更多信息，请参见 link:required-documentation-3232c-storage.html["所需文件"]。
 
@@ -25,12 +25,11 @@ summary: 如果您还没有所需的配置信息和文档，则需要在设置�
 https://netapp.com/us/documenation/index.aspx["NetApp文档"^]
 
 * 适用的许可证、网络和配置信息以及线缆。
-* 已完成布线工作表。
-* 适用的NetApp集群网络和管理网络 RCF，可从NetApp支持站点下载。 http://mysupport.netapp.com/["mysupport.netapp.com"^]对于您收到的交换机。所有Cisco集群网络和管理网络交换机均采用Cisco标准出厂默认配置。这些交换机也安装了最新版本的 NX-OS 软件，但没有加载 RCF。
+* 适用的 NetApp 存储网络和管理网络 RCF，从 NetApp 支持站点 http://mysupport.netapp.com/["mysupport.netapp.com"^]为您收到的交换机下载。所有 Cisco 存储网络和管理网络交换机均采用标准的 Cisco 出厂默认配置。这些交换机还具有当前版本的 NX-OS 软件，但没有加载 RCF。
 
 
 .步骤
-. 将集群网络和管理网络交换机及控制器安装到机架上。
+. 架设存储网络和管理网络交换机和控制器。
 +
 [cols="1,2"]
 |===
@@ -50,9 +49,9 @@ NetApp系统机柜中的Cisco Nexus 3232C
 请参阅交换机硬件安装指南和NetApp安装设置说明中提供的步骤。
 
 |===
-. 使用已完成的布线工作表，将集群网络和管理网络交换机连接到控制器。
-. 启动集群网络和管理网络交换机及控制器。
-. 对集群网络交换机进行初始配置。
+. 使用完成的布线工作表将存储网络和管理网络交换机布线到控制器。
+. 打开存储网络和管理网络交换机和控制器的电源。
+. 执行存储网络交换机的初始配置。
 +
 首次启动交换机时，请对以下初始设置问题提供相应的答案。您网站的安全策略定义了要启用的响应和服务。
 
@@ -215,7 +214,7 @@ NOTE: 如果此时不保存配置，下次重启交换机时，所有更改都�
 
 |===
 . 在设置结束时显示的界面中，确认您所做的配置选择，并确保保存配置。
-. 检查集群网络交换机上的版本，如有必要，从 https://software.cisco.com/download/home["Cisco软件下载"^]页面将 NetApp 支持的软件版本下载到交换机。
+. 检查网络交换机上的版本，如有必要，请从  https://software.cisco.com/download/home["Cisco软件下载"^] 页面将 NetApp 支持的软件版本下载到交换机。
 
 
 .下一步是什么？

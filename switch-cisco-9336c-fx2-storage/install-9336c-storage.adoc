@@ -1,8 +1,8 @@
 ---
 permalink: switch-cisco-9336c-fx2-storage/install-9336c-storage.html 
 sidebar: sidebar 
-keywords: require, configuration, information, documentation, cluster, management, network, switches, set up the switches - cisco nexus 9336c-fx2 
-summary: 如果您还没有所需的配置信息和文档，则需要在设置集群和管理网络交换机之前收集这些信息。 
+keywords: require, configuration, information, documentation, storage, management, network, switches, set up the switches - cisco nexus 9336c-fx2 
+summary: 如果您还没有所需的配置信息和文档，则需要在设置存储和管理网络交换机之前收集这些信息。 
 ---
 = 安装 9336C-FX2 和 9336C-FX2-T 存储交换机
 :allow-uri-read: 
@@ -20,12 +20,15 @@ summary: 如果您还没有所需的配置信息和文档，则需要在设置�
 * 适用的NX-OS版本，可从以下网址下载： https://software.cisco.com/download/home["Cisco软件下载"^]页。
 * 适用的许可证、网络和配置信息以及线缆。
 * 完全的link:setup-worksheet-9336c-storage.html["布线工作表"]。
-* 可从NetApp支持站点下载适用的NetApp集群网络和管理网络 RCF。 http://mysupport.netapp.com/["mysupport.netapp.com"^] 。所有Cisco集群网络和管理网络交换机均采用Cisco标准出厂默认配置。这些交换机也具有当前版本的 NX-OS 软件，但未加载 RCF。
+* 从 NetApp 支持站点下载的适用 NetApp 存储网络和管理网络 RCF，网址为 http://mysupport.netapp.com/["mysupport.netapp.com"^]。
++
+所有 Cisco 存储网络和管理网络交换机均采用标准的 Cisco 出厂默认配置。这些交换机还具有当前版本的 NX-OS 软件，但没有加载 RCF。
+
 * 需要提供交换机文档。看link:required-documentation-9336c-storage.html["所需文件"]了解更多信息。
 
 
 .步骤
-. 将集群网络和管理网络交换机及控制器安装到机架上。
+. 将网络和管理网络交换机和控制器安装到机架中。
 +
 [cols="1,2"]
 |===
@@ -45,8 +48,8 @@ NetApp系统机柜中的Cisco Nexus 9336C-FX2
 请参阅交换机硬件安装指南和NetApp安装设置说明中提供的步骤。
 
 |===
-. 使用已完成的布线工作表，将集群网络和管理网络交换机连接到控制器。
-. 启动集群网络和管理网络交换机及控制器。
+. 使用完成的布线工作表将网络交换机和管理网络交换机连接到控制器。
+. 打开网络和管理网络交换机和控制器的电源。
 
 
 .下一步是什么？

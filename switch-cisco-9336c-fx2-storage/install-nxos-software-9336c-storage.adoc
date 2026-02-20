@@ -11,7 +11,7 @@ summary: 您可以按照以下步骤在 Nexus 9336C-FX2 集群交换机上安装
 
 
 [role="lead"]
-按照以下步骤在 Nexus 9336C-FX2 和 9336C-FX2-T 交换机上安装 NX-OS 软件。
+按照此步骤在 Nexus 9336C-FX2 和 9336C-FX2-T 交换机上安装或升级 NX-OS 软件。
 
 开始之前，请先完成以下步骤。link:install-nxos-overview-9336c-storage.html["准备安装 NX-OS 和 RCF"] 。
 
@@ -20,12 +20,10 @@ summary: 您可以按照以下步骤在 Nexus 9336C-FX2 集群交换机上安装
 == 审查要求
 
 .开始之前
-请务必执行以下操作：
+请确保您拥有以下物品：
 
-* 在交换机上运行 `show install all impact nxos bootflash:<image_name>.bin`命令，查看安装或升级新 NX-OS 软件映像的影响。它验证映像完整性，检查必要的重新启动，评估硬件兼容性，并确认有足够的空间。
-* 查看目标 NX-OS 软件版本的发行说明，查看是否有任何特定要求。
-* 确认您有交换机配置的当前备份。
-* 确认您有一个完全正常运行的集群（日志中没有错误或类似问题）。
+* 交换机配置的当前备份。
+* 一个功能齐全的集群（日志中没有错误或类似问题）。
 
 
 .建议的文档
@@ -49,21 +47,19 @@ summary: 您可以按照以下步骤在 Nexus 9336C-FX2 集群交换机上安装
 .关于示例
 本流程中的示例使用以下开关和节点命名规则：
 
-* 这两个Cisco交换机的名称分别是 cs1 和 cs2。
-* 节点名称为cluster1-01、cluster1-02、cluster1-03和cluster1-04。
-* 集群 LIF 名称为 cluster1-01_clus1、cluster1-01_clus2、cluster1-02_clus1、cluster1-02_clus2、cluster1-03_clus1、cluster1-03_clus2、cluster1-04_clus1 和 cluster1-04_clus2。
-* 这 `cluster1::*>`prompt 指示集群名称。
+* 两台 Cisco 交换机的名称是 s1 和 s2。
+* 节点名称为 cluster1-01 和 cluster1-02。
 
 
 
 
-== 安装软件
+== 安装或升级软件
 
 该过程需要同时使用ONTAP命令和Cisco Nexus 9000 系列交换机命令；除非另有说明，否则使用ONTAP命令。
 
 .步骤
-. 将集群交换机连接到管理网络。
-. 使用 ping 命令验证与托管 NX-OS 软件和 RCF 的服务器的连接性。
+. 将交换机连接到管理网络。
+. 使用 `ping`用于验证与托管 NX-OS 软件和 RCF 的服务器的连接性的命令。
 +
 .显示示例
 [%collapsible]
@@ -72,155 +68,101 @@ summary: 您可以按照以下步骤在 Nexus 9336C-FX2 集群交换机上安装
 
 [listing, subs="+quotes"]
 ----
-cs2# *ping 172.19.2.1 VRF management*
+s2# *ping 172.19.2.1 VRF management*
 Pinging 172.19.2.1 with 0 bytes of data:
 
 Reply From 172.19.2.1: icmp_seq = 0. time= 5910 usec.
 ----
 ====
-. 显示每个节点上连接到集群交换机的集群端口：
+. 如果您是首次设置交换机，请跳至第 5 步。如果要升级交换机，请继续下一步。
+. 检查每个节点存储端口和存储盘架端口的管理或运行状态。
 +
-`network device-discovery show`
-
+.. 显示节点存储端口属性：
++
+[source, cli]
+----
+storage port show
+----
 +
 .显示示例
 [%collapsible]
 ====
 [listing, subs="+quotes"]
 ----
-cluster1::*> *network device-discovery show*
-Node/       Local  Discovered
-Protocol    Port   Device (LLDP: ChassisID)  Interface         Platform
------------ ------ ------------------------- ----------------  --------------
-cluster1-01/cdp
-            e0a    cs1                       Ethernet1/7       N9K-C9336C-FX2
-            e0b    cs2                       Ethernet1/7       N9K-C9336C-FX2
-cluster1-02/cdp
-            e0a    cs1                       Ethernet1/8       N9K-C9336C-FX2
-            e0b    cs2                       Ethernet1/8       N9K-C9336C-FX2
-cluster1-03/cdp
-            e0a    cs1                       Ethernet1/1/1     N9K-C9336C-FX2
-            e0b    cs2                       Ethernet1/1/1     N9K-C9336C-FX2
-cluster1-04/cdp
-            e0a    cs1                       Ethernet1/1/2     N9K-C9336C-FX2
-            e0b    cs2                       Ethernet1/1/2     N9K-C9336C-FX2
-cluster1::*>
+cluster1::*> *storage port show*
+Speed                     VLAN
+Node           Port Type  Mode    (Gb/s) State    Status      ID
+-------------- ---- ----- ------- ------ -------- --------- ----
+cluster1-01
+               e5a  ENET  storage    100 enabled  online      -
+               e3b  ENET  storage    100 enabled  online      -
+cluster1-02
+
+               e5a  ENET  storage    100 enabled  online      -
+               e3b  ENET  storage    100 enabled  online      -
+.
+.
 ----
 ====
-. 检查每个集群端口的管理和运行状态。
+.. 显示存储架端口属性：
 +
-.. 确认集群所有端口均已启动且状态正常：
-+
-`network port show -ipspace Cluster`
-
+[source, cli]
+----
+storage shelf port show
+----
 +
 .显示示例
 [%collapsible]
 ====
 [listing, subs="+quotes"]
 ----
-cluster1::*> *network port show -ipspace Cluster*
+cluster1::*> *storage shelf port show*
 
-Node: cluster1-01
-                                                                       Ignore
-                                                  Speed(Mbps) Health   Health
-Port      IPspace      Broadcast Domain Link MTU  Admin/Oper  Status   Status
---------- ------------ ---------------- ---- ---- ----------- -------- ------
-e0a       Cluster      Cluster          up   9000  auto/100000 healthy false
-e0b       Cluster      Cluster          up   9000  auto/100000 healthy false
-
-Node: cluster1-02
-                                                                       Ignore
-                                                  Speed(Mbps) Health   Health
-Port      IPspace      Broadcast Domain Link MTU  Admin/Oper  Status   Status
---------- ------------ ---------------- ---- ---- ----------- -------- ------
-e0a       Cluster      Cluster          up   9000  auto/100000 healthy false
-e0b       Cluster      Cluster          up   9000  auto/100000 healthy false
-8 entries were displayed.
-
-Node: cluster1-03
-
-   Ignore
-                                                  Speed(Mbps) Health   Health
-Port      IPspace      Broadcast Domain Link MTU  Admin/Oper  Status   Status
---------- ------------ ---------------- ---- ---- ----------- -------- ------
-e0a       Cluster      Cluster          up   9000  auto/10000 healthy  false
-e0b       Cluster      Cluster          up   9000  auto/10000 healthy  false
-
-Node: cluster1-04
-                                                                       Ignore
-                                                  Speed(Mbps) Health   Health
-Port      IPspace      Broadcast Domain Link MTU  Admin/Oper  Status   Status
---------- ------------ ---------------- ---- ---- ----------- -------- ------
-e0a       Cluster      Cluster          up   9000  auto/10000 healthy  false
-e0b       Cluster      Cluster          up   9000  auto/10000 healthy  false
-cluster1::*>
+Shelf ID Module State        Internal?
+----- -- ------ ------------ ---------
+1.4
+       0 A      connected    false
+       1 A      connected    false
+       2 B      connected    false
+       3 B      connected    false
+.
+.
 ----
 ====
-.. 确认所有集群接口（LIF）都位于主端口上：
+.. 验证是否为交换机启用了交换机健康监控 (CSHM)，以便对交换机进行监控：
 +
-`network interface show -vserver Cluster`
-
+[source, cli]
+----
+system switch ethernet show
+----
 +
 .显示示例
 [%collapsible]
 ====
 [listing, subs="+quotes"]
 ----
-cluster1::*> *network interface show -vserver Cluster*
-            Logical            Status     Network           Current      Current Is
-Vserver     Interface          Admin/Oper Address/Mask      Node         Port    Home
------------ ------------------ ---------- ----------------- ------------ ------- ----
-Cluster
-            cluster1-01_clus1  up/up     169.254.3.4/23     cluster1-01  e0a     true
-            cluster1-01_clus2  up/up     169.254.3.5/23     cluster1-01  e0b     true
-            cluster1-02_clus1  up/up     169.254.3.8/23     cluster1-02  e0a     true
-            cluster1-02_clus2  up/up     169.254.3.9/23     cluster1-02  e0b     true
-            cluster1-03_clus1  up/up     169.254.1.3/23     cluster1-03  e0a     true
-            cluster1-03_clus2  up/up     169.254.1.1/23     cluster1-03  e0b     true
-            cluster1-04_clus1  up/up     169.254.1.6/23     cluster1-04  e0a     true
-            cluster1-04_clus2  up/up     169.254.1.7/23     cluster1-04  e0b     true
-8 entries were displayed.
-cluster1::*>
-----
-====
-.. 确认集群显示两个集群交换机的信息：
-+
-`system cluster-switch show -is-monitoring-enabled-operational true`
-
-+
-.显示示例
-[%collapsible]
-====
-[listing, subs="+quotes"]
-----
-cluster1::*> *system cluster-switch show -is-monitoring-enabled-operational true*
-Switch                      Type               Address          Model
---------------------------- ------------------ ---------------- --------------
-cs1                         cluster-network    10.233.205.90    N9K-C9336C-FX2
-     Serial Number: FOCXXXXXXGD
+cluster1::> *system switch ethernet show*
+  Switch            Type               Address          Model
+  ----------------- ------------------ ---------------- ---------------
+  s1                storage-network    1.2.3.4          N9K-C9336C-FX2
+     Serial Number: FFFXXXXXXX1
       Is Monitored: true
             Reason: None
   Software Version: Cisco Nexus Operating System (NX-OS) Software, Version
-                    9.3(5)
-    Version Source: CDP
-
-cs2                         cluster-network    10.233.205.91    N9K-C9336C-FX2
-     Serial Number: FOCXXXXXXGS
+                    10.3(4a)
+    Version Source: CDP/ISDP
+  s2                storage-network    2.3.4.5          N9K-C9336C-FX2
+     Serial Number: FFFXXXXXXX2
       Is Monitored: true
             Reason: None
   Software Version: Cisco Nexus Operating System (NX-OS) Software, Version
-                    9.3(5)
-    Version Source: CDP
-cluster1::*>
+                    10.3(4a)
+    Version Source: CDP/ISDP
 ----
 ====
 
 
-. 禁用集群 LIF 的自动回滚功能。集群 LIF 会故障转移到伙伴集群交换机，并在您对目标交换机执行升级过程时保留在该交换机上：
-+
-`network interface modify -vserver Cluster -lif * -auto-revert false`
-
+. 使用 SSH 或串行控制台登录到该交换机。
 . 将 NX-OS 软件和 EPLD 映像复制到 Nexus 9336C-FX2 交换机。
 +
 .显示示例
@@ -228,7 +170,7 @@ cluster1::*>
 ====
 [listing, subs="+quotes"]
 ----
-cs2# *copy sftp: bootflash: vrf management*
+s2# *copy sftp: bootflash: vrf management*
 Enter source filename: */code/nxos.9.3.5.bin*
 Enter hostname for the sftp server: *172.19.2.1*
 Enter username: *user1*
@@ -245,7 +187,7 @@ Copy complete, now saving to disk (please wait)...
 Copy complete.
 
 
-cs2# *copy sftp: bootflash: vrf management*
+s2# *copy sftp: bootflash: vrf management*
 Enter source filename: */code/n9000-epld.9.3.5.img*
 Enter hostname for the sftp server: *172.19.2.1*
 Enter username: *user1*
@@ -272,7 +214,7 @@ Copy complete.
 ====
 [listing, subs="+quotes"]
 ----
-cs2# *show version*
+s2# *show version*
 Cisco Nexus Operating System (NX-OS) Software
 TAC support: http://www.cisco.com/tac
 Copyright (C) 2002-2020, Cisco and/or its affiliates.
@@ -306,7 +248,7 @@ Hardware
   Intel(R) Xeon(R) CPU E5-2403 v2 @ 1.80GHz with 8154432 kB of memory.
   Processor Board ID FOC20291J6K
 
-  Device name: cs2
+  Device name: s2
   bootflash:   53298520 kB
 Kernel uptime is 0 day(s), 0 hour(s), 3 minute(s), 42 second(s)
 
@@ -320,9 +262,6 @@ plugin
   Core Plugin, Ethernet Plugin
 
 Active Package(s):
-
-
-cs2#
 ----
 ====
 . 安装 NX-OS 镜像。
@@ -335,7 +274,7 @@ cs2#
 ====
 [listing, subs="+quotes"]
 ----
-cs2# *install all nxos bootflash:nxos.9.3.5.bin*
+s2# *install all nxos bootflash:nxos.9.3.5.bin*
 
 Installer will perform compatibility check first. Please wait.
 Installer is forced disruptive
@@ -407,7 +346,7 @@ Finishing the upgrade, switch will reboot in 10 seconds.
 ====
 [listing, subs="+quotes"]
 ----
-cs2# *show version*
+s2# *show version*
 
 Cisco Nexus Operating System (NX-OS) Software
 TAC support: http://www.cisco.com/tac
@@ -442,7 +381,7 @@ Hardware
   Intel(R) Xeon(R) CPU E5-2403 v2 @ 1.80GHz with 8154432 kB of memory.
   Processor Board ID FOC20291J6K
 
-  Device name: cs2
+  Device name: s2
   bootflash:   53298520 kB
 Kernel uptime is 0 day(s), 0 hour(s), 3 minute(s), 42 second(s)
 
@@ -464,7 +403,7 @@ Active Package(s):
 ====
 [listing, subs="+quotes"]
 ----
-cs2# *show version module 1 epld*
+s2# *show version module 1 epld*
 
 EPLD Device                     Version
 ---------------------------------------
@@ -476,7 +415,7 @@ GEM  FPGA                        0x2
 GEM  FPGA                        0x2
 GEM  FPGA                        0x2
 
-cs2# *install epld bootflash:n9000-epld.9.3.5.img module all*
+s2# *install epld bootflash:n9000-epld.9.3.5.img module all*
 Compatibility check:
 Module        Type         Upgradable        Impact    Reason
 ------  ------------------ ----------------- --------- -----------
@@ -508,14 +447,14 @@ EPLDs upgraded.
 Module 1 EPLD upgrade is successful.
 ----
 ====
-. 交换机重启后，再次登录并验证新版本的 EPLD 是否已成功加载。
+. 交换机重新启动后，请重新登录并验证新版本的 EPLD 已成功加载。
 +
 .显示示例
 [%collapsible]
 ====
 [listing, subs="+quotes"]
 ----
-cs2# *show version module 1 epld*
+s2# *show version module 1 epld*
 
 EPLD Device                     Version
 ---------------------------------------
@@ -528,238 +467,95 @@ GEM  FPGA                        0x2
 GEM  FPGA                        0x2
 ----
 ====
-. 检查集群上集群端口的运行状况。
+. 如果您是首次设置交换机，请跳至第 14 步。如果要升级交换机，请继续下一步。
+. 验证每个节点存储端口和存储盘架端口的运行状况。
 +
-.. 确认集群中所有节点的集群端口均已启动且运行状况良好：
+.. 显示节点存储端口属性：
 +
-`network port show -ipspace Cluster`
-
-+
-.显示示例
-[%collapsible]
-====
-[listing, subs="+quotes"]
+[source, cli]
 ----
-cluster1::*> *network port show -ipspace Cluster*
-
-Node: cluster1-01
-                                                                       Ignore
-                                                  Speed(Mbps) Health   Health
-Port      IPspace      Broadcast Domain Link MTU  Admin/Oper  Status   Status
---------- ------------ ---------------- ---- ---- ----------- -------- ------
-e0a       Cluster      Cluster          up   9000  auto/10000 healthy  false
-e0b       Cluster      Cluster          up   9000  auto/10000 healthy  false
-
-Node: cluster1-02
-                                                                       Ignore
-                                                  Speed(Mbps) Health   Health
-Port      IPspace      Broadcast Domain Link MTU  Admin/Oper  Status   Status
---------- ------------ ---------------- ---- ---- ----------- -------- ------
-e0a       Cluster      Cluster          up   9000  auto/10000 healthy  false
-e0b       Cluster      Cluster          up   9000  auto/10000 healthy  false
-
-Node: cluster1-03
-                                                                       Ignore
-                                                  Speed(Mbps) Health   Health
-Port      IPspace      Broadcast Domain Link MTU  Admin/Oper  Status   Status
---------- ------------ ---------------- ---- ---- ----------- -------- ------
-e0a       Cluster      Cluster          up   9000  auto/100000 healthy false
-e0b       Cluster      Cluster          up   9000  auto/100000 healthy false
-
-Node: cluster1-04
-                                                                       Ignore
-                                                  Speed(Mbps) Health   Health
-Port      IPspace      Broadcast Domain Link MTU  Admin/Oper  Status   Status
---------- ------------ ---------------- ---- ---- ----------- -------- ------
-e0a       Cluster      Cluster          up   9000  auto/100000 healthy false
-e0b       Cluster      Cluster          up   9000  auto/100000 healthy false
-8 entries were displayed.
+storage port show
 ----
-====
-.. 从集群中验证交换机的运行状况。
-+
-`network device-discovery show -protocol cdp`
-
 +
 .显示示例
 [%collapsible]
 ====
 [listing, subs="+quotes"]
 ----
-cluster1::*> *network device-discovery show -protocol cdp*
-Node/       Local  Discovered
-Protocol    Port   Device (LLDP: ChassisID)  Interface         Platform
------------ ------ ------------------------- ----------------- --------------
-cluster1-01/cdp
-            e0a    cs1                       Ethernet1/7       N9K-C9336C-FX2
-            e0b    cs2                       Ethernet1/7       N9K-C9336C-FX2
-cluster01-2/cdp
-            e0a    cs1                       Ethernet1/8       N9K-C9336C-FX2
-            e0b    cs2                       Ethernet1/8       N9K-C9336C-FX2
-cluster01-3/cdp
-            e0a    cs1                       Ethernet1/1/1     N9K-C9336C-FX2
-            e0b    cs2                       Ethernet1/1/1     N9K-C9336C-FX2
-cluster1-04/cdp
-            e0a    cs1                       Ethernet1/1/2     N9K-C9336C-FX2
-            e0b    cs2                       Ethernet1/1/2     N9K-C9336C-FX2
-
-cluster1::*> *system cluster-switch show -is-monitoring-enabled-operational true*
-Switch                      Type               Address          Model
---------------------------- ------------------ ---------------- --------------
-cs1                         cluster-network    10.233.205.90    N9K-C9336C-FX2
-     Serial Number: FOCXXXXXXGD
-      Is Monitored: true
-            Reason: None
-  Software Version: Cisco Nexus Operating System (NX-OS) Software, Version
-                    9.3(5)
-    Version Source: CDP
-
-cs2                         cluster-network    10.233.205.91    N9K-C9336C-FX2
-     Serial Number: FOCXXXXXXGS
-      Is Monitored: true
-            Reason: None
-  Software Version: Cisco Nexus Operating System (NX-OS) Software, Version
-                    9.3(5)
-    Version Source: CDP
-
-2 entries were displayed.
-----
-根据交换机上先前加载的 RCF 版本，您可能会在 cs1 交换机控制台上看到以下输出：
-
-[listing]
-----
-2020 Nov 17 16:07:18 cs1 %$ VDC-1 %$ %STP-2-UNBLOCK_CONSIST_PORT: Unblocking port port-channel1 on VLAN0092. Port consistency restored.
-2020 Nov 17 16:07:23 cs1 %$ VDC-1 %$ %STP-2-BLOCK_PVID_PEER: Blocking port-channel1 on VLAN0001. Inconsistent peer vlan.
-2020 Nov 17 16:07:23 cs1 %$ VDC-1 %$ %STP-2-BLOCK_PVID_LOCAL: Blocking port-channel1 on VLAN0092. Inconsistent local vlan.
-----
-====
-
-
-. 验证集群是否运行正常：
-+
-`cluster show`
-
-+
-.显示示例
-[%collapsible]
-====
-[listing, subs="+quotes"]
-----
-cluster1::*> *cluster show*
-Node                 Health   Eligibility   Epsilon
--------------------- -------- ------------- -------
-cluster1-01          true     true          false
-cluster1-02          true     true          false
-cluster1-03          true     true          true
-cluster1-04          true     true          false
-4 entries were displayed.
-cluster1::*>
-----
-====
-. 重复步骤 6 至 13，在交换机 cs1 上安装 NX-OS 软件。
-. 在集群 LIF 上启用自动回滚之前，请验证远程集群接口的连接性：
-
-
-[role="tabbed-block"]
-====
-.ONTAP 9.9.1 及更高版本
---
-你可以使用 `network interface check cluster-connectivity`执行命令以启动集群连接性检查，然后显示详细信息：
-
-`network interface check cluster-connectivity start`和 `network interface check cluster-connectivity show`
-
-[listing, subs="+quotes"]
-----
-cluster1::*> *network interface check cluster-connectivity start*
-----
-*注意：*运行程序前请等待几秒钟 `show`显示详细信息的命令。
-
-[listing, subs="+quotes"]
-----
-cluster1::*> *network interface check cluster-connectivity show*
-                                  Source               Destination         Packet
-Node   Date                       LIF                  LIF                 Loss
------- -------------------------- -------------------- ------------------- -----------
+cluster1::*> *storage port show*
+Speed                     VLAN
+Node           Port Type  Mode    (Gb/s) State    Status      ID
+-------------- ---- ----- ------- ------ -------- --------- ----
 cluster1-01
-       3/5/2022 19:21:18 -06:00   cluster1-01_clus2    cluster1-02-clus1   none
-       3/5/2022 19:21:20 -06:00   cluster1-01_clus2    cluster1-02_clus2   none
+               e5a  ENET  storage    100 enabled  online      -
+               e3b  ENET  storage    100 enabled  online      -
 cluster1-02
-       3/5/2022 19:21:18 -06:00   cluster1-02_clus2    cluster1-01_clus1   none
-       3/5/2022 19:21:20 -06:00   cluster1-02_clus2    cluster1-01_clus2   none
+
+               e5a  ENET  storage    100 enabled  online      -
+               e3b  ENET  storage    100 enabled  online      -
+.
+.
 ----
---
-.所有ONTAP版本
---
-对于所有ONTAP版本，您也可以使用 `cluster ping-cluster -node <name>`检查连接性的命令：
-
-`cluster ping-cluster -node <name>`
-
-[listing, subs="+quotes"]
-----
-cluster1::*> *cluster ping-cluster -node local*
-Host is cluster1-02
-Getting addresses from network interface table...
-Cluster cluster1-01_clus1 169.254.209.69 cluster1-01     e0a
-Cluster cluster1-01_clus2 169.254.49.125 cluster1-01     e0b
-Cluster cluster1-02_clus1 169.254.47.194 cluster1-02     e0a
-Cluster cluster1-02_clus2 169.254.19.183 cluster1-02     e0b
-Local = 169.254.47.194 169.254.19.183
-Remote = 169.254.209.69 169.254.49.125
-Cluster Vserver Id = 4294967293
-Ping status:
-
-Basic connectivity succeeds on 4 path(s)
-Basic connectivity fails on 0 path(s)
-
-Detected 9000 byte MTU on 4 path(s):
-    Local 169.254.19.183 to Remote 169.254.209.69
-    Local 169.254.19.183 to Remote 169.254.49.125
-    Local 169.254.47.194 to Remote 169.254.209.69
-    Local 169.254.47.194 to Remote 169.254.49.125
-Larger than PMTU communication succeeds on 4 path(s)
-RPC status:
-2 paths up, 0 paths down (tcp check)
-2 paths up, 0 paths down (udp check)
-----
---
 ====
-. [[step16]]启用集群 LIF 的自动还原功能。
+.. 显示存储架端口属性：
 +
-`*network interface modify -vserver Cluster -lif * -auto-revert true*`
-
-. 确认集群 LIF 已恢复到其原端口：
-+
-`network interface show -vserver Cluster`
-
+[source, cli]
+----
+storage shelf port show
+----
 +
 .显示示例
 [%collapsible]
 ====
 [listing, subs="+quotes"]
 ----
-cluster1::*> *network interface show -vserver Cluster*
-            Logical            Status     Network            Current             Current Is
-Vserver     Interface          Admin/Oper Address/Mask       Node                Port    Home
------------ ------------------ ---------- ------------------ ------------------- ------- ----
-Cluster
-            cluster1-01_clus1  up/up      169.254.3.4/23     cluster1-01         e0b     true
-            cluster1-01_clus2  up/up      169.254.3.5/23     cluster1-01         e0b     true
-            cluster1-02_clus1  up/up      169.254.3.8/23     cluster1-02         e0b     true
-            cluster1-02_clus2  up/up      169.254.3.9/23     cluster1-02         e0b     true
-            cluster1-03_clus1  up/up      169.254.1.3/23     cluster1-03         e0b     true
-            cluster1-03_clus2  up/up      169.254.1.1/23     cluster1-03         e0b     true
-            cluster1-04_clus1  up/up      169.254.1.6/23     cluster1-04         e0b     true
-            cluster1-04_clus2  up/up      169.254.1.7/23     cluster1-04         e0b     true
-8 entries were displayed.
-cluster1::*>
+cluster1::*> *storage shelf port show*
+
+Shelf ID Module State        Internal?
+----- -- ------ ------------ ---------
+1.4
+       0 A      connected    false
+       1 A      connected    false
+       2 B      connected    false
+       3 B      connected    false
+.
+.
 ----
 ====
+.. 确认已为交换机启用交换机健康监控 (CSHM)，以便对其进行监控：
 +
-如果任何集群 LIF 尚未返回到其源端口，请从本地节点手动将其还原：
-
+[source, cli]
+----
+system switch ethernet show
+----
 +
-`network interface revert -vserver Cluster -lif <lif_name>`
+.显示示例
+[%collapsible]
+====
+[listing, subs="+quotes"]
+----
+cluster1::> *system switch ethernet show*
+  Switch            Type               Address          Model
+  ----------------- ------------------ ---------------- ---------------
+  s1                storage-network    1.2.3.4          N9K-C9336C-FX2
+     Serial Number: FFFXXXXXXX1
+      Is Monitored: true
+            Reason: None
+  Software Version: Cisco Nexus Operating System (NX-OS) Software, Version
+                    10.3(4a)
+    Version Source: CDP/ISDP
+  s2                storage-network    2.3.4.5          N9K-C9336C-FX2
+     Serial Number: FFFXXXXXXX2
+      Is Monitored: true
+            Reason: None
+  Software Version: Cisco Nexus Operating System (NX-OS) Software, Version
+                    10.3(4a)
+    Version Source: CDP/ISDP
+----
+====
 
+
+. 重复步骤 5 至 13，在交换机 s1 上安装 NX-OS 软件。
 
 
 .下一步是什么？

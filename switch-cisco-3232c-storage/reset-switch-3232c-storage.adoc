@@ -24,7 +24,7 @@ summary: 在配置Cisco Nexus 3232C 交换机之前，请查看以下信息。
 +
 [listing, subs="+quotes"]
 ----
-(cs2)# *write erase*
+(s2)# *write erase*
 
 Warning: This command will erase the startup-configuration.
 Do you wish to proceed anyway? (y/n) [n] *y*
@@ -36,7 +36,7 @@ Do you wish to proceed anyway? (y/n) [n] *y*
 +
 [listing, subs="+quotes"]
 ----
-(cs2)# *reload*
+(s2)# *reload*
 
 This command will reboot the system. (y/n)? [n] *y*
 ----

@@ -23,6 +23,8 @@ entries:
     url: "/switch-cisco-9336c-fx2-shared/install-9336c-shared.html"
   - title: 在NetApp机柜中安装交换机
     url: "/switch-cisco-9336c-fx2-shared/install-switch-and-passthrough-panel-9336c-shared.html"
+  - title: 检查布线和配置
+    url: "/switch-cisco-9336c-fx2-shared/cabling-considerations-9336c-shared.html"
 - title: 配置软件
   pdf-filename: 配置软件 9336c-fx2-共享
   entries:

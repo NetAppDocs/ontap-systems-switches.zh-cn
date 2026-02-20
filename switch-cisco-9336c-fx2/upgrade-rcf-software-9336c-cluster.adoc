@@ -35,6 +35,20 @@ CAUTION: 安装新的交换机软件版本和 RCF 之前，必须清除交换机
 
 == 第一步：准备升级
 
+. 如果此集群上启用了AutoSupport ，则通过调用AutoSupport消息来抑制自动创建案例：
++
+`system node autosupport invoke -node * -type all -message MAINT=xh`
+
++
+其中 _x_ 为维护窗口的持续时间（小时）。
+
+. 将权限级别更改为高级，并在提示继续时输入 *y*：
++
+`set -privilege advanced`
+
++
+出现高级提示符（*>）。
+
 . 显示每个节点上连接到集群交换机的集群端口：
 +
 `network device-discovery show`

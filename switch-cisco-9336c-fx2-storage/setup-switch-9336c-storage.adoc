@@ -20,12 +20,12 @@ summary: 如果您还没有所需的配置信息和文档，则需要在设置�
 * 适用的NX-OS版本，可从以下网址下载： https://software.cisco.com/download/home["Cisco软件下载"^]页。
 * 适用的许可证、网络和配置信息以及线缆。
 * 完全的link:setup-worksheet-9336c-storage.html["布线工作表"]。
-* 可从NetApp支持站点下载适用的NetApp集群网络和管理网络 RCF。 http://mysupport.netapp.com/["mysupport.netapp.com"^] 。所有Cisco集群网络和管理网络交换机均采用Cisco标准出厂默认配置。这些交换机也具有当前版本的 NX-OS 软件，但未加载 RCF。
+* 从 NetApp 支持站点下载的适用 NetApp 网络和管理网络 RCF，网址为 http://mysupport.netapp.com/["mysupport.netapp.com"^]。所有 Cisco 网络交换机和管理网络交换机均采用标准的 Cisco 出厂默认配置。这些交换机还具有当前版本的 NX-OS 软件，但没有加载 RCF。
 * 需要提供交换机文档。看link:required-documentation-9336c-storage.html["所需文件"]了解更多信息。
 
 
 .步骤
-. 对集群网络交换机进行初始配置。
+. 对网络交换机执行初始配置。
 +
 首次启动交换机时，请对以下初始设置问题提供相应的答案。您网站的安全策略定义了要启用的响应和服务。
 
@@ -188,7 +188,7 @@ NOTE: 如果此时不保存配置，下次重启交换机时，所有更改都�
 
 |===
 . 在设置结束时显示的界面中，确认您所做的配置选择，并确保保存配置。
-. 检查集群网络交换机上的软件版本，如有必要，请从 NetApp 官网下载NetApp支持的软件版本到交换机。 https://software.cisco.com/download/home["Cisco软件下载"^]页。
+. 检查网络交换机上的版本，如有必要，请从  https://software.cisco.com/download/home["Cisco软件下载"^] 页面将 NetApp 支持的软件版本下载到交换机。
 
 
 .下一步是什么？

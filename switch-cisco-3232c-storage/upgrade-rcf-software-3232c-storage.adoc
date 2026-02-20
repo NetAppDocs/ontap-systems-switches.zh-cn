@@ -1,5 +1,5 @@
 ---
-permalink: switch-cisco-9336c-fx2-storage/upgrade-rcf-software-9336c-storage.html 
+permalink: switch-cisco-3232c-storage/upgrade-rcf-software-3232c-storage.html 
 sidebar: sidebar 
 keywords: install rcf, cisco switches 
 summary: 您可以使用此过程升级您的 RCF 版本。 
@@ -21,7 +21,7 @@ summary: 您可以使用此过程升级您的 RCF 版本。
 * 当前的RCF。
 * 如果您要更新 RCF 版本，则需要在 RCF 中进行启动配置，以反映所需的启动映像。
 +
-如果需要更改启动配置以反映当前的启动映像，则必须在重新应用 RCF 之前进行更改，以便在以后的重启中实例化正确的版本。
+如果需要更改引导配置以反映当前的引导映像，则必须在重新应用 RCF 之前执行此操作，以便在将来的重新启动中包含正确的版本。
 
 
 
@@ -63,12 +63,11 @@ Node/       Local  Discovered
 Protocol    Port   Device (LLDP: ChassisID) Interface       Platform
 ----------- ------ ------------------------ --------------- ---------
 cluster1-01/cdp
-            e5a    s1                       Ethernet1/7     N9K-C9336C
-            e3b    s2                       Ethernet1/7     N9K-C9336C
+            e5a    s1                       Ethernet1/7     N3K-C3232C
+            e3b    s2                       Ethernet1/7     N3K-C3232C
 cluster1-02/cdp
-            e5a    s1                       Ethernet1/8     N9K-C9336C
-            e3b    s2                       Ethernet1/8     N9K-C9336C
-.
+            e5a    s1                       Ethernet1/8     N3K-C3232C
+            e3b    s2                       Ethernet1/8     N3K-C3232C
 .
 .
 ----
@@ -143,14 +142,14 @@ system switch ethernet show
 cluster1::*> *system switch ethernet show*
   Switch            Type               Address          Model
   ----------------- ------------------ ---------------- ---------------
-  s1                storage-network    1.2.3.4          N9K-C9336C-FX2
+  s1                storage-network    1.2.3.4          N3K-C3232C
      Serial Number: FFFXXXXXXX1
       Is Monitored: true
             Reason: None
   Software Version: Cisco Nexus Operating System (NX-OS) Software, Version
                     10.3(4a)
     Version Source: CDP/ISDP
-  s2                storage-network    2.3.4.5          N9K-C9336C-FX2
+  s2                storage-network    2.3.4.5          N3K-C3232C
      Serial Number: FEEXXXXXXX2
       Is Monitored: true
             Reason: None
@@ -167,14 +166,14 @@ cluster1::*> *system switch ethernet show*
 
 == 步骤 2：升级 RCF
 
-. 使用 SSH 或串行控制台登录到交换机 s2。
+. 使用 SSH 或通过串行控制台登录到交换机 s2。
 . 关闭连接到节点所有端口的端口。
 +
 [listing, subs="+quotes"]
 ----
 s2> *enable*
 s2# *configure*
-s2(config)# *interface e1/1-36*
+s2(config)# *interface e1/1-32*
 s2(config-if-range)# *shutdown*
 s2(config-if-range)# *exit*
 s2(config)# *exit*
@@ -206,16 +205,19 @@ CAUTION: 确保关闭所有连接的端口以避免任何网络连接问题。�
 
 ====
 +
-`s2# show run | i "username admin password" > bootflash:write_erase.cfg`
+`s2# show run | section "switchname" > bootflash:write_erase.cfg`
+
++
+`s2# show run | section "hostname" >> bootflash:write_erase.cfg`
+
++
+`s2# show run | i "username admin password" >> bootflash:write_erase.cfg`
 
 +
 `s2# show run | section "vrf context management" >> bootflash:write_erase.cfg`
 
 +
 `s2# show run | section "interface mgmt0" >> bootflash:write_erase.cfg`
-
-+
-`s2# show run | section "switchname" >> bootflash:write_erase.cfg`
 
 +
 请参阅知识库文章link:https://kb.netapp.com/on-prem/Switches/Cisco-KBs/How_to_clear_configuration_on_a_Cisco_interconnect_switch_while_retaining_remote_connectivity["如何在保持远程连接的情况下清除Cisco互连交换机上的配置"^]更多详情请见下文。
@@ -251,7 +253,7 @@ CAUTION: 确保关闭所有连接的端口以避免任何网络连接问题。�
 
 . 使用以下传输协议之一将 RCF 复制到交换机 s2 的 bootflash：FTP、TFTP、SFTP 或 SCP。
 +
-有关Cisco命令的更多信息，请参阅 https://www.cisco.com/c/en/us/support/switches/nexus-9336c-fx2-switch/model.html#CommandReferences["Cisco Nexus 9000 系列 NX-OS 命令参考"^]指南。
+有关 Cisco 命令的详细信息，请参见  https://www.cisco.com/c/en/us/support/switches/nexus-3000-series-switches/series.html#CommandReferences["Cisco Nexus 3000 系列 NX-OS 文档"^] 中的相应指南。
 
 +
 .显示示例
@@ -262,7 +264,7 @@ CAUTION: 确保关闭所有连接的端口以避免任何网络连接问题。�
 [listing, subs="+quotes"]
 ----
 s2# *copy tftp: bootflash: vrf management*
-Enter source filename: *NX9336C-FX2-RCF-v1.13-1-Storage.txt*
+Enter source filename: *NX3232C-RCF-v1.13-1-Storage.txt*
 Enter hostname for the tftp server: *172.22.201.50*
 Trying to connect to tftp server......Connection to Server Established.
 TFTP get operation was successful
@@ -271,15 +273,15 @@ Copy complete, now saving to disk (please wait)...
 ====
 . 将之前下载的 RCF 文件应用到启动闪存中。
 +
-有关Cisco命令的更多信息，请参阅 https://www.cisco.com/c/en/us/support/switches/nexus-9336c-fx2-switch/model.html#CommandReferences["Cisco Nexus 9000 系列 NX-OS 命令参考"^]指南。
+有关 Cisco 命令的详细信息，请参见  https://www.cisco.com/c/en/us/support/switches/nexus-3000-series-switches/series.html["Cisco Nexus 3000 系列文档"^] 中的相应指南。
 
 +
-此示例显示了在交换机 s2 上安装的 RCF 文件 `NX9336C-FX2-RCF-v1.13-1-Storage.txt`：
+此示例显示了在交换机 s2 上安装的 RCF 文件 `NX3232C-RCF-v1.13-1-Storage.txt`：
 
 +
 [listing, subs="+quotes"]
 ----
-s2# *copy NX9336C-FX2-RCF-v1.13-1-Storage.txt running-config echo-commands*
+s2# *copy NX3232C-RCF-v1.13-1-Storage.txt running-config echo-commands*
 ----
 +
 [CAUTION]
@@ -306,7 +308,7 @@ s2# *copy NX9336C-FX2-RCF-v1.13-1-Storage.txt running-config echo-commands*
 . 将之前对交换机配置所做的任何自定义设置重新应用。
 . 确认 RCF 版本、自定义添加项和交换机设置正确后，复制以下内容： `running-config`文件到 `startup-config`文件。
 +
-有关Cisco命令的更多信息，请参阅 https://www.cisco.com/c/en/us/support/switches/nexus-9336c-fx2-switch/model.html#CommandReferences["Cisco Nexus 9000 系列 NX-OS 命令参考"^]指南。
+有关 Cisco 命令的详细信息，请参见  https://www.cisco.com/c/en/us/support/switches/nexus-3000-series-switches/series.html["Cisco Nexus 9000 系列文档"^] 中的相应指南。
 
 +
 `s2# *copy running-config startup-config*`
@@ -388,17 +390,17 @@ system switch ethernet show
 ====
 [listing, subs="+quotes"]
 ----
-cluster1::> *system switch ethernet show*
+cluster1::*> *system switch ethernet show*
   Switch           Type               Address          Model
   ---------------- ------------------ ---------------- ---------------
-  s1               storage-network    1.2.3.4          N9K-C9336C-FX2
+  s1               storage-network    1.2.3.4          N3K-C3232C
      Serial Number: FFFXXXXXXX1
       Is Monitored: true
             Reason: None
   Software Version: Cisco Nexus Operating System (NX-OS) Software, Version
                     10.3(4a)
     Version Source: CDP/ISDP
-  s2               storage-network    2.3.4.5          N9K-C9336C-FX2
+  s2               storage-network    2.3.4.5          N3K-C3232C
      Serial Number: FEEXXXXXXX2
       Is Monitored: true
             Reason: None
@@ -418,7 +420,7 @@ cluster1::> *system switch ethernet show*
 
 在每个存储交换机上完成以下步骤，以确认 RCF 升级后存储网络运行正常。
 
-. 验证连接到节点存储端口和存储架端口的交换机端口是否为 *up* 状态。
+. 验证交换机端口是否为 *up* 状态。
 +
 [source, cli]
 ----
