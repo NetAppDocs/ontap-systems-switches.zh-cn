@@ -72,7 +72,7 @@ NVIDIA单开关短深度导轨套件
 
 |===
 
-NOTE: 有关详细信息，请参阅NVIDIA文档。 https://docs.nvidia.com/networking/display/sn2000pub/Installation["安装您的 SN2100 道岔和导轨套件"^] 。
+NOTE: 有关详细信息，请参见 NVIDIA 文档 link:https://docs.nvidia.com/networking/display/sn2000pub/Installation["安装您的 SN2100 道岔和导轨套件"^]。
 
 .下一步
 确认组件和零件编号后，您可以进行审核。 link:required-documentation-sn2100-storage.html["所需文件"]。

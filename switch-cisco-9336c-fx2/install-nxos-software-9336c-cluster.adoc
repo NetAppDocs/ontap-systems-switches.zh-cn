@@ -457,7 +457,7 @@ plugin
 Active Package(s):
 ----
 ====
-. 升级EPLD镜像并重启交换机。
+. 升级 EPLD 映像并重新启动交换机。如果使用的是 NX-OS 10.5(3)F 或更高版本，则无需执行单独的 EPLD 映像升级，因为 NX-OS 映像中包含 EPLD 映像。跳过此步骤并继续验证群集端口健康状况。
 +
 .显示示例
 [%collapsible]

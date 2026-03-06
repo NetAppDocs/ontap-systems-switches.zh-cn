@@ -4707,7 +4707,6 @@
   <block id="80ba4b0b3a217933f761ba1440471dee" category="paragraph">X-MTEF-KIT-E</block>
   <block id="65adcaebf2b7d6b4197e6a8aff31717f" category="paragraph">NVIDIA单开关短深度导轨套件</block>
   <block id="8a6e8b822a02f19c1d150c230a03bf69" category="inline-link">安装您的 SN2100 道岔和导轨套件</block>
-  <block id="865b448eabcf17df6b422f9231393d1a" category="admonition">有关详细信息，请参阅NVIDIA文档。<block ref="39747b316e7d3df3f73757faf591c2d2" category="inline-link-rx"></block> 。</block>
   <block id="4ecfcea68abfc6c5e768c0c05c979d4c" category="paragraph">确认组件和零件编号后，您可以进行审核。 <block ref="49a5e49bddaeabf84f2ee5cfa4f2c2f8" category="inline-link-macro-rx"></block>。</block>
   <block id="2e48063923d7005a1d5b4c086c0a902a" category="summary">NVIDIA SN2100 交换机是一款运行 Cumulus Linux 的 10/25/40/100 GbE 以太网交换机。  SN2100 交换机通过不同的交换机对为ONTAP 9.10.1 中的集群和存储应用提供服务。</block>
   <block id="4e66bc15577ca34b137ec086186da6aa" category="doc">NVIDIA SN2100 交换机的安装和设置工作流程</block>
@@ -4842,7 +4841,6 @@
   <block id="ed3b40beeb91dc0a99c4580cb378b4b6" category="paragraph">在 Cumulus 模式下安装 Cumulus Linux 后，您 <block ref="83ca9f457d58548616bdf5d734a73df4" category="inline-link-macro-rx"></block>。</block>
   <block id="c5e47af2eefc12b7d3685bd941d8a3d9" category="doc">安装NVIDIA SN2100 交换机的硬件</block>
   <block id="17229d37b35d8241550712be833af4b9" category="inline-link">NVIDIA开关安装指南</block>
-  <block id="0a24c8e3b4ea2ca8a30ceee3856e7638" category="list-text">按照以下说明操作<block ref="f3871f65af7ce4ce4161567e6adce2a8" category="inline-link-rx"></block>。</block>
   <block id="15f4bb46c2f563d794f12c95f7363bc3" category="paragraph">硬件安装完毕后，您可以……<block ref="b80562321e7105a297052828d3712cf7" category="inline-link-macro-rx"></block>要求。</block>
   <block id="c7a001e5237d88fee0ed6a186bf5042e" category="summary">在配置NVIDIA SN2100 集群交换机之前，请查看配置概述。</block>
   <block id="19613dba5f729ac14e1b40a3e61a1ab9" category="doc">NVIDIA SN2100 交换机的硬件安装工作流程</block>
@@ -5875,4 +5873,10 @@
   <block id="888d27af1c8bead4bc090f7b57fe47dc" category="paragraph"><block ref="03642bd9ef2a92e7a683427a90d69064" prefix="" category="inline-code"></block></block>
   <block id="9c16d25919d69afd920c43d400da0ea8" category="paragraph"><block ref="e374209cc99be20be59ee159164d8226" prefix="" category="inline-code"></block></block>
   <block id="ab72b57a9a9f0e3ccd70b04752a4b2dc" category="list-text">验证连接到节点存储端口和存储架端口的交换机端口是否为 *up* 状态。</block>
+  <block id="3050ed36cf7b28894b3ecbbbe2742aa2" category="list-text">升级 EPLD 映像并重新启动交换机。如果使用的是 NX-OS 10.5(3)F 或更高版本，则无需执行单独的 EPLD 映像升级，因为 NX-OS 映像中包含 EPLD 映像。跳过此步骤并继续验证群集端口健康状况。</block>
+  <block id="6ff0796068f0d678948e289319a2aa28" category="admonition">有关详细信息，请参见 NVIDIA 文档 <block ref="2e91dc3447d8fccbe6ba718f9aaf0270" category="inline-link-macro-rx"></block>。</block>
+  <block id="8b1e9b3cc32c2a1cf644a1cfe3dab553" category="summary">要安装 SN2100 硬件，请参见 NVIDIA 文档。</block>
+  <block id="c10fbc8cfb6421490d3e923dc2ea002a" category="paragraph">安装 NVIDIA SN2100 交换机硬件是构建可靠且可扩展的网络基础架构以支持数据保护、复制和管理工作流程的关键第一步。</block>
+  <block id="1fcad359e819ec24939bbd1dc0e8cb54" category="paragraph">按照下面的步骤设置和配置 SN2100 交换机。有关详细说明，请参阅 NVIDIA 的文档。</block>
+  <block id="e14e8d7df79579d38cad8a73b8f91767" category="list-text">按照 <block ref="a88c9397b5cfa4ad77a6fd0eed261f5e" category="inline-link-macro-rx"></block> 中的说明操作。</block>
 </blocks>
