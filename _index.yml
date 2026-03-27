@@ -1,6 +1,6 @@
 ---
 indexpage:
-  title: ONTAP硬件系统的交换机文档
+  title: ONTAP 存储系统的交换机文档
   summary: 使用本网站上的文档来安装、升级和维护您的集群、共享存储和MetroCluster交换机。
   keywords: switches
   lead: NetApp提供集群交换机、存储交换机和共享交换机，可在主机存储和两个或多个NetApp控制器之间提供连接，使您能够在存储基础架构中无中断地移动数据和网络接口。

@@ -31,7 +31,7 @@ summary: 您可以使用此程序执行 BES-53248 集群交换机的初始安装
 * 集群 LIF 名称为 `node1_clus1`和 `node1_clus2`对于节点1，以及 `node2_clus1`和 `node2_clus2`对于节点2。
 * IP空间名称为Cluster。
 * 这 `cluster1::>`prompt 指示集群名称。
-* 每个节点上的集群端口都命名为 `e0a`和 `e0b`。参见 https://hwu.netapp.com/Home/Index["NetApp Hardware Universe"^]针对您的平台实际支持的集群端口。
+* 每个节点上的集群端口都被命名为 `e0a`和 `e0b`。有关您平台上支持的实际集群端口，请参见link:https://hwu.netapp.com/Home/Index["Hardware Universe"^]。
 * NetApp交换机支持的交换机间链路 (ISL) 为端口 0/55 和 0/56。
 * NetApp交换机支持的节点连接为端口 0/1 至 0/16，采用默认许可。
 * 示例中使用了两个节点，但集群中最多可以有 24 个节点。

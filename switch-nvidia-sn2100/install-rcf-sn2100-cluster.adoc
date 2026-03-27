@@ -16,7 +16,7 @@ summary: 在安装 RCF 脚本之前，请确保交换机上具备以下条件。
 .开始之前
 在安装或升级 RCF 脚本之前，请确保交换机上具备以下条件：
 
-* Cumulus Linux 已安装。参见 https://hwu.netapp.com/Switch/Index["Hardware Universe"^]适用于支持的版本。
+* Cumulus Linux 已安装。有关受支持的版本，请参见link:https://hwu.netapp.com/Switch/Index["Hardware Universe"^]。
 * IP 地址、子网掩码和默认网关通过 DHCP 定义或手动配置。
 
 
@@ -30,7 +30,7 @@ NOTE: 除了管理员用户之外，您还必须在 RCF 中指定一个专门用
 |===
 
 
-| 集群 | 在配置为 4x10GbE 分支的端口上，一个端口配置为 4x25GbE 分支，其他端口配置为 40/100GbE。对于使用共享集群/HA 端口的节点，支持端口上的共享集群/HA 流量。请参阅知识库文章中的平台表。 https://kb.netapp.com/on-prem/ontap/OHW/OHW-KBs/What_AFF_ASA_and_FAS_platforms_use_shared_Cluster_and_HA_Ethernet_ports["哪些AFF、 ASA和FAS平台使用共享集群和 HA 以太网端口？"^] 。所有端口也可以用作专用集群端口。 
+| 集群 | 在配置为 4x10GbE 分支的端口上，一个端口配置为 4x25GbE 分支，其他端口配置为 40/100GbE。支持使用共享集群/HA 端口的节点端口上的共享集群/HA 流量。请参阅知识库文章中的平台表 link:https://kb.netapp.com/on-prem/ontap/OHW/OHW-KBs/What_AFF_ASA_and_FAS_platforms_use_shared_Cluster_and_HA_Ethernet_ports["哪些AFF、 ASA和FAS平台使用共享集群和 HA 以太网端口？"^]。所有端口也可用作专用集群端口。 
 
 
  a| 

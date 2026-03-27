@@ -260,7 +260,7 @@ cs2
 
 +
 
-CAUTION: 请务必关闭所有已连接的集群端口，以避免任何网络连接问题。请参阅知识库文章 https://kb.netapp.com/on-prem/ontap/OHW/OHW-KBs/Node_out_of_quorum_when_migrating_cluster_lif_during_switch_OS_upgrade["在切换操作系统升级期间迁移集群 LIF 时，节点脱离仲裁。"^]更多详情请见下文。
+CAUTION: 请确保关闭*所有*连接的群集端口，以避免任何网络连接问题。有关详细信息，请参见知识库文章 link:https://kb.netapp.com/on-prem/ontap/OHW/OHW-KBs/Node_out_of_quorum_when_migrating_cluster_lif_during_switch_OS_upgrade["在切换操作系统升级期间迁移集群 LIF 时，节点脱离仲裁。"^]。
 
 . 验证集群 LIF 是否已故障转移到集群交换机 cs1 上托管的端口。这可能需要几秒钟。
 +
@@ -339,7 +339,7 @@ cluster1-04          true    true          false
 `cs1# echo "hardware access-list tcam region ing-l2-qos 1280" >> bootflash:write_erase.cfg`
 
 +
-请参阅知识库文章 https://kb.netapp.com/on-prem/Switches/Cisco-KBs/How_to_clear_configuration_on_a_Cisco_interconnect_switch_while_retaining_remote_connectivity["如何在保持远程连接的情况下清除Cisco互连交换机上的配置"^]更多详情请见下文。
+有关更多详细信息，请参见知识库文章 link:https://kb.netapp.com/on-prem/Switches/Cisco-KBs/How_to_clear_configuration_on_a_Cisco_interconnect_switch_while_retaining_remote_connectivity["如何在保持远程连接的情况下清除Cisco互连交换机上的配置"^]。
 
 . 确认 `write_erase.cfg`文件已按预期填充：
 +
@@ -372,7 +372,7 @@ cluster1-04          true    true          false
 
 . 使用以下传输协议之一将 RCF 复制到交换机 cs1 的 bootflash：FTP、TFTP、SFTP 或 SCP。
 +
-有关Cisco命令的更多信息，请参阅 https://www.cisco.com/c/en/us/support/switches/nexus-9336c-fx2-switch/model.html#CommandReferences["Cisco Nexus 9000 系列 NX-OS 命令参考"^]指南。
+有关 Cisco 命令的更多信息，请参见 link:https://www.cisco.com/c/en/us/support/switches/nexus-9336c-fx2-switch/model.html#CommandReferences["Cisco Nexus 9000 系列 NX-OS 命令参考"^] 中的相应指南。
 
 +
 .显示示例
@@ -392,7 +392,7 @@ Copy complete, now saving to disk (please wait)...
 ====
 . 将之前下载的 RCF 文件应用到启动闪存中。
 +
-有关Cisco命令的更多信息，请参阅 https://www.cisco.com/c/en/us/support/switches/nexus-9336c-fx2-switch/model.html#CommandReferences["Cisco Nexus 9000 系列 NX-OS 命令参考"^]指南。
+有关 Cisco 命令的更多信息，请参见 link:https://www.cisco.com/c/en/us/support/switches/nexus-9336c-fx2-switch/model.html#CommandReferences["Cisco Nexus 9000 系列 NX-OS 命令参考"^] 中的相应指南。
 
 +
 .显示示例
@@ -467,7 +467,7 @@ g mode:
 . 有关需要进行的任何进一步更改的详细信息，请参阅 link:cabling-considerations-9336c-shared.html["审查布线和配置注意事项"]。
 . 确认 RCF 版本、自定义添加项和交换机设置正确后，将运行配置文件复制到启动配置文件。
 +
-有关Cisco命令的更多信息，请参阅 https://www.cisco.com/c/en/us/support/switches/nexus-9336c-fx2-switch/model.html#CommandReferences["Cisco Nexus 9000 系列 NX-OS 命令参考"^]指南。
+有关 Cisco 命令的更多信息，请参见 link:https://www.cisco.com/c/en/us/support/switches/nexus-9336c-fx2-switch/model.html#CommandReferences["Cisco Nexus 9000 系列 NX-OS 命令参考"^] 中的相应指南。
 
 +
 `cs1# copy running-config startup-config`

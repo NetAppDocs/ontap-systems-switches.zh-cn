@@ -4,14 +4,14 @@ sidebar: sidebar
 keywords: install rcf, cisco switches 
 summary: 首次设置 Nexus 9332D-GX2B 交换机后，您可以安装 RCF。 
 ---
-= 安装参考配置文件（RCF）
+= 安装 RCF
 :allow-uri-read: 
 :icons: font
 :imagesdir: ../media/
 
 
 [role="lead"]
-首次设置 Nexus 9332D-GX2B 交换机后，安装参考配置文件 (RCF)。
+在首次设置 Nexus 9332D-GX2B 交换机后安装 RCF。
 
 .开始之前
 请核实以下安装和连接：
@@ -29,7 +29,7 @@ summary: 首次设置 Nexus 9332D-GX2B 交换机后，您可以安装 RCF。
 . 使用 SSH 或串行控制台登录到 switch cs1。
 . 使用以下传输协议之一将 RCF 复制到交换机 cs1 的 bootflash：FTP、TFTP、SFTP 或 SCP。
 +
-有关Cisco命令的更多信息，请参阅 https://www.cisco.com/c/en/us/support/switches/nexus-9336c-fx2-switch/model.html#CommandReferences["Cisco Nexus 9000 系列 NX-OS 命令参考"^]指南。
+有关 Cisco 命令的更多信息，请参见 https://www.cisco.com/c/en/us/support/switches/nexus-9336c-fx2-switch/model.html#CommandReferences["Cisco Nexus 9000 系列 NX-OS 命令参考"^]指南中的相应指南。
 
 +
 .显示示例
@@ -49,7 +49,7 @@ Copy complete, now saving to disk (please wait)...
 ====
 . 将之前下载的 RCF 文件应用到启动闪存中。
 +
-有关Cisco命令的更多信息，请参阅 https://www.cisco.com/c/en/us/support/switches/nexus-9336c-fx2-switch/model.html#CommandReferences["Cisco Nexus 9000 系列 NX-OS 命令参考"^]指南。
+有关 Cisco 命令的更多信息，请参见 https://www.cisco.com/c/en/us/support/switches/nexus-9336c-fx2-switch/model.html#CommandReferences["Cisco Nexus 9000 系列 NX-OS 命令参考"^]指南中的相应指南。
 
 +
 此示例展示了 RCF 文件 `NX9332D-GX2B-RCF-v10.0-Shared.txt`正在交换机 cs1 上安装：
@@ -135,7 +135,7 @@ cs1# show banner motd
 `cs1# echo "hardware access-list tcam region ing-l2-qos 1536" >> bootflash:write_erase.cfg`
 
 +
-请参阅知识库文章link:https://kb.netapp.com/on-prem/Switches/Cisco-KBs/How_to_clear_configuration_on_a_Cisco_interconnect_switch_while_retaining_remote_connectivity["如何在保持远程连接的情况下清除Cisco互连交换机上的配置"^]更多详情请见下文。
+有关更多详细信息，请参见知识库文章 link:https://kb.netapp.com/on-prem/Switches/Cisco-KBs/How_to_clear_configuration_on_a_Cisco_interconnect_switch_while_retaining_remote_connectivity["如何在保持远程连接的情况下清除Cisco互连交换机上的配置"^]。
 
 . 确认 `write_erase.cfg`文件已按预期填充：
 +

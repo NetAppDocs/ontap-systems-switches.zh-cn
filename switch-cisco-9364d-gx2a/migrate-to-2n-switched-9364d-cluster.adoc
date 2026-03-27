@@ -25,7 +25,7 @@ summary: 如果您已有双节点无交换机集群环境，则可以使用Cisco
 ** 双节点无交换机配置已正确设置并运行正常。
 ** 集群所有端口均处于*开启*状态。
 ** 所有集群逻辑接口（LIF）均处于 *up* 状态，并位于其所属端口上。
-** 看 https://hwu.netapp.com["Hardware Universe"^]适用于所有受支持的ONTAP版本。
+** 有关所有支持的 ONTAP 版本，请参见 link:https://hwu.netapp.com["Hardware Universe"^]。
 
 
 * 对于Cisco Nexus 9332D-GX2B 交换机配置：
@@ -34,7 +34,7 @@ summary: 如果您已有双节点无交换机集群环境，则可以使用Cisco
 ** 可以通过控制台访问集群交换机。
 ** Nexus 9332D-GX2B 节点到节点交换机和交换机到交换机连接使用 Twinax 或光纤电缆。
 +
-看 https://hwu.netapp.com["Hardware Universe"^]有关布线的更多信息。
+有关布线的详细信息，请参见link:https://hwu.netapp.com["Hardware Universe"^]。
 
 
 
@@ -57,7 +57,7 @@ summary: 如果您已有双节点无交换机集群环境，则可以使用Cisco
 * 此过程中使用的集群端口为 e0a 和 e0b。
 
 
-看 https://hwu.netapp.com["Hardware Universe"^]有关您平台集群端口的信息。
+有关平台群集端口的信息，请参见 link:https://hwu.netapp.com["Hardware Universe"^]。
 
 
 
@@ -290,10 +290,7 @@ Cluster
 ====
 . 断开节点 1 上的集群端口 e0a 的电缆，然后使用 9332D-GX2B 交换机支持的适当电缆将 e0a 连接到集群交换机 cs1 上的端口 1。
 +
-这 https://hwu.netapp.com/SWITCH/INDEX["Hardware Universe- 交换机"^]包含更多关于布线的信息。
-
-+
-https://hwu.netapp.com/SWITCH/INDEX["Hardware Universe- 交换机"^]
+link:https://hwu.netapp.com/SWITCH/INDEX["Hardware Universe- 交换机"^] 包含有关布线的详细信息。
 
 . 断开节点 2 上的集群端口 e0a 的电缆，然后使用 9332D-GX2B 交换机支持的适当电缆将 e0a 连接到集群交换机 cs1 上的端口 2。
 . 启用集群交换机 cs1 上所有面向节点的端口。

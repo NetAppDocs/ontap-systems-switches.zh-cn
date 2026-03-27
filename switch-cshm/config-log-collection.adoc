@@ -256,7 +256,7 @@ system switch ethernet log show
 --
 ====
 
-CAUTION: 如果日志收集功能报告了任何错误状态（在输出中可见）， `system switch ethernet log show` ）， 看link:log-collection-troubleshoot.html["排查日志收集问题"]更多详情请见下文。
+CAUTION: 如果日志收集功能报告了任何错误状态（在  `system switch ethernet log show` 的输出中可见），请参阅 link:log-collection-troubleshoot.html["排查日志收集问题"] 以了解详细信息。
 
 .下一步是什么？
 link:config-snmpv3.html["配置 SNMPv3（可选）"]。

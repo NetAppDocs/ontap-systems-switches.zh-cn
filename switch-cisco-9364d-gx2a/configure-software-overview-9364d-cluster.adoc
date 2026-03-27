@@ -33,8 +33,4 @@ summary: Cisco 9364d-gx2a 集群交换机软件配置概述
 [role="quick-margin-para"]
 验证Cisco 9364D-GX2A 交换机上是否启用了 SSH，以便与以太网交换机健康监视器 (CSHM) 和日志收集功能一起使用。
 
-.image:https://raw.githubusercontent.com/NetAppDocs/common/main/media/number-6.png["六"]link:reset-switch-9364d.html["将交换机重置为出厂默认设置"]
-[role="quick-margin-para"]
-清除Cisco 9364D-GX2A 交换机设置。
-
 交换机配置完成后，请转到link:https://docs.netapp.com/us-en/ontap-afx/install-setup/power-on-hardware.html["启动 AFX 1K 存储系统"^]。

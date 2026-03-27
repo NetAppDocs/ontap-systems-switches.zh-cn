@@ -105,7 +105,7 @@ There are no entries matching your query.
 ====
 
 
-. [[step7]]将共享交换机 A 上的存储 RCF 文件替换为共享 RCF 文件。看link:install-nxos-rcf-9336c-shared.html["在Cisco Nexus 9336C-FX2 共享交换机上安装 RCF"]更多详情请见下文。
+. [[step7]]将共享交换机 A 上的存储 RCF 替换为共享 RCF 文件。有关更多详细信息，请参阅 link:install-nxos-rcf-9336c-shared.html["在Cisco Nexus 9336C-FX2 共享交换机上安装 RCF"]。
 . 验证连接到 HA 对 1 的存储设备（存储交换机 B）是否运行正常：
 +
 `system health alert show -instance`
@@ -141,7 +141,7 @@ There are no entries matching your query.
 ====
 
 
-. [[step13]]将共享交换机 B 上的存储 RCF 文件替换为共享 RCF 文件。看link:install-nxos-rcf-9336c-shared.html["在Cisco Nexus 9336C-FX2 共享交换机上安装 RCF"]更多详情请见下文。
+. [[step13]]将共享交换机 B 上的存储 RCF 文件替换为共享 RCF 文件。有关更多详细信息，请参阅 link:install-nxos-rcf-9336c-shared.html["在Cisco Nexus 9336C-FX2 共享交换机上安装 RCF"]。
 . 验证连接到 HA 对 1 的存储设备（存储交换机 B）是否运行正常：
 +
 `system health alert show -instance`
@@ -183,7 +183,7 @@ sh1 (config)# *exit*
 ====
 
 
-. [[step16]]将 HA 对 1 从无交换机集群转换为有交换机集群。使用共享 RCF 定义的集群端口分配。看link:prepare-nxos-rcf-9336c-shared.html["安装 NX-OS 软件和参考配置文件 (RCF)"]更多详情请咨询。
+. [[step16]]将 HA 对 1 从无交换机集群转换为有交换机集群。使用共享 RCF 定义的集群端口分配。有关更多详细信息，请参阅 link:prepare-nxos-rcf-9336c-shared.html["安装 NX-OS 软件和参考配置文件 (RCF)"]。
 . 验证交换网络配置是否有效：
 +
 `network port show`

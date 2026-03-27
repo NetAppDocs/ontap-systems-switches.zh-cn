@@ -11,7 +11,7 @@ summary: 对于NVIDIA SN2100 交换机的安装和维护，请务必查看所有
 
 
 [role="lead"]
-对于NVIDIA SN2100 交换机的安装和维护，请务必查看所有推荐的文档。
+对于 NVIDIA SN2100 交换机安装，请务必查看所有建议的文档。
 
 [cols="1,2"]
 |===
@@ -19,22 +19,46 @@ summary: 对于NVIDIA SN2100 交换机的安装和维护，请务必查看所有
 
 
  a| 
-https://docs.nvidia.com/networking/display/sn2000pub/Installation["NVIDIA开关安装指南"^]
+link:https://docs.nvidia.com/networking/display/sn2000pub/Installation["NVIDIA开关安装指南"^]
  a| 
 介绍如何安装NVIDIA SN2100 交换机。
 
 
 
  a| 
-https://library.netapp.com/ecm/ecm_download_file/ECMLP2876580["NS224 NVMe 硬盘架布线指南"^]
+link:https://library.netapp.com/ecm/ecm_download_file/ECMLP2876580["NS224 NVMe 硬盘架布线指南"^]
  a| 
 概述和图示，展示如何配置驱动器机架的布线。
 
+|===
+
+
+== ONTAP 系统文档
+
+要设置 ONTAP 系统，您需要操作系统版本的以下文档。
+
+[cols="1,2"]
+|===
+| 名称 | 描述 
 
 
  a| 
-https://hwu.netapp.com/["NetApp Hardware Universe"^]
+控制器专用_安装和设置说明_
  a| 
-允许您确认平台型号支持的硬件，例如存储交换机和电缆。
+介绍如何安装NetApp硬件。
+
+
+
+ a| 
+link:https://docs.netapp.com/ontap-9/index.jsp["ONTAP 9"^]
+ a| 
+提供有关ONTAP版本各个方面的详细信息。
+
+
+
+ a| 
+link:https://hwu.netapp.com/["Hardware Universe"^]
+ a| 
+允许您确认平台型号支持的硬件，例如集群交换机和电缆。
 
 |===

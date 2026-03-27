@@ -21,7 +21,7 @@ summary: 在配置Cisco Nexus SN2100 交换机之前，请查看以下信息。
 
 
 
-NOTE: 有关安装 Cumulus Linux 的更多信息，请参阅link:configure-software-sn2100-storage.html["NVIDIA SN2100交换机的软件安装工作流程"]。
+NOTE: 有关安装 Cumulus Linux 的详细信息，请参阅 link:configure-software-sn2100-storage.html["NVIDIA SN2100交换机的软件安装工作流程"]。
 
 .步骤
 [role="tabbed-block"]
@@ -72,7 +72,7 @@ Do you want to continue? [y/n] *y*
 ----
 
 
-请参阅NVIDIA https://docs.nvidia.com/networking-ethernet-software/cumulus-linux-511/Installation-Management/Factory-Reset/["恢复出厂设置"^]更多详情请参阅相关文档。
+有关详细信息，请参见 NVIDIA https://docs.nvidia.com/networking-ethernet-software/cumulus-linux-511/Installation-Management/Factory-Reset/["恢复出厂设置"^] 文档。
 
 --
 ====

@@ -14,7 +14,7 @@ summary: '当交换机运行 Cumulus Linux 或 ONIE 时，可以安装 Cumulus L
 当交换机运行在 Cumulus 模式下时，请按照以下步骤安装 Cumulus Linux (CL) 操作系统。
 
 
-NOTE: Cumulus Linux (CL) 操作系统可以在交换机运行 Cumulus Linux 或 ONIE 时安装（参见link:install-onie-mode-sn2100-cluster.html["以 ONIE 模式安装"]）。
+NOTE: 可以在交换机运行 Cumulus Linux 或 ONIE 时安装 Cumulus Linux (CL) 操作系统（请参阅link:install-onie-mode-sn2100-cluster.html["以 ONIE 模式安装"]）。
 
 .开始之前
 请确保您拥有以下物品：
@@ -385,7 +385,7 @@ cumulus@sw1:~$ *nv config apply*
 cumulus@sw1:~$ *nv config save*
 ----
 +
-请参阅知识库文章link:https://kb.netapp.com/on-prem/Switches/Nvidia-KBs/NTP_Server_configuration_is_not_working_with_NVIDIA_SN2100_Switches["NTP 服务器配置与NVIDIA SN2100 交换机不兼容。"^]更多详情请见下文。
+有关更多详细信息，请参见知识库文章 link:https://kb.netapp.com/on-prem/Switches/Nvidia-KBs/NTP_Server_configuration_is_not_working_with_NVIDIA_SN2100_Switches["NTP 服务器配置与NVIDIA SN2100 交换机不兼容。"^]。
 
 .. 确认 `ntpd`正在系统上运行：
 +
@@ -508,7 +508,7 @@ cumulus@sw1:mgmt:~$ *sudo adduser admin nvshow*
      Done.
 ----
 +
-看 https://docs.nvidia.com/networking-ethernet-software/cumulus-linux-54/System-Configuration/Authentication-Authorization-and-Accounting/User-Accounts/["NVIDIA用户帐户"^]了解更多信息。
+有关详细信息，请参见 https://docs.nvidia.com/networking-ethernet-software/cumulus-linux-54/System-Configuration/Authentication-Authorization-and-Accounting/User-Accounts/["NVIDIA用户帐户"^]。
 
 
 
@@ -627,7 +627,7 @@ cumulus@sw1:~$ *nv config apply*
 cumulus@sw1:~$ *nv config save*
 ----
 +
-请参阅知识库文章link:https://kb.netapp.com/on-prem/Switches/Nvidia-KBs/NTP_Server_configuration_is_not_working_with_NVIDIA_SN2100_Switches["NTP 服务器配置与NVIDIA SN2100 交换机不兼容。"^]更多详情请见下文。
+有关更多详细信息，请参见知识库文章 link:https://kb.netapp.com/on-prem/Switches/Nvidia-KBs/NTP_Server_configuration_is_not_working_with_NVIDIA_SN2100_Switches["NTP 服务器配置与NVIDIA SN2100 交换机不兼容。"^]。
 
 .. 确认 `ntpd`正在系统上运行：
 +
@@ -718,7 +718,7 @@ swp16      100G   swp   sw6                                       swp16
 ----
 
 
-看 https://docs.nvidia.com/networking-ethernet-software/cumulus-linux-511/System-Configuration/Authentication-Authorization-and-Accounting/User-Accounts/["NVIDIA用户帐户"^]了解更多信息。
+有关详细信息，请参见 https://docs.nvidia.com/networking-ethernet-software/cumulus-linux-511/System-Configuration/Authentication-Authorization-and-Accounting/User-Accounts/["NVIDIA用户帐户"^]。
 
 --
 ====

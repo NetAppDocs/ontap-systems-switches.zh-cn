@@ -13,7 +13,7 @@ summary: 首次设置好 Nexus 3232C 交换机后，即可安装 RCF。您也可
 [role="lead"]
 首次设置 Nexus 3232C 交换机后，请按照以下步骤安装 RCF。
 
-您也可以使用此过程升级您的 RCF 版本。请参阅知识库文章 https://kb.netapp.com/onprem/Switches/Cisco/How_to_clear_configuration_on_a_Cisco_interconnect_switch_while_retaining_remote_connectivity["如何在保持远程连接的情况下清除Cisco互连交换机上的配置"^]有关升级 RCF 的更多信息。
+您还可以使用此过程升级 RCF 版本。升级 RCF 时，请参阅知识库文章 link:https://kb.netapp.com/onprem/Switches/Cisco/How_to_clear_configuration_on_a_Cisco_interconnect_switch_while_retaining_remote_connectivity["如何在保持远程连接的情况下清除Cisco互连交换机上的配置"^] 以获取更多信息。
 
 
 
@@ -291,7 +291,7 @@ NOTE: 升级或应用新的 RCF 时，必须清除交换机设置并执行基本
 `cs2# echo "hardware access-list tcam region qos 256" >> bootflash:write_erase.cfg`
 
 +
-请参阅知识库文章link:https://kb.netapp.com/on-prem/Switches/Cisco-KBs/How_to_clear_configuration_on_a_Cisco_interconnect_switch_while_retaining_remote_connectivity["如何在保持远程连接的情况下清除Cisco互连交换机上的配置"^]更多详情请见下文。
+有关更多详细信息，请参见知识库文章 link:https://kb.netapp.com/on-prem/Switches/Cisco-KBs/How_to_clear_configuration_on_a_Cisco_interconnect_switch_while_retaining_remote_connectivity["如何在保持远程连接的情况下清除Cisco互连交换机上的配置"^]。
 
 . 确认 `write_erase.cfg`文件已按预期填充：
 +
@@ -318,7 +318,7 @@ NOTE: 升级或应用新的 RCF 时，必须清除交换机设置并执行基本
 +
 `This command will reboot the system. (y/n)?  [n] *y*`
 
-. 使用以下传输协议之一将 RCF 复制到交换机 cs2 的 bootflash：FTP、TFTP、SFTP 或 SCP。有关Cisco命令的更多信息，请参阅相应的指南。link:https://www.cisco.com/c/en/us/support/switches/nexus-3000-series-switches/products-installation-guides-list.html["Cisco Nexus 3000 系列 NX-OS 命令参考"^]指南。
+. 使用以下传输协议之一将 RCF 复制到交换机 cs2 的 bootflash：FTP、TFTP、SFTP 或 SCP。有关 Cisco 命令的详细信息，请参阅 link:https://www.cisco.com/c/en/us/support/switches/nexus-3000-series-switches/products-installation-guides-list.html["Cisco Nexus 3000 系列 NX-OS 命令参考"^] 中的相应指南。
 +
 .显示示例
 [%collapsible]
@@ -337,7 +337,7 @@ Copy complete, now saving to disk (please wait)...
 ====
 . 将之前下载的 RCF 文件应用到启动闪存中。
 +
-有关Cisco命令的更多信息，请参阅相应的指南。link:https://www.cisco.com/c/en/us/support/switches/nexus-3000-series-switches/products-installation-guides-list.html["Cisco Nexus 3000 系列 NX-OS 命令参考"^]指南。
+有关 Cisco 命令的更多信息，请参见 link:https://www.cisco.com/c/en/us/support/switches/nexus-3000-series-switches/products-installation-guides-list.html["Cisco Nexus 3000 系列 NX-OS 命令参考"^]
 
 +
 .显示示例
@@ -422,7 +422,7 @@ NOTE: 首次应用 RCF 时，出现 *错误：写入 VSH 命令失败* 消息是
 . 将之前对交换机配置所做的任何自定义设置重新应用。请参阅link:cabling-considerations-3232c.html["审查布线和配置注意事项"]有关任何后续变更的详细信息。
 . 确认 RCF 版本和交换机设置正确后，将运行配置文件复制到启动配置文件。
 +
-有关Cisco命令的更多信息，请参阅 https://www.cisco.com/c/en/us/support/switches/nexus-3000-series-switches/products-installation-guides-list.html["Cisco Nexus 3000 系列 NX-OS 命令参考"^]指南。
+有关 Cisco 命令的更多信息，请参见 link:https://www.cisco.com/c/en/us/support/switches/nexus-3000-series-switches/products-installation-guides-list.html["Cisco Nexus 3000 系列 NX-OS 命令参考"^]
 
 +
 [listing]

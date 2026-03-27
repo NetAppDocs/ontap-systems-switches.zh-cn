@@ -38,8 +38,8 @@ entries:
       url: "/switch-cisco-9332d-gx2b/upgrade-rcf-software-9332d-cluster.html"
   - title: 验证 SSH 是否已启用
     url: "/switch-cisco-9332d-gx2b/configure-ssh-keys.html"
-  - title: 将交换机重置为出厂默认设置
-    url: "/switch-cisco-9332d-gx2b/reset-switch-9332d.html"
+- title: 将交换机重置为出厂默认设置
+  url: "/switch-cisco-9332d-gx2b/reset-switch-9332d.html"
 - title: 更换 9332D-GX2B 开关
   pdf-filename: Replace_switches_9332d-gx2b
   url: "/switch-cisco-9332d-gx2b/replace-9332d-cluster.html"

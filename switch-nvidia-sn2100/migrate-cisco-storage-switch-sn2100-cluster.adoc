@@ -17,7 +17,7 @@ summary: 您可以将ONTAP集群中较旧的Cisco交换机无中断地迁移到N
 
 == 审查要求
 
-当您用NVIDIA SN2100 存储交换机替换一些较旧的Cisco交换机时，您必须了解某些配置信息、端口连接和布线要求。看link:configure-overview-sn2100-cluster.html["NVIDIA SN2100交换机的安装和配置概述"]。
+在使用 NVIDIA SN2100 存储交换机替换某些较旧的 Cisco 交换机时，您必须了解某些配置信息、端口连接和布线要求。请参阅 link:configure-overview-sn2100-cluster.html["NVIDIA SN2100交换机的安装和配置概述"]。
 
 .支持的交换机
 支持以下存储交换机：
@@ -26,7 +26,7 @@ summary: 您可以将ONTAP集群中较旧的Cisco交换机无中断地迁移到N
 * CiscoNexus 3232C
 
 
-有关支持的端口及其配置的详细信息，请参阅 https://hwu.netapp.com/["Hardware Universe"^]。
+有关支持的端口及其配置的详细信息，请参阅 link:https://hwu.netapp.com/["Hardware Universe"^]。
 
 .你需要什么
 确保：

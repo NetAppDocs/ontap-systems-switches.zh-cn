@@ -21,7 +21,7 @@ summary: 您可以将ONTAP集群中较旧的Cisco交换机无中断地迁移到N
 
 * CiscoNexus 9336C-FX2
 * CiscoNexus 3232C
-* 参见 https://hwu.netapp.com/["Hardware Universe"^]有关支持的端口及其配置的完整详细信息。
+* 有关支持的端口及其配置的完整详细信息，请参见 link:https://hwu.netapp.com/["Hardware Universe"^]。
 
 
 .开始之前
@@ -38,7 +38,7 @@ summary: 您可以将ONTAP集群中较旧的Cisco交换机无中断地迁移到N
 ** ISL 端口已启用，并且已在旧款Cisco交换机和新款交换机之间连接了线缆。
 
 
-* 参见 https://hwu.netapp.com/["Hardware Universe"^]有关支持的端口及其配置的完整详细信息。
+* 有关支持的端口及其配置的完整详细信息，请参见 link:https://hwu.netapp.com/["Hardware Universe"^]。
 * NVIDIA SN2100 交换机上的一些端口配置为以 100 GbE 运行。
 * 您已规划、迁移并记录了从节点到NVIDIA SN2100 存储交换机的 100 GbE 连接。
 

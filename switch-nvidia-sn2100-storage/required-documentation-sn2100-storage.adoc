@@ -11,7 +11,7 @@ summary: 对于NVIDIA SN2100 交换机的安装和维护，请务必查看所有
 
 
 [role="lead"]
-对于NVIDIA SN2100 交换机的安装和维护，请务必查看所有推荐的文档。
+对于 NVIDIA SN2100 交换机安装，请务必查看所有建议的文档。
 
 下表列出了NVIDIA SN2100 交换机的可用文档。
 
@@ -21,23 +21,23 @@ summary: 对于NVIDIA SN2100 交换机的安装和维护，请务必查看所有
 
 
  a| 
-link:https://docs.netapp.com/us-en/ontap-systems-switches/switch-nvidia-sn2100/install-hardware-sn2100-cluster.html["设置和配置您的NVIDIA SN2100 交换机"^]
+link:https://docs.netapp.com/us-en/ontap-systems-switches/switch-nvidia-sn2100/install-hardware-sn2100-cluster.html["设置和配置您的 NVIDIA SN2100 交换机"^]
  a| 
 介绍如何设置和配置NVIDIA SN2100 交换机，包括安装 Cumulus Linux 和适用的 RCF。
 
 
 
  a| 
-link:https://docs.netapp.com/us-en/ontap-systems-switches/switch-nvidia-sn2100-storage/migrate-cisco-storage-switch-sn2100-storage.html["从Cisco存储交换机迁移到NVIDIA SN2100 存储交换机"^]
+link:https://docs.netapp.com/us-en/ontap-systems-switches/switch-nvidia-sn2100-storage/migrate-cisco-storage-switch-sn2100-storage.html["将存储交换机从Cisco)迁移到NVIDIA) SN2100 存储交换机"^]
  a| 
 描述如何从使用Cisco存储交换机的环境迁移到使用NVIDIA SN2100 存储交换机的环境。
 
 
 
  a| 
-link:https://docs.netapp.com/us-en/ontap-systems-switches/switch-nvidia-sn2100/migrate-2n-switched-sn2100-cluster.html["迁移到采用NVIDIA SN2100 集群交换机的双节点交换集群"^]
+link:https://docs.netapp.com/us-en/ontap-systems-switches/switch-nvidia-sn2100/migrate-2n-switched-sn2100-cluster.html["迁移到双节点交换集群"^]
  a| 
-介绍如何使用NVIDIA SN2100 集群交换机迁移到双节点交换环境。
+介绍如何使用 NVIDIA SN2100 交换机迁移到双节点交换环境。
 
 
 
@@ -45,5 +45,36 @@ link:https://docs.netapp.com/us-en/ontap-systems-switches/switch-nvidia-sn2100/m
 link:https://docs.netapp.com/us-en/ontap-systems-switches/switch-nvidia-sn2100-storage/replace-sn2100-switch-storage.html["更换NVIDIA SN2100 存储交换机"^]
  a| 
 描述了更换有缺陷的NVIDIA SN2100 存储交换机的步骤，并下载了 Cumulus Linux 和参考配置文件。
+
+|===
+
+
+== ONTAP 系统文档
+
+要设置 ONTAP 系统，您需要操作系统版本的以下文档。
+
+[cols="1,2"]
+|===
+| 名称 | 描述 
+
+
+ a| 
+控制器专用_安装和设置说明_
+ a| 
+介绍如何安装NetApp硬件。
+
+
+
+ a| 
+link:https://docs.netapp.com/ontap-9/index.jsp["ONTAP 9"^]
+ a| 
+提供有关ONTAP版本各个方面的详细信息。
+
+
+
+ a| 
+link:https://hwu.netapp.com/["Hardware Universe"^]
+ a| 
+允许您确认平台型号支持的硬件，例如存储交换机和电缆。
 
 |===

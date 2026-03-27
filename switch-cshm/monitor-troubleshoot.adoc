@@ -17,4 +17,4 @@ summary: 您可以使用以下命令……
 
 要查看可用的以太网交换机健康监控警报，请运行以下命令： `system health alert definition show -monitor ethernet-switch`
 
-请参阅知识库文章 https://kb.netapp.com/on-prem/ontap/OHW/OHW-KBs/Cluster_Switch_Health_Monitor_CSHM_Alert_Resolution_Guide["Switch 健康监控器警报解决指南"^]有关警报的高级解析详情。
+有关警报的高级解决方案详细信息，请参见知识库文章 https://kb.netapp.com/on-prem/ontap/OHW/OHW-KBs/Cluster_Switch_Health_Monitor_CSHM_Alert_Resolution_Guide["Switch 健康监控器警报解决指南"^]。

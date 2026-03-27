@@ -18,7 +18,7 @@ summary:
 
 具体操作步骤取决于每个控制器上是有两个专用集群网络端口还是只有一个集群端口。记录的过程适用于所有使用光纤或 Twinax 端口的节点，但如果节点使用板载 10Gb BASE-T RJ45 端口作为集群网络端口，则此交换机不支持此过程。
 
-大多数系统需要在每个控制器上设置两个专用的集群网络端口。看 https://mysupport.netapp.com/site/info/cisco-ethernet-switch["Cisco以太网交换机"]了解更多信息。
+大多数系统在每个控制器上需要两个专用集群网络端口。有关详细信息，请参见 link:https://mysupport.netapp.com/site/info/cisco-ethernet-switch["Cisco以太网交换机"^]。
 
 如果您已有双节点无交换机集群环境，则可以使用Cisco Nexus 9336C-FX2 交换机迁移到双节点有交换机集群环境，以便能够将集群扩展到两个以上节点。
 
@@ -41,7 +41,7 @@ summary:
 ** 两台交换机都具备管理网络连接功能。
 ** 可以通过控制台访问集群交换机。
 ** Nexus 9336C-FX2 节点到节点交换机和交换机到交换机连接使用 Twinax 或光纤电缆。
-** NetApp https://hwu.netapp.com["Hardware Universe"]包含更多关于布线的信息。
+** link:https://hwu.netapp.com["Hardware Universe"^] 包含有关布线的详细信息。
 ** 交换机间链路 (ISL) 电缆连接到两个 9336C-FX2 交换机上的端口 1/35 和 1/36。
 
 
@@ -65,7 +65,7 @@ summary:
 * 聚类SVM的名称为_node1_和_node2_。
 * 节点 1 上的 LIF 名称分别为 _node1_clus1_ 和 _node1_clus2_，节点 2 上的 LIF 名称分别为 _node2_clus1_ 和 _node2_clus2_。
 * cluster1::*> 提示符指示集群的名称。
-* 根据AFF A400控制器，此过程中使用的集群端口为 _e3a_ 和 _e3b_。这 https://hwu.netapp.com["Hardware Universe"]包含有关您平台实际集群端口的最新信息。
+* 根据 AFF A400 控制器，此过程中使用的集群端口为 _e3a_ 和 _e3b_。link:https://hwu.netapp.com["Hardware Universe"^] 包含有关平台的实际集群端口的最新信息。
 
 
 
@@ -283,7 +283,7 @@ Cluster
 
 . [[step9]]断开节点 1 上的集群端口 e3a 的电缆，然后使用 9336C-FX2 交换机支持的适当电缆将 e3a 连接到集群交换机 cs1 上的端口 1。
 +
-NetApp https://hwu.netapp.com["Hardware Universe"]包含更多关于布线的信息。看 link:https://kb.netapp.com/Support/General_Support/What_additional_information_do_I_need_to_install_my_equipment_that_is_not_in_HWU["安装HWU中没有的设备还需要哪些额外信息？"^] 有关交换机安装要求的更多信息。
+link:https://hwu.netapp.com["Hardware Universe"^] 包含有关布线的详细信息。有关交换机安装要求的详细信息，请参见 link:https://kb.netapp.com/Support/General_Support/What_additional_information_do_I_need_to_install_my_equipment_that_is_not_in_HWU["安装HWU中没有的设备还需要哪些额外信息？"^]。
 
 . 断开节点 2 上的集群端口 e3a 的电缆，然后使用 9336C-FX2 交换机支持的适当电缆将 e3a 连接到集群交换机 cs1 上的端口 2。
 . 启用集群交换机 cs1 上所有面向节点的端口。

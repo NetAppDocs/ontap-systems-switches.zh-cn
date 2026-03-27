@@ -147,7 +147,7 @@ Larger than PMTU communication succeeds on 4 path(s) RPC status:
 
 . 启用 C1 上所有面向节点的端口。
 +
-有关Cisco命令的更多信息，请参阅以下位置列出的指南： https://www.cisco.com/c/en/us/support/switches/nexus-3000-series-switches/products-command-reference-list.html["Cisco Nexus 3000 系列 NX-OS 命令参考"^] 。
+有关 Cisco 命令的更多信息，请参见 link:https://www.cisco.com/c/en/us/support/switches/nexus-3000-series-switches/products-command-reference-list.html["Cisco Nexus 3000 系列 NX-OS 命令参考"^] 中列出的指南。
 
 +
 .显示示例

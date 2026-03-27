@@ -17,7 +17,7 @@ summary: 您可以参考 BES-53248 集群交换机端口分配表来配置您的
 
 == EFOS 和ONTAP支持
 
-参见 https://hwu.netapp.com/Switch/Index["NetApp Hardware Universe"^]和 https://mysupport.netapp.com/site/info/broadcom-cluster-switch["博通交换机兼容性矩阵"^]有关 BES-53248 交换机的 EFOS 和ONTAP兼容性信息。EFOS 和ONTAP支持可能因 BES-53248 交换机的具体机器类型而异。有关所有 BES-52348 交换机型号的详细信息，请参阅link:components-bes53248.html["BES-53248 集群开关的组件和零件编号"]。看 link:https://kb.netapp.com/Support/General_Support/What_additional_information_do_I_need_to_install_my_equipment_that_is_not_in_HWU["安装HWU中没有的设备还需要哪些额外信息？"]^ 有关交换机安装要求的更多信息。
+有关 EFOS 和 ONTAP 与 BES-53248 交换机兼容性信息，请参见 link:https://hwu.netapp.com/Switch/Index["Hardware Universe"^] 和 link:https://mysupport.netapp.com/site/info/broadcom-cluster-switch["博通交换机兼容性矩阵"^]。EFOS 和 ONTAP 支持可能因 BES-53248 交换机的特定机器类型而异。有关所有 BES-52348 交换机机器类型的详细信息，请参阅 link:components-bes53248.html["BES-53248 集群开关的组件和零件编号"]。有关交换机安装要求的更多信息，请参见 link:https://kb.netapp.com/Support/General_Support/What_additional_information_do_I_need_to_install_my_equipment_that_is_not_in_HWU["安装HWU中没有的设备还需要哪些额外信息？"]^。
 
 
 
@@ -63,7 +63,7 @@ summary: 您可以参考 BES-53248 集群交换机端口分配表来配置您的
 100GbE 集群交换机间链路 (ISL) 端口，基本配置
 
 |===
-参见 https://hwu.netapp.com/Switch/Index["Hardware Universe"]有关交换机端口的更多信息。看 link:https://kb.netapp.com/Support/General_Support/What_additional_information_do_I_need_to_install_my_equipment_that_is_not_in_HWU["安装HWU中没有的设备还需要哪些额外信息？"^] 有关交换机安装要求的更多信息。
+有关交换机端口的详细信息，请参见 link:https://hwu.netapp.com/Switch/Index["Hardware Universe"]。有关交换机安装要求的详细信息，请参见 link:https://kb.netapp.com/Support/General_Support/What_additional_information_do_I_need_to_install_my_equipment_that_is_not_in_HWU["安装HWU中没有的设备还需要哪些额外信息？"^]。
 
 
 
@@ -77,7 +77,7 @@ summary: 您可以参考 BES-53248 集群交换机端口分配表来配置您的
 
 === 其他要求
 
-* 如果您购买了额外的许可证，请参阅link:configure-licenses.html["激活新授权端口"]有关如何激活它们的详细信息。
+* 如果您购买其他许可证，请参阅 link:configure-licenses.html["激活新授权端口"] 以了解有关如何激活它们的详细信息。
 * 如果 SSH 已启用，则运行该命令后必须手动重新启用它。 `erase startup-config`并重启交换机。
 
 

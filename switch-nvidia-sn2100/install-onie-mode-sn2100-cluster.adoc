@@ -14,7 +14,7 @@ summary: '当交换机运行 Cumulus Linux 或 ONIE 时，可以安装 Cumulus L
 当交换机运行在 ONIE 模式下时，请按照以下步骤安装 Cumulus Linux (CL) 操作系统。
 
 
-NOTE: Cumulus Linux (CL) 操作系统可以在交换机运行 ONIE 或 Cumulus Linux 时安装（参见）。link:install-cumulus-mode-sn2100-cluster.html["以 Cumulus 模式安装"] ）。
+NOTE: 可以在交换机运行 ONIE 或 Cumulus Linux 时安装 Cumulus Linux (CL) 操作系统（请参阅link:install-cumulus-mode-sn2100-cluster.html["以 Cumulus 模式安装"]）。
 
 .关于此任务
 您可以使用开放网络安装环境 (ONIE) 安装 Cumulus Linux，ONIE 可以自动发现网络安装程序映像。这有助于实现通过操作系统选择（例如 Cumulus Linux）来保护交换机的系统模型。使用 ONIE 安装 Cumulus Linux 最简单的方法是通过本地 HTTP 发现。
@@ -344,7 +344,7 @@ cumulus@cumulus:mgmt:~$ *sudo adduser admin nvshow*
      Done.
 ----
 +
-看 https://docs.nvidia.com/networking-ethernet-software/cumulus-linux-54/System-Configuration/Authentication-Authorization-and-Accounting/User-Accounts/["NVIDIA用户帐户"^]了解更多信息。
+有关详细信息，请参见 https://docs.nvidia.com/networking-ethernet-software/cumulus-linux-54/System-Configuration/Authentication-Authorization-and-Accounting/User-Accounts/["NVIDIA用户帐户"^]。
 
 
 

@@ -54,7 +54,7 @@ NOTE: 由于安全问题，RCF 版本 1.2 中已明确禁用对 Telnet 的支持
 * 这 `cluster1::*>`prompt 指示集群名称。
 * 每个节点上的集群端口分别命名为 e0a 和 e0b。
 +
-https://hwu.netapp.com/["Hardware Universe"^]包含有关您的平台支持的实际集群端口的更多信息。
+link:https://hwu.netapp.com/["Hardware Universe"^] 包含有关您平台上支持的实际集群端口的更多信息。
 
 * 支持的交换机间链路 (ISL) 为端口 0/13 至 0/16。
 * 支持的节点连接为端口 0/1 至 0/12。

@@ -50,7 +50,7 @@ swp15-16
 100GbE交换机间链路（ISL）端口
 
 |===
-参见 https://hwu.netapp.com/Switch/Index["Hardware Universe"^]有关交换机端口的更多信息。
+有关交换机端口的详细信息，请参见link:https://hwu.netapp.com/Switch/Index["Hardware Universe"^]。
 
 
 
@@ -190,7 +190,7 @@ UP     swp4      100G  9216   Trunk/L2                     Master: bridge(UP)
 
 --
 ====
-请参阅知识库文章 https://kb.netapp.com/Advice_and_Troubleshooting/Data_Storage_Systems/Fabric_Interconnect_and_Management_Switches/NVIDIA_SN2100_switch_fails_to_connect_using_40_100GbE_copper_cable["SN2100交换机无法使用40/100GbE铜缆连接"^]更多详情请见下文。
+有关更多详细信息，请参见知识库文章 link:https://kb.netapp.com/Advice_and_Troubleshooting/Data_Storage_Systems/Fabric_Interconnect_and_Management_Switches/NVIDIA_SN2100_switch_fails_to_connect_using_40_100GbE_copper_cable["SN2100交换机无法使用40/100GbE铜缆连接"^]。
 
 在 Cumulus Linux 4.4.2 中，配备 X1151A NIC、X1146A NIC 或板载 100GbE 端口的 SN2100 交换机不支持铜缆连接。例如：
 

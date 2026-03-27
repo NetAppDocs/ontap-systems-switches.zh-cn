@@ -32,7 +32,3 @@ summary: NVIDIA SN2100 存储交换机软件配置过程概述。
 .image:https://raw.githubusercontent.com/NetAppDocs/common/main/media/number-5.png["五"]link:setup-install-cshm-file.html["安装 CSHM 文件"]
 [role="quick-margin-para"]
 您可以安装适用于NVIDIA集群交换机的以太网交换机健康状况监控的配置文件。
-
-.image:https://raw.githubusercontent.com/NetAppDocs/common/main/media/number-6.png["六"]link:reset-switch-sn2100-storage.html["将交换机重置为出厂默认设置"]
-[role="quick-margin-para"]
-清除 SN2100 存储开关设置。

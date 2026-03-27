@@ -18,7 +18,7 @@ summary: 如果您已有双节点无交换机集群环境，则可以使用Cisco
 大多数系统需要在每个控制器上设置两个专用的集群网络端口。
 
 
-NOTE: 迁移完成后，您可能需要安装所需的配置文件，以支持 92300YC 集群交换机的集群交换机健康监视器 (CSHM)。看link:../switch-cshm/cshm-overview.html["交换机健康监测 (CSHM)"]。
+NOTE: 迁移完成后，可能需要安装要求的配置文件，以支持 92300YC 群集交换机的群集交换机运行状况监视器 (CSHM)。请参阅 link:../switch-cshm/cshm-overview.html["交换机健康监测 (CSHM)"]。
 
 
 
@@ -41,7 +41,7 @@ NOTE: 迁移完成后，您可能需要安装所需的配置文件，以支持 9
 * 可以通过控制台访问集群交换机。
 * Nexus 92300YC 节点到节点交换机和交换机到交换机的连接使用双绞线或光纤电缆。
 +
-https://hwu.netapp.com/SWITCH/INDEX["Hardware Universe- 交换机"^]包含更多关于布线的信息。
+link:https://hwu.netapp.com/SWITCH/INDEX["Hardware Universe- 交换机"^] 包含有关布线的详细信息。
 
 * 交换机间链路 (ISL) 电缆连接到两个 92300YC 交换机上的端口 1/65 和 1/66。
 * 两台 92300YC 交换机的初始定制工作已完成。因此：
@@ -65,7 +65,7 @@ https://hwu.netapp.com/SWITCH/INDEX["Hardware Universe- 交换机"^]包含更多
 * 这 `cluster1::*>`prompt 指示集群名称。
 * 此过程中使用的集群端口为 e0a 和 e0b。
 +
-https://hwu.netapp.com["Hardware Universe"^]包含有关您平台实际集群端口的最新信息。
+link:https://hwu.netapp.com["Hardware Universe"^] 包含有关您平台的实际集群端口的最新信息。
 
 
 
@@ -311,7 +311,7 @@ Cluster
 ====
 . 断开节点 1 上的集群端口 e0a 的电缆，然后使用 92300YC 交换机支持的适当电缆将 e0a 连接到集群交换机 cs1 上的端口 1。
 +
-这 https://hwu.netapp.com/SWITCH/INDEX["硬件宇宙 - 交换机"^]包含更多关于布线的信息。
+link:https://hwu.netapp.com/SWITCH/INDEX["Hardware Universe- 交换机"^] 包含有关布线的详细信息。
 
 . 断开节点 2 上的集群端口 e0a 的电缆，然后使用 92300YC 交换机支持的适当电缆将 e0a 连接到集群交换机 cs1 上的端口 2。
 . 启用集群交换机 cs1 上所有面向节点的端口。

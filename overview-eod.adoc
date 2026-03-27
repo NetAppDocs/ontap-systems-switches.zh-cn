@@ -4,7 +4,7 @@ permalink: overview-eod.html
 keywords: switches, fas, aff systems, end of availability, EOD 
 summary: FAS和AFF系统的 EOD 开关。 
 ---
-= 停止供应
+= 可用性终止开关
 :allow-uri-read: 
 :icons: font
 :imagesdir: ./media/

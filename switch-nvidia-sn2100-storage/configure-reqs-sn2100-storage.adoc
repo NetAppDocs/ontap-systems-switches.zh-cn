@@ -21,7 +21,7 @@ summary: 安装和维护NVIDIA SN2100 交换机时，请务必查看所有要求
 
 您可以使用交换机附带的标准支架，将NVIDIA SN2100 交换机 (X190006/X190106) 安装到NVIDIA双/单交换机机柜中。
 
-有关布线指南，请参阅link:cabling-considerations-sn2100-storage.html["布线和配置注意事项"]。
+有关布线指南，请参阅 link:cabling-considerations-sn2100-storage.html["布线和配置注意事项"]。
 
 
 
@@ -30,7 +30,7 @@ summary: 安装和维护NVIDIA SN2100 交换机时，请务必查看所有要求
 NVIDIA SN2100 交换机是一款运行 Cumulus Linux 的 10/25/40/100 Gb 以太网交换机。该交换机支持以下功能：
 
 * ONTAP 9.10.1P3。 SN2100 交换机通过不同的交换机对为ONTAP 9.10.1P3 中的集群和存储应用提供服务。从ONTAP 9.10.1P3 开始，您可以使用NVIDIA SN2100 交换机将存储和集群功能组合到共享交换机配置中。
-* Cumulus Linux (CL) 操作系统版本 4.4.3。有关当前兼容性信息，请参阅 https://mysupport.netapp.com/site/info/nvidia-cluster-switch["NVIDIA以太网交换机"^]信息页面。
+* Cumulus Linux (CL) 操作系统版本 4.4.3。有关当前兼容性信息，请参阅link:https://mysupport.netapp.com/site/info/nvidia-cluster-switch["NVIDIA以太网交换机"^]。
 * 当交换机运行 Cumulus Linux 或 ONIE 时，您可以安装 Cumulus Linux。
 
 

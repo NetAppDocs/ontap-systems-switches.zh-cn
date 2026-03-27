@@ -35,14 +35,14 @@ summary: 按照以下步骤安装Cisco Nexus 92300YC 交换机。
  a| 
 NetApp系统机柜中的Cisco Nexus 92300YC
  a| 
-有关在NetApp机柜中安装交换机的说明，请参阅《在NetApp机柜中安装Cisco Nexus 92300YC 集群交换机和直通面板》指南。
+有关在 NetApp 机柜中安装交换机的说明，请参见 _Installing a Cisco Nexus 92300YC cluster switch and pass-through panel in a NetApp cabinet_ 指南。
 
 
 
  a| 
 电信机架中的设备
  a| 
-请参阅交换机硬件安装指南和NetApp安装设置说明中提供的步骤。
+请参见交换机硬件安装指南中提供的步骤以及 NetApp 安装和设置说明。
 
 |===
 . 使用已完成的布线工作表，将集群网络和管理网络交换机连接到控制器。

@@ -17,7 +17,7 @@ summary: 在配置Cisco Nexus 3132q-v 交换机之前，请先查看流程概述
 该过程需要同时使用ONTAP命令和Cisco Nexus 3000 系列交换机命令；除非另有说明，否则使用ONTAP命令。
 
 ====
-有关详细信息，请参阅：For more information, see:
+有关详细信息，请参见
 
 * link:https://mysupport.netapp.com/site/products/all/details/netapp-cluster-switches/docs-tab["NetApp CN1601 和 CN1610"^]
 * link:https://mysupport.netapp.com/site/info/cisco-ethernet-switch["Cisco以太网交换机"^]

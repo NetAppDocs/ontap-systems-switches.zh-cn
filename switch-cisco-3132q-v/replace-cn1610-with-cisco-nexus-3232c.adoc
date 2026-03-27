@@ -247,7 +247,7 @@ cluster::*> network interface modify -vserver node2 -lif clus4 -auto-revert fals
 此时您必须准备好这两个开关。如果需要升级 RCF 和镜像，请按照以下步骤操作：
 
 +
-.. 看link:https://mysupport.netapp.com/site/info/cisco-ethernet-switch["Cisco以太网交换机"^]在NetApp支持网站上。
+.. 请参阅 NetApp 支持站点上的 link:https://mysupport.netapp.com/site/info/cisco-ethernet-switch["Cisco以太网交换机"^]。
 .. 请记下您交换机的型号以及该页表格中所需的软件版本。
 .. 下载相应版本的RCF。
 .. 在“描述”页面上点击“继续”，接受许可协议，然后按照“下载”页面上的说明下载 RCF。
