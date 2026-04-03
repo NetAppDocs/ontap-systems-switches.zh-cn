@@ -40,3 +40,7 @@ Cisco Nexus 9336C-FX2（36 个端口）是高端口密度集群/存储/数据交
 .image:https://raw.githubusercontent.com/NetAppDocs/common/main/media/number-6.png["六"]link:configure-software-overview-9336c-cluster.html["配置软件"]
 [role="quick-margin-para"]
 配置交换机软件。
+
+.image:https://raw.githubusercontent.com/NetAppDocs/common/main/media/number-7.png["七"]link:../switch-cshm/config-overview.html["配置 CSHM"]
+[role="quick-margin-para"]
+配置交换机运行状况监控。
