@@ -283,7 +283,8 @@ show isdp neighbor
 (cs2)(Config)# *interface 0/1-0/16*
 (cs2)(Interface 0/1-0/16)# *shutdown*
 (cs2)(Interface 0/1-0/16)# *exit*
-(cs2)(Config)#
+(cs2)(Config)# *exit*
+(cs2)#
 ----
 . 验证集群 LIF 是否已迁移到集群交换机 cs1 上托管的端口。这可能需要几秒钟。
 +
@@ -356,7 +357,7 @@ NOTE: 清除配置不会删除许可证。
 +
 [listing]
 ----
-(cs2)> enable
+(cs2)> *enable*
 (cs2)#
 ----
 .. 复制并粘贴以下命令以删除之前的 RCF 配置（根据之前使用的 RCF 版本，如果缺少特定设置，某些命令可能会出错）：
@@ -454,7 +455,10 @@ Are you sure you would like to reset the system? (y/n) *y*
 ====
 .EFOS 版本 3.12.x 及更高版本
 --
-. 使用以下传输协议之一将 RCF 复制到交换机 cs2 的 bootflash：HTTP、HTTPS、FTP、TFTP、SFTP 或 SCP。
+
+CAUTION: 上传并应用 RCF 文件时，必须将文件命名为 `reference-config.scr`，否则脚本应用步骤将失败。
+
+. 使用以下传输协议之一将 RCF 复制到交换机 cs2：HTTP、HTTPS、FTP、SFTP 或 SCP。
 +
 此示例展示了如何使用 SFTP 将 RCF 文件复制到交换机 cs2 的启动闪存中：
 
@@ -462,9 +466,9 @@ Are you sure you would like to reset the system? (y/n) *y*
 
 [listing, subs="+quotes"]
 ----
-(cs2)# *copy sftp://172.19.2.1/BES-53248-RCF-v1.9-Cluster-HA.txt nvram:reference-config*
+(cs2)# *copy sftp://172.19.2.1/BES-53248_RCF_v1.9-Cluster-HA.txt nvram:reference-config.scr*
 Remote Password:**
-Mode........................................... TFTP
+Mode........................................... SFTP
 Set Server IP.................................. 172.19.2.1
 Path........................................... /
 Filename....................................... BES-53248_RCF_v1.9-Cluster-HA.txt
@@ -472,7 +476,7 @@ Data Type...................................... Config Script
 Destination Filename........................... reference-config.scr
 Management access will be blocked for the duration of the transfer
 Are you sure you want to start? (y/n) *y*
-TFTP Code transfer starting...
+SFTP Code transfer starting...
 File transfer operation completed successfully.
 ----
 . 请确认脚本已下载并以您指定的文件名保存：
@@ -513,7 +517,7 @@ Configuration script 'reference-config.scr' applied.
 --
 .所有其他 EFOS 版本
 --
-. 使用以下传输协议之一将 RCF 复制到交换机 cs2 的 bootflash：HTTP、HTTPS、FTP、TFTP、SFTP 或 SCP。
+. 使用以下传输协议之一将 RCF 复制到交换机 cs2：HTTP、HTTPS、FTP、SFTP 或 SCP。
 +
 此示例展示了如何使用 SFTP 将 RCF 文件复制到交换机 cs2 的启动闪存中：
 

@@ -2,7 +2,7 @@
 permalink: switch-cisco-92300/replace-92300yc.html 
 sidebar: sidebar 
 keywords: replace,upgrade cisco nexus 92300yc cluster switch 
-summary: '更换集群网络中有缺陷的 Nexus 92300YC 交换机是一个无中断过程 \(NDU\)。' 
+summary: 在集群网络中更换有缺陷的 Nexus 92300YC 交换机是一个无中断的过程。 
 ---
 = 更换Cisco Nexus 92300YC 交换机
 :allow-uri-read: 

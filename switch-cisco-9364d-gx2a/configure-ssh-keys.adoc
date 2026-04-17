@@ -2,7 +2,7 @@
 permalink: switch-cisco-9364d-gx2a/configure-ssh-keys.html 
 sidebar: sidebar 
 keywords: ssh, requirement, cluster, switch, health, monitor, cshm, log, collection, feature, cisco 9332d-gx2b 
-summary: '使用集群交换机健康监视器 (CSHM) 和日志收集功能时需要 SSH。要在Cisco 9364d-gx2a 集群交换机上启用 SSH，您需要先生成 SSH 密钥，然后启用 SSH。' 
+summary: '使用群集交换机运行状况监视器 (CSHM) 和日志收集功能时，SSH 是必需的。要在 Cisco 9364d-gx2a 群集交换机上启用 SSH，请先生成 SSH 密钥，然后启用 SSH。' 
 ---
 = 请检查您的 SSH 配置
 :allow-uri-read: 

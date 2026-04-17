@@ -130,7 +130,7 @@ cluster1::*>
 ====
 .. 确认所有集群接口（LIF）都位于主端口上：
 +
-`network interface show -vserver cluster`
+`network interface show -vserver Cluster`
 
 +
 .显示示例
@@ -138,7 +138,7 @@ cluster1::*>
 ====
 [listing, subs="+quotes"]
 ----
-cluster1::*> *network interface show -vserver cluster*
+cluster1::*> *network interface show -vserver Cluster*
             Logical            Status     Network           Current      Current Is
 Vserver     Interface          Admin/Oper Address/Mask      Node         Port    Home
 ----------- ------------------ ---------- ----------------- ------------ ------- ----
@@ -223,7 +223,7 @@ CAUTION: 请确保关闭*所有*连接的群集端口，以避免任何网络连
 
 . 验证集群 LIF 是否已故障转移到集群交换机 cs1 上托管的端口。这可能需要几秒钟。
 +
-`network interface show -vserver cluster`
+`network interface show -vserver Cluster`
 
 +
 .显示示例
@@ -231,7 +231,7 @@ CAUTION: 请确保关闭*所有*连接的群集端口，以避免任何网络连
 ====
 [listing, subs="+quotes"]
 ----
-cluster1::*> *network interface show -vserver cluster*
+cluster1::*> *network interface show -vserver Cluster*
             Logical           Status     Network            Current       Current Is
 Vserver     Interface         Admin/Oper Address/Mask       Node          Port    Home
 ----------- ----------------- ---------- ------------------ ------------- ------- ----
@@ -345,21 +345,22 @@ cluster1::*>
 +
 您可能需要更新与 SSH 密钥相关的 hosts 文件条目。
 
-. 使用以下传输协议之一将 RCF 复制到交换机 cs1 的 bootflash：FTP、TFTP、SFTP 或 SCP。
+. 使用以下传输协议之一将 RCF 复制到交换机 cs1 上的 bootflash：FTP、SFTP 或 SCP。
 +
 有关 Cisco 命令的更多信息，请参见 link:https://www.cisco.com/c/en/us/support/switches/nexus-9336c-fx2-switch/model.html#CommandReferences["Cisco Nexus 9000 系列 NX-OS 命令参考"^] 中的相应指南。
 
 +
-此示例展示了如何使用 TFTP 将 RCF 文件复制到交换机 cs1 的启动闪存中：
+此示例显示使用 SFTP 将 RCF 复制到交换机 cs1 上的 bootflash：
 
 +
 [listing, subs="+quotes"]
 ----
-cs1# *copy tftp: bootflash: vrf management*
+cs1# *copy sftp: bootflash: vrf management*
 Enter source filename: *Nexus_9336C_RCF_v1.6-Cluster-HA-Breakout.txt*
-Enter hostname for the tftp server: *172.22.201.50*
-Trying to connect to tftp server......Connection to Server Established.
-TFTP get operation was successful
+Enter hostname for the sftp server: *172.22.201.50*
+Enter username: *user1*
+Trying to connect to sftp server......Connection to Server Established.
+SFTP get operation was successful
 Copy complete, now saving to disk (please wait)...
 ----
 . 将之前下载的 RCF 文件应用到启动闪存中。
@@ -555,6 +556,9 @@ cluster1::*>
 `This command will reboot the system. (y/n)?  [n] *y*`
 
 
+
+
+CAUTION: 如果 9336C-FX2 交换机在 RCF 升级后无法启动，请参见 NetApp 知识库文章 link:https://kb.netapp.com/on-prem/ontap/OHW/OHW-KBs/Cisco_9336C-FX2_Switch_Fails_to_Boot_After_RCF_Install_%E2%80%93_Boot_Variable_Cleared["Cisco 9336C-FX2 交换机在安装 RCF 后无法引导 – 引导变量已清除"^] 以了解后续步骤。
 
 
 
@@ -792,7 +796,7 @@ cs1#
 ====
 . 确认集群 LIF 已恢复到其原端口：
 +
-`network interface show -vserver cluster`
+`network interface show -vserver Cluster`
 
 +
 .显示示例
@@ -800,7 +804,7 @@ cs1#
 ====
 [listing, subs="+quotes"]
 ----
-cluster1::*> *network interface show -vserver cluster*
+cluster1::*> *network interface show -vserver Cluster*
             Logical            Status     Network            Current             Current Is
 Vserver     Interface          Admin/Oper Address/Mask       Node                Port    Home
 ----------- ------------------ ---------- ------------------ ------------------- ------- ----
