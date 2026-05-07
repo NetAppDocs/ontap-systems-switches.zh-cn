@@ -2,7 +2,7 @@
 permalink: switch-cisco-3132q-v/replace-cisco-nexus-3132q-v.html 
 sidebar: sidebar 
 keywords: replace, cisco nexus 3132q-v cluster switches 
-summary: '在集群网络中更换有缺陷的Cisco Nexus 3132Q-V 交换机是一个非中断性程序 (NDO)，您必须执行特定的任务顺序。' 
+summary: 在集群网络中更换有缺陷的 Cisco Nexus 3132Q-V 交换机是一个无中断过程 NDU，您必须执行特定的任务序列。 
 ---
 = 更换Cisco Nexus 3132Q-V 集群交换机
 :allow-uri-read: 

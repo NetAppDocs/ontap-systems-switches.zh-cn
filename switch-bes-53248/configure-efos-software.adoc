@@ -2,7 +2,7 @@
 permalink: switch-bes-53248/configure-efos-software.html 
 sidebar: sidebar 
 keywords: BES-53248 cluster switches,installing EFOS software 
-summary: '按照以下步骤在 BES-53248 集群交换机上安装以太网结构操作系统 (EFOS) 软件。' 
+summary: 按照下面的步骤在 BES-53248 集群交换机上安装以太网 Fabric OS EFOS 软件。 
 ---
 = 安装 EFOS 软件
 :allow-uri-read: 

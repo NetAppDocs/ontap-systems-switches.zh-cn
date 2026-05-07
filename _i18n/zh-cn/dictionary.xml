@@ -596,7 +596,6 @@
   <block id="9a5f500ffaccd0b3009efe64697ec210" category="list-text"><block ref="9a5f500ffaccd0b3009efe64697ec210" category="inline-link-macro-rx"></block></block>
   <block id="b28b35ae2bb0ba008baa07b20e30cb9b" category="inline-link-macro">停产通知： NetApp CN1610 集群互连 SKU</block>
   <block id="3f802670007b812ad08c750c46d02d46" category="list-text"><block ref="3f802670007b812ad08c750c46d02d46" category="inline-link-macro-rx"></block></block>
-  <block id="b61075ba30803dc13c18190d95bb660c" category="summary">ONTAP中的以太网交换机健康监视器 (CSHM) 日志收集功能用于从集群或存储网络交换机收集日志。</block>
   <block id="cc96021e22980976473658b2f1ba6e98" category="doc">以太网交换机健康监控日志收集</block>
   <block id="bf4e0c74d0d64f033de371084e1f1021" category="paragraph">以太网交换机健康监视器 (CSHM) 负责确保集群和存储网络交换机的运行健康，并收集交换机日志以进行调试。此程序指导您完成从交换机设置和开始收集详细*支持*日志的过程，并开始每小时收集由AutoSupport收集的*定期*数据。</block>
   <block id="43822bbc5cba6f539b9e148db3e66253" category="list-text">要启用日志收集功能，您必须运行ONTAP版本 9.10.1P15、9.11.1P12 或 9.12.1 或更高版本以及 EFOS 3.8.0.2 或更高版本。</block>
@@ -619,7 +618,6 @@
   <block id="ad20b6964df2e6ea3df2b394efc811ed" category="paragraph">删除交换机上之前的日志收集文件。</block>
   <block id="20c7a250c756306872ccbb15d529b664" category="paragraph">*交换机转储日志错误*</block>
   <block id="282efbd3d7380f8a34d8579ad5d9c11f" category="paragraph">请确保切换用户拥有日志收集权限。请参考以上先决条件。</block>
-  <block id="b8731468035c2cab5635961a32d46c38" category="summary">SNMPv3 可以与以太网交换机健康监视器 (CSHM) 一起使用。</block>
   <block id="079555d3c02274a2f31c4ed0065d657e" category="doc">配置 SNMPv3</block>
   <block id="86da6292895a71bdd61d82bd76a5649d" category="paragraph">按照以下步骤配置 SNMPv3，SNMPv3 支持以太网交换机健康监控 (CSHM)。</block>
   <block id="f00216e423dd65c7a8b4a0768c1cf2bc" category="paragraph">以下命令用于在 Broadcom BES-53248 交换机上配置 SNMPv3 用户名：</block>
@@ -820,7 +818,6 @@
   <block id="05811097becdf827e7905c7085aac958" category="paragraph"><block ref="2dddacc5e6efaad8de6eb5a7e2c10d11" prefix="" category="inline-code"></block></block>
   <block id="8ec519db7b497274ec49e47d1d5805aa" category="inline-link-macro">安装 EFOS 软件</block>
   <block id="1cdfb67cf1efdfc117156b73520a6202" category="paragraph">配置好交换机后，您可以…… <block ref="5f8c635ef985b849c8790b2e319cc3c1" category="inline-link-macro-rx"></block>。</block>
-  <block id="245b6d4f01047a24b306b9ff15a6f528" category="summary">配置 BES-53248 集群交换机并应用新许可证后，即可安装参考配置文件 (RCF)。</block>
   <block id="2ad05b5c21ff6c71199a379622544a42" category="doc">安装参考配置文件（RCF）</block>
   <block id="d217db6e5c9fe01778df762ef953150e" category="inline-link-macro">安装参考配置文件 (RCF) 和许可证文件</block>
   <block id="6503ea0189c5cfc2f7fbdef509813892" category="admonition">对于 EFOS 3.12 及更高版本，请按照以下安装步骤进行操作：<block ref="2875012234c5bc616da894d0cc04d2b5" category="inline-link-macro-rx"></block> 。</block>
@@ -1273,7 +1270,6 @@
   <block id="671537f32d06de75a977dc3008daeff5" category="admonition">如果系统询问是否在重新加载交换机之前保存未保存或已更改的配置，请选择“否”。</block>
   <block id="01abea5f71122f7491f5d67a54692187" category="list-text">[[step4]] 等待交换机重新加载，然后登录到交换机。</block>
   <block id="3298c6d813bb0262584ca3882273ff2a" category="paragraph">默认用户为“admin”，未设置密码。屏幕上会显示类似以下内容的提示：</block>
-  <block id="83125f7f126ff0a8e1d1c0a2e18662a8" category="summary">请按照以下步骤升级 BES-53248 集群交换机上的以太网结构操作系统 (EFOS) 软件。</block>
   <block id="8693d3f8c9b18790ed498b6f024a5669" category="doc">升级 EFOS 软件</block>
   <block id="9aae29728e49aa150331311d8f2d4df9" category="paragraph">请按照以下步骤升级 BES-53248 集群交换机上的 EFOS 软件。</block>
   <block id="81f6f81478c921fde89ee0a4441fbf63" category="section-title">准备升级</block>
@@ -1891,7 +1887,6 @@
   <block id="de7ffa00f75520afd4312c03db0da03c" category="list-text"><block ref="de7ffa00f75520afd4312c03db0da03c" category="inline-link-macro-rx"></block></block>
   <block id="c409f8a3c1a31991297c71a6ef92dff2" category="inline-link-macro">从有交换机集群迁移到无交换机集群后发生节点崩溃</block>
   <block id="55f49c71e99a86d3514c015252eee468" category="list-text"><block ref="55f49c71e99a86d3514c015252eee468" category="inline-link-macro-rx"></block></block>
-  <block id="dd7ac721959b4aaa170786e82881ae7b" category="summary">Cisco Nexus 3132Q-V 集群交换机上必须安装Cisco NX-OS 软件和参考配置文件 (RCF)。</block>
   <block id="ccdb01c4cd8e253f3a70d7d150d9bc95" category="paragraph">在安装 NX-OS 软件和参考配置文件 (RCF) 之前，请按照以下步骤操作。</block>
   <block id="29b5c9f7c3e370b92a6acd04f777cd76" category="paragraph">本流程中的示例使用了两个节点。这些节点使用两个 10GbE 集群互连端口<block ref="922c556baf6272bffc4fa28b2e9a0bbc" prefix=" " category="inline-code"></block>和<block ref="22fe67c2e87caff18249cf1804bbeaad" prefix=" " category="inline-code"></block>。</block>
   <block id="eaa553a851c0d94118e84937225d82b3" category="list-text">节点名称是<block ref="b33422d3fbf7a4ba3b02e2bfcd37f46f" prefix=" " category="inline-code"></block>和<block ref="8fc15469c933cd7fd8db166bddedfd77" prefix=" " category="inline-code"></block>。</block>
@@ -1900,7 +1895,6 @@
   <block id="8b7a1c5ca569b4edf87d12744a873c02" category="list-text">步骤6：验证<block ref="9f1b7141f09f19c4e33409646aef43cf" prefix=" " category="inline-code"></block>该命令已在所有集群 LIF 上启用：</block>
   <block id="9c7e872eafa4ce3bafe48b85e4dccabc" category="inline-link-macro">安装 NX-OS 软件</block>
   <block id="a83444c24e0333a8d2c26d5a4a4cb369" category="paragraph">准备好安装 NX-OS 软件和 RCF 后，您 <block ref="d75ac7de135fb381613e594c611e5a43" category="inline-link-macro-rx"></block>。</block>
-  <block id="185abab67865bc469a6da739830734e2" category="summary">在集群网络中更换有缺陷的Cisco Nexus 3132Q-V 交换机是一个非中断性程序 (NDO)，您必须执行特定的任务顺序。</block>
   <block id="f50bf609e9ecf04112d0a60d1efc13c9" category="doc">更换Cisco Nexus 3132Q-V 集群交换机</block>
   <block id="a96967612c6864aa22be45f265f4c533" category="paragraph">按照以下步骤更换集群网络中出现故障的Cisco Nexus 3132Q-V 交换机。更换过程属于非中断性过程（NDO）。</block>
   <block id="f3f6fdd1ea886344c6b4f8b4ee91d661" category="paragraph-title">交换机要求</block>
@@ -2533,7 +2527,6 @@
   <block id="ff40315daa8444e010ab8f52f7dc5503" category="list-text">端口 e1/31-32 (40/100 GbE)：Nexus 3232C</block>
   <block id="b8b92463e1121f4fb733de40b6f53dc6" category="paragraph">默认情况下，40/100 千兆以太网模式下有 32 个端口。这 40 个千兆以太网端口采用二元组命名规则进行编号。例如，第二个 40 千兆以太网端口编号为 1/2。将 40 千兆以太网配置更改为 10 千兆以太网的过程称为 _breakout_，将 10 千兆以太网配置更改为 40 千兆以太网的过程称为 _breakin_。当您将 40/100 千兆以太网端口拆分为 10 千兆以太网端口时，生成的端口将使用三元组命名规则进行编号。例如，第二个 40/100 千兆以太网端口的分线端口编号为 1/2/1、1/2/2、1/2/3 和 1/2/4。</block>
   <block id="6772e4d59dd062c5a9260242b751786f" category="doc">使用无交换机连接替换Cisco Nexus 3232C 集群交换机</block>
-  <block id="f435abab4c17d94cf8603815dbd871f9" category="summary">Cisco Nexus 3232C 集群交换机上必须安装Cisco NX-OS 软件和参考配置文件 (RCF)。</block>
   <block id="8cf2672ea5c13bbf0de6052b20c338ef" category="doc">准备安装 NX-OS 软件和参考配置文件 (RCF)</block>
   <block id="8df6d09a602fca4aa18fe9e0b5e94fd4" category="list-text">如果此集群上启用了AutoSupport ，则通过调用AutoSupport消息来抑制自动创建案例：<block ref="d4f081f8f7b730c426160bfa9617a56a" prefix=" " category="inline-code"></block></block>
   <block id="4abcd2a6fe57e9f246dd326cae0ddb1b" category="list-text">显示有关 LIF 的信息：<block ref="7af866342cc7e87972580d7b709d8820" prefix=" " category="inline-code"></block></block>
@@ -2657,7 +2650,6 @@
   <block id="202f974033cf1161982db034d23ab80c" category="paragraph">100GbE ISL 连接至交换机 A 端口 31</block>
   <block id="0e799942e6eaaf5fb0e0990b9cff01d0" category="paragraph">100GbE ISL 连接至交换机 B 端口 32</block>
   <block id="ef3ddd21da594e200a83e463425ee831" category="paragraph">100GbE ISL 连接至交换机 A 端口 32</block>
-  <block id="5a9c1ae57a80076b39ad53020fd29eed" category="summary">Cisco Nexus 3232C 存储交换机可以升级Cisco NX-OS 软件和参考配置文件 (RCF)。</block>
   <block id="29165d4eb3f784e35d52698213cb1586" category="doc">升级Cisco Nexus 3232C 存储交换机</block>
   <block id="aaee942f01ab7b858b2f2b63c62fe972" category="paragraph">请按照以下步骤升级Cisco Nexus 3232C 交换机上的Cisco NX-OS 软件和参考配置文件 (RCF)。</block>
   <block id="ee01b78d6cadb3e6f6a563b8d4eb8dee" category="paragraph">在升级存储交换机上的 NX-OS 软件和 RCF 之前，请确保满足以下条件：</block>
@@ -3029,7 +3021,6 @@
   <block id="91a0516fc9c7301309b79a97012571d5" category="paragraph-title"><block ref="05b2444faffd66d76e88602ea7dd353f" category="inline-image-macro-rx" type="image"></block><block ref="3e13f22757b8047fc4e7842e563aeab4" category="inline-link-macro-rx"></block></block>
   <block id="8aa0164f6bb664ee2a1a0b46d6a91f38" category="paragraph">下载并安装或升级Cisco 9332D-GX2B 交换机上的 NX-OS 软件。</block>
   <block id="11106314fe1d4dd5bee639afb348b915" category="inline-link-macro">安装或升级 RCF</block>
-  <block id="422c274743fd52a13b84466925d9ae14" category="paragraph-title"><block ref="beadfa85a2fdca06b91edc1131c603e6" category="inline-image-macro-rx" type="image"></block><block ref="e1c53d78ceb09f1d765f98cd902707bb" category="inline-link-macro-rx"></block></block>
   <block id="e3f39cacd8425f4e760364f787b5c09d" category="paragraph">首次设置Cisco 9332D-GX2B 交换机后安装或升级 RCF。您也可以使用此过程升级您的 RCF 版本。</block>
   <block id="28eef302549a5d0d625be1084076abb2" category="inline-link-macro">验证Cisco 9332D-GX2B 交换机上是否启用了 SSH</block>
   <block id="e48e15c8bda315a471c31c26f64b5d6b" category="paragraph-title"><block ref="99e8b2f00e172bfcff96afdce69907bc" category="inline-image-macro-rx" type="image"></block><block ref="18afa73aedf40d16a12decea9355d4bb" category="inline-link-macro-rx"></block></block>
@@ -3097,7 +3088,6 @@
   <block id="8d2204dbe11911cd9868ab4a33a8ef52" category="list-text">验证集群上所有端口的健康状况。</block>
   <block id="637a8c78ac727e9cc53c21eac9229e42" category="list-text">重复步骤 6 至 13，在交换机 cs1 上安装 NX-OS 软件和 EPLD 映像。</block>
   <block id="4a7de73e27154c91b20bfab9924e4aef" category="paragraph"><block ref="e9ad0d8b982112c28ec03f1b3a17f92e" prefix="" category="inline-code"></block></block>
-  <block id="ad599980e8b337c42970271e9b84f0ee" category="paragraph">安装或升级 NX-OS 软件后，您<block ref="d510068a163bd661380221025541f5da" category="inline-link-macro-rx"></block>。</block>
   <block id="da290344a59f842ad67373838535bbf4" category="summary">首次设置 Nexus 9332D-GX2B 交换机后，您可以安装 RCF。</block>
   <block id="88c6fb51a79a63370991d585551ed93a" category="list-text">控制台与交换机的连接。如果您可以远程访问交换机，则控制台连接是可选的。</block>
   <block id="1ececed2a569720ced41e9cd50d7b238" category="list-text">交换机 cs1 和交换机 cs2 已通电，交换机初始设置已完成（管理 IP 地址和 SSH 已设置）。</block>
@@ -3306,7 +3296,6 @@
   <block id="bbb9faab95e3e9af13430c6529221602" category="summary">您可以按照以下步骤在 Nexus 9336C-FX2 集群交换机上安装 NX-OS 软件。</block>
   <block id="9eb0d2dee744ca5726b57d78636445af" category="paragraph">按照以下步骤在 Nexus 9336C-FX2 和 9336C-FX2-T 集群交换机上安装或升级 NX-OS 软件。</block>
   <block id="242de61cd0710bcf5f8d68190d392f95" category="paragraph">开始之前，请先完成以下步骤。<block ref="7be1885a02922674638042ed6280ba6b" category="inline-link-macro-rx"></block> 。</block>
-  <block id="f81ef217d2c8bc05e0d4e6f1aad50a66" category="paragraph">安装或升级 NX-OS 软件后，您可以……<block ref="d510068a163bd661380221025541f5da" category="inline-link-macro-rx"></block> 。</block>
   <block id="d002eea8f83f99bafbbc5f36440edd41" category="summary">首次设置好 Nexus 9336C-FX2 交换机后，即可安装 RCF。您也可以使用此方法升级 RCF 版本。</block>
   <block id="5dbda9223b42a1433b17c045beba0f1b" category="paragraph">首次设置 Nexus 9336C-FX2 和 9336C-FX2-T 交换机后，安装参考配置文件 (RCF)。</block>
   <block id="4f9d99e1896d0aa94a4ea56a61e0b5d7" category="list-text">ONTAP节点集群端口未连接。</block>
@@ -3979,11 +3968,9 @@
   <block id="da28641e557d1527788801659dc81fd5" category="inline-link-macro">排查日志收集问题</block>
   <block id="d9566e63378c0ff8504c903128e5c6f6" category="inline-link-macro">配置 SNMPv3（可选）</block>
   <block id="e2101619626dc7b8ea25749787797515" category="paragraph"><block ref="a294afff18b68f8c1e4f78aeef5ef294" category="inline-link-macro-rx"></block>。</block>
-  <block id="8ae4eeaa7baed19106cc30ea02483c5e" category="summary">以太网交换机健康监视器 (CSHM) 负责确保集群和存储网络交换机的运行健康，并收集交换机日志以进行调试。</block>
   <block id="282155126a94a0702cfd80daf38d4362" category="doc">配置概述</block>
   <block id="c4bf003fc396e9ee7d60812f1da24cfe" category="list-text"><block ref="c4bf003fc396e9ee7d60812f1da24cfe" category="inline-link-macro-rx"></block></block>
   <block id="a294afff18b68f8c1e4f78aeef5ef294" category="list-text"><block ref="a294afff18b68f8c1e4f78aeef5ef294" category="inline-link-macro-rx"></block></block>
-  <block id="5b62a4b03175f138ff64effec2560ed7" category="summary">您可以使用此程序为您的特定交换机配置 SNMPv3，该交换机支持以太网交换机健康监控 (CSHM)。</block>
   <block id="62f22218ea7fb3cf6669cdfdb6c908e0" category="doc">为交换机配置 SNMPv3（可选）</block>
   <block id="1c10f160ae9b8c4d78cec8e05f3c3a4e" category="paragraph">SNMP 用于监控交换机。按照以下步骤配置 SNMPv3 监控。</block>
   <block id="1c76d98a8c6bdaf19a0c6e69ecd5d74b" category="doc">交换机健康监控器概述</block>
@@ -4129,7 +4116,6 @@
   <block id="085e32a02cb4ebf3ac87c8b1791d407a" category="inline-link-macro">在运行ONTAP 8.3.1 及更高版本的交换机上安装 FASTPATH 和 RCF。</block>
   <block id="fa46630a0f02f3a3e380fcfce6961441" category="paragraph">如果交换机运行的是ONTAP 8.3.1 或更高版本，请按照以下说明操作：<block ref="b8d373212331c2dcd588cc85c06ecfce" category="inline-link-macro-rx"></block></block>
   <block id="a4cc27f030d5855528a867889ecb752b" category="list-text"><block ref="a4cc27f030d5855528a867889ecb752b" category="inline-link-macro-rx"></block></block>
-  <block id="daf20f967e014d2ca0616935fab019db" category="summary">安装参考配置文件 (RCF) 时，必须先将集群 LIF 从交换机 cs2 迁移出去。  RCF 安装并验证完成后，LIF 即可迁移回去。</block>
   <block id="86a663d3b96e07c5a852301b9bd3b075" category="doc">在 CN1610 交换机上安装参考配置文件</block>
   <block id="449106779f0029695a2b0e663fb8fc0b" category="paragraph">请按照以下步骤安装参考配置文件 (RCF)。</block>
   <block id="088aef58f346bbf6485e3c2b1292369d" category="paragraph">在安装 RCF 之前，必须先将集群 LIF 从交换机 cs2 迁移出去。  RCF 安装并验证完成后，LIF 即可迁移回去。</block>
@@ -4503,7 +4489,6 @@
   <block id="69fe2bd920008d1b6c35f9baad74d4f1" category="inline-link">连接NS224驱动器机架的电缆交换机</block>
   <block id="1d60ae449462450e67f46eb89e1c693c" category="paragraph"><block ref="1d60ae449462450e67f46eb89e1c693c" category="inline-link-rx"></block></block>
   <block id="aa690319dc0361fc52f6d6941197617e" category="paragraph">给书架布线完成后，你可以……<block ref="a5a547b7e695aa3612b72d881f169519" category="inline-link-macro-rx"></block> 。</block>
-  <block id="4e4a4a02911e122627365a67b690270e" category="summary">当交换机运行 Cumulus Linux 或 ONIE 时，可以安装 Cumulus Linux (CL) 操作系统。</block>
   <block id="c1bbeec855d76242340c5bdf0a270fb1" category="paragraph">当交换机运行在 Cumulus 模式下时，请按照以下步骤安装 Cumulus Linux (CL) 操作系统。</block>
   <block id="eaeaa3cbb68f870319145c61053e1d67" category="inline-link-macro">以 ONIE 模式安装</block>
   <block id="a11df88b8e5a715c451bd8fd231b9b06" category="list-text">具备中级Linux知识。</block>
@@ -5355,7 +5340,6 @@
   <block id="06f98fb7dabad121f0a305f634bbd3d9" category="list-text"><block ref="2f0c8beed0944d74f65fe6f338a45004" category="inline-link-macro-rx"></block>。</block>
   <block id="b93535b0bc8b7e60ab4fbdfe5a4542d1" category="inline-link-macro">将开关安装在 NetApp 机柜中</block>
   <block id="970547de0b1297e6e40fd3ffa36745f2" category="paragraph">安装 3232C 存储开关后，您就可以<block ref="998eeccb90ed60d04433c9a9a151ef26" category="inline-link-macro-rx"></block>。</block>
-  <block id="678e13be1f1f5630381c676c3babc72d" category="summary">必须在 Cisco Nexus 3232C 存储交换机上安装 Cisco NX-OS 软件和参考配置文件 (RCF)。</block>
   <block id="65459cc6f0f81aa31bfc775f15ed6bc4" category="paragraph">在您准备好安装 NX-OS 软件和 RCF 之后，您就可以<block ref="a2bf6a57e594c94642b3fd5d310037a1" category="inline-link-macro-rx"></block>了。</block>
   <block id="312661d0f59054d715a9246594bd18e4" category="paragraph">更换开关后，您可以进行操作<block ref="9c3be868eca09e30ec03c7542e485ba6" category="inline-link-macro-rx"></block>。</block>
   <block id="ba142a42b9904c0d02cec8569ea8cf6f" category="doc">Cisco Nexus 3232C 存储交换机的文档要求</block>
@@ -5817,32 +5801,58 @@
   <block id="4900377d6745b8a03e6c9a542b3fe2f0" category="paragraph">以太网交换机健康监视器（CSHM）负责确保网络交换机的运行健康，并收集交换机日志以进行调试。</block>
   <block id="bc2dfd2fdf95de6b810acf0fa5c67356" category="paragraph">以太网交换机运行状况监视器 (CSHM) 利用 SNMP 来监控网络交换机的运行状况和性能。默认情况下，SNMPv2c 通过参考配置文件 (RCF) 自动配置。SNMPv3 比 SNMPv2 更安全，因为它引入了强大的安全功能，如身份验证、加密和消息完整性，可防止未经授权的访问，并确保传输过程中的数据机密性和完整性。</block>
   <block id="7cb74dd4a33dec5dc1811198729f1a3d" category="paragraph">以太网交换机健康监视器 (CSHM) 会自动尝试监控其发现的网络交换机；但是，如果交换机配置不正确，监控可能不会自动进行。您应该验证运行状况监视器是否已正确配置为监控您的交换机。</block>
-  <block id="2cc0a4e03235f6214d4b5fa369958e9f" category="summary">使用群集交换机运行状况监视器 (CSHM) 和日志收集功能时，SSH 是必需的。要在 BES-53248 群集交换机上启用 SSH，请先生成 SSH 密钥，然后启用 SSH。</block>
-  <block id="57ce4745993a2cb21c9606f06974d3c9" category="summary">在集群网络中更换有缺陷的 Broadcom 支持的 BES-53248 集群交换机是一种无中断过程 (NDU)。</block>
   <block id="9bb9d88110e7f202f1952ebcc9fefc08" category="admonition">上传并应用 RCF 文件时，必须将文件命名为<block ref="a890eeb375a613e0acf945129af8cad4" prefix=" " category="inline-code"></block>，否则脚本应用步骤将失败。</block>
   <block id="153aa60e53e376e3c47bb9de3f41cd5c" category="list-text">使用以下传输协议之一将 RCF 复制到交换机 cs2：HTTP、HTTPS、FTP、SFTP 或 SCP。</block>
-  <block id="c8db8b64b02e5a6e924b13e7a1c3d54f" category="summary">使用群集交换机运行状况监视器 (CSHM) 和日志收集功能时，SSH 是必需的。要在 Cisco 3132Q-V 群集交换机上启用 SSH，请先生成 SSH 密钥，然后启用 SSH。</block>
-  <block id="7ab09ec5429db2527654e19eec7bb2bd" category="summary">使用群集交换机运行状况监视器 (CSHM) 和日志收集功能时，SSH 是必需的。要在 Cisco 3132q-v 群集交换机上启用 SSH，请先生成 SSH 密钥，然后启用 SSH。</block>
-  <block id="832605a2d3ad68151e1f47c56cdfb281" category="summary">使用群集交换机运行状况监视器 (CSHM) 和日志收集功能时，SSH 是必需的。要在 Cisco 3232C 群集交换机上启用 SSH，请先生成 SSH 密钥，然后再启用 SSH。</block>
-  <block id="04a72e0b6098b241a07346d12dc79fdd" category="summary">使用群集交换机运行状况监视器 (CSHM) 和日志收集功能时，SSH 是必需的。要在 Cisco 3232c 群集交换机上启用 SSH，请先生成 SSH 密钥，然后再启用 SSH。</block>
-  <block id="de12ff3a93a3d0a5df28bdea267617ac" category="summary">使用群集交换机运行状况监视器 (CSHM) 和日志收集功能时，SSH 是必需的。要在 Cisco 92300YC 群集交换机上启用 SSH，请先生成 SSH 密钥，然后启用 SSH。</block>
-  <block id="bd0c2a5487db101df9e69519dbe7db55" category="summary">Cisco Nexus 92300YC 群集交换机上必须安装 Cisco NX-OS 软件和参考配置文件 (RCF)。</block>
   <block id="4bcfba45804fbbbd6422a9b0dea12c5f" category="summary">在集群网络中更换有缺陷的 Nexus 92300YC 交换机是一个无中断的过程。</block>
-  <block id="763d50f75a0946cdabf7614582b13354" category="summary">使用群集交换机运行状况监视器 (CSHM) 和日志收集功能时，SSH 是必需的。要在 Cisco 9332d-gx2b 群集交换机上启用 SSH，请先生成 SSH 密钥，然后启用 SSH。</block>
-  <block id="7e67dabdf4e4228280d37eb5bc37c3d9" category="summary">Cisco Nexus 9332D-GX2B 群集交换机上必须安装 Cisco NX-OS 软件和参考配置文件 (RCF)。</block>
-  <block id="2beefb4d1a7bb9c61f30e6c0adad3ad5" category="summary">在集群网络中更换有缺陷的 Nexus 9332D-GX2B 交换机是无中断过程 (NDU)。</block>
-  <block id="c1975d8a3808282d8337678030b4a81a" category="summary">使用群集交换机运行状况监视器 (CSHM) 和日志收集功能时，SSH 是必需的。要在 Cisco 9336c-fx2 群集交换机上启用 SSH，请先生成 SSH 密钥，然后启用 SSH。</block>
-  <block id="9b32aa934f364be9aa6cdf3bf05d15ee" category="summary">必须在 Cisco Nexus 9336C-FX2 集群交换机上安装 Cisco NX-OS 软件和参考配置文件 (RCF)。</block>
   <block id="c506cb52e11779e41b9479bb442eec6e" category="list-text">使用以下传输协议之一将 RCF 复制到交换机 cs1 的 bootflash：FTP、SFTP 或 SCP。</block>
   <block id="b3cbf28e617c9f4b35cbc237024a2fbb" category="paragraph">此示例显示使用 SFTP 将 RCF 复制到交换机 cs1 上的 bootflash：</block>
-  <block id="456a5c90687a021221cc54821a27d7f4" category="summary">在集群网络中更换有缺陷的 Nexus 9336C-FX2 交换机是无中断过程 (NDU)。</block>
   <block id="9daa5d42be0756d3784e9f178a3295c6" category="list-text">使用以下传输协议之一将 RCF 复制到交换机 cs1 上的 bootflash：FTP、SFTP 或 SCP。</block>
   <block id="64678126dc02aa542e8431224df8565f" category="inline-link-macro">Cisco 9336C-FX2 交换机在安装 RCF 后无法引导 – 引导变量已清除</block>
   <block id="34b6891d558f2193167ecd55dac3e6cd" category="admonition">如果 9336C-FX2 交换机在 RCF 升级后无法启动，请参见 NetApp 知识库文章 <block ref="e42cc9ef430c6ea42d7a305356970328" category="inline-link-macro-rx"></block> 以了解后续步骤。</block>
-  <block id="c2bfedfcb69ad2176d378523a1a938f1" category="summary">使用群集交换机运行状况监视器 (CSHM) 和日志收集功能时，SSH 是必需的。要在 Cisco 9364d-gx2a 群集交换机上启用 SSH，请先生成 SSH 密钥，然后启用 SSH。</block>
-  <block id="7da9fcbfb01147ad61851b7542efd343" category="summary">在集群网络中更换有缺陷的 Nexus 9364D-GX2A 交换机是无中断过程 (NDU)。</block>
-  <block id="087a0cdfa40d1253f83403998d37833d" category="summary">在集群网络中更换有缺陷的 NVIDIA SN2100 交换机是一个无中断过程 (NDU)。</block>
-  <block id="dcb14dbcf0c3e9fd91e172f33a9223b5" category="summary">您可以使用此过程安装适用于 NVIDIA SN2100 交换机健康状况监控的配置文件。</block>
-  <block id="4010049d40fdd6031ad12cfe5da5d25b" category="summary">以无中断程序 (NDU) 更换有缺陷的 NVIDIA SN2100 存储交换机。</block>
-  <block id="5dc8d4198fd0d6a1ba6b728a23ca8894" category="summary">您可以使用此过程安装适用的配置文件，以监控 NVIDIA SN2100 存储交换机的运行状况。</block>
+  <block id="2a4ac3c5ad5a0411c3db6c64ca660c29" category="summary">以太网交换机健康监视器 CSHM 日志收集功能用于从 ONTAP 中的集群或存储网络交换机收集日志。</block>
+  <block id="129ca6886e7c0aa292a0013f8d01e0f6" category="summary">SNMPv3 可以与以太网交换机健康监视器 CSHM 一起使用。</block>
+  <block id="608e93af8c1a89638bf70bcf9e5d130a" category="summary">按照下面的步骤在 BES-53248 集群交换机上安装以太网 Fabric OS EFOS 软件。</block>
+  <block id="b41a7dd691d25d05d775d9bf2c85110a" category="summary">您可以在配置 BES-53248 集群交换机和应用新许可证后安装参考配置文件 RCF。</block>
+  <block id="9a81fc8ba4a01863f004ec2b7d1ab49c" category="summary">使用群集交换机运行状况监视器 CSHM 和日志收集功能时，SSH 是必需的。要在 BES-53248 群集交换机上启用 SSH，请先生成 SSH 密钥，然后启用 SSH。</block>
+  <block id="23e833242a47cc3ee42321b95a0175bb" category="summary">在集群网络中更换有缺陷的 Broadcom 支持的 BES-53248 集群交换机是无中断过程 NDU。</block>
+  <block id="1864f8368cbdcbae0aa7b449880a377c" category="summary">在集群网络中更换有缺陷的 Broadcom 支持的 BES-53248 集群交换机是一个无中断过程。</block>
+  <block id="906ad6b73cd9e6d65edfd0e214a3cb4a" category="summary">按照下面的步骤升级 BES-53248 集群交换机上的以太网 Fabric OS EFOS 软件。</block>
+  <block id="3fa586c6782d8d9ed13fb2fd8a208cdb" category="summary">使用群集交换机运行状况监视器和日志收集功能时，SSH 是必需的。要在 Cisco 3132Q-V 群集交换机上启用 SSH，请先生成 SSH 密钥，然后启用 SSH。</block>
+  <block id="de4458ab7f6068dbff99813d3363f245" category="summary">使用群集交换机运行状况监视器和日志收集功能时，SSH 是必需的。要在 Cisco 3132q-v 群集交换机上启用 SSH，请先生成 SSH 密钥，然后启用 SSH。</block>
+  <block id="6620a701d123a0933a3f3b6b1e92f2ba" category="summary">Cisco Nexus 3132Q-V 群集交换机上必须安装 Cisco NX-OS 软件和参考配置文件 RCF。</block>
+  <block id="43368b8a0180033f1f25f94e41cd82df" category="summary">在集群网络中更换有缺陷的 Cisco Nexus 3132Q-V 交换机是一个无中断过程 NDU，您必须执行特定的任务序列。</block>
+  <block id="35ef08fe84ca82c2b11faa13a5552cb0" category="summary">使用群集交换机运行状况监视器和日志收集功能时，SSH 是必需的。要在 Cisco 3232C 群集交换机上启用 SSH，请先生成 SSH 密钥，然后再启用 SSH。</block>
+  <block id="2b22c95ad212ab2e51274a33e7e8030b" category="summary">使用群集交换机运行状况监视器和日志收集功能时，SSH 是必需的。要在 Cisco 3232c 群集交换机上启用 SSH，请先生成 SSH 密钥，然后再启用 SSH。</block>
+  <block id="0b80f818b0c8c26997674d1b94de13f3" category="summary">Cisco Nexus 3232C 群集交换机上必须安装 Cisco NX-OS 软件和参考配置文件 RCF。</block>
+  <block id="c08a9a43f502117405e3e146fb027e85" category="summary">Cisco Nexus 3232C 存储交换机上必须安装 Cisco NX-OS 软件和参考配置文件 RCF。</block>
+  <block id="f0cbba63fe0485d0d6d69738a9a669e5" category="summary">可以在 Cisco Nexus 3232C 存储交换机上升级 Cisco NX-OS 软件和参考配置文件 RCF。</block>
+  <block id="b2b0edf39628780ce45366ba4ca84392" category="summary">使用群集交换机运行状况监视器和日志收集功能时，SSH 是必需的。要在 Cisco 92300YC 群集交换机上启用 SSH，请先生成 SSH 密钥，然后启用 SSH。</block>
+  <block id="fd20c46fa12288caab1fa9d5f7469c1b" category="summary">Cisco Nexus 92300YC 群集交换机上必须安装 Cisco NX-OS 软件和参考配置文件。</block>
+  <block id="7e587b528f4dcedbc4db78e2545596d6" category="paragraph-title"><block ref="beadfa85a2fdca06b91edc1131c603e6" category="inline-image-macro-rx" type="image"></block><block ref="90b9b11f8fd7abc3066a0d7b316e24f5" category="inline-link-macro-rx"></block></block>
+  <block id="841654e405f9a0bb8ffdfb75aaad42c0" category="summary">使用群集交换机运行状况监视器和日志收集功能时，SSH 是必需的。要在 Cisco 9332d-gx2b 群集交换机上启用 SSH，请先生成 SSH 密钥，然后启用 SSH。</block>
+  <block id="29421325c2106b4e9184082880e5ea66" category="summary">Cisco Nexus 9332D-GX2B 群集交换机上必须安装 Cisco NX-OS 软件和参考配置文件。</block>
+  <block id="91d06f8500a917551a5440217dba89f3" category="paragraph">在安装或升级 NX-OS 软件后，您可以<block ref="76eb954053197b30d476192c7465b363" category="inline-link-macro-rx"></block>。</block>
+  <block id="bf28e42bbd76ac9d7c542101b3ee3931" category="summary">在集群网络中更换有缺陷的 Nexus 9332D-GX2B 交换机是一个无中断的过程。</block>
+  <block id="ebfb47cb0fd72f1145b1474f4040d33d" category="paragraph-title"><block ref="beadfa85a2fdca06b91edc1131c603e6" category="inline-image-macro-rx" type="image"></block><block ref="38e656bc27945f705cd928ab2c93fb83" category="inline-link-macro-rx"></block></block>
+  <block id="5b31ee755e00a5a3cc23df4c5ee2f324" category="summary">使用群集交换机运行状况监视器和日志收集功能时，SSH 是必需的。要在 Cisco 9336c-fx2 群集交换机上启用 SSH，请先生成 SSH 密钥，然后启用 SSH。</block>
+  <block id="b8c7869aab83ffb3be4bcfbfa10b23c8" category="summary">Cisco Nexus 9336C-FX2 群集交换机上必须安装 Cisco NX-OS 软件和参考配置文件。</block>
+  <block id="77fdb74564edcab439c72e7d9af00226" category="paragraph">在安装或升级 NX-OS 软件后，您可以<block ref="bbc21a229d2bff7afb71f10e5c3e230d" category="inline-link-macro-rx"></block>。</block>
+  <block id="04c2bb368c7888ea31fed0b6b4658ee9" category="summary">在集群网络中更换有缺陷的 Nexus 9336C-FX2 交换机是一个无中断的过程。</block>
+  <block id="fd857595d7d7f811e80cfba0df8f98f8" category="paragraph-title"><block ref="beadfa85a2fdca06b91edc1131c603e6" category="inline-image-macro-rx" type="image"></block><block ref="983651a9466a12634a7a3a5579436f67" category="inline-link-macro-rx"></block></block>
+  <block id="79abd5b2dda97ff24898e9572daee12d" category="summary">使用群集交换机运行状况监视器和日志收集功能时，SSH 是必需的。要在 Cisco 9364d-gx2a 群集交换机上启用 SSH，请先生成 SSH 密钥，然后启用 SSH。</block>
+  <block id="b6263f0eddfdd6ac4174e6b4c415fb75" category="paragraph">在安装或升级 NX-OS 软件后，您可以<block ref="a9cd1b97b9eb02a0952efff71db2d3ed" category="inline-link-macro-rx"></block>。</block>
+  <block id="e7a1b78c8c0771f97e46e9dde5c20396" category="summary">在集群网络中更换有缺陷的 Nexus 9364d-gx2a 交换机是无中断过程。</block>
+  <block id="72a1a76a5a6faf3202dd4efd34bbd310" category="summary">以太网交换机健康监测器 CSHM 负责确保集群和存储网络交换机的运行健康，并收集交换机日志以进行调试。</block>
+  <block id="a014d3ed1e1d7c4665a32e412de7933b" category="summary">您可以使用此过程为支持以太网交换机健康监控 CSHM 的特定交换机配置 SNMPv3。</block>
+  <block id="d9154b8d70bef610bba96e93b97edebf" category="summary">在安装参考配置文件 RCF 时，必须首先从交换机 cs2 迁移集群 LIF。在安装和验证 RCF 后，可以将 LIF 迁回。</block>
+  <block id="a4c33d2e291f81ac30023413d5151ed1" category="summary">您必须在 NetApp CN1610 集群交换机上安装 FASTPATH 软件和参考配置文件 RCF。</block>
+  <block id="9988282f2b81b66b1776de70c0017d2c" category="summary">如果您的系统需要将 NS224 驱动器架连接为交换机连接的存储，而不是直接连接的存储，请使用此处提供的信息。</block>
+  <block id="d269d1fe2d9ae994906f5b0f95492726" category="summary">Cumulus Linux CL OS 可以在交换机运行 Cumulus Linux 或 ONIE 时安装。</block>
+  <block id="16609666d5b3f254c71fec8f6a799b6c" category="summary">在集群网络中更换有缺陷的 NVIDIA SN2100 交换机是一个无中断过程。</block>
+  <block id="c2f363b557f11042735dbadbfbd534d3" category="summary">您可以使用此过程安装适用于 NVIDIA SN2100 集群交换机集群交换机运行状况监控的配置文件。</block>
+  <block id="8c65b4d97114f35bc25f259da3c81bd4" category="summary">更换有缺陷的 NVIDIA SN2100 存储交换机是无中断过程。</block>
+  <block id="2cd1b70f79d5acd7ffb2c204f4069175" category="summary">您可以使用此过程安装适用于 NVIDIA SN2100 存储交换机集群交换机运行状况监控的配置文件。</block>
+  <block id="c58eb22b1f3d0163cbb375622152a522" category="sidebar">安装升级 rcf_9332d-gx2b</block>
+  <block id="f4928eb25627cf90ea59457efbdeff2e" category="sidebar">安装升级 rcf_9336c-fx2</block>
+  <block id="0cd336fd1f7f13a9e5729ff446719dda" category="sidebar">安装升级 rcf_9364d-gx2a</block>
 </blocks>

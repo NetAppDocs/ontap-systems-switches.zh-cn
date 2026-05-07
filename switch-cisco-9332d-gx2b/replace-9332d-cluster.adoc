@@ -2,7 +2,7 @@
 permalink: switch-cisco-9332d-gx2b/replace-9332d-cluster.html 
 sidebar: sidebar 
 keywords: replacing, replace, defective, nexus, switch, cluster, network, nondisruptive, procedure, ndu, replace a cisco nexus 9332d-gx2b cluster switch - cisco nexus 9332d-gx2b 
-summary: '在集群网络中更换有缺陷的 Nexus 9332D-GX2B 交换机是无中断过程 (NDU)。' 
+summary: 在集群网络中更换有缺陷的 Nexus 9332D-GX2B 交换机是一个无中断的过程。 
 ---
 = 更换Cisco Nexus 9332D-GX2B 交换机
 :allow-uri-read: 

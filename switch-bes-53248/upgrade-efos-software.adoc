@@ -2,7 +2,7 @@
 permalink: switch-bes-53248/upgrade-efos-software.html 
 sidebar: sidebar 
 keywords: BES-53248 cluster switches,upgrading EFOS software 
-summary: '请按照以下步骤升级 BES-53248 集群交换机上的以太网结构操作系统 (EFOS) 软件。' 
+summary: 按照下面的步骤升级 BES-53248 集群交换机上的以太网 Fabric OS EFOS 软件。 
 ---
 = 升级 EFOS 软件
 :allow-uri-read: 

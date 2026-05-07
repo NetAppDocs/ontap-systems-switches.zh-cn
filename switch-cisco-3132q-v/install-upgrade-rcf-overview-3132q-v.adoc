@@ -2,7 +2,7 @@
 permalink: switch-cisco-3132q-v/install-upgrade-rcf-overview-3132q-v.html 
 sidebar: sidebar 
 keywords: ssh, requirement, cluster, switch, health, monitor, cshm, log, collection, feature, cisco 3132q-v 
-summary: '使用群集交换机运行状况监视器 (CSHM) 和日志收集功能时，SSH 是必需的。要在 Cisco 3132q-v 群集交换机上启用 SSH，请先生成 SSH 密钥，然后启用 SSH。' 
+summary: 使用群集交换机运行状况监视器和日志收集功能时，SSH 是必需的。要在 Cisco 3132q-v 群集交换机上启用 SSH，请先生成 SSH 密钥，然后启用 SSH。 
 ---
 = 安装或升级参考配置文件 (RCF) 概述
 :allow-uri-read: 

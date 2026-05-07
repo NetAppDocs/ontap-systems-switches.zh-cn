@@ -1,8 +1,8 @@
 ---
 permalink: switch-nvidia-sn2100/setup-install-cshm-file.html 
 sidebar: sidebar 
-keywords: install, applicable, configuration, file, switch health monitor, ontap, install the switch health monitor configuration file for SN2100 switches 
-summary: 您可以使用此过程安装适用于 NVIDIA SN2100 交换机健康状况监控的配置文件。 
+keywords: install, applicable, configuration, file, cluster, switch, health, monitor, ontap, install the cluster switch health monitor configuration file for SN2100 switches 
+summary: 您可以使用此过程安装适用于 NVIDIA SN2100 集群交换机集群交换机运行状况监控的配置文件。 
 ---
 = 安装以太网交换机健康监视器配置文件
 :allow-uri-read: 

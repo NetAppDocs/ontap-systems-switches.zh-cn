@@ -2,7 +2,7 @@
 permalink: switch-cshm/config-overview.html 
 sidebar: sidebar 
 keywords: cshm, cluster, storage, switch logs, debugging, collection 
-summary: '以太网交换机健康监视器 (CSHM) 负责确保集群和存储网络交换机的运行健康，并收集交换机日志以进行调试。' 
+summary: 以太网交换机健康监测器 CSHM 负责确保集群和存储网络交换机的运行健康，并收集交换机日志以进行调试。 
 ---
 = 配置概述
 :allow-uri-read: 

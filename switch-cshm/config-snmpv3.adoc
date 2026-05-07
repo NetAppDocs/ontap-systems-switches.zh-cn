@@ -2,7 +2,7 @@
 permalink: switch-cshm/config-snmpv3.html 
 sidebar: sidebar 
 keywords: cshm, configure, snmpv3, switch logs, debugging, collection 
-summary: '您可以使用此程序为您的特定交换机配置 SNMPv3，该交换机支持以太网交换机健康监控 (CSHM)。' 
+summary: 您可以使用此过程为支持以太网交换机健康监控 CSHM 的特定交换机配置 SNMPv3。 
 ---
 = 为交换机配置 SNMPv3（可选）
 :allow-uri-read: 

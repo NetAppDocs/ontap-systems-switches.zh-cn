@@ -2,7 +2,7 @@
 permalink: switch-cisco-3232c-storage/install-rcf-software-3232c-storage.html 
 sidebar: sidebar 
 keywords: ssh, requirement, cluster, switch, health, monitor, cshm, log, collection, feature, cisco 3232c 
-summary: '使用群集交换机运行状况监视器 (CSHM) 和日志收集功能时，SSH 是必需的。要在 Cisco 3232c 群集交换机上启用 SSH，请先生成 SSH 密钥，然后再启用 SSH。' 
+summary: 使用群集交换机运行状况监视器和日志收集功能时，SSH 是必需的。要在 Cisco 3232c 群集交换机上启用 SSH，请先生成 SSH 密钥，然后再启用 SSH。 
 ---
 = 安装参考配置文件（RCF）
 :allow-uri-read: 
