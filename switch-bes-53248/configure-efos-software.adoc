@@ -365,8 +365,10 @@ ONIE:/ #
 ====
 . 安装新的交换机软件：
 +
-`ONIE:/ # onie-nos-install http://50.50.50.50/Software/onie-installer-x86_64`
-
+[listing]
+----
+ONIE:/ # onie-nos-install http://50.50.50.50/Software/onie-installer-x86_64
+----
 +
 .显示示例
 [%collapsible]

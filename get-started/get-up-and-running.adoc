@@ -68,7 +68,8 @@ summary: 了解集群交换机、存储交换机和共享交换机。
  a| 
  a| 
 * https://docs.netapp.com/us-en/ontap-afx/index.html["AFX 系统"^]
-* https://docs.netapp.com/us-en/ontap-systems/aff-landing/index.html["AFF 系统"^]
+* https://docs.netapp.com/us-en/ontap-systems/aff-aseries/index.html["AFF A 系列系统"^]
+* https://docs.netapp.com/us-en/ontap-systems/aff-cseries/index.html["AFF C 系列系统"^]
 * https://docs.netapp.com/us-en/ontap-systems/allsan-landing/index.html["ASA 系统"^]
 * https://docs.netapp.com/us-en/asa-r2/index.html["ASA r2 系统"^]
 * https://docs.netapp.com/us-en/ontap-systems/fas/index.html["FAS 系统"^]
@@ -172,7 +173,8 @@ ONTAP系统的安装和设置说明包括将控制器端口连接到交换机的
  a| 
  a| 
 * https://docs.netapp.com/us-en/ontap-afx/index.html["AFX 系统"^]
-* https://docs.netapp.com/us-en/ontap-systems/aff-landing/index.html["AFF 系统"^]
+* https://docs.netapp.com/us-en/ontap-systems/aff-aseries/index.html["AFF A 系列系统"^]
+* https://docs.netapp.com/us-en/ontap-systems/aff-cseries/index.html["AFF C 系列系统"^]
 * https://docs.netapp.com/us-en/ontap-systems/allsan-landing/index.html["ASA 系统"^]
 * https://docs.netapp.com/us-en/asa-r2/index.html["ASA r2 系统"^]
 * https://docs.netapp.com/us-en/ontap-systems/fas/index.html["FAS 系统"^]
