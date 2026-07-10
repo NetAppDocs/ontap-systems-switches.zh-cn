@@ -21,6 +21,7 @@ summary: 要将集群中现有的 CN1610 集群交换机替换为 Broadcom 支�
 
 
 
+[[review-requirements]]
 == 审查要求
 
 请确认您的配置符合以下要求：
@@ -39,6 +40,7 @@ summary: 要将集群中现有的 CN1610 集群交换机替换为 Broadcom 支�
 
 
 
+[[node-connections]]
 === 节点连接
 
 集群交换机支持以下节点连接：
@@ -53,6 +55,7 @@ NOTE: 可通过购买端口许可证激活其他端口。
 
 
 
+[[isl-ports]]
 === ISL 端口
 
 集群交换机使用以下交换机间链路（ISL）端口：
@@ -65,6 +68,7 @@ link:https://hwu.netapp.com/Home/Index["Hardware Universe"^] 包含有关 ONTAP 
 
 
 
+[[isl-cabling]]
 === ISL 布线
 
 适用的ISL布线如下：
@@ -75,6 +79,7 @@ link:https://hwu.netapp.com/Home/Index["Hardware Universe"^] 包含有关 ONTAP 
 
 
 
+[[migrate-the-switches]]
 == 迁移交换机
 
 按照以下步骤将 CN1610 集群交换机迁移到 BES-53248 集群交换机。
@@ -115,6 +120,7 @@ NOTE: 在此过程中不需要任何可操作的交换机间链路 (ISL)。这�
 
 
 
+[[step-1-prepare-for-migration]]
 === 步骤 1：准备迁移
 
 . 如果此集群上启用了AutoSupport ，则通过调用AutoSupport消息来抑制自动创建案例：
@@ -147,6 +153,7 @@ cluster1::*> system node autosupport invoke -node * -type all -message MAINT=2h
 
 
 
+[[step-2-configure-ports-and-cabling]]
 === 步骤二：配置端口和线缆
 
 . 在新交换机上，确认交换机 cs1 和 cs2 之间的 ISL 线缆连接正常且运行良好：
@@ -651,6 +658,7 @@ cluster::*> system cluster-switch delete -device CL2
 ====
 
 
+[[step-3-verify-the-configuration]]
 === 步骤 3：验证配置
 
 . 启用集群 LIF 的自动回滚功能。

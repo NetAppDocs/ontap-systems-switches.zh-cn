@@ -15,6 +15,7 @@ summary: 如果您有一个双节点无交换机集群，您可以无中断地�
 
 
 
+[[review-requirements]]
 == 审查要求
 
 .开始之前
@@ -70,6 +71,7 @@ summary: 如果您有一个双节点无交换机集群，您可以无中断地�
 ====
 
 
+[[step-1-display-and-migrate-physical-and-logical-ports]]
 == 步骤 1：显示和迁移物理端口和逻辑端口
 
 . 如果此集群上启用了AutoSupport ，则通过调用AutoSupport消息来抑制自动创建案例：
@@ -323,6 +325,7 @@ cluster::*> *network interface migrate -vserver cluster -lif n2_clus1 -source-no
 
 
 
+[[step-2-shut-down-the-reassigned-lifs-and-disconnect-the-cables]]
 == 步骤 2：关闭重新分配的 LIF 并断开电缆
 
 . 验证集群接口是否已成功迁移：
@@ -438,6 +441,7 @@ Larger than PMTU communication succeeds on 4 path(s) RPC status:
 
 
 
+[[step-3-enable-the-cluster-ports]]
 == 步骤 3：启用集群端口
 
 . 断开节点 n2 上 e4a 的电缆。
@@ -554,6 +558,7 @@ Cluster
 
 
 
+[[step-4-enable-the-reassigned-lifs]]
 == 步骤 4：启用重新分配的 LIF
 
 . 显示每个节点上的集群端口连接情况：

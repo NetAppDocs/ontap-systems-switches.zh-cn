@@ -13,8 +13,15 @@ summary: 您可以在AFF或FAS集群中使用Cisco Nexus 3232C 交换机作为�
 [role="lead"]
 要使用 Smart Call Home，您必须配置集群网络交换机以通过电子邮件与 Smart Call Home 系统进行通信。此外，您还可以选择设置集群网络交换机，以利用 Cisco 的嵌入式 Smart Call Home 支持功能。
 
-Smart Call Home 监控您网络上的硬件和软件组件。当发生关键系统配置时，它会生成基于电子邮件的通知并向目标配置文件中配置的所有收件人发出警报。
+Cisco 的 Smart Call Home 可监控网络上的硬件和软件组件。当发生关键系统配置时，它会生成基于电子邮件的通知，并向目标配置文件中配置的所有收件人发出警报。
 
+[NOTE]
+====
+ONTAP 支持以太网交换机健康监控 (CSHM) 来监控 AFX 集群交换机，以及收集交换机诊断日志的功能。
+
+Cisco 的 Smart Call Home 可以提供主动支持，并帮助您解决交换机可能出现的任何问题。
+
+====
 在使用 Smart Call Home 之前，请注意以下要求：
 
 * 必须架设邮件服务器。
@@ -25,3 +32,5 @@ Smart Call Home 监控您网络上的硬件和软件组件。当发生关键系�
 
 
 这 http://www.cisco.com/c/en/us/products/switches/index.html["Cisco支持网站"^]包含有关配置智能呼叫中心命令的信息。
+
+可以在新系统安装和设置期间或之后配置 Smart Call Home。

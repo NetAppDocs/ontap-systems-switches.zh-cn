@@ -15,6 +15,7 @@ summary: 在配置Cisco 9336C-FX2 交换机之前，请查看以下信息。
 
 
 
+[[support-for-nvidia-cx6-cx6-dx-and-cx7-ethernet-ports]]
 == 支持NVIDIA CX6、CX6-DX 和 CX7 以太网端口
 
 如果要使用 NVIDIA ConnectX-6 (CX6)、ConnectX-6 Dx (CX6-DX) 或 ConnectX-7 (CX7) NIC 端口将交换机端口连接到 ONTAP 控制器，则必须对交换机端口速度进行硬编码。
@@ -34,10 +35,12 @@ summary: 在配置Cisco 9336C-FX2 交换机之前，请查看以下信息。
 ----
 
 
+[[25gbe-fec-requirements]]
 == 25GbE FEC 要求
 
 
 
+[[fas2820-e0ae0b-ports]]
 === FAS2820 e0a/e0b 端口
 
 FAS2820 e0a 和 e0b 端口需要更改 FEC 配置才能与 9336C-FX2 和 9336C-FX2-T 交换机端口连接。对于交换机端口 e0a 和 e0b， `fec` 设置设置为  `rs-cons16`。
@@ -53,6 +56,7 @@ FAS2820 e0a 和 e0b 端口需要更改 FEC 配置才能与 9336C-FX2 和 9336C-F
 ----
 
 
+[[ports-do-not-link-up-due-to-tcam-resources]]
 == 由于 TCAM 资源的原因，端口无法连接。
 
 在 9336C-FX2 和 9336C-FX2-T 交换机上，交换机使用的配置中配置的三态内容寻址存储器 (TCAM) 资源已耗尽。

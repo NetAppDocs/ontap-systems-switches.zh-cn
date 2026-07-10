@@ -15,6 +15,7 @@ summary: 如果您已有双节点无交换机集群环境，则可以使用 CN16
 
 
 
+[[review-requirements]]
 == 审查要求
 
 .开始之前
@@ -53,6 +54,7 @@ CN1610集群交换机配置如下：
 
 
 
+[[migrate-the-switches]]
 == 迁移交换机
 
 .关于示例
@@ -70,6 +72,7 @@ CN1610集群交换机配置如下：
 
 
 
+[[step-1-prepare-for-migration]]
 === 步骤 1：准备迁移
 
 . 将权限级别更改为高级，输入 `y`当系统提示继续时：
@@ -105,6 +108,7 @@ cluster::*> system node autosupport invoke -node * -type all -message MAINT=2h
 
 
 
+[[step-2-configure-ports]]
 === 步骤 2：配置端口
 
 . 禁用新集群交换机 cs1 和 cs2 上所有面向节点的端口（非 ISL 端口）。
@@ -865,6 +869,7 @@ NOTE: 对于 8.3 及更高版本，命令如下：
 
 
 
+[[step-3-complete-the-configuration]]
 === 步骤 3：完成配置
 
 . 确认所有界面均显示 `true`在“是否在家”一栏中：

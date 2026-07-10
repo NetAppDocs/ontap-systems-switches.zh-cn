@@ -4,6 +4,7 @@
 
 
 
+[[review-requirements]]
 == 审查要求
 
 .开始之前
@@ -44,6 +45,7 @@
 
 
 
+[[install-the-software]]
 == 安装软件
 
 该过程需要同时使用ONTAP命令和Cisco Nexus 9000 系列交换机命令；除非另有说明，否则使用ONTAP命令。

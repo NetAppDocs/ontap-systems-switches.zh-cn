@@ -1,0 +1,1762 @@
+---
+permalink: switch-cisco-9808/configure-upgrade-rcf-9808.html 
+sidebar: sidebar 
+keywords: install rcf, cisco switches 
+summary: '您可以升级 Cisco Nexus 9808 交换机上的参考配置文件 (RCF) 版本，以支持新硬件、新 ONTAP 版本或与 AFX 2K 系统配置中的新 NX-OS 版本保持一致。' 
+---
+= 升级 RCF 版本 - Cisco Nexus 9808
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+您可以升级 Cisco Nexus 9808 交换机上的参考配置文件 (RCF) 版本，以支持新硬件、新 ONTAP 版本或与 AFX 2K 系统配置中的新 NX-OS 版本保持一致。
+
+
+NOTE: 请勿将 RCF 版本升级或降级到不受支持的版本。
+
+.开始之前
+* 您必须已阅读link:configure-install-upgrade-rcf-overview-9808.html["安装或升级 RCF 概述"]页面。
+* 您必须使用串行控制台连接到交换机或保留基本配置信息。这是因为 RCF 升级过程要求您清除交换机设置并执行基本配置。
+* 确保您有交换机配置的当前备份。
+* 确认您的群集已完全正常运行，这意味着日志中没有任何错误或类似问题。
+* 您必须具有当前的 RCF 版本。
+* 您需要在 RCF 中进行引导配置，以反映所需的引导映像。
++
+如果需要更改启动配置以反映当前的启动映像，则必须在重新应用 RCF 之前进行更改，以便在以后的重启中实例化正确的版本。
+
+
+
+.关于此任务
+* 在两台交换机上升级 RCF 是一个无中断的过程。
++
+** 在此过程中，无需操作交换机间链路 (ISL)。这是出于设计考虑，因为 RCF 版本更改可能会暂时影响 ISL 连接。为了确保集群操作不中断，此过程要求您在目标交换机上执行步骤时将所有集群 LIF 迁移到运行中的配对交换机。
+** 此过程要求您升级第一个交换机（cs1）上的 RCF，然后对第二个交换机（cs2）重复这些步骤。
+
+
+* 此过程需要使用 ONTAP 命令和 Cisco Nexus 9000 系列交换机命令，这些步骤指示您使用哪个 CLI 来输入命令。
+* 本流程中的示例使用以下开关和节点命名规则：
++
+** 这两个Cisco交换机的名称分别是 cs1 和 cs2。
+** 节点名称为node1-01、node1-02、node1-03和node1-04。
+** 集群 LIF 名称为：
++
+*** node1-01 的 node1-01_clus1 和 node1-01_clus2
+*** node1-02 的 node1-02_clus1 和 node1-02_clus2
+*** node1-03 的 node1-03_clus1 和 node1-03_clus2
+*** node1-04 的 node1-04_clus1 和 node1-04_clus2
+
+
+** 这 `cluster1::*>`prompt 指示集群名称。
+
+
+
+
+
+
+[[step-1-prepare-for-the-upgrade]]
+== 第一步：准备升级
+
+您可以从 ONTAP CLI 输入以下步骤的命令。
+
+. 如果此集群上启用了AutoSupport ，则通过调用AutoSupport消息来抑制自动创建案例：
++
+[source, cli]
+----
+system node autosupport invoke -node * -type all -message MAINT=xh
+----
++
+其中 _x_ 为维护窗口的持续时间（小时）。
+
+. 将权限级别更改为高级，并在提示继续时输入 *y*：
++
+[source, cli]
+----
+set -privilege advanced
+----
++
+出现高级提示符（*>）。
+
+. 显示每个节点上连接到交换机的端口：
++
+[source, cli]
+----
+network device-discovery show
+----
++
+.显示示例
+[%collapsible]
+====
+[listing, subs="+quotes"]
+----
+cluster1::*> *network device-discovery show*
+
+Node/       Local  Discovered
+Protocol    Port   Device (LLDP: ChassisID)  Interface         Platform
+----------- ------ ------------------------- ----------------  ----------------
+node1-01/cdp
+            e10a   cs1(FOXXXXXXXXX)          Ethernet1/5       N9K-C9808
+            e10b   cs2(FDOXXXXXXXX)          Ethernet1/14      N9K-C9808
+            e8a    cs1(FOXXXXXXXXX)          Ethernet1/7       N9K-C9808
+            e8b    cs2(FDOXXXXXXXX)          Ethernet1/16      N9K-C9808
+            e2a    cs1(FOXXXXXXXXX)          Ethernet1/3       N9K-C9808
+            e2b    cs2(FOXXXXXXXXX)          Ethernet1/12      N9K-C9808
+node1-01/lldp
+            e10a   cs1 (ec:bb:78:9e:c7:e8)   Ethernet1/5       -
+            e10b   cs2 (ec:bb:78:9e:c8:0c)   Ethernet1/14      -
+            e8a    cs1 (ec:bb:78:9e:c7:f0)   Ethernet1/7       -
+            e8b    cs2 (ec:bb:78:9e:c8:14)   Ethernet1/16      -
+            e1a    cs1 (ec:bb:78:9e:c7:d8)   Ethernet1/1       -
+            e1b    cs2 (ec:bb:78:9e:c7:fc)   Ethernet1/10      -
+            e2a    cs1 (ec:bb:78:9e:c7:e0)   Ethernet1/3       -
+            e2b    cs2 (ec:bb:78:9e:c8:04)   Ethernet1/12      -
+node1-02/cdp
+            e10a   cs1(FOXXXXXXXXX)          Ethernet1/6       N9K-C9808
+            e10b   cs2(FDOXXXXXXXX)          Ethernet1/15      N9K-C9808
+            e8a    cs1(FOXXXXXXXXX)          Ethernet1/8       N9K-C9808
+            e8b    cs2(FDOXXXXXXXX)          Ethernet1/17      N9K-C9808
+            e2a    cs1(FOXXXXXXXXXX)         Ethernet1/2       N9K-C9808
+            e2b    cs2(FOX3005Q66Q)          Ethernet1/13      N9K-C9808
+node1-02/lldp
+            e10a   cs1 (ec:bb:78:9e:c7:ec)   Ethernet1/6       -
+            e10b   cs2 (ec:bb:78:9e:c8:10)   Ethernet1/15      -
+            e8a    cs1 (ec:bb:78:9e:c7:f4)   Ethernet1/8       -
+            e8b    cs2 (ec:bb:78:9e:c8:18)   Ethernet1/17      -
+            e1a    cs1 (ec:bb:78:9e:c7:dc)   Ethernet1/2       -
+            e1b    cs2 (ec:bb:78:9e:c8:00)   Ethernet1/11      -
+            e2a    cs1 (ec:bb:78:9e:c7:e4)   Ethernet1/4       -
+            e2b    cs2 (ec:bb:78:9e:c8:08)   Ethernet1/13      -
+.
+.
+.
+----
+====
+. 检查各港口的行政及营运状况。
++
+.. *集群端口*
++
+... 确认集群所有端口均已启动且状态正常：
++
+[source, cli]
+----
+network port show -ipspace Cluster
+----
++
+.显示示例
+[%collapsible]
+====
+[listing, subs="+quotes"]
+----
+cluster1::*> *network port show -ipspace Cluster*
+
+Node: node1-01
+                                                                        Ignore
+                                                  Speed(Mbps)  Health   Health
+Port      IPspace      Broadcast Domain Link MTU  Admin/Oper   Status   Status
+--------- ------------ ---------------- ---- ---- ------------ -------- ------
+e2a       Cluster      Cluster          up   9000  auto/400000 healthy  false
+e2b       Cluster      Cluster          up   9000  auto/400000 healthy  false
+
+Node: node1-02
+                                                                        Ignore
+                                                  Speed(Mbps)  Health   Health
+Port      IPspace      Broadcast Domain Link MTU  Admin/Oper   Status   Status
+--------- ------------ ---------------- ---- ---- ------------ -------- ------
+e2a       Cluster      Cluster          up   9000  auto/400000 healthy  false
+e2b       Cluster      Cluster          up   9000  auto/400000 healthy  false
+
+Node: node1-03
+
+                                                                        Ignore
+                                                  Speed(Mbps)  Health   Health
+Port      IPspace      Broadcast Domain Link MTU  Admin/Oper   Status   Status
+--------- ------------ ---------------- ---- ---- ------------ -------- ------
+e2a       Cluster      Cluster          up   9000  auto/400000 healthy  false
+e2b       Cluster      Cluster          up   9000  auto/400000 healthy  false
+
+Node: node1-04
+                                                                        Ignore
+                                                  Speed(Mbps)  Health   Health
+Port      IPspace      Broadcast Domain Link MTU  Admin/Oper   Status   Status
+--------- ------------ ---------------- ---- ---- ------------ -------- ------
+e2a       Cluster      Cluster          up   9000  auto/400000 healthy  false
+e2b       Cluster      Cluster          up   9000  auto/400000 healthy  false
+----
+====
+... 确认所有集群接口（LIF）都位于主端口上：
++
+[source, cli]
+----
+network interface show -role cluster
+----
++
+.显示示例
+[%collapsible]
+====
+[listing, subs="+quotes"]
+----
+cluster1::*> *network interface show -role cluster*
+            Logical            Status     Network           Current      Current Is
+Vserver     Interface          Admin/Oper Address/Mask      Node         Port    Home
+----------- ------------------ ---------- ----------------- ------------ ------- ----
+Cluster
+            node1-01_clus1     up/up      169.254.3.4/23     node1-01    e2a     true
+            node1-01_clus2     up/up      169.254.3.5/23     node1-01    e2b     true
+            node1-02_clus1     up/up      169.254.3.8/23     node1-02    e2a     true
+            node1-02_clus2     up/up      169.254.3.9/23     node1-02    e2b     true
+            node1-03_clus1     up/up      169.254.1.3/23     node1-03    e2a     true
+            node1-03_clus2     up/up      169.254.1.1/23     node1-03    e2b     true
+            node1-04_clus1     up/up      169.254.1.6/23     node1-04    e2a     true
+            node1-04_clus2     up/up      169.254.1.7/23     node1-04    e2b     true
+----
+====
+... 验证集群是否显示两个交换机的信息：
++
+[source, cli]
+----
+system cluster-switch show -is-monitoring-enabled-operational true
+----
++
+.显示示例
+[%collapsible]
+====
+[listing, subs="+quotes"]
+----
+cluster1::*> *system cluster-switch show -is-monitoring-enabled-operational true*
+
+Switch                      Type               Address          Model
+--------------------------- ------------------ ---------------- ---------------
+cs2(FDOXXXXXXXX)            cluster-network    10.228.137.233   N9K-C9808
+     Serial Number: FDOXXXXXXXX
+      Is Monitored: true
+            Reason: None
+  Software Version: Cisco Nexus Operating System (NX-OS) Software, Version
+                    10.5(3)(F)
+    Version Source: CDP/ISDP
+
+
+cs1(FOXXXXXXXXX)            cluster-network    10.228.137.234   N9K-C9808
+     Serial Number: FOXXXXXXXXX
+      Is Monitored: true
+            Reason: None
+  Software Version: Cisco Nexus Operating System (NX-OS) Software, Version
+                    10.5(3)(F)
+    Version Source: CDP/ISDP
+----
+====
+
+
+.. *HA 端口*
++
+... 验证所有 HA 端口是否处于正常运行状态：
++
+[source, cli]
+----
+ha interconnect status show -node <node-name>
+----
++
+.显示示例
+[%collapsible]
+====
+[listing, subs="+quotes"]
+----
+cluster1::*> *ha interconnect status show -node node1-01*
+  (system ha interconnect status show)
+
+                       Node: node1-01
+              Link 0 Status: up
+              Link 1 Status: up
+           Is Link 0 Active: true
+           Is Link 1 Active: true
+         IC RDMA Connection: up
+                       Slot: 0
+             Debug Firmware: no
+
+
+Interconnect Port 0 :
+                  Port Name: e1a-17
+                        MTU: 4096
+           Link Information: ACTIVE
+
+
+Interconnect Port 1 :
+                  Port Name: e1b-18
+                        MTU: 4096
+           Link Information: ACTIVE
+
+cluster1::*> *ha interconnect status show -node node1-02*
+  (system ha interconnect status show)
+
+                       Node: node1-02
+              Link 0 Status: up
+              Link 1 Status: up
+           Is Link 0 Active: true
+           Is Link 1 Active: true
+         IC RDMA Connection: up
+                       Slot: 0
+             Debug Firmware: no
+
+
+Interconnect Port 0 :
+                  Port Name: e1a-17
+                        MTU: 4096
+           Link Information: ACTIVE
+
+
+Interconnect Port 1 :
+                  Port Name: e1b-18
+                        MTU: 4096
+           Link Information: ACTIVE
+.
+.
+.
+----
+====
+... 验证所有 HA 端口配置正确且互连类型为 RoCE：
++
+[source, cli]
+----
+ha interconnect config show
+----
++
+.显示示例
+[%collapsible]
+====
+[listing, subs="+quotes"]
+----
+cluster1::*> *ha interconnect config show*
+  (system ha interconnect config show)
+                       Node: node1-01
+          Interconnect Type: RoCE
+            Local System ID: 542023071
+          Partner System ID: 542022984
+       Connection Initiator: local
+                  Interface: external
+
+
+Port    IP Address         Flags
+------  -----------------  -----------
+e1a-17  169.254.17.111     0x0
+e1b-18  169.254.18.242     0x0
+
+
+
+                       Node: node1-02
+          Interconnect Type: RoCE
+            Local System ID: 542022984
+          Partner System ID: 542023071
+       Connection Initiator: partner
+                  Interface: external
+
+
+Port    IP Address         Flags
+------  -----------------  -----------
+e1a-17  169.254.17.208     0x0
+e1b-18  169.254.18.169     0x0
+.
+.
+.
+----
+====
+
+
+.. *存储端口*
++
+... 验证所有存储端口均处于正常状态：
++
+[source, cli]
+----
+storage port show -port-type ENET
+----
++
+.显示示例
+[%collapsible]
+====
+[listing, subs="+quotes"]
+----
+cluster1::*> *storage port show -port-type ENET*
+
+
+                                      Speed
+Node               Port Type  Mode    (Gb/s) State    Status
+------------------ ---- ----- ------- ------ -------- -----------
+node1-01
+                   e10a ENET  -          400 enabled  online
+                   e10b ENET  -            0 enabled  offline
+                   e8a ENET   -          400 enabled  online
+                   e8b ENET   -            0 enabled  offline
+node1-02
+                   e10a ENET  -          400 enabled  online
+                   e10b ENET  -            0 enabled  offline
+                   e8a ENET   -          400 enabled  online
+                   e8b ENET   -            0 enabled  offline
+node1-03
+                   e10a ENET  -          400 enabled  online
+                   e10b ENET  -            0 enabled  offline
+                   e8a ENET   -          400 enabled  online
+                   e8b ENET   -            0 enabled  offline
+node1-04
+                   e10a ENET  -          400 enabled  online
+                   e10b ENET  -            0 enabled  offline
+                   e8a ENET   -          400 enabled  online
+                   e8b ENET   -            0 enabled  offline
+----
+====
+
+
+.. *存储架端口*
++
+... 验证所有存储架端口是否处于正常状态：
++
+[source, cli]
+----
+storage shelf port show
+----
++
+.显示示例
+[%collapsible]
+====
+[listing, subs="+quotes"]
+----
+cluster1::*> *storage shelf port show*
+
+Shelf ID Module State        Internal?
+----- -- ------ ------------ ---------
+1.0
+       0 A      connected    false
+       1 A      connected    false
+       2 A      connected    false
+       3 A      connected    false
+       4 A      connected    false
+       5 A      connected    false
+       6 A      connected    false
+       7 A      connected    false
+       8 B      connected    false
+       9 B      connected    false
+      10 B      connected    false
+      11 B      connected    false
+      12 B      connected    false
+      13 B      connected    false
+      14 B      connected    false
+      15 B      connected    false
+----
+====
+... 验证所有存储架端口是否处于正常状态：
++
+[source, cli]
+----
+storage shelf port show -fields remote-device,remote-port,connector-state
+----
++
+.显示示例
+[%collapsible]
+====
+[listing, subs="+quotes"]
+----
+cluster1::*> *storage shelf port show -fields remote-device,remote-port,connector-state*
+
+shelf id connector-state remote-port    remote-device
+----- -- --------------- -------------- -----------------
+1.1   0  connected       Ethernet1/17/1 cs1(FOXXXXXXXXX)
+1.1   1  connected       Ethernet1/15/1 cs2(FDOXXXXXXXX)
+1.1   2  connected       Ethernet1/17/2 cs1(FOXXXXXXXXX)
+1.1   3  connected       Ethernet1/15/2 cs2(FDOXXXXXXXX)
+1.1   4  connected       Ethernet1/17/3 cs1(FOXXXXXXXXX)
+1.1   5  connected       Ethernet1/15/3 cs2(FDOXXXXXXXX)
+1.1   6  connected       Ethernet1/17/4 cs1(FOXXXXXXXXX)
+1.1   7  connected       Ethernet1/15/4 cs2(FDOXXXXXXXX)
+1.1   8  connected       Ethernet1/19/1 cs1(FOXXXXXXXXX)
+1.1   9  connected       Ethernet1/17/1 cs2(FDOXXXXXXXX)
+1.1   10 connected       Ethernet1/19/2 cs1(FOXXXXXXXXX)
+1.1   11 connected       Ethernet1/17/2 cs2(FDOXXXXXXXX)
+1.1   12 connected       Ethernet1/19/3 cs1(FOXXXXXXXXX)
+1.1   13 connected       Ethernet1/17/3 cs2(FDOXXXXXXXX)
+1.1   14 connected       Ethernet1/19/4 cs1(FOXXXXXXXXX)
+1.1   15 connected       Ethernet1/17/4 cs2(FDOXXXXXXXX)
+----
+====
+
+
+
+
+. 禁用集群 LIF 上的自动还原。在目标交换机上执行此过程时，集群 LIF 将故障转移到伙伴集群交换机并保留在那里：
++
+[source, cli]
+----
+network interface modify -vserver Cluster -lif * -auto-revert false
+----
+
+
+
+
+[[step-2-configure-ports]]
+== 步骤 2：配置端口
+
+. 使用交换机 CLI，在交换机 cs1 上关闭连接到每个线路卡节点所有端口的端口。
++
+以下示例显示了关闭线路卡 1 `e1`、 `e1-1/1-18`、 `e1/19/1-4`、 `e1/20/1-4`…… `e1/35/1-4`上的所有端口的命令。对交换机上的每个线路卡重复这些命令。
+
++
+[listing, subs="+quotes"]
+----
+cs1# *config terminal*
+Enter configuration commands, one per line. End with CNTL/Z.
+cs1(config)# *interface e1/1-18*
+cs1(config-if-range)# *shutdown*
+cs1(config)# *interface e1/19/1-4,e1/20/1-4,e1/21/1-4,e1/22/1-4,e1/23/1-4,e1/24/1-4,e1/25/1-4,e1/26/1-4,e1/27/1-4,e1/28/1-4,e1/29/1-4,e1/30/1-4,e1/31/1-4,e1/32/1-4,e1/33/1-4,e1/34/1-4,e1/35/1-4*
+cs1(config-if-range)# *shutdown*
+cs1(config-if-range)# *exit*
+cs1(config)# *exit*
+----
++
+
+CAUTION: 请确保关闭*所有*连接的端口，以避免任何网络连接问题。有关详细信息，请参见知识库文章 link:https://kb.netapp.com/on-prem/ontap/OHW/OHW-KBs/Node_out_of_quorum_when_migrating_cluster_lif_during_switch_OS_upgrade["在切换操作系统升级期间迁移集群 LIF 时，节点脱离仲裁。"^]。
+
+. 使用 ONTAP CLI，验证集群 LIF 是否已故障切换到交换机 cs1 上托管的端口。这可能需要几秒钟。
++
+[source, cli]
+----
+network interface show -role cluster
+----
++
+.显示示例
+[%collapsible]
+====
+[listing, subs="+quotes"]
+----
+cluster1::*> *network interface show -role cluster*
+
+            Logical         Status     Network            Current     Current Is
+Vserver     Interface       Admin/Oper Address/Mask       Node        Port    Home
+----------- --------------- ---------- ------------------ ----------- ------- ----
+Cluster
+            node1-01_clus1  up/up      169.254.36.44/16   node1-01    e2a     true
+            node1-01_clus2  up/up      169.254.7.5/16     node1-01    e2b     true
+            node1-02_clus1  up/up      169.254.197.206/16 node1-02    e2a     true
+            node1-02_clus2  up/up      169.254.195.186/16 node1-02    e2b     true
+            node1-03_clus1  up/up      169.254.192.49/16  node1-03    e2a     true
+            node1-03_clus2  up/up      169.254.182.76/16  node1-03    e2b     true
+            node1-04_clus1  up/up      169.254.59.49/16   node1-04    e2a     true
+            node1-04_clus2  up/up      169.254.62.244/16  node1-04    e2b     true
+
+8 entries were displayed.
+----
+====
+. 使用 ONTAP CLI，验证集群是否正常：
++
+[source, cli]
+----
+cluster show
+----
++
+.显示示例
+[%collapsible]
+====
+[listing, subs="+quotes"]
+----
+cluster1::*> *cluster show*
+Node              Health  Eligibility   Epsilon
+----------------- ------- ------------  -------
+node1-01          true    true          false
+node1-02          true    true          false
+node1-03          true    true          true
+node1-04          true    true          false
+----
+====
+. 如果尚未执行此操作，请使用交换机 CLI，通过将以下命令的输出复制到文本文件来保存当前交换机配置的副本：
++
+`show running-config`
+
++
+.. 使用 `show diff running-config`命令与引导闪存中保存的 RCF 文件进行比较。否则，请使用第三方差异/比较工具。
+
+
+. 保存基本配置详细信息 `write_erase.cfg`启动闪存上的文件。
++
+[NOTE]
+====
+确保配置以下内容：
+
+** 用户名和密码
+** 管理 IP 地址
+** 默认网关
+** 交换机名称
+
+
+====
++
+[CAUTION]
+====
+如果 `write_erase.cfg`文件已存在，请将其重命名为 `write_erase_old.cfg`，如下所示：
+
+`cs1# move bootflash:write_erase.cfg write_erase_old.cfg`
+
+====
++
+`cs1# show run | i "username admin password" > bootflash:write_erase.cfg`
+
++
+`cs1# show run | section "vrf context management" >> bootflash:write_erase.cfg`
+
++
+`cs1# show run | section "interface mgmt0" >> bootflash:write_erase.cfg`
+
++
+`cs1# show run | section "switchname" >> bootflash:write_erase.cfg`
+
++
+有关更多详细信息，请参见知识库文章 link:https://kb.netapp.com/on-prem/Switches/Cisco-KBs/How_to_clear_configuration_on_a_Cisco_interconnect_switch_while_retaining_remote_connectivity["如何在保持远程连接的情况下清除Cisco互连交换机上的配置"^]。
+
+. 使用交换机 CLI，验证 `write_erase.cfg`文件是否按预期填充：
++
+`show file bootflash:write_erase.cfg`
+
+. 使用交换机 CLI，发出 `write erase`命令以擦除当前保存的配置：
++
+`cs1# *write erase*`
+
++
+`Warning: This command will erase the startup-configuration.`
+
++
+`Do you wish to proceed anyway? (y/n)  [n] *y*`
+
+. 使用交换机 CLI 将先前保存的基本配置复制到启动配置中。
++
+`cs1# *copy bootflash:write_erase.cfg startup-config*`
+
+. 使用交换机命令行界面重启交换机：
++
+`cs1# *reload*`
+
++
+`This command will reboot the system. (y/n)?  [n] *y*`
+
+. 管理 IP 地址恢复正常后，通过 SSH 登录交换机。
++
+您可能需要更新与 SSH 密钥相关的 hosts 文件条目。
+
+. 使用交换机 CLI，使用以下传输协议之一将 RCF 复制到交换机 cs1 的引导闪存：FTP、TFTP、SFTP 或 SCP。
++
+有关 Cisco 命令的更多信息，请参见 link:https://www.cisco.com/c/en/us/support/switches/nexus-9000-series-switches/series.html["Cisco Nexus 9000 系列 NX-OS 命令参考"^] 指南中的相应指南。
+
++
+`copy <protocol>: bootflash: vrf management`
+
++
+.显示示例
+[%collapsible]
+====
+此示例展示了如何使用 TFTP 将 RCF 文件复制到交换机 cs1 的启动闪存中：
+
+[listing, subs="+quotes"]
+----
+cs1# *copy tftp: bootflash: vrf management*
+Enter source filename: *RCF-v10.1-NX9808-CL1-ST1.txt*
+Enter hostname for the tftp server: *172.22.201.50*
+Trying to connect to tftp server......Connection to Server Established.
+TFTP get operation was successful
+Copy complete, now saving to disk (please wait)...
+----
+====
+. 使用交换机 CLI，将先前下载的 RCF 应用于引导闪存。
++
+有关 Cisco 命令的更多信息，请参见 link:https://www.cisco.com/c/en/us/support/switches/nexus-9000-series-switches/series.html["Cisco Nexus 9000 系列 NX-OS 命令参考"^] 指南中的相应指南。
+
++
+此示例显示了在交换机 cs1 上安装的 RCF `RCF-v10.1-NX9808-CL1-ST1.txt`：
+
++
+[listing, subs="+quotes"]
+----
+cs1# *copy RCF-v10.1-NX9808-CL1-ST1.txt running-config echo-commands*
+----
++
+[CAUTION]
+====
+确保仔细阅读 RCF 的 *安装说明*、*重要说明* 和 *横幅* 部分。您必须阅读并遵循这些说明以确保交换机的正确配置和操作。
+
+====
+. 使用交换机 CLI 验证 RCF 是否为正确的较新版本：
++
+`show running-config`
+
++
+检查输出结果以验证是否拥有正确的 RCF 时，请确保以下信息正确：
+
++
+** RCF横幅
+** 节点和端口设置
+** 定制
++
+输出结果会根据您的网站配置而有所不同。检查端口设置，并参考发行说明，了解您安装的 RCF 版本是否有任何特定更改。
+
+
+
+. 将之前对交换机配置所做的任何自定义设置重新应用。
++
+如果您的交换机正在运行 RCF 10.1 或更高版本，则可以根据需要link:configure-install-upgrade-rcf-overview-9808.html#change-port-speed-configuration["更改端口速度配置"]。
+
+. 使用交换机 CLI，验证 RCF 版本、自定义添加项和交换机设置是否正确后，将 `running-config`文件复制到 `startup-config`文件中。
++
+有关 Cisco 命令的更多信息，请参见 https://www.cisco.com/c/en/us/support/switches/nexus-9000-series-switches/series.html["Cisco Nexus 9000 系列 NX-OS 命令参考"^]指南中的相应指南。
+
++
+`cs1# *copy running-config startup-config*`
+
++
+`[########################################] 100% Copy complete`
+
+. 使用交换机 CLI 重新启动交换机 cs1。您可以在交换机重新启动时忽略节点上报告的 "`cluster switch health monitor`" 警报和 "`cluster ports down`" 事件。
++
+`cs1# *reload*`
+
++
+`This command will reboot the system. (y/n)?  [n] *y*`
+
+. 使用 ONTAP CLI，验证集群上所有端口的运行状况。
++
+.. *集群端口*
++
+... 确认集群中所有节点的集群端口均已启动且运行状况良好：
++
+[source, cli]
+----
+network port show -ipspace Cluster
+----
++
+.显示示例
+[%collapsible]
+====
+[listing, subs="+quotes"]
+----
+cluster1::*> *network port show -ipspace Cluster*
+
+Node: node1
+                                                                        Ignore
+                                                  Speed(Mbps)  Health   Health
+Port      IPspace      Broadcast Domain Link MTU  Admin/Oper   Status   Status
+--------- ------------ ---------------- ---- ---- ------------ -------- ------
+e2a       Cluster      Cluster          up   9000  auto/400000 healthy  false
+e2b       Cluster      Cluster          up   9000  auto/400000 healthy  false
+
+Node: node1-02
+                                                                        Ignore
+                                                  Speed(Mbps)  Health   Health
+Port      IPspace      Broadcast Domain Link MTU  Admin/Oper   Status   Status
+--------- ------------ ---------------- ---- ---- ------------ -------- ------
+e2a       Cluster      Cluster          up   9000  auto/400000 healthy  false
+e2b       Cluster      Cluster          up   9000  auto/400000 healthy  false
+
+Node: node1-03
+                                                                        Ignore
+                                                  Speed(Mbps)  Health   Health
+Port      IPspace      Broadcast Domain Link MTU  Admin/Oper   Status   Status
+--------- ------------ ---------------- ---- ---- ------------ -------- ------
+e2a       Cluster      Cluster          up   9000  auto/400000 healthy  false
+e2b       Cluster      Cluster          up   9000  auto/400000 healthy  false
+
+Node: node1-04
+                                                                        Ignore
+                                                  Speed(Mbps)  Health   Health
+Port      IPspace      Broadcast Domain Link MTU  Admin/Oper   Status   Status
+--------- ------------ ---------------- ---- ---- ------------ -------- ------
+e2a       Cluster      Cluster          up   9000  auto/400000 healthy  false
+e2b       Cluster      Cluster          up   9000  auto/400000 healthy  false
+----
+====
+... 从集群中验证交换机的运行状况。
++
+[source, cli]
+----
+network device-discovery show -protocol cdp
+----
++
+[source, cli]
+----
+system cluster-switch show -is-monitoring-enabled-operational true
+----
++
+.显示示例
+[%collapsible]
+====
+[listing, subs="+quotes"]
+----
+cluster1::*> *network device-discovery show -protocol cdp*
+
+Node/       Local  Discovered
+Protocol    Port   Device (LLDP: ChassisID)  Interface         Platform
+----------- ------ ------------------------- ----------------  ----------------
+node1-01/cdp
+            e10a   cs1(FOXXXXXXXXX)          Ethernet1/5       N9K-C9808
+            e10b   cs2(FDOXXXXXXXX)          Ethernet1/14      N9K-C9808
+            e8a    cs1(FOXXXXXXXXX)          Ethernet1/7       N9K-C9808
+            e8b    cs2(FDOXXXXXXXX)          Ethernet1/16      N9K-C9808
+            e2a    cs1(FOXXXXXXXXX)          Ethernet1/3       N9K-C9808
+            e2b    cs2(FOXXXXXXXXX)          Ethernet1/12      N9K-C9808
+node1-02/cdp
+            e10a   cs1(FOXXXXXXXXX)          Ethernet1/6       N9K-C9808
+            e10b   cs2(FDOXXXXXXXX)          Ethernet1/15      N9K-C9808
+            e8a    cs1(FOXXXXXXXXX)          Ethernet1/8       N9K-C9808
+            e8b    cs2(FDOXXXXXXXX)          Ethernet1/17      N9K-C9808
+            e2a    cs1(FOXXXXXXXXXX)         Ethernet1/2       N9K-C9808
+            e2b    cs2(FOX3005Q66Q)          Ethernet1/13      N9K-C9808
+.
+.
+.
+cluster1::*> *system cluster-switch show -is-monitoring-enabled-operational true*
+
+Switch                      Type               Address          Model
+--------------------------- ------------------ ---------------- ---------------
+cs2(FDOXXXXXXXX)           cluster-network    10.228.137.233    N9K-C9808
+     Serial Number: FDOXXXXXXXX
+      Is Monitored: true
+            Reason: None
+  Software Version: Cisco Nexus Operating System (NX-OS) Software, Version
+                    10.6(3)(F)
+    Version Source: CDP/ISDP
+
+cs1(FOXXXXXXXXX)           cluster-network    10.228.137.234    N9K-C9808
+     Serial Number: FOXXXXXXXXX
+      Is Monitored: true
+            Reason: None
+  Software Version: Cisco Nexus Operating System (NX-OS) Software, Version
+                    10.6(3)(F)
+    Version Source: CDP/ISDP
+----
+====
+
+
+.. *HA 端口*
++
+... 验证所有 HA 端口是否处于正常运行状态：
++
+[source, cli]
+----
+ha interconnect status show -node <node-name>
+----
++
+.显示示例
+[%collapsible]
+====
+[listing, subs="+quotes"]
+----
+cluster1::*> *ha interconnect status show -node node1-01*
+  (system ha interconnect status show)
+
+                       Node: node1-01
+              Link 0 Status: up
+              Link 1 Status: up
+           Is Link 0 Active: true
+           Is Link 1 Active: true
+         IC RDMA Connection: up
+                       Slot: 0
+             Debug Firmware: no
+
+
+Interconnect Port 0 :
+                  Port Name: e1a-17
+                        MTU: 4096
+           Link Information: ACTIVE
+
+
+Interconnect Port 1 :
+                  Port Name: e1b-18
+                        MTU: 4096
+           Link Information: ACTIVE
+
+cluster1::*> *ha interconnect status show -node node1-02*
+  (system ha interconnect status show)
+
+                       Node: node1-02
+              Link 0 Status: up
+              Link 1 Status: up
+           Is Link 0 Active: true
+           Is Link 1 Active: true
+         IC RDMA Connection: up
+                       Slot: 0
+             Debug Firmware: no
+
+
+Interconnect Port 0 :
+                  Port Name: e1a-17
+                        MTU: 4096
+           Link Information: ACTIVE
+
+
+Interconnect Port 1 :
+                  Port Name: e1b-18
+                        MTU: 4096
+           Link Information: ACTIVE
+.
+.
+.
+----
+====
+... 验证所有 HA 端口配置正确且互连类型为 RoCE：
++
+[source, cli]
+----
+ha interconnect config show
+----
++
+.显示示例
+[%collapsible]
+====
+[listing, subs="+quotes"]
+----
+cluster1::*> *ha interconnect config show*
+  (system ha interconnect config show)
+                       Node: node1-01
+          Interconnect Type: RoCE
+            Local System ID: 542023071
+          Partner System ID: 542022984
+       Connection Initiator: local
+                  Interface: external
+
+
+Port    IP Address         Flags
+------  -----------------  -----------
+e1a-17  169.254.17.111     0x0
+e1b-18  169.254.18.242     0x0
+
+
+
+                       Node: node1-02
+          Interconnect Type: RoCE
+            Local System ID: 542022984
+          Partner System ID: 542023071
+       Connection Initiator: partner
+                  Interface: external
+
+
+Port    IP Address         Flags
+------  -----------------  -----------
+e1a-17  169.254.17.208     0x0
+e1b-18  169.254.18.169     0x0
+.
+.
+.
+----
+====
+
+
+.. *存储端口*
++
+... 验证所有存储端口均处于正常状态：
++
+[source, cli]
+----
+storage port show -port-type ENET
+----
++
+.显示示例
+[%collapsible]
+====
+[listing, subs="+quotes"]
+----
+cluster1::*> *storage port show -port-type ENET*
+
+
+                                      Speed
+Node               Port Type  Mode    (Gb/s) State    Status
+------------------ ---- ----- ------- ------ -------- -----------
+node1-01
+                   e10a ENET  -          400 enabled  online
+                   e10b ENET  -            0 enabled  offline
+                   e8a ENET   -          400 enabled  online
+                   e8b ENET   -            0 enabled  offline
+node1-02
+                   e10a ENET  -          400 enabled  online
+                   e10b ENET  -            0 enabled  offline
+                   e8a ENET   -          400 enabled  online
+                   e8b ENET   -            0 enabled  offline
+node1-03
+                   e10a ENET  -          400 enabled  online
+                   e10b ENET  -            0 enabled  offline
+                   e8a ENET   -          400 enabled  online
+                   e8b ENET   -            0 enabled  offline
+node1-04
+                   e10a ENET  -          400 enabled  online
+                   e10b ENET  -            0 enabled  offline
+                   e8a ENET   -          400 enabled  online
+                   e8b ENET   -            0 enabled  offline
+----
+====
+
+
+.. *存储架端口*
++
+... 验证所有存储架端口是否处于正常状态：
++
+[source, cli]
+----
+storage shelf port show
+----
++
+.显示示例
+[%collapsible]
+====
+[listing, subs="+quotes"]
+----
+cluster1::*> *storage shelf port show*
+
+Shelf ID Module State        Internal?
+----- -- ------ ------------ ---------
+1.0
+       0 A      connected    false
+       1 A      connected    false
+       2 A      connected    false
+       3 A      connected    false
+       4 A      connected    false
+       5 A      connected    false
+       6 A      connected    false
+       7 A      connected    false
+       8 B      connected    false
+       9 B      connected    false
+      10 B      connected    false
+      11 B      connected    false
+      12 B      connected    false
+      13 B      connected    false
+      14 B      connected    false
+      15 B      connected    false
+----
+====
+... 验证所有存储架端口的连接状态：
++
+[source, cli]
+----
+storage shelf port show -fields remote-device,remote-port,connector-state
+----
++
+.显示示例
+[%collapsible]
+====
+[listing, subs="+quotes"]
+----
+cluster1::*> *storage shelf port show -fields remote-device,remote-port,connector-state*
+
+shelf id connector-state remote-port    remote-device
+----- -- --------------- -------------- -----------------
+1.1   0  connected       Ethernet1/17/1 cs1(FOXXXXXXXXX)
+1.1   1  connected       Ethernet1/15/1 cs2(FDOXXXXXXXX)
+1.1   2  connected       Ethernet1/17/2 cs1(FOXXXXXXXXX)
+1.1   3  connected       Ethernet1/15/2 cs2(FDOXXXXXXXX)
+1.1   4  connected       Ethernet1/17/3 cs1(FOXXXXXXXXX)
+1.1   5  connected       Ethernet1/15/3 cs2(FDOXXXXXXXX)
+1.1   6  connected       Ethernet1/17/4 cs1(FOXXXXXXXXX)
+1.1   7  connected       Ethernet1/15/4 cs2(FDOXXXXXXXX)
+1.1   8  connected       Ethernet1/19/1 cs1(FOXXXXXXXXX)
+1.1   9  connected       Ethernet1/17/1 cs2(FDOXXXXXXXX)
+1.1   10 connected       Ethernet1/19/2 cs1(FOXXXXXXXXX)
+1.1   11 connected       Ethernet1/17/2 cs2(FDOXXXXXXXX)
+1.1   12 connected       Ethernet1/19/3 cs1(FOXXXXXXXXX)
+1.1   13 connected       Ethernet1/17/3 cs2(FDOXXXXXXXX)
+1.1   14 connected       Ethernet1/19/4 cs1(FOXXXXXXXXX)
+1.1   15 connected       Ethernet1/17/4 cs2(FDOXXXXXXXX)
+----
+====
+
+
+
+
+. 使用 ONTAP CLI，验证集群是否正常：
++
+[source, cli]
+----
+cluster show
+----
++
+.显示示例
+[%collapsible]
+====
+[listing, subs="+quotes"]
+----
+cluster1::*> *cluster show*
+Node              Health   Eligibility   Epsilon
+----------------- -------- ------------- -------
+node1-01          true     true          false
+node1-02          true     true          false
+node1-03          true     true          true
+node1-04          true     true          false
+
+4 entries were displayed.
+----
+====
+. 在交换机 cs2 上重复步骤 4 至 18。
+. 使用 ONTAP CLI，在集群 LIF 上启用自动还原。
++
+[source, cli]
+----
+network interface modify -vserver Cluster -lif * -auto-revert true
+----
+
+
+
+
+[[step-3-verify-the-cluster-network-configuration-and-cluster-health]]
+== 步骤 3：验证集群网络配置和集群健康状况
+
+. 使用交换机 CLI，验证连接到集群端口的交换机端口是否处于 *up* 状态。
++
+[source, cli]
+----
+show interface brief
+----
++
+.显示示例
+[%collapsible]
+====
+[listing, subs="+quotes"]
+----
+cs1# *show interface brief | grep up*
+--------------------------------------------------------------------------------
+Ethernet        VLAN    Type Mode   Status  Reason                 Speed     Port
+Interface                                                                    Ch #
+--------------------------------------------------------------------------------
+Eth1/1          1       eth  trunk  up      none                     400G(D) --
+Eth1/2          1       eth  trunk  up      none                     400G(D) --
+Eth1/3          1       eth  trunk  up      none                     400G(D) --
+Eth1/4          1       eth  trunk  up      none                     400G(D) --
+Eth1/5          1       eth  trunk  up      none                     400G(D) --
+Eth1/6          1       eth  trunk  up      none                     400G(D) --
+Eth1/7          1       eth  trunk  up      none                     400G(D) --
+Eth1/8          1       eth  trunk  up      none                     400G(D) --
+Eth1/9          1       eth  trunk  down    XCVR not inserted        auto(D) --
+Eth1/10         1       eth  trunk  up      none                     400G(D) --
+Eth1/11         1       eth  trunk  up      none                     400G(D) --
+Eth1/12         1       eth  trunk  up      none                     400G(D) --
+Eth1/13         1       eth  trunk  up      none                     400G(D) --
+Eth1/14         1       eth  trunk  up      none                     400G(D) --
+Eth1/15         1       eth  trunk  up      none                     400G(D) --
+Eth1/16         1       eth  trunk  up      none                     400G(D) --
+Eth1/17         1       eth  trunk  up      none                     400G(D) --
+Eth1/18         1       eth  trunk  down    XCVR not inserted        auto(D) --
+Eth1/19/1       1       eth  trunk  up      none                     100G(D) --
+Eth1/19/2       1       eth  trunk  up      none                     100G(D) --
+Eth1/19/3       1       eth  trunk  up      none                     100G(D) --
+Eth1/19/4       1       eth  trunk  up      none                     100G(D) --
+Eth1/20/1       1       eth  trunk  up      none                     100G(D) --
+Eth1/20/2       1       eth  trunk  up      none                     100G(D) --
+Eth1/20/3       1       eth  trunk  up      none                     100G(D) --
+Eth1/20/4       1       eth  trunk  up      none                     100G(D) --
+.
+.
+.
+Eth1/30/1       1       eth  trunk  down    XCVR not inserted        auto(D) --
+Eth1/30/2       1       eth  trunk  down    XCVR not inserted        auto(D) --
+Eth1/30/3       1       eth  trunk  down    XCVR not inserted        auto(D) --
+Eth1/30/4       1       eth  trunk  down    XCVR not inserted        auto(D) --
+Eth1/31/1       1       eth  trunk  down    XCVR not inserted        auto(D) --
+Eth1/31/2       1       eth  trunk  down    XCVR not inserted        auto(D) --
+Eth1/31/3       1       eth  trunk  down    XCVR not inserted        auto(D) --
+Eth1/31/4       1       eth  trunk  down    XCVR not inserted        auto(D) --
+Eth1/32/1       1       eth  trunk  down    XCVR not inserted        auto(D) --
+Eth1/32/2       1       eth  trunk  down    XCVR not inserted        auto(D) --
+Eth1/32/3       1       eth  trunk  down    XCVR not inserted        auto(D) --
+Eth1/32/4       1       eth  trunk  down    XCVR not inserted        auto(D) --
+Eth1/33/1       1       eth  trunk  down    XCVR not inserted        auto(D) --
+Eth1/33/2       1       eth  trunk  down    XCVR not inserted        auto(D) --
+Eth1/33/3       1       eth  trunk  down    XCVR not inserted        auto(D) --
+Eth1/33/4       1       eth  trunk  down    XCVR not inserted        auto(D) --
+Eth1/34/1       1       eth  trunk  down    XCVR not inserted        auto(D) --
+Eth1/34/2       1       eth  trunk  down    XCVR not inserted        auto(D) --
+Eth1/34/3       1       eth  trunk  down    XCVR not inserted        auto(D) --
+Eth1/34/4       1       eth  trunk  down    XCVR not inserted        auto(D) --
+Eth1/35/1       1       eth  trunk  down    XCVR not inserted        auto(D) --
+Eth1/35/2       1       eth  trunk  down    XCVR not inserted        auto(D) --
+Eth1/35/3       1       eth  trunk  down    XCVR not inserted        auto(D) --
+Eth1/35/4       1       eth  trunk  down    XCVR not inserted        auto(D) --
+Eth1/36         1       eth  trunk  down    XCVR not inserted        auto(D) 1
+
+------------------------------------------------------------------------------------
+Port-channel VLAN    Type Mode   Status  Reason                    Speed   Protocol
+								                                                           Interface
+------------------------------------------------------------------------------------
+Po1          1       eth  trunk  down    No operational members    auto(D)  lacp
+Po998        1       eth  access down    Administratively down     auto(I)  none
+Po999        1       eth  access down    Administratively down     auto(I)  none
+----
+====
+. 使用交换机 CLI，验证预期节点是否仍然连接：
++
+[source, cli]
+----
+show cdp neighbors
+----
++
+[source, cli]
+----
+show lldp neighbors
+----
++
+.显示示例
+[%collapsible]
+====
+[listing, subs="+quotes"]
+----
+cs1# *show cdp neighbors*
+Capability Codes: R - Router, T - Trans-Bridge, B - Source-Route-Bridge
+                  S - Switch, H - Host, I - IGMP, r - Repeater,
+                  V - VoIP-Phone, D - Remotely-Managed-Device,
+                  s - Supports-STP-Dispute
+
+Device-ID          Local Intrfce  Hldtme Capability  Platform      Port ID
+cs1                  Eth1/3         179    H         AFX-2K          e7a
+cs2                  Eth1/4         123    H         AFX-2K          e7a
+cs1                  Eth1/5         179    H         AFX-2K          e10a
+cs2                  Eth1/6         123    H         AFX-2K          e10a
+cs1                  Eth1/7         179    H         AFX-2K          e11a
+cs2                  Eth1/8         123    H         AFX-2K          e11a
+cs1                  Eth1/12        179    H         AFX-2K          e7b
+cs2                  Eth1/13        123    H         AFX-2K          e7b
+cs1                  Eth1/14        179    H         AFX-2K          e10b
+cs2                  Eth1/15        123    H         AFX-2K          e10b
+cs1                  Eth1/16        179    H         AFX-2K          e11b
+cs2                  Eth1/17        123    H         AFX-2K          e11b
+
+cs1# *show lldp neighbors*
+Capability codes:
+  (R) Router, (B) Bridge, (T) Telephone, (C) DOCSIS Cable Device
+  (W) WLAN Access Point, (P) Repeater, (S) Station, (O) Other
+Device ID            Local Intf      Hold-time  Capability  Port ID
+cs1                    Eth1/1          121        S           e1a
+cs2                    Eth1/2          121        S           e1a
+cs1                    Eth1/3          121        S           e7a
+cs2                    Eth1/4          121        S           e7a
+cs1                    Eth1/5          121        S           e10a
+cs2                    Eth1/6          121        S           e10a
+cs1                    Eth1/7          121        S           e11a
+cs2                    Eth1/8          121        S           e11a
+cs1                    Eth1/10         121        S           e1b
+cs2                    Eth1/11         121        S           e1b
+cs1                    Eth1/12         121        S           e7b
+cs2                    Eth1/13         121        S           e7b
+cs1                    Eth1/14         121        S           e10b
+cs2                    Eth1/15         121        S           e10b
+cs1                    Eth1/16         121        S           e11b
+cs2                    Eth1/17         121        S           e11b
+952551000983           Eth1/19/1       120        S           e1a
+952551000983           Eth1/19/2       120        S           e3a
+952551000983           Eth1/19/3       120        S           e1a
+952551000983           Eth1/19/4       120        S           e3a
+952551000983           Eth1/20/1       120        S           e2a
+952551000983           Eth1/20/2       120        S           e4a
+952551000983           Eth1/20/3       120        S           e2a
+952551000983           Eth1/20/4       120        S           e4a
+.
+.
+.
+----
+====
+. 使用交换机 CLI，使用以下命令验证集群节点是否位于其正确的集群 VLAN 中：
++
+[source, cli]
+----
+show vlan brief
+----
++
+[source, cli]
+----
+show interface trunk
+----
++
+.显示示例
+[%collapsible]
+====
+[listing, subs="+quotes"]
+----
+cs1# *show vlan brief*
+
+VLAN Name                             Status    Ports
+---- -------------------------------- --------- -------------------------------
+1    default                          active    Po1, Po998, Po999, Eth1/1
+                                                Eth1/2, Eth1/3, Eth1/4, Eth1/5
+                                                Eth1/6, Eth1/7, Eth1/8, Eth1/9
+                                                Eth1/10, Eth1/11, Eth1/12
+                                                Eth1/13, Eth1/14, Eth1/15
+                                                Eth1/16, Eth1/17, Eth1/18
+                                                Eth1/36, Eth1/19/1, Eth1/19/2
+                                                Eth1/19/3, Eth1/19/4, Eth1/20/1
+.
+.
+
+                                                Eth1/33/4, Eth1/34/1, Eth1/34/2
+                                                Eth1/34/3, Eth1/34/4, Eth1/35/1
+                                                Eth1/35/2, Eth1/35/3, Eth1/35/4
+17   VLAN0017                         active    Eth1/1, Eth1/2, Eth1/3, Eth1/4
+                                                Eth1/5, Eth1/6, Eth1/7, Eth1/8
+                                                Eth1/9, Eth1/10, Eth1/11
+                                                Eth1/12, Eth1/13, Eth1/14
+                                                Eth1/15, Eth1/16, Eth1/17
+                                                Eth1/18, Eth1/19/1, Eth1/19/2
+                                                Eth1/19/3, Eth1/19/4, Eth1/20/1
+                                                Eth1/20/2, Eth1/20/3, Eth1/20/4
+                                                Eth1/21/1, Eth1/21/2, Eth1/21/3
+.
+.
+                                                Eth1/30/4, Eth1/31/1, Eth1/31/2
+                                                Eth1/31/3, Eth1/31/4, Eth1/32/1
+                                                Eth1/32/2, Eth1/32/3, Eth1/32/4
+                                                Eth1/33/1, Eth1/33/2, Eth1/33/3
+                                                Eth1/33/4, Eth1/34/1, Eth1/34/2
+                                                Eth1/34/3, Eth1/34/4, Eth1/35/1
+                                                Eth1/35/2, Eth1/35/3, Eth1/35/4
+18   VLAN0018                         active    Eth1/1, Eth1/2, Eth1/3, Eth1/4
+                                                Eth1/5, Eth1/6, Eth1/7, Eth1/8
+                                                Eth1/9, Eth1/10, Eth1/11
+                                                Eth1/12, Eth1/13, Eth1/14
+                                                Eth1/15, Eth1/16, Eth1/17
+                                                Eth1/18, Eth1/19/1, Eth1/19/2
+                                                Eth1/19/3, Eth1/19/4, Eth1/20/1
+.
+.
+                                                Eth1/30/1, Eth1/30/2, Eth1/30/3
+                                                Eth1/30/4, Eth1/31/1, Eth1/31/2
+                                                Eth1/31/3, Eth1/31/4, Eth1/32/1
+                                                Eth1/32/2, Eth1/32/3, Eth1/32/4
+                                                Eth1/33/1, Eth1/33/2, Eth1/33/3
+                                                Eth1/33/4, Eth1/34/1, Eth1/34/2
+                                                Eth1/34/3, Eth1/34/4, Eth1/35/1
+                                                Eth1/35/2, Eth1/35/3, Eth1/35/4
+30   VLAN0030                         active    Eth1/1, Eth1/2, Eth1/3, Eth1/4
+                                                Eth1/5, Eth1/6, Eth1/7, Eth1/8
+                                                Eth1/9, Eth1/10, Eth1/11
+                                                Eth1/12, Eth1/13, Eth1/14
+                                                Eth1/15, Eth1/16, Eth1/17
+                                                Eth1/18, Eth1/19/1, Eth1/19/2
+                                                Eth1/19/3, Eth1/19/4, Eth1/20/1
+                                                Eth1/20/2, Eth1/20/3, Eth1/20/4
+.
+.
+                                                Eth1/33/1, Eth1/33/2, Eth1/33/3
+                                                Eth1/33/4, Eth1/34/1, Eth1/34/2
+                                                Eth1/34/3, Eth1/34/4, Eth1/35/1
+                                                Eth1/35/2, Eth1/35/3, Eth1/35/4
+40   VLAN0040                         active    Po1, Eth1/1, Eth1/2, Eth1/3
+                                                Eth1/4, Eth1/5, Eth1/6, Eth1/7
+                                                Eth1/8, Eth1/9, Eth1/10, Eth1/11
+                                                Eth1/12, Eth1/13, Eth1/14
+                                                Eth1/15, Eth1/16, Eth1/17
+                                                Eth1/18, Eth1/36, Eth1/19/1
+                                                Eth1/19/2, Eth1/19/3, Eth1/19/4
+                                                Eth1/20/1, Eth1/20/2, Eth1/20/3
+                                                Eth1/20/4, Eth1/21/1, Eth1/21/2
+                                                Eth1/21/3, Eth1/21/4, Eth1/22/1
+                                                Eth1/22/2, Eth1/22/3, Eth1/22/4
+                                                Eth1/23/1, Eth1/23/2, Eth1/23/3
+                                                Eth1/23/4, Eth1/24/1, Eth1/24/2
+                                                Eth1/24/3, Eth1/24/4, Eth1/25/1
+                                                Eth1/25/2, Eth1/25/3, Eth1/25/4
+                                                Eth1/26/1, Eth1/26/2, Eth1/26/3
+                                                Eth1/26/4, Eth1/27/1, Eth1/27/2
+                                                Eth1/27/3, Eth1/27/4, Eth1/28/1
+.
+.
+                                                Eth1/34/2, Eth1/34/3, Eth1/34/4
+                                                Eth1/35/1, Eth1/35/2, Eth1/35/3
+                                                Eth1/35/4
+
+cs1# *show interface trunk*
+
+--------------------------------------------------------------------------------
+Port          Native  Status        Port
+              Vlan                  Channel
+--------------------------------------------------------------------------------
+
+Eth1/1        1       trunking      --
+Eth1/2        1       trunking      --
+Eth1/3        1       trunking      --
+Eth1/4        1       trunking      --
+Eth1/5        1       trunking      --
+Eth1/6        1       trunking      --
+Eth1/7        1       trunking      --
+Eth1/8        1       trunking      --
+Eth1/9        1       trunking      --
+Eth1/10       1       trunking      --
+.
+.
+.
+Eth1/30/1     1       trunking      --
+Eth1/30/2     1       trunking      --
+Eth1/30/3     1       trunking      --
+Eth1/30/4     1       trunking      --
+Eth1/31/1     1       trunking      --
+Eth1/31/2     1       trunking      --
+Eth1/31/3     1       trunking      --
+Eth1/31/4     1       trunking      --
+Eth1/32/1     1       trunking      --
+Eth1/32/2     1       trunking      --
+Eth1/32/3     1       trunking      --
+Eth1/32/4     1       trunking      --
+Eth1/33/1     1       trunking      --
+Eth1/33/2     1       trunking      --
+Eth1/33/3     1       trunking      --
+Eth1/33/4     1       trunking      --
+Eth1/34/1     1       trunking      --
+Eth1/34/2     1       trunking      --
+Eth1/34/3     1       trunking      --
+Eth1/34/4     1       trunking      --
+Eth1/35/1     1       trunking      --
+Eth1/35/2     1       trunking      --
+Eth1/35/3     1       trunking      --
+Eth1/35/4     1       trunking      --
+Eth1/36       1       trnk-bndl     Po1
+Po1           1       not-trunking  --
+
+
+--------------------------------------------------------------------------------
+Port          Vlans Allowed on Trunk
+--------------------------------------------------------------------------------
+Eth1/1        1,17-18,30,40
+Eth1/2        1,17-18,30,40
+Eth1/3        1,17-18,30,40
+Eth1/4        1,17-18,30,40
+Eth1/5        1,17-18,30,40
+Eth1/6        1,17-18,30,40
+Eth1/7        1,17-18,30,40
+Eth1/8        1,17-18,30,40
+Eth1/9        1,17-18,30,40
+Eth1/10       1,17-18,30,40
+Eth1/11       1,17-18,30,40
+.
+.
+.
+Eth1/30/1     1,17-18,30,40
+Eth1/30/2     1,17-18,30,40
+Eth1/30/3     1,17-18,30,40
+Eth1/30/4     1,17-18,30,40
+Eth1/31/1     1,17-18,30,40
+Eth1/31/2     1,17-18,30,40
+Eth1/31/3     1,17-18,30,40
+Eth1/31/4     1,17-18,30,40
+Eth1/32/1     1,17-18,30,40
+Eth1/32/2     1,17-18,30,40
+Eth1/32/3     1,17-18,30,40
+Eth1/32/4     1,17-18,30,40
+Eth1/33/1     1,17-18,30,40
+Eth1/33/2     1,17-18,30,40
+Eth1/33/3     1,17-18,30,40
+Eth1/33/4     1,17-18,30,40
+Eth1/34/1     1,17-18,30,40
+Eth1/34/2     1,17-18,30,40
+Eth1/34/3     1,17-18,30,40
+Eth1/34/4     1,17-18,30,40
+Eth1/35/1     1,17-18,30,40
+Eth1/35/2     1,17-18,30,40
+Eth1/35/3     1,17-18,30,40
+Eth1/35/4     1,17-18,30,40
+Eth1/36       1,40
+Po1           1,40
+
+
+--------------------------------------------------------------------------------
+Port          Vlans Err-disabled on Trunk
+--------------------------------------------------------------------------------
+Eth1/1        none
+Eth1/2        none
+Eth1/3        none
+Eth1/4        none
+Eth1/5        none
+Eth1/6        none
+Eth1/7        none
+Eth1/8        none
+Eth1/9        none
+Eth1/10       none
+.
+.
+.
+Eth1/30/1     none
+Eth1/30/2     none
+Eth1/30/3     none
+Eth1/30/4     none
+Eth1/31/1     none
+Eth1/31/2     none
+Eth1/31/3     none
+Eth1/31/4     none
+Eth1/32/1     none
+Eth1/32/2     none
+Eth1/32/3     none
+Eth1/32/4     none
+Eth1/33/1     none
+Eth1/33/2     none
+Eth1/33/3     none
+Eth1/33/4     none
+Eth1/34/1     none
+Eth1/34/2     none
+Eth1/34/3     none
+Eth1/34/4     none
+Eth1/35/1     none
+Eth1/35/2     none
+Eth1/35/3     none
+Eth1/35/4     none
+Eth1/36       none
+Po1           none
+
+
+--------------------------------------------------------------------------------
+Port          STP Forwarding
+--------------------------------------------------------------------------------
+Eth1/1        1,17-18,30,40
+Eth1/2        1,17-18,30,40
+Eth1/3        1,17-18,30,40
+Eth1/4        1,17-18,30,40
+Eth1/5        1,17-18,30,40
+Eth1/6        1,17-18,30,40
+Eth1/7        1,17-18,30,40
+Eth1/8        1,17-18,30,40
+Eth1/9        none
+Eth1/10       1,17-18,30,40
+.
+.
+.
+Eth1/30/1     none
+Eth1/30/2     none
+Eth1/30/3     none
+Eth1/30/4     none
+Eth1/31/1     none
+Eth1/31/2     none
+Eth1/31/3     none
+Eth1/31/4     none
+Eth1/32/1     none
+Eth1/32/2     none
+Eth1/32/3     none
+Eth1/32/4     none
+Eth1/33/1     none
+Eth1/33/2     none
+Eth1/33/3     none
+Eth1/33/4     none
+Eth1/34/1     none
+Eth1/34/2     none
+Eth1/34/3     none
+Eth1/34/4     none
+Eth1/35/1     none
+Eth1/35/2     none
+Eth1/35/3     none
+Eth1/35/4     none
+Eth1/36       none
+Po1           none
+
+
+--------------------------------------------------------------------------------
+Port          Vlans in spanning tree forwarding state and not pruned
+--------------------------------------------------------------------------------
+Eth1/1        Feature VTP is not enabled 1,17-18,30,40
+Eth1/2        Feature VTP is not enabled 1,17-18,30,40
+Eth1/3        Feature VTP is not enabled 1,17-18,30,40
+Eth1/4        Feature VTP is not enabled 1,17-18,30,40
+Eth1/5        Feature VTP is not enabled 1,17-18,30,40
+Eth1/6        Feature VTP is not enabled 1,17-18,30,40
+Eth1/7        Feature VTP is not enabled 1,17-18,30,40
+Eth1/8        Feature VTP is not enabled 1,17-18,30,40
+Eth1/9        Feature VTP is not enabled 1,17-18,30,40
+Eth1/10       Feature VTP is not enabled 1,17-18,30,40
+.
+.
+.
+Eth1/30/1     Feature VTP is not enabled none
+Eth1/30/2     Feature VTP is not enabled none
+Eth1/30/3     Feature VTP is not enabled none
+Eth1/30/4     Feature VTP is not enabled none
+Eth1/31/1     Feature VTP is not enabled none
+Eth1/31/2     Feature VTP is not enabled none
+Eth1/31/3     Feature VTP is not enabled none
+Eth1/31/4     Feature VTP is not enabled none
+Eth1/32/1     Feature VTP is not enabled none
+Eth1/32/2     Feature VTP is not enabled none
+Eth1/32/3     Feature VTP is not enabled none
+Eth1/32/4     Feature VTP is not enabled none
+Eth1/33/1     Feature VTP is not enabled none
+Eth1/33/2     Feature VTP is not enabled none
+Eth1/33/3     Feature VTP is not enabled none
+Eth1/33/4     Feature VTP is not enabled none
+Eth1/34/1     Feature VTP is not enabled none
+Eth1/34/2     Feature VTP is not enabled none
+Eth1/34/3     Feature VTP is not enabled none
+Eth1/34/4     Feature VTP is not enabled none
+Eth1/35/1     Feature VTP is not enabled none
+Eth1/35/2     Feature VTP is not enabled none
+Eth1/35/3     Feature VTP is not enabled none
+Eth1/35/4     Feature VTP is not enabled none
+Eth1/36       Feature VTP is not enabled none
+Po1           Feature VTP is not enabled none
+----
+====
++
+
+NOTE: 有关具体端口和 VLAN 使用详情，请参阅 RCF 中的横幅和重要说明部分。
+
+. 使用交换机 CLI 验证 cs1 和 cs2 之间的 ISL 是否正常工作：
++
+[source, cli]
+----
+show port-channel summary
+----
++
+.显示示例
+[%collapsible]
+====
+[listing, subs="+quotes"]
+----
+cs1# *show port-channel summary*
+Flags:  D - Down        P - Up in port-channel (members)
+        I - Individual  H - Hot-standby (LACP only)
+        s - Suspended   r - Module-removed
+        b - BFD Session Wait
+        S - Switched    R - Routed
+        U - Up (port-channel)
+        p - Up in delay-lacp mode (member)
+        M - Not in use. Min-links not met
+--------------------------------------------------------------------------------
+Group Port-       Type     Protocol  Member Ports
+      Channel
+--------------------------------------------------------------------------------
+1     Po1(SD)     Eth      LACP      Eth1/36(D)
+998   Po998(SD)   Eth      NONE      --
+999   Po999(SD)   Eth      NONE      --
+----
+====
+. 使用 ONTAP CLI，验证集群 LIF 是否已恢复到其主端口：
++
+[source, cli]
+----
+network interface show -role cluster
+----
++
+.显示示例
+[%collapsible]
+====
+[listing, subs="+quotes"]
+----
+cluster1::*> *network interface show -role cluster*
+
+            Logical         Status     Network            Current     Current Is
+Vserver     Interface       Admin/Oper Address/Mask       Node        Port    Home
+----------- --------------- ---------- ------------------ ----------- ------- ----
+Cluster
+            node1-01_clus1  up/up      169.254.36.44/16   node1-01    e2a     true
+            node1-01_clus2  up/up      169.254.7.5/16     node1-01    e2b     true
+            node1-02_clus1  up/up      169.254.197.206/16 node1-02    e2a     true
+            node1-02_clus2  up/up      169.254.195.186/16 node1-02    e2b     true
+            node1-03_clus1  up/up      169.254.192.49/16  node1-03    e2a     true
+            node1-03_clus2  up/up      169.254.182.76/16  node1-03    e2b     true
+            node1-04_clus1  up/up      169.254.59.49/16   node1-04    e2a     true
+            node1-04_clus2  up/up      169.254.62.244/16  node1-04    e2b     true
+----
+====
++
+如果任何集群 LIF 尚未返回到其源端口，请从本地节点手动将其还原：
+
++
+`network interface revert -vserver vserver_name -lif <lif-name>`
+
+. 使用 ONTAP CLI，验证集群是否正常：
++
+[source, cli]
+----
+cluster show
+----
++
+.显示示例
+[%collapsible]
+====
+[listing, subs="+quotes"]
+----
+cluster1::*> *cluster show*
+Node              Health  Eligibility   Epsilon
+----------------- ------- ------------- -------
+node1-01          true    true          false
+node1-02          true    true          false
+node1-03          true    true          true
+node1-04          true    true          false
+----
+====
+. 使用 ONTAP CLI，验证远程集群接口的连通性：
++
+.. 你可以使用 `network interface check cluster-connectivity show`用于显示集群连接性可访问性检查详细信息的命令：
++
+[source, cli]
+----
+network interface check cluster-connectivity show
+----
++
+.显示示例
+[%collapsible]
+====
+[listing, subs="+quotes"]
+----
+cluster1::*> *network interface check cluster-connectivity show*
+
+                                  Source           Destination     Packet
+Node   Date                       LIF              LIF             Loss
+------ -------------------------- ---------------- --------------- -----------
+node1-01
+       6/4/2025 03:13:33 -04:00   node1-01_clus2  node1-02_clus1   none
+       6/4/2025 03:13:34 -04:00   node1-01_clus2  node1-02_clus1   none
+
+
+node1-02
+       6/4/2025 03:13:33 -04:00   node1-02_clus2  node1-01_clus1   none
+       6/4/2025 03:13:34 -04:00   node1-02_clus2  node1-01_clus2   none
+.
+.
+.
+----
+====
+.. 或者，您可以使用 `cluster ping-cluster -node <node-name>`检查连接性的命令：
++
+[source, cli]
+----
+cluster ping-cluster -node <node-name>
+----
++
+.显示示例
+[%collapsible]
+====
+[listing, subs="+quotes"]
+----
+cluster1::*> *cluster ping-cluster -node local*
+Host is node1-04
+Getting addresses from network interface table...
+Cluster node1-01_clus1 169.254.36.44 node1-01 e7a
+Cluster node1-01_clus2 169.254.7.5   node1-01 e7b
+Cluster node1-02_clus1 169.254.197.206 node1-02 e7a
+Cluster node1-02_clus2 169.254.195.186 node1-02 e7b
+Cluster node1-03_clus1 169.254.192.49 node1-03 e7a
+Cluster node1-03_clus2 169.254.182.76 node1-03 e7b
+Cluster node1-04_clus1 169.254.59.49 node1-04 e7a
+Cluster node1-04_clus2 169.254.62.244 node1-04 e7b
+Local = 169.254.59.49 169.254.62.244
+Remote = 169.254.36.44 169.254.7.5 169.254.197.206 169.254.195.186 169.254.192.49 169.254.182.76
+Cluster Vserver Id = 4294967293
+Ping status:
+............
+Basic connectivity succeeds on 12 path(s)
+Basic connectivity fails on 0 path(s)
+................................................
+Detected 9000 byte MTU on 12 path(s):
+    Local 169.254.59.49 to Remote 169.254.182.76
+    Local 169.254.59.49 to Remote 169.254.192.49
+    Local 169.254.59.49 to Remote 169.254.195.186
+    Local 169.254.59.49 to Remote 169.254.197.206
+    Local 169.254.59.49 to Remote 169.254.36.44
+    Local 169.254.59.49 to Remote 169.254.7.5
+    Local 169.254.62.244 to Remote 169.254.182.76
+    Local 169.254.62.244 to Remote 169.254.192.49
+    Local 169.254.62.244 to Remote 169.254.195.186
+    Local 169.254.62.244 to Remote 169.254.197.206
+    Local 169.254.62.244 to Remote 169.254.36.44
+    Local 169.254.62.244 to Remote 169.254.7.5
+Larger than PMTU communication succeeds on 12 path(s)
+RPC status:
+6 paths up, 0 paths down (tcp check)
+6 paths up, 0 paths down (udp check)
+----
+====
+
+
+
+
+.下一步是什么？
+升级交换机上的 RCF 后，您link:configure-verify-ssh-9808.html["验证日志收集的 SSH"]。

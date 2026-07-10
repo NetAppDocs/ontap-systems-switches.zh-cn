@@ -15,6 +15,7 @@ summary: 您可以将ONTAP集群中较旧的Cisco交换机无中断地迁移到N
 
 
 
+[[review-requirements]]
 == 审查要求
 
 在使用 NVIDIA SN2100 存储交换机替换某些较旧的 Cisco 交换机时，您必须了解某些配置信息、端口连接和布线要求。请参阅 link:configure-overview-sn2100-cluster.html["NVIDIA SN2100交换机的安装和配置概述"]。
@@ -48,6 +49,7 @@ summary: 您可以将ONTAP集群中较旧的Cisco交换机无中断地迁移到N
 
 
 
+[[migrate-the-switches]]
 == 迁移交换机
 
 .关于示例
@@ -72,6 +74,7 @@ summary: 您可以将ONTAP集群中较旧的Cisco交换机无中断地迁移到N
 
 
 
+[[step-1-prepare-for-migration]]
 === 步骤 1：准备迁移
 
 . 如果启用了AutoSupport，则通过调用AutoSupport消息来阻止自动创建案例：
@@ -89,6 +92,7 @@ summary: 您可以将ONTAP集群中较旧的Cisco交换机无中断地迁移到N
 
 
 
+[[step-2-configure-ports-and-cabling]]
 === 步骤二：配置端口和线缆
 
 . 确定每个存储接口的管理或运行状态。
@@ -417,6 +421,7 @@ swp6       100G   Trunk/L2  SHFFG1826000102        e0b
 
 
 
+[[step-3-complete-the-procedure]]
 === 步骤 3：完成该步骤
 
 . 为以太网交换机健康监控日志收集功能创建密码：

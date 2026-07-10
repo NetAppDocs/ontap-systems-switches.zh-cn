@@ -17,6 +17,7 @@ summary: 在安装参考配置文件 RCF 时，必须首先从交换机 cs2 迁�
 
 
 
+[[review-requirements]]
 == 审查要求
 
 .开始之前
@@ -36,6 +37,7 @@ summary: 在安装参考配置文件 RCF 时，必须首先从交换机 cs2 迁�
 
 
 
+[[install-the-rcf]]
 == 安装 RCF
 
 以下步骤使用集群式Data ONTAP 8.2 语法。因此，集群 Vserver、LIF 名称和 CLI 输出与Data ONTAP 8.3 中的不同。
@@ -66,6 +68,7 @@ link:https://hwu.netapp.com/["Hardware Universe"^] 包含有关您平台上支�
 
 
 
+[[step-1-migrate-cluster]]
 === 步骤 1：迁移集群
 
 . 保存您当前的交换机配置信息：
@@ -180,6 +183,7 @@ node2
 
 
 
+[[step-2-install-rcf]]
 === 步骤 2：安装 RCF
 
 . 将 RCF 复制到交换机。
@@ -369,6 +373,7 @@ cluster::*> network port modify -node node2 -port e2a -up-admin true
 
 
 
+[[step-3-validate-installation]]
 === 步骤 3：验证安装
 
 . 请确认两个节点上的 e2a 端口均已启动：

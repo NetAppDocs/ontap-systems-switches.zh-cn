@@ -17,6 +17,7 @@ summary: 您可以按照以下步骤在 Nexus 9336C-FX2 集群交换机上安装
 
 
 
+[[review-requirements]]
 == 审查要求
 
 .开始之前
@@ -53,6 +54,7 @@ summary: 您可以按照以下步骤在 Nexus 9336C-FX2 集群交换机上安装
 
 
 
+[[install-or-upgrade-the-software]]
 == 安装或升级软件
 
 该过程需要同时使用ONTAP命令和Cisco Nexus 9000 系列交换机命令；除非另有说明，否则使用ONTAP命令。

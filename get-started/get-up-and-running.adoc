@@ -17,7 +17,7 @@ summary: 了解集群交换机、存储交换机和共享交换机。
 
 .image:https://raw.githubusercontent.com/NetAppDocs/common/main/media/number-1.png["一个"]安装交换机硬件
 [role="quick-margin-para"]
-将交换机安装在机架或机柜中。请参考以下适用于您交换机型号的说明。
+将交换机安装在机架或机柜中。访问适用于您的 AFX 系统或交换机型号的以下说明。
 
 [cols="11,9,9,9"]
 |===
@@ -27,8 +27,9 @@ summary: 了解集群交换机、存储交换机和共享交换机。
 .AFX 系统交换机
 [%collapsible]
 ====
-* link:https://docs.netapp.com/us-en/ontap-afx/install-setup/install-switches.html["安装Cisco Nexus 9332D-GX2B 交换机"^]
-* link:https://docs.netapp.com/us-en/ontap-afx/install-setup/install-switches.html["安装Cisco Nexus 9364D-GX2A 交换机"^]
+* link:../switch-cisco-9332d-gx2b/install-prepare-9332d.html["准备安装 Cisco Nexus 9332D-GX2B 交换机"^]
+* link:../switch-cisco-9364d-gx2a/install-prepare-9364d.html["准备安装 Cisco Nexus 9364D-GX2A 交换机"^]
+* link:../switch-cisco-9808/install-prepare-9808.html["准备安装 Cisco Nexus 9808 交换机"^]
 
 
 ==== a| 
@@ -80,7 +81,7 @@ summary: 了解集群交换机、存储交换机和共享交换机。
 |===
 .image:https://raw.githubusercontent.com/NetAppDocs/common/main/media/number-3.png["三"]将开关通过电缆连接到控制器。
 [role="quick-margin-para"]
-ONTAP系统的安装和设置说明包括将控制器端口连接到交换机的说明。但是，如果您需要支持的电缆和收发器列表，以及有关交换机主机端口的详细信息，请访问以下适用于您的交换机型号的说明。
+ONTAP 系统的安装和设置说明包括将控制器端口连接到交换机的布线说明。但是，如果您需要支持的电缆和收发器列表，以及有关交换机主机端口的详细信息，请访问适用于您的 AFX 系统或交换机型号的以下说明。
 
 [cols="11,9,9,9"]
 |===
@@ -90,8 +91,8 @@ ONTAP系统的安装和设置说明包括将控制器端口连接到交换机的
 .AFX 系统交换机
 [%collapsible]
 ====
-* link:https://docs.netapp.com/us-en/ontap-afx/install-setup/afx-cable-overview.html["为Cisco Nexus 9332D-GX2B 交换机布线"^]
-* link:https://docs.netapp.com/us-en/ontap-afx/install-setup/afx-cable-overview.html["为Cisco Nexus 9364D-GX2A 交换机布线"^]
+* link:https://docs.netapp.com/us-en/ontap-afx/install-setup/afx-cable-overview.html["为 AFX 1K 系统安装 Cisco Nexus 交换机"^]
+* link:https://review.docs.netapp.com/us-en/ontap-afx/install-afx-2k/afx-cable-overview.html["为 AFX 2K 系统安装 Cisco Nexus 交换机"^]
 
 
 ==== a| 
@@ -122,7 +123,7 @@ ONTAP系统的安装和设置说明包括将控制器端口连接到交换机的
 |===
 .image:https://raw.githubusercontent.com/NetAppDocs/common/main/media/number-4.png["四个"]配置交换机软件
 [role="quick-margin-para"]
-要安装和配置交换机上的软件，请按照适用于您交换机型号的软件安装工作流程进行操作。
+要配置交换机并安装软件，请按照交换机型号的软件安装工作流程进行操作。
 
 [cols="11,9,9,9"]
 |===
@@ -132,8 +133,9 @@ ONTAP系统的安装和设置说明包括将控制器端口连接到交换机的
 .AFX 系统交换机
 [%collapsible]
 ====
-* link:../switch-cisco-9332d-gx2b/configure-software-overview-9332d-cluster.html["为Cisco Nexus 9332D-GX2B 交换机安装软件"^]
-* link:../switch-cisco-9364d-gx2a/configure-software-overview-9364d-cluster.html["为Cisco Nexus 9364D-GX2A 交换机安装软件"^]
+* link:../switch-cisco-9332d-gx2b/configure-switch-workflow-9332d.html["配置 Cisco Nexus 9332D-GX2B 交换机"^]
+* link:../switch-cisco-9364d-gx2a/configure-switch-workflow-9364d.html["配置 Cisco Nexus 9364D-GX2A 交换机"^]
+* link:../switch-cisco-9808/configure-switch-workflow-9808.html["配置 Cisco Nexus 9808 交换机"^]
 
 
 ==== a| 

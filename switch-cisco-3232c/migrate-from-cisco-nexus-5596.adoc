@@ -15,6 +15,7 @@ summary: 要将集群中现有的Cisco Nexus 5596 集群交换机替换为 Nexus
 
 
 
+[[review-requirements]]
 == 审查要求
 
 迁移前，请务必查看link:migrate-requirements-3232c.html["迁移要求"]。
@@ -33,6 +34,7 @@ summary: 要将集群中现有的Cisco Nexus 5596 集群交换机替换为 Nexus
 
 
 
+[[migrate-the-switch]]
 == 迁移交换机
 
 .关于示例
@@ -82,6 +84,7 @@ summary: 要将集群中现有的Cisco Nexus 5596 集群交换机替换为 Nexus
 
 
 
+[[step-1-prepare-for-migration]]
 === 步骤 1：准备迁移
 
 . 如果此集群上启用了AutoSupport ，则通过调用AutoSupport消息来抑制自动创建案例：
@@ -311,6 +314,7 @@ Cluster
 
 
 
+[[step-2-configure-ports]]
 === 步骤 2：配置端口
 
 . 关闭与交换机 CL2 物理连接的集群互连端口：
@@ -1230,6 +1234,7 @@ cluster::> system cluster-switch delete –device CL2
 
 
 
+[[step-3-complete-the-procedure]]
 === 步骤 3：完成该步骤
 
 . 确认已对正确的集群交换机进行监控：

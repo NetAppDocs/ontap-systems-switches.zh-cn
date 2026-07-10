@@ -23,6 +23,7 @@ summary: 如果要记录支持的平台，则必须使用已完成的示例布�
 
 
 
+[[9336c-fx2-sample-cabling-worksheet]]
 == 9336C-FX2 样品布线工作表
 
 每对交换机上的示例端口定义如下：
@@ -333,6 +334,7 @@ summary: 如果要记录支持的平台，则必须使用已完成的示例布�
 |===
 
 
+[[9336c-fx2-blank-cabling-worksheet]]
 == 9336C-FX2 空白布线工作表
 
 您可以使用空白的布线工作表来记录集群中支持的节点平台。  《支持的集群连接》部分 https://hwu.netapp.com["Hardware Universe"^]定义平台使用的集群端口。
@@ -592,6 +594,7 @@ summary: 如果要记录支持的平台，则必须使用已完成的示例布�
 |===
 
 
+[[9336c-fx2-t-sample-cabling-worksheet-12-port]]
 == 9336C-FX2-T 样品布线工作表（12 端口）
 
 每对交换机上的示例端口定义如下：
@@ -748,6 +751,7 @@ summary: 如果要记录支持的平台，则必须使用已完成的示例布�
 |===
 
 
+[[9336c-fx2-t-blank-cabling-worksheet-12-port]]
 == 9336C-FX2-T 空白布线工作表（12 端口）
 
 您可以使用空白的布线工作表来记录集群中支持的节点平台。  《支持的集群连接》部分 https://hwu.netapp.com["Hardware Universe"^]定义平台使用的集群端口。

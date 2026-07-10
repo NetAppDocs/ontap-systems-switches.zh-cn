@@ -1,0 +1,76 @@
+---
+permalink: switch-cisco-9808/install-configure-switches-in-afx-workflow-9808.html 
+sidebar: sidebar 
+keywords: switches, initial installation, configure switch-cisco-9808 switch 
+summary: 要将 Cisco Nexus 9808 交换机安装和配置为新 AFX 2K 系统的一部分，请使用此交换机站点和 AFX 系统站点的文档组合。文档提供了可根据需要为您提供指导的链接。 
+---
+= 在 AFX 系统工作流程中安装和配置交换机 - Cisco Nexus 9808
+:allow-uri-read: 
+
+
+[role="lead"]
+要将 Cisco Nexus 9808 交换机安装和配置为新 AFX 2K 系统的一部分，请使用此交换机站点和 AFX 系统站点的文档组合。文档提供了可根据需要为您提供指导的链接。
+
+
+
+[[install-switches]]
+=== 安装交换机
+
+要安装交换机，您必须为安装做好准备，然后安装交换机（以及 AFX 系统硬件），其中包括连接和接通交换机电源。
+
+.image:https://raw.githubusercontent.com/NetAppDocs/common/main/media/number-1.png["一个"]link:install-prepare-9808.html["准备安装"]
+[role="quick-margin-para"]
+通过查看 Cisco 和 ONTAP 系统文档、准备站点并了解 AFX 系统支持的 RCF 版本的交换机端口预设配置，来准备安装和设置交换机。
+
+.image:https://raw.githubusercontent.com/NetAppDocs/common/main/media/number-2.png["两个"]link:install-switches-9808.html["安装交换机"]
+[role="quick-margin-para"]
+您将被引导至 AFX 2K 系统安装和设置工作流程，以安装交换机（以及 AFX 系统硬件）、为交换机布线，然后打开交换机电源。然后，您将被引导回此工作流程以配置交换机。
+
+
+
+[[configure-switches]]
+=== 配置交换机
+
+要配置交换机，您需要完成初始交换机设置、查看布线和配置要求、安装 NX-OS、安装 RCF、验证日志收集的 SSH、配置以太网交换机运行状况监控 (CSHM) 以及配置 Smart Call Home（可选）。
+
+.image:https://raw.githubusercontent.com/NetAppDocs/common/main/media/number-1.png["一个"]link:configure-complete-initial-setup-9808.html["完成初始交换机设置"]
+[role="quick-margin-para"]
+打开交换机电源后，它们开始启动并进入配置向导。系统会提示您提供一系列问题的答案，以执行交换机的初始（启动）配置。
+
+.image:https://raw.githubusercontent.com/NetAppDocs/common/main/media/number-2.png["两个"]link:configure-review-cabling-config-requirements-9808.html["审查布线和配置要求"]
+[role="quick-margin-para"]
+查看布线和配置要求。
+
+.image:https://raw.githubusercontent.com/NetAppDocs/common/main/media/number-3.png["三"]link:configure-install-nxos-9808.html["安装 NX-OS"]
+[role="quick-margin-para"]
+在支持您的 AFX 2K 系统的交换机上安装当前版本的 NX-OS。
+
+.image:https://raw.githubusercontent.com/NetAppDocs/common/main/media/number-4.png["四个"]link:configure-install-upgrade-rcf-overview-9808.html["安装 RCF"]
+[role="quick-margin-para"]
+在支持您的 AFX 2K 系统的交换机上安装当前版本的 RCF。此链接将带您进入 RCF 安装或升级概述主题，其中包含安装 RCF 之前需要了解的信息。
+
+.image:https://raw.githubusercontent.com/NetAppDocs/common/main/media/number-5.png["五"]link:configure-verify-ssh-9808.html["验证日志收集的SSH"]
+[role="quick-margin-para"]
+验证是否已启用 SSH，以便使用以太网交换机运行状况监视器 (CSHM) 日志收集功能。
+
+.image:https://raw.githubusercontent.com/NetAppDocs/common/main/media/number-6.png["六"]link:../switch-cshm/cshm-overview.html["配置以太网交换机运行状况监控"]
+[role="quick-margin-para"]
+配置以太网交换机运行状况监控 (CSHM)，以确保交换机的运行状况，并收集用于调试和故障排除的交换机日志。
+
+.image:https://raw.githubusercontent.com/NetAppDocs/common/main/media/number-7.png["七"]link:configure-smart-call-9808.html["配置 Smart Call Home（可选）"]
+[role="quick-margin-para"]
+ONTAP 支持以太网交换机健康监控 (CSHM) 来监控 AFX 集群交换机，并能够收集交换机诊断日志。Cisco 的 Smart Call Home 可提供主动支持，帮助您解决交换机可能出现的任何问题。
+
+
+
+[[complete-afx-system-setup]]
+=== 完成 AFX 系统设置
+
+要完成 AFX 2K 系统设置，您需要完成 AFX 系统组件的电源启动和系统设置过程。
+
+.image:https://raw.githubusercontent.com/NetAppDocs/common/main/media/number-1.png["一个"]link:install-complete-afx-setup-9808.html["完成 AFX 系统设置"]
+[role="quick-margin-para"]
+您将被引导至 AFX 系统文档，通过打开存储架和控制器电源、验证交换机连接，然后完成系统设置过程，来完成 AFX 2K 系统的设置。
+
+.下一步是什么？
+完成 AFX 系统设置后，您可以开始使用 AFX 系统。您也可以 link:https://docs.netapp.com/us-en/ontap-afx/index.html["了解有关 AFX 系统及其使用方法的更多信息"^]。

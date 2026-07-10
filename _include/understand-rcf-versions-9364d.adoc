@@ -1,0 +1,69 @@
+= 
+:allow-uri-read: 
+
+
+AFX 系统上运行的 ONTAP 版本以及交换机上的 NX-OS 版本决定了交换机支持的 RCF 版本。RCF 版本具有预设的端口速度配置，可确定有多少交换机端口处于分路模式（4x100GbE）和非分路模式。
+
+[NOTE]
+====
+有关受支持的 RCF 版本的当前列表，请参见link:https://mysupport.netapp.com/site/info/cisco-ethernet-switch["NetApp Cisco 以太网交换机"^]页面。
+
+交换机端口信息也可在 https://hwu.netapp.com["NetApp Hardware Universe"^]中找到。
+
+====
+* 如果您有 AFX 1K 系统，则支持 RCF 10.0 及更高版本。
+* 如果您有 AFX 2K 系统，则支持 RCF 10.1 及更高版本。
+* RCF 10.0 有一个文件，它支持共享交换机 `Cluster-HA-Storage AFX RCF_10.0`。
++
+例如，下表显示了交换机端口的预设分组、端口速度以及此 RCF 文件的使用情况。
+
++
+[cols="1,2"]
+|===
+| 交换机端口组 | 端口速度和使用率 
+
+
+ a| 
+以太网 1/1/1-4 至以太网 1/62/1-4
+ a| 
+4x100GbE 模式用于集群、HA 和存储连接
+
+
+
+ a| 
+以太网1/63、以太网1/64
+ a| 
+400GbE ISL
+
+|===
+* RCF 10.1 为 AFX 1K 和 AFX 2K 系统的不同用例提供不同的文件。根据您计划如何使用 AFX 1K 或 AFX 2K 系统配置中的交换机（共享、仅存储或仅集群和高可用性），您可以选择适用的 RCF 文件。
++
+例如，如果您将交换机用作 AFX 2K 系统中的共享交换机，则可以使用适合该用例的 RCF 文件。相应的 RCF 文件的名称可以类似于  `RCF-v10.1-NX9364D-GX2A-CL1-ST1-100GBR31-400G31.txt`。下表显示了此 RCF 文件的交换机端口的预设组、端口速度和使用情况。
+
++
+[cols="1,2"]
+|===
+| 交换机端口组 | 端口速度和使用率 
+
+
+ a| 
+Ethernet1/1/1-4 到 Ethernet1/31/1-4
+ a| 
+4x100GbE 模式，用于集群内、HA 和存储架连接
+
+
+
+ a| 
+Ethernet1/32 到 Ethernet1/62
+ a| 
+用于集群内、HA 和存储连接的 400GbE 模式
+
+
+
+ a| 
+以太网1/63、以太网1/64
+ a| 
+400GbE 集群内 ISL 连接
+
+|===
+

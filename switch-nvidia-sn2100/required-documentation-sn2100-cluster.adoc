@@ -19,7 +19,7 @@ summary: 对于NVIDIA SN2100 交换机的安装和维护，请务必查看所有
 
 
  a| 
-link:https://docs.nvidia.com/networking/display/sn2000pub/Installation["NVIDIA开关安装指南"^]
+link:https://networking-docs.nvidia.com/sn2000hw/latest["NVIDIA开关安装指南"^]
  a| 
 介绍如何安装NVIDIA SN2100 交换机。
 
@@ -33,6 +33,7 @@ link:https://library.netapp.com/ecm/ecm_download_file/ECMLP2876580["NS224 NVMe �
 |===
 
 
+[[ontap-systems-documentation]]
 == ONTAP 系统文档
 
 要设置 ONTAP 系统，您需要操作系统版本的以下文档。

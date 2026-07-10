@@ -1,0 +1,110 @@
+---
+sidebar: sidebar 
+permalink: switch-cisco-9808/install-prepare-9808.html 
+keywords: shared storage cluster switch 
+summary: 在将 Cisco Nexus 9808 交换机作为新 AFX 2K 系统安装的一部分进行安装之前，您应通过查阅适用的 Cisco 交换机文档和 ONTAP 系统文档、了解 AFX 系统支持的 RCF 版本以及考虑使用 Smart Call Home，来了解交换机及其安装的各个方面。 
+---
+= 准备安装交换机 - Cisco Nexus 9808
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ../media/
+
+
+[role="lead"]
+在将 Cisco Nexus 9808 交换机作为新的 AFX 2K 系统安装的一部分进行安装之前，您应该通过查看适用的 Cisco 交换机文档和 ONTAP 系统文档、了解 AFX 系统支持的参考配置文件 (RCF) 版本以及考虑使用 Smart Call Home 来了解交换机及其安装的各个方面。
+
+
+
+[[step-1-review-the-cisco-switch-documentation]]
+=== 步骤 1：查看 Cisco 交换机文档
+
+您应该查看以下 Cisco 安装和设置文档，以便熟悉交换机发行说明、安全信息、安装选项、初始软件配置和命令参考。
+
+所有 Cisco 文档均可在link:https://www.cisco.com/c/en/us/support/switches/nexus-9000-series-switches/series.html["Cisco Nexus 9000 系列交换机支持"^]页面上找到。
+
+* link:https://www.cisco.com/c/en/us/support/switches/nexus-9000-series-switches/products-release-notes-list.html["Cisco Nexus 9000 系列 NX-OS 发行说明"^] （选择您的交换机上安装的 NX-OS 版本的发行说明）
+* link:https://www.cisco.com/c/en/us/td/docs/switches/datacenter/mds9000/hw/regulatory/compliance/RCSI.html?dtid=osscdc000283&linkclickid=srch["Cisco Nexus 9000 系列的法规遵从性和安全信息"^]
+* link:https://www.cisco.com/c/en/us/td/docs/switches/datacenter/nexus9000/hw/9800/9808/nx-os/cisco-nexus-9808-nx-os-mode-switch-hardware-installation-guide/m-8000-modular-overview-ph2.html?linkclickid=aisrch["Cisco Nexus 9808 NX-OS 模式交换机硬件安装指南"^]
+* link:https://www.cisco.com/c/en/us/support/switches/nexus-9000-series-switches/products-installation-and-configuration-guides-list.html["Cisco Nexus 9000 系列交换机软件配置指南"^]（请选择与您的交换机上安装的 NX-OS 版本相对应的指南）
+* link:https://www.cisco.com/c/en/us/td/docs/dcn/nx-os/nexus9000/102x/command-reference/config/b_n9k_config_commands_1021.html["Cisco Nexus 9000 系列 NX-OS 命令参考"^] 提供指向 Cisco 提供的各种命令参考的链接。
+
+
+
+
+[[step-2-review-the-netapp-systems-documentation]]
+=== 步骤 2：查看 NetApp 系统文档
+
+您应该查看以下 NetApp 系统文档，以便熟悉 AFX 2K 系统安装、ONTAP 版本信息以及硬件配置和兼容性要求。
+
+* link:https://docs.netapp.com/us-en/ontap-afx/index.html["AFX 系统文档"^] 说明如何安装 NetApp 硬件。
+* link:https://docs.netapp.com/us-en/ontap-family/["ONTAP 文档"^] 提供有关 ONTAP 版本各个方面的详细信息。
+* link:https://hwu.netapp.com["NetApp Hardware Universe"^] 提供 NetApp 硬件配置和兼容性信息。
+* link:https://kb.netapp.com/Support/General_Support/What_additional_information_do_I_need_to_install_my_equipment_that_is_not_in_HWU["安装HWU中没有的设备还需要哪些额外信息？"^] 提供有关存储系统安装要求的详细信息。
+
+
+
+
+[[step-3-understand-the-supported-rcf-versions]]
+=== 步骤 3：了解支持的 RCF 版本
+
+AFX 系统上运行的 ONTAP 版本以及交换机上的 NX-OS 版本决定了交换机支持的 RCF 版本。RCF 版本具有预设的端口速度配置，可确定有多少交换机端口处于分路模式（4x100GbE）和非分路模式。
+
+[NOTE]
+====
+有关受支持的 RCF 版本的当前列表，请参见link:https://mysupport.netapp.com/site/info/cisco-ethernet-switch["NetApp Cisco 以太网交换机"^]页面。
+
+交换机端口信息也可在 link:https://hwu.netapp.com["NetApp Hardware Universe"^] 中找到。
+
+====
+对于您的 AFX 2K 系统，支持 RCF 10.1 及更高版本。
+
+例如，下表显示了基于 RCF 版本 10.1 的交换机端口的预设组、端口速度和使用情况。
+
+[cols="1,2"]
+|===
+| 交换机端口组 | 端口速度和使用率 
+
+
+ a| 
+Ethernet1/1/1-4 到 Ethernet1/14/1-4
+ a| 
+4x100GbE 模式，用于集群内、HA 和存储架连接
+
+
+
+ a| 
+Ethernet1/15 到 Ethernet1/30
+ a| 
+用于集群内、HA 和存储连接的 400GbE 模式
+
+
+
+ a| 
+以太网1/31、以太网1/32
+ a| 
+400GbE 集群内 ISL 连接
+
+|===
+[NOTE]
+====
+当您需要为 AFX 系统适应不同的端口速度配置时，您可以更改预设组，以在分路模式（4x100GbE）和 400GbE 模式下调整交换机端口数。
+
+您稍后会在 RCF 安装过程中执行此操作。
+
+====
+
+
+[[step-4-consider-using-smart-call-home]]
+=== 步骤4：考虑使用Smart Call Home
+
+ONTAP 支持以太网交换机健康监控 (CSHM) 来监控 AFX 集群交换机，以及收集交换机诊断日志的功能。
+
+Cisco 的 Smart Call Home 可以提供主动支持，并帮助您解决交换机可能出现的任何问题。
+
+有关 Smart Call Home 的更多信息，请参见 link:configure-smart-call-9808.html["配置Smart Call Home"] 文档。
+
+.下一步是什么？
+在您准备好安装交换机后，您 link:install-switches-9808.html["安装交换机"]。

@@ -15,6 +15,7 @@ summary: 在集群网络中更换有缺陷的 Nexus 92300YC 交换机是一个�
 
 
 
+[[review-requirements]]
 == 审查要求
 
 .开始之前
@@ -45,6 +46,7 @@ summary: 在集群网络中更换有缺陷的 Nexus 92300YC 交换机是一个�
 
 
 
+[[enable-console-logging]]
 == 启用控制台日志记录
 
 NetApp强烈建议您在使用的设备上启用控制台日志记录，并在更换交换机时执行以下操作：
@@ -56,6 +58,7 @@ NetApp强烈建议您在使用的设备上启用控制台日志记录，并在�
 
 
 
+[[replace-the-switch]]
 == 更换开关
 
 .关于示例
@@ -162,6 +165,7 @@ Total entries displayed: 4
 ====
 
 
+[[step-1-prepare-for-replacement]]
 === 第一步：准备更换
 
 . 在交换机上安装相应的 RCF 和映像，newcs2，并进行任何必要的现场准备。
@@ -282,6 +286,7 @@ RPC status:
 ====
 
 
+[[step-2-configure-cables-and-ports]]
 === 步骤 2：配置线缆和端口
 
 . 关闭 Nexus 92300YC 交换机 cs1 上的 ISL 端口 1/65 和 1/66：
@@ -447,6 +452,7 @@ e0b       Cluster      Cluster          up    9000  auto/10000  healthy  false
 
 
 
+[[step-3-complete-the-procedure]]
 === 步骤 3：完成该步骤
 
 . 验证远程集群接口的连接性：

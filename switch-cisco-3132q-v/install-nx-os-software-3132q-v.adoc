@@ -15,6 +15,7 @@ summary: 您可以按照以下步骤在 Nexus 3132Q-V 集群交换机上安装 N
 
 
 
+[[review-requirements]]
 == 审查要求
 
 .开始之前
@@ -29,6 +30,7 @@ summary: 您可以按照以下步骤在 Nexus 3132Q-V 集群交换机上安装 N
 
 
 
+[[install-the-software]]
 == 安装软件
 
 .关于此任务

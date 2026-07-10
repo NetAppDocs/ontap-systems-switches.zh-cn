@@ -15,6 +15,7 @@ summary: 在集群网络中更换有缺陷的 NVIDIA SN2100 交换机是一个�
 
 
 
+[[review-requirements]]
 == 审查要求
 
 .现有集群和网络基础设施
@@ -44,6 +45,7 @@ NOTE: 您必须从集群 LIF 所在的节点执行迁移集群 LIF 的命令。
 
 
 
+[[enable-console-logging]]
 == 启用控制台日志记录
 
 NetApp强烈建议您在使用的设备上启用控制台日志记录，并在更换交换机时执行以下操作：
@@ -55,6 +57,7 @@ NetApp强烈建议您在使用的设备上启用控制台日志记录，并在�
 
 
 
+[[replace-the-switch]]
 == 更换开关
 
 .关于示例
@@ -145,6 +148,7 @@ swp16      100G   BondMember  sw1                swp16
 ====
 
 
+[[step-1-prepare-for-replacement]]
 === 第一步：准备更换
 
 . 如果此集群上启用了AutoSupport ，则通过调用AutoSupport消息来抑制自动创建案例：
@@ -174,6 +178,7 @@ swp16      100G   BondMember  sw1                swp16
 
 
 
+[[step-2-configure-ports-and-cabling]]
 === 步骤二：配置端口和线缆
 
 [role="tabbed-block"]
@@ -627,6 +632,7 @@ e3b       Cluster      Cluster          up    9000  auto/10000  healthy  false
 ====
 
 
+[[step-3-verify-the-configuration]]
 === 步骤 3：验证配置
 
 [role="tabbed-block"]

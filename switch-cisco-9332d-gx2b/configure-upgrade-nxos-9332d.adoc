@@ -1,0 +1,1198 @@
+---
+permalink: switch-cisco-9332d-gx2b/configure-upgrade-nxos-9332d.html 
+sidebar: sidebar 
+keywords: procedure, install, nx-os, software, nexus, cluster, switch, install the nx-os software - cisco nexus 9332d-gc2b 
+summary: 您可以升级 Cisco Nexus 9332D-GX2B 交换机上的 NX-OS，以支持 AFX 1K 或 AFX 2K 系统上的新硬件或新 ONTAP 版本。 
+---
+= 升级 NX-OS - Cisco Nexus 9332D-GX2B
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+您可以升级 Cisco Nexus 9332D-GX2B 交换机上的 NX-OS，以支持 AFX 1K 或 AFX 2K 系统上的新硬件或新 ONTAP 版本。
+
+.开始之前
+* 确保您有交换机配置的当前备份。
+* 确认您的群集已完全正常运行，这意味着日志中没有任何错误或类似问题。
+
+
+.关于此任务
+* 如果需要，您可以参见 link:https://www.cisco.com/c/en/us/td/docs/dcn/nx-os/nexus9000/101x/upgrade/cisco-nexus-9000-nx-os-software-upgrade-downgrade-guide-101x.html["Cisco Nexus 9000 系列 NX-OS 软件升级和降级指南"^] 以获取更多信息。
+* 如果需要，您可以参阅link:https://www.cisco.com/c/dam/en/us/td/docs/dcn/tools/nexus-9k3k-issu-matrix/index.html["Cisco Nexus 9000 和 3000 升级和 ISSU 矩阵"^]，其中提供了有关基于当前版本和目标版本的 Cisco Nexus 9000 系列交换机的在线软件升级 (ISSU) 的信息。
++
+在页面上，选择“中断式升级”，然后从下拉列表中选择当前版本和目标版本。
+
+* AFX 系统上运行的 ONTAP 版本决定了交换机支持的 NX-OS 版本。
++
+** 对于 AFX 1K 系统中的交换机，运行任何受支持版本的 ONTAP，均支持 NX-OS 10.4.2 及更高版本。
+** 对于运行 ONTAP 9.19.1GA 或更高版本的 AFX 2K 系统中的交换机，支持 NX-OS 10.6 及更高版本。
++
+有关受支持的 NX-OS 版本的当前列表，请参见link:https://mysupport.netapp.com/site/info/cisco-ethernet-switch["NetApp Cisco 以太网交换机"^]页面。
+
++
+
+NOTE: 请勿将 NX-OS 版本升级或降级到不受支持的版本。
+
+
+
+* 由于此过程需要使用 ONTAP 命令和 Cisco Nexus 9000 系列交换机命令，因此这些步骤会指示您使用哪个 CLI 来输入命令。
+* 本流程中的示例使用以下开关和节点命名规则：
++
+** 这两个Cisco交换机的名称分别是 cs1 和 cs2。
+** 节点名称为node1-01、node1-02、node1-03和node1-04。
+** 集群 LIF 名称为：
++
+*** node1-01 的 node1-01_clus1 和 node1-01_clus2
+*** node1-02 的 node1-02_clus1 和 node1-02_clus2
+*** node1-03 的 node1-03_clus1 和 node1-03_clus2
+*** node1-04 的 node1-04_clus1 和 node1-04_clus2
+
+
+** 这 `cluster1::*>`prompt 指示集群名称。
+
+
+* 本程序中显示的示例适用于运行 RCF 10.0 的交换机的 AFX 1K 系统。如果您有 AFX 2K 系统，则输入和输出可能会有所不同。
+
+
+
+
+[[step-1-prepare-to-upgrade-the-nx-os]]
+== 步骤 1：准备升级 NX-OS
+
+通过确保每个交换机都有管理网络连接、下载 NX-OS 版本、检查集群上的端口状态以及禁用集群 LIF 上的自动恢复来准备升级 NX-OS。
+
+.步骤
+. 将每台交换机连接到管理网络。
+. 使用交换机 CLI，验证与托管 NX-OS 的服务器的连接。
++
+`ping <IP address>`
+
++
+.显示示例
+[%collapsible]
+====
+此示例验证交换机可以访问 IP 地址为 172.19.2.1 的服务器：
+
+[listing, subs="+quotes"]
+----
+cs1# *ping 172.19.2.1*
+Pinging 172.19.2.1 with 0 bytes of data:
+
+Reply From 172.19.2.1: icmp_seq = 0. time= 5910 usec.
+----
+====
+. 从 https://software.cisco.com/download/home["Cisco软件下载"^]页面将正确版本的 NX-OS 下载到交换机。
+. 使用 ONTAP CLI，显示连接到集群交换机的每个节点上的集群端口：
++
+[source, cli]
+----
+network device-discovery show
+----
++
+.显示示例
+[%collapsible]
+====
+[listing, subs="+quotes"]
+----
+cluster1::*> *network device-discovery show*
+
+Node/       Local  Discovered
+Protocol    Port   Device (LLDP: ChassisID) Interface         Platform
+----------- ------ ------------------------ ----------------  ----------------
+node1-01/cdp
+            e10a   cs1(FLMXXXXXXXX)         Ethernet1/16/3    N9K-C9332D-GX2B
+            e10b   cs2(FDOXXXXXXXX)         Ethernet1/16/3    N9K-C9332D-GX2B
+            e11a   cs1(FLMXXXXXXXX)         Ethernet1/16/4    N9K-C9332D-GX2B
+            e11b   cs2(FDOXXXXXXXX)         Ethernet1/16/4    N9K-C9332D-GX2B
+            e1a    cs1(FLMXXXXXXXX)         Ethernet1/16/1    N9K-C9332D-GX2B
+            e1b    cs2(FDOXXXXXXXX)         Ethernet1/16/1    N9K-C9332D-GX2B
+            .
+            .
+            .
+            e7a    cs1(FLMXXXXXXXX)         Ethernet1/16/2    N9K-C9332D-GX2B
+            e7b    cs2(FDOXXXXXXXX)         Ethernet1/16/2    N9K-C9332D-GX2B
+
+node1-01/lldp
+            e10a   cs1 (c8:60:8f:xx:xx:xx)  Ethernet1/16/3    -
+            e10b   cs2 (04:e3:87:xx:xx:xx)  Ethernet1/16/3    -
+            e11a   cs1 (c8:60:8f:xx:xx:xx)  Ethernet1/16/4    -
+            e11b   cs2 (04:e3:87:xx:xx:xx)  Ethernet1/16/4    -
+            e1a    cs1 (c8:60:8f:xx:xx:xx)  Ethernet1/16/1    -
+            e1b    cs2 (04:e3:87:xx:xx:xx)  Ethernet1/16/1    -
+            .
+            .
+            .
+            e7a    cs1 (c8:60:8f:34:78:d3)  Ethernet1/16/2    -
+            e7b    cs2 (04:e3:87:19:a2:59)  Ethernet1/16/2    -
+.
+.
+.
+----
+====
+. 使用 ONTAP CLI，检查每个端口的管理和操作状态：
++
+.. *集群端口*
++
+... 确认集群所有端口均已启动且状态正常：
++
+[source, cli]
+----
+network port show -ipspace Cluster
+----
++
+.显示示例
+[%collapsible]
+====
+[listing, subs="+quotes"]
+----
+cluster1::*> *network port show -ipspace Cluster*
+
+Node: node1-01
+                                                                       Ignore
+                                                  Speed(Mbps) Health   Health
+Port      IPspace      Broadcast Domain Link MTU  Admin/Oper  Status   Status
+--------- ------------ ---------------- ---- ---- ----------- -------- ------
+e7a       Cluster      Cluster          up   9000  auto/100000 healthy false
+e7b       Cluster      Cluster          up   9000  auto/100000 healthy false
+
+Node: node1-02
+                                                                       Ignore
+                                                  Speed(Mbps) Health   Health
+Port      IPspace      Broadcast Domain Link MTU  Admin/Oper  Status   Status
+--------- ------------ ---------------- ---- ---- ----------- -------- ------
+e7a       Cluster      Cluster          up   9000  auto/100000 healthy false
+e7b       Cluster      Cluster          up   9000  auto/100000 healthy false
+
+Node: node1-03
+
+                                                                       Ignore
+                                                  Speed(Mbps) Health   Health
+Port      IPspace      Broadcast Domain Link MTU  Admin/Oper  Status   Status
+--------- ------------ ---------------- ---- ---- ----------- -------- ------
+e7a       Cluster      Cluster          up   9000  auto/10000 healthy  false
+e7b       Cluster      Cluster          up   9000  auto/10000 healthy  false
+
+Node: node1-04
+                                                                       Ignore
+                                                  Speed(Mbps) Health   Health
+Port      IPspace      Broadcast Domain Link MTU  Admin/Oper  Status   Status
+--------- ------------ ---------------- ---- ---- ----------- -------- ------
+e7a       Cluster      Cluster          up   9000  auto/10000 healthy  false
+e7b       Cluster      Cluster          up   9000  auto/10000 healthy  false
+----
+====
+... 确认所有集群接口（LIF）都位于主端口上：
++
+[source, cli]
+----
+network interface show -role cluster
+----
++
+.显示示例
+[%collapsible]
+====
+[listing, subs="+quotes"]
+----
+cluster1::*> *network interface show -role cluster*
+
+            Logical         Status     Network            Current   Current Is
+Vserver     Interface       Admin/Oper Address/Mask       Node      Port    Home
+----------- --------------- ---------- ------------------ --------- ------- ----
+Cluster
+            node1-01_clus1  up/up      169.254.36.44/16   node1-01  e7a     true
+            node1-01_clus2  up/up      169.254.7.5/16     node1-01  e7b     true
+            node1-02_clus1  up/up      169.254.197.206/16 node1-02  e7a     true
+            node1-02_clus2  up/up      169.254.195.186/16 node1-02  e7b     true
+            node1-03_clus1  up/up      169.254.192.49/16  node1-03  e7a     true
+            node1-03_clus2  up/up      169.254.182.76/16  node1-03  e7b     true
+            node1-04_clus1  up/up      169.254.59.49/16   node1-04  e7a     true
+            node1-04_clus2  up/up      169.254.62.244/16  node1-04  e7b     true
+
+8 entries were displayed.
+----
+====
+... 确认集群显示两个集群交换机的信息：
++
+[source, cli]
+----
+system cluster-switch show -is-monitoring-enabled-operational true
+----
++
+.显示示例
+[%collapsible]
+====
+[listing, subs="+quotes"]
+----
+cluster1::*> *system cluster-switch show -is-monitoring-enabled-operational true*
+
+Switch                      Type               Address          Model
+--------------------------- ------------------ ---------------- ---------------
+cs2(FDOXXXXXXXX)            cluster-network    10.228.137.233   N9K-C9332D-GX2B
+     Serial Number: FDOXXXXXXXX
+      Is Monitored: true
+            Reason: None
+  Software Version: Cisco Nexus Operating System (NX-OS) Software, Version
+                    10.4(2)
+    Version Source: CDP/ISDP
+
+
+cs1(FLMXXXXXXXX)             cluster-network   10.228.137.253   N9K-C9332D-GX2B
+     Serial Number: FLMXXXXXXXX
+      Is Monitored: true
+            Reason: None
+  Software Version: Cisco Nexus Operating System (NX-OS) Software, Version
+                    10.4(2)
+    Version Source: CDP/ISDP
+
+2 entries were displayed.
+----
+====
+
+
+.. *HA 端口*
++
+... 验证所有 HA 端口是否处于正常运行状态：
++
+[source, cli]
+----
+ha interconnect status show -node <node-name>
+----
++
+.显示示例
+[%collapsible]
+====
+[listing, subs="+quotes"]
+----
+cluster1::*> *ha interconnect status show -node node1-01*
+  (system ha interconnect status show)
+
+                       Node: node1-01
+              Link 0 Status: up
+              Link 1 Status: up
+           Is Link 0 Active: true
+           Is Link 1 Active: true
+         IC RDMA Connection: up
+                       Slot: 0
+             Debug Firmware: no
+
+
+Interconnect Port 0 :
+                  Port Name: e1a-17
+                        MTU: 4096
+           Link Information: ACTIVE
+
+
+Interconnect Port 1 :
+                  Port Name: e1b-18
+                        MTU: 4096
+           Link Information: ACTIVE
+
+cluster1::*> *ha interconnect status show -node node1-02*
+  (system ha interconnect status show)
+
+                       Node: node1-02
+              Link 0 Status: up
+              Link 1 Status: up
+           Is Link 0 Active: true
+           Is Link 1 Active: true
+         IC RDMA Connection: up
+                       Slot: 0
+             Debug Firmware: no
+
+
+Interconnect Port 0 :
+                  Port Name: e1a-17
+                        MTU: 4096
+           Link Information: ACTIVE
+
+
+Interconnect Port 1 :
+                  Port Name: e1b-18
+                        MTU: 4096
+           Link Information: ACTIVE
+.
+.
+.
+----
+====
+
+
+.. *存储端口*
++
+... 验证所有存储端口均处于正常状态：
++
+[source, cli]
+----
+storage port show -port-type ENET
+----
++
+.显示示例
+[%collapsible]
+====
+[listing, subs="+quotes"]
+----
+cluster1::*> *storage port show -port-type ENET*
+
+
+                                      Speed
+Node               Port Type  Mode    (Gb/s) State    Status
+------------------ ---- ----- ------- ------ -------- -----------
+node1-01
+                   e10a ENET  -          100 enabled  online
+                   e10b ENET  -          100 enabled  online
+                   e11a ENET  -          100 enabled  online
+                   e11b ENET  -          100 enabled  online
+node1-02
+                   e10a ENET  -          100 enabled  online
+                   e10b ENET  -          100 enabled  online
+                   e11a ENET  -          100 enabled  online
+                   e11b ENET  -          100 enabled  online
+node1-03
+                   e10a ENET  -          100 enabled  online
+                   e10b ENET  -          100 enabled  online
+                   e11a ENET  -          100 enabled  online
+node1-04
+                   e10a ENET  -          100 enabled  online
+                   e10b ENET  -          100 enabled  online
+                   e11a ENET  -          100 enabled  online
+                   e11b ENET  -          100 enabled  online
+16 entries were displayed.
+----
+====
+
+
+.. *存储架端口*
++
+... 验证所有存储架端口是否处于正常状态：
++
+[source, cli]
+----
+storage shelf port show
+----
++
+.显示示例
+[%collapsible]
+====
+[listing, subs="+quotes"]
+----
+cluster1::*> *storage shelf port show*
+
+Shelf ID Module State        Internal?
+----- -- ------ ------------ ---------
+1.1
+       0 A      connected    false
+       1 A      connected    false
+       2 A      connected    false
+       3 A      connected    false
+       4 A      connected    false
+       5 A      connected    false
+       6 A      connected    false
+       7 A      connected    false
+       8 B      connected    false
+       9 B      connected    false
+      10 B      connected    false
+      11 B      connected    false
+      12 B      connected    false
+      13 B      connected    false
+      14 B      connected    false
+      15 B      connected    false
+
+16 entries were displayed.
+----
+====
+... 验证所有存储架端口的连接状态：
++
+[source, cli]
+----
+storage shelf port show -fields remote-device,remote-port,connector-state
+----
++
+.显示示例
+[%collapsible]
+====
+[listing, subs="+quotes"]
+----
+cluster1::*> *storage shelf port show -fields remote-device,remote-port,connector-state*
+
+shelf id connector-state remote-port    remote-device
+----- -- --------------- -------------- -----------------
+1.1   0  connected       Ethernet1/17/1 CX9332D-cs1
+1.1   1  connected       Ethernet1/15/1 CX9364D-cs1
+1.1   2  connected       Ethernet1/17/2 CX9332D-cs1
+1.1   3  connected       Ethernet1/15/2 CX9364D-cs1
+1.1   4  connected       Ethernet1/17/3 CX9332D-cs1
+1.1   5  connected       Ethernet1/15/3 CX9364D-cs1
+1.1   6  connected       Ethernet1/17/4 CX9332D-cs1
+1.1   7  connected       Ethernet1/15/4 CX9364D-cs1
+1.1   8  connected       Ethernet1/19/1 CX9332D-cs1
+1.1   9  connected       Ethernet1/17/1 CX9364D-cs1
+1.1   10 connected       Ethernet1/19/2 CX9332D-cs1
+1.1   11 connected       Ethernet1/17/2 CX9364D-cs1
+1.1   12 connected       Ethernet1/19/3 CX9332D-cs1
+1.1   13 connected       Ethernet1/17/3 CX9364D-cs1
+1.1   14 connected       Ethernet1/19/4 CX9332D-cs1
+1.1   15 connected       Ethernet1/17/4 CX9364D-cs1
+
+16 entries were displayed.
+----
+====
+
+
+
+
+. 使用 ONTAP CLI，在集群 LIF 上禁用自动还原。集群 LIF 将故障转移到伙伴集群交换机，并在您对目标交换机执行此过程时保持在该交换机上：
++
+[source, cli]
+----
+network interface modify -vserver Cluster -lif * -auto-revert false
+----
+
+
+
+
+[[step-2-install-the-nx-os]]
+== 步骤 2：安装 NX-OS
+
+通过安装和验证新版本的 NX-OS 和 EPLD、验证集群上所有端口的运行状况，然后在第二台交换机（cs2）上重复这些步骤，在第一台交换机（cs1）上安装 NX-OS。
+
+. 使用交换机 CLI 将 NX-OS 和 EPLD 映像复制到交换机。
++
+您使用此命令两次：第一次是复制 NX-OS 版本，第二次是复制 EPLD 版本。
+
++
+`copy <protocol>: bootflash: vrf management`
+
++
+.显示示例
+[%collapsible]
+====
+示例使用 sftp。
+
+[listing, subs="+quotes"]
+----
+cs1# *copy sftp: bootflash: vrf management*
+Enter source filename: */code/nxos.10.4.2.bin*
+Enter hostname for the sftp server: *172.19.2.1*
+Enter username: *root*
+
+Outbound-ReKey for 172.19.2.1:22
+Inbound-ReKey for 172.19.2.1:22
+root@172.19.2.1's password:
+sftp> progress
+Progress meter enabled
+sftp> get   /code/nxos.10.4.2.bin  /bootflash/nxos.10.4.2.bin
+/code/nxos.10.4.2.bin  100% 1261MB   9.3MB/s   02:15
+sftp> exit
+Copy complete, now saving to disk (please wait)...
+Copy complete.
+
+cs1# *copy sftp: bootflash: vrf management*
+Enter source filename: */code/n9000-epld.10.4.2.F.img*
+Enter hostname for the sftp server: *172.19.2.1*
+Enter username: *user1*
+
+Outbound-ReKey for 172.19.2.1:22
+Inbound-ReKey for 172.19.2.1:22
+user1@172.19.2.1's password:
+sftp> progress
+Progress meter enabled
+sftp> get   /code/n9000-epld.10.4.2.F.img  /bootflash/n9000-epld.10.4.2.F.img
+/code/n9000-epld.10.4.2.F.img  100%  161MB   9.5MB/s   00:16
+sftp> exit
+Copy complete, now saving to disk (please wait)...
+Copy complete.
+----
+====
+. 使用交换机 CLI，验证 NX-OS 的运行版本：
++
+`show version`
+
++
+.显示示例
+[%collapsible]
+====
+[listing, subs="+quotes"]
+----
+cs1# *show version*
+Cisco Nexus Operating System (NX-OS) Software
+TAC support: http://www.cisco.com/tac
+Copyright (C) 2002-2025, Cisco and/or its affiliates.
+All rights reserved.
+The copyrights to certain works contained in this software are
+owned by other third parties and used and distributed under their own
+licenses, such as open source.  This software is provided "as is," and unless
+otherwise stated, there is no warranty, express or implied, including but not
+limited to warranties of merchantability and fitness for a particular purpose.
+Certain components of this software are licensed under
+the GNU General Public License (GPL) version 2.0 or
+GNU General Public License (GPL) version 3.0  or the GNU
+Lesser General Public License (LGPL) Version 2.1 or
+Lesser General Public License (LGPL) Version 2.0.
+A copy of each such license is available at
+http://www.opensource.org/licenses/gpl-2.0.php and
+http://opensource.org/licenses/gpl-3.0.html and
+http://www.opensource.org/licenses/lgpl-2.1.php and
+http://www.gnu.org/licenses/old-licenses/library.txt.
+
+
+Software
+  BIOS: version 01.14
+  NXOS: version 10.4(1) [Feature Release]
+  Host NXOS: version 10.4(1)
+  BIOS compile time:  11/25/2024
+  NXOS image file is: bootflash:///nxos64-cs.10.4.1.F.bin
+  NXOS compile time:  11/30/2023 12:00:00 [12/14/2023 05:25:50]
+  NXOS boot mode: LXC
+
+
+Hardware
+  cisco Nexus9000 C9332D-GX2B Chassis
+  Intel(R) Xeon(R) CPU D-1633N @ 2.50GHz with 32802156 kB of memory.
+  Processor Board ID FLMXXXXXXXX
+  Device name: cs2
+  bootflash:  115802886 kB
+
+
+Kernel uptime is 5 day(s), 2 hour(s), 13 minute(s), 21 second(s)
+
+
+Last reset at 3580 usecs after Thu Jun  5 15:55:08 2025
+  Reason: Reset Requested by CLI command reload
+  System version: 10.4(1)
+  Service:
+
+
+plugin
+  Core Plugin, Ethernet Plugin
+
+
+Active Package(s):
+
+cs1#
+----
+====
+. 使用交换机 CLI，安装 NX-OS 映像。
++
+安装镜像文件后，每次交换机重启时都会加载该文件。
+
++
+`install all nxos bootflash:nxos.<version number>.bin`
+
++
+.显示示例
+[%collapsible]
+====
+示例使用 NX-OS 版本 10.4.2。
+
+[listing, subs="+quotes"]
+----
+cs1# *install all nxos bootflash:nxos.10.4.2.bin*
+
+Installer will perform compatibility check first. Please wait.
+Installer is forced disruptive
+
+Verifying image bootflash:/nxos.10.4.2.bin for boot variable "nxos".
+[####################] 100% -- SUCCESS
+
+Verifying image type.
+[####################] 100% -- SUCCESS
+
+Preparing "nxos" version info using image bootflash:/nxos.10.4.2.bin.
+[####################] 100% -- SUCCESS
+
+Preparing "bios" version info using image bootflash:/nxos.10.4.2.bin.
+[####################] 100% -- SUCCESS
+
+Performing module support checks.
+[####################] 100% -- SUCCESS
+
+Notifying services about system upgrade.
+[####################] 100% -- SUCCESS
+
+
+Compatibility check is done:
+Module  Bootable  Impact          Install-type  Reason
+------  --------  --------------- ------------  ---------
+  1     yes       Disruptive      Reset         Default upgrade is not hitless
+
+
+
+Images will be upgraded according to following table:
+
+Module   Image    Running-Version(pri:alt)                 New-Version         Upg-Required
+------- --------- ---------------------------------------- ------------------- ------------
+  1      nxos     10.4(1)                                  10.4(2)             Yes
+  1      bios     xx.xx.:xx.xx                             xxx                 No
+
+
+Switch will be reloaded for disruptive upgrade.
+
+Do you want to continue with the installation (y/n)? [n] *y*
+
+Install is in progress, please wait.
+
+Performing runtime checks.
+[####################] 100% -- SUCCESS
+
+Setting boot variables.
+[####################] 100% -- SUCCESS
+
+Performing configuration copy.
+[####################] 100% -- SUCCESS
+
+Module 1: Refreshing compact flash and upgrading bios/loader/bootrom.
+Warning: please do not remove or power off the module at this time.
+[####################] 100% -- SUCCESS
+
+Finishing the upgrade, switch will reboot in 10 seconds.
+----
+====
+. 使用交换机 CLI，在交换机重新启动后验证新版本的 NX-OS：
++
+`show version`
+
++
+.显示示例
+[%collapsible]
+====
+[listing, subs="+quotes"]
+----
+cs1# *show version*
+Cisco Nexus Operating System (NX-OS) Software
+TAC support: http://www.cisco.com/tac
+Copyright (C) 2002-2025, Cisco and/or its affiliates.
+All rights reserved.
+The copyrights to certain works contained in this software are
+owned by other third parties and used and distributed under their own
+licenses, such as open source.  This software is provided "as is," and unless
+otherwise stated, there is no warranty, express or implied, including but not
+limited to warranties of merchantability and fitness for a particular purpose.
+Certain components of this software are licensed under
+the GNU General Public License (GPL) version 2.0 or
+GNU General Public License (GPL) version 3.0  or the GNU
+Lesser General Public License (LGPL) Version 2.1 or
+Lesser General Public License (LGPL) Version 2.0.
+A copy of each such license is available at
+http://www.opensource.org/licenses/gpl-2.0.php and
+http://opensource.org/licenses/gpl-3.0.html and
+http://www.opensource.org/licenses/lgpl-2.1.php and
+http://www.gnu.org/licenses/old-licenses/library.txt.
+
+
+Software
+  BIOS: version 01.14
+  NXOS: version 10.4(2) [Feature Release]
+  Host NXOS: version 10.4(2)
+  BIOS compile time:  11/25/2024
+  NXOS image file is: bootflash:///nxos64-cs.10.4.2.F.bin
+  NXOS compile time:  11/30/2023 12:00:00 [12/14/2023 05:25:50]
+  NXOS boot mode: LXC
+
+
+Hardware
+  cisco Nexus9000 C9332D-GX2B Chassis
+  Intel(R) Xeon(R) CPU D-1633N @ 2.50GHz with 32802156 kB of memory.
+  Processor Board ID FLMXXXXXXXX
+  Device name: cs2
+  bootflash:  115802886 kB
+
+
+Kernel uptime is 5 day(s), 2 hour(s), 13 minute(s), 21 second(s)
+
+
+Last reset at 3580 usecs after Thu Jun  5 15:55:08 2025
+  Reason: Reset Requested by CLI command reload
+  System version: 10.4(2)
+  Service:
+
+
+plugin
+  Core Plugin, Ethernet Plugin
+
+
+Active Package(s):
+
+cs1#
+----
+====
+. 使用交换机 CLI，使用以下命令升级 EPLD 映像：
++
+`show version module 1 epld`
+
++
+`install epld bootflash:n9000-epld.<version>.img module all`
+
++
+执行最后一个命令后，交换机重新启动。
+
++
+.显示示例
+[%collapsible]
+====
+示例使用 EPLD 版本 10.4.2.F
+
+[listing, subs="+quotes"]
+----
+cs1# *show version module 1 epld*
+
+EPLD Device                     Version
+---------------------------------------
+MI   FPGA                        0x7
+IO   FPGA                        0x17
+MI   FPGA2                       0x2
+GEM  FPGA                        0x2
+GEM  FPGA                        0x2
+GEM  FPGA                        0x2
+GEM  FPGA                        0x2
+
+cs1# *install epld bootflash:n9000-epld.10.4.2.F.img module all*
+Compatibility check:
+Module        Type         Upgradable        Impact    Reason
+------  ------------------ ----------------- --------- -----------
+     1         SUP         Yes       disruptive  Module Upgradable
+
+Retrieving EPLD versions.... Please wait.
+Images will be upgraded according to following table:
+Module  Type   EPLD              Running-Version   New-Version  Upg-Required
+------- ------ ----------------- ----------------- ------------ ------------
+     1  SUP    MI FPGA           0x07              0x07         No
+     1  SUP    IO FPGA           0x17              0x19         Yes
+     1  SUP    MI FPGA2          0x02              0x02         No
+The above modules require upgrade.
+The switch will be reloaded at the end of the upgrade
+Do you want to continue (y/n) ?  [n] *y*
+
+Proceeding to upgrade Modules.
+
+Starting Module 1 EPLD Upgrade
+
+Module 1 : IO FPGA [Programming] : 100.00% (     64 of      64 sectors)
+Module 1 EPLD upgrade is successful.
+Module   Type  Upgrade-Result
+-------- ----- --------------
+     1   SUP   Success
+
+EPLDs upgraded.
+
+Module 1 EPLD upgrade is successful.
+----
+====
+. 交换机重新启动后，使用交换机 CLI 登录并验证新版本的 EPLD 是否已成功加载。
++
+`show version module 1 epld`
+
++
+.显示示例
+[%collapsible]
+====
+[listing, subs="+quotes"]
+----
+cs1# *show version module 1 epld*
+
+EPLD Device                     Version
+---------------------------------------
+MI   FPGA                        0x7
+IO   FPGA                        0x19
+MI   FPGA2                       0x2
+GEM  FPGA                        0x2
+GEM  FPGA                        0x2
+GEM  FPGA                        0x2
+GEM  FPGA                        0x2
+----
+====
+. 使用 ONTAP CLI，验证集群上所有端口的运行状况。
++
+.. *集群端口*
++
+... 确认集群中所有节点的集群端口均已启动且运行状况良好：
++
+[source, cli]
+----
+network port show -ipspace Cluster
+----
++
+.显示示例
+[%collapsible]
+====
+[listing, subs="+quotes"]
+----
+cluster1::*> *network port show -ipspace Cluster*
+
+Node: node1-01
+                                                                       Ignore
+                                                  Speed(Mbps) Health   Health
+Port      IPspace      Broadcast Domain Link MTU  Admin/Oper  Status   Status
+--------- ------------ ---------------- ---- ---- ----------- -------- ------
+e7a       Cluster      Cluster          up   9000  auto/10000 healthy  false
+e7b       Cluster      Cluster          up   9000  auto/10000 healthy  false
+
+Node: node1-02
+                                                                       Ignore
+                                                  Speed(Mbps) Health   Health
+Port      IPspace      Broadcast Domain Link MTU  Admin/Oper  Status   Status
+--------- ------------ ---------------- ---- ---- ----------- -------- ------
+e7a       Cluster      Cluster          up   9000  auto/10000 healthy  false
+e7b       Cluster      Cluster          up   9000  auto/10000 healthy  false
+
+Node: node1-03
+                                                                       Ignore
+                                                  Speed(Mbps) Health   Health
+Port      IPspace      Broadcast Domain Link MTU  Admin/Oper  Status   Status
+--------- ------------ ---------------- ---- ---- ----------- -------- ------
+e7a       Cluster      Cluster          up   9000  auto/100000 healthy false
+e7b       Cluster      Cluster          up   9000  auto/100000 healthy false
+
+Node: node1-04
+                                                                       Ignore
+                                                  Speed(Mbps) Health   Health
+Port      IPspace      Broadcast Domain Link MTU  Admin/Oper  Status   Status
+--------- ------------ ---------------- ---- ---- ----------- -------- ------
+e7a       Cluster      Cluster          up   9000  auto/100000 healthy false
+e7b       Cluster      Cluster          up   9000  auto/100000 healthy false
+----
+====
+... 从集群验证交换机运行状况：
++
+[source, cli]
+----
+network device-discovery show -protocol cdp
+----
++
+[source, cli]
+----
+system cluster-switch show -is-monitoring-enabled-operational true
+----
++
+.显示示例
+[%collapsible]
+====
+[listing, subs="+quotes"]
+----
+cluster1::*> *network device-discovery show -protocol cdp*
+
+node1-02/cdp
+            e10a   cs1(FLMXXXXXXXX)         Ethernet1/16/3    N9K-C9332D-GX2B
+            e10b   cs2(FDOXXXXXXXX)         Ethernet1/16/3    N9K-C9332D-GX2B
+            e11a   cs1(FLMXXXXXXXX)         Ethernet1/16/4    N9K-C9332D-GX2B
+            e11b   cs2(FDOXXXXXXXX)         Ethernet1/16/4    N9K-C9332D-GX2B
+            e1a    cs1(FLMXXXXXXXX)         Ethernet1/16/1    N9K-C9332D-GX2B
+            e1b    cs2(FDOXXXXXXXX)         Ethernet1/16/1    N9K-C9332D-GX2B
+            .
+            .
+            .
+            e7a    cs1(FLM284504N6)         Ethernet1/16/2    N9K-C9332D-GX2B
+            e7b    cs2(FDO2846056X)         Ethernet1/16/2    N9K-C9332D-GX2B
+
+node1-01/cdp
+            e10a   cs1(FLMXXXXXXXX)         Ethernet1/16/3    N9K-C9332D-GX2B
+            e10b   cs2(FDOXXXXXXXX)         Ethernet1/16/3    N9K-C9332D-GX2B
+            e11a   cs1(FLMXXXXXXXX)         Ethernet1/16/4    N9K-C9332D-GX2B
+            e11b   cs2(FDOXXXXXXXX)         Ethernet1/16/4    N9K-C9332D-GX2B
+            e1a    cs1(FLMXXXXXXXX)         Ethernet1/16/1    N9K-C9332D-GX2B
+            e1b    cs2(FDOXXXXXXXX)         Ethernet1/16/1    N9K-C9332D-GX2B
+           .
+           .
+           .
+            e7a    cs1(FLMXXXXXXXX)         Ethernet1/16/2    N9K-C9332D-GX2B
+            e7b    cs2(FDOXXXXXXXX)         Ethernet1/16/2    N9K-C9332D-GX2B
+.
+.
+.
+
+cluster1::*> *system cluster-switch show -is-monitoring-enabled-operational true*
+Switch                      Type               Address          Model
+--------------------------- ------------------ ---------------- ---------------
+cs1(FDOXXXXXXXX)            cluster-network    10.228.137.233   N9K-C9332D-GX2B
+     Serial Number: FDOXXXXXXXX
+      Is Monitored: true
+            Reason: None
+  Software Version: Cisco Nexus Operating System (NX-OS) Software, Version
+                    10.4(2)
+    Version Source: CDP/ISDP
+
+
+cs1(FLMXXXXXXXX)             cluster-network   10.228.137.253   N9K-C9332D-GX2B
+     Serial Number: FLMXXXXXXXX
+      Is Monitored: true
+            Reason: None
+  Software Version: Cisco Nexus Operating System (NX-OS) Software, Version
+                    10.4(2)
+    Version Source: CDP/ISDP
+----
+====
+
+
+.. *HA 端口*
++
+... 验证所有 HA 端口是否处于正常运行状态：
++
+[source, cli]
+----
+ha interconnect status show -node <node-name>
+----
++
+.显示示例
+[%collapsible]
+====
+[listing, subs="+quotes"]
+----
+cluster1::*> *ha interconnect status show -node node1-01*
+  (system ha interconnect status show)
+
+                       Node: node1-01
+              Link 0 Status: up
+              Link 1 Status: up
+           Is Link 0 Active: true
+           Is Link 1 Active: true
+         IC RDMA Connection: up
+                       Slot: 0
+             Debug Firmware: no
+
+
+Interconnect Port 0 :
+                  Port Name: e1a-17
+                        MTU: 4096
+           Link Information: ACTIVE
+
+
+Interconnect Port 1 :
+                  Port Name: e1b-18
+                        MTU: 4096
+           Link Information: ACTIVE
+
+cluster1::*> *ha interconnect status show -node node1-02*
+  (system ha interconnect status show)
+
+                       Node: node1-02
+              Link 0 Status: up
+              Link 1 Status: up
+           Is Link 0 Active: true
+           Is Link 1 Active: true
+         IC RDMA Connection: up
+                       Slot: 0
+             Debug Firmware: no
+
+
+Interconnect Port 0 :
+                  Port Name: e1a-17
+                        MTU: 4096
+           Link Information: ACTIVE
+
+
+Interconnect Port 1 :
+                  Port Name: e1b-18
+                        MTU: 4096
+           Link Information: ACTIVE
+.
+.
+.
+----
+====
+
+
+.. *存储端口*
++
+... 验证所有存储端口均处于正常状态：
++
+[source, cli]
+----
+storage port show -port-type ENET
+----
++
+.显示示例
+[%collapsible]
+====
+[listing, subs="+quotes"]
+----
+cluster1::*> *storage port show -port-type ENET*
+
+
+                                      Speed
+Node               Port Type  Mode    (Gb/s) State    Status
+------------------ ---- ----- ------- ------ -------- -----------
+node1-01
+                   e10a ENET  -          100 enabled  online
+                   e10b ENET  -          100 enabled  online
+                   e11a ENET  -          100 enabled  online
+                   e11b ENET  -          100 enabled  online
+node1-02
+                   e10a ENET  -          100 enabled  online
+                   e10b ENET  -          100 enabled  online
+                   e11a ENET  -          100 enabled  online
+                   e11b ENET  -          100 enabled  online
+node1-03
+                   e10a ENET  -          100 enabled  online
+                   e10b ENET  -          100 enabled  online
+                   e11a ENET  -          100 enabled  online
+node1-04
+                   e10a ENET  -          100 enabled  online
+                   e10b ENET  -          100 enabled  online
+                   e11a ENET  -          100 enabled  online
+                   e11b ENET  -          100 enabled  online
+16 entries were displayed.
+----
+====
+
+
+.. *存储架端口*
++
+... 验证所有存储架端口是否处于正常状态：
++
+[source, cli]
+----
+storage shelf port show
+----
++
+.显示示例
+[%collapsible]
+====
+[listing, subs="+quotes"]
+----
+cluster1::*> *storage shelf port show*
+
+Shelf ID Module State        Internal?
+----- -- ------ ------------ ---------
+1.1
+       0 A      connected    false
+       1 A      connected    false
+       2 A      connected    false
+       3 A      connected    false
+       4 A      connected    false
+       5 A      connected    false
+       6 A      connected    false
+       7 A      connected    false
+       8 B      connected    false
+       9 B      connected    false
+      10 B      connected    false
+      11 B      connected    false
+      12 B      connected    false
+      13 B      connected    false
+      14 B      connected    false
+      15 B      connected    false
+
+16 entries were displayed.
+----
+====
+... 验证所有存储架端口的连接状态：
++
+[source, cli]
+----
+storage shelf port show -fields remote-device,remote-port,connector-state
+----
++
+.显示示例
+[%collapsible]
+====
+[listing, subs="+quotes"]
+----
+cluster1::*> *storage shelf port show -fields remote-device,remote-port,connector-state*
+
+shelf id connector-state remote-port    remote-device
+----- -- --------------- -------------- -----------------
+1.1   0  connected       Ethernet1/17/1 CX9332D-cs1
+1.1   1  connected       Ethernet1/15/1 CX9364D-cs1
+1.1   2  connected       Ethernet1/17/2 CX9332D-cs1
+1.1   3  connected       Ethernet1/15/2 CX9364D-cs1
+1.1   4  connected       Ethernet1/17/3 CX9332D-cs1
+1.1   5  connected       Ethernet1/15/3 CX9364D-cs1
+1.1   6  connected       Ethernet1/17/4 CX9332D-cs1
+1.1   7  connected       Ethernet1/15/4 CX9364D-cs1
+1.1   8  connected       Ethernet1/19/1 CX9332D-cs1
+1.1   9  connected       Ethernet1/17/1 CX9364D-cs1
+1.1   10 connected       Ethernet1/19/2 CX9332D-cs1
+1.1   11 connected       Ethernet1/17/2 CX9364D-cs1
+1.1   12 connected       Ethernet1/19/3 CX9332D-cs1
+1.1   13 connected       Ethernet1/17/3 CX9364D-cs1
+1.1   14 connected       Ethernet1/19/4 CX9332D-cs1
+1.1   15 connected       Ethernet1/17/4 CX9364D-cs1
+
+16 entries were displayed.
+----
+====
+
+
+
+
+. 使用 ONTAP CLI，验证集群是否正常：
++
+[source, cli]
+----
+cluster show
+----
++
+.显示示例
+[%collapsible]
+====
+[listing, subs="+quotes"]
+----
+cluster1::*> *cluster show*
+
+
+Node                 Health  Eligibility   Epsilon
+-------------------- ------- ------------  ------------
+node1-01             true    true          false
+node1-02             true    true          false
+node1-03             true    true          false
+node1-04             true    true          true
+
+4 entries were displayed.
+----
+====
+. 重复上述步骤，在交换机 cs2 上安装 NX-OS 和 EPLD 映像。
+
+
+
+
+[[step-3-complete-the-nx-os-upgrade]]
+== 步骤 3：完成 NX-OS 升级
+
+使用 ONTAP CLI，通过在集群 LIF 上重新启用自动还原并验证集群 LIF 已还原到其主端口来完成 NX-OS 升级。
+
+. 在集群 LIF 上重新启用自动还原。
++
+[source, cli]
+----
+network interface modify -vserver Cluster -lif * -auto-revert true
+----
+. 确认集群 LIF 已恢复到其原端口：
++
+[source, cli]
+----
+network interface show -role cluster
+----
++
+.显示示例
+[%collapsible]
+====
+[listing, subs="+quotes"]
+----
+cluster1::*> *network interface show -role cluster*
+
+            Logical         Status     Network            Current     Current Is
+Vserver     Interface       Admin/Oper Address/Mask       Node        Port    Home
+----------- --------------- ---------- ------------------ ----------- ------- ----
+Cluster
+            node1-01_clus1  up/up      169.254.36.44/16   node1-01    e7a     true
+            node1-01_clus2  up/up      169.254.7.5/16     node1-01    e7b     true
+            node1-02_clus1  up/up      169.254.197.206/16 node1-02    e7a     true
+            node1-02_clus2  up/up      169.254.195.186/16 node1-02    e7b     true
+            node1-03_clus1  up/up      169.254.192.49/16  node1-03    e7a     true
+            node1-03_clus2  up/up      169.254.182.76/16  node1-03    e7b     true
+            node1-04_clus1  up/up      169.254.59.49/16   node1-04    e7a     true
+            node1-04_clus2  up/up      169.254.62.244/16  node1-04    e7b     true
+----
+====
++
+如果任何集群 LIF 尚未返回到其源端口，请从本地节点手动将其还原：
+
++
+[source, cli]
+----
+network interface revert -vserver Cluster -lif <lif-name>
+----
+
+
+.下一步是什么？
+升级交换机上的 NX-OS 后，请从 link:configure-install-upgrade-rcf-overview-9332d.html["安装或升级 RCF 概述"] 开始升级 RCF。

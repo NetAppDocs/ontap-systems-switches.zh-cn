@@ -24,6 +24,7 @@ summary: 您可以使用此过程在 Nexus 3232C 存储交换机上安装 NX-OS 
 
 
 
+[[install-or-upgrade-the-software]]
 == 安装或升级软件
 
 该过程需要同时使用ONTAP命令和Cisco Nexus 3000 系列交换机命令；除非另有说明，否则使用ONTAP命令。

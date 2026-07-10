@@ -15,6 +15,7 @@ summary: 您可以将ONTAP集群中较旧的Cisco集群交换机无中断地迁�
 
 
 
+[[review-requirements]]
 == 审查要求
 
 在使用 NVIDIA SN2100 集群交换机替换某些较旧的 Cisco 集群交换机时，您必须了解某些配置信息、端口连接和布线要求。请参阅 link:configure-overview-sn2100-cluster.html["NVIDIA SN2100交换机的安装和配置概述"]。
@@ -54,6 +55,7 @@ NOTE: 如果要更改 AFF A800 或 AFF C800 系统上 e0a 和 e1a 集群端口�
 
 
 
+[[migrate-the-switches]]
 == 迁移交换机
 
 .关于示例
@@ -89,6 +91,7 @@ NOTE: 如果要更改 AFF A800 或 AFF C800 系统上 e0a 和 e1a 集群端口�
 
 
 
+[[step-1-prepare-for-migration]]
 === 步骤 1：准备迁移
 
 . 如果此集群上启用了AutoSupport ，则通过调用AutoSupport消息来抑制自动创建案例：
@@ -113,6 +116,7 @@ NOTE: 如果要更改 AFF A800 或 AFF C800 系统上 e0a 和 e1a 集群端口�
 
 
 
+[[step-2-configure-ports-and-cabling]]
 === 步骤二：配置端口和线缆
 
 . 确定每个集群接口的管理或运行状态。
@@ -522,6 +526,7 @@ swp16      100G   BondMember  sw1                 swp16
 
 
 
+[[step-3-verify-the-configuration]]
 === 步骤 3：验证配置
 
 . 启用集群 LIF 的自动回滚功能：

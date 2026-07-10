@@ -15,6 +15,7 @@ summary: 可以在 Cisco Nexus 3232C 存储交换机上升级 Cisco NX-OS 软件
 
 
 
+[[review-requirements]]
 == 审查要求
 
 .开始之前
@@ -31,6 +32,7 @@ summary: 可以在 Cisco Nexus 3232C 存储交换机上升级 Cisco NX-OS 软件
 
 
 
+[[replace-the-switch]]
 == 更换开关
 
 .关于示例
@@ -47,6 +49,7 @@ NOTE: 该过程需要同时使用ONTAP命令和Cisco Nexus 3000 系列交换机�
 
 
 
+[[step-1-check-the-health-status-of-switches-and-ports]]
 === 步骤 1：检查交换机和端口的运行状况
 
 . 如果启用了AutoSupport，则通过调用AutoSupport消息来阻止自动创建案例：
@@ -139,6 +142,7 @@ There are no entries matching your query.
 
 
 
+[[step-2-copy-the-rcf-to-cisco-switch-s2]]
 === 步骤 2：将 RCF 复制到 Cisco 交换机 s2
 
 . 使用以下传输协议之一将交换机 s2 上的 RCF 复制到交换机引导闪存：FTP、HTTP、TFTP、SFTP 或 SCP。
@@ -265,6 +269,7 @@ s2# copy running-config startup-config
 
 
 
+[[step-3-copy-the-nx-os-image-to-cisco-switch-s2-and-reboot]]
 === 步骤 3：将 NX-OS 映像复制到 Cisco 交换机 s2 并重新启动
 
 . 将 NX-OS 映像复制到交换机 s2。
@@ -459,6 +464,7 @@ s2#
 
 
 
+[[step-4-recheck-the-health-status-of-switches-and-ports]]
 === 步骤 4：重新检查交换机和端口的运行状况
 
 . 重启后请再次检查存储交换机是否可用：

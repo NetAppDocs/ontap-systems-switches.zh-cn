@@ -15,6 +15,7 @@ summary: 您可以将ONTAP集群中较旧的Cisco交换机无中断地迁移到N
 
 
 
+[[review-requirements]]
 == 审查要求
 
 支持以下存储交换机：
@@ -45,6 +46,7 @@ summary: 您可以将ONTAP集群中较旧的Cisco交换机无中断地迁移到N
 
 
 
+[[migrate-the-switches]]
 == 迁移交换机
 
 .关于示例
@@ -69,6 +71,7 @@ summary: 您可以将ONTAP集群中较旧的Cisco交换机无中断地迁移到N
 
 
 
+[[step-1-prepare-for-migration]]
 === 步骤 1：准备迁移
 
 . 如果启用了AutoSupport，则通过调用AutoSupport消息来阻止自动创建案例：
@@ -93,6 +96,7 @@ summary: 您可以将ONTAP集群中较旧的Cisco交换机无中断地迁移到N
 
 
 
+[[step-2-configure-cables-and-ports]]
 === 步骤 2：配置线缆和端口
 
 . 显示网络端口属性：
@@ -336,6 +340,7 @@ node2      /lldp
 
 
 
+[[step-3-verify-the-configuration]]
 === 步骤 3：验证配置
 
 . 验证最终配置：

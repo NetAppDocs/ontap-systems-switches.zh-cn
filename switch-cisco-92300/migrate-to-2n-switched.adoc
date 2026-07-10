@@ -22,6 +22,7 @@ NOTE: 迁移完成后，可能需要安装要求的配置文件，以支持 9230
 
 
 
+[[review-requirements]]
 == 审查要求
 
 .开始之前
@@ -54,6 +55,7 @@ link:https://hwu.netapp.com/SWITCH/INDEX["Hardware Universe- 交换机"^] 包含
 
 
 
+[[migrate-the-switch]]
 == 迁移交换机
 
 .关于示例
@@ -71,6 +73,7 @@ link:https://hwu.netapp.com["Hardware Universe"^] 包含有关您平台的实际
 
 
 
+[[step-1-prepare-for-migration]]
 === 步骤 1：准备迁移
 
 . 将权限级别更改为高级，输入 `y`当系统提示继续时：
@@ -106,6 +109,7 @@ cluster1::*> *system node autosupport invoke -node * -type all -message MAINT=2h
 
 
 
+[[step-2-configure-cables-and-ports]]
 === 步骤 2：配置线缆和端口
 
 . 禁用新集群交换机 cs1 和 cs2 上所有面向节点的端口（非 ISL 端口）。
@@ -398,6 +402,7 @@ cs2(config-if-range)# *no shutdown*
 
 
 
+[[step-3-verify-the-configuration]]
 === 步骤 3：验证配置
 
 . 启用集群 LIF 的自动回滚功能。

@@ -17,6 +17,7 @@ summary: 对于运行ONTAP 8.3.1 或更高版本的NetApp CN1601 管理交换机
 
 
 
+[[review-requirements]]
 == 审查要求
 
 .开始之前
@@ -36,6 +37,7 @@ summary: 对于运行ONTAP 8.3.1 或更高版本的NetApp CN1601 管理交换机
 
 
 
+[[install-the-fastpath-software]]
 == 安装 FASTPATH 软件
 
 以下步骤使用集群式Data ONTAP 8.2 语法。因此，集群 Vserver、LIF 名称和 CLI 输出与Data ONTAP 8.3 中的不同。
@@ -62,6 +64,7 @@ link:https://hwu.netapp.com/["Hardware Universe"^] 包含有关您平台上支�
 
 
 
+[[step-1-migrate-cluster]]
 === 步骤 1：迁移集群
 
 . 显示集群上的网络端口信息：
@@ -252,6 +255,7 @@ Copy operation successful
 
 
 
+[[step-2-install-the-fastpath-software-and-rcf]]
 === 步骤 2：安装 FASTPATH 软件和 RCF
 
 . 请确认FASTPATH软件的运行版本。
@@ -463,6 +467,7 @@ System will now restart!
 
 
 
+[[step-3-validate-installation]]
 === 步骤 3：验证安装
 
 . 再次登录，然后验证交换机是否正在运行新版本的 FASTPATH 软件。

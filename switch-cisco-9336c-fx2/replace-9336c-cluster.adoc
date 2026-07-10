@@ -15,6 +15,7 @@ summary: 在集群网络中更换有缺陷的 Nexus 9336C-FX2 交换机是一个
 
 
 
+[[review-requirements]]
 == 审查要求
 
 更换开关之前，请确保：
@@ -46,6 +47,7 @@ summary: 在集群网络中更换有缺陷的 Nexus 9336C-FX2 交换机是一个
 
 
 
+[[enable-console-logging]]
 == 启用控制台日志记录
 
 NetApp强烈建议您在使用的设备上启用控制台日志记录，并在更换交换机时执行以下操作：
@@ -57,6 +59,7 @@ NetApp强烈建议您在使用的设备上启用控制台日志记录，并在�
 
 
 
+[[replace-the-switch]]
 == 更换开关
 
 .关于示例
@@ -160,6 +163,7 @@ Total entries displayed: 4
 ====
 
 
+[[step-1-prepare-for-replacement]]
 === 第一步：准备更换
 
 . 如果此集群上启用了AutoSupport ，则通过调用AutoSupport消息来抑制自动创建案例：
@@ -291,6 +295,7 @@ RPC status:
 ====
 
 
+[[step-2-configure-cables-and-ports]]
 === 步骤 2：配置线缆和端口
 
 . 关闭 Nexus 9336C-FX2 交换机 cs1 上的 ISL 端口 1/35 和 1/36。
@@ -519,6 +524,7 @@ RPC status:
 ====
 
 
+[[step-3-verify-the-configuration]]
 === 步骤 3：验证配置
 
 . 请确认以下集群网络配置：

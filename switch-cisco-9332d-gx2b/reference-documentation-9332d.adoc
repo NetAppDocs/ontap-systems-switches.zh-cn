@@ -1,0 +1,146 @@
+---
+sidebar: sidebar 
+permalink: switch-cisco-9332d-gx2b/reference-documentation-9332d.html 
+keywords: shared storage cluster switch 
+summary: 对于作为新 AFX 1K 或 AFX 2K 系统一部分的 Cisco Nexus 9332D-GX2B 交换机安装和配置或现有交换机的维护，您可以参考适用的 Cisco 交换机文档和 NetApp 系统文档。 
+---
+= 参考文档 - Cisco Nexus 9332D-GX2B
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ../media/
+
+
+[role="lead"]
+对于作为新 AFX 1K 或 AFX 2K 系统一部分的 Cisco Nexus 9332D-GX2B 交换机安装和配置或现有交换机的维护，您可以参考适用的 Cisco 交换机文档和 NetApp 系统文档。
+
+
+NOTE: 有关在新的 AFX 1K 或 AFX 2K 系统中安装和配置交换机的分步说明，请参见 link:install-configure-switches-in-afx-workflow-9332d.html["在 AFX 系统工作流程中安装和配置交换机"]。
+
+
+
+[[cisco-switch-documentation]]
+== Cisco 交换机文档
+
+要将 Cisco Nexus 9332D-GX2B 交换机安装和配置为新的 AFX 1K 或 AFX 2K 系统的一部分，您可以参考以下 Cisco 文档，以便熟悉交换机发行说明、安全信息、安装选项、初始软件配置和命令参考。
+
+安装和配置交换机后，您可以参考适用的 Cisco 文档来维护您的交换机。
+
+所有这些文件都可以在link:https://www.cisco.com/c/en/us/support/switches/nexus-9000-series-switches/series.html["Cisco Nexus 9000 系列交换机支持"^]页面上找到。
+
+[cols="1,2,3"]
+|===
+| 任务类型 | Cisco 文档标题 | 描述 
+
+
+ a| 
+安装和配置
+ a| 
+link:https://www.cisco.com/c/en/us/support/switches/nexus-9000-series-switches/products-release-notes-list.html["Cisco Nexus 9000 系列 NX-OS 发行说明"^]（请选择交换机上安装的 NX-OS 版本对应的说明）
+ a| 
+描述了CiscoNexus 9000 系列的功能、缺陷和局限性。
+
+
+
+ a| 
+安装和配置
+ a| 
+link:https://www.cisco.com/c/en/us/td/docs/switches/datacenter/mds9000/hw/regulatory/compliance/RCSI.html?dtid=osscdc000283&linkclickid=srch["Cisco Nexus 9000 系列的法规遵从性和安全信息"^]
+ a| 
+提供 Nexus 9000 系列交换机的国际机构合规性、安全性和法规信息。
+
+
+
+ a| 
+安装和配置
+ a| 
+link:https://www.cisco.com/c/en/us/td/docs/dcn/hw/nx-os/nexus9000/9332d-gx2b/cisco-nexus-9332d-gx2b-nx-os-mode-switch-hardware-installation-guide.html["Cisco Nexus 9332D-GX2B NX-OS 模式交换机硬件安装指南"^]
+ a| 
+提供有关站点要求、交换机硬件详情和安装选项的详细信息。
+
+
+
+ a| 
+安装和配置
+ a| 
+link:https://www.cisco.com/c/en/us/support/switches/nexus-9000-series-switches/products-installation-and-configuration-guides-list.html["Cisco Nexus 9000 系列交换机软件配置指南"^]（请选择与您的交换机上安装的 NX-OS 版本相对应的指南）
+ a| 
+提供在配置交换机以进行ONTAP操作之前所需的初始交换机配置信息。
+
+
+
+ a| 
+安装、配置和维护
+ a| 
+link:https://www.cisco.com/c/en/us/td/docs/dcn/nx-os/nexus9000/102x/command-reference/config/b_n9k_config_commands_1021.html["Cisco Nexus 9000 系列 NX-OS 命令参考"^]
+ a| 
+提供指向Cisco提供的各种命令参考的链接。
+
+
+
+ a| 
+安装和配置
+ a| 
+link:https://www.cisco.com/c/en/us/td/docs/dcn/nx-os/nexus9000/101x/upgrade/cisco-nexus-9000-nx-os-software-upgrade-downgrade-guide-101x.html["Cisco Nexus 9000 系列 NX-OS 软件升级和降级指南"^]（请选择与您的交换机上安装的 NX-OS 版本相对应的指南）
+ a| 
+提供有关如何将交换机降级到ONTAP支持的交换机软件（如有必要）的信息。
+
+
+
+ a| 
+维护
+ a| 
+link:https://www.cisco.com/c/en/us/support/switches/nexus-9000-series-switches/products-system-message-guides-list.html["Cisco Nexus 9000 系列 NX-OS 系统消息参考"^]
+ a| 
+描述Cisco Nexus 9000 系列交换机的系统消息，包括信息性消息和其他可能有助于诊断链路、内部硬件或系统软件问题的消息。
+
+|===
+
+
+[[netapp-systems-documentation]]
+== NetApp 系统文档
+
+要将 Cisco Nexus 9332D-GX2B 交换机安装和配置为新的 AFX 1K 或 AFX 2K 系统的一部分，您可以参考以下NetApp系统文档和资源，以便熟悉 AFX 系统、支持的 ONTAP 版本、支持的硬件配置和系统安装要求。
+
+[cols="1,2,3"]
+|===
+| 任务类型 | ONTAP 文档标题 | 描述 
+
+
+ a| 
+安装和配置
+ a| 
+link:https://docs.netapp.com/us-en/ontap-afx/index.html["AFX 系统文档"^]
+ a| 
+介绍如何安装NetApp硬件。
+
+
+
+ a| 
+安装和配置
+ a| 
+link:https://docs.netapp.com/us-en/ontap-family/["ONTAP 文档"^]
+ a| 
+提供有关ONTAP版本各个方面的详细信息。
+
+
+
+ a| 
+安装和配置
+ a| 
+link:https://hwu.netapp.com["Hardware Universe"^]
+ a| 
+提供NetApp硬件配置和兼容性信息。
+
+
+
+ a| 
+安装和配置
+ a| 
+link:https://kb.netapp.com/Support/General_Support/What_additional_information_do_I_need_to_install_my_equipment_that_is_not_in_HWU["安装HWU中没有的设备还需要哪些额外信息？"^]
+ a| 
+提供有关存储系统安装要求的详细信息。
+
+|===

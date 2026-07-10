@@ -15,6 +15,7 @@ summary: 要将集群中现有的 CN1610 集群交换机替换为Cisco Nexus 313
 
 
 
+[[review-requirements]]
 == 审查要求
 
 请查看NetApp CN1610 的要求。link:switch-requirements.html["更换Cisco Nexus 3132Q-V 集群交换机的要求"] 。
@@ -28,6 +29,7 @@ summary: 要将集群中现有的 CN1610 集群交换机替换为Cisco Nexus 313
 
 
 
+[[replace-the-switch]]
 == 更换开关
 
 .交换机和节点命名法
@@ -80,6 +82,7 @@ NOTE: 该过程需要同时使用ONTAP命令和Cisco Nexus 3000 系列交换机�
 
 
 
+[[step-1-prepare-for-replacement]]
 === 第一步：准备更换
 
 . 如果此集群上启用了AutoSupport ，则通过调用AutoSupport消息来抑制自动创建案例：
@@ -462,6 +465,7 @@ C2(config-if)# exit
 
 
 
+[[step-2-configure-ports]]
 === 步骤 2：配置端口
 
 . 在所有节点上，拆下连接到 CN1610 交换机 CL2 的电缆。
@@ -911,6 +915,7 @@ Copy Complete.
 
 
 
+[[step-3-verify-the-configuration]]
 === 步骤 3：验证配置
 
 . 确认 ISL 连接是否正常 `up`在 3132Q-V 开关 C2 上：

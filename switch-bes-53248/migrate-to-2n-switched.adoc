@@ -17,6 +17,7 @@ summary: 如果您有一个双节点无交换机集群，您可以无中断地�
 
 
 
+[[review-requirements]]
 == 审查要求
 
 请查看以下集群环境要求。
@@ -61,6 +62,7 @@ link:https://hwu.netapp.com/Home/Index["Hardware Universe"^] 包含有关 ONTAP 
 
 
 
+[[migrate-to-the-cluster-environment]]
 == 迁移到集群环境
 
 .关于示例
@@ -78,6 +80,7 @@ link:https://hwu.netapp.com/Home/Index["Hardware Universe"^] 包含有关您平�
 
 
 
+[[step-1-prepare-for-migration]]
 === 步骤 1：准备迁移
 
 . 如果此集群上启用了AutoSupport ，则通过调用AutoSupport消息来抑制自动创建案例：
@@ -110,6 +113,7 @@ cluster1::*> system node autosupport invoke -node * -type all -message MAINT=2h
 
 
 
+[[step-2-configure-ports-and-cabling]]
 === 步骤二：配置端口和线缆
 
 . 禁用新集群交换机 cs1 和 cs2 上所有已激活的面向节点的端口（非 ISL 端口）。
@@ -415,6 +419,7 @@ e0b       Cluster      Cluster          up   9000  auto/10000 healthy  false
 
 
 
+[[step-3-verify-the-configuration]]
 === 步骤 3：验证配置
 
 . 启用集群 LIF 的自动回滚功能。

@@ -1,0 +1,180 @@
+---
+permalink: switch-cisco-9332d-gx2b/configure-install-upgrade-rcf-overview-9332d.html 
+sidebar: sidebar 
+keywords: ssh, requirement, cluster, switch, health, monitor, cshm, log, collection, feature, cisco 9332d-gx2b 
+summary: '您可以在 Nexus 9332D-GX2B 交换机上安装或升级参考配置文件 (RCF)。在交换机上安装受支持的 RCF 版本，作为新 AFX 1K 或 AFX 2K 系统安装、交换机更换或重置为出厂默认设置的一部分。您可以在交换机上升级到受支持的 RCF 版本，以支持新硬件、新的 ONTAP 版本，或与 AFX 1K 或 AFX 2K 系统配置中的新 NX-OS 版本保持一致。' 
+---
+= 安装或升级 RCF 概述 - Cisco Nexus 9332D-GX2B
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+您可以在 Nexus 9332D-GX2B 交换机上安装或升级参考配置文件 (RCF)。在交换机上安装受支持的 RCF 版本，作为新 AFX 1K 或 AFX 2K 系统安装、交换机更换或交换机重置为出厂默认设置的一部分。您可以在交换机上升级到受支持的 RCF 版本，以支持新硬件、新的 ONTAP 版本，或与 AFX 系统配置中的新 NX-OS 版本保持一致。
+
+
+NOTE: RCF 安装或升级独立于 NX-OS 安装或升级。如果您要安装或升级 NX-OS 和 RCF，建议您先安装或升级 NX-OS。
+
+
+
+[[understand-the-supported-rcf-versions]]
+=== 了解支持的 RCF 版本
+
+AFX 系统上运行的 ONTAP 版本以及交换机上的 NX-OS 版本决定了交换机支持的 RCF 版本。RCF 版本具有预设的端口速度配置，可确定有多少交换机端口处于分路模式（4x100GbE）和非分路模式。
+
+[NOTE]
+====
+有关受支持的 RCF 版本的当前列表，请参见link:https://mysupport.netapp.com/site/info/cisco-ethernet-switch["NetApp Cisco 以太网交换机"^]页面。
+
+交换机端口信息也可在 https://hwu.netapp.com["NetApp Hardware Universe"^]中找到。
+
+====
+* 如果您有 AFX 1K 系统，则支持 RCF 10.0 及更高版本。
+* 如果您有 AFX 2K 系统，则支持 RCF 10.1 及更高版本。
+* RCF 10.0 有一个文件，它支持共享交换机 `Cluster-HA-Storage AFX RCF_10.0`。
++
+例如，下表显示了交换机端口的预设分组、端口速度以及此 RCF 文件的使用情况。
+
++
+[cols="1,2"]
+|===
+| 交换机端口组 | 端口速度和使用率 
+
+
+ a| 
+以太网 1/1/1-4 至以太网 1/30/1-4
+ a| 
+4x100GbE 模式用于集群、HA 和存储连接
+
+
+
+ a| 
+以太网1/31、以太网1/32
+ a| 
+400GbE ISL
+
+|===
+* RCF 10.1 为 AFX 1K 和 AFX 2K 系统的不同用例提供不同的文件。根据您计划如何使用 AFX 1K 或 AFX 2K 系统配置中的交换机（共享、仅存储或仅集群和高可用性），您可以选择适用的 RCF 文件。
++
+例如，如果您将交换机用作 AFX 2K 系统中的共享交换机，则可以使用适合该用例的 RCF 文件。相应的 RCF 文件的名称可以类似于  `RCF-v10.1-NX9332D-GX2B-CL1-ST1-100GBR15-400G15.txt`。下表显示了此 RCF 文件的交换机端口的预设组、端口速度和使用情况。
+
++
+[cols="1,2"]
+|===
+| 交换机端口组 | 端口速度和使用率 
+
+
+ a| 
+Ethernet1/1/1-4 到 Ethernet1/15/1-4
+ a| 
+4x100GbE 模式，用于集群内、HA 和存储架连接
+
+
+
+ a| 
+Ethernet1/16 到 Ethernet1/30
+ a| 
+用于集群内、HA 和存储连接的 400GbE 模式
+
+
+
+ a| 
+以太网1/31、以太网1/32
+ a| 
+400GbE 集群内 ISL 连接
+
+|===
++
+[NOTE]
+====
+当您需要为 AFX 系统适应不同的端口速度配置时，您可以更改预设组，以在分路模式（4x100GbE）和 400GbE 模式下调整交换机端口数。
+
+稍后在 RCF 安装或升级过程中执行此操作。
+
+====
+
+
+
+
+[[change-port-speed-configuration]]
+=== 更改端口速度配置
+
+对于使用 RCF 10.1 及更高版本的交换机，当需要为 AFX 系统适应不同的端口速度配置时，可以更改端口速度配置，以调整分路模式（4x100GbE）和非分路模式（400GbE）下的交换机端口数。
+
+您在 RCF 安装或 RCF 升级过程中执行此更改。这些步骤将引导您访问此页面。
+
+您可以在两个交换机上输入命令。
+
+[cols="1,2"]
+|===
+| 更改端口速度 | 步骤 
+
+
+ a| 
+将非分支端口更改为分支端口
+ a| 
+. 在命令行界面中进入配置模式。
+. 修改交换机上的端口速度和分路模式：
++
+要指定分线端口，请使用 `interface breakout module`命令。
+
++
+例如，要将 400GbE 模式端口 15-19 指定为分支（4x100GbE）端口，请使用以下方法：
+
++
+`interface breakout module 1 port 15-19 map 100g-4x`
+
+. 使用需要使用端口配置文件以获得所需端口速度的新端口修改端口列表。
++
+例如，要使用新端口 15-19 修改 100G 速度端口配置文件的端口列表，请使用以下命令：
+
++
+`interface e1/15/1-4, e1/16/1-4, e1/17/1-4, e1/18/1-4, e1/19/1-4`
+
+. 对交换机分支（4x100GbE）端口进行 100GbE 硬编码。如果不对速度进行硬编码，端口将无法启动，并将处于错误禁用状态。
++
+`speed 100000`
+
++
+`no negotiate auto`
+
+
+
+
+
+ a| 
+将分支端口恢复为非分支端口
+ a| 
+. 在命令行界面中进入配置模式。
+. 要将分支端口返回到非分支端口，请在配置模式下使用 `no interface breakout`命令。
++
+例如，要将端口 15-19 返回到 400GbE 模式，请使用以下命令：
+
++
+`no interface breakout module 1 port 15-19`
+
+
+
+|===
+
+
+[[suggested-documentation]]
+=== 建议的文档
+
+在交换机上安装或升级 RCF 之前，建议您查看以下文档：
+
+* 有关安装或升级 RCF 的详细信息，请参见 NetApp 知识库文章link:https://kb.netapp.com/on-prem/Switches/Cisco-KBs/How_to_clear_configuration_on_a_Cisco_interconnect_switch_while_retaining_remote_connectivity["如何在保持远程连接的情况下清除Cisco互连交换机上的配置"^]。
+* 请参见  https://hwu.netapp.com/SWITCH/INDEX["Hardware Universe"^] 以验证您平台上的正确端口。
+* link:https://mysupport.netapp.com/site/info/cisco-ethernet-switch["Cisco以太网交换机（NSS）"^]
++
+请参阅NetApp支持网站上的交换机兼容性表格，了解支持的ONTAP和 RCF 版本。请注意，RCF 中的命令语法与特定版本的 NX-OS 中的语法之间可能存在命令依赖关系。
+
+* link:https://www.cisco.com/c/en/us/support/switches/nexus-9000-series-switches/series.html["CiscoNexus 9000 系列交换机"^]
++
+有关Cisco交换机升级和降级程序的完整文档，请参阅Cisco网站上提供的相应软件和升级指南。
+
+
+
+.下一步是什么？
+在查看安装或升级 RCF 概述后，您可以根据需要link:configure-install-rcf-9332d.html["安装 RCF"]或link:configure-upgrade-rcf-9332d.html["升级 RCF"]。

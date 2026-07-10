@@ -15,17 +15,17 @@ summary: 如果您还没有所需的配置信息和文档，则需要在设置�
 
 .开始之前
 * 在安装现场访问 HTTP、FTP 或 TFTP 服务器，以下载适用的 NX-OS 和参考配置文件 (RCF) 版本。
-* 适用的NX-OS版本，可从以下网址下载： https://software.cisco.com/download/home["Cisco软件下载"^]页。
+* 适用的 NX-OS 版本，从link:https://software.cisco.com/download/home["Cisco软件下载"^]页面下载。
 * 所需的网络和管理网络交换机文档。
 +
 有关更多信息，请参见 link:required-documentation-3232c-storage.html["所需文件"]。
 
 * 需要提供控制器文档和ONTAP文档。
 +
-https://netapp.com/us/documenation/index.aspx["NetApp文档"^]
+link:https://docs.netapp.com/us-en/ontap/index.html["ONTAP 9 文档"^]
 
 * 适用的许可证、网络和配置信息以及线缆。
-* 适用的 NetApp 存储网络和管理网络 RCF，从 NetApp 支持站点 http://mysupport.netapp.com/["mysupport.netapp.com"^]为您收到的交换机下载。所有 Cisco 存储网络和管理网络交换机均采用标准的 Cisco 出厂默认配置。这些交换机还具有当前版本的 NX-OS 软件，但没有加载 RCF。
+* 适用的 NetApp 存储网络和管理网络 RCF，从 NetApp 支持站点 link:http://mysupport.netapp.com/["mysupport.netapp.com"^] 下载，适用于您收到的交换机。所有 Cisco 存储网络交换机和管理网络交换机均采用标准的 Cisco 出厂默认配置。这些交换机还具有当前版本的 NX-OS 软件，但未加载 RCF。
 
 
 .步骤

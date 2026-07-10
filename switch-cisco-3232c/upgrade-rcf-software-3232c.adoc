@@ -33,6 +33,7 @@ CAUTION: 安装新的交换机软件版本和 RCF 之前，必须清除交换机
 
 
 
+[[step-1-prepare-for-the-upgrade]]
 == 第一步：准备升级
 
 . 显示每个节点上连接到集群交换机的集群端口：
@@ -178,6 +179,7 @@ cluster1::*> *network interface modify -vserver Cluster -lif * -auto-revert fals
 
 
 
+[[step-2-configure-ports]]
 == 步骤 2：配置端口
 
 . 在集群交换机 cs2 上，关闭连接到节点集群端口的端口。
@@ -548,6 +550,7 @@ cluster1::*> *network interface modify -vserver Cluster -lif * -auto-revert true
 
 
 
+[[step-3-verify-the-cluster-network-configuration-and-cluster-health]]
 == 步骤 3：验证集群网络配置和集群健康状况
 
 . 确认连接到集群端口的交换机端口已启用。

@@ -15,7 +15,7 @@ summary: 要安装 SN2100 硬件，请参阅 NVIDIA 的文档。
 
 .步骤
 . 复习link:configure-reqs-sn2100-cluster.html["配置要求"]。
-. 按照以下说明操作 https://docs.nvidia.com/networking/display/sn2000pub/System+Bring-Up["NVIDIA系统启动。"^]。
+. 按照 https://networking-docs.nvidia.com/sn2000hw/latest/system-bring-up["NVIDIA系统启动。"^]中的说明进行操作。
 
 
 .下一步是什么？

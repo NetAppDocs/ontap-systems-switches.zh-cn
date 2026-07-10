@@ -15,6 +15,7 @@ summary: 您可以将用于ONTAP集群的NetApp CN1610 集群交换机无中断�
 
 
 
+[[review-requirements]]
 == 审查要求
 
 在将 NetApp CN1610 集群交换机更换为 NVIDIA SN2100 集群交换机时，您必须了解某些配置信息、端口连接和布线要求。请参阅 link:configure-overview-sn2100-cluster.html["NVIDIA SN2100交换机的安装和配置概述"]。
@@ -48,6 +49,7 @@ summary: 您可以将用于ONTAP集群的NetApp CN1610 集群交换机无中断�
 
 
 
+[[migrate-the-switches]]
 == 迁移交换机
 
 .关于示例
@@ -84,6 +86,7 @@ NOTE: 在此过程中不需要任何可操作的交换机间链路 (ISL)。这�
 
 
 
+[[step-1-prepare-for-migration]]
 === 步骤 1：准备迁移
 
 . 如果此集群上启用了AutoSupport ，则通过调用AutoSupport消息来抑制自动创建案例：
@@ -108,6 +111,7 @@ NOTE: 在此过程中不需要任何可操作的交换机间链路 (ISL)。这�
 
 
 
+[[step-2-configure-ports-and-cabling]]
 === 步骤二：配置端口和线缆
 
 . 确定每个集群接口的管理或运行状态。
@@ -523,6 +527,7 @@ swp16      100G   BondMember  sw1                 swp16
 
 
 
+[[step-3-verify-the-configuration]]
 === 步骤 3：验证配置
 
 . 启用集群 LIF 的自动回滚功能：

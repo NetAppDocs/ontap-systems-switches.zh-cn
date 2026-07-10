@@ -30,6 +30,7 @@ CAUTION: 安装新的交换机软件版本和 RCF 之前，必须清除交换机
 
 
 
+[[step-1-prepare-for-the-upgrade]]
 == 第一步：准备升级
 
 . 如果此集群上启用了AutoSupport ，则通过调用AutoSupport消息来抑制自动创建案例：
@@ -164,6 +165,7 @@ cluster1::*> *system switch ethernet show*
 
 
 
+[[step-2-upgrade-the-rcf]]
 == 步骤 2：升级 RCF
 
 . 使用 SSH 或通过串行控制台登录到交换机 s2。
@@ -416,6 +418,7 @@ cluster1::*> *system switch ethernet show*
 
 
 
+[[step-3-verify-the-storage-network]]
 == 步骤 3：验证存储网络
 
 在每个存储交换机上完成以下步骤，以确认 RCF 升级后存储网络运行正常。

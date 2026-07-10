@@ -17,6 +17,7 @@ summary: 如果您已经拥有一个双节点无交换机集群环境，则可�
 
 
 
+[[review-requirements]]
 == 审查要求
 
 .双节点无交换机配置
@@ -53,6 +54,7 @@ link:https://hwu.netapp.com["Hardware Universe"^] 包含有关您平台的实际
 
 
 
+[[migrate-the-switches]]
 == 迁移交换机
 
 .关于示例
@@ -68,6 +70,7 @@ link:https://hwu.netapp.com["Hardware Universe"^] 包含有关您平台的实际
 
 
 
+[[step-1-prepare-for-migration]]
 === 步骤 1：准备迁移
 
 . 如果此集群上启用了AutoSupport ，则通过调用AutoSupport消息来抑制自动创建案例： `system node autosupport invoke -node * -type all -message MAINT=xh`
@@ -82,6 +85,7 @@ link:https://hwu.netapp.com["Hardware Universe"^] 包含有关您平台的实际
 
 
 
+[[step-2-configure-ports-and-cabling]]
 === 步骤二：配置端口和线缆
 
 [role="tabbed-block"]
@@ -670,6 +674,7 @@ e3b       Cluster      Cluster          up   9000  auto/10000 healthy  false
 
 
 
+[[step-3-verify-the-configuration]]
 === 步骤 3：验证配置
 
 . 启用所有集群 LIF 的自动回滚功能：

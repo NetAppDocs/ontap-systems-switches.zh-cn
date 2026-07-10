@@ -6,6 +6,7 @@
 
 
 
+[[review-requirements]]
 == 审查要求
 
 .实施准则
@@ -25,6 +26,7 @@
 
 
 
+[[migrate-the-switches]]
 == 迁移交换机
 
 .关于此任务
@@ -37,6 +39,7 @@ image::../media/tnsc_clusterswitches_and_direct_connections.PNG[集群交换机�
 
 
 
+[[step-1-prepare-for-migration]]
 === 步骤 1：准备迁移
 
 . 将权限级别更改为高级，输入 `y`当系统提示继续时：
@@ -92,6 +95,7 @@ cluster::*> system node autosupport invoke -node * -type all -message MAINT=2h
 
 
 
+[[step-2-configure-ports-and-cabling]]
 === 步骤二：配置端口和线缆
 
 . 将每台交换机上的集群端口分成几组，使第 1 组的集群端口连接到集群交换机 1，第 2 组的集群端口连接到集群交换机 2。这些组在后续手术过程中是需要的。
@@ -399,6 +403,7 @@ image::../media/tnsc_node1_and_node2_direct_connection.PNG[节点1和节点2上�
 
 
 
+[[step-3-verify-the-configuration]]
 === 步骤 3：验证配置
 
 . 请确认两个节点上的端口连接正确：

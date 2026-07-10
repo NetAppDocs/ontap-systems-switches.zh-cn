@@ -1,0 +1,37 @@
+---
+permalink: switch-cisco-9808/configure-review-cabling-config-requirements-9808.html 
+sidebar: sidebar 
+keywords: 9808 cabling setup, 9808 switches configuration, nx-os 
+summary: 如果要在新的 AFX 2K 系统安装过程中安装新的 Cisco Nexus 9808 交换机、更换主管模块或将交换机重置为出厂默认设置，则必须查看以下布线和配置要求。 
+---
+= 查看布线和配置要求 - Cisco Nexus 9808
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+如果要在新的 AFX 2K 系统安装过程中安装 Cisco Nexus 9808 交换机、更换主管模块或将交换机重置为出厂默认设置，则必须查看以下布线和配置要求。
+
+
+
+[[hard-code-the-speed-on-breakout-ports]]
+== 对分支端口上的速度进行硬编码
+
+必须对 100GbE 的交换机分支（4x100GbE）端口进行硬编码。如果不对速度进行硬编码，则端口将不会启动，并且将处于错误禁用状态。
+
+例如，要在分支端口 19-35 上硬编码 100GbE，请在配置模式下执行以下操作。示例显示了应用于第一台交换机（cs1）的命令。对第二台交换机重复这些命令。
+
+[listing, subs="+quotes"]
+----
+(cs1)# *configure terminal*
+Enter configuration commands, one per line. End with CNTL/Z.
+(cs1)(config)# *interface e1/19/1-4,e1/20/1-4,e1/21/1-4,e1/22/1-4,e1/23/1-4,e1/24/1-4,e1/25/1-4,e1/26/1-4,e1/27/1-4,e1/28/1-4,e1/29/1-4,e1/30/1-4,e1/31/1-4,e1/32/1-4,e1/33/1-4,e1/34/1-4,e1/35/1-4*
+(cs1)(config-if)# *speed 100000*
+(cs1)(config-if)# *no negotiate auto*
+(cs1)(config-if)# *exit*
+(cs1)(config)# *exit*
+(cs1)# *copy running-config startup-config*
+----
+.下一步是什么？
+在满足布线和配置要求后，您 link:configure-install-nxos-9808.html["安装 NX-OS"]。

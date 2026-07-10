@@ -15,6 +15,7 @@ summary: 当您用Cisco Nexus 3232C 集群交换机替换 CN1610 集群交换机
 
 
 
+[[cn1610-migrate-requirements]]
 == CN1610迁移要求
 
 集群交换机支持以下节点连接：
@@ -74,6 +75,7 @@ CN1610 至 3232C（QSFP 至 SFP+）
 
 
 
+[[cn5596-requirements]]
 == CN5596 要求
 
 集群交换机使用以下端口连接到节点：

@@ -15,18 +15,21 @@ summary: 您可以参考 BES-53248 集群交换机端口分配表来配置您的
 
 
 
+[[efos-and-ontap-support]]
 == EFOS 和ONTAP支持
 
 有关 EFOS 和 ONTAP 与 BES-53248 交换机兼容性信息，请参见 link:https://hwu.netapp.com/Switch/Index["Hardware Universe"^] 和 link:https://mysupport.netapp.com/site/info/broadcom-cluster-switch["博通交换机兼容性矩阵"^]。EFOS 和 ONTAP 支持可能因 BES-53248 交换机的特定机器类型而异。有关所有 BES-52348 交换机机器类型的详细信息，请参阅 link:components-bes53248.html["BES-53248 集群开关的组件和零件编号"]。有关交换机安装要求的更多信息，请参见 link:https://kb.netapp.com/Support/General_Support/What_additional_information_do_I_need_to_install_my_equipment_that_is_not_in_HWU["安装HWU中没有的设备还需要哪些额外信息？"]^。
 
 
 
+[[configuration-requirements]]
 == 配置要求
 
 要配置集群，您需要集群交换机的相应数量和类型的电缆和电缆连接器。根据您最初配置的集群交换机的类型，您需要使用随附的控制台电缆连接到交换机控制台端口。
 
 
 
+[[cluster-switch-port-assignments]]
 === 集群交换机端口分配
 
 您可以参考博通支持的 BES-53248 集群交换机端口分配表来配置您的集群。
@@ -67,6 +70,7 @@ summary: 您可以参考 BES-53248 集群交换机端口分配表来配置您的
 
 
 
+[[port-group-speed-constraint]]
 === 端口组速度限制
 
 * 在 BES-53248 集群交换机上，48 个 10/25GbE (SFP28/SFP+) 端口组合成 12 个 4 端口组，如下：端口 1-4、5-8、9-12、13-16、17-20、21-24、25-28、29-32、33-36、37-40、41-44 和 45-48。
@@ -75,6 +79,7 @@ summary: 您可以参考 BES-53248 集群交换机端口分配表来配置您的
 
 
 
+[[additional-requirements]]
 === 其他要求
 
 * 如果您购买其他许可证，请参阅 link:configure-licenses.html["激活新授权端口"] 以了解有关如何激活它们的详细信息。

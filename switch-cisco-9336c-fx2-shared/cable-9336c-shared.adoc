@@ -18,6 +18,7 @@ summary: 使用布线图完成控制器和交换机之间的布线。
 
 
 
+[[cable-ns224-storage-as-switch-attached]]
 == NS224 电缆存储作为交换机连接
 
 如果要将 NS224 存储设备以交换机连接方式进行布线，请按照交换机连接图进行操作：
@@ -28,6 +29,7 @@ image:9336c_image1.jpg["开关连接"]
 
 
 
+[[cable-ns224-storage-as-direct-attached]]
 == NS224 电缆存储作为直接连接
 
 如果要将 NS224 存储设备以直连方式连接，而不是使用共享交换机存储端口，请按照直连接线图进行操作：
@@ -38,6 +40,7 @@ image:9336c_image2.jpg["直连式"]
 
 
 
+[[cisco-nexus-9336c-fx2-cabling-worksheet]]
 == Cisco Nexus 9336C-FX2 布线工作表
 
 如果要记录支持的平台，则必须使用已完成的示例布线工作表作为指南，填写空白的布线工作表。
@@ -56,6 +59,7 @@ image:cabling-worksheet.jpg["布线工作表"]
 
 
 
+[[blank-cabling-worksheet]]
 == 空白布线工作表
 
 您可以使用空白布线工作表记录群集中作为节点支持的平台。link:https://hwu.netapp.com["Hardware Universe"^] 的"支持的集群连接"表定义了平台使用的集群端口。

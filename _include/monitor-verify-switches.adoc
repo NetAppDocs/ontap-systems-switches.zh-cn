@@ -4,6 +4,7 @@
 
 
 
+[[confirm-monitoring-of-the-connected-ethernet-switches]]
 == 确认对已连接的以太网交换机进行监控
 
 要确认已连接的以太网交换机正在被监控，请运行：
@@ -23,6 +24,7 @@ system switch ethernet show
 ====
 
 
+[[confirm-firmware-and-rcf-versions-are-up-to-date]]
 == 请确认固件和 RCF 版本均为最新版本。
 
 确保交换机运行的是最新支持的固件，并且已应用兼容的参考配置文件（RCF）。更多信息请访问[此处]。https://mysupport.netapp.com/site/downloads["NetApp支持下载页面"^] 。
@@ -40,6 +42,7 @@ NOTE: 看link:config-snmpv3.html["可选：配置 SNMPv3"]有关配置 SNMPv3 �
 
 
 
+[[confirm-management-network-connection]]
 == 确认管理网络连接
 
 确认交换机的管理端口已连接到管理网络。

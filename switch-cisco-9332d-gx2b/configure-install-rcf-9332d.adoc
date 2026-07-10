@@ -1,0 +1,153 @@
+---
+permalink: switch-cisco-9332d-gx2b/configure-install-rcf-9332d.html 
+sidebar: sidebar 
+keywords: install rcf, cisco switches 
+summary: 您可以在新的 Cisco Nexus 9332D-GX2B 交换机上安装 RCF，作为新的 AFX 1K 或 AFX 2K 系统安装和设置、更换故障交换机或将交换机重置为出厂默认设置的一部分。 
+---
+= 安装 RCF - Cisco Nexus 9332D-GX2B
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+您可以在新的 Cisco Nexus 9332D-GX2B 交换机上安装 RCF，作为新 AFX 1K 或 AFX 2K 系统安装、更换交换机或将交换机重置为出厂默认设置的一部分。
+
+.开始之前
+* 必须打开交换机电源，并且您必须已完成 link:configure-complete-initial-setup-9332d.html["完成初始交换机设置"] 程序。
+* 您必须已使用 link:configure-install-nxos-9332d.html["安装 NX-OS"] 过程安装所需的 NX-OS 版本。
+* 您必须已阅读link:configure-install-upgrade-rcf-overview-9332d.html["安装或升级 RCF 概述"]页面。
+* 如果要在交换机更换或交换机重置为出厂默认设置的过程中在交换机上安装 RCF，请验证集群是否完全正常运行，即日志中没有错误或类似问题。
+
+
+
+NOTE: 如果要在新的 AFX 系统安装过程中安装 RCF，则可以跳过此要求，因为在 AFX 系统安装和设置过程中，此时 AFX 系统中的控制器尚未通电。
+
+.关于此任务
+* 如果您在新的 AFX 1K 或 AFX 2K 系统安装过程中安装了交换机，则此过程要求您在第一台交换机（cs1）上安装 RCF，然后对第二台交换机（cs2）重复上述步骤。
+* 此过程仅需要使用 Cisco Nexus 9000 系列交换机命令。
+* 本程序中的示例将第一个交换机称为 cs1，将第二个交换机称为 cs2。
+* 本程序中显示的示例适用于运行 RCF 10.0 的交换机的 AFX 1K 系统。如果您有 AFX 2K 系统，则输入和输出可能会有所不同。
+
+
+
+
+[[step-1-prepare-to-install-the-rcf]]
+== 步骤 1：准备安装 RCF
+
+通过确保您具有下载 RCF 所需的连接来准备在交换机上安装 RCF，然后下载 RCF。
+
+.步骤
+. 您必须能够访问HTTP、FTP或TFTP服务器。通过访问其中一台服务器，您可以下载受支持的RCF版本。
+. 从 NetApp 支持站点 http://mysupport.netapp.com/["mysupport.netapp.com"^]下载适用于您的 AFX 系统类型的 RCF。
++
+
+NOTE: 新交换机出厂时未安装 RCF。您必须在交换机上安装 RCF。
+
+. 每台交换机必须连接到控制台，或者您必须能够远程访问每台交换机。
+
+
+
+
+[[step-2-install-the-rcf]]
+== 步骤 2：安装 RCF
+
+通过将 RCF 复制并应用于引导闪存、检查横幅输出、验证 RCF 版本是否正确、记录任何自定义添加内容、保存基本配置详细信息、验证 write_erase.cfg 文件是否已填充、擦除当前保存的配置、将之前保存的基本配置复制到启动配置中，然后重新启动交换机，从而在第一台交换机 (cs1) 上安装 RCF。如果要在新的 AFX 系统安装过程中安装 RCF，请在第二台交换机 (cs2) 上重复这些步骤。
+
+. 使用 SSH 或串行控制台登录到 switch cs1。
+. 使用以下传输协议之一将 RCF 复制到交换机 cs1 的 bootflash：FTP、TFTP、SFTP 或 SCP。
++
+有关 Cisco 命令的更多信息，请参见 link:https://www.cisco.com/c/en/us/td/docs/dcn/nx-os/nexus9000/102x/command-reference/config/b_n9k_config_commands_1021.html["Cisco Nexus 9000 系列 NX-OS 命令参考"^] 中的相应指南。
+
++
+`copy <protocol>: bootflash: vrf management`
+
++
+.显示示例
+[%collapsible]
+====
+此示例展示了如何使用 TFTP 将 RCF 文件复制到交换机 cs1 的启动闪存中：
+
+[listing, subs="+quotes"]
+----
+cs1# *copy tftp: bootflash: vrf management*
+Enter source filename: *NX9332D-GX2B-RCF-v10.0-Shared.txt*
+Enter hostname for the tftp server: *172.22.201.50*
+Trying to connect to tftp server......Connection to Server Established.
+TFTP get operation was successful
+Copy complete, now saving to disk (please wait)...
+----
+====
+. 应用先前复制到引导闪存的 RCF。
++
+有关 Cisco 命令的更多信息，请参见 link:https://www.cisco.com/c/en/us/td/docs/dcn/nx-os/nexus9000/102x/command-reference/config/b_n9k_config_commands_1021.html["Cisco Nexus 9000 系列 NX-OS 命令参考"^] 中的相应指南。
+
++
+以下命令显示了正在交换机 cs1 上安装的 RCF 文件 `NX9332D-GX2B-RCF-v10.0-Shared.txt`：
+
++
+[listing, subs="+quotes"]
+----
+cs1# *copy NX9332D-GX2B-RCF-v10.0-Shared.txt running-config echo-commands*
+----
++
+
+NOTE: 对于 RCF 10.1 及更高版本，文件名格式不同。例如， `RCF-v10.1-NX9332D-GX2B-CL1-ST1-100GB15-400G15.txt` 适用于具有指定分支和 400GbE 端口的共享交换机。
+
+. 检查横幅输出 `show banner motd`命令。您必须阅读并遵循这些说明以确保交换机的正确配置和操作。
++
+.显示示例
+[%collapsible]
+====
+[listing]
+----
+cs1# show banner motd
+
+******************************************************************************
+* NetApp Reference Configuration File (RCF)
+*
+* Switch   : NX9332D-GX2B
+* Filename : NX9332D-GX2B-RCF-v10.0-Shared.txt
+* Date     : 05-09-2025
+* Version  : v10.0
+* Port Usage:
+* Ports  1-30: 100GbE Intra-Cluster/HA/Storage Ports, int e1/{1-30}/1-4
+* Ports 31-32: Intra-Cluster ISL Ports, int e1/31-32
+*
+* IMPORTANT NOTES
+* Interface port-channel999 is reserved to identify the version of this file.
+******************************************************************************
+----
+====
+. 验证 RCF 文件的版本是否正确：
++
+`show running-config`
+
++
+检查输出结果以验证是否拥有正确的 RCF 时，请确保以下信息正确：
+
++
+** RCF横幅
+** 节点和端口设置
+** 定制
++
+输出结果会根据您的网站配置而有所不同。检查端口设置，并参考发行说明，了解您安装的 RCF 版本是否有任何特定更改。
+
+
+
+. 将当前运行配置复制到启动配置以使其持久化。
++
+`cs1# *copy bootflash:write_erase.cfg startup-config*`
+
+. 重启交换机：
++
+`cs1# *reload*`
+
++
+`This command will reboot the system. (y/n)?  [n] *y*`
+
+. 如果要在新的 AFX 系统安装过程中安装 RCF，请在交换机 cs2 上重复这些步骤。
+
+
+.下一步是什么？
+在交换机中安装 RCF 后，您 link:configure-verify-ssh-9332d.html["验证日志收集的 SSH"]。

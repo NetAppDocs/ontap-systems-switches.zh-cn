@@ -31,6 +31,7 @@ summary: 使用群集交换机运行状况监视器和日志收集功能时，SS
 
 
 
+[[step-1-install-the-rcf-on-the-switches]]
 == 步骤 1：在交换机上安装 RCF
 
 . 使用 SSH 或串行控制台登录到 switch cs2。
@@ -153,6 +154,7 @@ cs2# *copy Nexus_3232C_RCF_v1.6-Cluster-HA-Breakout.txt running-config echo-comm
 
 
 
+[[step-2-verify-the-switch-connections]]
 == 步骤 2：验证交换机连接
 
 . 确认连接到集群端口的交换机端口已启用。
@@ -259,6 +261,7 @@ cluster1::*>
 
 
 
+[[step-3-setup-your-ontap-cluster]]
 == 步骤 3：设置ONTAP集群
 
 NetApp建议您使用系统管理器来设置新的集群。

@@ -18,6 +18,7 @@ summary: 从ONTAP 9.9.1 开始，您可以使用Cisco Nexus 9336C-FX2 交换机�
 
 
 
+[[ontap-support]]
 == ONTAP 支持
 
 [role="tabbed-block"]
@@ -42,6 +43,7 @@ NOTE: 以太网交换机健康监视器不支持ONTAP 9.13.1P8 及更早版本�
 ====
 
 
+[[configuration-requirements]]
 == 配置要求
 
 请确保：
@@ -52,6 +54,7 @@ NOTE: 以太网交换机健康监视器不支持ONTAP 9.13.1P8 及更早版本�
 
 
 
+[[network-requirements]]
 == 网络要求
 
 所有交换机配置都需要以下网络信息。

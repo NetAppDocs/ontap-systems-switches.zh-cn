@@ -15,6 +15,7 @@ summary: 您可以按照特定步骤，在不中断业务的情况下更换有�
 
 
 
+[[review-requirements]]
 == 审查要求
 
 现有网络配置必须具备以下特征：
@@ -39,12 +40,14 @@ summary: 您可以按照特定步骤，在不中断业务的情况下更换有�
 
 
 
+[[replace-the-switch]]
 == 更换开关
 
 此过程将第二个 Nexus 3232C 存储交换机 S2 替换为新的 3232C 交换机 NS2。这两个节点分别是节点1和节点2。
 
 
 
+[[step-1-confirm-the-switch-to-be-replaced-is-s2]]
 === 步骤 1：确认待更换的开关是 S2
 
 . 如果此集群上启用了AutoSupport ，则通过调用AutoSupport消息来抑制自动创建案例：
@@ -143,6 +146,7 @@ SHFGD2008000022         Eth1/8          120        S           e0a
 
 
 
+[[step-2-configure-cabling]]
 === 步骤二：配置线缆
 
 . [[五]]检查存储系统中的货架端口：
@@ -175,6 +179,7 @@ shelf  id  remote-port  remote-device
 
 
 
+[[step-3-verify-all-device-configurations-on-switch-ns2]]
 === 步骤 3：验证交换机 NS2 上的所有设备配置
 
 . 验证存储节点端口的健康状况：

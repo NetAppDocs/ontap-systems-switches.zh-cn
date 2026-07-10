@@ -15,6 +15,7 @@ summary: 要将集群中现有的 CN1610 集群交换机替换为Cisco Nexus 323
 
 
 
+[[review-requirements]]
 == 审查要求
 
 迁移前，请务必查看link:migrate-requirements-3232c.html["迁移要求"]。
@@ -32,6 +33,7 @@ NOTE: 该过程需要同时使用ONTAP命令和Cisco Nexus 3000 系列交换机�
 
 
 
+[[migrate-the-switches]]
 == 迁移交换机
 
 .关于示例
@@ -52,6 +54,7 @@ NOTE: 该过程需要同时使用ONTAP命令和Cisco Nexus 3000 系列交换机�
 
 
 
+[[step-1-prepare-for-migration]]
 === 步骤 1：准备迁移
 
 . 如果此集群上启用了AutoSupport ，则通过调用AutoSupport消息来抑制自动创建案例：
@@ -260,6 +263,7 @@ Cluster
 
 
 
+[[step-2-replace-cluster-switch-cl2-with-c2]]
 === 步骤 2：将集群开关 CL2 更换为 C2
 
 . 关闭与交换机 CL2 物理连接的集群互连端口：
@@ -744,6 +748,7 @@ cluster::*> *network interface migrate -vserver cluster -lif n2_clus4 -source-no
 
 
 
+[[step-3-replace-cluster-switch-cl1-with-c1]]
 === 步骤 3：将集群开关 CL1 更换为 C1
 
 . 验证集群状态：
@@ -979,6 +984,7 @@ e0d   cluster   cluster    up    9000  auto/10000     -
 
 
 
+[[step-4-complete-the-procedure]]
 === 第四步：完成该步骤
 
 . 撤销所有已迁移的集群互连 LIF，这些 LIF 最初连接到所有节点上的 C1：

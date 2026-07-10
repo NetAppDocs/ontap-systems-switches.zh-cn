@@ -29,6 +29,7 @@ summary: 使用群集交换机运行状况监视器和日志收集功能时，SS
 
 
 
+[[step-1-install-the-rcf-on-the-switches]]
 == 步骤 1：在交换机上安装 RCF
 
 . 显示每个节点上连接到集群交换机的集群端口：
@@ -315,6 +316,7 @@ NOTE: 升级或应用新的 RCF 时，必须清除交换机设置并执行基本
 
 
 
+[[step-2-verify-the-switch-connections]]
 == 步骤 2：验证交换机连接
 
 . 确认连接到集群端口的交换机端口已启用。
@@ -415,6 +417,7 @@ cluster1::*>
 
 
 
+[[step-3-setup-your-ontap-cluster]]
 == 步骤 3：设置ONTAP集群
 
 NetApp建议您使用系统管理器来设置新的集群。

@@ -24,6 +24,7 @@ summary:
 
 
 
+[[review-requirements]]
 == 审查要求
 
 确保：
@@ -56,6 +57,7 @@ summary:
 
 
 
+[[migrate-the-switches]]
 == 迁移交换机
 
 .关于示例
@@ -70,6 +72,7 @@ summary:
 
 
 
+[[step-1-migrate-from-a-switchless-cluster-with-direct-attached]]
 === 步骤 1：从无交换机的集群迁移到直连式集群
 
 . 如果此集群上启用了AutoSupport ，则通过调用AutoSupport消息来抑制自动创建案例： `system node autosupport invoke -node * -type all -message MAINT=xh` 。
@@ -649,6 +652,7 @@ RPC status:
 
 
 
+[[step-2-set-up-the-shared-switch]]
 === 步骤 2：设置共享交换机
 
 本流程中的示例使用以下开关和节点命名规则：

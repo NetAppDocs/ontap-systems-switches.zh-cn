@@ -1,0 +1,27 @@
+---
+permalink: switch-cisco-9808/configure-install-upgrade-nxos-overview-9808.html 
+sidebar: sidebar 
+keywords: ssh, requirement, cluster, switch, health, monitor, cshm, log, collection, feature, cisco 9808 
+summary: 您可以在 Nexus 9808 交换机上为 AFX 2K 系统安装或升级 NX-OS。 
+---
+= 安装或升级 NX-OS 概述 - Cisco Nexus 9808
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+您可以在适用于 AFX 2K 系统的 Cisco Nexus 9808 交换机上安装或升级 NX-OS。
+
+
+NOTE: NX-OS 安装或升级独立于参考配置文件 (RCF) 安装或升级。如果您要安装或升级 NX-OS 和 RCF，建议您先安装或升级 NX-OS。
+
+* link:configure-install-nxos-9808.html["安装 NX-OS"]
++
+在新 AFX 2K 系统安装、更换主管模块或将交换机重置为出厂默认设置的过程中，在交换机上安装 NX-OS。
+
+* link:configure-upgrade-nxos-9808.html["升级 NX-OS"]
++
+您可以升级交换机上的 NX-OS，以支持 AFX 2K 系统上的新硬件或新 ONTAP 版本。
+
+

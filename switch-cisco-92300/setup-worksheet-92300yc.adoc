@@ -17,6 +17,7 @@ summary: 如果要记录支持的平台，则必须使用已完成的示例布�
 
 
 
+[[sample-cabling-worksheet]]
 == 布线工作表示例
 
 每对交换机上的示例端口定义如下：
@@ -756,6 +757,7 @@ summary: 如果要记录支持的平台，则必须使用已完成的示例布�
 |===
 
 
+[[blank-cabling-worksheet]]
 == 空白布线工作表
 
 您可以使用空白布线工作表记录群集中作为节点支持的平台。link:https://hwu.netapp.com["Hardware Universe"^] 的 _Supported Cluster Connections_ 部分定义了平台使用的集群端口。

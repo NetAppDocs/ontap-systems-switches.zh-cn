@@ -1,0 +1,59 @@
+---
+sidebar: sidebar 
+permalink: switch-cisco-9364d-gx2a/maintain-reset-switch-9364d.html 
+keywords: reset switch factory defaults 
+summary: 当 Cisco Nexus 9364D-GX2A 交换机退役或发生故障且无法恢复时，您可以将其重置为原始出厂默认设置，此时需要手动重新配置。 
+---
+= 将交换机重置为出厂默认设置 - Cisco Nexus 9364D-GX2A
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ../media/
+
+
+[role="lead"]
+当 Cisco Nexus 9364D-GX2A 交换机退役或发生故障且无法恢复时，您可以将其重置为原始出厂默认设置，此时需要手动重新配置。
+
+.开始之前
+您必须使用串口控制台连接到交换机。
+
+.关于此任务
+* 此任务会重置管理网络的配置。
+* 此过程中使用的 `reload`命令会重新启动交换机，从而中断通过它的所有网络流量。（您应在交换机未使用期间的维护窗口内执行此过程。）
+
+
+.步骤
+. 清除现有启动配置：
++
+`write erase`
+
++
+[listing, subs="+quotes"]
+----
+(cs2)# *write erase*
+
+Warning: This command will erase the startup-configuration.
+Do you wish to proceed anyway? (y/n) [n] *y*
+----
+. 重新加载 NX-OS：
++
+`reload`
+
++
+[listing, subs="+quotes"]
+----
+(cs2)# *reload*
+
+This command will reboot the system. (y/n)? [n] *y*
+----
++
+系统将重新启动并进入配置向导。
+
++
+
+NOTE: 在重新启动期间，如果您收到提示"Abort Auto Provisioning and continue with normal setup? (yes/no)[n]"，请响应 *yes* 以继续。
+
+. 如果交换机正在退役，则此过程已完成；否则，需要使用 link:configure-switch-workflow-9364d.html["配置交换机工作流"] 配置交换机。
+

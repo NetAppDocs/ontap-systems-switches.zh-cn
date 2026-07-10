@@ -18,6 +18,7 @@ summary: 从ONTAP 9.9.1 开始，您可以使用Cisco Nexus 9336C-FX2 交换机�
 
 
 
+[[part-number-details]]
 == 零件编号详情
 
 下表列出了 9336C-FX2 和 9336C-FX2-T 交换机、风扇和电源的部件号和描述：
@@ -112,6 +113,7 @@ N9K-9336C 65CFM，左舷进气气流
 |===
 
 
+[[cisco-smart-licenses-for-9336c-fx2-t-ports-only]]
 == 仅适用于 9336C-FX2-T 端口的Cisco智能许可证
 
 要激活Cisco Nexus 9336C-FX-T 集群交换机上的 12 个以上端口，您必须购买Cisco Smart 许可证。  Cisco Smart 许可证通过Cisco Smart 帐户进行管理。

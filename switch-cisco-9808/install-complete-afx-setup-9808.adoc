@@ -1,0 +1,26 @@
+---
+permalink: switch-cisco-9808/install-complete-afx-setup-9808.html 
+sidebar: sidebar 
+keywords: switches, complete system setup, Cisco Nexus, 9808 switches, AFX 
+summary: 完成 Cisco Nexus 9808 交换机配置过程后，您将转到 AFX 系统文档站点，打开 AFX 2K 系统中的存储架和控制器，验证交换机连接，并完成 AFX 系统设置。 
+---
+= 完成 AFX 系统设置 - Cisco Nexus 9808
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+完成 Cisco Nexus 9808 交换机配置过程后，您将转到 AFX 系统文档站点，打开 AFX 2K 系统中的存储架和控制器，验证交换机连接，并完成 AFX 系统设置。
+
+.开始之前
+* 您必须已完成 link:configure-switch-workflow-9808.html["配置交换机工作流"] 中的交换机配置过程。
+* 每台交换机必须连接到控制台，或者您必须能够远程访问每台交换机。
+
+
+.步骤
+. 使用 link:https://docs.netapp.com/us-en/ontap-afx/install-afx-2k/power-on-hardware.html["启动您的 AFX 2K 存储系统"^] 程序完成 AFX 2K 系统的开机和设置步骤。
+
+
+.下一步是什么？
+打开存储架和控制器电源并完成 AFX 2K 系统设置后，您就可以使用 AFX 系统了。

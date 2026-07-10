@@ -15,6 +15,7 @@ summary: 您可以将ONTAP集群的旧Cisco集群交换机无中断地迁移到C
 
 
 
+[[review-requirements]]
 == 审查要求
 
 确保：
@@ -40,6 +41,7 @@ NOTE: 如果您更改AFF A800或AFF C800系统上 e0a 和 e1a 集群端口的端
 
 
 
+[[migrate-the-switches]]
 == 迁移交换机
 
 .关于示例
@@ -93,6 +95,7 @@ NOTE: 在此过程中不需要任何可操作的交换机间链路 (ISL)。这�
 
 
 
+[[step-1-prepare-for-migration]]
 === 步骤 1：准备迁移
 
 . 如果此集群上启用了AutoSupport ，则通过调用AutoSupport消息来抑制自动创建案例： `system node autosupport invoke -node * -type all -message MAINT=xh`
@@ -114,6 +117,7 @@ NOTE: AutoSupport消息会通知技术支持此维护任务，以便在维护窗
 
 
 
+[[step-2-configure-ports-and-cabling]]
 === 步骤二：配置端口和线缆
 
 . 在新交换机上，确认交换机 cs1-new 和 cs2-new 之间的 ISL 线缆连接正常：
@@ -620,6 +624,7 @@ Group Port-       Type     Protocol  Member Ports
 
 
 
+[[step-3-verify-the-configuration]]
 === 步骤 3：验证配置
 
 . 启用集群 LIF 的自动回滚功能。

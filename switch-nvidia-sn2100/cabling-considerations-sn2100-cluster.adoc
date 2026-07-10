@@ -15,6 +15,7 @@ summary: 在配置NVIDIA SN2100 交换机之前，请查看以下信息。
 
 
 
+[[nvidia-port-details]]
 == NVIDIA端口详情
 
 |===
@@ -54,6 +55,7 @@ swp15-16
 
 
 
+[[link-up-delays-with-optical-connections]]
 == 光纤连接中的链路延迟
 
 如果您遇到连接延迟超过五秒的情况，Cumulus Linux 5.4 及更高版本包含对快速连接的支持。您可以使用以下方法配置链接： `nv set`命令如下：
@@ -81,6 +83,7 @@ Only switchd reload required
 ====
 
 
+[[support-for-copper-connections]]
 == 支持铜连接
 
 要解决此问题，需要进行以下配置更改。
@@ -200,6 +203,7 @@ UP     swp4      100G  9216   Trunk/L2                     Master: bridge(UP)
 
 
 
+[[qsa-module]]
 == QSA 模块
 
 使用 QSFP+ (40GbE) 转 SFP+ (10GbE) 适配器或 QSFP28 (100GbE) 转 SFP28 (25GbE) 适配器 (QSA) 时，请将其插入非分线 40GbE/100GbE 交换机端口 (swp3-swp14)。请勿将 QSA 模块插入配置为分线端口的端口。
@@ -214,6 +218,7 @@ UP     swp4      100G  9216   Trunk/L2                     Master: bridge(UP)
 
 
 
+[[setting-interface-speed-on-breakout-ports]]
 == 设置分支端口的接口速度
 
 根据交换机端口中的收发器，您可能需要将交换机接口的速度设置为固定速度。如果使用 10GbE 和 25GbE 分支端口或 QSA 模块，请确认自动协商已关闭，并在交换机上设置接口速度。

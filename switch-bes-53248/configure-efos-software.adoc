@@ -17,6 +17,7 @@ EFOS 软件包含一套用于开发以太网和 IP 基础设施系统的高级�
 
 
 
+[[prepare-for-installation]]
 == 准备安装
 
 .开始之前
@@ -27,6 +28,7 @@ EFOS 软件包含一套用于开发以太网和 IP 基础设施系统的高级�
 
 
 
+[[install-the-software]]
 == 安装软件
 
 请使用以下方法之一安装 EFOS 软件：
@@ -37,6 +39,7 @@ EFOS 软件包含一套用于开发以太网和 IP 基础设施系统的高级�
 
 
 
+[[method-1-install-efos]]
 === 方法一：安装 EFOS
 
 请按照以下步骤安装 EFOS 软件。
@@ -251,6 +254,7 @@ Additional Packages............................ BGP-4
 
 
 
+[[method-2-install-efos-in-onie-mode]]
 === 方法二：在 ONIE 模式下安装 EFOS
 
 如果一个 EFOS 版本符合 FIPS 标准，而另一个 EFOS 版本不符合 FIPS 标准，则可以执行以下步骤。如果交换机无法启动，可以使用以下步骤从 ONIE 安装非 FIPS 或符合 FIPS 标准的 EFOS 3.7.xx 映像。

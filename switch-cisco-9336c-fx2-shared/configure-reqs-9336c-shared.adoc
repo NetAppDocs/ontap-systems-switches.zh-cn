@@ -18,6 +18,7 @@ summary: 从ONTAP 9.9.1 开始，您可以使用Cisco Nexus 9336C-FX2 交换机�
 
 
 
+[[ontap-support]]
 == ONTAP 支持
 
 从ONTAP 9.9.1 开始，您可以使用Cisco Nexus 9336C-FX2 交换机将存储和集群功能组合到共享交换机配置中。
@@ -26,6 +27,7 @@ summary: 从ONTAP 9.9.1 开始，您可以使用Cisco Nexus 9336C-FX2 交换机�
 
 
 
+[[configuration-requirements]]
 == 配置要求
 
 配置时，您需要为交换机准备相应数量和类型的电缆和电缆连接器。
@@ -34,6 +36,7 @@ summary: 从ONTAP 9.9.1 开始，您可以使用Cisco Nexus 9336C-FX2 交换机�
 
 
 
+[[network-requirements]]
 == 网络要求
 
 所有交换机配置都需要以下网络信息。

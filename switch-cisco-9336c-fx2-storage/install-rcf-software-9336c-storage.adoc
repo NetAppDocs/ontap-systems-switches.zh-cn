@@ -26,6 +26,7 @@ summary: 首次设置 Nexus 9336C-FX2 存储交换机后，即可安装 RCF。�
 
 
 
+[[step-1-install-the-rcf-on-the-switches]]
 == 步骤 1：在交换机上安装 RCF
 
 . 使用 SSH 或通过串行控制台登录到交换机 s2。
@@ -126,6 +127,7 @@ s2# copy running-config startup-config [########################################
 
 
 
+[[step-2-verify-the-switch-connections]]
 == 步骤 2：验证交换机连接
 
 . 验证交换机端口是否为 *up* 状态。
@@ -437,6 +439,7 @@ NOTE: 有关具体端口和 VLAN 使用详情，请参阅 RCF 中的横幅和重
 
 
 
+[[step-3-set-up-your-ontap-cluster]]
 == 步骤 3：设置ONTAP集群
 
 NetApp建议您使用系统管理器来设置新的集群。

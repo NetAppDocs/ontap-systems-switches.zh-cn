@@ -51,6 +51,7 @@ CAUTION: 在安装新的交换机软件版本和 RCF 之前，请先阅读知识
 
 
 
+[[step-1-prepare-for-upgrade]]
 == 第一步：准备升级
 
 . 如果此集群上启用了AutoSupport ，则通过调用AutoSupport消息来抑制自动创建案例：
@@ -266,6 +267,7 @@ network interface modify -vserver Cluster -lif * -auto-revert false
 
 
 
+[[step-2-configure-ports]]
 == 步骤 2：配置端口
 
 . 在交换机 cs2 上，确认连接到集群中节点的端口列表。
@@ -927,6 +929,7 @@ network interface show -vserver Cluster
 
 
 
+[[step-3-verify-the-configuration]]
 == 步骤 3：验证配置
 
 . 在交换机 cs1 上，确认连接到集群端口的交换机端口是否已启动：

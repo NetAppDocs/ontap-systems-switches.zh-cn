@@ -1,0 +1,42 @@
+---
+permalink: switch-cisco-9364d-gx2a/install-switches-9364d.html 
+sidebar: sidebar 
+keywords: switches, hardware installation, Cisco Nexus, 9364D-GX2A switches 
+summary: 在新的 AFX 1K 或 AFX 2K 系统安装过程中安装 Cisco Nexus 9364D-GX2A 交换机，包括将交换机安装到机架或机柜中，将其连接到系统控制器和磁盘架，然后接通电源。 
+---
+= 安装交换机 - Cisco Nexus 9364D-GX2A
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+在新的 AFX 1K 或 AFX 2K 系统安装过程中安装 Cisco Nexus 9364D-GX2A 交换机，包括将交换机安装到机架或机柜中，将其连接到系统控制器和磁盘架，然后接通电源。
+
+.开始之前
+您必须已完成 link:install-prepare-9364d.html["准备安装交换机"] 中的交换机准备步骤。
+
+.关于此任务
+您可以使用AFX系统文档站点上适用的AFX 1K或AFX 2K系统安装和设置工作流程来安装和连接系统硬件，然后打开交换机电源。
+
+系统安装和设置工作流程包括以下说明：
+
+* 准备场地、拆箱并将箱子内容与装箱单进行比较以及注册系统以获取支持权益的说明。
+* 在 NetApp 机柜或电信机架中安装交换机、控制器和存储架的说明。
+* 系统布线说明，包括将控制器连接到交换机以及将存储架连接到交换机的布线说明。
+
+
+.步骤
+. 在 AFX 1K 或 AFX 2K 系统安装和设置工作流程中安装交换机：
++
+** 对于 AFX 1K 系统，请转到 link:https://docs.netapp.com/us-en/ontap-afx/install-setup/install-setup-workflow.html["AFX 1K 安装和设置工作流程"^]。
+** 对于 AFX 2K 系统，请转到 link:https://docs.netapp.com/us-en/ontap-afx/install-afx-2k/install-setup-workflow.html["AFX 2K 安装和设置工作流程"^]。
+
+
+
+
+
+NOTE: 安装交换机后，AFX 安装和设置工作流程说明会将您重定向回此交换机文档以配置交换机。
+
+.下一步是什么？
+在作为 AFX 1K 或 AFX 2K 系统安装的一部分安装、连接和接通交换机电源后，您link:https://review.docs.netapp.com/us-en/ontap-systems-switches_hotfix-refactor-phase1/switch-cisco-9364d-gx2a/install-configure-switches-in-afx-workflow-9364d.html#configure-switches["配置交换机"]，然后link:https://review.docs.netapp.com/us-en/ontap-systems-switches_hotfix-refactor-phase1/switch-cisco-9364d-gx2a/install-configure-switches-in-afx-workflow-9364d.html#complete-afx-system-setup["完成 AFX 系统设置"]。

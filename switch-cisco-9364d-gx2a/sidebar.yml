@@ -2,44 +2,60 @@
 section: switch-cisco-9364d-gx2a
 title: CiscoNexus 9364D-GX2A
 entries:
-- title: 开始使用
-  pdf-filename: Overview_9364d-gx2a
+- title: 参考文档
+  pdf-filename: 参考文档_9364d-gx2a
+  url: "/switch-cisco-9364d-gx2a/reference-documentation-9364d.html"
+- title: 在 AFX 系统中安装和配置交换机
+  pdf-filename: install_and_configure_switches_in_AFX_systems_9364d-gx2a
   entries:
-  - title: 快速启动
-    url: "/switch-cisco-9364d-gx2a/configure-switch-overview-9364d-cluster.html"
-  - title: 交换机端口详细信息
-    url: "/switch-cisco-9364d-gx2a/configure-setup-ports-9364d.html"
-  - title: 所需文件
-    url: "/switch-cisco-9364d-gx2a/required-documentation-9364d-cluster.html"
-  - title: 智能呼叫中心的要求
-    url: "/switch-cisco-9364d-gx2a/smart-call-9364d-cluster.html"
-- title: 安装硬件
-  url: "/switch-cisco-9364d-gx2a/install-hardware.html"
-  pdf-filename: Install_hardware_9364d-gx2a
-- title: 配置软件
-  pdf-filename: Configure_software_9364d-gx2a
+  - title: 安装和配置交换机工作流程
+    url: "/switch-cisco-9364d-gx2a/install-configure-switches-in-afx-workflow-9364d.html"
+  - title: 准备安装
+    url: "/switch-cisco-9364d-gx2a/install-prepare-9364d.html"
+  - title: 安装交换机
+    url: "/switch-cisco-9364d-gx2a/install-switches-9364d.html"
+    pdf-filename: Install_hardware_9364d-gx2a
+  - title: 完成 AFX 系统设置
+    url: "/switch-cisco-9364d-gx2a/install-complete-afx-setup-9364d.html"
+- title: 配置交换机
+  pdf-filename: configure_switch_9364d-gx2a
   entries:
-  - title: 配置软件工作流程
-    url: "/switch-cisco-9364d-gx2a/configure-software-overview-9364d-cluster.html"
-  - title: 配置交换机
-    url: "/switch-cisco-9364d-gx2a/setup-switch-9364d-cluster.html"
-  - title: 准备安装 NX-OS 和 RCF
-    url: "/switch-cisco-9364d-gx2a/install-nxos-overview-9364d-cluster.html"
-  - title: 安装或升级 NX-OS 软件
-    url: "/switch-cisco-9364d-gx2a/install-nxos-software-9364d-cluster.html"
+  - title: 配置交换机工作流
+    url: "/switch-cisco-9364d-gx2a/configure-switch-workflow-9364d.html"
+  - title: 完成初始交换机设置
+    url: "/switch-cisco-9364d-gx2a/configure-complete-initial-setup-9364d.html"
+  - title: 审查布线和配置要求
+    url: "/switch-cisco-9364d-gx2a/configure-review-cabling-config-requirements-9364d.html"
+  - title: 安装或升级 NX-OS
+    pdf-filename: Install_upgrade_nx-os_9364d-gx2a
+    entries:
+    - title: 安装或升级 NX-OS 概述
+      url: "/switch-cisco-9364d-gx2a/configure-install-upgrade-nxos-overview-9364d.html"
+    - title: 安装 NX-OS
+      url: "/switch-cisco-9364d-gx2a/configure-install-nxos-9364d.html"
+    - title: 升级 NX-OS
+      url: "/switch-cisco-9364d-gx2a/configure-upgrade-nxos-9364d.html"
   - title: 安装或升级 RCF
     pdf-filename: 安装升级 rcf_9364d-gx2a
     entries:
     - title: 安装或升级 RCF 概述
-      url: "/switch-cisco-9364d-gx2a/install-upgrade-rcf-overview-cluster-9364d.html"
+      url: "/switch-cisco-9364d-gx2a/configure-install-upgrade-rcf-overview-9364d.html"
     - title: 安装 RCF
-      url: "/switch-cisco-9364d-gx2a/install-rcf-software-9364d-cluster.html"
-    - title: 升级您的 RCF 版本
-      url: "/switch-cisco-9364d-gx2a/upgrade-rcf-software-9364d-cluster.html"
-  - title: 验证 SSH 是否已启用
-    url: "/switch-cisco-9364d-gx2a/configure-ssh-keys.html"
-- title: 将交换机重置为出厂默认设置
-  url: "/switch-cisco-9364d-gx2a/reset-switch-9364d.html"
-- title: 更换 9364D-GX2A 开关
-  url: "/switch-cisco-9364d-gx2a/replace-9364d-cluster.html"
-  pdf-filename: Replace_switches_9364d-gx2a
+      url: "/switch-cisco-9364d-gx2a/configure-install-rcf-9364d.html"
+    - title: 升级 RCF
+      url: "/switch-cisco-9364d-gx2a/configure-upgrade-rcf-9364d.html"
+  - title: 验证日志收集的SSH
+    url: "/switch-cisco-9364d-gx2a/configure-verify-ssh-9364d.html"
+  - title: 配置Smart Call Home
+    url: "/switch-cisco-9364d-gx2a/configure-smart-call-9364d.html"
+- title: 维护
+  pdf-filename: Maintain_switches_9364d-gx2a
+  entries:
+  - title: 维护概述
+    url: "/switch-cisco-9364d-gx2a/maintain-overview-9364d.html"
+  - title: 更换交换机
+    url: "/switch-cisco-9364d-gx2a/replace-9364d-cluster.html"
+  - title: 更换 FRU
+    url: "/switch-cisco-9364d-gx2a/maintain-replace-frus-9364d.html"
+  - title: 将交换机重置为出厂默认值
+    url: "/switch-cisco-9364d-gx2a/maintain-reset-switch-9364d.html"

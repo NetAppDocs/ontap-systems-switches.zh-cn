@@ -17,6 +17,7 @@ NX-OS 是Cisco系统公司提供的 Nexus 系列以太网交换机和 MDS 系列
 
 
 
+[[review-requirements]]
 == 审查要求
 
 .支持的端口和节点连接
@@ -34,6 +35,7 @@ NX-OS 是Cisco系统公司提供的 Nexus 系列以太网交换机和 MDS 系列
 
 
 
+[[install-the-software]]
 == 安装软件
 
 本流程中的示例使用了两个节点，但集群中最多可以有 24 个节点。

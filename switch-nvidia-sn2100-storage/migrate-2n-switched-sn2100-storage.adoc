@@ -17,6 +17,7 @@ summary: 如果您已经拥有一个双节点无交换机集群环境，则可�
 
 
 
+[[review-requirements]]
 == 审查要求
 
 .你需要什么
@@ -52,6 +53,7 @@ link:https://hwu.netapp.com/SWITCH/INDEX["Hardware Universe- 交换机"^] 包含
 
 
 
+[[migrate-the-switches]]
 == 迁移交换机
 
 .关于示例
@@ -70,6 +72,7 @@ link:https://hwu.netapp.com["Hardware Universe"^] 包含有关您平台的实际
 
 
 
+[[step-1-prepare-for-migration]]
 === 步骤 1：准备迁移
 
 . 如果此集群上启用了AutoSupport ，则通过调用AutoSupport消息来抑制自动创建案例：
@@ -90,6 +93,7 @@ link:https://hwu.netapp.com["Hardware Universe"^] 包含有关您平台的实际
 
 
 
+[[step-2-configure-cables-and-ports]]
 === 步骤 2：配置线缆和端口
 
 . 禁用新集群交换机 sw1 和 sw2 上所有面向节点的端口（非 ISL 端口）。
@@ -420,6 +424,7 @@ swp16      100G   BondMember  sw1                swp16
 
 
 
+[[step-3-complete-the-procedure]]
 === 步骤 3：完成该步骤
 
 . 显示集群中已发现的网络设备信息：

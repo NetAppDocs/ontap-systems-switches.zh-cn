@@ -15,6 +15,7 @@ summary: 如果您在现有的双节点无交换机集群中拥有 FAS22xx 系�
 
 
 
+[[review-requirements]]
 == 审查要求
 
 .开始之前
@@ -32,12 +33,14 @@ https://kb.netapp.com/Advice_and_Troubleshooting/Data_Storage_Software/ONTAP_OS/
 
 
 
+[[migrate-the-switches]]
 == 迁移交换机
 
 该过程是一个非中断性过程，它在无交换机环境中移除直接集群连接，并将每个与交换机的连接替换为与伙伴节点的连接。
 
 
 
+[[step-1-prepare-for-migration]]
 === 步骤 1：准备迁移
 
 . 将权限级别更改为高级，输入 `y`当系统提示继续时：
@@ -150,6 +153,7 @@ cluster::*> system node autosupport invoke -node * -type all -message MAINT=2h
 
 
 
+[[step-2-configure-cables-and-ports]]
 === 步骤 2：配置线缆和端口
 
 . 在每个控制器模块上，断开将 10 GbE 集群端口连接到无交换机集群的电缆。
@@ -301,6 +305,7 @@ RPC status:
 ====
 
 
+[[step-3-complete-the-procedure]]
 === 步骤 3：完成该步骤
 
 . 如果您已禁用自动创建案例功能，请通过调用AutoSupport消息重新启用该功能：
