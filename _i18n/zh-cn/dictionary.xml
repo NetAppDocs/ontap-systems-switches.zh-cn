@@ -749,8 +749,6 @@
   <block id="1fc245f373dd47304db35c4ef2df408e" category="inline-link-macro">配置交换机</block>
   <block id="163c95e139774086e604f88f7e2f31d3" category="list-text"><block ref="163c95e139774086e604f88f7e2f31d3" category="inline-link-macro-rx"></block></block>
   <block id="04204be9eff305a81c8050c2ee21ed34" category="list-text">在伙伴交换机上重复步骤 1 至 8。</block>
-  <block id="74af5112ab6cf8732ffe8eba910e2290" category="inline-link-macro">安装您的许可证</block>
-  <block id="85290349ee32e9f062a4795f3e1e06bb" category="paragraph">安装完 EFOS 软件后，您可以…… <block ref="172517aa1fa2cd21dd6fb86167c00f86" category="inline-link-macro-rx"></block>。</block>
   <block id="88045e5af7830d69afafc3e6e7a9cf86" category="summary">您可以使用此程序执行 BES-53248 集群交换机的初始安装。</block>
   <block id="a804fe3633b3e8edd13e681d83563c08" category="doc">配置 BES-53248 集群交换机</block>
   <block id="67777be64987c8c0fadb924db93389aa" category="paragraph">按照以下步骤对 BES-53248 集群交换机进行初始设置。</block>
@@ -1306,18 +1304,13 @@
   <block id="c0d96a8467e1acc3623933447f6f212c" category="inline-link-macro">安装 RCF</block>
   <block id="11c8d833dc677f2da3e3a05f17e029da" category="list-text"><block ref="11c8d833dc677f2da3e3a05f17e029da" category="inline-link-macro-rx"></block></block>
   <block id="b75ec32f89267a27b5a0e0b014097f77" category="list-text">在交换机 cs1 上重复步骤 2 至 8。</block>
-  <block id="d814617aab418a35a7ebbe46f6db2549" category="list-text">从出厂默认状态安装 RCF 时，需要通过控制台连接到交换机。如果您已使用知识库文章，则此要求为可选。<block ref="18b4271d2bf70dbfb01e42cb4850cea6" category="inline-link-rx"></block>事先清除配置。</block>
   <block id="93933c6ca68705cf2c6eee19987428b0" category="inline-link">博通</block>
-  <block id="20e5ec5f7186bff24f7aeef0c34a7edc" category="admonition">在安装新的交换机软件版本和 RCF 之前，请先阅读知识库文章。<block ref="18b4271d2bf70dbfb01e42cb4850cea6" category="inline-link-rx"></block> 。如果必须完全清除交换机设置，则需要重新进行基本配置。您必须使用串行控制台连接到交换机，因为完全清除配置会重置管理网络的配置。</block>
   <block id="833aa928a446532020e8ea26e29a32b7" category="section-title">第一步：准备升级</block>
   <block id="31e544384f3325abd25b797e025ef614" category="list-text">在交换机 cs2 上，关闭连接到节点集群端口的端口。例如，如果端口 0/1 到 0/16 连接到ONTAP节点：</block>
   <block id="c66ea64be71d87967746ef74fac6ec75" category="list-text">步骤11：检查横幅输出。<block ref="db837131dc56fab41bddc52d5aff8865" prefix=" " category="inline-code"></block>命令。您必须阅读并遵循这些说明以确保交换机的正确配置和操作。</block>
   <block id="05299bd158481c8acf552dc1d004ab41" category="paragraph"><block ref="db837131dc56fab41bddc52d5aff8865" prefix="" category="inline-code"></block></block>
   <block id="4a00b51f01daee860d41dd95bb500266" category="list-text">请在交换机上确认您的更改已生效。</block>
   <block id="f35806549fff4250f43cb0acde28b920" category="list-text">重启交换机并验证运行配置是否正确。</block>
-  <block id="111cada5d22121a7e11aef39f4aca355" category="list-text">在集群交换机 cs2 上，启动连接到节点集群端口的端口。</block>
-  <block id="7271f66e0cb527adb71302d7377910b7" category="list-text">[[step21]]在交换机 cs1 上重复步骤 1 到 20。</block>
-  <block id="9b241cba96d2cafd3c0f5c9f7bf12560" category="list-text">。确认集群 LIF 已恢复到其原端口：</block>
   <block id="16d074a2c9c574f7e8d9dbc312b16d88" category="summary">在配置 BES-53248 集群交换机之前，请先查看流程概述和命名规则。</block>
   <block id="510290e42c307729b66d338637599287" category="doc">BES-53248 集群交换机的升级工作流程</block>
   <block id="95731780fd3171c29b73f348e1722fda" category="paragraph">请按照以下步骤升级 Broadcom BES-54328 集群交换机上的 EFOS 软件和参考配置文件 (RCF)（如适用）。</block>
@@ -5331,7 +5324,6 @@
   <block id="888d27af1c8bead4bc090f7b57fe47dc" category="paragraph"><block ref="03642bd9ef2a92e7a683427a90d69064" prefix="" category="inline-code"></block></block>
   <block id="9c16d25919d69afd920c43d400da0ea8" category="paragraph"><block ref="e374209cc99be20be59ee159164d8226" prefix="" category="inline-code"></block></block>
   <block id="ab72b57a9a9f0e3ccd70b04752a4b2dc" category="list-text">验证连接到节点存储端口和存储架端口的交换机端口是否为 *up* 状态。</block>
-  <block id="3050ed36cf7b28894b3ecbbbe2742aa2" category="list-text">升级 EPLD 映像并重新启动交换机。如果使用的是 NX-OS 10.5(3)F 或更高版本，则无需执行单独的 EPLD 映像升级，因为 NX-OS 映像中包含 EPLD 映像。跳过此步骤并继续验证群集端口健康状况。</block>
   <block id="8b1e9b3cc32c2a1cf644a1cfe3dab553" category="summary">要安装 SN2100 硬件，请参见 NVIDIA 文档。</block>
   <block id="c10fbc8cfb6421490d3e923dc2ea002a" category="paragraph">安装 NVIDIA SN2100 交换机硬件是构建可靠且可扩展的网络基础架构以支持数据保护、复制和管理工作流程的关键第一步。</block>
   <block id="1fcad359e819ec24939bbd1dc0e8cb54" category="paragraph">按照下面的步骤设置和配置 SN2100 交换机。有关详细说明，请参阅 NVIDIA 的文档。</block>
@@ -5609,7 +5601,6 @@
   <block id="4900377d6745b8a03e6c9a542b3fe2f0" category="paragraph">以太网交换机健康监视器（CSHM）负责确保网络交换机的运行健康，并收集交换机日志以进行调试。</block>
   <block id="bc2dfd2fdf95de6b810acf0fa5c67356" category="paragraph">以太网交换机运行状况监视器 (CSHM) 利用 SNMP 来监控网络交换机的运行状况和性能。默认情况下，SNMPv2c 通过参考配置文件 (RCF) 自动配置。SNMPv3 比 SNMPv2 更安全，因为它引入了强大的安全功能，如身份验证、加密和消息完整性，可防止未经授权的访问，并确保传输过程中的数据机密性和完整性。</block>
   <block id="7cb74dd4a33dec5dc1811198729f1a3d" category="paragraph">以太网交换机健康监视器 (CSHM) 会自动尝试监控其发现的网络交换机；但是，如果交换机配置不正确，监控可能不会自动进行。您应该验证运行状况监视器是否已正确配置为监控您的交换机。</block>
-  <block id="9bb9d88110e7f202f1952ebcc9fefc08" category="admonition">上传并应用 RCF 文件时，必须将文件命名为<block ref="a890eeb375a613e0acf945129af8cad4" prefix=" " category="inline-code"></block>，否则脚本应用步骤将失败。</block>
   <block id="153aa60e53e376e3c47bb9de3f41cd5c" category="list-text">使用以下传输协议之一将 RCF 复制到交换机 cs2：HTTP、HTTPS、FTP、SFTP 或 SCP。</block>
   <block id="4bcfba45804fbbbd6422a9b0dea12c5f" category="summary">在集群网络中更换有缺陷的 Nexus 92300YC 交换机是一个无中断的过程。</block>
   <block id="c506cb52e11779e41b9479bb442eec6e" category="list-text">使用以下传输协议之一将 RCF 复制到交换机 cs1 的 bootflash：FTP、SFTP 或 SCP。</block>
@@ -6376,4 +6367,43 @@
   <block id="c14342e34fe3c58a209b86a79b1bb2d0" category="sidebar">Install_hardware_9808</block>
   <block id="4d9fbccb0431ca8e11e51b3dc51e81fb" category="sidebar">configure_switch_9808</block>
   <block id="ff8b1c67dbbb7af6775723d31c9e196a" category="sidebar">Maintain_switches_9808</block>
+  <block id="bbe11fdd91fda58af0bba559cb07294d" category="paragraph">有关软件升级和降级指南，请参见 Cisco 网站。</block>
+  <block id="aa5c6ec45e4c4b6dcc0850deb97f2e44" category="paragraph">除非指定了 Cisco Nexus 9000 系列交换机命令，否则在此过程中使用 ONTAP 命令。</block>
+  <block id="9fc86f4dabe0859a40dac8d1f8b5531d" category="paragraph"><block ref="b67d565e5390da794178d81e41d9d587" prefix="" category="inline-code"></block></block>
+  <block id="9487ccc182d124ffae84e3326c18b6cf" category="list-text">下载并安装 NX-OS 软件和 EPLD 映像。这些步骤可能因您当前的 NX-OS 版本和目标 NX-OS 版本而异。</block>
+  <block id="c25086ea467dc08f96b34fa5ddfe6f95" category="paragraph">选择适用于您情况的选项卡：</block>
+  <block id="545f32c102da8b5c806f0a9252f74aa7" category="list-text">升级到 10.4(5)(M)</block>
+  <block id="6d4c71f053835d50b253965bf9e22247" category="list-text">从 10.4(5)(M) 或更低版本升级到 10.5(3)(F) 或更高版本</block>
+  <block id="6a3e1271fda881036b04a9948f12b930" category="list-text">从 10.5(3)(F) 升级到更高版本</block>
+  <block id="22c721af68f3e238337fd6682565a004" category="list-text">[[stepa]] 将 NX-OS 软件和 EPLD 映像复制到 Nexus 9336C-FX2 交换机。</block>
+  <block id="0a52730597fb4ffa01fc117d9e71e3a9" category="example-title">示例</block>
+  <block id="5471ccde54f76964db229481cc1fb109" category="paragraph"><block ref="741d4bb5899dd2abc3bdd986dd32f159" prefix="" category="inline-code"></block></block>
+  <block id="6634794e8c206b378c65c5faa7c4c80b" category="paragraph"><block ref="a121d8672e9b479ad82c8ef2e7e9c717" prefix="" category="inline-code"></block></block>
+  <block id="f005b45baba8377a1ac45612282d2dc7" category="list-text">[[stepa]] 将 NX-OS 软件和 EPLD 映像复制到 Nexus 9336C-FX2 交换机中。</block>
+  <block id="5a252ea0dbbfb3da5e794e2acb54d70e" category="list-text">安装 NX-OS 和 EPLD 映像。</block>
+  <block id="ee1c8dab6911f396921f8d9c99310d8e" category="paragraph">升级到 NX-OS 10.5(3)(F) 及更高版本时，EPLD 映像不会自动更新。升级完成并重新启动交换机后，必须再次运行相同的升级<block ref="1f3226f23ea270e1a1024cd0db05413e" prefix=" " category="inline-code"></block>命令。</block>
+  <block id="63866b50d1c752b87d0a35424ec78d9f" category="list-text">第二次升级通过验证，但跳过 NX-OS 升级；仅更新 EPLD 映像。</block>
+  <block id="e891366244f7639a1cebce5d7b254878" category="list-text">当您已经升级到 NX-OS 10.5(3)(F) 及更高版本时，两个映像将同时更新。</block>
+  <block id="7d625d674a5fa1ee8f231bbe934d59c5" category="paragraph">以下步骤显示了从 NX-OS 10.4(5)(M) 到 10.5(3)(F) 的升级。第一遍执行 NX-OS 升级，第二遍执行 EPLD 映像升级。</block>
+  <block id="49b200eb8820638568f5d815c24fbe04" category="paragraph"><block ref="5ea68978710e999c37e81ef89e1609fb" prefix="" category="inline-code"></block></block>
+  <block id="30c31bba00ddc5f435e1609b696cfc11" category="paragraph">示例使用 NX-OS 版本 10.5(4)(M)。</block>
+  <block id="03ff4c3f972d17b8f10bd0edb3043c3a" category="paragraph">该示例使用 EPLD 版本 10.5(4)(M)。</block>
+  <block id="28ccfd0538434ca8f7c3ed05eb919f9d" category="list-text">[[step7]]验证集群上集群端口的运行状况。</block>
+  <block id="7b7c6479e04cac8c2008fe7ca440afea" category="list-text">重复步骤 6 至 8，在交换机 cs1 上安装 NX-OS 软件。</block>
+  <block id="95a058e5eceffbda103e7cb32bf0371d" category="list-text">[[step11]]在集群 LIF 上启用自动还原。</block>
+  <block id="131977f29895c23a06e7ceb348f34fc9" category="paragraph">如果集群 LIF 尚未返回其主端口，请从本地节点手动恢复它们：</block>
+  <block id="c6d44233ebeaa055e8f937a641fb1053" category="paragraph">满足布线和配置要求后，在交换机上安装 <block ref="5f8c635ef985b849c8790b2e319cc3c1" category="inline-link-macro-rx"></block>。</block>
+  <block id="56195d3edc2ef765239236e19cf9f9d8" category="paragraph">安装 EFOS 软件后，您可以：</block>
+  <block id="69a4ab133a7f329e3b6d964412122368" category="inline-link-macro">安装许可证</block>
+  <block id="c22dd3ffbd7eb0da1c9a797307a0e3d8" category="list-text"><block ref="f2a6d573030fd5cb26e30ca5f2de8d3e" category="inline-link-macro-rx"></block>。</block>
+  <block id="30c3e1a7dac3e78e6712ff0d67b9ecd3" category="inline-link-macro">安装EFOS 3.12.0.1及更高版本的RCF和许可证文件</block>
+  <block id="a20a23e9f22d1c30ea89d18cbe86e2c5" category="list-text"><block ref="313ea9029f73da8a306189cf101a9b89" category="inline-link-macro-rx"></block>，如果适用于您的设置。</block>
+  <block id="a70191390fbf57b5cfe38e5b6a014d4a" category="paragraph">配置以太网交换机运行状况监控。</block>
+  <block id="af2af2f8127907c37bce58e3ce83eff9" category="list-text">从出厂默认状态安装 RCF 时需要与交换机的控制台连接。</block>
+  <block id="f0da8e888101343acd4a7e72e76cff36" category="paragraph">您可以使用交换机 CLI 和 ONTAP CLI（如以下步骤所示）进行端口配置。您可以在第一台交换机（cs2）上配置端口，然后对第二台交换机（cs1）重复这些步骤。</block>
+  <block id="c32a2c4a7520ad02a1a78600f2a6b3bd" category="admonition">更新或应用新的 RCF 时，您必须擦除交换机设置并执行基本配置。您必须使用串行控制台连接到交换机才能擦除交换机设置。</block>
+  <block id="7032c38c00e10472c490db066ff31b0f" category="list-text">[[step20]]在交换机 cs1 上重复步骤 1 至 19。</block>
+  <block id="0e18e00d28d8ccbabfbea2b32f607774" category="list-text">[[step6]] 将权限级别更改回 admin：</block>
+  <block id="68c1d03c0bb262a8147f6acaedfa16af" category="inline-link-macro">为日志收集启用 SSH</block>
+  <block id="3bbb1b891d8356deadf8d546d8aecf27" category="paragraph">升级 RCF 后，您可以 <block ref="00e69d49421223dfe97c48056e7abc6c" category="inline-link-macro-rx"></block>。</block>
 </blocks>

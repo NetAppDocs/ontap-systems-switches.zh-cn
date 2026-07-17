@@ -109,3 +109,6 @@ systemshell -node <node> -command sudo sysctl dev.ice.<X>.requested_fec=<auto/fc
 
 
 
+
+.下一步是什么？
+满足布线和配置要求后，在交换机上安装 link:configure-efos-software.html["安装 EFOS 软件"]。
