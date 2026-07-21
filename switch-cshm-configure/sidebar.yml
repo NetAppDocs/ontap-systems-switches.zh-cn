@@ -1,0 +1,10 @@
+---
+section: switch-cshm-configure
+title: 配置交换机健康监控
+entries:
+- title: 配置概述
+  url: "/switch-cshm/config-overview.html"
+- title: 配置日志收集
+  url: "/switch-cshm/config-log-collection.html"
+- title: 配置 SNMPv3（可选）
+  url: "/switch-cshm/config-snmpv3.html"

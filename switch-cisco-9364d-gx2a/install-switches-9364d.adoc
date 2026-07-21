@@ -39,4 +39,4 @@ summary: 在新的 AFX 1K 或 AFX 2K 系统安装过程中安装 Cisco Nexus 936
 NOTE: 安装交换机后，AFX 安装和设置工作流程说明会将您重定向回此交换机文档以配置交换机。
 
 .下一步是什么？
-在作为 AFX 1K 或 AFX 2K 系统安装的一部分安装、连接和接通交换机电源后，您link:https://review.docs.netapp.com/us-en/ontap-systems-switches_hotfix-refactor-phase1/switch-cisco-9364d-gx2a/install-configure-switches-in-afx-workflow-9364d.html#configure-switches["配置交换机"]，然后link:https://review.docs.netapp.com/us-en/ontap-systems-switches_hotfix-refactor-phase1/switch-cisco-9364d-gx2a/install-configure-switches-in-afx-workflow-9364d.html#complete-afx-system-setup["完成 AFX 系统设置"]。
+在作为 AFX 1K 或 AFX 2K 系统安装的一部分安装、连接和接通交换机电源后，您link:install-configure-switches-in-afx-workflow-9364d.html#configure-switches["配置交换机"]，然后link:install-configure-switches-in-afx-workflow-9364d.html#complete-afx-system-setup["完成 AFX 系统设置"]。

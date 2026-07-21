@@ -11,6 +11,9 @@ summary: Cisco Nexus 9336C-FX2 群集交换机上必须安装 Cisco NX-OS 软件
 [role="lead"]
 在安装 NX-OS 软件和参考配置文件 (RCF) 之前，请按照以下步骤操作。
 
+
+NOTE: NetApp 建议您首先完成任何 ONTAP 软件升级，然后为您的交换机执行软件升级。
+
 .建议的文档
 * link:https://mysupport.netapp.com/site/info/cisco-ethernet-switch["Cisco以太网交换机页面"^]
 +

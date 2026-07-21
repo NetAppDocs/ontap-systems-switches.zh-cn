@@ -13,6 +13,9 @@ summary: 您可以升级 Cisco Nexus 9808 交换机上的 NX-OS，以支持 AFX 
 [role="lead"]
 您可以升级 Cisco Nexus 9808 交换机上的 NX-OS，以支持 AFX 2K 系统上的新硬件或新 ONTAP 版本。
 
+
+NOTE: NetApp 建议您首先完成任何 ONTAP 软件升级，然后为您的交换机执行软件升级。
+
 .开始之前
 * 确保您有交换机配置的当前备份。
 * 确认您的群集已完全正常运行，这意味着日志中没有任何错误或类似问题。
@@ -22,7 +25,7 @@ summary: 您可以升级 Cisco Nexus 9808 交换机上的 NX-OS，以支持 AFX 
 * 如果需要，您可以参见 link:https://www.cisco.com/c/en/us/td/docs/dcn/nx-os/nexus9000/101x/upgrade/cisco-nexus-9000-nx-os-software-upgrade-downgrade-guide-101x.html["Cisco Nexus 9000 系列 NX-OS 软件升级和降级指南"^] 以获取更多信息。
 * AFX 系统上运行的 ONTAP 版本决定了交换机支持的 NX-OS 版本。
 +
-** 对于 AFX 2K 系统中的交换机，支持运行 ONTAP 9.19.1GA 或更高版本以及 NX-OS 10.6 或更高版本。
+** 对于运行 ONTAP 9.19.1GA 或更高版本的 AFX 2K 系统中的交换机，支持 NX-OS 10.6 及更高版本。
 +
 有关受支持的 NX-OS 版本的当前列表，请参见link:https://mysupport.netapp.com/site/info/cisco-ethernet-switch["NetApp Cisco 以太网交换机"^]页面。
 
@@ -32,7 +35,7 @@ NOTE: 请勿将 NX-OS 版本升级或降级到不受支持的版本。
 
 
 
-* 此过程需要使用 ONTAP 命令和 Cisco Nexus 9000 系列交换机命令，这些步骤指示您使用哪个 CLI 来输入命令。
+* 由于此过程需要使用 ONTAP 命令和 Cisco Nexus 9000 系列交换机命令，因此这些步骤会指示您使用哪个 CLI 来输入命令。
 * 本流程中的示例使用以下开关和节点命名规则：
 +
 ** 这两个Cisco交换机的名称分别是 cs1 和 cs2。
@@ -1287,8 +1290,10 @@ node1-04             true    true          true
 
 . 在集群 LIF 上重新启用自动还原。
 +
-`network interface modify -vserver Cluster -lif * -auto-revert true`
-
+[source, cli]
+----
+network interface modify -vserver Cluster -lif * -auto-revert true
+----
 . 确认集群 LIF 已恢复到其原端口：
 +
 [source, cli]

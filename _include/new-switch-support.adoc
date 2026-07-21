@@ -1,100 +1,103 @@
-= 新交换机支持
+= 2026年7月
 :allow-uri-read: 
 
 
 
 
-[[new-switch-support]]
-== 新交换机支持
-
-[cols="25h,~,~"]
-|===
-| 交换机 | 描述 | 可开始 
-
-
- a| 
-32 端口 400GbECisco交换机（X190300-CS-PI 和 X190300-PE）
- a| 
-Cisco 9332D-GX2B 集群内/HA/存储交换机支持。
- a| 
-ONTAP 9.17.1
+[[july-2026]]
+== 2026年7月
 
 
 
- a| 
-64端口400GbECisco交换机（X190310-CS-PI）
- a| 
-Cisco 9364D-GX2A 集群内/HA/存储交换机支持。
- a| 
-ONTAP 9.17.1
+[[new-cisco-nexus-9808-switch-for-afx-2k]]
+=== 适用于 AFX 2K 的新 Cisco Nexus 9808 交换机
+
+新的 Cisco 9808 交换机通过存储架连接到 AFX 2K 控制器节点。这款新交换机允许您构建具有两个以上节点的 ONTAP 集群。高级协议用于优化性能。该设计基于具有多个网络路径的 VLAN 标记以及技术更新配置，以确保持续运行并简化升级。
+
+它们是 36 端口 400GbE Cisco 交换机，配备 1 个 Supervisor 模块、7 个 Fabric 模块和 4 个电源装置 (PSU)（X-N9K-C9808-B1-A），支持 ONTAP 9.19.1 及更高版本。
 
 
 
- a| 
-12 端口 10/25/40/100GbE Cisco Nexus 9336C-FX2-T 集群和存储交换机（X190212-CS-PE 和 X190212-CS-PI）
- a| 
-支持 10/25/40/100GbE 集群配置和 100GbE 存储（交换机连接存储）配置。
- a| 
-ONTAP 9.10.1
+[[2025-releases]]
+== 2025 版本
+
+.2025年10月
+[%collapsible]
+====
+.适用于 AFX 1K 的 Cisco Nexus 9332D-GX2B 和 9364D-GX2A 交换机
+Cisco 9364D-GX2A 和 Cisco 9332D-GX2B 交换机允许您构建具有两个以上节点的 ONTAP 集群。高级协议用于优化性能。该设计基于具有多个网络路径的 VLAN 标记以及技术更新配置，以确保持续运行和易于升级。
+
+它们是支持 ONTAP 9.17.1 及更高版本的 32 端口和 64 端口 400GbE Cisco 交换机（X190300-CS-PI、X190300-PE 和 X190310-CS-PI）。
+
+新的 NetApp AFX 存储系统提供了一个分解式解决方案，旨在满足高性能 NAS 和 S3 工作负载（包括 AI/ML 应用程序）的严格要求。AFX 系统为需要可扩展、高吞吐量文件和对象存储的客户提供专业功能。
+
+====
+.2025年5月
+[%collapsible]
+====
+.Cisco Nexus 9336C-FX2-T 存储交换机
+这些是支持 ONTAP 9.10.1 及更高版本的 12 端口 10/25/40/100GbE Cisco 存储交换机（X190212-CS-PE 和 X190212-CS-PI）。它们支持 100GbE 存储（交换机连接存储）配置。
+
+====
 
 
+[[2023-release]]
+== 2023年版本
 
- a| 
-12 端口 10/25/40/100GbE Cisco Nexus 9336C-FX2-T 集群和存储交换机（X190212-CS-PE 和 X190212-CS-PI）
- a| 
-支持 10/25/40/100GbE 集群配置和 100GbE 存储（交换机连接存储）配置。
- a| 
-ONTAP 9.10.1
+.2023年5月
+[%collapsible]
+====
+.Cisco Nexus 9336C-FX2-T 集群交换机
+这些是支持 ONTAP 9.10.1 及更高版本的 12 端口 10/25/40/100GbE Cisco 集群交换机（X190212-CS-PE 和 X190212-CS-PI）。它们支持 10/25/40/100GbE 集群配置。
 
-
-
- a| 
-16端口100GbE NVIDIA交换机（X190006-PE和X190006-PI）
- a| 
-支持NVIDIA SN2100 集群互连交换机和存储交换机，包括支持MetroCluster IP 配置。
- a| 
-ONTAP 9.10.1
+====
 
 
+[[2022-release]]
+== 2022年版本
 
- a| 
-36端口100GbECisco交换机（X190200-CS-PE和X190200-CS-PI）
- a| 
-支持在同一对Cisco Nexus 9336C-FX2 交换机上共享基础架构（集群、HA 和交换机附加存储），包括对MetroCluster IP 配置的支持。
- a| 
-ONTAP 9.9.1
+.2022年10月
+[%collapsible]
+====
+.NVIDIA SN2100 交换机
+NVIDIA SN2100 是一款 16 端口 100GbE NVIDIA 交换机（X190006-PE 和 X190006-PI），可用于构建具有两个以上节点的 ONTAP 集群，支持 ONTAP 9.10.1 及更高版本。它是 NVIDIA SN2100 集群互连交换机和存储交换机，包括对 MetroCluster IP 配置的支持。
 
-
-
- a| 
-36端口100GbECisco交换机（X190200-CS-PE和X190200-CS-PI），（X190210-FE-PE和X190210-FE-PI）
- a| 
-Cisco Nexus 9336C-FX2 集群互连交换机和存储交换机支持AFF和ASA存储系统，以及前端数据连接。
- a| 
-ONTAP 9.8
+====
 
 
+[[2021-release]]
+== 2021版本
 
- a| 
-博通 BES-53248 交换机（X190005 和 X190005R）
- a| 
-Broadcom BES-53248 集群互连交换机支持AFF/ FAS控制器，具有 10/25GbE 和 40/100GbE 端口。
- a| 
-ONTAP 9.8
+.2021年5月
+[%collapsible]
+====
+.Cisco Nexus 9336C-FX2 交换机
+Cisco Nexus 9336C-FX2 是一款 36 端口 100GbE Cisco 交换机（X190200-CS-PE 和 X190200-CS-PI）。它支持同一对 Cisco Nexus 9336C-FX2 交换机上的共享基础设施（集群、HA 和交换机连接存储），包括支持 MetroCluster IP 配置，以及支持 ONTAP 9.9.1 及更高版本。
+
+====
 
 
+[[2019-release]]
+== 2019版本
 
- a| 
-36端口100GbECisco交换机（X190200）和32端口100GbECisco交换机（X190100和X190100R）
- a| 
-Cisco Nexus 3232C 存储交换机支持连接 NS224 NVMe 驱动器架AFF和ASA存储系统：
+.2019年5月
+[%collapsible]
+====
+.Broadcom BES-53248 交换机
+Broadcom BES-53248 交换机（X190005 和 X190005R）支持具有 10/25GbE 和 40/100GbE 端口的 AFF/FAS 控制器，支持 ONTAP 9.8 及更高版本。
+
+====
+.2019年3月
+[%collapsible]
+====
+.Cisco Nexus 3232C 集群和存储交换机
+Cisco Nexus 3232C 交换机是 36 端口 100GbE Cisco 交换机 (X190200) 和 32 端口 100GbE Cisco 交换机 (X190100 和 X190100R)。Cisco Nexus 3232C 存储交换机支持连接到以下 NS224 NVMe 驱动器架 AFF 和 ASA 存储系统：
 
 * AFF A800/ AFF ASA A800
 * AFF A700/ AFF ASA A700
 * AFF A400/ AFF ASA A400
-* AFF A320
 
- a| 
-ONTAP 9.8
 
-|===
+它们支持 ONTAP 9.8 及更高版本。
+
+====

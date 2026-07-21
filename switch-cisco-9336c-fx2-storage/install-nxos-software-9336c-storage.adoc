@@ -16,6 +16,9 @@ summary: 您可以按照以下步骤在 Nexus 9336C-FX2 集群交换机上安装
 开始之前，请先完成以下步骤。link:install-nxos-overview-9336c-storage.html["准备安装 NX-OS 和 RCF"] 。
 
 
+NOTE: NetApp 建议您首先完成任何 ONTAP 软件升级，然后为您的交换机执行软件升级。
+
+
 
 [[review-requirements]]
 == 审查要求

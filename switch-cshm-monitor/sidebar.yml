@@ -1,0 +1,12 @@
+---
+section: switch-cshm-monitor
+title: 检查交换机健康状况
+entries:
+- title: 健康检查概述
+  url: "/switch-cshm/monitor-overview.html"
+- title: 管理交换机监控
+  url: "/switch-cshm/monitor-manage.html"
+- title: 验证交换机监控
+  url: "/switch-cshm/monitor-verify.html"
+- title: 故障排除警报
+  url: "/switch-cshm/monitor-troubleshoot.html"

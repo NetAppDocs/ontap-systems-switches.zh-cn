@@ -1,0 +1,56 @@
+---
+sidebar: sidebar 
+permalink: eoa-switches.html 
+keywords: switches, fas, aff systems, end of support, EOS 
+summary: FAS 和 AFF 系统不再支持的交换机。 
+---
+= 交换机不再受支持
+:allow-uri-read: 
+:icons: font
+:imagesdir: ./media/
+
+
+[role="lead"]
+从指定版本的 ONTAP 开始，以下交换机不再受支持。
+
+要查看当前不支持的交换机，请参阅 link:https://hwu.netapp.com["NetApp Hardware Universe"^]。
+
+[cols="25h,~"]
+|===
+| 交换机 | 支持停止于…… 
+
+
+ a| 
+CiscoNexus 3232C
+ a| 
+ONTAP 9.19.1
+
+
+
+ a| 
+CiscoNexus 3132Q-V
+ a| 
+ONTAP 9.18.1
+
+
+
+ a| 
+CiscoNexus 92300YC
+ a| 
+ONTAP 9.17.1
+
+
+
+ a| 
+NetApp CN1610
+ a| 
+ONTAP 9.13.1
+
+
+
+ a| 
+Cisco Nexus 5596UP/5596T
+ a| 
+ONTAP 9.11.1
+
+|===

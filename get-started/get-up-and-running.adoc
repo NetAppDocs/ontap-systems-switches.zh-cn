@@ -4,7 +4,7 @@ sidebar: sidebar
 keywords:  
 summary: 了解集群交换机、存储交换机和共享交换机。 
 ---
-= 使用 AFX 系统、集群、存储和共享交换机启动并运行
+= AFX 系统、集群、存储和共享交换机的快速入门
 :allow-uri-read: 
 :icons: font
 :imagesdir: ../media/
@@ -92,7 +92,7 @@ ONTAP 系统的安装和设置说明包括将控制器端口连接到交换机�
 [%collapsible]
 ====
 * link:https://docs.netapp.com/us-en/ontap-afx/install-setup/afx-cable-overview.html["为 AFX 1K 系统安装 Cisco Nexus 交换机"^]
-* link:https://review.docs.netapp.com/us-en/ontap-afx/install-afx-2k/afx-cable-overview.html["为 AFX 2K 系统安装 Cisco Nexus 交换机"^]
+* link:https://docs.netapp.com/us-en/ontap-afx/install-afx-2k/afx-cable-overview.html["为 AFX 2K 系统安装 Cisco Nexus 交换机"^]
 
 
 ==== a| 

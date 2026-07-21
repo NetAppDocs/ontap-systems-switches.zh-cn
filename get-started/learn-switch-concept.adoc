@@ -4,10 +4,8 @@ sidebar: sidebar
 keywords:  
 summary: 了解集群交换机、存储交换机和共享交换机。 
 ---
-= 了解 AFX 系统、集群、存储和共享交换机
+= 了解您的 ONTAP 系统交换机
 :allow-uri-read: 
-:icons: font
-:imagesdir: ../media/
 
 
 [role="lead"]
@@ -19,12 +17,16 @@ NetApp提供 AFX 系统、集群、存储和共享交换机，可实现内部通
 NOTE: 仅支持经NetApp验证的后端交换机（从NetApp订购）。
 
 
+CAUTION: 如果要升级交换机，NetApp 建议您首先完成任何 ONTAP 软件升级，然后对交换机执行软件升级。
+
+
 
 [[afx-systems-switches]]
 == AFX 系统交换机
 
-AFX 系统交换机允许您创建快速、节能且节省空间的网络交换机。它们体积小、端口密度高，非常适合处理大型网络。这些端口支持不同的速度，并且可以分成多个连接。NetApp支持的 AFX 系统交换机包括：
+AFX 系统交换机允许您创建快速、节能和节省空间的网络交换机。它们的小尺寸和高端口密度使其成为处理大型网络的理想选择。端口支持不同的速度，可以拆分为多个连接。NetApp 支持的 AFX 系统交换机包括：
 
+* Cisco Nexus 9808
 * CiscoNexus 9332D-GX2B
 * CiscoNexus 9364D-GX2A
 
@@ -49,7 +51,6 @@ AFX 系统交换机允许您创建快速、节能且节省空间的网络交换�
 存储交换机允许您在存储区域网络 (SAN) 中的服务器和存储阵列之间路由数据。  NetApp支持的存储交换机包括：
 
 * CiscoNexus 9336C-FX2
-* CiscoNexus 3232C
 * NVIDIA SN2100
 
 
@@ -68,4 +69,4 @@ AFX 系统交换机允许您创建快速、节能且节省空间的网络交换�
 [[end-of-availability-switches]]
 == 可用性终止开关
 
-有关不再可供购买但仍受支持的交换机列表，请参阅 link:../overview-eod.html["可用性终止开关"]。
+有关不再可供购买但仍受支持的交换机列表，请参阅 link:../eoa/index.html["可用性终止开关"]。

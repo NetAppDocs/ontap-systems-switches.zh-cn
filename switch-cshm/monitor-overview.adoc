@@ -2,7 +2,7 @@
 permalink: switch-cshm/monitor-overview.html 
 sidebar: sidebar 
 keywords: cshm, cluster, storage, switch logs, debugging, collection 
-summary: 您可以使用以下命令…… 
+summary: 使用以太网交换机健康监视器警报来识别和解决 ONTAP 集群中的网络交换机问题。 
 ---
 = 健康检查概述
 :allow-uri-read: 
@@ -12,6 +12,8 @@ summary: 您可以使用以下命令……
 
 [role="lead"]
 健康监控器会主动监控集群中的某些关键状况，并在检测到故障或风险时发出警报。
+
+配置 CSHM 后，运行状况监控器会持续检查您的网络交换机是否存在潜在问题。当运行状况监控器检测到故障或风险时，会生成包含诊断信息的警报，以帮助您快速响应。您可以查看活动警报以识别当前问题，并查看可用的警报定义以了解正在监控哪些情况。
 
 要查看当前已触发的以太网交换机健康监控警报，请运行以下命令： `system health alert show -monitor ethernet-switch`
 

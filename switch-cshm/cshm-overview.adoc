@@ -4,7 +4,7 @@ sidebar: sidebar
 keywords: cshm, cluster, storage, switch logs, debugging, collection 
 summary: 以太网交换机健康监测器 CSHM 负责确保集群和存储网络交换机的运行健康，并收集交换机日志以进行调试。 
 ---
-= 交换机健康监控器概述
+= 以太网交换机运行状况监控
 :allow-uri-read: 
 :icons: font
 :imagesdir: ../media/
@@ -12,3 +12,5 @@ summary: 以太网交换机健康监测器 CSHM 负责确保集群和存储网�
 
 [role="lead"]
 以太网交换机健康监视器（CSHM）负责确保网络交换机的运行健康，并收集交换机日志以进行调试。
+
+CSHM 监控集群和存储网络交换机，以维护网络基础设施的可靠性。运行状况监视器会自动检测交换机问题，收集日志以进行故障排除，并在出现网络问题时提供警报。CSHM 支持多个交换机供应商和型号，帮助您在网络连接问题影响存储环境之前识别并解决这些问题。

@@ -1,0 +1,8 @@
+---
+section: switch-cshm-log-collection
+title: 收集日志
+entries:
+- title: 日志收集概览
+  url: "/switch-cshm/log-collection-overview.html"
+- title: 排查日志收集问题
+  url: "/switch-cshm/log-collection-troubleshoot.html"

@@ -14,13 +14,17 @@ sidebar:
   entries:
   - title: 切换 ONTAP 存储系统的文档
     url: "/index.html"
+  - title: 发行说明
+    entries:
+    - title: 交换机的新增功能
+      url: "/whats-new.html"
+    - title: 终止支持
+      url: "/eoa-switches.html"
   - title: 开始使用
     entries:
-    - title: 什么是新的
-      url: "/whats-new.html"
     - title: 了解ONTAP系统交换机
       url: "/get-started/learn-switch-concept.html"
-    - title: 启动并运行
+    - title: 快速启动
       url: "/get-started/get-up-and-running.html"
   - title: AFX 系统交换机
     url: "/afx/index.html"
@@ -33,27 +37,26 @@ sidebar:
     entries:
     - section: switch-bes-53248
     - section: switch-cisco-9336c-fx2
-    - section: switch-nvidia-sn2100
   - title: 存储交换机
     url: "/storage/index.html"
     entries:
     - section: switch-cisco-9336c-fx2-storage
-    - section: switch-cisco-3232c-storage
-    - section: switch-nvidia-sn2100-storage
   - title: 共享交换机
     url: "/shared/index.html"
     entries:
     - section: switch-cisco-9336c-fx2-shared
       pdf-filename: 思科9336c-fx2存储交换机
-  - section: switch-cshm
-  - title: 可用性终止开关
+  - title: 监控交换机运行状况
+    url: "/cshm/index.html"
     entries:
-    - title: 概述
-      url: "/overview-eod.html"
-    - section: switch-cisco-3232c
-    - section: switch-cisco-3132q-v
-    - section: switch-cisco-92300
-    - section: switch-netapp-cn1610
+    - section: switch-cshm-configure
+    - section: switch-cshm-monitor
+    - section: switch-cshm-log-collection
+  - title: 可用性终止开关
+    url: "/eoa/index.html"
+    entries:
+    - section: switch-nvidia-sn2100
+    - section: switch-nvidia-sn2100-storage
   - title: 法律声明
     url: "/legal-notices.html"
 product-family:
