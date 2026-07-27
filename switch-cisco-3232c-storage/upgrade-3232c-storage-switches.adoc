@@ -1,0 +1,550 @@
+---
+permalink: switch-cisco-3232c-storage/upgrade-3232c-storage-switches.html 
+sidebar: sidebar 
+keywords: upgrade, cisco nexus, 3232c storage switch 
+summary: 可以在 Cisco Nexus 3232C 存储交换机上升级 Cisco NX-OS 软件和参考配置文件 RCF。 
+---
+= 升级 Cisco Nexus 3232C 存储交换机
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+按照以下步骤升级 Cisco Nexus 3232C 交换机上的 Cisco NX-OS 软件和参考配置文件 (RCF)。
+
+
+
+[[review-requirements]]
+== 审查要求
+
+.开始之前
+在升级存储交换机上的 NX-OS 软件和 RCF 之前，请确保满足以下条件：
+
+* 交换机运行完全正常（日志中应无错误或类似问题）。
+* 如果仅安装 NX-OS 并保留当前的 RCF 版本，则已在 RCF 中检查或设置所需的引导变量以反映所需的引导映像。
++
+如果需要更改引导变量以反映当前引导映像，则必须在重新应用 RCF 之前执行此操作，以便在将来重新启动时实例化正确的版本。
+
+* 您已参考 link:http://www.cisco.com/en/US/products/ps9670/prod_installation_guides_list.html["Cisco Nexus 3000系列交换机"^] 页面上提供的相应软件和升级指南，以获取有关 Cisco 存储升级和降级过程的完整文档。
+* 10 GbE 和 40/100 GbE 端口的数量在 link:https://mysupport.netapp.com/site/info/cisco-ethernet-switch["Cisco® 以太网交换机"^] 页面上提供的参考配置文件 (RCF) 中定义。
+
+
+
+
+[[replace-the-switch]]
+== 更换开关
+
+.关于示例
+本流程中的示例使用以下开关和节点命名规则：
+
+* 两个存储交换机的名称分别为 s1 和 s2。
+* 节点为 cluster1-01 和 cluster1-02。
+
+
+本过程中的示例使用两个节点：带有两个存储端口的 cluster1-01 和带有两个存储端口的 cluster1-02。请参阅 link:https://hwu.netapp.com/SWITCH/INDEX["Hardware Universe"^] 以验证平台上正确的存储端口。有关交换机安装要求的详细信息，请参见 link:https://kb.netapp.com/Support/General_Support/What_additional_information_do_I_need_to_install_my_equipment_that_is_not_in_HWU["安装HWU中没有的设备还需要哪些额外信息？"^]。
+
+
+NOTE: 此过程需要同时使用 ONTAP 命令和 Cisco Nexus 3000 系列交换机命令；除非另有说明，否则使用 ONTAP 命令。命令输出可能因 ONTAP 的不同版本而有所不同。
+
+
+
+[[step-1-check-the-health-status-of-switches-and-ports]]
+=== 步骤 1：检查交换机和端口的健康状态
+
+. 如果启用了 AutoSupport，则通过调用 AutoSupport 消息来禁止自动创建案例：
+`system node autosupport invoke -node * -type all - message MAINT=xh`
++
+_x_ 是维护窗口的持续时间，单位为小时。
+
++
+
+NOTE: AutoSupport消息会通知技术支持此维护任务，以便在维护窗口期间抑制自动创建案例。
+
+. 检查存储交换机是否可用：
++
+`system switch ethernet show`
+
++
+.显示示例
+[%collapsible]
+====
+[listing, subs="+quotes"]
+----
+storage::*> *system switch ethernet show*
+Switch                  Type               Address          Model
+----------------------- ------------------ ---------------- ---------------
+s1
+                        storage-network    172.17.227.5     NX3232C
+     Serial Number: FOC221206C2
+      Is Monitored: true
+            Reason: None
+  Software Version: Cisco Nexus Operating System (NX-OS) Software, Version
+                    9.3(3)
+    Version Source: CDP
+
+s2
+                        storage-network    172.17.227.6     NX3232C
+     Serial Number: FOC220443LZ
+      Is Monitored: true
+            Reason: None
+  Software Version: Cisco Nexus Operating System (NX-OS) Software, Version
+                    9.3(3)
+    Version Source: CDP
+
+2 entries were displayed.
+storage::*>
+----
+====
+. 确认节点端口运行正常：
++
+`storage port show -port-type ENET`
+
++
+.显示示例
+[%collapsible]
+====
+[listing, subs="+quotes"]
+----
+storage::*> *storage port show -port-type ENET*
+                                      Speed                       VLAN
+Node               Port Type  Mode    (Gb/s) State    Status        ID
+------------------ ---- ----- ------- ------ -------- ----------- ----
+cluster1-01
+                   e5a  ENET  storage    100 enabled  online        30
+                   e3b  ENET  storage      0 enabled  offline       30
+                   e7a  ENET  storage      0 enabled  offline       30
+                   e7b  ENET  storage    100 enabled  online        30
+cluster1-02
+                   e5a  ENET  storage    100 enabled  online        30
+                   e3b  ENET  storage      0 enabled  offline       30
+                   e7a  ENET  storage      0 enabled  offline       30
+                   e7b  ENET  storage    100 enabled  online        30
+.
+.
+----
+====
+. 检查是否存在存储交换机或布线问题：
++
+`system health alert show -instance`
+
++
+.显示示例
+[%collapsible]
+====
+[listing, subs="+quotes"]
+----
+storage::*> *system health alert show -instance*
+There are no entries matching your query.
+----
+====
+
+
+
+
+[[step-2-copy-the-rcf-to-cisco-switch-s2]]
+=== 步骤 2：将 RCF 复制到 Cisco 交换机 s2
+
+. 使用以下传输协议之一将交换机 s2 上的 RCF 复制到交换机引导闪存：FTP、HTTP、TFTP、SFTP 或 SCP。
++
+有关 Cisco 命令的详细信息，请参见 link:https://www.cisco.com/c/en/us/support/switches/nexus-3000-series-switches/products-command-reference-list.html["Cisco Nexus 3000 系列 NX-OS 命令参考"^] 中的相应指南。
+
++
+.显示示例
+[%collapsible]
+====
+以下示例显示了使用 HTTP 将 RCF 复制到交换机 s2 上的 bootflash：
+
+[listing, subs="+quotes"]
+----
+s2# *copy http://172.16.10.1//cfg/Nexus_3232C_RCF_v1.6-Storage.txt bootflash: vrf management*
+% Total    % Received % Xferd  Average  Speed   Time    Time     Time                          Current
+                               Dload    Upload  Total   Spent    Left                          Speed
+  100        3254       100    3254     0       0       8175     0 --:--:-- --:--:-- --:--:-   8301
+Copy complete, now saving to disk (please wait)...
+Copy complete.
+s2#
+----
+====
+. 将先前下载的 RCF 应用于引导闪存：
++
+`copy bootflash:`
+
++
+.显示示例
+[%collapsible]
+====
+以下示例显示了在交换机 s2 上安装的 RCF 文件 `Nexus_3232C_RCF_v1.6-Storage.txt`：
+
+[listing, subs="+quotes"]
+----
+s2# *copy Nexus_3232C_RCF_v1.6-Storage.txt running-config echo-commands*
+----
+====
+. 请确认 RCF 文件是否为最新版本：
++
+`show running-config`
+
++
+检查输出结果以验证是否拥有正确的 RCF 时，请确保以下信息正确：
+
++
+** RCF横幅
+** 节点和端口设置
+** 定制
++
+输出结果会根据您的网站配置而有所不同。检查端口设置，并参考发行说明，了解您安装的 RCF 版本是否有任何特定更改。
+
++
+[NOTE]
+====
+在 `show banner motd`命令的横幅输出中，必须阅读并遵循*重要说明*部分中的说明，以确保交换机的正确配置和操作。
+
+====
++
+.显示示例
+[%collapsible]
+====
+[listing]
+----
+s2# show banner motd
+
+******************************************************************************
+* NetApp Reference Configuration File (RCF)
+*
+* Switch   : Cisco Nexus 3232C
+* Filename : Nexus_3232C_RCF_v1.6-Storage.txt
+* Date     : Oct-20-2020
+* Version  : v1.6
+*
+* Port Usage : Storage configuration
+* Ports  1-32: Controller and Shelf Storage Ports
+* Ports 33-34: Disabled
+*
+* IMPORTANT NOTES*
+* - This RCF utilizes QoS and requires TCAM re-configuration, requiring RCF
+*   to be loaded twice with the Storage Switch rebooted in between.
+*
+* - Perform the following 4 steps to ensure proper RCF installation:
+*
+*   (1) Apply RCF first time, expect following messages:
+*       - Please save config and reload the system...
+*       - Edge port type (portfast) should only be enabled on ports...
+*       - TCAM region is not configured for feature QoS class IPv4 ingress...
+*
+*   (2) Save running-configuration and reboot Cluster Switch
+*
+*   (3) After reboot, apply same RCF second time and expect following messages:
+*       - % Invalid command at '^' marker
+*       - Syntax error while parsing...
+*
+*   (4) Save running-configuration again
+******************************************************************************
+s2#
+----
+====
++
+
+NOTE: 首次应用 RCF 时，*ERROR: Failed to write VSH commands* 消息是预期出现的，可以忽略。
+
+
+
+. 验证软件版本和交换机设置正确后，将  `running-config` 文件复制到交换机 s2 上的  `startup-config` 文件。
++
+有关 Cisco 命令的详细信息，请参见 link:https://www.cisco.com/c/en/us/support/switches/nexus-3000-series-switches/products-command-reference-list.html["Cisco Nexus 3000 系列 NX-OS 命令参考"^] 中的相应指南。
+
++
+.显示示例
+[%collapsible]
+====
+以下示例显示了 `running-config`文件已成功复制到 `startup-config`文件：
+
+[listing]
+----
+s2# copy running-config startup-config
+[########################################] 100% Copy complete.
+----
+====
+
+
+
+
+[[step-3-copy-the-nx-os-image-to-cisco-switch-s2-and-reboot]]
+=== 步骤 3：将 NX-OS 映像复制到 Cisco 交换机 s2 并重新启动
+
+. 将 NX-OS 映像复制到交换机 s2。
++
+.显示示例
+[%collapsible]
+====
+[listing, subs="+quotes"]
+----
+s2# *copy sftp: bootflash: vrf management*
+Enter source filename: */code/nxos.9.3.4.bin*
+Enter hostname for the sftp server: *172.19.2.1*
+Enter username: *user1*
+
+Outbound-ReKey for 172.19.2.1:22
+Inbound-ReKey for 172.19.2.1:22
+user1@172.19.2.1's password:
+sftp> progress
+Progress meter enabled
+sftp> get   /code/nxos.9.3.4.bin  /bootflash/nxos.9.3.4.bin
+/code/nxos.9.3.4.bin  100% 1261MB   9.3MB/s   02:15
+sftp> exit
+Copy complete, now saving to disk (please wait)...
+Copy complete.
+
+s2# *copy sftp: bootflash: vrf management*
+Enter source filename: */code/n9000-epld.9.3.4.img*
+Enter hostname for the sftp server: *172.19.2.1*
+Enter username: *user1*
+
+Outbound-ReKey for 172.19.2.1:22
+Inbound-ReKey for 172.19.2.1:22
+user1@172.19.2.1's password:
+sftp> progress
+Progress meter enabled
+sftp> get   /code/n9000-epld.9.3.4.img  /bootflash/n9000-epld.9.3.4.img
+/code/n9000-epld.9.3.4.img  100%  161MB   9.5MB/s   00:16
+sftp> exit
+Copy complete, now saving to disk (please wait)...
+Copy complete.
+----
+====
+. 安装系统映像，以便在下次重新启动交换机 S2 时加载新版本。
++
+将使用新映像在 10 秒内重新启动交换机，如以下输出所示：
+
++
+.显示示例
+[%collapsible]
+====
+[listing, subs="+quotes"]
+----
+s2# *install all nxos bootflash:nxos.9.3.4.bin*
+Installer will perform compatibility check first. Please wait.
+Installer is forced disruptive
+
+Verifying image bootflash:/nxos.9.3.4.bin for boot variable "nxos".
+[####################] 100% -- SUCCESS
+
+Verifying image type.
+[####################] 100% -- SUCCESS
+
+Preparing "nxos" version info using image bootflash:/nxos.9.3.4.bin.
+[####################] 100% -- SUCCESS
+
+Preparing "bios" version info using image bootflash:/nxos.9.3.4.bin.
+[####################] 100% -- SUCCESS
+
+Performing module support checks.
+[####################] 100% -- SUCCESS
+
+Notifying services about system upgrade.
+[####################] 100% -- SUCCESS
+
+
+Compatibility check is done:
+Module  bootable          Impact  Install-type  Reason
+------  --------  --------------  ------------  ------
+     1       yes      disruptive         reset  default upgrade is not hitless
+
+
+Images will be upgraded according to following table:
+Module       Image                  Running-Version(pri:alt)           New-Version  Upg-Required
+------  ----------  ----------------------------------------  --------------------  ------------
+     1        nxos                                    9.3(3)                9.3(4)           yes
+     1        bios     v08.37(01/28/2020):v08.23(09/23/2015)    v08.38(05/29/2020)            no
+
+
+Switch will be reloaded for disruptive upgrade.
+Do you want to continue with the installation (y/n)?  [n] *y*
+input string too long
+Do you want to continue with the installation (y/n)?  [n] *y*
+
+Install is in progress, please wait.
+
+Performing runtime checks.
+[####################] 100% -- SUCCESS
+
+Setting boot variables.
+[####################] 100% -- SUCCESS
+
+Performing configuration copy.
+[####################] 100% -- SUCCESS
+
+Module 1: Refreshing compact flash and upgrading bios/loader/bootrom.
+Warning: please do not remove or power off the module at this time.
+[####################] 100% -- SUCCESS
+
+
+Finishing the upgrade, switch will reboot in 10 seconds.
+s2#
+----
+====
+. 保存配置。
++
+有关 Cisco 命令的详细信息，请参见 link:https://www.cisco.com/c/en/us/support/switches/nexus-3000-series-switches/products-command-reference-list.html["Cisco Nexus 3000 系列 NX-OS 命令参考"^] 中的相应指南。
+
++
+系统会提示您重新启动系统。
+
++
+.显示示例
+[%collapsible]
+====
+[listing, subs="+quotes"]
+----
+s2# *copy running-config startup-config*
+[########################################] 100% Copy complete.
+s2# *reload*
+This command will reboot the system. (y/n)?  [n] *y*
+----
+====
+. 确认新的 NX-OS 版本号在交换机上：
++
+.显示示例
+[%collapsible]
+====
+[listing, subs="+quotes"]
+----
+s2# *show version*
+Cisco Nexus Operating System (NX-OS) Software
+TAC support: http://www.cisco.com/tac
+Copyright (C) 2002-2020, Cisco and/or its affiliates.
+All rights reserved.
+The copyrights to certain works contained in this software are
+owned by other third parties and used and distributed under their own
+licenses, such as open source.  This software is provided "as is," and unless
+otherwise stated, there is no warranty, express or implied, including but not
+limited to warranties of merchantability and fitness for a particular purpose.
+Certain components of this software are licensed under
+the GNU General Public License (GPL) version 2.0 or
+GNU General Public License (GPL) version 3.0  or the GNU
+Lesser General Public License (LGPL) Version 2.1 or
+Lesser General Public License (LGPL) Version 2.0.
+A copy of each such license is available at
+http://www.opensource.org/licenses/gpl-2.0.php and
+http://opensource.org/licenses/gpl-3.0.html and
+http://www.opensource.org/licenses/lgpl-2.1.php and
+http://www.gnu.org/licenses/old-licenses/library.txt.
+
+Software
+  BIOS: version 08.38
+ NXOS: version 9.3(4)
+  BIOS compile time:  05/29/2020
+  NXOS image file is: bootflash:///nxos.9.3.4.bin
+  NXOS compile time:  4/28/2020 21:00:00 [04/29/2020 02:28:31]
+
+
+Hardware
+  cisco Nexus3000 C3232C Chassis (Nexus 9000 Series)
+  Intel(R) Xeon(R) CPU E5-2403 v2 @ 1.80GHz with 8154432 kB of memory.
+  Processor Board ID FOC20291J6K
+
+  Device name: S2
+  bootflash:   53298520 kB
+Kernel uptime is 0 day(s), 0 hour(s), 3 minute(s), 42 second(s)
+
+Last reset at 157524 usecs after Mon Nov  2 18:32:06 2020
+  Reason: Reset due to upgrade
+  System version: 9.3(3)
+  Service:
+
+plugin
+  Core Plugin, Ethernet Plugin
+
+Active Package(s):
+
+s2#
+----
+====
+
+
+
+
+[[step-4-recheck-the-health-status-of-switches-and-ports]]
+=== 步骤4：重新检查交换机和端口的运行状况
+
+. 重新启动后，请重新检查存储交换机是否可用：
++
+`system switch ethernet show`
+
++
+.显示示例
+[%collapsible]
+====
+[listing, subs="+quotes"]
+----
+storage::*> *system switch ethernet show*
+Switch                      Type               Address          Model
+--------------------------- ------------------ ---------------- ---------------
+s1
+                            storage-network    172.17.227.5     NX3232C
+     Serial Number: FOC221206C2
+      Is Monitored: true
+            Reason: None
+  Software Version: Cisco Nexus Operating System (NX-OS) Software, Version
+                    9.3(4)
+    Version Source: CDP
+
+s2
+                            storage-network    172.17.227.6    NX3232C
+     Serial Number: FOC220443LZ
+      Is Monitored: true
+            Reason: None
+  Software Version: Cisco Nexus Operating System (NX-OS) Software, Version
+                    9.3(4)
+    Version Source: CDP
+----
+====
+. 确认重新启动后交换机端口是否正常运行：
++
+`storage port show -port-type ENET`
+
++
+.显示示例
+[%collapsible]
+====
+[listing, subs="+quotes"]
+----
+storage::*> *storage port show -port-type ENET*
+                                      Speed                       VLAN
+Node               Port Type  Mode    (Gb/s) State    Status        ID
+------------------ ---- ----- ------- ------ -------- ----------- ----
+cluster1-01
+                   e5a  ENET  storage    100 enabled  online        30
+                   e3b  ENET  storage      0 enabled  offline       30
+                   e7a  ENET  storage      0 enabled  offline       30
+                   e7b  ENET  storage    100 enabled  online        30
+cluster1-02
+                   e5a  ENET  storage    100 enabled  online        30
+                   e3b  ENET  storage      0 enabled  offline       30
+                   e7a  ENET  storage      0 enabled  offline       30
+                   e7b  ENET  storage    100 enabled  online        30
+----
+====
+. 重新检查集群是否存在存储交换机或布线问题：
++
+`system health alert show -instance`
+
++
+.显示示例
+[%collapsible]
+====
+[listing, subs="+quotes"]
+----
+storage::*> *system health alert show -instance*
+There are no entries matching your query.
+----
+====
+. 重复此过程以升级交换机 s1 上的 NX-OS 软件和 RCF。
+. 如果您已禁用自动创建案例功能，请通过调用AutoSupport消息重新启用该功能：
++
+`system node autosupport invoke -node * -type all -message MAINT=END`
+
+
+
+.下一步是什么？
+升级交换机后，即可完成此操作link:../switch-cshm/config-overview.html["配置交换机健康监控"]。

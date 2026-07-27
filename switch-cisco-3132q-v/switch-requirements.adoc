@@ -1,0 +1,184 @@
+---
+permalink: switch-cisco-3132q-v/switch-requirements.html 
+sidebar: sidebar 
+keywords: replace, cisco nexus 3132q-v cluster switches 
+summary: 更换 Cisco Nexus 3132Q-V 集群交换机时，必须了解某些配置信息、端口连接和布线要求。 
+---
+= 更换 Cisco Nexus 3132Q-V 集群交换机的要求
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+更换集群交换机时，请务必了解配置要求、端口连接和布线要求。
+
+
+
+[[cisco-nexus-3132q-v-requirements]]
+== Cisco Nexus 3132Q-V 要求
+
+* 支持 Cisco Nexus 3132Q-V 集群交换机。
+* 10 GbE 和 40 GbE 端口的数量在参考配置文件 (RCF) 中定义，可从 link:https://mysupport.netapp.com/site/products/all/details/cisco-cluster-storage-switch/downloads-tab["Cisco® 集群网络交换机参考配置文件下载"^] 获取。
+* 集群交换机使用交换机间链路 (ISL) 端口 e1/31-32。
+* link:https://hwu.netapp.com["Hardware Universe"^] 包含有关支持的 Nexus 3132Q-V 交换机布线的信息：
++
+** 具有 10 GbE 集群连接的节点需要带有分支光纤电缆的 QSFP 光模块或 QSFP 至 SFP+ 铜分支电缆。
+** 具有 40 GbE 集群连接的节点需要支持带光纤电缆的 QSFP/QSFP28 光模块或 QSFP/QSFP28 铜缆直连电缆。
+** 集群交换机使用适当的 ISL 电缆：2 根 QSFP28 光纤或铜线直连电缆。
+
+
+* 在 Nexus 3132Q-V 上，您可以将 QSFP 端口作为 40 Gb 以太网或 4x10 Gb 以太网模式运行。
++
+默认情况下，40 Gb 以太网模式下有 32 个端口。这些 40 Gb 以太网端口按 2 元组命名约定编号。例如，第二个 40 Gb 以太网端口编号为 1/2。将配置从 40 Gb 以太网更改为 10 Gb 以太网的过程称为 _breakout_，将配置从 10 Gb 以太网更改为 40 Gb 以太网的过程称为 _breakin_。当您将 40 Gb 以太网端口分解为 10 Gb 以太网端口时，将使用 3 元组命名约定对生成的端口进行编号。例如，第二个 40 Gb 以太网端口的分支端口编号为 1/2/1、1/2/2、1/2/3 和 1/2/4。
+
+* Nexus 3132Q-V 的左侧是一组四个 SFP+ 端口，这些端口复用到第一个 QSFP 端口。
++
+默认情况下，RCF 的结构使用第一个 QSFP 端口。
+
++
+您可以使用 `hardware profile front portmode sfp-plus`命令，使 Nexus 3132Q-V 的四个 SFP+ 端口而非一个 QSFP 端口处于活动状态。同样，您可以使用 `hardware profile front portmode qsfp`命令，将 Nexus 3132Q-V 重置为使用 QSFP 端口而非四个 SFP+ 端口。
+
+* 您必须将 Nexus 3132Q-V 上的某些端口配置为以 10 GbE 或 40 GbE 运行。
++
+您可以使用 `interface breakout module 1 port 1-6 map 10g-4x`命令将前六个端口分解为 4x10 GbE 模式。同样，您可以使用 `no interface breakout module 1 port 1-6 map 10g-4x`命令从分组配置中重组前六个 QSFP+ 端口。
+
+* 您必须已完成从节点到 Nexus 3132Q-V 集群交换机的 10 GbE 和 40 GbE 连接的规划、迁移，并阅读所需的文档。
++
+link:https://mysupport.netapp.com/site/info/cisco-ethernet-switch["Cisco以太网交换机"^] 包含有关此过程中支持的 ONTAP 和 NX-OS 版本的信息。
+
+
+
+
+
+[[cisco-nexus-5596-requirements]]
+== Cisco Nexus 5596 要求
+
+* 支持以下集群交换机：
++
+** Nexus 5596
+** Nexus 3132Q-V
+
+
+* 10 GbE 和 40 GbE 端口的数量在参考配置文件 (RCF) 中定义，可从 link:https://mysupport.netapp.com/site/products/all/details/cisco-cluster-storage-switch/downloads-tab["Cisco® 集群网络交换机参考配置文件下载"^] 获取。
+* 群集交换机使用以下端口连接到节点：
++
+** 端口 e1/1-40 (10 GbE): Nexus 5596
+** 端口 e1/1-30 (40 GbE): Nexus 3132Q-V
+
+
+* 集群交换机使用以下交换机间链路 (ISL) 端口：
++
+** 端口e1/41-48 (10 GbE): Nexus 5596
+** 端口e1/31-32 (40 GbE): Nexus 3132Q-V
+
+
+* link:https://hwu.netapp.com/["Hardware Universe"^] 包含有关支持的 Nexus 3132Q-V 交换机布线的信息：
++
+** 具有 10 GbE 集群连接的节点需要 QSFP 到 SFP+ 光纤分支电缆或 QSFP 到 SFP+ 铜分支电缆。
+** 具有 40 GbE 集群连接的节点需要支持带有光纤电缆或 QSFP/QSFP28 铜缆直连电缆的 QSFP/QSFP28 光模块。
+
+
+* 集群交换机使用适当的ISL布线：
++
+** 初始：Nexus 5596 到 Nexus 5596（SFP+ 到 SFP+）
++
+*** 8 根 SFP+ 光纤或铜质直连电缆
+
+
+** 临时：Nexus 5596 到 Nexus 3132Q-V（QSFP 到 4xSFP+ 分支）
++
+*** 1 根 QSFP 至 SFP+ 光纤分支或铜分支电缆
+
+
+** 最终：Nexus 3132Q-V 至 Nexus 3132Q-V（QSFP28 至 QSFP28）
++
+*** 2根QSFP28光纤或铜质直连电缆
+
+
+
+
+* 在 Nexus 3132Q-V 交换机上，您可以将 QSFP/QSFP28 端口配置为 40 千兆以太网或 4 x10 千兆以太网模式。
++
+默认情况下，40 千兆以太网模式下有 32 个端口。这 40 个千兆以太网端口按 2 元组命名约定编号。例如，第二个 40 千兆以太网端口编号为 1/2。将配置从 40 千兆以太网改为 10 千兆以太网的过程称为 _breakout_，将配置从 10 千兆以太网改为 40 千兆以太网的过程称为 _breakin_。当您将 40 千兆以太网端口分解为 10 千兆以太网端口时，将使用 3 元组命名约定对生成的端口进行编号。例如，第二个 40 千兆以太网端口的分支端口编号为 1/2/1、1/2/2、1/2/3 和 1/2/4。
+
+* Nexus 3132Q-V 交换机左侧有一组 4 个 SFP+ 端口，这些端口复用到该 QSFP28 端口。
++
+默认情况下，RCF 的结构为使用 QSFP28 端口。
+
++
+
+NOTE: 您可以使用 `hardware profile front portmode sfp-plus`命令为 Nexus 3132Q-V 交换机激活 4x SFP+ 端口，而不是 QSFP 端口。同样，您可以使用 `hardware profile front portmode qsfp`命令将 Nexus 3132Q-V 交换机重置为使用 QSFP 端口，而不是 4x SFP+ 端口。
+
+* 您已将 Nexus 3132Q-V 交换机上的一些端口配置为以 10 GbE 或 40 GbE 运行。
++
+
+NOTE: 您可以使用 `interface breakout module 1 port 1-6 map 10g-4x`命令将前六个端口分解为 4x10 GbE 模式。同样，您可以使用 `no interface breakout module 1 port 1-6 map 10g-4x`命令从分组配置中重组前六个 QSFP+ 端口。
+
+* 您已经完成了从节点到 Nexus 3132Q-V 集群交换机的 10 GbE 和 40 GbE 连接的规划、迁移和所需文档阅读。
+* 此过程中支持的 ONTAP 和 NX-OS 版本位于 link:https://mysupport.netapp.com/site/info/cisco-ethernet-switch["Cisco以太网交换机"^]。
+
+
+
+
+[[netapp-cn1610-requirements]]
+== NetApp CN1610 要求
+
+* 支持以下集群交换机：
++
+** NetApp CN1610
+** CiscoNexus 3132Q-V
+
+
+* 集群交换机支持以下节点连接：
++
+** NetApp CN1610：端口 0/1 至 0/12（10 GbE）
+** Cisco Nexus 3132Q-V：端口 e1/1-30 (40 GbE)
+
+
+* 集群交换机使用以下交换机间链路（ISL）端口：
++
+** NetApp CN1610：端口 0/13 至 0/16（10 GbE）
+** Cisco Nexus 3132Q-V：端口 e1/31-32 (40 GbE)
+
+
+* link:https://hwu.netapp.com/["Hardware Universe"^] 包含有关支持的 Nexus 3132Q-V 交换机布线的信息：
++
+** 具有 10 GbE 集群连接的节点需要 QSFP 到 SFP+ 光纤分支电缆或 QSFP 到 SFP+ 铜分支电缆
+** 具有 40 GbE 集群连接的节点需要支持带有光纤电缆或 QSFP/QSFP28 铜缆直连电缆的 QSFP/QSFP28 光模块
+
+
+* 适用的ISL布线如下：
++
+** 起始：对于 CN1610 至 CN1610（SFP+ 至 SFP+），四根 SFP+ 光纤或铜线直连电缆
+** 临时：对于 CN1610 至 Nexus 3132Q-V（QSFP 至四个 SFP+ 分支），一条 QSFP 至 SFP+ 光纤或铜分支电缆
+** 最终：对于 Nexus 3132Q-V 至 Nexus 3132Q-V（QSFP28 至 QSFP28），两根 QSFP28 光纤或铜线直连电缆
+
+
+* NetApp twinax 电缆与 Cisco Nexus 3132Q-V 交换机不兼容。
++
+如果您当前的 CN1610 配置使用 NetApp twinax 电缆进行集群节点到交换机连接或 ISL 连接，并且希望继续在环境中使用 twinax，则需要采购 Cisco twinax 电缆。或者，您可以将光纤电缆同时用于 ISL 连接和集群节点到交换机连接。
+
+* 在 Nexus 3132Q-V 交换机上，您可以将 QSFP/QSFP28 端口配置为 40 Gb 以太网或 4x 10 Gb 以太网模式。
++
+默认情况下，40 Gb 以太网模式下有 32 个端口。这些 40 Gb 以太网端口按 2 元组命名约定编号。例如，第二个 40 Gb 以太网端口编号为 1/2。将配置从 40 Gb 以太网更改为 10 Gb 以太网的过程称为 _breakout_，将配置从 10 Gb 以太网更改为 40 Gb 以太网的过程称为 _breakin_。当您将 40 Gb 以太网端口分解为 10 Gb 以太网端口时，将使用 3 元组命名约定对生成的端口进行编号。例如，第二个 40 Gb 以太网端口的分支端口编号为 1/2/1、1/2/2、1/2/3 和 1/2/4。
+
+* Nexus 3132Q-V 交换机左侧有一组四个 SFP+ 端口，这些端口复用到第一个 QSFP 端口。
++
+默认情况下，参考配置文件 (RCF) 的结构设置为使用第一个 QSFP 端口。
+
++
+您可以使用 `hardware profile front portmode sfp-plus`命令为 Nexus 3132Q-V 交换机激活四个 SFP+ 端口，而不是 QSFP 端口。同样，您可以使用 `hardware profile front portmode qsfp`命令将 Nexus 3132Q-V 交换机重置为使用 QSFP 端口而不是四个 SFP+ 端口。
+
++
+
+NOTE: 使用前四个 SFP+ 端口时，将禁用第一个 40GbE QSFP 端口。
+
+* 您必须将 Nexus 3132Q-V 交换机上的某些端口配置为以 10 GbE 或 40 GbE 运行。
++
+您可以使用 `interface breakout module 1 port 1-6 map 10g-4x`命令将前六个端口分解为 4x10 GbE 模式。同样，您可以使用 `no interface breakout module 1 port 1-6 map 10g-4x`命令从 _breakout_ 配置中重新组合前六个 QSFP+ 端口。
+
+* 您必须已完成从节点到 Nexus 3132Q-V 集群交换机的 10 GbE 和 40 GbE 连接的规划、迁移，并阅读所需的文档。
+* 本程序支持的 ONTAP 和 NX-OS 版本列于 link:https://mysupport.netapp.com/site/info/cisco-ethernet-switch["Cisco以太网交换机"^]。
+* 此过程中支持的 ONTAP 和 FASTPATH 版本列在 link:https://mysupport.netapp.com/site/products/all/details/netapp-cluster-switches/docs-tab["NetApp CN1601 和 CN1610 开关"^] 中。
+

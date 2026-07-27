@@ -1,0 +1,211 @@
+---
+permalink: switch-cisco-92300/install-nxos-rcf.html 
+sidebar: sidebar 
+keywords: install rcf,rcf configure 
+summary: 您可以在首次设置 Nexus 92300YC 交换机后安装 RCF。 
+---
+= 安装参考配置文件（RCF）
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+您可以在首次设置 Nexus 92300YC 交换机后安装 RCF。
+
+.交换机和节点命名法
+本流程中的示例使用以下开关和节点命名规则：
+
+* 这两台 Cisco 交换机的名称为 `cs1`和 `cs2`。
+* 节点名称是 `node1`和 `node2`。
+* node1 的集群 LIF 名称为 `node1_clus1`和 `node1_clus2`，node2 的集群 LIF 名称为 `node2_clus1`和 `node2_clus2`。
+* 这 `cluster1::*>`prompt 指示集群名称。
+* 每个节点上的集群端口都命名为 `e0a`和 `e0b`。
++
+有关平台上支持的实际集群端口，请参见 link:https://hwu.netapp.com/Home/Index["Hardware Universe"^]。有关交换机安装要求的详细信息，请参见 link:https://kb.netapp.com/Support/General_Support/What_additional_information_do_I_need_to_install_my_equipment_that_is_not_in_HWU["安装HWU中没有的设备还需要哪些额外信息？"^]。
+
+
+
+.支持的端口和节点连接
+* Nexus 92300YC 交换机支持的交换机间链路 (ISL) 是端口 1/65 和 1/66。
+* Nexus 92300YC 交换机支持的节点连接为端口 1/1 到 1/66。
+* 此过程中的示例使用两个节点。这些节点使用两个 10GbE 集群互连端口 `e0a`和 `e0b`。请参见 link:https://hwu.netapp.com/SWITCH/INDEX["Hardware Universe"^] 以验证平台上的正确群集端口。
+
+
+.开始之前
+* 您必须具有当前的RCF。
+* 集群必须完全运行（日志中应无错误或类似问题）。
+* 如果仅安装 NX-OS 并保留当前的 RCF 版本，则必须在 RCF 中检查或设置所需的引导配置，以反映所需的引导映像。
+* 如果需要更改启动配置以反映当前的启动映像，则必须在重新应用 RCF 之前进行更改，以便在以后的重启中实例化正确的版本。
+* 对于支持的 ONTAP、NX-OS 和 RCF 版本，您必须已查阅 https://support.netapp.com/NOW/download/software/cm_switches/["Cisco 以太网交换机"^]页面上的交换机兼容性表。
+* RCF 中的命令语法与 NX-OS 版本中的命令语法之间可能存在命令依赖关系。
+
+
+.关于此任务
+该过程需要同时使用ONTAP命令和Cisco Nexus 9000 系列交换机命令；除非另有说明，否则使用ONTAP命令。
+
+命令输出可能因ONTAP版本不同而有所差异。
+
+.步骤
+. 将集群交换机连接到管理网络。
+. 使用 ping 命令验证与托管 RCF 的服务器的连接。
++
+此示例验证交换机可以访问 IP 地址为 172.19.2.1 的服务器：
+
++
+[listing, subs="+quotes"]
+----
+cs2# *ping 172.19.2.1*
+Pinging 172.19.2.1 with 0 bytes of data:
+
+Reply From 172.19.2.1: icmp_seq = 0. time= 5910 usec.
+----
+. 将 RCF 复制到 Nexus 92300YC 交换机：
++
+[listing, subs="+quotes"]
+----
+cs2# *copy sftp: bootflash: vrf management*
+Enter source filename: */code/Nexus_92300YC_RCF_v1.0.2.txt*
+Enter hostname for the sftp server: *172.19.2.1*
+Enter username: *user1*
+
+Outbound-ReKey for 172.19.2.1:22
+Inbound-ReKey for 172.19.2.1:22
+user1@172.19.2.1's password:
+sftp> progress
+Progress meter enabled
+sftp> get   /code/Nexus_92300YC_RCF_v1.0.2.txt  /bootflash/nxos.9.2.2.bin
+/code/Nexus_92300YC_R  100% 9687   530.2KB/s   00:00
+sftp> exit
+Copy complete, now saving to disk (please wait)...
+Copy complete.
+----
+. 将 RCF 与交换机的运行配置合并：
++
+[listing, subs="+quotes"]
+----
+cs2# *copy bootflash:Nexus_92300YC_RCF_v1.0.2.txt running-config*
+
+Disabling ssh: as its enabled right now:
+ generating ecdsa key(521 bits)......
+generated ecdsa key
+
+Enabling ssh: as it has been disabled
+ this command enables edge port type (portfast) by default on all interfaces. You
+ should now disable edge port type (portfast) explicitly on switched ports leading to hubs,
+ switches and bridges as they may create temporary bridging loops.
+
+Edge port type (portfast) should only be enabled on ports connected to a single
+ host. Connecting hubs, concentrators, switches, bridges, etc...  to this
+ interface when edge port type (portfast) is enabled, can cause temporary bridging loops.
+ Use with CAUTION
+
+Edge Port Type (Portfast) has been configured on Ethernet1/1 but will only
+ have effect when the interface is in a non-trunking mode.
+
+...
+
+Copy complete, now saving to disk (please wait)...
+Copy complete.
+----
+. 在交换机上验证 RCF 已成功合并：
++
+`show running-config`
+
++
+[listing, subs="+quotes"]
+----
+cs2# *show running-config*
+!Command: show running-config
+!Running configuration last done at: Wed Apr 10 06:32:27 2019
+!Time: Wed Apr 10 06:36:00 2019
+
+version 9.2(2) Bios:version 05.33
+switchname cs2
+vdc cs2 id 1
+  limit-resource vlan minimum 16 maximum 4094
+  limit-resource vrf minimum 2 maximum 4096
+  limit-resource port-channel minimum 0 maximum 511
+  limit-resource u4route-mem minimum 248 maximum 248
+  limit-resource u6route-mem minimum 96 maximum 96
+  limit-resource m4route-mem minimum 58 maximum 58
+  limit-resource m6route-mem minimum 8 maximum 8
+
+feature lacp
+
+no password strength-check
+username admin password 5 $5$HY9Kk3F9$YdCZ8iQJ1RtoiEFa0sKP5IO/LNG1k9C4lSJfi5kesl
+6  role network-admin
+ssh key ecdsa 521
+
+banner motd #
+********************************************************************************
+*                                                                              *
+*  Nexus 92300YC Reference Configuration File (RCF) v1.0.2 (10-19-2018)        *
+*                                                                              *
+*  Ports 1/1  - 1/48: 10GbE Intra-Cluster Node Ports                           *
+*  Ports 1/49 - 1/64: 40/100GbE Intra-Cluster Node Ports                       *
+*  Ports 1/65 - 1/66: 40/100GbE Intra-Cluster ISL Ports                        *
+*                                                                              *
+********************************************************************************
+----
+. 保存运行配置，以便重启交换机时将其作为启动配置：
++
+[listing, subs="+quotes"]
+----
+cs2# *copy running-config startup-config*
+
+[########################################] 100%
+Copy complete, now saving to disk (please wait)...
+Copy complete.
+----
+. 对于 ONTAP 9.6P8 及更高版本，使用以下命令启用以太网交换机健康监视器日志收集功能，以收集与交换机相关的日志文件： `system cluster-switch log setup-password` 和 `system cluster-switch log enable-collection`
++
+[listing, subs="+quotes"]
+----
+cluster1::*> *system cluster-switch log setup-password*
+Enter the switch name: <return>
+The switch name entered is not recognized.
+Choose from the following list:
+cs1
+cs2
+
+cluster1::*> *system cluster-switch log setup-password*
+
+Enter the switch name: *cs1*
+RSA key fingerprint is e5:8b:c6:dc:e2:18:18:09:36:63:d9:63:dd:03:d9:cc
+Do you want to continue? {y|n}::[n] *y*
+
+Enter the password: <enter switch password>
+Enter the password again: <enter switch password>
+
+cluster1::*> *system cluster-switch log setup-password*
+
+Enter the switch name: *cs2*
+RSA key fingerprint is 57:49:86:a1:b9:80:6a:61:9a:86:8e:3c:e3:b7:1f:b1
+Do you want to continue? {y|n}:: [n] *y*
+
+Enter the password: <enter switch password>
+Enter the password again: <enter switch password>
+
+cluster1::*> *system cluster-switch log enable-collection*
+
+Do you want to enable cluster log collection for all nodes in the cluster?
+{y|n}: [n] *y*
+
+Enabling cluster switch log collection.
+
+cluster1::*>
+----
+. 重启交换机并验证运行配置是否正确：
++
+`reload`
+
++
+[listing, subs="+quotes"]
+----
+cs2# *reload*
+
+This command will reboot the system. (y/n)?  [n] *y*
+----
+

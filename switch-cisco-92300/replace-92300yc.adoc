@@ -1,0 +1,618 @@
+---
+permalink: switch-cisco-92300/replace-92300yc.html 
+sidebar: sidebar 
+keywords: replace,upgrade cisco nexus 92300yc cluster switch 
+summary: 在集群网络中更换有缺陷的 Nexus 92300YC 交换机是一个无中断的过程。 
+---
+= 更换 Cisco Nexus 92300YC 交换机
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+在集群网络中更换有缺陷的 Nexus 92300YC 交换机是无中断过程 (NDU)。
+
+
+
+[[review-requirements]]
+== 审查要求
+
+.开始之前
+执行交换机更换之前，请确保：
+
+* 在现有的集群和网络基础设施中：
++
+** 现有集群已验证功能完全正常，至少有一个完全连接的集群交换机。
+** 集群所有端口均已启动。
+** 所有集群逻辑接口（LIF）均已启动并位于其所属端口上。
+** ONTAP集群 ping-cluster -node node1 命令必须表明所有路径上的基本连接和大于 PMTU 的通信均已成功。
+
+
+* 对于 Nexus 92300YC 替换交换机：
++
+** 替换交换机的管理网络连接功能正常。
+** 控制台已就绪，可访问替换开关。
+** 节点连接是端口 1/1 到 1/64。
+** 所有交换机间链路 (ISL) 端口在端口 1/65 和 1/66 上均已禁用。
+** 将所需的参考配置文件 (RCF) 和 NX-OS 操作系统映像交换机加载到该交换机上。
+** 该交换机的初始定制已完成，详见：link:configure-install-initial.html["配置 Cisco Nexus 92300YC 交换机"]。
++
+之前站点的所有自定义设置，如 STP、SNMP 和 SSH，都会复制到新交换机上。
+
+
+
+
+
+
+
+[[enable-console-logging]]
+== 启用控制台日志记录
+
+NetApp强烈建议您在使用的设备上启用控制台日志记录，并在更换交换机时执行以下操作：
+
+* 维护期间请保持AutoSupport功能启用。
+* 在维护前后触发维护 AutoSupport，以在维护期间禁用案例创建。有关更多详细信息，请参阅此知识库文章 link:https://kb.netapp.com/Support_Bulletins/Customer_Bulletins/SU92["SU92：如何在计划维护窗口期间抑制自动创建案例"^]。
+* 启用所有 CLI 会话的会话日志记录。有关如何启用会话日志记录的说明，请查看此知识库文章中的“记录会话输出”部分。link:https://kb.netapp.com/on-prem/ontap/Ontap_OS/OS-KBs/How_to_configure_PuTTY_for_optimal_connectivity_to_ONTAP_systems["如何配置 PuTTY 以获得与ONTAP系统的最佳连接"^] 。
+
+
+
+
+[[replace-the-switch]]
+== 更换开关
+
+.关于示例
+本流程中的示例使用以下开关和节点命名规则：
+
+* 现有 Nexus 92300YC 交换机的名称为 cs1 和 cs2。
+* 新 Nexus 92300YC 交换机的名称是 newcs2。
+* 节点名称分别为 node1 和 node2。
+* 每个节点上的集群端口分别命名为 e0a 和 e0b。
+* 节点 1 的集群 LIF 名称为 node1_clus1 和 node1_clus2，节点 2 的集群 LIF 名称为 node2_clus1 和 node2_clus2。
+* 对所有集群节点进行更改的提示是 cluster1::*>
+
+
+.关于此任务
+您必须从集群 LIF 所在的节点执行迁移集群 LIF 的命令。
+
+以下步骤基于以下集群网络拓扑结构：
+
+.显示拓扑
+[%collapsible]
+====
+[listing, subs="+quotes"]
+----
+cluster1::*> *network port show -ipspace Cluster*
+
+Node: node1
+                                                                       Ignore
+                                                  Speed(Mbps) Health   Health
+Port      IPspace      Broadcast Domain Link MTU  Admin/Oper  Status   Status
+--------- ------------ ---------------- ---- ---- ----------- -------- ------
+e0a       Cluster      Cluster          up   9000  auto/10000 healthy  false
+e0b       Cluster      Cluster          up   9000  auto/10000 healthy  false
+
+Node: node2
+                                                                       Ignore
+                                                  Speed(Mbps) Health   Health
+Port      IPspace      Broadcast Domain Link MTU  Admin/Oper  Status   Status
+--------- ------------ ---------------- ---- ---- ----------- -------- ------
+e0a       Cluster      Cluster          up   9000  auto/10000 healthy  false
+e0b       Cluster      Cluster          up   9000  auto/10000 healthy  false
+4 entries were displayed.
+
+
+
+cluster1::*> *network interface show -vserver Cluster*
+            Logical    Status     Network            Current       Current Is
+Vserver     Interface  Admin/Oper Address/Mask       Node          Port    Home
+----------- ---------- ---------- ------------------ ------------- ------- ----
+Cluster
+            node1_clus1  up/up    169.254.209.69/16  node1         e0a     true
+            node1_clus2  up/up    169.254.49.125/16  node1         e0b     true
+            node2_clus1  up/up    169.254.47.194/16  node2         e0a     true
+            node2_clus2  up/up    169.254.19.183/16  node2         e0b     true
+4 entries were displayed.
+
+
+
+cluster1::*> *network device-discovery show -protocol cdp*
+Node/       Local  Discovered
+Protocol    Port   Device (LLDP: ChassisID)  Interface         Platform
+----------- ------ ------------------------- ----------------  ----------------
+node2      /cdp
+            e0a    cs1                       Eth1/2            N9K-C92300YC
+            e0b    cs2                       Eth1/2            N9K-C92300YC
+node1      /cdp
+            e0a    cs1                       Eth1/1            N9K-C92300YC
+            e0b    cs2                       Eth1/1            N9K-C92300YC
+4 entries were displayed.
+
+
+
+cs1# *show cdp neighbors*
+
+Capability Codes: R - Router, T - Trans-Bridge, B - Source-Route-Bridge
+                  S - Switch, H - Host, I - IGMP, r - Repeater,
+                  V - VoIP-Phone, D - Remotely-Managed-Device,
+                  s - Supports-STP-Dispute
+
+Device-ID          Local Intrfce  Hldtme Capability  Platform      Port ID
+node1              Eth1/1         144    H           FAS2980       e0a
+node2              Eth1/2         145    H           FAS2980       e0a
+cs2(FDO220329V5)   Eth1/65        176    R S I s     N9K-C92300YC  Eth1/65
+cs2(FDO220329V5)   Eth1/66        176    R S I s     N9K-C92300YC  Eth1/66
+
+Total entries displayed: 4
+
+
+
+cs2# *show cdp neighbors*
+
+Capability Codes: R - Router, T - Trans-Bridge, B - Source-Route-Bridge
+                  S - Switch, H - Host, I - IGMP, r - Repeater,
+                  V - VoIP-Phone, D - Remotely-Managed-Device,
+                  s - Supports-STP-Dispute
+
+Device-ID          Local Intrfce  Hldtme Capability  Platform      Port ID
+node1              Eth1/1         139    H           FAS2980       e0b
+node2              Eth1/2         124    H           FAS2980       e0b
+cs1(FDO220329KU)   Eth1/65        178    R S I s     N9K-C92300YC  Eth1/65
+cs1(FDO220329KU)   Eth1/66        178    R S I s     N9K-C92300YC  Eth1/66
+
+Total entries displayed: 4
+----
+====
+
+
+[[step-1-prepare-for-replacement]]
+=== 第一步：准备更换
+
+. 在交换机上安装相应的 RCF 和映像，newcs2，并进行任何必要的现场准备。
++
+如有必要，请验证、下载并安装适用于新交换机的 RCF 和 NX-OS 软件的相应版本。如果您已确认新交换机设置正确，并且不需要更新 RCF 和 NX-OS 软件，请继续执行步骤 2。
+
++
+.. 前往NetApp支持网站上的 _NetApp 集群和管理网络交换机参考配置文件说明页面_。
+.. 点击链接查看“集群网络和管理网络兼容性矩阵”，然后记下所需的交换机软件版本。
+.. 单击浏览器的后退箭头返回 *Description* 页面，单击 *CONTINUE*，接受许可协议，然后转到 *Download* 页面。
+.. 请按照下载页面上的步骤，下载与您要安装的ONTAP软件版本相对应的正确 RCF 和 NX-OS 文件。
+
+
+. 在新交换机上，以管理员身份登录并关闭所有将连接到节点集群接口的端口（端口 1/1 到 1/64）。
++
+如果您要更换的开关无法正常工作且已断电，请转到步骤 4。集群节点上的 LIF 应该已经针对每个节点故障转移到另一个集群端口。
+
++
+.显示示例
+[%collapsible]
+====
+[listing, subs="+quotes"]
+----
+newcs2# *config*
+Enter configuration commands, one per line. End with CNTL/Z.
+newcs2(config)# *interface e1/1-64*
+newcs2(config-if-range)# *shutdown*
+----
+====
+. 确认所有集群 LIF 都已启用自动回滚功能：
++
+`network interface show -vserver Cluster -fields auto-revert`
+
++
+.显示示例
+[%collapsible]
+====
+[listing, subs="+quotes"]
+----
+cluster1::> *network interface show -vserver Cluster -fields auto-revert*
+
+             Logical
+Vserver      Interface     Auto-revert
+------------ ------------- -------------
+Cluster      node1_clus1   true
+Cluster      node1_clus2   true
+Cluster      node2_clus1   true
+Cluster      node2_clus2   true
+
+4 entries were displayed.
+----
+====
+. 验证远程集群接口的连接性：
+
+
+[role="tabbed-block"]
+====
+.ONTAP 9.9.1 及更高版本
+--
+你可以使用 `network interface check cluster-connectivity`执行命令以启动集群连接性检查，然后显示详细信息：
+
+`network interface check cluster-connectivity start`和 `network interface check cluster-connectivity show`
+
+[listing, subs="+quotes"]
+----
+cluster1::*> *network interface check cluster-connectivity start*
+----
+*注意：*运行程序前请等待几秒钟 `show`显示详细信息的命令。
+
+[listing, subs="+quotes"]
+----
+cluster1::*> *network interface check cluster-connectivity show*
+                                  Source           Destination      Packet
+Node   Date                       LIF              LIF              Loss
+------ -------------------------- ---------------- ---------------- -----------
+node1
+       3/5/2022 19:21:18 -06:00   node1_clus2      node2-clus1      none
+       3/5/2022 19:21:20 -06:00   node1_clus2      node2_clus2      none
+node2
+       3/5/2022 19:21:18 -06:00   node2_clus2      node1_clus1      none
+       3/5/2022 19:21:20 -06:00   node2_clus2      node1_clus2      none
+----
+--
+.所有ONTAP版本
+--
+对于所有ONTAP版本，您也可以使用 `cluster ping-cluster -node <name>`检查连接性的命令：
+
+`cluster ping-cluster -node <name>`
+
+[listing, subs="+quotes"]
+----
+cluster1::*> *cluster ping-cluster -node local*
+Host is node2
+Getting addresses from network interface table...
+Cluster node1_clus1 169.254.209.69 node1 e0a
+Cluster node1_clus2 169.254.49.125 node1 e0b
+Cluster node2_clus1 169.254.47.194 node2 e0a
+Cluster node2_clus2 169.254.19.183 node2 e0b
+Local = 169.254.47.194 169.254.19.183
+Remote = 169.254.209.69 169.254.49.125
+Cluster Vserver Id = 4294967293
+Ping status:
+....
+Basic connectivity succeeds on 4 path(s)
+Basic connectivity fails on 0 path(s)
+................
+Detected 9000 byte MTU on 4 path(s):
+Local 169.254.47.194 to Remote 169.254.209.69
+Local 169.254.47.194 to Remote 169.254.49.125
+Local 169.254.19.183 to Remote 169.254.209.69
+Local 169.254.19.183 to Remote 169.254.49.125
+Larger than PMTU communication succeeds on 4 path(s)
+RPC status:
+2 paths up, 0 paths down (tcp check)
+2 paths up, 0 paths down (udp check)
+----
+--
+====
+
+
+[[step-2-configure-cables-and-ports]]
+=== 步骤 2：配置线缆和端口
+
+. 关闭 Nexus 92300YC 交换机 cs1 上的 ISL 端口 1/65 和 1/66：
++
+.显示示例
+[%collapsible]
+====
+[listing, subs="+quotes"]
+----
+cs1# *configure*
+Enter configuration commands, one per line. End with CNTL/Z.
+cs1(config)# *interface e1/65-66*
+cs1(config-if-range)# *shutdown*
+cs1(config-if-range)#
+----
+====
+. 卸下 Nexus 92300YC cs2 交换机上的所有电缆，然后将其连接到 Nexus 92300YC newcs2 交换机上的相同端口。
+. 打开 cs1 和 newcs2 交换机之间的 ISL 端口 1/65 和 1/66，然后验证端口通道运行状态。
++
+端口通道应表示 Po1(SU)，成员端口应表示 Eth1/65(P) 和 Eth1/66(P)。
+
++
+.显示示例
+[%collapsible]
+====
+此示例启用了 ISL 端口 1/65 和 1/66，并显示了交换机 cs1 上的端口通道摘要：
+
+[listing, subs="+quotes"]
+----
+cs1# *configure*
+Enter configuration commands, one per line. End with CNTL/Z.
+cs1(config)# *int e1/65-66*
+cs1(config-if-range)# *no shutdown*
+
+cs1(config-if-range)# show port-channel summary
+Flags:  D - Down        P - Up in port-channel (members)
+        I - Individual  H - Hot-standby (LACP only)
+        s - Suspended   r - Module-removed
+        b - BFD Session Wait
+        S - Switched    R - Routed
+        U - Up (port-channel)
+        p - Up in delay-lacp mode (member)
+        M - Not in use. Min-links not met
+--------------------------------------------------------------------------------
+Group Port-       Type     Protocol  Member Ports
+      Channel
+--------------------------------------------------------------------------------
+1     Po1(SU)     Eth      LACP      Eth1/65(P)   Eth1/66(P)
+
+cs1(config-if-range)#
+----
+====
+. 验证所有节点上的端口 e0b 是否已启动：
++
+`network port show ipspace Cluster`
+
++
+.显示示例
+[%collapsible]
+====
+输出结果应与以下内容类似：
+
+[listing, subs="+quotes"]
+----
+cluster1::*> *network port show -ipspace Cluster*
+
+Node: node1
+                                                                        Ignore
+                                                   Speed(Mbps) Health   Health
+Port      IPspace      Broadcast Domain Link MTU   Admin/Oper  Status   Status
+--------- ------------ ---------------- ---- ----- ----------- -------- -------
+e0a       Cluster      Cluster          up   9000  auto/10000  healthy  false
+e0b       Cluster      Cluster          up   9000  auto/10000  healthy  false
+
+Node: node2
+                                                                        Ignore
+                                                   Speed(Mbps) Health   Health
+Port      IPspace      Broadcast Domain Link MTU   Admin/Oper  Status   Status
+--------- ------------ ---------------- ---- ----- ----------- -------- -------
+e0a       Cluster      Cluster          up   9000  auto/10000  healthy  false
+e0b       Cluster      Cluster          up   9000  auto/auto   -        false
+
+4 entries were displayed.
+----
+====
+. 在上一步中使用的同一节点上，使用 network interface revert 命令还原与上一步中的端口关联的集群 LIF。
++
+.显示示例
+[%collapsible]
+====
+在本例中，如果 Home 值为 true 且端口为 e0b，则节点 1 上的 LIF node1_clus2 将成功还原。
+
+以下命令返回 LIF `node1_clus2`在 `node1`回到母港 `e0a`并显示有关两个节点上 LIF 的信息。如果两个集群接口的“是否为 Home”列均为 true，并且它们显示正确的端口分配，则表示第一个节点启动成功。 `e0a`和 `e0b`在节点1上。
+
+[listing, subs="+quotes"]
+----
+cluster1::*> *network interface show -vserver Cluster*
+
+            Logical      Status     Network            Current    Current Is
+Vserver     Interface    Admin/Oper Address/Mask       Node       Port    Home
+----------- ------------ ---------- ------------------ ---------- ------- -----
+Cluster
+            node1_clus1  up/up      169.254.209.69/16  node1      e0a     true
+            node1_clus2  up/up      169.254.49.125/16  node1      e0b     true
+            node2_clus1  up/up      169.254.47.194/16  node2      e0a     true
+            node2_clus2  up/up      169.254.19.183/16  node2      e0a     false
+
+4 entries were displayed.
+----
+====
+. 显示集群中节点的相关信息：
++
+`cluster show`
+
++
+.显示示例
+[%collapsible]
+====
+此示例表明，该集群中节点 1 和节点 2 的节点健康状况为真：
+
+[listing, subs="+quotes"]
+----
+cluster1::*> *cluster show*
+
+Node          Health  Eligibility
+------------- ------- ------------
+node1         false   true
+node2         true    true
+----
+====
+. 确认所有物理集群端口均已启动：
++
+`network port show ipspace Cluster`
+
++
+.显示示例
+[%collapsible]
+====
+[listing, subs="+quotes"]
+----
+cluster1::*> *network port show -ipspace Cluster*
+
+Node: node1
+																																									 					 																					 	  Ignore
+                                                    Speed(Mbps) Health   Health
+Port      IPspace     Broadcast Domain  Link  MTU   Admin/Oper  Status   Status
+--------- ----------- ----------------- ----- ----- ----------- -------- ------
+e0a       Cluster     Cluster           up    9000  auto/10000  healthy  false
+e0b       Cluster     Cluster           up    9000  auto/10000  healthy  false
+
+Node: node2
+                                                                         Ignore
+                                                    Speed(Mbps) Health   Health
+Port      IPspace      Broadcast Domain Link  MTU   Admin/Oper  Status   Status
+--------- ------------ ---------------- ----- ----- ----------- -------- ------
+e0a       Cluster      Cluster          up    9000  auto/10000  healthy  false
+e0b       Cluster      Cluster          up    9000  auto/10000  healthy  false
+
+4 entries were displayed.
+----
+====
+
+
+
+
+[[step-3-complete-the-procedure]]
+=== 步骤 3：完成该步骤
+
+. 验证远程集群接口的连接性：
+
+
+[role="tabbed-block"]
+====
+.ONTAP 9.9.1 及更高版本
+--
+你可以使用 `network interface check cluster-connectivity`执行命令以启动集群连接性检查，然后显示详细信息：
+
+`network interface check cluster-connectivity start`和 `network interface check cluster-connectivity show`
+
+[listing, subs="+quotes"]
+----
+cluster1::*> *network interface check cluster-connectivity start*
+----
+*注意：*运行程序前请等待几秒钟 `show`显示详细信息的命令。
+
+[listing, subs="+quotes"]
+----
+cluster1::*> *network interface check cluster-connectivity show*
+                                  Source           Destination      Packet
+Node   Date                       LIF              LIF              Loss
+------ -------------------------- ---------------- ---------------- -----------
+node1
+       3/5/2022 19:21:18 -06:00   node1_clus2      node2-clus1      none
+       3/5/2022 19:21:20 -06:00   node1_clus2      node2_clus2      none
+node2
+       3/5/2022 19:21:18 -06:00   node2_clus2      node1_clus1      none
+       3/5/2022 19:21:20 -06:00   node2_clus2      node1_clus2      none
+----
+--
+.所有ONTAP版本
+--
+对于所有ONTAP版本，您也可以使用 `cluster ping-cluster -node <name>`检查连接性的命令：
+
+`cluster ping-cluster -node <name>`
+
+[listing, subs="+quotes"]
+----
+cluster1::*> *cluster ping-cluster -node local*
+Host is node2
+Getting addresses from network interface table...
+Cluster node1_clus1 169.254.209.69 node1 e0a
+Cluster node1_clus2 169.254.49.125 node1 e0b
+Cluster node2_clus1 169.254.47.194 node2 e0a
+Cluster node2_clus2 169.254.19.183 node2 e0b
+Local = 169.254.47.194 169.254.19.183
+Remote = 169.254.209.69 169.254.49.125
+Cluster Vserver Id = 4294967293
+Ping status:
+....
+Basic connectivity succeeds on 4 path(s)
+Basic connectivity fails on 0 path(s)
+................
+Detected 9000 byte MTU on 4 path(s):
+Local 169.254.47.194 to Remote 169.254.209.69
+Local 169.254.47.194 to Remote 169.254.49.125
+Local 169.254.19.183 to Remote 169.254.209.69
+Local 169.254.19.183 to Remote 169.254.49.125
+Larger than PMTU communication succeeds on 4 path(s)
+RPC status:
+2 paths up, 0 paths down (tcp check)
+2 paths up, 0 paths down (udp check)
+----
+--
+====
+. [[step2]] 确认以下集群网络配置：
++
+`network port show`
+
++
+.显示示例
+[%collapsible]
+====
+[listing, subs="+quotes"]
+----
+cluster1::*> *network port show -ipspace Cluster*
+Node: node1
+																																																																			 	  Ignore
+                                       Speed(Mbps)            Health   Health
+Port      IPspace     Broadcast Domain Link MTU   Admin/Oper  Status   Status
+--------- ----------- ---------------- ---- ----- ----------- -------- ------
+e0a       Cluster     Cluster          up   9000  auto/10000  healthy  false
+e0b       Cluster     Cluster          up   9000  auto/10000  healthy  false
+
+Node: node2
+                                                                       Ignore
+                                        Speed(Mbps)           Health   Health
+Port      IPspace      Broadcast Domain Link MTU  Admin/Oper  Status   Status
+--------- ------------ ---------------- ---- ---- ----------- -------- ------
+e0a       Cluster      Cluster          up   9000 auto/10000  healthy  false
+e0b       Cluster      Cluster          up   9000 auto/10000  healthy  false
+
+4 entries were displayed.
+
+
+cluster1::*> *network interface show -vserver Cluster*
+
+            Logical    Status     Network            Current       Current Is
+Vserver     Interface  Admin/Oper Address/Mask       Node          Port    Home
+----------- ---------- ---------- ------------------ ------------- ------- ----
+Cluster
+            node1_clus1  up/up    169.254.209.69/16  node1         e0a     true
+            node1_clus2  up/up    169.254.49.125/16  node1         e0b     true
+            node2_clus1  up/up    169.254.47.194/16  node2         e0a     true
+            node2_clus2  up/up    169.254.19.183/16  node2         e0b     true
+
+4 entries were displayed.
+
+cluster1::> *network device-discovery show -protocol cdp*
+
+Node/       Local  Discovered
+Protocol    Port   Device (LLDP: ChassisID)  Interface         Platform
+----------- ------ ------------------------- ----------------  ----------------
+node2      /cdp
+            e0a    cs1                       0/2               N9K-C92300YC
+            e0b    newcs2                    0/2               N9K-C92300YC
+node1      /cdp
+            e0a    cs1                       0/1               N9K-C92300YC
+            e0b    newcs2                    0/1               N9K-C92300YC
+
+4 entries were displayed.
+
+
+cs1# *show cdp neighbors*
+
+Capability Codes: R - Router, T - Trans-Bridge, B - Source-Route-Bridge
+                  S - Switch, H - Host, I - IGMP, r - Repeater,
+                  V - VoIP-Phone, D - Remotely-Managed-Device,
+                  s - Supports-STP-Dispute
+
+Device-ID            Local Intrfce  Hldtme Capability  Platform      Port ID
+node1                Eth1/1         144    H           FAS2980       e0a
+node2                Eth1/2         145    H           FAS2980       e0a
+newcs2(FDO296348FU)  Eth1/65        176    R S I s     N9K-C92300YC  Eth1/65
+newcs2(FDO296348FU)  Eth1/66        176    R S I s     N9K-C92300YC  Eth1/66
+
+
+Total entries displayed: 4
+
+
+cs2# *show cdp neighbors*
+
+Capability Codes: R - Router, T - Trans-Bridge, B - Source-Route-Bridge
+                  S - Switch, H - Host, I - IGMP, r - Repeater,
+                  V - VoIP-Phone, D - Remotely-Managed-Device,
+                  s - Supports-STP-Dispute
+
+Device-ID          Local Intrfce  Hldtme Capability  Platform      Port ID
+node1              Eth1/1         139    H           FAS2980       e0b
+node2              Eth1/2         124    H           FAS2980       e0b
+cs1(FDO220329KU)   Eth1/65        178    R S I s     N9K-C92300YC  Eth1/65
+cs1(FDO220329KU)   Eth1/66        178    R S I s     N9K-C92300YC  Eth1/66
+
+Total entries displayed: 4
+----
+====
+
+
+.下一步是什么？
+验证 SSH 配置后，即可link:../switch-cshm/config-overview.html["配置交换机健康监控"]。

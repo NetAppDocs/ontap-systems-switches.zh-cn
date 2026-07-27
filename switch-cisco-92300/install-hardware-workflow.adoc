@@ -1,0 +1,30 @@
+---
+permalink: switch-cisco-92300/install-hardware-workflow.html 
+sidebar: sidebar 
+keywords: switches, initial installation, configure switch-cisco-92300yc switch 
+summary: 在配置 Cisco Nexus 92300YC 集群交换机之前，请查看配置概述。 
+---
+= Cisco Nexus 92300YC 交换机的硬件安装工作流程
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+要为 92300YC 集群交换机安装和配置硬件，请执行以下步骤：
+
+.image:https://raw.githubusercontent.com/NetAppDocs/common/main/media/number-1.png["一个"]link:setup-worksheet-92300yc.html["完成布线工作表"]
+[role="quick-margin-para"]
+示例布线工作表提供了从交换机到控制器的推荐端口分配示例。空白工作表提供了一个模板，您可以在设置集群时使用该模板。
+
+.image:https://raw.githubusercontent.com/NetAppDocs/common/main/media/number-2.png["两个"]link:install-switch-92300yc.html["安装开关"]
+[role="quick-margin-para"]
+安装 92300YC 交换机。
+
+.image:https://raw.githubusercontent.com/NetAppDocs/common/main/media/number-3.png["三"]link:install-switch-netapp-cabinet-92300yc.html["将交换机安装在NetApp机柜中"]
+[role="quick-margin-para"]
+根据需要将 92300YC 交换机和直通面板安装在 NetApp 机柜中。
+
+.image:https://raw.githubusercontent.com/NetAppDocs/common/main/media/number-4.png["四个"]link:cabling-considerations-92300.html["检查布线和配置"]
+[role="quick-margin-para"]
+查看对 NVIDIA 以太网端口的支持。

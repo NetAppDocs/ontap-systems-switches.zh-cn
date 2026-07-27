@@ -1,6 +1,6 @@
 ---
 section: switch-cisco-3232c
-title: CiscoNexus 3232C
+title: Cisco Nexus 3232C 集群交换机
 entries:
 - title: 开始使用
   pdf-filename: Overview_3232C
@@ -38,7 +38,7 @@ entries:
   - title: 安装 NX-OS 软件
     url: "/switch-cisco-3232c/install-nx-os-software-3232c.html"
   - title: 安装或升级 RCF
-    pdf-filename: 安装升级
+    pdf-filename: install_upgrade_rcf
     entries:
     - title: 安装或升级 RCF 概述
       url: "/switch-cisco-3232c/install-upgrade-rcf-overview-3232c.html"
@@ -56,11 +56,11 @@ entries:
   - title: 从双节点无交换机集群迁移
     pdf-filename: 从无交换机集群迁移
     entries:
-    - title: 从双节点无交换机集群工作流程迁移
+    - title: 从双节点无交换机集群迁移工作流
       url: "/switch-cisco-3232c/migrate-from-switchless-workflow.html"
     - title: 迁移要求
       url: "/switch-cisco-3232c/migrate-from-switchless-migrate-requirements.html"
-    - title: 做好迁移准备
+    - title: 准备迁移
       url: "/switch-cisco-3232c/migrate-from-switchless-prepare-to-migrate.html"
     - title: 配置端口
       url: "/switch-cisco-3232c/migrate-from-switchless-configure-ports.html"

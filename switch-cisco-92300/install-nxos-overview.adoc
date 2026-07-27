@@ -1,0 +1,230 @@
+---
+permalink: switch-cisco-92300/install-nxos-overview.html 
+sidebar: sidebar 
+keywords: install nx-os rcf cisco nx 92300yc cluster switch 
+summary: Cisco Nexus 92300YC 群集交换机上必须安装 Cisco NX-OS 软件和参考配置文件。 
+---
+= 准备安装 NX-OS 软件和参考配置文件 (RCF)
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+在安装 NX-OS 软件和参考配置文件 (RCF) 之前，请按照以下步骤操作。
+
+.开始之前
+请确保您拥有以下物品：
+
+* 一个功能齐全的集群（日志中没有错误或类似问题）。
+* 相应的软件和升级指南，可从 https://www.cisco.com/c/en/us/support/switches/nexus-9000-series-switches/series.html#InstallandUpgrade["CiscoNexus 9000 系列交换机"^]获得。
+
+
+.关于示例
+此过程中的示例使用两个节点。这些节点使用两个 10GbE 集群互连端口 `e0a`和 `e0b`。请参见 link:https://hwu.netapp.com/SWITCH/INDEX["Hardware Universe"^] 以验证平台上的正确群集端口。
+
+本流程中的示例使用以下开关和节点命名规则：
+
+* 这两台 Cisco 交换机的名称为 `cs1`和 `cs2`。
+* 节点名称是 `node1`和 `node2`。
+* node1 的集群 LIF 名称为 `node1_clus1`和 `node1_clus2`，node2 的集群 LIF 名称为 `node2_clus1`和 `node2_clus2`。
+* 这 `cluster1::*>`prompt 指示集群名称。
+
+
+.关于此任务
+此过程需要同时使用 ONTAP 命令和 Cisco Nexus 9000 系列交换机命令；除非另有说明，否则使用 ONTAP 命令。命令输出可能因 ONTAP 的不同版本而有所不同。
+
+.步骤
+. 将权限级别更改为高级，并在提示继续时输入 *y*：
++
+`set -privilege advanced`
+
++
+高级提示(`*>`出现。
+
+. 如果此集群上启用了AutoSupport ，则通过调用AutoSupport消息来抑制自动创建案例：
++
+`system node autosupport invoke -node * -type all -message MAINT=xh`
+
++
+其中 _x_ 为维护窗口的持续时间（小时）。
+
++
+
+NOTE: AutoSupport消息会通知技术支持此维护任务，以便在维护窗口期间抑制自动创建案例。
+
++
+以下命令可抑制自动创建案件两小时：
+
++
+[listing]
+----
+cluster1:> **system node autosupport invoke -node * -type all -message MAINT=2h**
+----
+. 显示每个集群互连交换机在每个节点中配置了多少个集群互连接口： `network device-discovery show -protocol cdp`
++
+.显示示例
+[%collapsible]
+====
+[listing, subs="+quotes"]
+----
+cluster1::*> *network device-discovery show -protocol cdp*
+
+ Node/      Local  Discovered
+Protocol    Port   Device (LLDP: ChassisID)  Interface         Platform
+----------- ------ ------------------------- ----------------  ----------------
+node2      /cdp
+            e0a    cs1                       Eth1/2            N9K-C92300YC
+            e0b    cs2                       Eth1/2            N9K-C92300YC
+node1      /cdp
+            e0a    cs1                       Eth1/1            N9K-C92300YC
+            e0b    cs2                       Eth1/1            N9K-C92300YC
+
+4 entries were displayed.
+----
+====
+. 检查每个集群接口的管理或运行状态。
++
+.. 显示网络端口属性： `network port show –ipspace Cluster`
++
+.显示示例
+[%collapsible]
+====
+[listing, subs="+quotes"]
+----
+cluster1::*> *network port show -ipspace Cluster*
+
+Node: node2
+                                                  Speed(Mbps) Health
+Port      IPspace      Broadcast Domain Link MTU  Admin/Oper  Status
+--------- ------------ ---------------- ---- ---- ----------- --------
+e0a       Cluster      Cluster          up   9000  auto/10000 healthy
+e0b       Cluster      Cluster          up   9000  auto/10000 healthy
+
+Node: node1
+                                                  Speed(Mbps) Health
+Port      IPspace      Broadcast Domain Link MTU  Admin/Oper  Status
+--------- ------------ ---------------- ---- ---- ----------- --------
+e0a       Cluster      Cluster          up   9000  auto/10000 healthy
+e0b       Cluster      Cluster          up   9000  auto/10000 healthy
+
+4 entries were displayed.
+----
+====
+.. 显示有关 LIF 的信息： `network interface show -vserver Cluster`
++
+.显示示例
+[%collapsible]
+====
+[listing, subs="+quotes"]
+----
+cluster1::*> *network interface show -vserver Cluster*
+
+            Logical    Status     Network            Current       Current Is
+Vserver     Interface  Admin/Oper Address/Mask       Node          Port    Home
+----------- ---------- ---------- ------------------ ------------- ------- ----
+Cluster
+            node1_clus1  up/up    169.254.209.69/16  node1         e0a     true
+            node1_clus2  up/up    169.254.49.125/16  node1         e0b     true
+            node2_clus1  up/up    169.254.47.194/16  node2         e0a     true
+            node2_clus2  up/up    169.254.19.183/16  node2         e0b     true
+
+4 entries were displayed.
+----
+====
+
+
+. 验证远程集群接口的连接性：
+
+
+[role="tabbed-block"]
+====
+.ONTAP 9.9.1 及更高版本
+--
+你可以使用 `network interface check cluster-connectivity`执行命令以启动集群连接性检查，然后显示详细信息：
+
+`network interface check cluster-connectivity start`和 `network interface check cluster-connectivity show`
+
+[listing, subs="+quotes"]
+----
+cluster1::*> *network interface check cluster-connectivity start*
+----
+*注意：*运行程序前请等待几秒钟 `show`显示详细信息的命令。
+
+[listing, subs="+quotes"]
+----
+cluster1::*> *network interface check cluster-connectivity show*
+                                  Source           Destination      Packet
+Node   Date                       LIF              LIF              Loss
+------ -------------------------- ---------------- ---------------- -----------
+node1
+       3/5/2022 19:21:18 -06:00   node1_clus2      node2-clus1      none
+       3/5/2022 19:21:20 -06:00   node1_clus2      node2_clus2      none
+node2
+       3/5/2022 19:21:18 -06:00   node2_clus2      node1_clus1      none
+       3/5/2022 19:21:20 -06:00   node2_clus2      node1_clus2      none
+----
+--
+.所有ONTAP版本
+--
+对于所有ONTAP版本，您也可以使用 `cluster ping-cluster -node <name>`检查连接性的命令：
+
+`cluster ping-cluster -node <name>`
+
+[listing, subs="+quotes"]
+----
+cluster1::*> *cluster ping-cluster -node local*
+Host is node2
+Getting addresses from network interface table...
+Cluster node1_clus1 169.254.209.69 node1     e0a
+Cluster node1_clus2 169.254.49.125 node1     e0b
+Cluster node2_clus1 169.254.47.194 node2     e0a
+Cluster node2_clus2 169.254.19.183 node2     e0b
+Local = 169.254.47.194 169.254.19.183
+Remote = 169.254.209.69 169.254.49.125
+Cluster Vserver Id = 4294967293
+Ping status:
+
+Basic connectivity succeeds on 4 path(s)
+Basic connectivity fails on 0 path(s)
+
+Detected 9000 byte MTU on 4 path(s):
+    Local 169.254.19.183 to Remote 169.254.209.69
+    Local 169.254.19.183 to Remote 169.254.49.125
+    Local 169.254.47.194 to Remote 169.254.209.69
+    Local 169.254.47.194 to Remote 169.254.49.125
+Larger than PMTU communication succeeds on 4 path(s)
+RPC status:
+2 paths up, 0 paths down (tcp check)
+2 paths up, 0 paths down (udp check)
+----
+--
+====
+. [[步骤6]] 验证所有集群 LIF 上是否已启用自动还原命令：
++
+`network interface show -vserver Cluster -fields auto-revert`
+
++
+.显示示例
+[%collapsible]
+====
+[listing, subs="+quotes"]
+----
+cluster1::*> *network interface show -vserver Cluster -fields auto-revert*
+
+          Logical
+Vserver   Interface     Auto-revert
+--------- ------------- ------------
+Cluster
+          node1_clus1   true
+          node1_clus2   true
+          node2_clus1   true
+          node2_clus2   true
+
+4 entries were displayed.
+----
+====
+
+
+.下一步是什么？
+在您准备好安装 NX-OS 软件和 RCF 之后，您就可以link:install-nxos-software.html["安装 NX-OS 软件"]了。

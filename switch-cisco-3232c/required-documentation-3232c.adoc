@@ -1,0 +1,139 @@
+---
+permalink: switch-cisco-3232c/required-documentation-3232c.html 
+sidebar: sidebar 
+keywords: cisco 3232c, cluster switches 
+summary: 对于 Cisco Nexus 3232C 交换机的安装和维护，请务必查看所有建议的文档。 
+---
+= Cisco Nexus 3232C 交换机的文档要求
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+对于 Cisco Nexus 3232C 交换机安装，请务必查看所有建议的文档。
+
+
+
+[[switch-documentation]]
+== 切换文档
+
+要设置 Cisco Nexus 3232C 交换机，需要来自 link:https://www.cisco.com/c/en/us/support/switches/nexus-3000-series-switches/series.html["Cisco Nexus 3000系列交换机支持"^] 的以下文档。
+
+[cols="1,2"]
+|===
+| 文档标题 | 描述 
+
+
+ a| 
+_Nexus 3000 系列硬件安装指南_
+ a| 
+提供有关站点要求、交换机硬件详情和安装选项的详细信息。
+
+
+
+ a| 
+_Cisco Nexus 3000 Series Switch Software Configuration Guides_（选择安装在交换机上的 NX-OS 版本指南）
+ a| 
+提供在配置交换机以进行ONTAP操作之前所需的初始交换机配置信息。
+
+
+
+ a| 
+_Cisco Nexus 3000 Series NX-OS Software Upgrade and Downgrade Guide_（选择安装在交换机上的 NX-OS 版本指南）
+ a| 
+提供有关如何将交换机降级到ONTAP支持的交换机软件（如有必要）的信息。
+
+
+
+ a| 
+_Cisco Nexus 3000 系列 NX-OS 命令参考主索引_
+ a| 
+提供指向Cisco提供的各种命令参考的链接。
+
+
+
+ a| 
+《Cisco Nexus 3000 MIBs 参考》
+ a| 
+描述 Nexus 3000 交换机的 Management Information Base (MIB) 文件。
+
+
+
+ a| 
+_Nexus 3000 系列 NX-OS 系统消息参考_
+ a| 
+描述 Cisco Nexus 3000 系列交换机的系统消息、信息消息以及可能有助于诊断链路、内部硬件或系统软件问题的其他消息。
+
+
+
+ a| 
+_Cisco Nexus 3000 系列 NX-OS 发行说明（选择交换机上安装的 NX-OS 版本的说明）_
+ a| 
+描述 Cisco Nexus 3000 系列的功能、缺陷和限制。
+
+
+
+ a| 
+Cisco Nexus 6000、Cisco Nexus 5000 系列、Cisco Nexus 3000 系列和 Cisco Nexus 2000 系列的法规、合规性和安全信息
+ a| 
+提供 Nexus 3000 系列交换机的国际机构合规性、安全性和法定信息。
+
+|===
+
+
+[[ontap-systems-documentation]]
+== ONTAP 系统文档
+
+要设置 ONTAP 系统，您需要操作系统版本的以下文档。
+
+[cols="1,2"]
+|===
+| 名称 | 描述 
+
+
+ a| 
+控制器专用_安装和设置说明_
+ a| 
+介绍如何安装NetApp硬件。
+
+
+
+ a| 
+link:https://docs.netapp.com/ontap-9/index.jsp["ONTAP 9"^]
+ a| 
+提供有关ONTAP版本各个方面的详细信息。
+
+
+
+ a| 
+link:https://hwu.netapp.com["Hardware Universe"^]
+ a| 
+提供NetApp硬件配置和兼容性信息。
+
+|===
+
+
+[[rail-kit-and-cabinet-documentation]]
+== 轨道套件和机柜文档
+
+要在 NetApp 机柜中安装 3232C Cisco 交换机，请参见以下硬件文档。
+
+[cols="1,2"]
+|===
+| 名称 | 描述 
+
+
+ a| 
+link:https://library.netapp.com/ecm/ecm_download_file/ECMM1280394["42U 系统机柜，深导轨"^]
+ a| 
+描述与 42U 系统机柜相关的 FRU，并提供维护和 FRU 更换说明。
+
+
+
+ a| 
+link:install-cisco-nexus-3232c.html["在 NetApp 机柜中安装 Cisco Nexus 3232C 交换机"^]
+ a| 
+介绍如何在四柱式 NetApp 机柜中安装 Cisco Nexus 3232C 交换机。
+
+|===

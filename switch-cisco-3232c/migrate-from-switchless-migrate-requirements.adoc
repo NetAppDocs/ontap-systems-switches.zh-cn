@@ -1,0 +1,71 @@
+---
+permalink: switch-cisco-3232c/migrate-from-switchless-migrate-requirements.html 
+sidebar: sidebar 
+keywords: install, cisco nexus 3232c switch, 
+summary: 在配置 Cisco Nexus 3232c 交换机之前，请查看流程和术语的概述。 
+---
+= 迁移要求
+:allow-uri-read: 
+:imagesdir: ../media/
+
+
+[role="lead"]
+如果您有双节点无交换机集群，则可以迁移到包含 Cisco Nexus 3232C 集群网络交换机的双节点交换集群。此操作不会造成中断。
+
+.开始之前
+请核实以下安装和连接：
+
+* 端口可用于节点连接。集群交换机使用交换机间链路 (ISL) 端口 e1/31-32。
+* 您有适当的集群连接电缆：
++
+** 具有 10 GbE 集群连接的节点需要带有分支光纤电缆的 QSFP 光模块或 QSFP 至 SFP+ 铜分支电缆。
+** 具有 40/100 GbE 集群连接的节点需要支持带有光纤电缆的 QSFP/QSFP28 光模块或 QSFP/QSFP28 铜缆直连电缆。
+** 集群交换机需要相应的ISL布线：
++
+*** 2 根 QSFP28 光纤或铜质直连电缆。
+
+
+
+
+* 配置已正确设置并正常运行。
++
+两个节点必须在双节点无交换机集群设置中连接并运行。
+
+* 集群所有端口均处于*开启*状态。
+* 支持 Cisco Nexus 3232C 集群交换机。
+* 现有集群网络配置如下：
++
+** 两台交换机上的冗余且功能齐全的 Nexus 3232C 集群基础架构
+** 交换机上的最新 RCF 和 NX-OS 版本
+** 两台交换机上的管理连接
+** 控制台（Console）访问两台交换机
+** 所有处于 *up* 状态且未经迁移的集群逻辑接口 (LIF)
+** 交换机的初始定制
+** 所有 ISL 端口均已启用并完成布线
+
+
+
+
+.关于所使用的示例
+本流程中的示例使用以下开关和节点命名规则：
+
+* Nexus 3232C 集群交换机、*C1* 和 *C2*。
+* 节点为 *n1* 和 *n2*。
+
+
+此过程中的示例使用两个节点，每个节点使用两个 40 GbE 集群互连端口 *e4a* 和 *e4e*。link:https://hwu.netapp.com/["Hardware Universe"^]包含有关平台上集群端口的详细信息。
+
+* *n1_clus1* 是节点 *n1* 连接到集群交换机 *C1* 的第一个集群逻辑接口 (LIF)。
+* *n1_clus2* 是连接到节点 *n1* 的集群交换机 *C2* 的第一个集群 LIF。
+* *n2_clus1* 是连接到节点 *n2* 的集群交换机 *C1* 的第一个集群 LIF。
+* *n2_clus2* 是连接到节点 *n2* 的集群交换机 *C2* 的第二个集群 LIF。
+* 10 GbE 和 40/100 GbE 端口的数量在 https://mysupport.netapp.com/NOW/download/software/sanswitch/fcp/Cisco/netapp_cnmn/download.shtml["Cisco® 集群网络交换机参考配置文件下载"^]页面上提供的参考配置文件 (RCF) 中定义。
+
+
+[NOTE]
+====
+此过程需要同时使用 ONTAP 命令和 Cisco Nexus 3000 系列交换机命令；除非另有说明，否则使用 ONTAP 命令。
+
+====
+.下一步是什么？
+查看迁移要求后，您可以link:migrate-from-switchless-prepare-to-migrate.html["准备迁移您的交换机"]。

@@ -1,0 +1,129 @@
+---
+permalink: switch-cisco-3132q-v/install-upgrade-rcf-overview-3132q-v.html 
+sidebar: sidebar 
+keywords: ssh, requirement, cluster, switch, health, monitor, cshm, log, collection, feature, cisco 3132q-v 
+summary: 使用群集交换机运行状况监视器和日志收集功能时，SSH 是必需的。要在 Cisco 3132q-v 群集交换机上启用 SSH，请先生成 SSH 密钥，然后启用 SSH。 
+---
+= 安装或升级参考配置文件 (RCF) 概述
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+在首次设置 Nexus 3132Q-V 交换机后安装参考配置文件 (RCF)。当交换机上已安装现有版本的 RCF 文件时，即可升级 RCF 版本。
+
+有关安装或升级 RCF 的详细信息，请参见知识库文章 link:https://kb.netapp.com/on-prem/Switches/Cisco-KBs/How_to_clear_configuration_on_a_Cisco_interconnect_switch_while_retaining_remote_connectivity["如何在保持远程连接的情况下清除Cisco互连交换机上的配置"^]。
+
+.可用的 RCF 配置
+下表描述了可用于不同配置的 RCF。选择适用于您的配置的 RCF。
+
+有关具体端口和 VLAN 使用详情，请参阅 RCF 中的横幅和重要说明部分。
+
+[cols="1,2"]
+|===
+| RCF 名称 | 描述 
+
+
+ a| 
+2-集群-HA-突破
+ a| 
+支持至少八个节点的两个ONTAP集群，包括使用共享 Cluster+HA 端口的节点。
+
+
+
+ a| 
+4-集群-HA-突破
+ a| 
+支持至少四个节点的四个ONTAP集群，包括使用共享 Cluster+HA 端口的节点。
+
+
+
+ a| 
+1-集群-HA
+ a| 
+所有端口均配置为 40/100GbE。支持端口上的共享集群/高可用性流量。 AFF A320、 AFF A250和FAS500f系统需要此组件。此外，所有端口均可用作专用集群端口。
+
+
+
+ a| 
+1-集群-HA-突破
+ a| 
+端口配置为 4x10GbE 分支、4x25GbE 分支（100GbE 交换机上的 RCF 1.6+）和 40/100GbE。支持使用共享集群/HA端口的节点在端口上共享集群/HA流量： AFF A320、 AFF A250和FAS500f系统。此外，所有端口均可用作专用集群端口。
+
+
+
+ a| 
+集群高可用性存储
+ a| 
+端口配置为：集群+HA 40/100GbE，集群 4x10GbE 分支，集群+HA 4x25GbE 分支，以及每个存储 HA 对 100GbE。
+
+
+
+ a| 
+集群
+ a| 
+两种 RCF 版本，分别分配了不同的 4x10GbE 端口（分支）和 40/100GbE 端口。除了AFF A320、 AFF A250和FAS500f系统之外，所有FAS/ AFF节点均受支持。
+
+
+
+ a| 
+存储
+ a| 
+所有端口均配置为 100GbE NVMe 存储连接。
+
+|===
+.可用的RCF
+下表列出了 3132Q-V 交换机可用的 RCF。为您的配置选择适用的 RCF 版本。有关详细信息，请参见 link:https://mysupport.netapp.com/site/info/cisco-ethernet-switch["Cisco以太网交换机"^]。
+
+[cols="1"]
+|===
+| RCF 名称 
+
+
+ a| 
+Cluster-HA-Breakout RCF v1._xx_
+
+
+
+ a| 
+Cluster-HA RCF v1._xx_
+
+
+
+ a| 
+集群 RCF 1._xx_
+
+|===
+.建议的文档
+* link:https://mysupport.netapp.com/site/info/cisco-ethernet-switch["Cisco以太网交换机（NSS）"^]
++
+请参阅NetApp支持网站上的交换机兼容性表格，了解支持的ONTAP和 RCF 版本。请注意，RCF 中的命令语法与特定版本的 NX-OS 中的语法之间可能存在命令依赖关系。
+
+* link:https://www.cisco.com/c/en/us/support/switches/nexus-3000-series-switches/products-installation-guides-list.html["Cisco Nexus 3000系列交换机"^]
++
+有关Cisco交换机升级和降级程序的完整文档，请参阅Cisco网站上提供的相应软件和升级指南。
+
+
+
+.关于示例
+本流程中的示例使用以下开关和节点命名规则：
+
+* 这两个Cisco交换机的名称分别是 *cs1* 和 *cs2*。
+* 节点名称分别为 *cluster1-01*、*cluster1-02*、*cluster1-03* 和 *cluster1-04*。
+* 集群 LIF 名称为 *cluster1-01_clus1*、*cluster1-01_clus2*、*cluster1-02_clus1*、*cluster1-02_clus2*、*cluster1-03_clus1*、*cluster1-03_clus2*、*cluster1-04_clus1* 和 *cluster1-04_clus2*。
+* 这 `cluster1::*>`prompt 指示集群名称。
+
+
+此过程中的示例使用四个节点。这些节点使用两个 10GbE 集群互连端口 *e0a* 和 *e0b*。请参阅 link:https://hwu.netapp.com/SWITCH/INDEX["Hardware Universe"^] 以验证平台上正确的集群端口。
+
+
+NOTE: 命令输出可能因ONTAP版本不同而有所差异。
+
+有关可用 RCF 配置的详细信息，请参阅 link:configure-software-overview-3132q-v-cluster.html["软件安装工作流程"]。
+
+.使用的命令
+此过程需要同时使用 ONTAP 命令和 Cisco Nexus 3000 系列交换机命令；除非另有说明，否则使用 ONTAP 命令。
+
+.下一步是什么？
+在查看安装 RCF 或升级 RCF 过程后，您可根据需要link:install-rcf-software-3132q-v.html["安装 RCF"]或link:upgrade-rcf-3132q-v.html["升级您的 RCF"]。

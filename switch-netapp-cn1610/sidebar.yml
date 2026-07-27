@@ -18,7 +18,7 @@ entries:
     url: "/switch-netapp-cn1610/install-fastpath-software.html"
   - title: 安装 RCF
     url: "/switch-netapp-cn1610/install-rcf-file.html"
-  - title: 为ONTAP 8.3.1 及更高版本安装 FASTPATH 和 RCF
+  - title: 安装适用于 ONTAP 8.3.1 及更高版本的 FASTPATH 和 RCF
     url: "/switch-netapp-cn1610/install-fastpath-rcf-831.html"
   - title: 配置交换机
     url: "/switch-netapp-cn1610/configure-hardware-cn1610.html"
@@ -30,7 +30,7 @@ entries:
 - title: 更换开关
   pdf-filename: Replace_switches_cn1610
   entries:
-  - title: 更换NetApp CN1610 集群交换机
+  - title: 更换 NetApp CN1610 集群交换机
     url: "/switch-netapp-cn1610/replace-cn1610-switch.html"
   - title: 用无开关连接取代集群开关
     url: "/switch-netapp-cn1610/migrate-to-switchless-cluster-interconnect.html"

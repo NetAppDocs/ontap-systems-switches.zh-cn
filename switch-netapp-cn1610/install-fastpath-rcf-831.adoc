@@ -1,0 +1,644 @@
+---
+permalink: switch-netapp-cn1610/install-fastpath-rcf-831.html 
+sidebar: sidebar 
+keywords: fastpath, software, install, netapp cluster switches, rcfs, ontap 
+summary: 运行 ONTAP 8.3.1 或更高版本的 NetApp CN1601 管理交换机和 CN1610 集群交换机的安装步骤相同。但是，这两种型号需要不同的软件和 RCF。 
+---
+= 安装适用于 ONTAP 8.3.1 及更高版本的 FASTPATH 软件和 RCF
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+按照此步骤安装适用于 ONTAP 8.3.1 及更高版本的 FASTPATH 软件和 RCF。
+
+运行 ONTAP 8.3.1 或更高版本的 NetApp CN1601 管理交换机和 CN1610 集群交换机的安装步骤相同。但是，这两种型号需要不同的软件和 RCF。
+
+
+
+[[review-requirements]]
+== 审查要求
+
+.开始之前
+请确保您拥有以下物品：
+
+* 交换机配置的当前备份。
+* 完全正常运行的集群（日志中没有错误，也没有故障的集群网络接口卡 (NIC) 或类似问题）。
+* 集群交换机上功能齐全的端口连接。
+* 已设置所有集群端口。
+* 所有集群逻辑接口(LIF)设置（必须尚未迁移）。
+* 成功的通信路径：ONTAP (privilege: advanced) `cluster ping-cluster -node node1` 命令必须指示 `larger than PMTU communication`在所有路径上均成功。
+* 支持的 FASTPATH、RCF 和 ONTAP 版本。
++
+请务必查阅 http://mysupport.netapp.com/NOW/download/software/cm_switches_ntap/["NetApp CN1601 和 CN1610 开关"^]页面上的交换机兼容性表，以了解受支持的 FASTPATH、RCF 和 ONTAP 版本。
+
+
+
+
+
+[[install-the-fastpath-software]]
+== 安装 FASTPATH 软件
+
+以下过程使用集群模式 Data ONTAP 8.2 语法。因此，集群 Vserver、LIF 名称和 CLI 输出与 Data ONTAP 8.3 中的不同。
+
+RCF 和 FASTPATH 版本中的命令语法之间可能存在命令依赖关系。
+
+
+NOTE: 在 RCF 1.2 版中，由于安全问题，已明确禁用对 Telnet 的支持。要避免在安装 RCF 1.2 时出现连接问题，请验证已启用 Secure Shell (SSH)。有关 SSH 的更多信息，请参阅 https://library.netapp.com/ecm/ecm_get_file/ECMP1117874["NetApp CN1610 交换机管理员指南"^]。
+
+.关于示例
+本流程中的示例使用以下开关和节点命名规则：
+
+* 两个 NetApp 交换机名称为 cs1 和 cs2。
+* 集群逻辑接口（LIF）名称为 node1 的 node1_clus1 和 node1_clus2，node2 的 node2_clus1 和 node2_clus2。（集群中最多可以有 24 个节点。）
+* Storage Virtual Machine (SVM) 名称为 Cluster。
+* 这 `cluster1::*>`prompt 指示集群名称。
+* 每个节点上的集群端口分别命名为 e0a 和 e0b。
++
+link:https://hwu.netapp.com/["Hardware Universe"^] 包含有关您平台上支持的实际集群端口的更多信息。
+
+* 支持的交换机间链路 (ISL) 是端口 0/13 到 0/16。
+* 支持的节点连接为端口 0/1 至 0/12。
+
+
+
+
+[[step-1-migrate-cluster]]
+=== 步骤 1：迁移集群
+
+. 显示有关集群上网络端口的信息：
++
+`network port show -_ipspace cluster_`
+
++
+.显示示例
+[%collapsible]
+====
+以下示例显示了命令的输出类型：
+
+[listing]
+----
+cluster1::> network port show -ipspace cluster
+                                                             Speed (Mbps)
+Node   Port      IPspace      Broadcast Domain Link   MTU    Admin/Oper
+------ --------- ------------ ---------------- ----- ------- ------------
+node1
+       e0a       Cluster      Cluster          up       9000  auto/10000
+       e0b       Cluster      Cluster          up       9000  auto/10000
+node2
+       e0a       Cluster      Cluster          up       9000  auto/10000
+       e0b       Cluster      Cluster          up       9000  auto/10000
+4 entries were displayed.
+----
+====
+. 显示集群上 LIF 的相关信息：
++
+`network interface show -_role cluster_`
+
++
+.显示示例
+[%collapsible]
+====
+以下示例显示了集群上的逻辑接口。在此示例中， `-role` 参数显示有关与集群端口关联的 LIF 的信息：
+
+[listing]
+----
+cluster1::> network interface show -role cluster
+  (network interface show)
+            Logical    Status     Network            Current       Current Is
+Vserver     Interface  Admin/Oper Address/Mask       Node          Port    Home
+----------- ---------- ---------- ------------------ ------------- ------- ----
+Cluster
+            node1_clus1  up/up    10.254.66.82/16    node1         e0a     true
+            node1_clus2  up/up    10.254.206.128/16  node1         e0b     true
+            node2_clus1  up/up    10.254.48.152/16   node2         e0a     true
+            node2_clus2  up/up    10.254.42.74/16    node2         e0b     true
+4 entries were displayed.
+----
+====
+. 在每个相应的节点上，使用节点管理 LIF，将 node1_clus2 迁移到 node1 上的 e0a，将 node2_clus2 迁移到 node2 上的 e0a：
++
+`network interface migrate`
+
++
+必须在拥有相应集群 LIF 的控制器控制台上输入命令。
+
++
+.显示示例
+[%collapsible]
+====
+[listing]
+----
+cluster1::> network interface migrate -vserver Cluster -lif node1_clus2 -destination-node node1 -destination-port e0a
+cluster1::> network interface migrate -vserver Cluster -lif node2_clus2 -destination-node node2 -destination-port e0a
+----
+====
++
+
+NOTE: 对于此命令，集群的名称区分大小写，并且应在每个节点上运行该命令。无法在常规集群 LIF 中运行此命令。
+
+. 在节点上使用 `network interface show`命令验证迁移是否已完成。
++
+.显示示例
+[%collapsible]
+====
+以下示例显示 clus2 已迁移到节点 node1 和 node2 上的端口 e0a：
+
+[listing]
+----
+cluster1::> **network interface show -role cluster**
+            Logical    Status     Network            Current       Current Is
+Vserver     Interface  Admin/Oper Address/Mask       Node          Port    Home
+----------- ---------- ---------- ------------------ ------------- ------- ----
+Cluster
+            node1_clus1  up/up    10.254.66.82/16   node1          e0a     true
+            node1_clus2  up/up    10.254.206.128/16 node1          e0a     false
+            node2_clus1  up/up    10.254.48.152/16  node2          e0a     true
+            node2_clus2  up/up    10.254.42.74/16   node2          e0a     false
+4 entries were displayed.
+----
+====
+. 将权限级别更改为 advanced，在提示继续时输入 y：
++
+`set -privilege advanced`
+
++
+出现高级提示符（*>）。
+
+. 关闭两个节点上的集群端口 e0b：
++
+`network port modify -node _node_name_ -port _port_name_ -up-admin false`
+
++
+必须在拥有相应集群 LIF 的控制器控制台上输入命令。
+
++
+.显示示例
+[%collapsible]
+====
+以下示例显示了关闭所有节点上的端口 e0b 的命令：
+
+[listing]
+----
+cluster1::*> network port modify -node node1 -port e0b -up-admin false
+cluster1::*> network port modify -node node2 -port e0b -up-admin false
+----
+====
+. 验证两个节点上的端口 e0b 是否已关闭：
++
+`network port show`
+
++
+.显示示例
+[%collapsible]
+====
+[listing]
+----
+cluster1::*> network port show -role cluster
+
+                                                             Speed (Mbps)
+Node   Port      IPspace      Broadcast Domain Link   MTU    Admin/Oper
+------ --------- ------------ ---------------- ----- ------- ------------
+node1
+       e0a       Cluster      Cluster          up       9000  auto/10000
+       e0b       Cluster      Cluster          down     9000  auto/10000
+node2
+       e0a       Cluster      Cluster          up       9000  auto/10000
+       e0b       Cluster      Cluster          down     9000  auto/10000
+4 entries were displayed.
+----
+====
+. 关闭 cs1 上的交换机间链路 (ISL) 端口。
++
+.显示示例
+[%collapsible]
+====
+[listing]
+----
+(cs1) #configure
+(cs1) (Config)#interface 0/13-0/16
+(cs1) (Interface 0/13-0/16)#shutdown
+(cs1) (Interface 0/13-0/16)#exit
+(cs1) (Config)#exit
+----
+====
+. 备份 cs2 上的当前活动映像。
++
+.显示示例
+[%collapsible]
+====
+[listing]
+----
+(cs2) # show bootvar
+
+ Image Descriptions
+
+ active :
+ backup :
+
+
+ Images currently available on Flash
+
+--------------------------------------------------------------------
+ unit      active      backup     current-active        next-active
+--------------------------------------------------------------------
+
+    1     1.1.0.5     1.1.0.3            1.1.0.5            1.1.0.5
+
+(cs2) # copy active backup
+Copying active to backup
+Copy operation successful
+----
+====
+
+
+
+
+[[step-2-install-the-fastpath-software-and-rcf]]
+=== 步骤 2：安装 FASTPATH 软件和 RCF
+
+. 确认正在运行的 FASTPATH 软件版本。
++
+.显示示例
+[%collapsible]
+====
+[listing]
+----
+(cs2) # show version
+
+Switch: 1
+
+System Description............................. NetApp CN1610, 1.1.0.5, Linux
+                                                2.6.21.7
+Machine Type................................... NetApp CN1610
+Machine Model.................................. CN1610
+Serial Number.................................. 20211200106
+Burned In MAC Address.......................... 00:A0:98:21:83:69
+Software Version............................... 1.1.0.5
+Operating System............................... Linux 2.6.21.7
+Network Processing Device...................... BCM56820_B0
+Part Number.................................... 111-00893
+
+--More-- or (q)uit
+
+
+Additional Packages............................ FASTPATH QOS
+                                                FASTPATH IPv6 Management
+----
+====
+. 将镜像文件下载到交换机。
++
+将映像文件复制到活动映像意味着当您重新启动时，该映像将建立正在运行的 FASTPATH 版本。上一个映像仍可用作备份。
+
++
+.显示示例
+[%collapsible]
+====
+[listing]
+----
+(cs2) #copy sftp://root@10.22.201.50//tftpboot/NetApp_CN1610_1.2.0.7.stk active
+Remote Password:********
+
+Mode........................................... SFTP
+Set Server IP.................................. 10.22.201.50
+Path........................................... /tftpboot/
+Filename....................................... NetApp_CN1610_1.2.0.7.stk
+Data Type...................................... Code
+Destination Filename........................... active
+
+Management access will be blocked for the duration of the transfer
+Are you sure you want to start? (y/n) y
+SFTP Code transfer starting...
+
+
+File transfer operation completed successfully.
+----
+====
+. 确认当前和下一个活动的启动映像版本：
++
+`show bootvar`
+
++
+.显示示例
+[%collapsible]
+====
+[listing]
+----
+(cs2) #show bootvar
+
+Image Descriptions
+
+ active :
+ backup :
+
+
+ Images currently available on Flash
+
+--------------------------------------------------------------------
+ unit      active      backup     current-active        next-active
+--------------------------------------------------------------------
+
+    1     1.1.0.8     1.1.0.8            1.1.0.8            1.2.0.7
+----
+====
+. 将新映像版本的兼容 RCF 安装到该交换机。
++
+如果 RCF 版本已经正确，请启动 ISL 端口。
+
++
+.显示示例
+[%collapsible]
+====
+[listing]
+----
+(cs2) #copy tftp://10.22.201.50//CN1610_CS_RCF_v1.2.txt nvram:script CN1610_CS_RCF_v1.2.scr
+
+Mode........................................... TFTP
+Set Server IP.................................. 10.22.201.50
+Path........................................... /
+Filename....................................... CN1610_CS_RCF_v1.2.txt
+Data Type...................................... Config Script
+Destination Filename........................... CN1610_CS_RCF_v1.2.scr
+
+File with same name already exists.
+WARNING:Continuing with this command will overwrite the existing file.
+
+
+Management access will be blocked for the duration of the transfer
+Are you sure you want to start? (y/n) y
+
+
+Validating configuration script...
+[the script is now displayed line by line]
+
+Configuration script validated.
+File transfer operation completed successfully.
+----
+====
++
+
+NOTE: 在调用脚本之前， `.scr`扩展名必须设置为文件名的一部分。此扩展名适用于 FASTPATH 操作系统。
+
++
+当脚本下载到交换机时，该交换机会自动验证该脚本。输出到控制台。
+
+. 验证脚本是否已下载并保存到指定的文件名。
++
+.显示示例
+[%collapsible]
+====
+[listing]
+----
+(cs2) #script list
+
+Configuration Script Name        Size(Bytes)
+-------------------------------- -----------
+CN1610_CS_RCF_v1.2.scr                  2191
+
+1 configuration script(s) found.
+2541 Kbytes free.
+----
+====
+. 将该脚本应用到该交换机。
++
+.显示示例
+[%collapsible]
+====
+[listing]
+----
+(cs2) #script apply CN1610_CS_RCF_v1.2.scr
+
+Are you sure you want to apply the configuration script? (y/n) y
+[the script is now displayed line by line]...
+
+Configuration script 'CN1610_CS_RCF_v1.2.scr' applied.
+----
+====
+. 验证更改是否已应用于交换机，然后保存这些更改：
++
+`show running-config`
+
++
+.显示示例
+[%collapsible]
+====
+[listing]
+----
+(cs2) #show running-config
+----
+====
+. 保存运行配置,使其在重新启动交换机时成为启动配置。
++
+.显示示例
+[%collapsible]
+====
+[listing]
+----
+(cs2) #write memory
+This operation may take a few minutes.
+Management interfaces will not be available during this time.
+
+Are you sure you want to save? (y/n) y
+
+Config file 'startup-config' created successfully.
+
+Configuration Saved!
+----
+====
+. 重新启动交换机。
++
+.显示示例
+[%collapsible]
+====
+[listing]
+----
+(cs2) #reload
+
+The system has unsaved changes.
+Would you like to save them now? (y/n) y
+
+Config file 'startup-config' created successfully.
+Configuration Saved!
+System will now restart!
+----
+====
+
+
+
+
+[[step-3-validate-installation]]
+=== 步骤 3：验证安装
+
+. 重新登录，然后验证交换机是否正在运行新版本的 FASTPATH 软件。
++
+.显示示例
+[%collapsible]
+====
+[listing]
+----
+(cs2) #show version
+
+Switch: 1
+
+System Description............................. NetApp CN1610, 1.2.0.7,Linux
+                                                3.8.13-4ce360e8
+Machine Type................................... NetApp CN1610
+Machine Model.................................. CN1610
+Serial Number.................................. 20211200106
+Burned In MAC Address.......................... 00:A0:98:21:83:69
+Software Version............................... 1.2.0.7
+Operating System............................... Linux 3.8.13-4ce360e8
+Network Processing Device...................... BCM56820_B0
+Part Number.................................... 111-00893
+CPLD version................................... 0x5
+
+
+Additional Packages............................ FASTPATH QOS
+                                                FASTPATH IPv6 Management
+----
+====
++
+重新启动完成后，必须登录以验证映像版本，查看运行配置，并在接口 3/64 上查找说明，该接口是 RCF 的版本标签。
+
+. 打开活动交换机 cs1 上的 ISL 端口。
++
+.显示示例
+[%collapsible]
+====
+[listing]
+----
+(cs1) #configure
+(cs1) (Config) #interface 0/13-0/16
+(cs1) (Interface 0/13-0/16) #no shutdown
+(cs1) (Interface 0/13-0/16) #exit
+(cs1) (Config) #exit
+----
+====
+. 验证ISL是否正常运行：
++
+`show port-channel 3/1`
+
++
+Link State 字段应显示 `Up`。
+
++
+.显示示例
+[%collapsible]
+====
+[listing]
+----
+(cs1) #show port-channel 3/1
+
+Local Interface................................ 3/1
+Channel Name................................... ISL-LAG
+Link State..................................... Up
+Admin Mode..................................... Enabled
+Type........................................... Static
+Load Balance Option............................ 7
+(Enhanced hashing mode)
+
+Mbr    Device/       Port      Port
+Ports  Timeout       Speed     Active
+------ ------------- --------- -------
+0/13   actor/long    10G Full  True
+       partner/long
+0/14   actor/long    10G Full  True
+       partner/long
+0/15   actor/long    10G Full  False
+       partner/long
+0/16   actor/long    10G Full  True
+       partner/long
+----
+====
+. 在所有节点上启动集群端口 e0b：
++
+`network port modify`
+
++
+必须在拥有相应集群 LIF 的控制器控制台上输入命令。
+
++
+.显示示例
+[%collapsible]
+====
+以下示例显示端口 e0b 在 node1 和 node2 上启动：
+
+[listing]
+----
+cluster1::*> network port modify -node node1 -port e0b -up-admin true
+cluster1::*> network port modify -node node2 -port e0b -up-admin true
+----
+====
+. 验证所有节点上的端口 e0b 是否已启动：
++
+`network port show -ipspace cluster`
+
++
+.显示示例
+[%collapsible]
+====
+[listing]
+----
+cluster1::*> network port show -ipspace cluster
+
+                                                             Speed (Mbps)
+Node   Port      IPspace      Broadcast Domain Link   MTU    Admin/Oper
+------ --------- ------------ ---------------- ----- ------- ------------
+node1
+       e0a       Cluster      Cluster          up       9000  auto/10000
+       e0b       Cluster      Cluster          up       9000  auto/10000
+node2
+       e0a       Cluster      Cluster          up       9000  auto/10000
+       e0b       Cluster      Cluster          up       9000  auto/10000
+4 entries were displayed.
+----
+====
+. 验证 LIF 现在是否在两个节点上均处于主位置（(`true`）：
++
+`network interface show -_role cluster_`
+
++
+.显示示例
+[%collapsible]
+====
+[listing]
+----
+cluster1::*> network interface show -role cluster
+
+            Logical    Status     Network            Current       Current Is
+Vserver     Interface  Admin/Oper Address/Mask       Node          Port    Home
+----------- ---------- ---------- ------------------ ------------- ------- ----
+Cluster
+            node1_clus1  up/up    169.254.66.82/16   node1         e0a     true
+            node1_clus2  up/up    169.254.206.128/16 node1         e0b     true
+            node2_clus1  up/up    169.254.48.152/16  node2         e0a     true
+            node2_clus2  up/up    169.254.42.74/16   node2         e0b     true
+4 entries were displayed.
+----
+====
+. 显示节点成员的状态：
++
+`cluster show`
+
++
+.显示示例
+[%collapsible]
+====
+[listing]
+----
+cluster1::*> cluster show
+
+Node                 Health  Eligibility   Epsilon
+-------------------- ------- ------------  ------------
+node1                true    true          false
+node2                true    true          false
+2 entries were displayed.
+----
+====
+. 返回到管理员权限级别：
++
+`set -privilege admin`
+
+. 重复前面的步骤，在另一台交换机 cs1 上安装 FASTPATH 软件和 RCF。
+

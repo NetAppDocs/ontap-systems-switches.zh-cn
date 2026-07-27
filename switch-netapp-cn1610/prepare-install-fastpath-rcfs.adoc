@@ -1,0 +1,51 @@
+---
+permalink: switch-netapp-cn1610/prepare-install-fastpath-rcfs.html 
+sidebar: sidebar 
+keywords: install, fastpath, software, rcfs, netapp cluster switch 
+summary: 您必须在 NetApp CN1610 集群交换机上安装 FASTPATH 软件和参考配置文件 RCF。 
+---
+= 准备在 NetApp 集群交换机上安装 FASTPATH 软件和 RCF
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+您必须在 NetApp CN1610 集群交换机上安装 FASTPATH 软件和参考配置文件 (RCF)。
+
+.开始之前
+* 集群必须是完全正常运行的集群。
+* 集群网络接口卡（NIC）不能有缺陷，集群交换机上的所有连接端口都必须正常运行。
+* 所有集群端口都必须处于启动状态。
+* 所有集群逻辑接口 (LIF) 必须处于启动状态，并且必须尚未迁移。
+* ONTAP (privilege: advanced) `cluster ping-cluster -node node1` 命令必须指示 `larger than PMTU communication`在所有路径上均成功。
+* 对于支持的 FASTPATH、RCF 和 ONTAP 版本，您必须查阅 http://mysupport.netapp.com/NOW/download/software/cm_switches_ntap/["NetApp CN1601 和 CN1610 开关"^]页面上的交换机兼容性表。
++
+RCF 和 FASTPATH 版本中的命令语法之间可能存在命令依赖关系。
+
+
+
+
+NOTE: 在 RCF 1.2 版中，由于安全问题，已明确禁用对 Telnet 的支持。要避免在安装 RCF 1.2 时出现连接问题，必须验证是否已启用安全 Shell (SSH)。The https://library.netapp.com/ecm/ecm_get_file/ECMP1117874["NetApp® CN1610 交换机管理员指南"^]包含有关 SSH 的更多信息。
+
+.关于此任务
+本流程中的示例使用以下开关和节点命名规则：
+
+* 本文档中的过程使用集群模式 Data ONTAP 8.2 语法。因此，集群 Vserver、LIF 名称和 CLI 输出将与 Data ONTAP 8.3 中的输出不同。
+* 这两个 NetApp 交换机是 cs1 和 cs2。
+* 两个集群 LIF 是 clus1 和 clus2。
+* Vserver 是 vs1 和 vs2。
+* The `cluster::*>` 提示符指示集群的名称。
+* 每个节点上的集群端口命名为 e1a 和 e2a。
++
+The https://hwu.netapp.com/["Hardware Universe"^] 具有有关平台上支持的实际集群端口的详细信息。
+
+* NetApp 集群交换机支持的交换机间链路 (ISL) 为端口 0/13 到 0/16。
+* NetApp 集群交换机支持的节点连接为端口 0/1 到 0/12。
+
+
+此操作步骤包含两个部分：
+
+* link:install-fastpath-software.html["安装 FASTPATH 软件"] 介绍如何安装 FASTPATH 软件。
+* link:install-rcf-file.html["在 CN1610 交换机上安装 RCF"] 描述了如何安装 RCF。
+

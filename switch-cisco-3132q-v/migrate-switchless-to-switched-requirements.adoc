@@ -1,0 +1,112 @@
+---
+permalink: switch-cisco-3132q-v/migrate-switchless-to-switched-requirements.html 
+sidebar: sidebar 
+keywords: install, cisco nexus 3132q-v switch, 
+summary: 在配置 Cisco Nexus 3132q-v 交换机之前，请查看流程概述和术语。 
+---
+= 迁移要求
+:allow-uri-read: 
+:imagesdir: ../media/
+
+
+[role="lead"]
+如果您有双节点无交换机集群，请查看此过程以了解迁移到双节点交换机集群的适用要求。
+
+[NOTE]
+====
+此过程需要同时使用 ONTAP 命令和 Cisco Nexus 3000 系列交换机命令；除非另有说明，否则使用 ONTAP 命令。
+
+====
+有关详细信息，请参见
+
+* link:https://mysupport.netapp.com/site/products/all/details/netapp-cluster-switches/docs-tab["NetApp CN1601 和 CN1610"^]
+* link:https://mysupport.netapp.com/site/info/cisco-ethernet-switch["Cisco 以太网交换机"^]
+* link:http://hwu.netapp.com["Hardware Universe"^]
+
+
+.端口和节点连接
+当您迁移到使用 Cisco Nexus 3132Q-V 集群交换机的双节点交换集群时，请务必了解端口和节点连接以及布线要求。
+
+* 集群交换机使用交换机间链路 (ISL) 端口 e1/31-32。
+* link:https://hwu.netapp.com/["Hardware Universe"^] 包含有关支持的 Nexus 3132Q-V 交换机布线的信息：
++
+** 具有 10 GbE 集群连接的节点需要带有分支光纤电缆的 QSFP 光模块或 QSFP 至 SFP+ 铜分支电缆。
+** 具有 40 GbE 集群连接的节点需要支持带光纤电缆的 QSFP/QSFP28 光模块或 QSFP/QSFP28 铜缆直连电缆。
+** 集群交换机使用适当的 ISL 电缆：2 根 QSFP28 光纤或铜线直连电缆。
+
+
+* 在 Nexus 3132Q-V 上，您可以将 QSFP 端口作为 40 Gb 以太网或 4x10 Gb 以太网模式运行。
++
+默认情况下，40 Gb 以太网模式下有 32 个端口。这些 40 Gb 以太网端口按 2 元组命名约定编号。例如，第二个 40 Gb 以太网端口编号为 1/2。将配置从 40 Gb 以太网更改为 10 Gb 以太网的过程称为 _breakout_，将配置从 10 Gb 以太网更改为 40 Gb 以太网的过程称为 _breakin_。当您将 40 Gb 以太网端口分解为 10 Gb 以太网端口时，将使用 3 元组命名约定对生成的端口进行编号。例如，第二个 40 Gb 以太网端口的分支端口编号为 1/2/1、1/2/2、1/2/3 和 1/2/4。
+
+* Nexus 3132Q-V 的左侧是一组四个 SFP+ 端口，这些端口复用到第一个 QSFP 端口。
++
+默认情况下，RCF 的结构使用第一个 QSFP 端口。
+
++
+您可以使用 `hardware profile front portmode sfp-plus`命令，使 Nexus 3132Q-V 的四个 SFP+ 端口而非一个 QSFP 端口处于活动状态。同样，您可以使用 `hardware profile front portmode qsfp`命令，将 Nexus 3132Q-V 重置为使用 QSFP 端口而非四个 SFP+ 端口。
+
+* 确保已将 Nexus 3132Q-V 上的某些端口配置为以 10 GbE 或 40 GbE 运行。
++
+您可以使用 `interface breakout module 1 port 1-6 map 10g-4x`命令将前六个端口分解为 4x10 GbE 模式。同样，您可以使用 `no interface breakout module 1 port 1-6 map 10g-4x`命令从分组配置中重组前六个 QSFP+ 端口。
+
+* 10 GbE 和 40 GbE 端口的数量在参考配置文件 (RCF) 中定义，可从 link:https://mysupport.netapp.com/site/products/all/details/cisco-cluster-storage-switch/downloads-tab["Cisco ® 集群网络交换机参考配置文件下载"^] 获取。
+
+
+.开始之前
+* 配置已正确设置且正在运行。
+* 运行 ONTAP 9.4 或更高版本的节点。
+* 处于  `up` 状态的所有集群端口。
+* 支持 Cisco Nexus 3132Q-V 集群交换机。
+* 现有集群网络配置具有：
++
+** Nexus 3132 集群基础架构在两台交换机上均具有冗余性且完全正常运行。
+** 交换机上的最新 RCF 和 NX-OS 版本。
++
+link:https://mysupport.netapp.com/site/info/cisco-ethernet-switch["Cisco以太网交换机"^] 包含有关此过程中支持的 ONTAP 和 NX-OS 版本的信息。
+
+** 两台交换机上的管理连接。
+** 对两台交换机的控制台（Console）访问权限。
+** 处于 `up`状态且未迁移的所有集群逻辑接口 (LIF)。
+** 交换机的初始自定义。
+** 所有 ISL 端口均已启用并完成布线。
+
+
+
+
+此外，您必须规划、迁移和阅读从节点到 Nexus 3132Q-V 集群交换机的 10 GbE 和 40 GbE 连接所需的文档。
+
+.关于所使用的示例
+本流程中的示例使用以下开关和节点命名规则：
+
+* Nexus 3132Q-V 集群交换机，C1 和 C2。
+* 节点为 n1 和 n2。
+
+
+[NOTE]
+====
+此过程中的示例使用两个节点，每个节点使用两个 40 GbE 集群互连端口 *e4a* 和 *e4e*。link:https://hwu.netapp.com/["Hardware Universe"^]包含有关平台上集群端口的详细信息。
+
+====
+本程序包括以下情形：
+
+* *n1_clus1* 是节点 *n1* 连接到集群交换机 C1 的第一个集群逻辑接口 (LIF)。
+* *n1_clus2* 是节点 *n1* 连接到集群交换机 C2 的第一个集群 LIF。
+* *n2_clus1* 是节点 *n2* 连接到集群交换机 C1 的第一个集群 LIF。
+* *n2_clus2* 是连接到节点 *n2* 的集群交换机 C2 的第二个集群 LIF。
+* 10 GbE 和 40 GbE 端口的数量在参考配置文件 (RCF) 中定义，可从 link:https://mysupport.netapp.com/site/products/all/details/cisco-cluster-storage-switch/downloads-tab["Cisco ® 集群网络交换机参考配置文件下载"^] 获取。
+
+
+[NOTE]
+====
+此过程需要同时使用 ONTAP 命令和 Cisco Nexus 3000 系列交换机命令；除非另有说明，否则使用 ONTAP 命令。
+
+====
+* 集群从连接的两个节点开始，在双节点无交换机集群设置中运行。
+* 第一个集群端口移至 C1。
+* 第二个集群端口移至 C2。
+* 已禁用双节点无交换机集群选项。
+
+
+.下一步是什么？
+查看迁移要求后，您可以link:migrate-switchless-prepare-to-migrate.html["准备迁移您的交换机"]。
