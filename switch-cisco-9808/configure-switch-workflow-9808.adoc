@@ -2,16 +2,16 @@
 permalink: switch-cisco-9808/configure-switch-workflow-9808.html 
 sidebar: sidebar 
 keywords: switches, initial installation, configure switch-cisco-9808 switch 
-summary: 您可以将 Cisco 9808 交换机配置为新的 AFX 2K 系统安装、监督模块更换或交换机重置为出厂默认设置的一部分。 
+summary: 按照此工作流程为 AFX 2K 系统安装、监控模块更换或出厂默认重置配置 Cisco Nexus 9808 交换机。 
 ---
-= 配置交换机工作流 - Cisco Nexus 9808
+= Cisco Nexus 9808 交换机的配置工作流程
 :allow-uri-read: 
 :icons: font
 :imagesdir: ../media/
 
 
 [role="lead"]
-您可以将 Cisco Nexus 9808 交换机配置为新的 AFX 2K 系统安装、主管模块更换或交换机重置为出厂默认设置的一部分。
+按照此工作流程配置 Cisco Nexus 9808 交换机以安装 AFX 2K 系统、更换主管模块或将交换机重置为出厂默认设置。
 
 在link:install-configure-switches-in-afx-workflow-9808.html["安装和设置新的 AFX 2K 系统"]、link:maintain-replace-frus-9808.html["更换 FRU"]或link:maintain-reset-switch-9808.html["将交换机重置为出厂默认设置"]时，系统可能会根据需要将您引导至此工作流程或此工作流程中的各个主题。
 

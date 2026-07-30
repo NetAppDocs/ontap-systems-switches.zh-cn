@@ -2,9 +2,9 @@
 sidebar: sidebar 
 permalink: switch-cisco-9336c-fx2-shared/prepare-nxos-rcf-9336c-shared.html 
 keywords:  
-summary:  
+summary: '在安装 NX-OS 软件和参考配置文件 (RCF) 之前，请准备好 Cisco Nexus 9336C-FX2 共享交换机。' 
 ---
-= 准备安装 NX-OS 软件和 RCF
+= 准备在 Cisco Nexus 9336C-FX2 共享交换机上安装 NX-OS 软件和 RCF
 :hardbreaks:
 :allow-uri-read: 
 :nofooter: 
@@ -14,7 +14,7 @@ summary:
 
 
 [role="lead"]
-在安装 NX-OS 软件和参考配置文件 (RCF) 之前，请按照以下步骤操作。
+在安装 NX-OS 软件和参考配置文件 (RCF) 之前，请准备好 Cisco Nexus 9336C-FX2 共享交换机。必须先安装 NX-OS 和 RCF，然后交换机才能在 ONTAP 环境中运行。
 
 .建议的文档
 * link:https://mysupport.netapp.com/site/info/cisco-ethernet-switch["Cisco以太网交换机页面"^]

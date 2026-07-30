@@ -2,16 +2,16 @@
 permalink: switch-cisco-9336c-fx2-storage/install-rcf-software-9336c-storage.html 
 sidebar: sidebar 
 keywords: install rcf, cisco switches, storage 
-summary: 首次设置 Nexus 9336C-FX2 存储交换机后，即可安装 RCF。您也可以使用此过程升级您的 RCF 版本。 
+summary: '初始设置后，在 Cisco Nexus 9336C-FX2 和 9336C-FX2-T 存储交换机上安装参考配置文件 (RCF)，以配置端口分配和网络设置。' 
 ---
-= 安装参考配置文件
+= 在 Cisco Nexus 9336C-FX2 和 9336C-FX2-T 存储交换机上安装 RCF
 :allow-uri-read: 
 :icons: font
 :imagesdir: ../media/
 
 
 [role="lead"]
-首次设置 Nexus 9336C-FX2 和 9336C-FX2-T 存储交换机后，安装参考配置文件 (RCF)。
+初始设置后，在 Cisco Nexus 9336C-FX2 和 9336C-FX2-T 存储交换机上安装参考配置文件 (RCF)。RCF 定义了存储网络操作所需的端口分配和网络设置。
 
 有关安装 RCF 的更多信息，请参见知识库文章link:https://kb.netapp.com/on-prem/Switches/Cisco-KBs/How_to_clear_configuration_on_a_Cisco_interconnect_switch_while_retaining_remote_connectivity["如何在保持远程连接的情况下清除Cisco互连交换机上的配置"^]。
 

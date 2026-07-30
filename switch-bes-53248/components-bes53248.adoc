@@ -2,16 +2,16 @@
 permalink: switch-bes-53248/components-bes53248.html 
 sidebar: sidebar 
 keywords: cluster-mode,supported versions,switches supported,cluster network,efos 
-summary: 对于 BES-53248 交换机的安装和维护，请务必查看组件和部件编号列表。 
+summary: 确定 Broadcom BES-53248 集群交换机的组件和部件号，以支持硬件安装和持续维护。 
 ---
-= BES-53248 集群开关的组件和零件编号
+= 了解 Broadcom BES-53248 集群交换机的组件和部件号
 :allow-uri-read: 
 :icons: font
 :imagesdir: ../media/
 
 
 [role="lead"]
-对于 BES-53248 交换机的安装和维护，请务必查看组件和部件编号列表。
+确定 Broadcom BES-53248 集群交换机的组件和部件号，以支持硬件安装和持续维护。
 
 下表列出了 BES-53248 集群交换机组件的零件号、描述以及最低 EFOS 和ONTAP版本，包括机架安装导轨套件的详细信息。
 

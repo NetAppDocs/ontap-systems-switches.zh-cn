@@ -2,16 +2,16 @@
 permalink: switch-cisco-9364d-gx2a/configure-install-nxos-9364d.html 
 sidebar: sidebar 
 keywords: procedure, install, nx-os, software, nexus, cluster, switch, install the nx-os software - cisco nexus 9364d-gx2a 
-summary: 您可以在 Cisco Nexus 9364D-GX2A 交换机上安装 NX-OS，作为新 AFX 1K 或 AFX 2K 系统安装、交换机更换或交换机重置为出厂默认设置的一部分。 
+summary: 在 Cisco Nexus 9364D-GX2A 交换机上安装 NX-OS，用于新的 AFX 1K 或 AFX 2K 系统安装、交换机更换或出厂默认重置。 
 ---
-= 安装 NX-OS - Cisco Nexus 9364D-GX2A
+= 在 Cisco Nexus 9364D-GX2A 交换机上安装 NX-OS
 :allow-uri-read: 
 :icons: font
 :imagesdir: ../media/
 
 
 [role="lead"]
-您可以在 Cisco Nexus 9364D-GX2A 交换机上安装 NX-OS，作为新 AFX 1K 或 AFX 2K 系统安装、交换机更换或交换机重置为出厂默认设置的一部分。
+在 Cisco Nexus 9364D-GX2A 交换机上安装 NX-OS，用于新的 AFX 1K 或 AFX 2K 系统安装、交换机更换或将交换机重置为出厂默认设置。
 
 .开始之前
 * 必须打开交换机电源，并且您必须已完成 link:configure-complete-initial-setup-9364d.html["完成初始交换机设置"] 程序。

@@ -2,14 +2,14 @@
 permalink: switch-cisco-9808/install-configure-switches-in-afx-workflow-9808.html 
 sidebar: sidebar 
 keywords: switches, initial installation, configure switch-cisco-9808 switch 
-summary: 要将 Cisco Nexus 9808 交换机安装和配置为新 AFX 2K 系统的一部分，请使用此交换机站点和 AFX 系统站点的文档组合。文档提供了可根据需要为您提供指导的链接。 
+summary: 按照此工作流程安装和配置 Cisco Nexus 9808 交换机，将其作为新的 AFX 2K 系统的一部分。 
 ---
-= 在 AFX 系统工作流程中安装和配置交换机 - Cisco Nexus 9808
+= 在 AFX 系统中安装和配置 Cisco Nexus 9808 交换机的工作流
 :allow-uri-read: 
 
 
 [role="lead"]
-要将 Cisco Nexus 9808 交换机安装和配置为新 AFX 2K 系统的一部分，请使用此交换机站点和 AFX 系统站点的文档组合。文档提供了可根据需要为您提供指导的链接。
+按照此工作流程安装和配置 Cisco Nexus 9808 交换机，将其作为新的 AFX 2K 系统的一部分。工作流链接到来自此交换机站点和 AFX 系统站点的文档。
 
 
 

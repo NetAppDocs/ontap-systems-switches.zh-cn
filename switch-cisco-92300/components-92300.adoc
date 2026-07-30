@@ -2,16 +2,16 @@
 permalink: switch-cisco-92300/components-92300.html 
 sidebar: sidebar 
 keywords: cisco nexus 92300YC 
-summary: 如果要构建包含两个以上节点的ONTAP集群，则需要两个受支持的集群网络交换机。您还可以使用额外的管理交换机，这些交换机是可选的。 
+summary: 识别 Cisco Nexus 92300YC 集群交换机的组件和部件号，以支持硬件安装和持续维护。 
 ---
-= Cisco Nexus 92300YC 交换机的组件和部件号
+= 查看 Cisco Nexus 92300YC 集群交换机的组件和部件号
 :allow-uri-read: 
 :icons: font
 :imagesdir: ../media/
 
 
 [role="lead"]
-对于 Cisco Nexus 92300YC 交换机的安装和维护，请务必查看所有交换机组件和部件号。有关详细信息，请参见 link:https://hwu.netapp.com/SWITCH/INDEX["Hardware Universe"^]。有关交换机安装要求的详细信息，请参见 link:https://kb.netapp.com/Support/General_Support/What_additional_information_do_I_need_to_install_my_equipment_that_is_not_in_HWU["安装HWU中没有的设备还需要哪些额外信息？"^]。
+确定 Cisco Nexus 92300YC 集群交换机的组件和部件号，以支持硬件安装和持续维护。有关详细信息，请参见link:https://hwu.netapp.com/SWITCH/INDEX["Hardware Universe"^]。有关交换机安装要求的详细信息，请参见link:https://kb.netapp.com/Support/General_Support/What_additional_information_do_I_need_to_install_my_equipment_that_is_not_in_HWU["安装HWU中没有的设备还需要哪些额外信息？"^]。
 
 下表列出了 92300YC 交换机、风扇和电源的部件号和说明：
 

@@ -2,16 +2,16 @@
 permalink: switch-cisco-9336c-fx2/install-rcf-software-9336c-cluster.html 
 sidebar: sidebar 
 keywords: install rcf, cisco switches 
-summary: 首次设置好 Nexus 9336C-FX2 交换机后，即可安装 RCF。您也可以使用此方法升级 RCF 版本。 
+summary: '初始设置后，在 Cisco Nexus 9336C-FX2 和 9336C-FX2-T 集群交换机上安装参考配置文件 (RCF)，以配置端口分配、VLAN 和网络设置。' 
 ---
-= 安装参考配置文件（RCF）
+= 在 Cisco Nexus 9336C-FX2 和 9336C-FX2-T 集群交换机上安装 RCF
 :allow-uri-read: 
 :icons: font
 :imagesdir: ../media/
 
 
 [role="lead"]
-首次设置 Nexus 9336C-FX2 和 9336C-FX2-T 交换机后，安装参考配置文件 (RCF)。
+初始设置后，在 Cisco Nexus 9336C-FX2 和 9336C-FX2-T 集群交换机上安装参考配置文件 (RCF)。RCF 定义了集群操作所需的端口分配、VLAN 和网络设置。
 
 .开始之前
 请核实以下安装和连接：

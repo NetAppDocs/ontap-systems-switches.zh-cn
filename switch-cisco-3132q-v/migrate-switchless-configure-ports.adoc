@@ -2,16 +2,16 @@
 permalink: switch-cisco-3132q-v/migrate-switchless-configure-ports.html 
 sidebar: sidebar 
 keywords: cisco 3132q-v, cluster switches 
-summary: 您可以将 Cisco Nexus 3132q-v 交换机用作 AFF 或 FAS 集群中的集群交换机。 
+summary: 配置从双节点无交换机集群迁移到 Cisco Nexus 3132Q-V 集群交换机的端口。 
 ---
-= 配置您的端口，以便从无交换机集群迁移到交换机集群
+= 配置从无交换机集群迁移到 Cisco Nexus 3132Q-V 集群交换机的端口
 :allow-uri-read: 
 :icons: font
 :imagesdir: ../media/
 
 
 [role="lead"]
-按照以下步骤配置端口，以便从双节点无交换机集群迁移到双节点有交换机集群。
+使用 Cisco Nexus 3132Q-V 集群交换机配置从双节点无交换机集群迁移到双节点有交换机集群的端口。
 
 .步骤
 . 在 Nexus 3132Q-V 交换机 C1 和 C2 上，禁用所有面向节点的端口 C1 和 C2，但不要禁用 ISL 端口。

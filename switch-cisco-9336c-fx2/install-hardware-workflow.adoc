@@ -2,16 +2,16 @@
 permalink: switch-cisco-9336c-fx2/install-hardware-workflow.html 
 sidebar: sidebar 
 keywords: witches, initial installation, configure switch-cisco-9336c-fx2 switch 
-summary: 在配置Cisco Nexus 9336C-FX2 集群交换机之前，请查看配置概述。 
+summary: 按照此工作流程安装 Cisco Nexus 9336C-FX2 和 9336C-FX2-T 集群交换机的硬件。 
 ---
-= Cisco Nexus 9336C-FX2 和 9336C-FX2-T 交换机的硬件安装工作流程
+= Cisco Nexus 9336C-FX2 和 9336C-FX2-T 集群交换机的硬件安装工作流程
 :allow-uri-read: 
 :icons: font
 :imagesdir: ../media/
 
 
 [role="lead"]
-要安装和配置 9336C-FX2 和 9336C-FX2-T 集群交换机的硬件，请按照以下步骤操作：
+按照此工作流程为 Cisco Nexus 9336C-FX2 和 9336C-FX2-T 集群交换机安装和配置硬件。
 
 .image:https://raw.githubusercontent.com/NetAppDocs/common/main/media/number-1.png["一个"]link:setup-worksheet-9336c-cluster.html["完成布线工作表"]
 [role="quick-margin-para"]

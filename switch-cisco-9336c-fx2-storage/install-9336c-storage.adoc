@@ -2,16 +2,16 @@
 permalink: switch-cisco-9336c-fx2-storage/install-9336c-storage.html 
 sidebar: sidebar 
 keywords: require, configuration, information, documentation, storage, management, network, switches, set up the switches - cisco nexus 9336c-fx2 
-summary: 如果您还没有所需的配置信息和文档，则需要在设置存储和管理网络交换机之前收集这些信息。 
+summary: 安装 Cisco Nexus 9336C-FX2 和 9336C-FX2-T 存储交换机，为 ONTAP 系统提供前端存储连接。 
 ---
-= 安装 9336C-FX2 和 9336C-FX2-T 存储交换机
+= 安装 Cisco Nexus 9336C-FX2 和 9336C-FX2-T 存储交换机
 :allow-uri-read: 
 :icons: font
 :imagesdir: ../media/
 
 
 [role="lead"]
-按照以下步骤安装Cisco Nexus 9336C-FX2 和 9336C-FX2-T 存储交换机。
+安装 Cisco Nexus 9336C-FX2 和 9336C-FX2-T 存储交换机，为 ONTAP 系统提供前端存储连接。
 
 .开始之前
 请确保您拥有以下物品：

@@ -2,16 +2,16 @@
 permalink: switch-cisco-3232c/migrate-from-two-node-switchless-cluster.html 
 sidebar: sidebar 
 keywords: migrate, two-node cluster, switchless, cisco nexus 3232c 
-summary: 如果您有双节点无交换机集群，则可以无中断地迁移到包含 Cisco Nexus 3232C 集群网络交换机的双节点交换机集群。 
+summary: 使用 Cisco Nexus 3232C 集群交换机从双节点无交换机集群迁移到有交换机集群。此操作不会造成中断。 
 ---
-= 使用 Cisco Nexus 3232C 集群交换机从双节点无交换机集群迁移到有交换机集群
+= 从双节点无交换机集群迁移到 Cisco Nexus 3232C 集群交换机
 :allow-uri-read: 
 :icons: font
 :imagesdir: ../media/
 
 
 [role="lead"]
-如果您有双节点_无交换机_集群，则可以迁移到包含 Cisco Nexus 3232C 集群网络交换机的双节点_有交换机_集群。此操作不会造成中断。
+使用 Cisco Nexus 3232C 集群交换机从双节点无交换机集群迁移到有交换机集群。此操作不会造成中断。
 
 
 

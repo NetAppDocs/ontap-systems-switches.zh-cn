@@ -2,16 +2,16 @@
 permalink: switch-cisco-9808/install-switches-9808.html 
 sidebar: sidebar 
 keywords: switches, hardware installation, Cisco Nexus, 9808 switches 
-summary: 在新的 AFX 2K 系统安装过程中安装 Cisco Nexus 9808 交换机，包括将交换机安装到机架或机柜中，将其连接到系统控制器和磁盘架，然后接通电源。 
+summary: 将 Cisco Nexus 9808 交换机作为新 AFX 2K 系统的一部分进行安装，包括机架安装、连接控制器和磁盘架的布线以及通电操作。 
 ---
-= 安装交换机 - Cisco Nexus 9808
+= 在 AFX 系统中安装 Cisco Nexus 9808 交换机
 :allow-uri-read: 
 :icons: font
 :imagesdir: ../media/
 
 
 [role="lead"]
-在新的 AFX 2K 系统安装过程中安装 Cisco Nexus 9808 交换机，包括将交换机安装到机架或机柜中，将其连接到系统控制器和磁盘架，然后接通电源。
+将 Cisco Nexus 9808 交换机作为新 AFX 2K 系统的一部分进行安装。这包括将交换机安装到机架或机柜中，将其连接到系统控制器和磁盘架，然后接通电源。
 
 .开始之前
 您必须已完成 link:install-prepare-9808.html["准备安装交换机"] 中的交换机准备步骤。

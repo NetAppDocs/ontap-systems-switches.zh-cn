@@ -2,16 +2,16 @@
 permalink: switch-bes-53248/replace-switch-reqs.html 
 sidebar: sidebar 
 keywords: replace, replacing, defective, broadcom-supported, bes, cluster, switch, network, nondisruptive, procedure, ndu, replace a broadcom-supported bes-53428 cluster switch - bes-53428 switches 
-summary: 在集群网络中更换有缺陷的 Broadcom 支持的 BES-53248 集群交换机是无中断过程 NDU。 
+summary: 在更换 Broadcom BES-53248 集群交换机之前，请查看必须满足的条件和要求。 
 ---
-= 更换要求
+= 查看更换 Broadcom BES-53248 集群交换机的要求
 :allow-uri-read: 
 :icons: font
 :imagesdir: ../media/
 
 
 [role="lead"]
-更换交换机之前，请确保当前环境和待更换的交换机满足以下条件。
+在开始更换操作步骤之前，请查看当前环境和更换用的 Broadcom BES-53248 集群交换机必须满足的条件和要求。
 
 
 

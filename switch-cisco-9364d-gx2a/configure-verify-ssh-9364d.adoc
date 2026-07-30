@@ -1,17 +1,17 @@
 ---
 permalink: switch-cisco-9364d-gx2a/configure-verify-ssh-9364d.html 
 sidebar: sidebar 
-keywords: ssh, requirement, cluster, switch, health, monitor, cshm, log, collection, feature, cisco 9332d-gx2b 
-summary: '如果要将交换机配置为新的 AFX 1K 或 AFX 2K 系统安装、交换机更换或重置为出厂默认设置的一部分，以使用以太网交换机运行状况监视器 (CSHM) 日志收集功能，则必须验证是否在交换机上启用了 SSH。' 
+keywords: ssh, requirement, cluster, switch, health, monitor, cshm, log, collection, feature, cisco 9364d-gx2a 
+summary: '确认已在 Cisco Nexus 9364D-GX2A 交换机上启用 SSH，以支持以太网交换机运行状况监视器 (CSHM) 和日志收集。' 
 ---
-= 验证用于日志收集的 SSH - Cisco Nexus 9364D-GX2A
+= 验证 Cisco Nexus 9364D-GX2A 交换机上用于日志收集的 SSH
 :allow-uri-read: 
 :icons: font
 :imagesdir: ../media/
 
 
 [role="lead"]
-如果要将交换机配置为新的 AFX 1K 或 AFX 2K 系统安装、交换机更换或重置为出厂默认设置的一部分，以使用以太网交换机运行状况监视器 (CSHM) 日志收集功能，则必须验证是否在交换机上启用了 SSH。
+确认已在 Cisco Nexus 9364D-GX2A 交换机上启用 SSH，以支持以太网交换机运行状况监视器 (CSHM) 和日志收集功能。
 
 .开始之前
 您必须使用串口控制台连接到交换机。

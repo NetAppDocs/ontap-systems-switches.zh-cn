@@ -1,15 +1,15 @@
 ---
 permalink: switch-nvidia-sn2100/reset-switch-sn2100.html 
 sidebar: sidebar 
-keywords: SN2100 reset switch to factory defaults, SN2100 switches configuration, efos 
-summary: 在配置Cisco Nexus SN2100 交换机之前，请查看以下信息。 
+keywords: SN2100 reset switch to factory defaults, SN2100 switches configuration, cumulus linux 
+summary: 通过擦除当前交换机配置，将 NVIDIA SN2100 集群交换机重置为出厂默认值。 
 ---
-= 将 SN2100 集群交换机重置为出厂默认设置
+= 将 NVIDIA SN2100 集群交换机重置为出厂默认值
 :allow-uri-read: 
 
 
 [role="lead"]
-要将 SN2100 集群交换机重置为出厂默认设置：
+通过擦除当前交换机配置并将交换机恢复到其原始设置，将 NVIDIA SN2100 集群交换机重置为出厂默认值。
 
 * 对于 Cumulus Linux 5.10 及更早版本，您可以应用 Cumulus 映像。
 * 对于 Cumulus Linux 5.11 及更高版本，您可以使用 `nv action reset system factory-default`命令。

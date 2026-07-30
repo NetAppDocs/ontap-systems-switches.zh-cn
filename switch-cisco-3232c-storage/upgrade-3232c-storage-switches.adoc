@@ -2,7 +2,7 @@
 permalink: switch-cisco-3232c-storage/upgrade-3232c-storage-switches.html 
 sidebar: sidebar 
 keywords: upgrade, cisco nexus, 3232c storage switch 
-summary: 可以在 Cisco Nexus 3232C 存储交换机上升级 Cisco NX-OS 软件和参考配置文件 RCF。 
+summary: 升级 Cisco Nexus 3232C 存储交换机上的 NX-OS 软件和 RCF。 
 ---
 = 升级 Cisco Nexus 3232C 存储交换机
 :allow-uri-read: 
@@ -11,7 +11,7 @@ summary: 可以在 Cisco Nexus 3232C 存储交换机上升级 Cisco NX-OS 软件
 
 
 [role="lead"]
-按照以下步骤升级 Cisco Nexus 3232C 交换机上的 Cisco NX-OS 软件和参考配置文件 (RCF)。
+升级 Cisco Nexus 3232C 存储交换机上的 NX-OS 软件和参考配置文件 (RCF)，以保持与 ONTAP 的兼容性并访问最新功能。
 
 
 

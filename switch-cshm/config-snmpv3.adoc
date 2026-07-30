@@ -2,16 +2,16 @@
 permalink: switch-cshm/config-snmpv3.html 
 sidebar: sidebar 
 keywords: cshm, configure, snmpv3, switch logs, debugging, collection 
-summary: 您可以使用此过程为支持以太网交换机健康监控 CSHM 的特定交换机配置 SNMPv3。 
+summary: '在网络交换机上配置 SNMPv3，以启用与以太网交换机健康监视器 (CSHM) 的安全通信。' 
 ---
-= 为交换机配置 SNMPv3（可选）
+= 配置 SNMPv3 以进行以太网交换机运行状况监控
 :allow-uri-read: 
 :icons: font
 :imagesdir: ../media/
 
 
 [role="lead"]
-SNMP 用于监控交换机。按照以下步骤配置 SNMPv3 监控。
+在网络交换机上配置 SNMPv3，以启用与以太网交换机运行状况监视器 (CSHM) 的安全、经过身份验证的通信。SNMPv3 为 ONTAP 中的运行状况监控提供加密的交换机状态轮询。
 
 以太网交换机运行状况监视器 (CSHM) 利用 SNMP 来监控网络交换机的运行状况和性能。默认情况下，SNMPv2c 通过参考配置文件 (RCF) 自动配置。SNMPv3 比 SNMPv2 更安全，因为它引入了强大的安全功能，如身份验证、加密和消息完整性，可防止未经授权的访问，并确保传输过程中的数据机密性和完整性。
 

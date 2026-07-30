@@ -2,16 +2,16 @@
 permalink: switch-netapp-cn1610/install-fastpath-software.html 
 sidebar: sidebar 
 keywords: install, fastpath, software 
-summary: 在 NetApp 交换机上安装 FASTPATH 软件时，您必须从第二个交换机 cs2 开始升级。 
+summary: 在 NetApp CN1610 集群交换机上安装 FASTPATH 软件，从第二台交换机（cs2）开始升级。 
 ---
-= 安装 FASTPATH 软件
+= 在 NetApp CN1610 集群交换机上安装 FASTPATH 软件
 :allow-uri-read: 
 :icons: font
 :imagesdir: ../media/
 
 
 [role="lead"]
-在您的 NetApp 交换机上安装 FASTPATH 软件时，您必须从第二台交换机 _cs2_ 开始升级。
+在 NetApp CN1610 集群交换机上安装 FASTPATH 软件，从第二个交换机 _cs2_ 开始升级。
 
 
 

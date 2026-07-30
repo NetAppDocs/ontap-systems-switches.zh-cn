@@ -2,16 +2,16 @@
 permalink: switch-cisco-9364d-gx2a/maintain-replace-frus-9364d.html 
 sidebar: sidebar 
 keywords: switches, hardware installation, Cisco Nexus, 9364D-GX2A switches 
-summary: '您的 Cisco Nexus 9364D-GX2A 交换机具有现场可更换单元 (FRU)，在出现故障时可更换。' 
+summary: '更换 Cisco Nexus 9364D-GX2A 交换机上的故障现场可更换单元 (FRU)。' 
 ---
-= 更换 FRU - Cisco Nexus 9364D-GX2A
+= 更换 Cisco Nexus 9364D-GX2A 交换机中的 FRU
 :allow-uri-read: 
 :icons: font
 :imagesdir: ../media/
 
 
 [role="lead"]
-您的 Cisco Nexus 9364D-GX2A 交换机具有现场可更换单元 (FRU)，在出现故障时可更换。
+更换 Cisco Nexus 9364D-GX2A 交换机上的故障现场可更换单元 (FRU)，以恢复交换机功能，而无需更换整个交换机。
 
 .关于此任务
 Cisco Nexus 9364D-GX2A 交换机具有以下 FRU：

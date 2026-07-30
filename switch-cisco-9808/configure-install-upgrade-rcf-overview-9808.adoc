@@ -2,16 +2,16 @@
 permalink: switch-cisco-9808/configure-install-upgrade-rcf-overview-9808.html 
 sidebar: sidebar 
 keywords: ssh, requirement, cluster, switch, health, monitor, cshm, log, collection, feature, cisco 9808 
-summary: '您可以在 Nexus 9808 交换机上安装或升级参考配置文件 (RCF)。在交换机上安装受支持的 RCF 版本，作为新 AFX 2K 系统安装、主管模块更换或交换机重置为出厂默认设置的一部分。您可以在交换机上升级到受支持的 RCF 版本，以支持新硬件、新的 ONTAP 版本或与 AFX 2K 系统配置中的新 NX-OS 版本保持一致。' 
+summary: 在 Cisco Nexus 9808 交换机上安装或升级 RCF，用于 AFX 2K 系统安装、supervisor 模块更换或支持新硬件或 ONTAP 版本。 
 ---
-= 安装或升级 RCF 概述 - Cisco Nexus 9808
+= 了解如何在 Cisco Nexus 9808 交换机上安装或升级 RCF
 :allow-uri-read: 
 :icons: font
 :imagesdir: ../media/
 
 
 [role="lead"]
-您可以在 Cisco Nexus 9808 交换机上安装或升级参考配置文件 (RCF)。在交换机上安装受支持的 RCF 版本，作为新 AFX 2K 系统安装、主管模块更换或交换机重置为出厂默认设置的一部分。您可以在交换机上升级到受支持的 RCF 版本，以支持新硬件、新的 ONTAP 版本或与 AFX 系统配置中的新 NX-OS 版本保持一致。
+在 Cisco Nexus 9808 交换机上安装或升级参考配置文件 (RCF)。为 AFX 2K 系统安装或主管模块更换安装新的 RCF，或升级现有的 RCF 以支持新的硬件或 ONTAP 版本。
 
 
 NOTE: RCF 安装或升级独立于 NX-OS 安装或升级。如果您要安装或升级 NX-OS 和 RCF，建议您先安装或升级 NX-OS。

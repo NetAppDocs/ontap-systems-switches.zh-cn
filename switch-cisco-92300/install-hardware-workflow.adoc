@@ -2,16 +2,16 @@
 permalink: switch-cisco-92300/install-hardware-workflow.html 
 sidebar: sidebar 
 keywords: switches, initial installation, configure switch-cisco-92300yc switch 
-summary: 在配置 Cisco Nexus 92300YC 集群交换机之前，请查看配置概述。 
+summary: 按照此工作流程安装 Cisco Nexus 92300YC 集群交换机的硬件。 
 ---
-= Cisco Nexus 92300YC 交换机的硬件安装工作流程
+= Cisco Nexus 92300YC 集群交换机的硬件安装工作流程
 :allow-uri-read: 
 :icons: font
 :imagesdir: ../media/
 
 
 [role="lead"]
-要为 92300YC 集群交换机安装和配置硬件，请执行以下步骤：
+按照此工作流程为 Cisco Nexus 92300YC 集群交换机安装和配置硬件。
 
 .image:https://raw.githubusercontent.com/NetAppDocs/common/main/media/number-1.png["一个"]link:setup-worksheet-92300yc.html["完成布线工作表"]
 [role="quick-margin-para"]

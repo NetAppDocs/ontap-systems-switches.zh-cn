@@ -2,16 +2,16 @@
 permalink: switch-cisco-92300/setup-worksheet-92300yc.html 
 sidebar: sidebar 
 keywords: cable worksheet, Cisco NX 92300YC 
-summary: 如果要记录支持的平台，则必须使用已完成的示例布线工作表作为指南，填写空白的布线工作表。 
+summary: 完成 Cisco Nexus 92300YC 集群交换机的布线工作表，以记录端口连接和支持的平台配置。 
 ---
-= 完整的 Cisco Nexus 92300YC 布线工作表
+= 完成 Cisco Nexus 92300YC 布线工作表
 :allow-uri-read: 
 :icons: font
 :imagesdir: ../media/
 
 
 [role="lead"]
-如果您想记录支持的平台，请下载此页面的 PDF 文件并填写布线工作表。
+完成 Cisco Nexus 92300YC 集群交换机的布线工作表，以记录端口连接和支持的平台配置。
 
 示例布线工作表提供了从交换机到控制器的推荐端口分配示例。空白工作表提供了一个模板，您可以在设置集群时使用该模板。
 

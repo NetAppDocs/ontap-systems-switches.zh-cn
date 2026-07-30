@@ -4,7 +4,7 @@ sidebar: sidebar
 keywords: cshm, cluster, storage, switch logs, debugging, collection 
 summary: 使用以太网交换机健康监视器警报来识别和解决 ONTAP 集群中的网络交换机问题。 
 ---
-= 健康检查概述
+= 了解以太网交换机运行状况监视器的警报
 :allow-uri-read: 
 :icons: font
 :imagesdir: ../media/

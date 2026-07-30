@@ -1,17 +1,17 @@
 ---
 permalink: switch-cisco-9332d-gx2b/configure-install-nxos-9332d.html 
 sidebar: sidebar 
-keywords: procedure, install, nx-os, software, nexus, cluster, switch, install the nx-os software - cisco nexus 9332d-gc2b 
-summary: 您可以在 Cisco Nexus 9332D-GX2B 交换机上安装 NX-OS，作为新 AFX 1K 或 AFX 2K 系统安装、交换机更换或交换机重置为出厂默认设置的一部分。 
+keywords: procedure, install, nx-os, software, nexus, cluster, switch, install the nx-os software - cisco nexus 9332d-gx2b 
+summary: 在 Cisco Nexus 9332D-GX2B 交换机上安装 NX-OS，用于新的 AFX 1K 或 AFX 2K 系统安装、交换机更换或出厂默认重置。 
 ---
-= 安装 NX-OS - Cisco Nexus 9332D-GX2B
+= 在 Cisco Nexus 9332D-GX2B 交换机上安装 NX-OS
 :allow-uri-read: 
 :icons: font
 :imagesdir: ../media/
 
 
 [role="lead"]
-您可以在 Cisco Nexus 9332D-GX2B 交换机上安装 NX-OS，作为新 AFX 1K 或 AFX 2K 系统安装、交换机更换或交换机重置为出厂默认设置的一部分。
+在 Cisco Nexus 9332D-GX2B 交换机上安装 NX-OS，适用于新的 AFX 1K 或 AFX 2K 系统安装、交换机更换或将交换机重置为出厂默认设置。
 
 .开始之前
 * 必须打开交换机电源，并且您必须已完成 link:configure-complete-initial-setup-9332d.html["完成初始交换机设置"] 程序。

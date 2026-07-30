@@ -4,13 +4,15 @@ sidebar: sidebar
 keywords: cshm, cluster, storage, switch logs, debugging, collection 
 summary: 使用 CSHM 日志收集功能收集交换机日志和诊断数据，以排查网络交换机问题。 
 ---
-= 日志收集概览
+= 了解以太网交换机运行状况监视器的日志收集
 :allow-uri-read: 
 :icons: font
 :imagesdir: ../media/
 
 
 [role="lead"]
+使用 CSHM 日志收集功能收集交换机日志和诊断数据，以排查网络交换机问题。
+
 设置日志收集后，您可以启用AutoSupport每小时收集的定期数据，并请求详细的支持日志。
 
 日志收集通过自动收集交换机日志和诊断数据，帮助您解决网络交换机问题。您可以通过 AutoSupport 按计划定期收集数据，或在需要详细日志以排查特定问题时触发按需收集。收集的日志提供了交换机运行状况、配置更改和网络事件的可见性。

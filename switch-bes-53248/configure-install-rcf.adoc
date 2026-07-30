@@ -2,16 +2,16 @@
 permalink: switch-bes-53248/configure-install-rcf.html 
 sidebar: sidebar 
 keywords: install rcf,setup rcf,rcf file 
-summary: 您可以在配置 BES-53248 集群交换机和应用新许可证后安装参考配置文件 RCF。 
+summary: '完成初始配置并应用所需许可证后，在 Broadcom BES-53248 集群交换机上安装参考配置文件 (RCF)。' 
 ---
-= 安装参考配置文件 (RCF)
+= 在 Broadcom BES-53248 集群交换机上安装 RCF
 :allow-uri-read: 
 :icons: font
 :imagesdir: ../media/
 
 
 [role="lead"]
-您可以在配置 BES-53248 集群交换机和应用新许可证后安装 RCF。
+完成初始配置并应用所需许可证后，在 Broadcom BES-53248 集群交换机上安装参考配置文件 (RCF)。RCF 定义集群操作的端口分配、VLAN 和网络设置。
 
 
 CAUTION: 对于 EFOS 3.12 及更高版本，请按照 link:efos-install-rcf-license-file.html["安装参考配置文件 (RCF) 和许可证文件"] 中的安装步骤进行操作。

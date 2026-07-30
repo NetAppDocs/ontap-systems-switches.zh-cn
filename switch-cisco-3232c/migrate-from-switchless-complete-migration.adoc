@@ -2,16 +2,16 @@
 permalink: switch-cisco-3232c/migrate-from-switchless-complete-migration.html 
 sidebar: sidebar 
 keywords: cisco 3232c, cluster switches 
-summary: 您可以将 Cisco Nexus 3232C 交换机用作 AFF 或 FAS 集群中的集群交换机。 
+summary: 完成从双节点无交换机集群到 Cisco Nexus 3232C 集群交换机的迁移。 
 ---
-= 完成从双节点无交换机集群到双节点交换机集群的迁移
+= 完成从双节点无交换机集群到 Cisco Nexus 3232C 集群交换机的迁移
 :allow-uri-read: 
 :icons: font
 :imagesdir: ../media/
 
 
 [role="lead"]
-完成以下步骤，将双节点无交换机集群迁移到 Nexus 3232C 交换机上的双节点有交换机集群。
+完成最后步骤，使用 Cisco Nexus 3232C 集群交换机从双节点无交换机集群迁移到双节点交换机集群。
 
 .步骤
 . 验证所有集群互连端口现在都已恢复到其主端口：

@@ -2,16 +2,16 @@
 permalink: switch-cisco-9336c-fx2-storage/configure-switch-overview-9336c-storage.html 
 sidebar: sidebar 
 keywords: BES-53248 switches, initial installation, configure switch-cisco-9336c-fx2 switch 
-summary: Cisco Nexus 9336C-FX2 存储交换机的安装和配置概述 
+summary: 按照此工作流程在 ONTAP 环境中安装和配置 Cisco Nexus 9336C-FX2 和 9336C-FX2-T 存储交换机。 
 ---
-= Cisco Nexus 9336C-FX2 9336C-FX2-T 存储交换机的安装和设置工作流程
+= Cisco Nexus 9336C-FX2 和 9336C-FX2-T 存储交换机的安装和设置工作流程
 :allow-uri-read: 
 :icons: font
 :imagesdir: ../media/
 
 
 [role="lead"]
-Cisco Nexus 9336C-FX2 和 9336C-FX2-T 交换机是Cisco Nexus 9000 平台的一部分，可以安装在NetApp系统机柜中。
+按照此工作流程在 ONTAP 环境中安装和配置 Cisco Nexus 9336C-FX2 和 9336C-FX2-T 存储交换机。这些交换机是 Cisco Nexus 9000 平台的一部分，支持 ONTAP 系统的存储网络连接。
 
 Cisco Nexus 9336C-FX2（36 个端口）是高端口密度集群/存储/数据交换机。Cisco Nexus 9336C-FX2-T（12 端口）是一款低端口密度、高性能交换机，支持 10/25/40/100GbE 配置。
 

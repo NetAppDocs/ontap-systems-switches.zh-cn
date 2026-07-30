@@ -2,16 +2,16 @@
 permalink: switch-cisco-9332d-gx2b/configure-install-rcf-9332d.html 
 sidebar: sidebar 
 keywords: install rcf, cisco switches 
-summary: 您可以在新的 Cisco Nexus 9332D-GX2B 交换机上安装 RCF，作为新的 AFX 1K 或 AFX 2K 系统安装和设置、更换故障交换机或将交换机重置为出厂默认设置的一部分。 
+summary: 在 Cisco Nexus 9332D-GX2B 交换机上安装 RCF，用于新的 AFX 1K 或 AFX 2K 系统安装、交换机更换或出厂默认重置。 
 ---
-= 安装 RCF - Cisco Nexus 9332D-GX2B
+= 在 Cisco Nexus 9332D-GX2B 交换机上安装 RCF
 :allow-uri-read: 
 :icons: font
 :imagesdir: ../media/
 
 
 [role="lead"]
-您可以在新的 Cisco Nexus 9332D-GX2B 交换机上安装 RCF，作为新 AFX 1K 或 AFX 2K 系统安装、更换交换机或将交换机重置为出厂默认设置的一部分。
+在 Cisco Nexus 9332D-GX2B 交换机上安装参考配置文件 (RCF)，用于新的 AFX 1K 或 AFX 2K 系统安装、交换机更换或将交换机重置为出厂默认设置。
 
 .开始之前
 * 必须打开交换机电源，并且您必须已完成 link:configure-complete-initial-setup-9332d.html["完成初始交换机设置"] 程序。

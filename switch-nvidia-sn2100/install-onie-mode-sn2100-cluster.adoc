@@ -2,16 +2,16 @@
 permalink: switch-nvidia-sn2100/install-onie-mode-sn2100-cluster.html 
 sidebar: sidebar 
 keywords: install cumulus onie mode, sn2100 SN2100 switches setup, cumulus linux, onie mode 
-summary: Cumulus Linux CL OS 可以在交换机运行 Cumulus Linux 或 ONIE 时安装。 
+summary: 当交换机在 ONIE 模式下运行时，在 NVIDIA SN2100 集群交换机上安装 Cumulus Linux。 
 ---
-= 以 ONIE 模式安装 Cumulus Linux
+= 在 NVIDIA SN2100 集群交换机上以 ONIE 模式安装 Cumulus Linux
 :allow-uri-read: 
 :icons: font
 :imagesdir: ../media/
 
 
 [role="lead"]
-当交换机运行在 ONIE 模式下时，请按照以下步骤安装 Cumulus Linux (CL) 操作系统。
+当 NVIDIA SN2100 集群交换机在 ONIE 模式下运行时，在其上安装 Cumulus Linux (CL)。
 
 
 NOTE: 可以在交换机运行 ONIE 或 Cumulus Linux 时安装 Cumulus Linux (CL) 操作系统（请参阅link:install-cumulus-mode-sn2100-cluster.html["以 Cumulus 模式安装"]）。

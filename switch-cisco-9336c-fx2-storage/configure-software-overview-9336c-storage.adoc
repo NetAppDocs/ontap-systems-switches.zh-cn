@@ -2,7 +2,7 @@
 permalink: switch-cisco-9336c-fx2-storage/configure-software-overview-9336c-storage.html 
 sidebar: sidebar 
 keywords: BES-53248 switches, initial installation, configure switch-cisco-9336c-fx2 switch 
-summary: Cisco Nexus 9336C-FX2 存储交换机的软件配置概述 
+summary: 按照此工作流程在 Cisco Nexus 9336C-FX2 和 9336C-FX2-T 存储交换机上安装 NX-OS 软件和 RCF。 
 ---
 = Cisco Nexus 9336C-FX2 和 9336C-FX2-T 存储交换机的软件安装工作流程
 :allow-uri-read: 
@@ -11,7 +11,7 @@ summary: Cisco Nexus 9336C-FX2 存储交换机的软件配置概述
 
 
 [role="lead"]
-要安装和配置Cisco Nexus 9336C-FX2 和 9336C-FX2-T 存储交换机的软件，请按照以下步骤操作：
+按照此工作流程在 Cisco Nexus 9336C-FX2 和 9336C-FX2-T 存储交换机上安装 NX-OS 软件和参考配置文件 (RCF)。
 
 .image:https://raw.githubusercontent.com/NetAppDocs/common/main/media/number-1.png["一个"]link:setup-switch-9336c-storage.html["配置交换机"]
 [role="quick-margin-para"]

@@ -2,16 +2,16 @@
 permalink: switch-netapp-cn1610/migrate-fas22xx-systems.html 
 sidebar: sidebar 
 keywords: migrate, two-node switched cluster, fas22xx systems, single, network connection 
-summary: 如果您在现有的双节点无交换机集群中拥有 FAS22xx 系统，其中每个控制器模块具有用于集群连接的单个背靠背 10 GbE 连接，您可以使用无交换机集群网络选项，并将直接背靠背连接替换为交换机连接。 
+summary: 使用 NetApp CN1610 集群交换机将 FAS22xx 系统从具有单个集群网络连接的无交换机集群迁移到有交换机集群。 
 ---
-= 通过单个集群网络连接将 FAS22xx 系统迁移到双节点交换集群
+= 使用 NetApp CN1610 集群交换机将 FAS22xx 系统迁移到交换集群
 :allow-uri-read: 
 :icons: font
 :imagesdir: ../media/
 
 
 [role="lead"]
-如果您在现有的双节点无交换机集群中拥有 FAS22xx 系统，其中每个控制器模块具有用于集群连接的单个背靠背 10 GbE 连接，您可以使用无交换机集群网络选项，并将直接背靠背连接替换为交换机连接。
+使用 NetApp CN1610 集群交换机，将每个控制器具有单个 10 GbE 连接的双节点无交换机集群中的 FAS22xx 系统迁移到有交换机集群。
 
 
 

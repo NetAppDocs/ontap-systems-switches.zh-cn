@@ -2,16 +2,16 @@
 permalink: switch-bes-53248/migrate-to-2n-switched.html 
 sidebar: sidebar 
 keywords: two-node switchless clusters, migrating to a two-node switched BES-53248 cluster environment,BES-53248 switches, migrating two-node switched clusters,2-node 
-summary: 如果您有一个双节点无交换机集群，您可以无中断地迁移到包含博通支持的 BES-53248 集群交换机的双节点有交换机集群。 
+summary: 使用 Broadcom BES-53248 集群交换机将双节点无交换机集群迁移到有交换机集群环境，以实现超过两个节点的扩展。 
 ---
-= 迁移到交换式NetApp集群环境
+= 使用 Broadcom BES-53248 集群交换机迁移到双节点交换集群
 :allow-uri-read: 
 :icons: font
 :imagesdir: ../media/
 
 
 [role="lead"]
-如果您已经拥有一个双节点无交换机集群环境，则可以使用博通支持的 BES-53248 集群交换机迁移到双节点有交换机集群环境，从而使集群能够扩展到两个以上的节点。
+使用 Broadcom BES-53248 集群交换机将现有的双节点无交换机集群迁移到有交换机集群环境。这种无中断迁移使您能够将集群扩展到两个节点以上。
 
 迁移过程适用于所有使用光纤或 Twinax 端口的集群节点端口，但如果节点使用板载 10GBASE-T RJ45 端口作为集群网络端口，则此交换机不支持此迁移过程。
 

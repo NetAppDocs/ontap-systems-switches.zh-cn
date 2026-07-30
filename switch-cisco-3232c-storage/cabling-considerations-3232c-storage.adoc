@@ -2,16 +2,16 @@
 permalink: switch-cisco-3232c-storage/cabling-considerations-3232c-storage.html 
 sidebar: sidebar 
 keywords: 3232c cabling setup, 3232c switches configuration, nx-os 
-summary: 在配置 Cisco 3232C 交换机之前，请查看以下信息。 
+summary: 在部署之前，查看 Cisco Nexus 3232C 存储交换机的布线和配置注意事项。 
 ---
-= 审查布线和配置注意事项
+= 查看 Cisco Nexus 3232C 存储交换机的布线和配置注意事项
 :allow-uri-read: 
 :icons: font
 :imagesdir: ../media/
 
 
 [role="lead"]
-在配置 3232C 交换机之前，请查看布线和配置要求。
+在部署之前，查看 Cisco Nexus 3232C 存储交换机的布线和配置注意事项。
 
 
 

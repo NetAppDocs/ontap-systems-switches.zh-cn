@@ -2,16 +2,16 @@
 permalink: switch-netapp-cn1610/install-fastpath-rcf-831.html 
 sidebar: sidebar 
 keywords: fastpath, software, install, netapp cluster switches, rcfs, ontap 
-summary: 运行 ONTAP 8.3.1 或更高版本的 NetApp CN1601 管理交换机和 CN1610 集群交换机的安装步骤相同。但是，这两种型号需要不同的软件和 RCF。 
+summary: '在 NetApp CN1610 集群交换机上安装 FASTPATH 软件和参考配置文件 (RCF)，适用于 ONTAP 8.3.1 及更高版本。' 
 ---
-= 安装适用于 ONTAP 8.3.1 及更高版本的 FASTPATH 软件和 RCF
+= 在适用于 ONTAP 8.3.1 及更高版本的 NetApp CN1610 集群交换机上安装 FASTPATH 软件和 RCF
 :allow-uri-read: 
 :icons: font
 :imagesdir: ../media/
 
 
 [role="lead"]
-按照此步骤安装适用于 ONTAP 8.3.1 及更高版本的 FASTPATH 软件和 RCF。
+在 NetApp CN1610 集群交换机上安装 FASTPATH 软件和参考配置文件 (RCF)，适用于 ONTAP 8.3.1 及更高版本。
 
 运行 ONTAP 8.3.1 或更高版本的 NetApp CN1601 管理交换机和 CN1610 集群交换机的安装步骤相同。但是，这两种型号需要不同的软件和 RCF。
 

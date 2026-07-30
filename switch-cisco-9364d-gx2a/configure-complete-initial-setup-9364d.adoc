@@ -2,16 +2,16 @@
 permalink: switch-cisco-9364d-gx2a/configure-complete-initial-setup-9364d.html 
 sidebar: sidebar 
 keywords: require, configuration, information, documentation, cluster, management, network, switches, set up the switches - cisco nexus 9364d-gx2a 
-summary: 在作为新 AFX 1K 或 AFX 2K 系统安装或交换机更换的一部分打开 Cisco Nexus 9364D-GX2A 交换机后，或者将交换机重置为出厂默认设置后，系统会提示您使用配置向导完成交换机的初始设置。您可以参考以下配置向导问题和建议答案，以帮助您完成交换机的初始设置。 
+summary: 使用配置向导完成 Cisco Nexus 9364D-GX2A 交换机的初始设置，适用于新 AFX 1K 或 AFX 2K 系统、交换机更换或出厂默认重置。 
 ---
-= 完成初始交换机设置 - Cisco Nexus 9364D-GX2A
+= 完成 Cisco Nexus 9364D-GX2A 交换机的初始设置
 :allow-uri-read: 
 :icons: font
 :imagesdir: ../media/
 
 
 [role="lead"]
-在作为新 AFX 1K 或 AFX 2K 系统安装或交换机更换的一部分打开 Cisco Nexus 9364D-GX2A 交换机后，或者将交换机重置为出厂默认设置后，系统会提示您使用配置向导完成交换机的初始设置。您可以参考以下配置向导问题和建议答案，以帮助您完成交换机的初始设置。
+使用配置向导完成 Cisco Nexus 9364D-GX2A 交换机的初始设置。本程序适用于新的 AFX 1K 或 AFX 2K 系统安装、交换机更换以及交换机重置为出厂默认设置。
 
 .开始之前
 确保您拥有每台交换机的网络和配置信息以及适用的许可证。

@@ -2,16 +2,16 @@
 permalink: switch-nvidia-sn2100-storage/migrate-cisco-sn2100-cluster-switch-storage.html 
 sidebar: sidebar 
 keywords: migrating to a cluster with NVIDIA SN2100 cluster switches, how to migrate 
-summary: 您可以将ONTAP集群中较旧的Cisco集群交换机无中断地迁移到NVIDIA SN2100 集群网络交换机。 
+summary: 从旧的 Cisco 集群交换机迁移到 NVIDIA SN2100 集群交换机，而不会中断集群操作。 
 ---
-= 将Cisco集群交换机迁移到NVIDIA SN2100 集群交换机
+= 从 Cisco 集群交换机迁移到 NVIDIA SN2100 集群交换机
 :allow-uri-read: 
 :icons: font
 :imagesdir: ../media/
 
 
 [role="lead"]
-您可以将用于ONTAP集群的Cisco集群交换机无中断地迁移到NVIDIA SN2100 集群交换机。当您用NVIDIA SN2100 集群交换机替换一些较旧的Cisco集群交换机时，您必须了解某些配置信息、端口连接和布线要求。
+在不中断集群操作的情况下，将集群交换机从 Cisco 迁移到 NVIDIA SN2100 集群交换机。在开始迁移之前，请查看配置信息、端口连接和布线要求。
 
 支持以下Cisco集群交换机：
 

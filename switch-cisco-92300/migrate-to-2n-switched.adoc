@@ -2,16 +2,16 @@
 permalink: switch-cisco-92300/migrate-to-2n-switched.html 
 sidebar: sidebar 
 keywords: 2-node switched Cisco 92300YC cluster switch migration 
-summary: 如果您有现有的双节点无交换机集群环境，则可以使用 Cisco Nexus 92300YC 交换机迁移到双节点有交换机集群环境，从而使您能够扩展到集群中两个节点以上的规模。 
+summary: 使用 Cisco Nexus 92300YC 集群交换机将现有的双节点无交换机集群迁移到有交换机的集群环境。 
 ---
-= 使用 Cisco Nexus 92300YC 交换机迁移到双节点交换集群
+= 使用 Cisco Nexus 92300YC 集群交换机迁移到双节点交换集群
 :allow-uri-read: 
 :icons: font
 :imagesdir: ../media/
 
 
 [role="lead"]
-如果您现有一个双节点_无交换机_集群环境，则可以使用 Cisco Nexus 92300YC 交换机迁移到双节点_有交换机_集群环境，从而使您能够扩展到集群中两个节点以上的规模。
+使用 Cisco Nexus 92300YC 集群交换机将现有的双节点无交换机集群迁移到有交换机的集群环境。这种无中断迁移使您能够将集群扩展到两个节点以上。
 
 您使用的过程取决于您是每个控制器上有两个专用集群网络端口，还是每个控制器上只有一个集群端口。此过程适用于使用光纤或 twinax 端口的所有节点，但如果节点为集群网络端口使用板载 10Gb BASE-T RJ45 端口，则此交换机不支持此过程。
 

@@ -2,14 +2,14 @@
 permalink: switch-cisco-9336c-fx2-storage/install-nxos-overview-9336c-storage.html 
 sidebar: sidebar 
 keywords: cisco, nx-os, software, reference, configuration, file, rcf, install, fx2, cluster, switch, install nx-os software and rcfs on cisco nexus 9336-fx2 cluster switches - cisco nexus 9336x-fx2 
-summary: Cisco Nexus 9336C-FX2 群集交换机上必须安装 Cisco NX-OS 软件和参考配置文件。 
+summary: '在安装 NX-OS 软件和参考配置文件 (RCF) 之前，请准备 Cisco Nexus 9336C-FX2 和 9336C-FX2-T 存储交换机。' 
 ---
-= 准备安装或升级 NX-OS 软件和 RCF
+= 准备在 Cisco Nexus 9336C-FX2 存储交换机上安装 NX-OS 软件和 RCF
 :allow-uri-read: 
 
 
 [role="lead"]
-在安装 NX-OS 软件和参考配置文件 (RCF) 之前，请按照以下步骤操作。
+在安装 NX-OS 软件和参考配置文件 (RCF) 之前，请准备好 Cisco Nexus 9336C-FX2 和 9336C-FX2-T 存储交换机。必须先安装 NX-OS 和 RCF，交换机才能在 ONTAP 存储网络中运行。
 
 .关于示例
 本流程中的示例使用以下开关和节点命名规则：

@@ -2,16 +2,16 @@
 permalink: switch-cisco-3132q-v/configure-reqs-3132q.html 
 sidebar: sidebar 
 keywords: Cisco, 3132Q-V 
-summary: 对于Cisco Nexus 3132Q-V交换机的安装和维护，请务必查看网络和配置要求 
+summary: 在安装或升级之前，请查看 Cisco Nexus 3132Q-V 集群交换机的配置要求。 
 ---
-= Cisco Nexus 3132Q-V 交换机的配置要求
+= 查看 Cisco Nexus 3132Q-V 集群交换机的配置要求
 :allow-uri-read: 
 :icons: font
 :imagesdir: ../media/
 
 
 [role="lead"]
-对于 Cisco Nexus 3132Q-V 交换机的安装和维护，请务必查看网络和配置要求。
+在安装或升级之前，请查看 Cisco Nexus 3132Q-V 集群交换机的配置要求。
 
 
 

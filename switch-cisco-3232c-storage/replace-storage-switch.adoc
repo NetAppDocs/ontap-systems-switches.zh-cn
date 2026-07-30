@@ -2,7 +2,7 @@
 permalink: switch-cisco-3232c-storage/replace-storage-switch.html 
 sidebar: sidebar 
 keywords: replace, cisco nexus, 3232c storage switch 
-summary: 您可以通过执行特定的任务序列来无中断地更换有缺陷的 Cisco Nexus 3232C 存储交换机。 
+summary: 更换有缺陷的 Cisco Nexus 3232C 存储交换机。这是一个无中断的程序。 
 ---
 = 更换 Cisco Nexus 3232C 存储交换机
 :allow-uri-read: 
@@ -11,7 +11,7 @@ summary: 您可以通过执行特定的任务序列来无中断地更换有缺�
 
 
 [role="lead"]
-按照下面的步骤更换有缺陷的 Cisco Nexus 3232C 存储交换机。这是一个无中断的程序。
+更换有缺陷的 Cisco Nexus 3232C 存储交换机，而不会中断存储网络运行。此无中断过程包括准备更换交换机和恢复存储网络配置。
 
 
 

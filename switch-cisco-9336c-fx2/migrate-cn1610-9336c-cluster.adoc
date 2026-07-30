@@ -2,16 +2,16 @@
 permalink: switch-cisco-9336c-fx2/migrate-cn1610-9336c-cluster.html 
 sidebar: sidebar 
 keywords: migrate cluster Cisco Nexus 9336C-FX2 cluster switches cn1610 
-summary: 您可以将用于ONTAP集群的NetApp CN1610 集群交换机无中断地迁移到Cisco Nexus 9336C-FX2 集群网络交换机。 
+summary: 将 NetApp CN1610 集群交换机迁移到 Cisco Nexus 9336C-FX2 和 9336C-FX2-T 集群交换机，而不会中断集群操作。 
 ---
-= 从NetApp CN1610 集群交换机迁移到Cisco 9336C-FX2 和 9336C-FX2-T 集群交换机
+= 从 NetApp CN1610 集群交换机迁移到 Cisco Nexus 9336C-FX2 和 9336C-FX2-T 集群交换机
 :allow-uri-read: 
 :icons: font
 :imagesdir: ../media/
 
 
 [role="lead"]
-您可以将ONTAP集群的NetApp CN1610 集群交换机迁移到Cisco 9336C-FX2 和 9336C-FX2-T 集群交换机。这是一个非破坏性的过程。
+将现有的 NetApp CN1610 集群交换机迁移到 Cisco Nexus 9336C-FX2 和 9336C-FX2-T 集群交换机，而不会中断集群操作。
 
 
 

@@ -2,16 +2,16 @@
 permalink: switch-cisco-92300/install-nxos-software.html 
 sidebar: sidebar 
 keywords: install nx-os,nx-os configure 
-summary: 您可以使用此过程在 Nexus 92300YC 交换机上安装 NX-OS 软件。 
+summary: 在 Cisco Nexus 92300YC 集群交换机上安装 NX-OS 软件，为集群运行做好准备。 
 ---
-= 安装 NX-OS 软件
+= 在 Cisco Nexus 92300YC 集群交换机上安装 NX-OS 软件
 :allow-uri-read: 
 :icons: font
 :imagesdir: ../media/
 
 
 [role="lead"]
-按照此步骤在 Nexus 92300YC 交换机上安装 NX-OS 软件。
+在 Cisco Nexus 92300YC 集群交换机上安装 NX-OS 软件，为集群运行做好准备。必须先安装 NX-OS，然后才能配置交换机或安装 RCF。
 
 NX-OS 是 Cisco Systems 为 Nexus 系列以太网交换机和 MDS 系列光纤通道 (FC) 存储区域网络交换机提供的网络操作系统。
 

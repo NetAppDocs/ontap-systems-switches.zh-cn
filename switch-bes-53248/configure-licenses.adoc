@@ -2,16 +2,16 @@
 permalink: switch-bes-53248/configure-licenses.html 
 sidebar: sidebar 
 keywords: bes, cluster, switch, base, model, license, 10gbe, 25gbe, 100gbe, port, add, purchasing, purchase, install licenses for bes-53248 cluster switches - bes-53248 switches 
-summary: BES-53248 集群交换机基本型号授权配备 16 个 10GbE 或 25GbE 端口和 2 个 100GbE 端口。可以通过购买更多许可证来添加新端口。 
+summary: Broadcom BES-53248 集群交换机基本型号支持 16 个 10GbE 或 25GbE 端口和两个 100GbE 端口。安装额外的端口许可证以扩展交换机容量。 
 ---
-= 安装 BES-53248 集群交换机的许可证
+= 为 Broadcom BES-53248 集群交换机安装许可证
 :allow-uri-read: 
 :icons: font
 :imagesdir: ../media/
 
 
 [role="lead"]
-BES-53248 集群交换机基本型号授权配备 16 个 10GbE 或 25GbE 端口和 2 个 100GbE 端口。您可以通过购买更多许可证来添加新端口。
+Broadcom BES-53248 集群交换机基本型号已获授权，支持 16 个 10GbE 或 25GbE 端口以及两个 100GbE 端口。安装其他端口许可证，以扩展交换机，从而支持更多 10GbE 或 25GbE 集群端口。
 
 
 CAUTION: 对于 EFOS 3.12 及更高版本，请按照以下安装步骤进行操作：link:efos-install-rcf-license-file.html["安装参考配置文件 (RCF) 和许可证文件"] 。

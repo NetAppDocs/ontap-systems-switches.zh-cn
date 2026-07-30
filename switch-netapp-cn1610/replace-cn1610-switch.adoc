@@ -2,7 +2,7 @@
 permalink: switch-netapp-cn1610/replace-cn1610-switch.html 
 sidebar: sidebar 
 keywords: replace, netapp cn1610, cluster switch 
-summary: 您可以通过执行特定的任务序列来无中断地更换有缺陷的 NetApp CN1610 集群交换机。 
+summary: 更换有缺陷的 NetApp CN1610 集群交换机。这是一个无中断操作步骤。 
 ---
 = 更换 NetApp CN1610 集群交换机
 :allow-uri-read: 
@@ -11,7 +11,7 @@ summary: 您可以通过执行特定的任务序列来无中断地更换有缺�
 
 
 [role="lead"]
-按照以下步骤更换集群网络中有缺陷的 NetApp CN1610 交换机。这是一个无中断操作程序（NDU）。
+在不中断集群运行的情况下，更换集群网络中有缺陷的 NetApp CN1610 集群交换机。此无中断程序（NDU）涉及准备更换交换机并从故障交换机迁移连接。
 
 
 

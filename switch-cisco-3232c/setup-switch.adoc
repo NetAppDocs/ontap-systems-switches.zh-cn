@@ -2,16 +2,16 @@
 permalink: switch-cisco-3232c/setup-switch.html 
 sidebar: sidebar 
 keywords: require, configuration, information, documentation, cluster, management, network, switches, set up the switches - cisco nexus 9336c-fx2 
-summary: 如果您还没有所需的配置信息和文档，则需要在设置集群和管理网络交换机之前收集这些信息。 
+summary: 使用初始设置命令配置 Cisco Nexus 3232C 集群交换机，使其为集群操作做好准备。 
 ---
-= 配置 3232C 集群交换机
+= 配置 Cisco Nexus 3232C 集群交换机
 :allow-uri-read: 
 :icons: font
 :imagesdir: ../media/
 
 
 [role="lead"]
-按照此步骤设置和配置 Cisco Nexus 3232C 交换机。
+使用初始设置命令配置 Cisco Nexus 3232C 集群交换机，使其为集群操作做好准备。
 
 .开始之前
 * 在安装现场访问 HTTP、FTP 或 TFTP 服务器，以下载适用的 NX-OS 和参考配置文件 (RCF) 版本。

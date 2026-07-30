@@ -2,9 +2,9 @@
 permalink: switch-cshm/monitor-manage.html 
 sidebar: sidebar 
 keywords: create, remove, switch, cluster, monitor, health, management 
-summary: 了解如何手动创建、更改默认监控设置以及从监控中删除以太网交换机。 
+summary: 在 CSHM 监控中手动添加、配置或删除以太网交换机，或在维护期间暂停监控。 
 ---
-= 管理以太网交换机的监控
+= 管理以太网交换机运行状况监控
 :allow-uri-read: 
 :icons: font
 :imagesdir: ../media/

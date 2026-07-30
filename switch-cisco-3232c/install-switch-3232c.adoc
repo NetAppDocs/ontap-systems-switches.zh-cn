@@ -2,16 +2,16 @@
 permalink: switch-cisco-3232c/install-switch-3232c.html 
 sidebar: sidebar 
 keywords: require, configuration, information, documentation, cluster, management, network, switches, set up the switches - cisco nexus 3232c 
-summary: 按照此步骤安装 Cisco Nexus 3232C 交换机。 
+summary: 安装 Cisco Nexus 3232C 集群交换机，为网络运行做好准备。 
 ---
-= 安装 3232C 集群交换机
+= 安装 Cisco Nexus 3232C 集群交换机
 :allow-uri-read: 
 :icons: font
 :imagesdir: ../media/
 
 
 [role="lead"]
-按照此步骤设置和配置 Cisco Nexus 3232C 交换机。
+安装 Cisco Nexus 3232C 集群交换机，为网络运行做好准备。
 
 .开始之前
 请确保您拥有以下物品：

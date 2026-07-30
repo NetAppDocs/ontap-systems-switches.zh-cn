@@ -2,16 +2,16 @@
 permalink: switch-bes-53248/configure-efos-software.html 
 sidebar: sidebar 
 keywords: BES-53248 cluster switches,installing EFOS software 
-summary: 按照下面的步骤在 BES-53248 集群交换机上安装以太网 Fabric OS EFOS 软件。 
+summary: '在 Broadcom BES-53248 集群交换机上安装以太网架构操作系统 (EFOS)，为集群运行做好准备。' 
 ---
-= 安装 EFOS 软件
+= 在 Broadcom BES-53248 集群交换机上安装 EFOS 软件
 :allow-uri-read: 
 :icons: font
 :imagesdir: ../media/
 
 
 [role="lead"]
-按照以下步骤在 BES-53248 集群交换机上安装以太网结构操作系统 (EFOS) 软件。
+在 Broadcom BES-53248 集群交换机上安装以太网结构操作系统 (EFOS)，为集群运行做好准备。在配置交换机或安装参考配置文件 (RCF) 之前，必须安装 EFOS。
 
 EFOS 软件包含一套用于开发以太网和 IP 基础设施系统的高级网络功能和协议。这种软件架构适用于任何使用需要彻底数据包检查或分离的应用程序的网络组织设备。
 

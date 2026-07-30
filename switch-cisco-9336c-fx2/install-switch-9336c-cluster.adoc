@@ -2,16 +2,16 @@
 permalink: switch-cisco-9336c-fx2/install-switch-9336c-cluster.html 
 sidebar: sidebar 
 keywords: require, configuration, information, documentation, cluster, management, network, switches, set up the switches - cisco nexus 9336c-fx2 
-summary: 按照以下步骤安装Cisco Nexus 9336C-FX2 交换机。 
+summary: 设置和配置 Cisco Nexus 9336C-FX2 和 9336C-FX2-T 集群交换机，为网络运行做好准备。 
 ---
-= 安装 9336C-FX2 和 9336C-FX2-T 集群交换机
+= 安装 Cisco Nexus 9336C-FX2 和 9336C-FX2-T 集群交换机
 :allow-uri-read: 
 :icons: font
 :imagesdir: ../media/
 
 
 [role="lead"]
-按照以下步骤设置和配置Cisco Nexus 9336C-FX2 和 9336C-FX2-T 交换机。
+设置和配置 Cisco Nexus 9336C-FX2 和 9336C-FX2-T 集群交换机，为网络运行做好准备。
 
 .开始之前
 请确保您拥有以下物品：

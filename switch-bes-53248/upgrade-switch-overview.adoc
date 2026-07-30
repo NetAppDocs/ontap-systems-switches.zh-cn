@@ -2,16 +2,16 @@
 permalink: switch-bes-53248/upgrade-switch-overview.html 
 sidebar: sidebar 
 keywords: BES-53248 switches, initial installation, configure new bes-53248 switch 
-summary: 在配置 BES-53248 集群交换机之前，请先查看流程概述和命名规则。 
+summary: 按照此工作流程升级 Broadcom BES-53248 集群交换机上的 EFOS 软件和 RCF。 
 ---
-= BES-53248 集群交换机的升级工作流程
+= Broadcom BES-53248 集群交换机的升级工作流程
 :allow-uri-read: 
 :icons: font
 :imagesdir: ../media/
 
 
 [role="lead"]
-请按照以下步骤升级 Broadcom BES-54328 集群交换机上的 EFOS 软件和参考配置文件 (RCF)（如适用）。
+按照此工作流程升级 Broadcom BES-53248 集群交换机上的 EFOS 软件和参考配置文件 (RCF)。
 
 .image:https://raw.githubusercontent.com/NetAppDocs/common/main/media/number-1.png["一个"]link:upgrade-efos-software.html["升级您的 EFOS 版本"]
 [role="quick-margin-para"]

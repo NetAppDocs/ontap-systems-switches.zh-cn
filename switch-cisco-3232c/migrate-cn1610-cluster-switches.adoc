@@ -2,16 +2,16 @@
 permalink: switch-cisco-3232c/migrate-cn1610-cluster-switches.html 
 sidebar: sidebar 
 keywords: migrate, cn1610 switch, cisco nexus 3232c cluster 
-summary: 要使用 Cisco Nexus 3232C 集群交换机替换集群中现有的 CN1610 集群交换机，必须执行一系列特定任务。 
+summary: 从 NetApp CN1610 集群交换机迁移到 Cisco Nexus 3232C 集群交换机，不中断集群运行。 
 ---
-= 将 CN1610 集群交换机迁移到 Cisco Nexus 3232C 集群交换机
+= 从 NetApp CN1610 集群交换机迁移到 Cisco Nexus 3232C 集群交换机
 :allow-uri-read: 
 :icons: font
 :imagesdir: ../media/
 
 
 [role="lead"]
-要使用 Cisco Nexus 3232C 集群交换机替换集群中现有的 CN1610 集群交换机，必须执行一系列特定任务。
+将现有的 NetApp CN1610 集群交换机迁移到 Cisco Nexus 3232C 集群交换机，而不会中断集群操作。
 
 
 

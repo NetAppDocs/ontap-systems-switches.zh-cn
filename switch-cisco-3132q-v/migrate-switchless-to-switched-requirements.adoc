@@ -2,15 +2,15 @@
 permalink: switch-cisco-3132q-v/migrate-switchless-to-switched-requirements.html 
 sidebar: sidebar 
 keywords: install, cisco nexus 3132q-v switch, 
-summary: 在配置 Cisco Nexus 3132q-v 交换机之前，请查看流程概述和术语。 
+summary: 查看从双节点无交换机集群迁移到 Cisco Nexus 3132Q-V 集群交换机的迁移要求。 
 ---
-= 迁移要求
+= 查看 Cisco Nexus 3132Q-V 集群交换机的迁移要求
 :allow-uri-read: 
 :imagesdir: ../media/
 
 
 [role="lead"]
-如果您有双节点无交换机集群，请查看此过程以了解迁移到双节点交换机集群的适用要求。
+查看使用 Cisco Nexus 3132Q-V 集群交换机从双节点无交换机集群迁移到有交换机集群的要求。
 
 [NOTE]
 ====

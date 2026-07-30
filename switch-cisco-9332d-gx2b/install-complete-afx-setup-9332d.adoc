@@ -2,16 +2,16 @@
 permalink: switch-cisco-9332d-gx2b/install-complete-afx-setup-9332d.html 
 sidebar: sidebar 
 keywords: switches, complete system setup, Cisco Nexus, 9332D-GX2B switches, AFX 
-summary: 完成 Cisco Nexus 9332D-GX2B 交换机配置过程后，您将转到 AFX 系统文档站点，打开 AFX 1K 或 AFX 2K 系统中的存储架和控制器，验证交换机连接，并完成 AFX 系统设置。 
+summary: 完成 Cisco Nexus 9332D-GX2B 交换机配置后，完成 AFX 1K 或 AFX 2K 系统设置。 
 ---
-= 完成 AFX 系统设置 - Cisco Nexus 9332D-GX2B
+= 完成 Cisco Nexus 9332D-GX2B 交换机的 AFX 系统设置
 :allow-uri-read: 
 :icons: font
 :imagesdir: ../media/
 
 
 [role="lead"]
-完成 Cisco Nexus 9332D-GX2B 交换机配置过程后，您将转到 AFX 系统文档站点，打开 AFX 1K 或 AFX 2K 系统中的存储架和控制器，验证交换机连接，并完成 AFX 系统设置。
+完成 Cisco Nexus 9332D-GX2B 交换机配置后，打开存储架和控制器的电源，验证交换机连接，并完成 AFX 1K 或 AFX 2K 系统设置。
 
 .开始之前
 * 您必须已完成 link:configure-switch-workflow-9332d.html["配置交换机工作流"] 中的交换机配置过程。

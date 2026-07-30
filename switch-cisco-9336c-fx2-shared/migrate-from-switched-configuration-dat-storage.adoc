@@ -2,9 +2,9 @@
 sidebar: sidebar 
 permalink: switch-cisco-9336c-fx2-shared/migrate-from-switched-configuration-dat-storage.html 
 keywords:  
-summary:  
+summary: 通过添加两台新的共享交换机，从具有直连存储的交换机配置迁移到 Cisco Nexus 9336C-FX2 共享交换机。 
 ---
-= 从交换式配置迁移到直连存储
+= 从具有直连存储的交换机配置迁移到 Cisco Nexus 9336C-FX2 共享交换机
 :hardbreaks:
 :allow-uri-read: 
 :nofooter: 
@@ -14,7 +14,7 @@ summary:
 
 
 [role="lead"]
-您可以通过添加两个新的共享交换机，从具有直连存储的交换式配置迁移到共享式配置。
+通过添加两台新的共享交换机，从具有直连存储的交换机配置迁移到 Cisco Nexus 9336C-FX2 共享交换机。
 
 .支持的交换机
 支持以下交换机：

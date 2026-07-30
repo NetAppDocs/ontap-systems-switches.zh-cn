@@ -2,7 +2,7 @@
 permalink: switch-cisco-9336c-fx2/setup-worksheet-9336c-cluster.html 
 sidebar: sidebar 
 keywords: document, support, platform, complete, blank, cabling, worksheet, guide, cisco, nexus, cisco nexus 9336c-fx2 cabling worksheet - cisco nexus 9336-fx2-t 
-summary: 如果要记录支持的平台，则必须使用已完成的示例布线工作表作为指南，填写空白的布线工作表。 
+summary: 完成 Cisco Nexus 9336C-FX2 或 9336C-FX2-T 集群交换机的布线工作表，以记录端口连接和支持的平台配置。 
 ---
 = 完成Cisco Nexus 9336C-FX2 或 9336C-FX2-T 布线工作表
 :allow-uri-read: 
@@ -11,7 +11,7 @@ summary: 如果要记录支持的平台，则必须使用已完成的示例布�
 
 
 [role="lead"]
-如果您想记录支持的平台，请下载此页面的 PDF 文件并填写布线工作表。
+完成 Cisco Nexus 9336C-FX2 或 9336C-FX2-T 集群交换机的布线工作表，以记录端口连接和支持的平台配置。
 
 示例布线工作表提供了从交换机到控制器的推荐端口分配示例。空白工作表提供了一个模板，您可以在设置集群时使用该模板。
 

@@ -2,9 +2,9 @@
 sidebar: sidebar 
 permalink: switch-cisco-9336c-fx2-shared/cable-9336c-shared.html 
 keywords: shared storage cluster switch cable 
-summary: 使用布线图完成控制器和交换机之间的布线。 
+summary: 完成 Cisco Nexus 9336C-FX2 共享交换机的布线工作表，以记录控制器和交换机之间的端口连接。 
 ---
-= 完成Cisco Nexus 9336C-FX2 布线工作表
+= 完成 Cisco Nexus 9336C-FX2 共享交换机布线工作表
 :hardbreaks:
 :allow-uri-read: 
 :nofooter: 
@@ -14,7 +14,7 @@ summary: 使用布线图完成控制器和交换机之间的布线。
 
 
 [role="lead"]
-请使用以下布线图完成控制器和交换机之间的布线。
+使用布线图记录控制器和交换机之间的端口连接，以完成 Cisco Nexus 9336C-FX2 共享交换机的布线工作表。
 
 
 

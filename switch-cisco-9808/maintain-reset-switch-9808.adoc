@@ -2,9 +2,9 @@
 sidebar: sidebar 
 permalink: switch-cisco-9808/maintain-reset-switch-9808.html 
 keywords: reset switch factory defaults 
-summary: 当 Cisco Nexus 9808 交换机退役或发生故障且无法恢复时，您可以将其重置为原始出厂默认设置，此时需要手动重新配置。 
+summary: 在停用或恢复无法配置的交换机时，将 Cisco Nexus 9808 交换机重置为出厂默认设置。 
 ---
-= 将交换机重置为出厂默认设置 - Cisco Nexus 9808
+= 将 Cisco Nexus 9808 交换机重置为出厂默认设置
 :hardbreaks:
 :allow-uri-read: 
 :nofooter: 
@@ -14,7 +14,7 @@ summary: 当 Cisco Nexus 9808 交换机退役或发生故障且无法恢复时�
 
 
 [role="lead"]
-当 Cisco Nexus 9808 交换机退役或发生故障且无法恢复时，您可以将其重置为原始出厂默认设置，此时需要手动重新配置。
+当 Cisco Nexus 9808 交换机退役或发生故障且无法通过正常配置方法恢复时，请将其重置为出厂默认设置。
 
 .开始之前
 您必须使用串口控制台连接到交换机。

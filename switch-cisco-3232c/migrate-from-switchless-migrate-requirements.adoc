@@ -2,15 +2,15 @@
 permalink: switch-cisco-3232c/migrate-from-switchless-migrate-requirements.html 
 sidebar: sidebar 
 keywords: install, cisco nexus 3232c switch, 
-summary: 在配置 Cisco Nexus 3232c 交换机之前，请查看流程和术语的概述。 
+summary: 查看从双节点无交换机集群迁移到 Cisco Nexus 3232C 集群交换机的要求。 
 ---
-= 迁移要求
+= 查看从无交换机集群迁移到 Cisco Nexus 3232C 集群交换机的要求
 :allow-uri-read: 
 :imagesdir: ../media/
 
 
 [role="lead"]
-如果您有双节点无交换机集群，则可以迁移到包含 Cisco Nexus 3232C 集群网络交换机的双节点交换集群。此操作不会造成中断。
+查看使用 Cisco Nexus 3232C 集群交换机从双节点无交换机集群迁移到有交换机集群的要求。
 
 .开始之前
 请核实以下安装和连接：

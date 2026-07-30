@@ -2,7 +2,7 @@
 sidebar: sidebar 
 permalink: switch-cisco-9336c-fx2-shared/install-9336c-shared.html 
 keywords:  
-summary:  
+summary: 安装 Cisco Nexus 9336C-FX2 共享交换机，以在 ONTAP 环境中结合集群和存储功能。 
 ---
 = 安装Cisco Nexus 9336C-FX2 共享交换机
 :hardbreaks:
@@ -14,7 +14,7 @@ summary:
 
 
 [role="lead"]
-请按照以下说明配置Cisco Nexus 9336C-FX2 共享交换机。
+安装 Cisco Nexus 9336C-FX2 共享交换机，以在 ONTAP 环境中结合集群和存储功能。
 
 .开始之前
 请确保您拥有以下物品：

@@ -2,16 +2,16 @@
 permalink: switch-bes-53248/upgrade-rcf.html 
 sidebar: sidebar 
 keywords: upgrade rcf,setup rcf,rcf file 
-summary: 您可以在配置 BES-53248 集群交换机和应用任何新许可证后升级 RCF。 
+summary: '升级 EFOS 软件后，升级 Broadcom BES-53248 集群交换机上的参考配置文件 (RCF)。' 
 ---
-= 升级 RCF 版本
+= 升级 Broadcom BES-53248 集群交换机上的 RCF
 :allow-uri-read: 
 :icons: font
 :imagesdir: ../media/
 
 
 [role="lead"]
-您可以在升级 BES-53248 集群交换机 EFOS 和应用任何新许可证后升级 RCF。
+在升级 EFOS 软件并应用任何所需的许可证后，升级 Broadcom BES-53248 集群交换机上的参考配置文件 (RCF)。
 
 .开始之前
 请确保您拥有以下物品：

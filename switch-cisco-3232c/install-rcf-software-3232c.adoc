@@ -1,17 +1,17 @@
 ---
 permalink: switch-cisco-3232c/install-rcf-software-3232c.html 
 sidebar: sidebar 
-keywords: ssh, requirement, cluster, switch, health, monitor, cshm, log, collection, feature, cisco 3232c 
-summary: 使用群集交换机运行状况监视器和日志收集功能时，SSH 是必需的。要在 Cisco 3232c 群集交换机上启用 SSH，请先生成 SSH 密钥，然后启用 SSH。 
+keywords: rcf, install, cluster switch, cisco nexus 3232c 
+summary: '初始设置后，在 Cisco Nexus 3232C 集群交换机上安装参考配置文件 (RCF)。' 
 ---
-= 安装参考配置文件（RCF）
+= 在 Cisco Nexus 3232C 集群交换机上安装 RCF
 :allow-uri-read: 
 :icons: font
 :imagesdir: ../media/
 
 
 [role="lead"]
-在首次设置 Nexus 3232C 交换机后安装参考配置文件 (RCF)。
+初始设置后，在 Cisco Nexus 3232C 集群交换机上安装参考配置文件 (RCF)。RCF 定义了集群操作所需的端口分配和网络设置。
 
 .开始之前
 请核实以下安装和连接：

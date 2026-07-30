@@ -2,9 +2,9 @@
 sidebar: sidebar 
 permalink: switch-cisco-9336c-fx2-shared/migrate-from-switchless-cluster-dat-storage.html 
 keywords:  
-summary:  
+summary: 通过添加两台新的共享交换机，从具有直连存储的无交换机集群迁移到 Cisco Nexus 9336C-FX2 共享交换机。 
 ---
-= 从无交换机集群迁移到直连存储
+= 从具有直连存储的无交换机集群迁移到 Cisco Nexus 9336C-FX2 共享交换机
 :hardbreaks:
 :allow-uri-read: 
 :nofooter: 
@@ -14,7 +14,7 @@ summary:
 
 
 [role="lead"]
-您可以通过添加两个新的共享交换机，从无交换机集群（采用直连存储）迁移到共享集群。
+通过添加两台新的共享交换机，从具有直连存储的无交换机集群迁移到 Cisco Nexus 9336C-FX2 共享交换机。
 
 具体操作步骤取决于每个控制器上是有两个专用集群网络端口还是只有一个集群端口。记录的过程适用于所有使用光纤或 Twinax 端口的节点，但如果节点使用板载 10Gb BASE-T RJ45 端口作为集群网络端口，则此交换机不支持此过程。
 

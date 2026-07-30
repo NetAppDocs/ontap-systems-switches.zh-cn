@@ -2,16 +2,16 @@
 permalink: switch-cisco-92300/configure-install-initial.html 
 sidebar: sidebar 
 keywords: install cisco 92300YC cluster switch, cisco nx 92300yc 
-summary: 您可以使用此过程执行 Cisco Nexus 92300YC 交换机的初始安装。 
+summary: 配置 Cisco Nexus 92300YC 集群交换机，使其为集群运行做好准备。 
 ---
-= 配置 Cisco Nexus 92300YC 交换机
+= 配置 Cisco Nexus 92300YC 集群交换机
 :allow-uri-read: 
 :icons: font
 :imagesdir: ../media/
 
 
 [role="lead"]
-按照此步骤设置和配置 Cisco Nexus 92300YC 交换机。
+使用初始设置命令配置 Cisco Nexus 92300YC 集群交换机，使其为集群操作做好准备。
 
 .步骤
 . 将串口连接到主机或串口。

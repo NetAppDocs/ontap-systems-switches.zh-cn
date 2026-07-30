@@ -2,9 +2,9 @@
 sidebar: sidebar 
 permalink: switch-cisco-9364d-gx2a/install-prepare-9364d.html 
 keywords: shared storage cluster switch 
-summary: 在将 Cisco Nexus 9364D-GX2A 交换机作为新的 AFX 1K 或 AFX 2K 系统安装的一部分进行安装之前，您应通过查看适用的 Cisco 交换机文档和 ONTAP 系统文档、了解 AFX 系统支持的 RCF 版本以及考虑使用 Smart Call Home 来了解交换机及其安装的各个方面。 
+summary: 通过查看交换机文档、支持的 RCF 版本和 Smart Call Home 要求，准备将 Cisco Nexus 9364D-GX2A 交换机安装为新的 AFX 1K 或 AFX 2K 系统的一部分。 
 ---
-= 准备安装交换机 - Cisco Nexus 9364D-GX2A
+= 准备在 AFX 系统中安装 Cisco Nexus 9364D-GX2A 交换机
 :hardbreaks:
 :allow-uri-read: 
 :nofooter: 
@@ -14,7 +14,7 @@ summary: 在将 Cisco Nexus 9364D-GX2A 交换机作为新的 AFX 1K 或 AFX 2K �
 
 
 [role="lead"]
-在将 Cisco Nexus 9364D-GX2A 交换机作为新的 AFX 1K 或 AFX 2K 系统安装的一部分进行安装之前，您应通过查看适用的 Cisco 交换机文档和 ONTAP 系统文档、了解 AFX 系统支持的 RCF 版本以及考虑使用 Smart Call Home 来了解交换机及其安装的各个方面。
+通过查看适用的 Cisco 交换机文档、了解支持的 RCF 版本并考虑 Smart Call Home 配置，准备将 Cisco Nexus 9364D-GX2A 交换机安装为新的 AFX 1K 或 AFX 2K 系统的一部分。
 
 
 

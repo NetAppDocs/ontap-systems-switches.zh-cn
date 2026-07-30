@@ -2,16 +2,16 @@
 permalink: switch-cisco-9336c-fx2-storage/setup-switch-9336c-storage.html 
 sidebar: sidebar 
 keywords: require, configuration, information, documentation, cluster, management, network, switches, set up the switches - cisco nexus 9336c-fx2 
-summary: 如果您还没有所需的配置信息和文档，则需要在设置集群和管理网络交换机之前收集这些信息。 
+summary: 配置 Cisco Nexus 9336C-FX2 和 9336C-FX2-T 存储交换机，为存储网络操作做好准备。 
 ---
-= 配置 9336C-FX2 和 9336C-FX2-T 存储交换机
+= 配置 Cisco Nexus 9336C-FX2 和 9336C-FX2-T 存储交换机
 :allow-uri-read: 
 :icons: font
 :imagesdir: ../media/
 
 
 [role="lead"]
-按照以下步骤配置Cisco Nexus 9336C-FX2 和 9336C-FX2-T 交换机。
+使用初始设置命令配置 Cisco Nexus 9336C-FX2 和 9336C-FX2-T 存储交换机，为存储网络操作做好准备。
 
 .开始之前
 请确保您拥有以下物品：

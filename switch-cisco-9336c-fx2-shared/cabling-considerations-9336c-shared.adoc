@@ -2,16 +2,16 @@
 permalink: switch-cisco-9336c-fx2-shared/cabling-considerations-9336c-shared.html 
 sidebar: sidebar 
 keywords: 9336c-fx2 cabling setup, 9336c-fx2 switches configuration, nx-os 
-summary: 在配置Cisco 9336C-FX2 交换机之前，请查看以下信息。 
+summary: 在部署之前，请查看 Cisco Nexus 9336C-FX2 共享交换机的布线和配置注意事项。 
 ---
-= 审查布线和配置注意事项
+= 查看 Cisco Nexus 9336C-FX2 共享交换机的布线和配置注意事项
 :allow-uri-read: 
 :icons: font
 :imagesdir: ../media/
 
 
 [role="lead"]
-在配置 9336C-FX2 和 9336C-FX2-T 交换机之前，请查看布线和配置要求。
+在部署之前，请查看 Cisco Nexus 9336C-FX2 共享交换机的布线和配置注意事项。
 
 
 

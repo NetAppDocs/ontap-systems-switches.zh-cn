@@ -2,16 +2,16 @@
 permalink: switch-bes-53248/install-hardware-bes53248.html 
 sidebar: sidebar 
 keywords: switches hardware installation 
-summary: 要安装 BES-53248 硬件，请参阅博通公司的文档。 
+summary: 按照 Broadcom 支持的《BES-53248 集群交换机安装指南》安装 Broadcom BES-53248 集群交换机硬件。 
 ---
-= 安装 BES-53248 集群交换机的硬件
+= 安装 Broadcom BES-53248 集群交换机的硬件
 :allow-uri-read: 
 :icons: font
 :imagesdir: ../media/
 
 
 [role="lead"]
-要安装 BES-53248 硬件，请参阅博通公司的文档。
+按照 Broadcom 支持的《BES-53248 集群交换机安装指南》安装 Broadcom BES-53248 集群交换机硬件。
 
 .步骤
 . 复习link:configure-reqs-bes53248.html["配置要求"]。

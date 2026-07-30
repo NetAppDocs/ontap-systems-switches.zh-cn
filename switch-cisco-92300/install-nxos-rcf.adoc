@@ -2,16 +2,16 @@
 permalink: switch-cisco-92300/install-nxos-rcf.html 
 sidebar: sidebar 
 keywords: install rcf,rcf configure 
-summary: 您可以在首次设置 Nexus 92300YC 交换机后安装 RCF。 
+summary: '初始设置后，在 Cisco Nexus 92300YC 集群交换机上安装参考配置文件 (RCF)。' 
 ---
-= 安装参考配置文件（RCF）
+= 在 Cisco Nexus 92300YC 集群交换机上安装 RCF
 :allow-uri-read: 
 :icons: font
 :imagesdir: ../media/
 
 
 [role="lead"]
-您可以在首次设置 Nexus 92300YC 交换机后安装 RCF。
+初始设置后，在 Cisco Nexus 92300YC 集群交换机上安装参考配置文件 (RCF)。RCF 定义了集群操作所需的端口分配和网络设置。
 
 .交换机和节点命名法
 本流程中的示例使用以下开关和节点命名规则：

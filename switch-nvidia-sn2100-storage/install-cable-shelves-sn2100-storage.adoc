@@ -2,16 +2,16 @@
 permalink: switch-nvidia-sn2100-storage/install-cable-shelves-sn2100-storage.html 
 sidebar: sidebar 
 keywords: sn2100 cabling setup, msn2100 sn2100 switches configuration, cumulus linux 
-summary: 如果您的系统需要将 NS224 驱动器架连接为交换机连接的存储，而不是直接连接的存储，请使用此处提供的信息。 
+summary: 不使用直连存储时，使用 NVIDIA SN2100 存储交换机将 NS224 驱动器架作为交换机连接存储进行连接。 
 ---
-= NS224电缆架用作交换机连接存储
+= 将 NS224 驱动器架作为交换机连接存储连接到 NVIDIA SN2100 存储交换机
 :allow-uri-read: 
 :icons: font
 :imagesdir: ../media/
 
 
 [role="lead"]
-如果您的系统需要将 NS224 驱动器架作为交换机连接存储（而不是直接连接存储）进行布线，请使用此处提供的信息。
+当直连存储不适用于您的配置时，使用 NVIDIA SN2100 存储交换机将 NS224 驱动器架连接为交换机连接存储。
 
 * NS224 电缆驱动货架通过存储交换机：
 +

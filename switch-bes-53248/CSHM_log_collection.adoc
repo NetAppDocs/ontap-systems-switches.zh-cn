@@ -2,16 +2,16 @@
 permalink: switch-bes-53248/CSHM_log_collection.html 
 sidebar: sidebar 
 keywords: log collection feature,collect switch-related log files,SSh key,crypto key generation,BES-53248 Broadcom setup,BES-53248 switches configuration,EFOS 
-summary: 以太网交换机健康监视器 CSHM 日志收集功能用于从 ONTAP 中的集群或存储网络交换机收集日志。 
+summary: 在 Broadcom BES-53248 集群交换机上配置日志收集，使 CSHM 能够收集用于调试和 AutoSupport 报告的交换机日志。 
 ---
-= 以太网交换机健康监控日志收集
+= 为 Broadcom BES-53248 集群交换机配置日志收集
 :allow-uri-read: 
 :icons: font
 :imagesdir: ../media/
 
 
 [role="lead"]
-以太网交换机健康监视器 (CSHM) 负责确保集群和存储网络交换机的运行健康，并收集交换机日志以进行调试。此程序指导您完成从交换机设置和开始收集详细*支持*日志的过程，并开始每小时收集由AutoSupport收集的*定期*数据。
+在 Broadcom BES-53248 集群交换机上配置日志收集，使以太网交换机健康监视器 (CSHM) 能够收集用于调试和 AutoSupport 报告的交换机日志。此过程设置按需支持日志收集和每小时定期数据收集。
 
 .开始之前
 * 要启用日志收集功能，您必须运行ONTAP版本 9.10.1P15、9.11.1P12 或 9.12.1 或更高版本以及 EFOS 3.8.0.2 或更高版本。

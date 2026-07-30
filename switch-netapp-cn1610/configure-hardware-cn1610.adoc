@@ -2,13 +2,13 @@
 permalink: switch-netapp-cn1610/configure-hardware-cn1610.html 
 sidebar: sidebar 
 keywords: switches hardware installation 
-summary: 要安装 NetApp CN1610 硬件，请参见 NetApp 文档。 
+summary: 使用《CN1601 和 CN1610 交换机设置和配置指南》配置 NetApp CN1610 集群交换机的硬件和软件。 
 ---
-= 为 NetApp CN1610 交换机配置硬件
+= 配置 NetApp CN1610 集群交换机的硬件
 :allow-uri-read: 
 :icons: font
 :imagesdir: ../media/
 
 
 [role="lead"]
-要为您的集群环境配置交换机硬件和软件，请参阅  https://library.netapp.com/ecm/ecm_download_file/ECMP1118645["CN1601 和 CN1610 交换机设置和配置指南"^]。
+为您的集群环境配置 NetApp CN1610 集群交换机的硬件和软件。有关详细说明，请参见 https://library.netapp.com/ecm/ecm_download_file/ECMP1118645["CN1601 和 CN1610 交换机设置和配置指南"^]。

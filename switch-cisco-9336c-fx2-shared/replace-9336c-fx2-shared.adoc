@@ -2,7 +2,7 @@
 sidebar: sidebar 
 permalink: switch-cisco-9336c-fx2-shared/replace-9336c-fx2-shared.html 
 keywords:  
-summary:  
+summary: 更换有缺陷的 Cisco Nexus 9336C-FX2 共享交换机。这是一个无中断的程序。 
 ---
 = 更换Cisco Nexus 9336C-FX2 共享交换机
 :hardbreaks:
@@ -14,7 +14,7 @@ summary:
 
 
 [role="lead"]
-您可以更换有缺陷的 Nexus 9336C-FX2 共享交换机。这是一个无中断程序 (NDU)。
+更换有缺陷的 Cisco Nexus 9336C-FX2 共享交换机，而不会中断集群或存储网络操作。此无中断程序（NDU）涉及准备更换交换机和恢复共享交换机配置。
 
 .开始之前
 更换开关之前，请确保：

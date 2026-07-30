@@ -2,16 +2,16 @@
 permalink: switch-bes-53248/configure-new-switch-overview.html 
 sidebar: sidebar 
 keywords: BES-53248 switches, initial installation, configure new bes-53248 switch 
-summary: 在配置 BES-53248 集群交换机之前，请查看配置概述。 
+summary: 按照此工作流程安装和配置新的 Broadcom BES-53248 集群交换机，从审查需求到硬件和软件设置。 
 ---
-= BES-53248 交换机的安装和设置工作流程
+= Broadcom BES-53248 集群交换机的安装和设置工作流程
 :allow-uri-read: 
 :icons: font
 :imagesdir: ../media/
 
 
 [role="lead"]
-BES-53248 是一款裸金属交换机，设计用于 2 到 24 个节点的ONTAP集群。
+按照此工作流程在 ONTAP 环境中安装和配置新的 Broadcom BES-53248 集群交换机。BES-53248 是一款裸机交换机，支持 2 到 24 个节点的 ONTAP 集群。
 
 按照这些工作流程步骤安装和设置您的 BES-53248 交换机。
 

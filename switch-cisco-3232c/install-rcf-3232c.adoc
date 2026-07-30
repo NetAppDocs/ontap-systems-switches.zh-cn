@@ -2,16 +2,16 @@
 permalink: switch-cisco-3232c/install-rcf-3232c.html 
 sidebar: sidebar 
 keywords: install, rcf 
-summary: 您可以在首次设置 Nexus 3232C 交换机后安装 RCF。您也可以使用此过程升级 RCF 版本。 
+summary: '在 Cisco Nexus 3232C 集群交换机上安装或升级参考配置文件 (RCF)。' 
 ---
-= 安装或升级参考配置文件(RCF)
+= 在 Cisco Nexus 3232C 集群交换机上安装或升级 RCF
 :allow-uri-read: 
 :icons: font
 :imagesdir: ../media/
 
 
 [role="lead"]
-首次设置 Nexus 3232C 交换机后，请按照此步骤安装 RCF。
+初始设置后，在 Cisco Nexus 3232C 集群交换机上安装参考配置文件 (RCF)，或在新版本可用时升级 RCF 版本。
 
 您还可以使用此过程升级 RCF 版本。升级 RCF 时，请参阅知识库文章 link:https://kb.netapp.com/onprem/Switches/Cisco/How_to_clear_configuration_on_a_Cisco_interconnect_switch_while_retaining_remote_connectivity["如何在保持远程连接的情况下清除Cisco互连交换机上的配置"^] 以获取更多信息。
 

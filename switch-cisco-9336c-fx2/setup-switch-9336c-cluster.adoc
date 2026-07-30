@@ -2,16 +2,16 @@
 permalink: switch-cisco-9336c-fx2/setup-switch-9336c-cluster.html 
 sidebar: sidebar 
 keywords: require, configuration, information, documentation, cluster, management, network, switches, set up the switches - cisco nexus 9336c-fx2 
-summary: 按照以下步骤设置和配置Cisco Nexus 9336C-FX2 交换机。 
+summary: 配置 Cisco Nexus 9336C-FX2 和 9336C-FX2-T 集群交换机，为集群运行做好准备。 
 ---
-= 配置 9336C-FX2 和 9336C-FX2-T 集群交换机
+= 配置 Cisco Nexus 9336C-FX2 和 9336C-FX2-T 集群交换机
 :allow-uri-read: 
 :icons: font
 :imagesdir: ../media/
 
 
 [role="lead"]
-按照以下步骤配置Cisco Nexus 9336C-FX2 和 9336C-FX2-T 交换机。
+使用初始设置命令配置 Cisco Nexus 9336C-FX2 和 9336C-FX2-T 集群交换机，使其为在 ONTAP 环境中的集群操作做好准备。
 
 .开始之前
 请确保您拥有以下物品：

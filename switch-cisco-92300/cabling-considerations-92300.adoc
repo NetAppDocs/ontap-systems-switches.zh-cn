@@ -2,16 +2,16 @@
 permalink: switch-cisco-92300/cabling-considerations-92300.html 
 sidebar: sidebar 
 keywords: 92300YC cabling setup, 92300YC switches configuration, nx-os 
-summary: 在配置 Cisco 92300YC 交换机之前，请查看以下信息。 
+summary: 在部署之前，请查看 Cisco Nexus 92300YC 集群交换机的布线和配置注意事项。 
 ---
-= 审查布线和配置注意事项
+= 查看 Cisco Nexus 92300YC 集群交换机的布线和配置注意事项
 :allow-uri-read: 
 :icons: font
 :imagesdir: ../media/
 
 
 [role="lead"]
-在配置 Cisco 92300YC 交换机之前，请查看以下注意事项。
+在部署之前，请查看 Cisco Nexus 92300YC 集群交换机的布线和配置注意事项。
 
 
 

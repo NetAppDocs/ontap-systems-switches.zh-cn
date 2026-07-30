@@ -2,16 +2,16 @@
 permalink: switch-bes-53248/migrate-cn1610.html 
 sidebar: sidebar 
 keywords: CN1610, CN1610 replacing, migrate from CN1610 
-summary: 要将集群中现有的 CN1610 集群交换机替换为 Broadcom 支持的 BES-53248 集群交换机，必须执行一系列特定的任务。 
+summary: 按照迁移要求和程序，将现有的 NetApp CN1610 集群交换机迁移到 Broadcom BES-53248 集群交换机。 
 ---
-= 将 CN1610 集群交换机迁移到 BES-53248 集群交换机
+= 将 NetApp CN1610 集群交换机迁移到 Broadcom BES-53248 集群交换机
 :allow-uri-read: 
 :icons: font
 :imagesdir: ../media/
 
 
 [role="lead"]
-要将集群中的 CN1610 集群交换机迁移到 Broadcom 支持的 BES-53248 集群交换机，请先查看迁移要求，然后按照迁移程序进行操作。
+将现有的 NetApp CN1610 集群交换机迁移到 Broadcom BES-53248 集群交换机。查看迁移要求，然后按照迁移程序更换交换机，而不会中断集群操作。
 
 支持以下集群交换机：
 

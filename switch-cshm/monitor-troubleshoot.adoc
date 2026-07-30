@@ -2,16 +2,16 @@
 permalink: switch-cshm/monitor-troubleshoot.html 
 sidebar: sidebar 
 keywords: cshm, cluster, storage, switch logs, debugging, collection 
-summary: 您可以使用以下命令…… 
+summary: 排除 CSHM 在 ONTAP 集群中引发的以太网交换机运行状况监控警报故障。 
 ---
-= 故障排除警报
+= 排查以太网交换机健康监视器的警报
 :allow-uri-read: 
 :icons: font
 :imagesdir: ../media/
 
 
 [role="lead"]
-如果集群中的以太网交换机检测到故障、风险或严重情况，则会发出警报。
+当在 ONTAP 集群中检测到网络交换机的故障、风险或危急情况时，对以太网交换机运行状况监视器 (CSHM) 引发的警报进行故障排除。
 
 如果发出警报，系统健康状况报告集群状态下降。发出的警报包含您需要应对系统健康状况下降的信息。
 

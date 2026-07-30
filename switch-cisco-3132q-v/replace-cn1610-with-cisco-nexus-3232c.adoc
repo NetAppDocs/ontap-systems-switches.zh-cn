@@ -2,16 +2,16 @@
 permalink: switch-cisco-3132q-v/replace-cn1610-with-cisco-nexus-3232c.html 
 sidebar: sidebar 
 keywords: replace, cn1610 cluster switches, cisco nexus 3132q-v 
-summary: 要使用 Cisco Nexus 3132Q-V 集群交换机替换集群中现有的 CN1610 集群交换机，必须执行特定的任务序列。 
+summary: 在不中断集群运行的情况下，将集群交换机从 NetApp CN1610 迁移到 Cisco Nexus 3132Q-V 集群交换机。 
 ---
-= 从 CN1610 集群交换机迁移到 Cisco Nexus 3132Q-V 集群交换机
+= 从 NetApp CN1610 集群交换机迁移到 Cisco Nexus 3132Q-V 集群交换机
 :allow-uri-read: 
 :icons: font
 :imagesdir: ../media/
 
 
 [role="lead"]
-按照此步骤使用 Cisco Nexus 3132Q-V 集群交换机替换现有的 CN1610 集群交换机。
+在不中断集群运行的情况下，将集群交换机从 NetApp CN1610 迁移到 Cisco Nexus 3132Q-V 集群交换机。
 
 
 

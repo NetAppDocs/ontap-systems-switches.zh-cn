@@ -2,9 +2,9 @@
 sidebar: sidebar 
 permalink: switch-cisco-3232c-storage/configure-reqs-3232c-storage.html 
 keywords: shared storage cluster switch 
-summary: 从 ONTAP 9.9.1 开始，您可以使用 Cisco Nexus 3232C 交换机将存储和集群功能组合到共享交换机方案中。 
+summary: 在安装或升级之前，请查看 Cisco Nexus 3232C 存储交换机的配置要求。 
 ---
-= Cisco Nexus 3232C 存储交换机的配置要求
+= 查看 Cisco Nexus 3232C 存储交换机的配置要求
 :hardbreaks:
 :allow-uri-read: 
 :nofooter: 
@@ -14,7 +14,7 @@ summary: 从 ONTAP 9.9.1 开始，您可以使用 Cisco Nexus 3232C 交换机将
 
 
 [role="lead"]
-对于 Cisco Nexus 3232C 交换机的安装和维护，请务必查看配置和网络要求。
+在安装或升级之前，请查看 Cisco Nexus 3232C 存储交换机的配置要求。
 
 
 

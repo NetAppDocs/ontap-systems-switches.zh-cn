@@ -2,16 +2,16 @@
 permalink: switch-cisco-9808/configure-review-cabling-config-requirements-9808.html 
 sidebar: sidebar 
 keywords: 9808 cabling setup, 9808 switches configuration, nx-os 
-summary: 如果要在新的 AFX 2K 系统安装过程中安装新的 Cisco Nexus 9808 交换机、更换主管模块或将交换机重置为出厂默认设置，则必须查看以下布线和配置要求。 
+summary: 在作为 AFX 2K 系统的一部分进行安装之前，请查看 Cisco Nexus 9808 交换机的布线和配置要求。 
 ---
-= 查看布线和配置要求 - Cisco Nexus 9808
+= 查看 Cisco Nexus 9808 交换机的布线和配置要求
 :allow-uri-read: 
 :icons: font
 :imagesdir: ../media/
 
 
 [role="lead"]
-如果要在新的 AFX 2K 系统安装过程中安装 Cisco Nexus 9808 交换机、更换主管模块或将交换机重置为出厂默认设置，则必须查看以下布线和配置要求。
+在将 Cisco Nexus 9808 交换机安装为新 AFX 2K 系统的一部分、更换主管模块或将交换机重置为出厂默认设置之前，请查看其布线和配置要求。
 
 
 

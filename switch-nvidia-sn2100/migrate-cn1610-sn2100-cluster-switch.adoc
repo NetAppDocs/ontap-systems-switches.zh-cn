@@ -2,16 +2,16 @@
 permalink: switch-nvidia-sn2100/migrate-cn1610-sn2100-cluster-switch.html 
 sidebar: sidebar 
 keywords: migrate cluster NVIDIA SN2100 cluster switches cn1610 
-summary: 您可以将用于ONTAP集群的NetApp CN1610 集群交换机无中断地迁移到NVIDIA SN2100 集群网络交换机。 
+summary: 将现有的 NetApp CN1610 集群交换机迁移到 NVIDIA SN2100 集群交换机，而不会中断集群操作。 
 ---
-= 将 CN1610 集群交换机迁移到NVIDIA SN2100 集群交换机
+= 从 NetApp CN1610 集群交换机迁移到 NVIDIA SN2100 集群交换机
 :allow-uri-read: 
 :icons: font
 :imagesdir: ../media/
 
 
 [role="lead"]
-您可以将用于ONTAP集群的NetApp CN1610 集群交换机迁移到NVIDIA SN2100 集群交换机。这是一个非破坏性的过程。
+将现有的 NetApp CN1610 集群交换机迁移到 NVIDIA SN2100 集群交换机，而不会中断集群操作。
 
 
 

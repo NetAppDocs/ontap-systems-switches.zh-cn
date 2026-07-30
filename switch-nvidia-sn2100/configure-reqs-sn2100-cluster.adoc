@@ -2,16 +2,16 @@
 permalink: switch-nvidia-sn2100/configure-reqs-sn2100-cluster.html 
 sidebar: sidebar 
 keywords: nvidia SN2100 switches 
-summary: 对于NVIDIA SN2100 交换机的安装和维护，请务必查看所有要求和推荐文档。 
+summary: 在安装或升级之前，请查看 NVIDIA SN2100 集群交换机的配置要求。 
 ---
-= NVIDIA SN2100交换机的配置要求
+= 查看 NVIDIA SN2100 集群交换机的配置要求
 :allow-uri-read: 
 :icons: font
 :imagesdir: ../media/
 
 
 [role="lead"]
-对于NVIDIA SN2100 交换机的安装和维护，请务必查看所有配置要求。
+在安装或升级之前，请查看 NVIDIA SN2100 集群交换机的配置要求。
 
 
 

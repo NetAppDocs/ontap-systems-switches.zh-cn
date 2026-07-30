@@ -2,16 +2,16 @@
 permalink: switch-cisco-9808/maintain-overview-9808.html 
 sidebar: sidebar 
 keywords: maintain overview, frus, replace switch, reset to factory defaults, cisco 9808 
-summary: '维护您的 Cisco Nexus 9808 交换机，以确保长期可靠性和最佳性能。您可以执行维护任务，例如更换故障交换机组件 (FRU)、更换故障交换机以及将交换机重置为出厂默认设置。' 
+summary: 查看 Cisco Nexus 9808 交换机的维护任务，包括 FRU 更换、交换机更换以及重置为出厂默认设置。 
 ---
-= 维护概述 - Cisco Nexus 9808
+= 了解 Cisco Nexus 9808 交换机的维护选项
 :allow-uri-read: 
 :icons: font
 :imagesdir: ../media/
 
 
 [role="lead"]
-维护您的 Cisco Nexus 9808 交换机，以实现长期可靠性和最佳性能。您可以执行维护任务，例如更换故障交换机组件 (FRU)、更换故障交换机以及将交换机重置为出厂默认设置。
+查看 Cisco Nexus 9808 交换机可用的维护任务，包括更换有故障的交换机组件 (FRU)、更换有故障的交换机以及将交换机重置为出厂默认设置。
 
 您可以在交换机上执行以下维护任务：
 

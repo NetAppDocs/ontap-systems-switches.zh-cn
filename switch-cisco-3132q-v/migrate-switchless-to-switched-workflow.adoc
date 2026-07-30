@@ -2,16 +2,16 @@
 permalink: switch-cisco-3132q-v/migrate-switchless-to-switched-workflow.html 
 sidebar: sidebar 
 keywords: 3132q-v cabling setup, 3132q-v switches configuration, nx-os 
-summary: 在配置 Cisco 3132q-v 交换机之前，请查看以下信息。 
+summary: 按照此工作流程从双节点无交换机集群迁移到使用 Cisco Nexus 3132Q-V 集群交换机的有交换机集群。 
 ---
-= 从无交换机集群迁移到双节点有交换机集群工作流
+= Cisco Nexus 3132Q-V 集群交换机的迁移工作流程
 :allow-uri-read: 
 :icons: font
 :imagesdir: ../media/
 
 
 [role="lead"]
-按照以下工作流程步骤，从双节点无交换机集群迁移到包含 Cisco Nexus 3132Q-V 集群网络交换机的双节点交换机集群。
+按照此工作流程从双节点无交换机集群迁移到使用 Cisco Nexus 3132Q-V 集群交换机的有交换机集群。
 
 .image:https://raw.githubusercontent.com/NetAppDocs/common/main/media/number-1.png["一个"]link:migrate-switchless-to-switched-requirements.html["迁移要求"]
 [role="quick-margin-para"]

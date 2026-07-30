@@ -2,16 +2,16 @@
 permalink: switch-cisco-92300/install-overview-cisco-92300.html 
 sidebar: sidebar 
 keywords: install, cisco nexus 92300 switch, 
-summary: 在配置 Cisco Nexus 92300 交换机之前，请查看流程和术语的概述。 
+summary: 按照此工作流程在 ONTAP 环境中安装和配置 Cisco Nexus 92300YC 集群交换机。 
 ---
-= Cisco Nexus 92300YC 交换机的安装和设置工作流程
+= Cisco Nexus 92300YC 集群交换机的安装和设置工作流程
 :allow-uri-read: 
 :icons: font
 :imagesdir: ../media/
 
 
 [role="lead"]
-Cisco Nexus 92300YC 交换机可用作 AFF 或 FAS 集群中的集群交换机。集群交换机允许您构建具有两个以上节点的 ONTAP 集群。
+按照此工作流程在 ONTAP 环境中安装和配置 Cisco Nexus 92300YC 集群交换机。92300YC 支持具有两个以上节点的 ONTAP 集群。
 
 按照以下工作流程步骤安装和设置 Cisco Nexus 92300YC 交换机。
 

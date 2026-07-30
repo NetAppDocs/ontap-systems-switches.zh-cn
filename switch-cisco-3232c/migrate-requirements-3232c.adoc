@@ -2,16 +2,16 @@
 permalink: switch-cisco-3232c/migrate-requirements-3232c.html 
 sidebar: sidebar 
 keywords: migrate, cn1610 switch, cisco nexus 3232c cluster 
-summary: 将 CN1610 集群交换机替换为 Cisco Nexus 3232C 集群交换机时，必须了解某些配置信息、端口连接和布线要求。 
+summary: 在将 CN1610 集群交换机替换为 Cisco Nexus 3232C 集群交换机之前，请查看迁移要求。 
 ---
-= Cisco Nexus 3232C 集群交换机的迁移要求
+= 查看 Cisco Nexus 3232C 集群交换机的迁移要求
 :allow-uri-read: 
 :icons: font
 :imagesdir: ../media/
 
 
 [role="lead"]
-在迁移到 Cisco Nexus 3232C 集群交换机之前，请查看配置信息、端口连接和布线要求。
+在将 CN1610 集群交换机更换为 Cisco Nexus 3232C 集群交换机之前，请查看配置信息、端口连接和布线要求。
 
 
 

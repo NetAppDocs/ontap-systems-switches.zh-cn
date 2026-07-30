@@ -2,19 +2,19 @@
 permalink: switch-nvidia-sn2100-storage/replace-sn2100-switch-storage.html 
 sidebar: sidebar 
 keywords: replacing, replace, defective, nvidia, switch, cluster, network, nondisruptive, procedure, ndu, replace a nvidia sn2100 cluster switch - nvidia SN2100 
-summary: 更换有缺陷的 NVIDIA SN2100 存储交换机是无中断过程。 
+summary: 更换有缺陷的 NVIDIA SN2100 存储交换机。这是一个无中断的程序。 
 ---
-= 更换NVIDIA SN2100 存储交换机
+= 更换 NVIDIA SN2100 存储交换机
 :allow-uri-read: 
 :icons: font
 :imagesdir: ../media/
 
 
 [role="lead"]
-您可以更换有缺陷的NVIDIA SN2100 存储交换机。这是一个非破坏性的过程。
+更换有缺陷的 NVIDIA SN2100 存储交换机，而不会中断存储网络运行。此无中断过程包括准备更换交换机和恢复存储网络配置。
 
 .开始之前
-在NVIDIA SN2100 存储交换机上安装 Cumulus 软件和 RCF 之前，请确保：
+在 NVIDIA SN2100 存储交换机上安装 Cumulus 软件和 RCF 之前，请确保：
 
 * 您的系统可以支持NVIDIA SN2100 存储交换机。
 * 您已下载适用的 RCF 文件。

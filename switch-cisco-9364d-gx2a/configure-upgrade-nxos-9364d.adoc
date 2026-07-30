@@ -2,16 +2,16 @@
 permalink: switch-cisco-9364d-gx2a/configure-upgrade-nxos-9364d.html 
 sidebar: sidebar 
 keywords: procedure, install, nx-os, software, nexus, cluster, switch, install the nx-os software - cisco nexus 9364d-gx2a 
-summary: 您可以升级 Cisco Nexus 9364D-GX2A 交换机上的 NX-OS，以支持 AFX 1K 或 AFX 2K 系统上的新硬件或新 ONTAP 版本。 
+summary: 升级 Cisco Nexus 9364D-GX2A 交换机上的 NX-OS，以支持 AFX 1K 或 AFX 2K 系统上的新硬件或新 ONTAP 版本。 
 ---
-= 升级 NX-OS - Cisco Nexus 9364D-GX2A
+= 在 Cisco Nexus 9364D-GX2A 交换机上升级 NX-OS
 :allow-uri-read: 
 :icons: font
 :imagesdir: ../media/
 
 
 [role="lead"]
-您可以升级 Cisco Nexus 9364D-GX2A 交换机上的 NX-OS，以支持 AFX 1K 或 AFX 2K 系统上的新硬件或新 ONTAP 版本。
+升级 Cisco Nexus 9364D-GX2A 交换机上的 NX-OS，以支持 AFX 1K 或 AFX 2K 系统上的新硬件或新 ONTAP 版本。
 
 
 NOTE: NetApp 建议您首先完成任何 ONTAP 软件升级，然后为您的交换机执行软件升级。

@@ -2,16 +2,16 @@
 permalink: switch-cisco-9332d-gx2b/configure-switch-workflow-9332d.html 
 sidebar: sidebar 
 keywords: switches, initial installation, configure switch-cisco-9332d-gx2b switch 
-summary: 您可以将 Cisco 9332D-GX2B 交换机配置为新的 AFX 1K 或 AFX 2K 系统安装、交换机更换或交换机重置为出厂默认设置的一部分。 
+summary: 按照此工作流程为 AFX 1K 或 AFX 2K 系统安装、交换机更换或出厂默认重置配置 Cisco Nexus 9332D-GX2B 交换机。 
 ---
-= 配置交换机工作流 - Cisco Nexus 9332D-GX2B
+= Cisco Nexus 9332D-GX2B 交换机的配置工作流程
 :allow-uri-read: 
 :icons: font
 :imagesdir: ../media/
 
 
 [role="lead"]
-您可以将 Cisco 9332D-GX2B 交换机配置为新的 AFX 1K 或 AFX 2K 系统安装、交换机更换或交换机重置为出厂默认设置的一部分。
+按照此工作流程，为 AFX 1K 或 AFX 2K 系统安装、交换机更换或将交换机重置为出厂默认设置时配置 Cisco Nexus 9332D-GX2B 交换机。
 
 根据您针对 link:install-configure-switches-in-afx-workflow-9332d.html["安装并设置新的 AFX 1K 或 AFX 2K 系统"]、link:replace-9332d-cluster.html["更换交换机"] 或 link:maintain-reset-switch-9332d.html["将交换机重置为出厂默认设置"] 的特定流程，您可能会被引导至此工作流程或此工作流程中的各个主题。
 

@@ -2,7 +2,7 @@
 sidebar: sidebar 
 permalink: switch-cisco-9336c-fx2-shared/setup-and-configure-9336c-shared.html 
 keywords:  
-summary:  
+summary: 配置 Cisco Nexus 9336C-FX2 共享交换机，为集群和存储操作的组合做好准备。 
 ---
 = 配置Cisco Nexus 9336C-FX2 共享交换机
 :hardbreaks:
@@ -14,7 +14,7 @@ summary:
 
 
 [role="lead"]
-请按照以下说明配置Cisco Nexus 9336C-FX2 共享交换机。
+配置 Cisco Nexus 9336C-FX2 共享交换机，为集群和存储网络联合运行做好准备。
 
 .开始之前
 请确保您拥有以下物品：
