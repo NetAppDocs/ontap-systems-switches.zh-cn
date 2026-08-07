@@ -39,12 +39,8 @@
   <block id="6b9f542dd155c40aa5e4484b5ff61711" category="list-text">配置 CSHM 以使用新的 SNMPv3 用户进行监控：</block>
   <block id="f1d85c8d2abe8fba947527035ed0f381" category="list-text">等待 CSHM 轮询周期结束后，确认以太网交换机的序列号已填充。</block>
   <block id="250f3098aa37d3a08b48b8157db8a62e" category="open-title">Cisco 交换机</block>
-  <block id="0fdfed50bdfb7a964741d7f6016dd332" category="paragraph">在Cisco 9336C-FX2 交换机上配置 SNMPv3 用户名 SNMPv3_USER：</block>
   <block id="d4d693d9dd779d0daf149c2e448b60b2" category="list-text">在 CSHM 轮询周期结束后，验证使用新创建的 SNMPv3 用户查询的序列号是否与上一步中详细说明的序列号相同。</block>
   <block id="05918726f836c344025fecbcf0275f1b" category="open-title">NVIDIA - CL 5.4.0</block>
-  <block id="c19095c0c8945d1d4e4e73ec7a11354c" category="paragraph">在运行 CLI 5.4.0 的NVIDIA SN2100 交换机上配置 SNMPv3 用户名 SNMPv3_USER：</block>
-  <block id="cd12738ab621b27db86ca1b02e9d118c" category="open-title">NVIDIA - CL 5.11.0</block>
-  <block id="1d478fc1ce1613a790d5d77707c188f6" category="paragraph">在运行 CLI 5.11.0 的NVIDIA SN2100 交换机上配置 SNMPv3 用户名 SNMPv3_USER：</block>
   <block id="2d0e9a7694bf5bc701c3af145a6bba71" category="doc">审查要求</block>
   <block id="ddd0020a0684c14dbd50622f84d8917a" category="paragraph">请确保您拥有以下物品：</block>
   <block id="7b93b1b58c897d187f4ffbd20253248f" category="list-text">交换机配置的当前备份。</block>
@@ -6609,4 +6605,8 @@
   <block id="d4349ec8e1165e70a8d12a795df9127a" category="summary">安装适用于 NVIDIA SN2100 存储交换机的以太网交换机运行状况监控器 (CSHM) 配置文件，以在 ONTAP 中启用交换机运行状况监控。</block>
   <block id="292a0674d06dc1e19a4599aa419fccd7" category="doc">为 NVIDIA SN2100 存储交换机安装以太网交换机运行状况监控器配置文件</block>
   <block id="b47e16b6084121d1532c4351aca5f247" category="paragraph">安装适用于 NVIDIA SN2100 存储交换机的以太网交换机运行状况监控器 (CSHM) 配置文件，以在 ONTAP 中启用交换机运行状况监控。支持的型号有：</block>
+  <block id="706bc34d657098e3dcd81db43d280c53" category="paragraph">在 Cisco Nexus 交换机上配置 SNMPv3 用户名 SNMPv3_USER：</block>
+  <block id="5a523817621c85574dfcbf0b11c07075" category="paragraph">在运行 CL 5.4.0 的 NVIDIA Cumulus 交换机上配置 SNMPv3 用户名 SNMPv3_USER：</block>
+  <block id="4451c276144ff12f4a59bad51c0a1181" category="open-title">NVIDIA - CL 5.11.0+</block>
+  <block id="d1f08b7bd68bdc79984e047bc1939c5d" category="paragraph">在运行 CLI 5.11.0 及更高版本的 NVIDIA Cumulus 交换机上配置 SNMPv3 用户名 SNMPv3_USER：</block>
 </blocks>
