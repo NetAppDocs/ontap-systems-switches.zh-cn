@@ -4,7 +4,7 @@ sidebar: sidebar
 keywords: migrate, two-node switched cluster, fas22xx systems, single, network connection 
 summary: 使用 NetApp CN1610 集群交换机将 FAS22xx 系统从具有单个集群网络连接的无交换机集群迁移到有交换机集群。 
 ---
-= 使用 NetApp CN1610 集群交换机将 FAS22xx 系统迁移到交换集群
+= 使用 NetApp CN1610 集群交换机迁移 FAS22xx 系统
 :allow-uri-read: 
 :icons: font
 :imagesdir: ../media/

@@ -4,7 +4,7 @@ sidebar: sidebar
 keywords: sn2100 cabling setup, msn2100 sn2100 switches configuration, cumulus linux 
 summary: 不使用直连存储时，使用 NVIDIA SN2100 集群交换机将 NS224 驱动器架作为交换机连接存储进行线缆连接。 
 ---
-= 将 NS224 驱动器架作为交换机连接存储连接到 NVIDIA SN2100 集群交换机
+= 在 NVIDIA SN2100 交换机上将 NS224 磁盘架作为交换机连接存储进行布线
 :allow-uri-read: 
 :icons: font
 :imagesdir: ../media/

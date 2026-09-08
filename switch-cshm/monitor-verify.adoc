@@ -4,7 +4,7 @@ sidebar: sidebar
 keywords: verify, monitor, cluster, management, network, switches, heath, monitor 
 summary: 验证以太网交换机运行状况监控是否已正确配置并适用于您的交换机。 
 ---
-= 验证以太网交换机运行状况监视器的配置
+= 验证以太网交换机运行状况监控的配置
 :allow-uri-read: 
 :icons: font
 :imagesdir: ../media/

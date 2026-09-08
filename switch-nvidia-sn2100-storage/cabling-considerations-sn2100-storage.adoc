@@ -4,7 +4,7 @@ sidebar: sidebar
 keywords: sn2100 SN2100 cabling setup, sn2100 switches configuration, cumulus linux os 
 summary: 在部署之前，请查看 NVIDIA SN2100 存储交换机的布线和配置注意事项。 
 ---
-= 查看 NVIDIA SN2100 存储交换机的布线和配置注意事项
+= 查看 NVIDIA SN2100 存储交换机的布线指南
 :allow-uri-read: 
 :icons: font
 :imagesdir: ../media/

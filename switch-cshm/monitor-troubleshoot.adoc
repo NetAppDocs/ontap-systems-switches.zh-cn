@@ -4,7 +4,7 @@ sidebar: sidebar
 keywords: cshm, cluster, storage, switch logs, debugging, collection 
 summary: 排除 CSHM 在 ONTAP 集群中引发的以太网交换机运行状况监控警报故障。 
 ---
-= 排查以太网交换机健康监视器的警报
+= 排查以太网交换机运行状况监控警报
 :allow-uri-read: 
 :icons: font
 :imagesdir: ../media/

@@ -4,7 +4,7 @@ sidebar: sidebar
 keywords: migrate, switchless cluster interconnect, NVIDIA SN2100 
 summary: 对于ONTAP 9.3 及更高版本，您可以将集群从具有交换集群网络的集群迁移到两个节点直接连接的集群。 
 ---
-= 使用NVIDIA SN2100 集群交换机，将集群从有交换机的迁移到无交换机的。
+= 使用 NVIDIA SN2100 集群交换机从有交换机迁移到无交换机
 :allow-uri-read: 
 :icons: font
 :imagesdir: ../media/

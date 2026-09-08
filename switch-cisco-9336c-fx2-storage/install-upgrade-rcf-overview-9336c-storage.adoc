@@ -4,7 +4,7 @@ sidebar: sidebar
 keywords: ssh, requirement, cluster, switch, health, monitor, cshm, log, collection, feature, cisco 9336c-fx2 
 summary: '初始设置后或升级现有 RCF 时，在 Cisco Nexus 9336C-FX2 和 9336C-FX2-T 存储交换机上安装或升级参考配置文件 (RCF)。' 
 ---
-= 在 Cisco Nexus 9336C-FX2 存储交换机上安装或升级 RCF
+= 了解如何在 Cisco Nexus 9336C-FX2 存储交换机上安装或升级 RCF
 :allow-uri-read: 
 :icons: font
 :imagesdir: ../media/

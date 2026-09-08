@@ -4,7 +4,7 @@ sidebar: sidebar
 keywords: replacing, replace, defective, nexus, switch, cluster, network, nondisruptive, procedure, ndu, replace a cisco nexus 9332d-gx2b cluster switch - cisco nexus 9332d-gx2b 
 summary: 在不中断操作的情况下更换 AFX 系统中有缺陷的 Cisco Nexus 9332D-GX2B 交换机。这是一个无中断操作程序。 
 ---
-= 更换 Cisco Nexus 9332D-GX2B 交换机
+= 在 AFX 系统中更换 Cisco Nexus 9332D-GX2B 交换机
 :allow-uri-read: 
 :icons: font
 :imagesdir: ../media/

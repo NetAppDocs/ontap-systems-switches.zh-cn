@@ -4,7 +4,7 @@ sidebar: sidebar
 keywords: 3232c cabling setup, 3232c switches configuration, nx-os 
 summary: 在部署之前，查看 Cisco Nexus 3232C 存储交换机的布线和配置注意事项。 
 ---
-= 查看 Cisco Nexus 3232C 存储交换机的布线和配置注意事项
+= 查看 Cisco Nexus 3232C 存储交换机的布线要求
 :allow-uri-read: 
 :icons: font
 :imagesdir: ../media/

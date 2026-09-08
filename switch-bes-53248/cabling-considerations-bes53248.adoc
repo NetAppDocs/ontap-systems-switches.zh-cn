@@ -4,7 +4,7 @@ sidebar: sidebar
 keywords: BES-53248 cabling setup, BES-53248 switches configuration, efos 
 summary: 在部署之前，了解 Broadcom BES-53248 集群交换机的布线和配置约束，包括集群端口分配、端口组速度约束和 FEC 设置。 
 ---
-= 查看 Broadcom BES-53248 集群交换机的布线和配置注意事项
+= 查看 Broadcom BES-53248 集群交换机的布线和配置要求
 :allow-uri-read: 
 :icons: font
 :imagesdir: ../media/

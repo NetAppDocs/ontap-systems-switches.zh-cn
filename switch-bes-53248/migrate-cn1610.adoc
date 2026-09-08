@@ -4,7 +4,7 @@ sidebar: sidebar
 keywords: CN1610, CN1610 replacing, migrate from CN1610 
 summary: 按照迁移要求和程序，将现有的 NetApp CN1610 集群交换机迁移到 Broadcom BES-53248 集群交换机。 
 ---
-= 将 NetApp CN1610 集群交换机迁移到 Broadcom BES-53248 集群交换机
+= 从 NetApp CN1610 集群交换机迁移到 Broadcom BES-53248 集群交换机
 :allow-uri-read: 
 :icons: font
 :imagesdir: ../media/

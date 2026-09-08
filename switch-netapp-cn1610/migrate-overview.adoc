@@ -19,6 +19,6 @@ FAS22xx 节点允许每个控制器上有一个集群端口。
 
 有两种迁移选项可供选择：
 
-* link:migrate-switched-netapp-cn1610.html["从无交换机集群迁移到使用 NetApp CN1610 交换机的集群环境"]
+* link:migrate-switched-netapp-cn1610.html["从无交换机集群迁移到使用 NetApp CN1610 交换机的集群"]
 * link:migrate-fas22xx-systems.html["从无交换机集群迁移（具有单个集群网络连接的 FAS22xx 系统）"]
 

@@ -163,7 +163,7 @@ NOTE: 在上述步骤 3“更新 MOTD 文件”中，该命令 `cat /etc/motd`�
 
 NOTE: 如果遇到任何无法解决的 RCF Python 脚本问题，请联系我们。 https://mysupport.netapp.com/["NetApp 支持"^]寻求帮助。
 
-. 将之前对交换机配置所做的任何自定义设置重新应用。请参阅link:cabling-considerations-sn2100-cluster.html["审查布线和配置注意事项"]有关任何后续变更的详细信息。
+. 重新应用之前对交换机配置所做的所有自定义设置。有关所需的任何进一步更改的详细信息，请参阅 link:cabling-considerations-sn2100-cluster.html["查看布线和配置指南"]。
 . 重启后验证配置：
 +
 [listing, subs="+quotes"]
@@ -464,7 +464,7 @@ admin@sw1:mgmt:~$ cat /etc/issue.net
 
 NOTE: 如果遇到任何无法解决的 RCF Python 脚本问题，请联系我们。 https://mysupport.netapp.com/["NetApp 支持"^]寻求帮助。
 
-. 将之前对交换机配置所做的任何自定义设置重新应用。请参阅link:cabling-considerations-sn2100-cluster.html["审查布线和配置注意事项"]有关任何后续变更的详细信息。
+. 重新应用之前对交换机配置所做的所有自定义设置。有关所需的任何进一步更改的详细信息，请参阅 link:cabling-considerations-sn2100-cluster.html["查看布线和配置指南"]。
 . 重启后验证配置：
 +
 [listing, subs="+quotes"]
@@ -830,7 +830,7 @@ admin@sw1:mgmt:~$ cat /etc/issue.net
 
 NOTE: 如果遇到任何无法解决的 RCF Python 脚本问题，请联系我们。 https://mysupport.netapp.com/["NetApp 支持"^]寻求帮助。
 
-. 将之前对交换机配置所做的任何自定义设置重新应用。请参阅link:cabling-considerations-sn2100-cluster.html["审查布线和配置注意事项"]有关任何后续变更的详细信息。
+. 重新应用之前对交换机配置所做的所有自定义设置。有关所需的任何进一步更改的详细信息，请参阅 link:cabling-considerations-sn2100-cluster.html["查看布线和配置指南"]。
 . 重启后验证配置：
 +
 [listing, subs="+quotes"]

@@ -17,7 +17,7 @@ summary: 按照此工作流程安装 NVIDIA SN2100 集群交换机的硬件。
 [role="quick-margin-para"]
 安装交换机硬件。
 
-.image:https://raw.githubusercontent.com/NetAppDocs/common/main/media/number-2.png["两个"]link:cabling-considerations-sn2100-cluster.html["审查布线和配置注意事项"]
+.image:https://raw.githubusercontent.com/NetAppDocs/common/main/media/number-2.png["两个"]link:cabling-considerations-sn2100-cluster.html["查看布线和配置指南"]
 [role="quick-margin-para"]
 审查光纤连接、QSA适配器和交换机端口速度的要求。
 

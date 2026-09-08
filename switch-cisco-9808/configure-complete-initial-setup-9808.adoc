@@ -4,7 +4,7 @@ sidebar: sidebar
 keywords: require, configuration, information, documentation, cluster, management, network, switches, set up the switches - cisco nexus 9808 
 summary: 使用配置向导完成 Cisco Nexus 9808 交换机的初始设置，适用于新 AFX 2K 系统安装、主管模块更换或出厂默认重置。 
 ---
-= 完成 Cisco Nexus 9808 交换机的初始设置
+= 在 Cisco Nexus 9808 交换机上完成初始设置
 :allow-uri-read: 
 :icons: font
 :imagesdir: ../media/

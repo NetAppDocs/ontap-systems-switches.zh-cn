@@ -4,7 +4,7 @@ sidebar: sidebar
 keywords: cshm, cluster, storage, switch logs, debugging, collection 
 summary: 使用 CSHM 日志收集功能收集交换机日志和诊断数据，以排查网络交换机问题。 
 ---
-= 了解以太网交换机运行状况监视器的日志收集
+= 了解以太网交换机运行状况监控的日志收集
 :allow-uri-read: 
 :icons: font
 :imagesdir: ../media/

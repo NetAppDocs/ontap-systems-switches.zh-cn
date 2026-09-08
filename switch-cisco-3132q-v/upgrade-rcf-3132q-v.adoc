@@ -409,7 +409,7 @@ cs2# copy running-config startup-config [#######################################
 cs2# *reload*
 This command will reboot the system. (y/n)?  [n] *y*
 ----
-. 重新应用之前对交换机配置所做的所有自定义设置。有关所需的任何进一步更改的详细信息，请参阅 link:cabling-considerations-3132q-v.html["审查布线和配置注意事项"]。
+. 重新应用之前对交换机配置所做的所有自定义设置。有关所需的任何进一步更改的详细信息，请参阅 link:cabling-considerations-3132q-v.html["审查布线和配置要求"]。
 . 检查集群上集群端口的运行状况。
 +
 .. 确认集群中所有节点的集群端口均已启动且运行状况良好：

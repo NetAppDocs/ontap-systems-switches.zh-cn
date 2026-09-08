@@ -4,7 +4,7 @@ sidebar: sidebar
 keywords: migrate, switchless cluster interconnect, cisco nexus switch 92300YC 
 summary: 对于ONTAP 9.3 及更高版本，您可以将集群从具有交换集群网络的集群迁移到两个节点直接连接的集群。 
 ---
-= 用无交换机连接取代 Cisco Nexus 92300YC 集群交换机
+= 使用 Cisco Nexus 92300YC 集群交换机迁移到无交换机集群互连
 :allow-uri-read: 
 :icons: font
 :imagesdir: ../media/

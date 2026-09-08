@@ -4,7 +4,7 @@ sidebar: sidebar
 keywords: rcf, install, upgrade, cluster switch, cisco nexus 3232c 
 summary: 在初始设置后或有更新版本可用时，在 Cisco Nexus 3232C 集群交换机上安装或升级 RCF。 
 ---
-= 了解如何在 Cisco Nexus 3232C 集群交换机上安装或升级 RCF
+= 查看 Cisco Nexus 3232C 集群交换机的 RCF 选项
 :allow-uri-read: 
 :icons: font
 :imagesdir: ../media/

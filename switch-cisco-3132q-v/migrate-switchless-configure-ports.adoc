@@ -4,7 +4,7 @@ sidebar: sidebar
 keywords: cisco 3132q-v, cluster switches 
 summary: 配置从双节点无交换机集群迁移到 Cisco Nexus 3132Q-V 集群交换机的端口。 
 ---
-= 配置从无交换机集群迁移到 Cisco Nexus 3132Q-V 集群交换机的端口
+= 配置端口以迁移到 Cisco Nexus 3132Q-V 集群交换机
 :allow-uri-read: 
 :icons: font
 :imagesdir: ../media/

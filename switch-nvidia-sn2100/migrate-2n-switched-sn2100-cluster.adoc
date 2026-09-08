@@ -37,7 +37,7 @@ summary: 使用 NVIDIA SN2100 集群交换机将现有的双节点无交换机�
 * NVIDIA SN2100 节点到节点交换机和交换机到交换机的连接使用 Twinax 或光纤电缆。
 +
 
-IMPORTANT: 有关注意事项和详细信息，请参见 link:cabling-considerations-sn2100-cluster.html["审查布线和配置注意事项"]。link:https://hwu.netapp.com/SWITCH/INDEX["Hardware Universe- 交换机"^] 还包含有关布线的详细信息。
+IMPORTANT: 有关注意事项和更多详细信息，请参见 link:cabling-considerations-sn2100-cluster.html["查看布线和配置指南"]。link:https://hwu.netapp.com/SWITCH/INDEX["Hardware Universe- 交换机"^] 还包含有关布线的详细信息。
 
 * 交换机间链路 (ISL) 电缆连接到两台NVIDIA SN2100 交换机的 swp15 和 swp16 端口。
 * 两个 SN2100 交换机的初始定制已完成，因此：

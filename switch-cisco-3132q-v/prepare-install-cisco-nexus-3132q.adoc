@@ -4,7 +4,7 @@ sidebar: sidebar
 keywords: install, nx-os software, rcfs, cisco nexus 3132q-v, cluster switches 
 summary: '在安装 NX-OS 软件和参考配置文件 (RCF) 之前，请准备 Cisco Nexus 3132Q-V 集群交换机。' 
 ---
-= 准备在 Cisco Nexus 3132Q-V 集群交换机上安装 NX-OS 软件和 RCF
+= 准备在 Cisco Nexus 3132Q-V 交换机上安装 NX-OS 和 RCF
 :allow-uri-read: 
 :icons: font
 :imagesdir: ../media/

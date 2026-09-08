@@ -4,7 +4,7 @@ sidebar: sidebar
 keywords: log collection feature,collect switch-related log files,SSh key,crypto key generation 
 summary: 配置日志收集，使 CSHM 能够从集群和存储网络交换机收集交换机日志和诊断数据。 
 ---
-= 配置以太网交换机运行状况监视器的日志收集
+= 配置以太网交换机运行状况监控的日志收集
 :allow-uri-read: 
 :icons: font
 :imagesdir: ../media/

@@ -22,7 +22,7 @@ summary: 在安装或升级之前，请查看 NVIDIA SN2100 集群交换机的�
 
 您可以使用交换机附带的标准支架将NVIDIA SN2100 交换机 (X190006) 安装到NVIDIA双/单交换机机柜中。
 
-有关布线指南，请参阅 link:cabling-considerations-sn2100-cluster.html["审查布线和配置注意事项"]。
+有关布线指南，请参阅 link:cabling-considerations-sn2100-cluster.html["查看布线和配置指南"]。
 
 
 

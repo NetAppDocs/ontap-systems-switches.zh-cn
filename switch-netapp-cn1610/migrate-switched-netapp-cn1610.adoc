@@ -4,7 +4,7 @@ sidebar: sidebar
 keywords: migrate, switchless cluster environment, switched netapp cn1610 
 summary: 使用 NetApp CN1610 集群交换机从双节点无交换机集群迁移到交换机集群环境。 
 ---
-= 从无交换机集群迁移到使用 NetApp CN1610 交换机的集群环境
+= 从无交换机集群迁移到使用 NetApp CN1610 交换机的集群
 :allow-uri-read: 
 :icons: font
 :imagesdir: ../media/

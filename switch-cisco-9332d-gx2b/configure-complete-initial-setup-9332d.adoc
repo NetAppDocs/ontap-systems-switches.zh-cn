@@ -4,7 +4,7 @@ sidebar: sidebar
 keywords: require, configuration, information, documentation, cluster, management, network, switches, set up the switches - cisco nexus 9332d-gx2b 
 summary: 使用配置向导完成 Cisco Nexus 9332D-GX2B 交换机的初始设置，适用于新 AFX 1K 或 AFX 2K 系统、交换机更换或出厂默认重置。 
 ---
-= 完成 Cisco Nexus 9332D-GX2B 交换机的初始设置
+= 在 Cisco Nexus 9332D-GX2B 交换机上完成初始设置
 :allow-uri-read: 
 :icons: font
 :imagesdir: ../media/

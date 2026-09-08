@@ -4,7 +4,7 @@ sidebar: sidebar
 keywords: cshm, cluster, storage, switch logs, debugging, collection 
 summary: '对以太网交换机健康监视器 (CSHM) 日志收集错误和故障进行故障排除。' 
 ---
-= 以太网交换机运行状况监视器的日志收集故障排除
+= 以太网交换机运行状况监控日志收集故障排除
 :allow-uri-read: 
 :icons: font
 :imagesdir: ../media/
