@@ -18,7 +18,7 @@ summary: 使用配置向导完成 Cisco Nexus 9808 交换机的初始设置，�
 
 .关于此任务
 * 您必须在每台交换机上完成初始设置。
-* 如果需要，您可以参阅 link:https://www.cisco.com/c/en/us/td/docs/dcn/nx-os/nexus9000/106x/configuration/fundamentals/cisco-nexus-9000-series-nx-os-fundamentals-configuration-guide-release-106x/m-using-nnxos-setup-utility.html["Cisco Nexus 9000 系列 NX-OS 基础配置指南，版本 10.6(x)"^] 的*使用 Cisco NX-OS 设置实用程序*一章中有关设置交换机的信息。
+* 如果需要，您可以参考您的 NX-OS 版本的 link:https://www.cisco.com/c/en/us/td/docs/dcn/nx-os/nexus9000/106x/configuration/fundamentals/cisco-nexus-9000-series-nx-os-fundamentals-configuration-guide-release-106x.html["Cisco Nexus 9000 系列交换机 NX-OS 软件配置指南"^]，了解有关设置交换机的信息，请参阅"使用 Cisco NX-OS 设置实用程序"一章。您还可以在"配置终端设置和会话"一章中找到有关终端设置的信息。
 
 
 .步骤

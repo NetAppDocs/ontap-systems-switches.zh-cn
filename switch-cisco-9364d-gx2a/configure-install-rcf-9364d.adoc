@@ -39,7 +39,7 @@ NOTE: 如果要在新的 AFX 系统安装过程中安装 RCF，则可以跳过�
 
 .步骤
 . 您必须能够访问HTTP、FTP或TFTP服务器。通过访问其中一台服务器，您可以下载受支持的RCF版本。
-. 从 NetApp 支持站点 http://mysupport.netapp.com/["mysupport.netapp.com"^]下载适用于您的 AFX 系统类型的 RCF。
+. 从 NetApp 支持站点 link:http://mysupport.netapp.com/["mysupport.netapp.com"^] 下载适用于您的 AFX 系统类型的 RCF。
 +
 
 NOTE: 新交换机出厂时未安装 RCF。您必须在交换机上安装 RCF。
@@ -52,9 +52,9 @@ NOTE: 新交换机出厂时未安装 RCF。您必须在交换机上安装 RCF。
 [[step-2-install-the-rcf]]
 == 步骤 2：安装 RCF
 
-通过将 RCF 复制并应用于引导闪存、检查横幅输出、验证 RCF 版本是否正确、记录任何自定义添加内容、保存基本配置详细信息、验证 write_erase.cfg 文件是否已填充、擦除当前保存的配置、将之前保存的基本配置复制到启动配置中，然后重新启动交换机，从而在第一台交换机 (cs1) 上安装 RCF。如果要在新的 AFX 系统安装过程中安装 RCF，请在第二台交换机 (cs2) 上重复这些步骤。
+通过将 RCF 复制并应用于引导闪存、检查横幅输出、验证 RCF 版本是否正确、使当前运行配置持久化，然后重新启动交换机，在第一台交换机 (cs1) 上安装 RCF。如果要在新的 AFX 系统安装过程中安装 RCF，请在第二台交换机 (cs2) 上重复这些步骤。
 
-. 使用 SSH 或串行控制台登录到 switch cs1。
+. 使用 SSH 或通过串行控制台登录到交换机 cs1。
 . 使用以下传输协议之一将 RCF 复制到交换机 cs1 的 bootflash：FTP、TFTP、SFTP 或 SCP。
 +
 有关 Cisco 命令的更多信息，请参见 link:https://www.cisco.com/c/en/us/td/docs/dcn/nx-os/nexus9000/102x/command-reference/config/b_n9k_config_commands_1021.html["Cisco Nexus 9000 系列 NX-OS 命令参考"^]
@@ -138,7 +138,7 @@ cs1# show banner motd
 
 . 将当前运行配置复制到启动配置以使其持久化。
 +
-`cs1# *copy bootflash:write_erase.cfg startup-config*`
+`cs1# *copy running-config startup-config*`
 
 . 重启交换机：
 +

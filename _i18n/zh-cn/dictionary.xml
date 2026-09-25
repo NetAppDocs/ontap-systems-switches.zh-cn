@@ -461,8 +461,6 @@
   <block id="130792cb3edc8d0afffb557e50b218c3" category="paragraph">将储物系统和储物架安装到柜子或货架上。请查阅适用于您平台型号的安装和设置说明。</block>
   <block id="9e1c8cf536b61ced9a099cdc8d9a7ea5" category="inline-link">AFX 系统</block>
   <block id="087297c83286a300ec53f03f4cd47e27" category="list-text"><block ref="087297c83286a300ec53f03f4cd47e27" category="inline-link-rx"></block></block>
-  <block id="6476573ba5b973ad8ea01c57f5b30267" category="inline-link">ASA 系统</block>
-  <block id="f0a695bb3bd97a845db6783bb1ad3093" category="list-text"><block ref="f0a695bb3bd97a845db6783bb1ad3093" category="inline-link-rx"></block></block>
   <block id="fde1abb5537b55c34521d414267b3f70" category="inline-link">ASA r2 系统</block>
   <block id="7afb54114ad26df98fed07fb9d75ad31" category="list-text"><block ref="7afb54114ad26df98fed07fb9d75ad31" category="inline-link-rx"></block></block>
   <block id="d5d4923aa83e46af2152de920946ba41" category="inline-link">FAS 系统</block>
@@ -1592,7 +1590,6 @@
   <block id="e05726b1bd1186beaa300b0dc5e6d2d2" category="list-text">验证所有存储架端口是否处于正常状态：</block>
   <block id="df7d5a1b7fecaafb50a725ed554095e4" category="list-text">验证所有存储架端口的连接状态：</block>
   <block id="66179c9630048419305ce1ceddba04de" category="list-text">你可以使用<block ref="349936611c6519c48a39cbd40f1f907a" prefix=" " category="inline-code"></block>用于显示集群连接性可访问性检查详细信息的命令：</block>
-  <block id="bde10497d26acd0a86647320303ea6a2" category="list-text">或者，您可以使用<block ref="9cd2d6d649d8d4d33bec89b47fbd8a11" prefix=" " category="inline-code"></block>检查连接性的命令：</block>
   <block id="62be97621cc94cc2262786565138f64e" category="paragraph"><block ref="9cd2d6d649d8d4d33bec89b47fbd8a11" prefix="" category="inline-code"></block></block>
   <block id="51a2ed9bde6e6aaf9d7c536fcfb97d05" category="inline-link-macro">安装或升级 NX-OS 软件</block>
   <block id="110b85dabddbe506dc76962598fe2b6d" category="list-text">将交换机连接到管理网络。</block>
@@ -1685,7 +1682,6 @@
   <block id="c6a89cc6a58761d5abcb1b9cf05f3b99" category="list-text">重启交换机cs1。在交换机重启期间，您可以忽略节点上报告的“集群交换机健康监视器”警报和“集群端口关闭”事件。</block>
   <block id="56009d4a3551e4cd8dd286aeb3b995b2" category="list-text">在交换机 cs2 上重复步骤 4 至 18。</block>
   <block id="332a7a8d77748a421e7945cefc8ccf89" category="list-text">确认预期节点仍然连接：</block>
-  <block id="919c92b88565abe73b79f95942fbce89" category="paragraph"><block ref="e002d8fd0e250f5b26dcc64d23922af9" prefix="" category="inline-code"></block></block>
   <block id="814d720814ffd5b1d8710ed1cff64233" category="section-title">25GbE FEC 要求</block>
   <block id="5179acf3e9761e0b0a93230fb2e3563e" category="section-title">FAS2820 e0a/e0b 端口</block>
   <block id="6ea68979b999461809b876a21703f18d" category="paragraph">FAS2820 e0a 和 e0b 端口需要更改 FEC 配置才能与 9336C-FX2 和 9336C-FX2-T 交换机端口连接。对于交换机端口 e0a 和 e0b，FEC 设置设为：<block ref="49bb002a2d60e4cc69c3dc5b31861c1e" prefix=" " category="inline-code"></block> 。</block>
@@ -1916,7 +1912,6 @@
   <block id="75d60e24abda3d2be5719b222283e4ab" category="list-text">确认 RCF 版本、自定义添加项和交换机设置正确后，将运行配置文件复制到启动配置文件。</block>
   <block id="59a8406e97bc3122bcc4f9fec1cab7c9" category="paragraph"><block ref="e1e291973b667f98a077e4eb6f5aa9ac" prefix="" category="inline-code"></block></block>
   <block id="cdc07d8ef141a4d566e6de1f333e3f61" category="list-text">在交换机 cs2 上重复步骤 1 至 19。</block>
-  <block id="8e74fc1d82f0252ff302e728b8ef84b7" category="paragraph"><block ref="fefdb12e2547581b07493ad4416e36ba" prefix="" category="inline-code"></block></block>
   <block id="0ce224cf5d247a74b5df5578645cdfb1" category="paragraph"><block ref="33701a452aed8ed903e7f7050b36c9ad" prefix="" category="inline-code"></block></block>
   <block id="f3316ab2f1c41dcaa23af237fe3914f4" category="paragraph">升级 RCF 后，您可以<block ref="9c2eadd0cc07686b4a17c38ca62f4a4c" category="inline-link-macro-rx"></block>。</block>
   <block id="a525a0a5bd0337e90ed0f23d435c2ab0" category="doc">完成Cisco Nexus 9336C-FX2 布线工作表</block>
@@ -3062,7 +3057,6 @@
   <block id="26222b7babf133e36c55ea55d4f3a125" category="paragraph">以下示例显示了 node1 和 node2 上的所有 LIF 都已启动：</block>
   <block id="f44088e99d2afac37e3a22fcc4020299" category="paragraph"><block ref="f44088e99d2afac37e3a22fcc4020299" category="inline-image-macro-rx" type="image"></block></block>
   <block id="1820672349ef5d1a7936d88b1e992610" category="paragraph"><block ref="1820672349ef5d1a7936d88b1e992610" category="inline-image-macro-rx" type="image"></block></block>
-  <block id="eff487118c44b434c2174aab2b3a4e1c" category="list-text">重启交换机 cs2。</block>
   <block id="ece376b7acc25f86ff2e09f80d38755c" category="paragraph">请务必执行以下操作：</block>
   <block id="9a9e15bbbf81b37074eb3677448baf70" category="list-text">在交换机上运行<block ref="856e0a903a301d6d44f55e6eb5b82200" prefix=" " category="inline-code"></block>命令，查看安装或升级新 NX-OS 软件映像的影响。它验证映像完整性，检查必要的重新启动，评估硬件兼容性，并确认有足够的空间。</block>
   <block id="1ce0015d97074c710fb18a71c0facacd" category="list-text">查看目标 NX-OS 软件版本的发行说明，查看是否有任何特定要求。</block>
@@ -3387,8 +3381,6 @@
   <block id="58d3010f142572233af0d1194ea705ae" category="list-text">使用 ping 命令验证与托管 NX-OS 的服务器的连接。</block>
   <block id="16a2f6262f7c8fa42539ab13760a9457" category="paragraph"><block ref="a224e0eace92eb43f501858e1349431f" prefix="" category="inline-code"></block></block>
   <block id="2e3563a3b25afad4c349f006fa856710" category="section-title">步骤 2：安装 NX-OS</block>
-  <block id="731701460db1e3bc629519355b389673" category="paragraph">通过安装和验证 NX-OS 版本、升级和验证 EPLD 映像，在第一台交换机 (cs1) 上安装 NX-OS，然后，如果您将 NX-OS 作为新 AFX 系统安装的一部分进行安装，则在第二台交换机 (cs2) 上重复这些步骤。</block>
-  <block id="700a478524eacfc057579dce0fd547a2" category="list-text">将 NX-OS 和 EPLD 映像复制到第一个交换机。</block>
   <block id="10271d1f63fa1c8535e8a7e5f37d5150" category="paragraph">您使用此命令两次：第一次是复制 NX-OS 版本，第二次是复制 EPLD 版本。</block>
   <block id="782a0003e0d0c2528edb24b8322d5b19" category="paragraph"><block ref="0a90d2ad7742870ab154e7840e90051e" prefix="" category="inline-code"></block></block>
   <block id="e1b9dc60ce85ea8604de98fcd4418be9" category="paragraph">示例使用 sftp。</block>
@@ -3400,8 +3392,6 @@
   <block id="5658313bc2d771ddd3aa8b49a8989c97" category="paragraph"><block ref="d74cfd95066d6ba37eb0991341ab588b" prefix="" category="inline-code"></block></block>
   <block id="f0573cd9c276fc0a44b1d698d270e813" category="paragraph"><block ref="c6269519fdc989bc83f511e81e5b38c0" prefix="" category="inline-code"></block></block>
   <block id="2c422dde5f601ab70b2421fb1dd10cef" category="paragraph">执行最后一个命令后，交换机重新启动。</block>
-  <block id="5f5cfcd2ec190ac00fde47f7704812d1" category="paragraph">示例使用 EPLD 版本 10.4.2.F</block>
-  <block id="4d07e9d6aea2fd483b98e6559af95a1f" category="list-text">交换机重新启动后，登录并验证新版本的 EPLD 已成功加载：</block>
   <block id="1a2b37f1933426ade8473be332d14758" category="list-text">如果要在新的 AFX 系统安装过程中安装 NX-OS，请重复以下步骤在交换机 cs2 上安装 NX-OS 和 EPLD 映像。</block>
   <block id="9534ff27b742b78e68bede069611aa61" category="paragraph">在交换机上安装 NX-OS 后，请从 <block ref="1321b5112116eac5a7526b3fade87ed9" category="inline-link-macro-rx"></block> 开始安装 RCF。</block>
   <block id="8f372d7584a0c09bd5b04d4e0cabb3ae" category="inline-link-macro">安装 NX-OS</block>
@@ -3413,11 +3403,9 @@
   <block id="7e4da70ebf36693733da073913dbb413" category="section-title">步骤 1：准备安装 RCF</block>
   <block id="266d6f497f6dd7e9caddbaacaba2794c" category="paragraph">通过确保您具有下载 RCF 所需的连接来准备在交换机上安装 RCF，然后下载 RCF。</block>
   <block id="fe000f2965eecaef9544b4ec55336838" category="list-text">您必须能够访问HTTP、FTP或TFTP服务器。通过访问其中一台服务器，您可以下载受支持的RCF版本。</block>
-  <block id="061b5e834b1aa43f1f6f1157d5d52f8e" category="list-text">从 NetApp 支持站点<block ref="28649c93049a329043d206ec7fa0c6f8" category="inline-link-rx"></block>下载适用于您的 AFX 系统类型的 RCF。</block>
   <block id="48d79ebb76e9a45296c903c6144ac9dd" category="admonition">新交换机出厂时未安装 RCF。您必须在交换机上安装 RCF。</block>
   <block id="05fc362861045af6de0df6ba1738f655" category="list-text">每台交换机必须连接到控制台，或者您必须能够远程访问每台交换机。</block>
   <block id="7bcd59b02571d2e5ffc46b52dd50d77d" category="section-title">步骤 2：安装 RCF</block>
-  <block id="0b6d8bd612ee7b8671cd686d7dc43b8a" category="paragraph">通过将 RCF 复制并应用于引导闪存、检查横幅输出、验证 RCF 版本是否正确、记录任何自定义添加内容、保存基本配置详细信息、验证 write_erase.cfg 文件是否已填充、擦除当前保存的配置、将之前保存的基本配置复制到启动配置中，然后重新启动交换机，从而在第一台交换机 (cs1) 上安装 RCF。如果要在新的 AFX 系统安装过程中安装 RCF，请在第二台交换机 (cs2) 上重复这些步骤。</block>
   <block id="01d238edb4f4e8ae82c3ef8dd393fff3" category="paragraph">有关 Cisco 命令的更多信息，请参见 <block ref="dc2aa9e1934d43ba83eaef214b04d5c7" category="inline-link-macro-rx"></block> 中的相应指南。</block>
   <block id="9e5ed40379eb2b009568c4f7a53e6e52" category="list-text">应用先前复制到引导闪存的 RCF。</block>
   <block id="d22f66efce5523e48e88ee1a5f4c77c2" category="paragraph">以下命令显示了正在交换机 cs1 上安装的 RCF 文件<block ref="f48d90d87bad9d72c99fc846237b9e4b" prefix=" " category="inline-code"></block>：</block>
@@ -3506,12 +3494,7 @@
   <block id="837c2738580dbda239f44891ca1d5955" category="list-text">使用 ONTAP CLI，显示连接到集群交换机的每个节点上的集群端口：</block>
   <block id="871229b18b7dc92ccf8a1c2bed16a8e4" category="list-text">使用 ONTAP CLI，检查每个端口的管理和操作状态：</block>
   <block id="5ad10ef031292f76cd7eae85e5667634" category="list-text">使用 ONTAP CLI，在集群 LIF 上禁用自动还原。集群 LIF 将故障转移到伙伴集群交换机，并在您对目标交换机执行此过程时保持在该交换机上：</block>
-  <block id="7b7d85fb79ab655db8954da4a656cb98" category="list-text">使用交换机 CLI 将 NX-OS 和 EPLD 映像复制到交换机。</block>
   <block id="28c5e253fe8df0ca95a5e869477b4ca1" category="list-text">使用交换机 CLI，验证 NX-OS 的运行版本：</block>
-  <block id="1ca683015c23541e42759930acf335e3" category="list-text">使用交换机 CLI，安装 NX-OS 映像。</block>
-  <block id="06524e55b66614090c20b7bdf534b373" category="list-text">使用交换机 CLI，在交换机重新启动后验证新版本的 NX-OS：</block>
-  <block id="c2a393abe5898b0ce796c07546c9f1e6" category="list-text">使用交换机 CLI，使用以下命令升级 EPLD 映像：</block>
-  <block id="4b21f56da3a9b5afb98a12c4e6ef8ce5" category="list-text">交换机重新启动后，使用交换机 CLI 登录并验证新版本的 EPLD 是否已成功加载。</block>
   <block id="a225dc777dec10337262e5b256ac682c" category="list-text">使用 ONTAP CLI，验证集群上所有端口的运行状况。</block>
   <block id="f7659e2201b12832fb60f332631458b0" category="list-text">使用 ONTAP CLI，验证集群是否正常：</block>
   <block id="d7d719ce1aec61d676d19f4408282c37" category="list-text">重复上述步骤，在交换机 cs2 上安装 NX-OS 和 EPLD 映像。</block>
@@ -3706,8 +3689,6 @@
   <block id="c3707567e3cbbb2e5eadd91566fc9ad6" category="list-text">转到 Cisco 站点以获取<block ref="465dae8b09b798402a871ed27a72cc8e" category="inline-link-rx"></block>。</block>
   <block id="3396d954f67e5e189b036e93cf8541b3" category="list-text">如果交换机正在退役，则此过程已完成；否则，需要使用 <block ref="7910732e6c8416b0eac7e8732c87e084" category="inline-link-macro-rx"></block> 配置交换机。</block>
   <block id="d65e20ecadf9671cd1d9f2827fd63b40" category="list-text">交换机的初始定制已完成，详见<block ref="555f42f5ba4b1cda5adcb9fa65d458e9" category="inline-link-macro-rx"></block>。</block>
-  <block id="3908dae5bd8b998b8cc2eaec4c38be51" category="inline-link-macro">Cisco Nexus 9000 系列 NX-OS 基础配置指南，版本 10.6(x)</block>
-  <block id="1c2a82d3ea513d35656ccde0e98c038a" category="list-text">如果需要，您可以参阅 <block ref="f8e197314ab4b1e7d0bb561ad96c6c1c" category="inline-link-macro-rx"></block> 的*使用 Cisco NX-OS 设置实用程序*一章中有关设置交换机的信息。</block>
   <block id="6e574593a2245c8b1db7e328ca20d1d3" category="admonition">在使用以太网交换机运行状况监视器 (CSHM) 的日志收集功能时，建议使用 SSH。此外，建议使用 SSHv2 以增强安全性。</block>
   <block id="730ed4c339a04c1752cfcaad44ca8217" category="paragraph">完成初始交换机设置后，即可<block ref="60187f775db8f16aa129537d00cc1a0f" category="inline-link-macro-rx"></block>。</block>
   <block id="9f784e889c9dbf04e45cee40c3c3b5d9" category="list-text">必须打开交换机电源，并且您必须已完成 <block ref="1ec78c75404c7389932146233a608731" category="inline-link-macro-rx"></block> 程序。</block>
@@ -3718,7 +3699,6 @@
   <block id="fa4045720b04d528c9febe847a1d550d" category="list-text">如果在新的 AFX 2K 系统安装过程中安装了交换机，则在第一台交换机（cs1）上安装 NX-OS，然后使用此过程对第二台交换机（cs2）重复上述步骤。</block>
   <block id="ad12cd223aa6e918af754cf08b9153ac" category="list-text">您必须能够访问 HTTP、SFTP、FTP 或 TFTP 服务器。通过访问其中一台服务器，您可以下载受支持的 NX-OS 版本。</block>
   <block id="97baec035cc13209f73c70eb4ec770ba" category="list-text">从<block ref="f823faeecc1cbb37f2d732cc29c07d86" category="inline-link-rx"></block>页面将正确版本的 NX-OS 和 EPLD 映像下载到交换机。</block>
-  <block id="c811e8970d6e6092cb679eef51a38554" category="list-text">使用<block ref="df911f0151f9ef021d410b4be5060972" prefix=" " category="inline-code"></block>命令验证与托管 NX-OS 的服务器的连接。</block>
   <block id="fe27c1314cf866810ddbc667418c980b" category="section-title">步骤 2：安装 NX-OS 和 EPLD 映像</block>
   <block id="f503bf6e3a7ef530427ba9ee9f151aa9" category="paragraph">通过安装和验证 NX-OS 和 EPLD 映像版本，在第一台交换机 (cs1) 上安装 NX-OS 和 EPLD 映像，然后，如果您将 NX-OS 作为新 AFX 系统安装的一部分进行安装，则在第二台交换机 (cs2) 上重复这些步骤。</block>
   <block id="ee1edacd9870512b9996cec446c3a4e9" category="list-text">将 NX-OS 和 EPLD 映像复制到第一台交换机。</block>
@@ -3736,9 +3716,7 @@
   <block id="c5e7c96459868ac5b60848f14b6ef95a" category="list-text">如果在新的 AFX 2K 系统安装过程中安装了交换机，则在第一台交换机 (cs1) 上安装参考配置文件 (RCF)，然后使用此过程对第二台交换机 (cs2) 重复上述步骤。</block>
   <block id="c49e67994e06b096c66b8b57a7436cbf" category="list-text">从 NetApp 支持站点 <block ref="d4b5db761eff3af8abec9c2aa8b19609" category="inline-link-macro-rx"></block> 下载适用于您的 AFX 系统类型的 RCF。</block>
   <block id="af91dd351c83f77f969475949eb56983" category="list-text">您必须使用串行控制台连接到交换机或保留基本配置信息。这是因为 RCF 升级过程要求您清除交换机设置并执行基本配置。</block>
-  <block id="169dd8c68db1e370f69b8cf12c83c1fd" category="paragraph">通过将 RCF 复制并应用于引导闪存、检查横幅输出、验证 RCF 版本是否正确、记录任何自定义添加内容、保存基本配置详细信息、验证<block ref="103b04b62a3cefff8d38e160debf3907" prefix=" " category="inline-code"></block>文件是否已填充、擦除当前保存的配置、将之前保存的基本配置复制到启动配置中，然后重新启动交换机，从而在第一台交换机 (cs1) 上安装 RCF。如果要在新的 AFX 系统安装过程中安装 RCF，请在第二台交换机 (cs2) 上重复这些步骤。</block>
   <block id="bcaf1c55ce204f140148d79fe44dcf3e" category="list-text">使用 SSH 或通过串行控制台登录到交换机 cs1。</block>
-  <block id="3f1d23092a78b29bb0e975167e82436d" category="paragraph">有关 Cisco 命令的更多信息，请参见<block ref="2a9697603c2372b5582bc464958aa23d" category="inline-link-rx"></block>指南中的相应指南。</block>
   <block id="97b962d63a452d0ddfee88efb17a1ffb" category="paragraph">此示例显示了在交换机 cs1 上安装的 RCF 文件<block ref="b886a83c27f3c02311e4b92e9fbc4ec1" prefix=" " category="inline-code"></block>：</block>
   <block id="88b1b62f3a1a67cdaf67d5ef5ab4231c" category="list-text">验证 RCF 版本是否正确：</block>
   <block id="0f1a0f14aa4f700bfaf26f12df47410a" category="list-text">在交换机 cs2 上重复这些步骤。</block>
@@ -3784,21 +3762,12 @@
   <block id="d82878a1533e23fc20ec21cb8dbe8db2" category="list-text">如果将交换机配置为主管模块更换的一部分，或者将交换机重置为出厂默认设置，则交换机应正常运行。</block>
   <block id="dccc9befbb607cf6d9c44dc8f328d9a4" category="list-text">此过程需要使用 ONTAP 命令和 Cisco Nexus 9000 系列交换机命令，这些步骤指示您使用哪个 CLI 来输入命令。</block>
   <block id="11abc98a08082db4f3e9a444d01523f6" category="list-text">验证所有 HA 端口配置正确且互连类型为 RoCE：</block>
-  <block id="f133a268d09da062a3f5011782d84879" category="paragraph">在第一台交换机（cs1）上安装 NX-OS，方法是安装并验证新版本的 NX-OS 和 EPLD，验证集群上所有端口的运行状况，然后在第二台交换机（cs2）上重复这些步骤。</block>
-  <block id="eb4ea305e98af1fef72b78283f8e58df" category="list-text">使用交换机 CLI 将 NX-OS 和 EPLD 映像复制到交换机。</block>
   <block id="d89498751a4c26138fbd13de8344db1d" category="list-text">使用交换机 CLI 安装 NX-OS 和 EPLD 映像。</block>
   <block id="2300293eb1c7045033896e5b802f1032" category="list-text">使用交换机 CLI，验证新版本的 EPLD 是否已成功加载：</block>
   <block id="5ac3cc35f3a0b8fad38917617cd5641f" category="list-text">重复上述步骤，在交换机 cs2 上安装 NX-OS 和 EPLD 映像。</block>
   <block id="3ddbf73bdabc72c638587b81f6e6f57d" category="paragraph">升级交换机上的 NX-OS 后，请从 <block ref="9549731668bfffc4f2826a915ce6be36" category="inline-link-macro-rx"></block> 开始升级 RCF。</block>
-  <block id="504515f0865e1d1aec3d0428eb436a3e" category="list-text">在两台交换机上升级 RCF 是一个无中断的过程。</block>
-  <block id="e9f2fd93fc7c8486efe103510043d8fa" category="list-text">在此过程中，无需操作交换机间链路 (ISL)。这是出于设计考虑，因为 RCF 版本更改可能会暂时影响 ISL 连接。为了确保集群操作不中断，此过程要求您在目标交换机上执行步骤时将所有集群 LIF 迁移到运行中的配对交换机。</block>
-  <block id="fcffb692b160d447e6a44d87d721b68d" category="list-text">此过程要求您升级第一个交换机（cs1）上的 RCF，然后对第二个交换机（cs2）重复这些步骤。</block>
-  <block id="c8ec0a582173703b6b52f84c10fc6b1a" category="paragraph">您可以从 ONTAP CLI 输入以下步骤的命令。</block>
   <block id="8cbe8e79a6c67178d0d99ae06621f71c" category="list-text">使用交换机 CLI，在交换机 cs1 上关闭连接到每个线路卡节点所有端口的端口。</block>
   <block id="60d61b7a0fa482279dfdf89d20007f32" category="paragraph">以下示例显示了关闭线路卡 1<block ref="cd3dc8b6cffb41e4163dcbd857ca87da" prefix=" " category="inline-code"></block>、<block ref="674b903bdfcf46980fd33cf8fc588a09" prefix=" " category="inline-code"></block>、<block ref="edccfa9d5661a800d4785fe64e714a45" prefix=" " category="inline-code"></block>、<block ref="7630e33f42214a993b432dbd02fb66db" prefix=" " category="inline-code"></block>……<block ref="b2a9a73349b727202a9365aac3bbf8f6" prefix=" " category="inline-code"></block>上的所有端口的命令。对交换机上的每个线路卡重复这些命令。</block>
-  <block id="40bda24cf4ea58f6710a87d863423ed6" category="list-text">使用交换机 CLI，发出<block ref="ed3fe2a45ef033acf306fc90fbafdd66" prefix=" " category="inline-code"></block>命令以擦除当前保存的配置：</block>
-  <block id="fd89f5834a537ffa049d1559eace0400" category="list-text">使用交换机 CLI 将先前保存的基本配置复制到启动配置中。</block>
-  <block id="7f529f4d46e7a7d1cd9cdc58338b85a0" category="paragraph">有关 Cisco 命令的更多信息，请参见 <block ref="232762645b4df5c60acd4583f4d3b328" category="inline-link-macro-rx"></block> 指南中的相应指南。</block>
   <block id="bdfdba9556cc22203868163838572b97" category="paragraph">此示例显示了在交换机 cs1 上安装的 RCF<block ref="b886a83c27f3c02311e4b92e9fbc4ec1" prefix=" " category="inline-code"></block>：</block>
   <block id="711bf44498c2e63f6988e9aa96a10b04" category="list-text">使用交换机 CLI 验证 RCF 是否为正确的较新版本：</block>
   <block id="db6b37bc4436dced24c14ffd645b93f8" category="paragraph">如果您的交换机正在运行 RCF 10.1 或更高版本，则可以根据需要<block ref="003672bf9cce266cc8af7ad1787b36f6" category="inline-link-macro-rx"></block>。</block>
@@ -3825,8 +3794,6 @@
   <block id="434389ebdb3b8a6971c6123ee0fe479c" category="paragraph">您应该查看以下 NetApp 系统文档，以便熟悉 AFX 2K 系统安装、ONTAP 版本信息以及硬件配置和兼容性要求。</block>
   <block id="3f2ff6222fcff85daea0e70f64ec5dba" category="list-text"><block ref="43b42c26c42f7c6fe4ef77f9f2ed17ff" category="inline-link-macro-rx"></block> 提供 NetApp 硬件配置和兼容性信息。</block>
   <block id="16b473ebdcb6cdc1e53fbbe60b2f4623" category="paragraph">对于您的 AFX 2K 系统，支持 RCF 10.1 及更高版本。</block>
-  <block id="d48ce760d6692bfa3dd0f60a68998619" category="paragraph">Ethernet1/1/1-4 到 Ethernet1/14/1-4</block>
-  <block id="c62b4ca0db9d678ad80b37ec6f80df7c" category="paragraph">Ethernet1/15 到 Ethernet1/30</block>
   <block id="6b3e323256ab6d14438d5fa895cf2c70" category="paragraph">有关 Smart Call Home 的更多信息，请参见 <block ref="67e2473e77cf22b97681fe482bec229e" category="inline-link-macro-rx"></block> 文档。</block>
   <block id="43be8367004b728166e4ae73f00daf09" category="paragraph">在您准备好安装交换机后，您 <block ref="37a3ed7c1371509f026259aac52b9701" category="inline-link-macro-rx"></block>。</block>
   <block id="46c77ec9f0684e071d1d463ff31b773d" category="paragraph">您必须已完成 <block ref="9573654dcc96a47c3f502e5016b0ee39" category="inline-link-macro-rx"></block> 中的交换机准备步骤。</block>
@@ -3980,7 +3947,6 @@
   <block id="3ba89a6c015b6eaa55662f44318da700" category="inline-link-macro">升级 RCF 版本</block>
   <block id="a5e5e66eb480bd8988f732097929ab54" category="admonition">如果您此时也在升级 RCF，请按照以下步骤先升级交换机 cs2 上的 RCF，然后再升级交换机 cs1 上的 EFOS。有关详细信息，请参阅 <block ref="21bddc5b6dd48c4422e0a0abf86be3ec" category="inline-link-macro-rx"></block>。</block>
   <block id="a643b9431038d025c7094432120de94a" category="list-text">[[step12]] 在交换机 cs1 上重复步骤 5 至 11。</block>
-  <block id="0e10fb77e17f5e64ac59f2818861eea1" category="paragraph">您可以在第一台交换机 (cs1) 上安装 NX-OS，方法是安装并验证新版本的 NX-OS 和 EPLD，验证集群上所有端口的运行状况，然后在第二台交换机 (cs2) 上重复这些步骤。</block>
   <block id="94ab51c8c50b1129537727d07566ca85" category="paragraph">在作为 AFX 1K 或 AFX 2K 系统安装的一部分安装、连接和接通交换机电源后，您<block ref="da0132c57387f1f78b19a179ebd1184c" category="inline-link-macro-rx"></block>，然后<block ref="525827aadb710b3579d5c8c00983f38c" category="inline-link-macro-rx"></block>。</block>
   <block id="4b27e9ab5de564149937c935a3c47342" category="paragraph">在作为 AFX 1K 或 AFX 2K 系统安装的一部分安装、连接和接通交换机电源后，您<block ref="29869858f590f6fa9d1152e9b894a2fd" category="inline-link-macro-rx"></block>，然后<block ref="f87acac51d254e818a2703a5ab2317d9" category="inline-link-macro-rx"></block>。</block>
   <block id="457f47f334684e19bad62cd9a33b9dde" category="paragraph">在使用 CSHM 监控网络交换机之前，必须配置日志收集，并可选择配置 SNMPv3 以增强安全性。CSHM 需要日志收集来收集交换机日志和诊断数据。SNMPv3 提供 ONTAP 与交换机之间的安全通信。</block>
@@ -6273,8 +6239,6 @@
   <block id="dfed8720ad94a967c994edcaa0f54e58" category="summary">使用 Cisco Nexus 9336C-FX2 和 9336C-FX2-T 存储交换机将现有的双节点无交换机集群迁移到交换机集群环境。</block>
   <block id="2065623b1a8c63dd281e054dcfc59312" category="doc">使用 Cisco Nexus 9336C-FX2 存储交换机迁移到双节点交换集群</block>
   <block id="a1aa67a3a74d4e08bdda6773711d639d" category="paragraph">使用 Cisco Nexus 9336C-FX2 和 9336C-FX2-T 存储交换机将现有的双节点无交换机集群迁移到交换机集群环境。这种无中断迁移使您能够将集群扩展到两个节点以上。</block>
-  <block id="a90d03d0340657efce4c81a18f629f93" category="summary">将较旧的 Cisco 交换机迁移到 Cisco Nexus 9336C-FX2 和 9336C-FX2-T 存储交换机，而不会中断存储网络运行。</block>
-  <block id="fd025f223f24919aa28a9f2aee5c3ea8" category="doc">从旧 Cisco 交换机迁移到 Cisco Nexus 9336C-FX2 和 9336C-FX2-T 存储交换机</block>
   <block id="3587e4c5b299ea7d2dc9ccc3a44c22fe" category="summary">更换存储网络中有缺陷的 Cisco Nexus 9336C-FX2 或 9336C-FX2-T 存储交换机。此操作不会造成中断。</block>
   <block id="78c25aa98a7b1437ae708c6112884189" category="paragraph">更换存储网络中存在缺陷的 Cisco Nexus 9336C-FX2 或 9336C-FX2-T 存储交换机，而不会中断存储网络运行。此无中断过程 (NDU) 涉及准备更换交换机和恢复存储网络配置。</block>
   <block id="3defa027b22ec722d2de7a0961bfe3db" category="summary">查看设置和配置 Cisco Nexus 9336C-FX2 和 9336C-FX2-T 存储交换机所需的交换机和控制器文档。</block>
@@ -6611,4 +6575,51 @@
   <block id="ab0a89ba6975480d077c500303c66c1d" category="doc">为 NVIDIA SN2100 存储交换机连接 NS224 驱动器架的缆线</block>
   <block id="c39932f713e17b7f157268550f1f6006" category="doc">使用 NVIDIA SN2100 集群交换机从有交换机迁移到无交换机</block>
   <block id="3f5b54a4e4d440efc233a125512d3fbd" category="doc">为 NVIDIA SN2100 存储交换机安装 CSHM 配置文件</block>
+  <block id="169cec8d6f60a9ca0705006e7d0880c0" category="paragraph">*注意：* 在运行<block ref="a7dd12b1dab17d25467b0b0a4c8d4a92" prefix=" " category="inline-code"></block>命令之前，请等待几秒钟以显示详细信息。请检查与今天日期匹配的条目。</block>
+  <block id="5a45c975cedfc1e99e4ce5a8701cdb91" category="paragraph">在第一台交换机（cs1）上安装并验证 NX-OS 和 EPLD 映像，然后如果您要将 NX-OS 作为新 AFX 系统安装的一部分进行安装，请在第二台交换机（cs2）上重复这些步骤。</block>
+  <block id="30f4096cf477f530164a10f6e6e88258" category="list-text">安装 10.4(2)F</block>
+  <block id="5865e6f9738c8c3edbd814f6d3d230c9" category="list-text">安装 10.6(3)F 或更高版本</block>
+  <block id="933734cc3f158ec6de08ea19c107aea5" category="paragraph">您可以使用交换机 CLI 输入以下步骤的命令。</block>
+  <block id="e549272e7ee94569de1387a6f8d7ac55" category="list-text">[[stepa]]将 NX-OS 和 EPLD 映像复制到第一个交换机。</block>
+  <block id="5fda5dfd62d84d90b0d8957a3195a07b" category="paragraph">安装映像文件会导致每次交换机重新启动时都会加载该映像文件。</block>
+  <block id="ee01384cf8d137f89bc685e22c4be2d8" category="list-text">在交换机重新启动后，验证新版本的 NX-OS：</block>
+  <block id="a2bfa4b1027a4489b14fe1e1da98d3b6" category="paragraph">示例使用 EPLD 版本 10.4(2)F</block>
+  <block id="bf2613a62b8382033c4d11fca50c73ac" category="list-text">交换机重新启动后，登录并验证新版本的 EPLD 已成功加载：</block>
+  <block id="ec73a52c8df4c017f18b7e0f0728d851" category="list-text">[[stepa]] 将 NX-OS 和 EPLD 映像复制到第一台交换机：</block>
+  <block id="d9235186cc0e8d3882e806417185d7b9" category="list-text">验证正在运行的 NX-OS 版本：</block>
+  <block id="f654c58cdecf7be775bef7ae06fe441a" category="paragraph">升级到 NX-OS 10.6(3)F 及更高版本时，EPLD 映像不会自动更新。升级完成并重新启动交换机后，必须再次运行相同的升级<block ref="1f3226f23ea270e1a1024cd0db05413e" prefix=" " category="inline-code"></block>命令。</block>
+  <block id="56087f857f3cca64fb99f1b3f5890604" category="list-text">当您已经升级到 NX-OS 10.6(3)F 及更高版本时，两个映像将同时更新。</block>
+  <block id="9f86b6d07068800355380935c19bb973" category="paragraph">以下示例显示了从 NX-OS 10.4(2)F 到 10.6(3)F 的升级。第一次执行 NX-OS 升级，第二次执行 EPLD 映像升级。</block>
+  <block id="1374c9587b03b747dbd2c8f22a567733" category="list-text">交换机重新启动后，请重新登录并验证新版本的 EPLD 是否已成功加载：</block>
+  <block id="fdb38d4ac8d41d6e816ca197e5ca726b" category="paragraph">通过将 RCF 复制并应用于引导闪存、检查横幅输出、验证 RCF 版本是否正确、使当前运行配置持久化，然后重新启动交换机，在第一台交换机 (cs1) 上安装 RCF。如果要在新的 AFX 系统安装过程中安装 RCF，请在第二台交换机 (cs2) 上重复这些步骤。</block>
+  <block id="2e2df028a2f2c943c94702cbce591dfa" category="paragraph">您在第一台交换机（cs1）上安装并验证 NX-OS 和 EPLD 映像，验证集群上所有端口的运行状况，然后在第二台交换机（cs2）上重复这些步骤。</block>
+  <block id="6065efd0847dd53d5a9d542258344276" category="list-text">安装 NX-OS 和 EPLD 映像。这些步骤可能因您当前的 NX-OS 版本和目标 NX-OS 版本而异。</block>
+  <block id="2737688c7e1f6ffba26f9c6951fa5abe" category="list-text">从10.4(2)F升级到10.6(3)F或更高版本</block>
+  <block id="6f2c4a1a8b2baa286198fb324d542a64" category="list-text">从10.6(3)F升级到更高版本</block>
+  <block id="a74a897521538b72e1b914e5b98566be" category="list-text">[[stepa]] 将 NX-OS 和 EPLD 映像复制到第一台交换机。</block>
+  <block id="cb5e235c5bd5a3a4562b1566219f4a89" category="paragraph">示例使用 sftp 和 NX-OS 版本 10.6(4)M。</block>
+  <block id="0cb3992a66607246eb74aebe3e9789e9" category="paragraph">示例使用 NX-OS 版本 10.6(4)M。</block>
+  <block id="caf4113ef5fadfeda9c26a5fee89f6b8" category="paragraph">该示例使用 EPLD 版本 10.6(4)M。</block>
+  <block id="25416511eb3ce4d66158eb8e5747cddf" category="paragraph"><block ref="7a944db16dde0e9b0ae1577dacbec2ec" prefix="" category="inline-code"></block></block>
+  <block id="1770fc40d3a238691ea3c831f562c744" category="list-text">如果需要，您可以参考您的 NX-OS 版本的 <block ref="0ecf3652e1ad34634084ecc7cb5a512e" category="inline-link-macro-rx"></block>，了解有关设置交换机的信息，请参阅"使用 Cisco NX-OS 设置实用程序"一章。您还可以在"配置终端设置和会话"一章中找到有关终端设置的信息。</block>
+  <block id="c7e5b41e9730af5b00e7d3ece00450f7" category="list-text">本程序中显示的示例适用于运行 RCF 10.1 的交换机的 AFX 2K 系统。输入和输出可能会因 RCF 版本而异。</block>
+  <block id="8ed0d8caaf00274a6af9f5e5e2f160db" category="list-text">使用<block ref="df911f0151f9ef021d410b4be5060972" prefix=" " category="inline-code"></block>命令验证与托管 NX-OS 的服务器的连接：</block>
+  <block id="a2762799f1b4a38f437069b7d8e422fa" category="list-text">将 NX-OS 和 EPLD 映像复制到第一台交换机：</block>
+  <block id="f05462b6e392b8a6443947a98e5ffb24" category="paragraph">安装映像文件会导致每次交换机重新启动时都会加载该映像文件：</block>
+  <block id="cad34ccba01154fef5046fa387039b5c" category="paragraph">有关 Cisco 命令的更多信息，请参见 <block ref="232762645b4df5c60acd4583f4d3b328" category="inline-link-macro-rx"></block> 中的相应指南。</block>
+  <block id="b6025372f7e09e40fa5e0cf9e13ab3e3" category="list-text">将当前运行配置复制到启动配置以使其持久化：</block>
+  <block id="34a91a5720a9f504b3aa62be5dafbbad" category="list-text">对交换机分支端口（4x100GbE）进行 100GbE 的硬编码。如果不对速度进行硬编码，则端口将不会打开并处于错误禁用状态：</block>
+  <block id="3bb353ce15c345888ad0235997853aba" category="list-text">使用交换机 CLI，验证与托管 NX-OS 的服务器的连接：</block>
+  <block id="b0cd9db5b65d1a7552f0d4d1776cf02b" category="paragraph">通过安装和验证新版本的 NX-OS 和 EPLD、验证集群上所有端口的运行状况，在第一台交换机 （cs1） 上安装 NX-OS，然后在第二台交换机 （cs2） 上重复这些步骤。</block>
+  <block id="d5db34440fb801ce1e7b21aa9a1a260c" category="list-text">使用交换机 CLI，将 NX-OS 和 EPLD 映像复制到交换机：</block>
+  <block id="cf1d77fd6309b116f050d88f91cf96dd" category="list-text">使用交换机 CLI，在交换机重新启动后验证新版本的 NX-OS：</block>
+  <block id="7aa43663a4fe610113c6066b203a8840" category="list-text">在集群 LIF 上重新启用自动还原：</block>
+  <block id="cd83220db451d36aa03d8ca6c291a49e" category="paragraph"><block ref="5dc73071d11217e5e2e49444f79c8eac" prefix="" category="inline-code"></block></block>
+  <block id="c6115fcb7410470a44f51ecb388c6416" category="paragraph"><block ref="4d6d6050d33d5936ff4410238043bc49" prefix="" category="inline-code"></block></block>
+  <block id="9b730626a28ab6e5c53015a36470ab58" category="paragraph"><block ref="c68f6cfcae9963333074827373da6fe9" prefix="" category="inline-code"></block></block>
+  <block id="324073a8431de2ba6a20faa98f1c8a82" category="paragraph"><block ref="de9c27d6a2788a8c1e2ebf78d150ba6d" prefix="" category="inline-code"></block></block>
+  <block id="9740607d0b470cb74e45771991a03791" category="paragraph"><block ref="9ee97da0f49d8636a6978070a5fad66a" prefix="" category="inline-code"></block></block>
+  <block id="bd0444d020b86183862bbc6948afd8e8" category="list-text">使用 ONTAP CLI，在集群 LIF 上启用自动还原：</block>
+  <block id="0641c404b90355fd340627cc3967a213" category="list-text">使用交换机 CLI，验证连接到集群端口的交换机端口是否处于 *up* 状态：</block>
+  <block id="630d4b1d7a71915882986f040a422234" category="paragraph">用于集群内、HA 和存储连接的 4x100Gb 模式</block>
 </blocks>

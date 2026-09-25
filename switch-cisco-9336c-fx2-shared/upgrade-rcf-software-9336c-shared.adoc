@@ -36,6 +36,13 @@ CAUTION: 安装新的交换机软件版本和 RCF 之前，必须清除交换机
 [[step-1-prepare-for-the-upgrade]]
 == 第一步：准备升级
 
+. 将权限级别更改为高级，并在提示继续时输入 *y*：
++
+`set -privilege advanced`
+
++
+高级提示(`*>`出现。
+
 . 显示每个节点上连接到集群交换机的集群端口：
 +
 `network device-discovery show`
@@ -696,7 +703,7 @@ cluster1::*>
 . 在交换机 cs2 上重复步骤 1 至 21。
 . 启用集群 LIF 的自动回滚功能。
 +
-`cluster1::*> *network interface modify -vserver Cluster -lif * -auto-revert True*`
+`cluster1::*> *network interface modify -vserver Cluster -lif * -auto-revert true*`
 
 
 
@@ -994,14 +1001,16 @@ cluster1-04          true    true          false
 --
 你可以使用 `network interface check cluster-connectivity`执行命令以启动集群连接性检查，然后显示详细信息：
 
-`network interface check cluster-connectivity start`和 `network interface check cluster-connectivity show`
+[listing, subs="+quotes"]
+----
+cluster1::*> *network interface check cluster-connectivity start -node **
+----
+*注意：* 在运行 `show`命令之前，请等待几秒钟以显示详细信息。请检查与今天日期匹配的条目。
 
 [listing, subs="+quotes"]
 ----
-cluster1::*> *network interface check cluster-connectivity start*
+cluster1::*> *network interface check cluster-connectivity show*
 ----
-*注意：*运行程序前请等待几秒钟 `show`显示详细信息的命令。
-
 [listing, subs="+quotes"]
 ----
 cluster1::*> *network interface check cluster-connectivity show*

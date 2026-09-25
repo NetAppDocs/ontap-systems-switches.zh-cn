@@ -29,12 +29,8 @@ NOTE: 请勿将 RCF 版本升级或降级到不受支持的版本。
 
 
 .关于此任务
-* 在两台交换机上升级 RCF 是一个无中断的过程。
-+
-** 在此过程中，无需操作交换机间链路 (ISL)。这是出于设计考虑，因为 RCF 版本更改可能会暂时影响 ISL 连接。为了确保集群操作不中断，此过程要求您在目标交换机上执行步骤时将所有集群 LIF 迁移到运行中的配对交换机。
-** 此过程要求您升级第一个交换机（cs1）上的 RCF，然后对第二个交换机（cs2）重复这些步骤。
-
-
+* 为了确保集群操作不中断，此过程要求您在目标交换机上执行步骤时，将所有集群 LIF 迁移到运行中的配对交换机。
+* 在此过程中，无需运行中的交换机间链路 (ISL)。这是设计使然，因为 RCF 版本更改可能会暂时影响 ISL 连接。
 * 此过程需要使用 ONTAP 命令和 Cisco Nexus 9000 系列交换机命令，这些步骤指示您使用哪个 CLI 来输入命令。
 * 本流程中的示例使用以下开关和节点命名规则：
 +
@@ -51,6 +47,7 @@ NOTE: 请勿将 RCF 版本升级或降级到不受支持的版本。
 ** 这 `cluster1::*>`prompt 指示集群名称。
 
 
+* 本程序中显示的示例适用于运行 RCF 10.1 的交换机的 AFX 2K 系统。输入和输出可能会因 RCF 版本而异。
 
 
 
@@ -58,17 +55,14 @@ NOTE: 请勿将 RCF 版本升级或降级到不受支持的版本。
 [[step-1-prepare-for-the-upgrade]]
 == 第一步：准备升级
 
-您可以从 ONTAP CLI 输入以下步骤的命令。
+使用 ONTAP CLI 执行以下步骤，根据需要禁止自动创建案例、检查端口上的管理和操作状态，并在集群 LIF 上禁用自动还原，从而为 RCF 升级做好准备。
 
 . 如果此集群上启用了AutoSupport ，则通过调用AutoSupport消息来抑制自动创建案例：
 +
 [source, cli]
 ----
-system node autosupport invoke -node * -type all -message MAINT=xh
+system node autosupport invoke -node * -type all -message MAINT=<number of hours down>h
 ----
-+
-其中 _x_ 为维护窗口的持续时间（小时）。
-
 . 将权限级别更改为高级，并在提示继续时输入 *y*：
 +
 [source, cli]
@@ -490,10 +484,16 @@ network interface modify -vserver Cluster -lif * -auto-revert false
 
 
 
-[[step-2-configure-ports]]
-== 步骤 2：配置端口
+[[step-2-upgrade-the-rcf]]
+== 步骤 2：升级 RCF
+
+您可以使用交换机 CLI 和 ONTAP CLI（如以下步骤所示）进行 RCF 升级。升级第一个交换机（cs1）上的 RCF，然后对第二个交换机（cs2）重复这些步骤。
 
 . 使用交换机 CLI，在交换机 cs1 上关闭连接到每个线路卡节点所有端口的端口。
++
+
+CAUTION: 请确保关闭*所有*连接的端口，以避免任何网络连接问题。有关详细信息，请参见知识库文章 link:https://kb.netapp.com/on-prem/ontap/OHW/OHW-KBs/Node_out_of_quorum_when_migrating_cluster_lif_during_switch_OS_upgrade["在切换操作系统升级期间迁移集群 LIF 时，节点脱离仲裁。"^]。
+
 +
 以下示例显示了关闭线路卡 1 `e1`、 `e1-1/1-18`、 `e1/19/1-4`、 `e1/20/1-4`…… `e1/35/1-4`上的所有端口的命令。对交换机上的每个线路卡重复这些命令。
 
@@ -509,10 +509,6 @@ cs1(config-if-range)# *shutdown*
 cs1(config-if-range)# *exit*
 cs1(config)# *exit*
 ----
-+
-
-CAUTION: 请确保关闭*所有*连接的端口，以避免任何网络连接问题。有关详细信息，请参见知识库文章 link:https://kb.netapp.com/on-prem/ontap/OHW/OHW-KBs/Node_out_of_quorum_when_migrating_cluster_lif_during_switch_OS_upgrade["在切换操作系统升级期间迁移集群 LIF 时，节点脱离仲裁。"^]。
-
 . 使用 ONTAP CLI，验证集群 LIF 是否已故障切换到交换机 cs1 上托管的端口。这可能需要几秒钟。
 +
 [source, cli]
@@ -590,20 +586,20 @@ node1-04          true    true          false
 ====
 如果 `write_erase.cfg`文件已存在，请将其重命名为 `write_erase_old.cfg`，如下所示：
 
-`cs1# move bootflash:write_erase.cfg write_erase_old.cfg`
+`move bootflash:write_erase.cfg write_erase_old.cfg`
 
 ====
 +
-`cs1# show run | i "username admin password" > bootflash:write_erase.cfg`
+`show run | i "username admin password" > bootflash:write_erase.cfg`
 
 +
-`cs1# show run | section "vrf context management" >> bootflash:write_erase.cfg`
+`show run | section "vrf context management" >> bootflash:write_erase.cfg`
 
 +
-`cs1# show run | section "interface mgmt0" >> bootflash:write_erase.cfg`
+`show run | section "interface mgmt0" >> bootflash:write_erase.cfg`
 
 +
-`cs1# show run | section "switchname" >> bootflash:write_erase.cfg`
+`show run | section "switchname" >> bootflash:write_erase.cfg`
 
 +
 有关更多详细信息，请参见知识库文章 link:https://kb.netapp.com/on-prem/Switches/Cisco-KBs/How_to_clear_configuration_on_a_Cisco_interconnect_switch_while_retaining_remote_connectivity["如何在保持远程连接的情况下清除Cisco互连交换机上的配置"^]。
@@ -612,9 +608,9 @@ node1-04          true    true          false
 +
 `show file bootflash:write_erase.cfg`
 
-. 使用交换机 CLI，发出 `write erase`命令以擦除当前保存的配置：
+. 使用交换机命令行界面，清除当前保存的配置：
 +
-`cs1# *write erase*`
+`write erase`
 
 +
 `Warning: This command will erase the startup-configuration.`
@@ -622,13 +618,13 @@ node1-04          true    true          false
 +
 `Do you wish to proceed anyway? (y/n)  [n] *y*`
 
-. 使用交换机 CLI 将先前保存的基本配置复制到启动配置中。
+. 使用交换机 CLI，将先前保存的基本配置复制到启动配置中：
 +
-`cs1# *copy bootflash:write_erase.cfg startup-config*`
+`copy bootflash:write_erase.cfg startup-config`
 
 . 使用交换机命令行界面重启交换机：
 +
-`cs1# *reload*`
+`reload`
 
 +
 `This command will reboot the system. (y/n)?  [n] *y*`
@@ -639,7 +635,7 @@ node1-04          true    true          false
 
 . 使用交换机 CLI，使用以下传输协议之一将 RCF 复制到交换机 cs1 的引导闪存：FTP、TFTP、SFTP 或 SCP。
 +
-有关 Cisco 命令的更多信息，请参见 link:https://www.cisco.com/c/en/us/support/switches/nexus-9000-series-switches/series.html["Cisco Nexus 9000 系列 NX-OS 命令参考"^] 指南中的相应指南。
+有关 Cisco 命令的更多信息，请参见 link:https://www.cisco.com/c/en/us/support/switches/nexus-9000-series-switches/series.html["Cisco Nexus 9000 系列 NX-OS 命令参考"^] 中的相应指南。
 
 +
 `copy <protocol>: bootflash: vrf management`
@@ -662,7 +658,7 @@ Copy complete, now saving to disk (please wait)...
 ====
 . 使用交换机 CLI，将先前下载的 RCF 应用于引导闪存。
 +
-有关 Cisco 命令的更多信息，请参见 link:https://www.cisco.com/c/en/us/support/switches/nexus-9000-series-switches/series.html["Cisco Nexus 9000 系列 NX-OS 命令参考"^] 指南中的相应指南。
+有关 Cisco 命令的更多信息，请参见 link:https://www.cisco.com/c/en/us/support/switches/nexus-9000-series-switches/series.html["Cisco Nexus 9000 系列 NX-OS 命令参考"^] 中的相应指南。
 
 +
 此示例显示了在交换机 cs1 上安装的 RCF `RCF-v10.1-NX9808-CL1-ST1.txt`：
@@ -700,17 +696,17 @@ cs1# *copy RCF-v10.1-NX9808-CL1-ST1.txt running-config echo-commands*
 
 . 使用交换机 CLI，验证 RCF 版本、自定义添加项和交换机设置是否正确后，将 `running-config`文件复制到 `startup-config`文件中。
 +
-有关 Cisco 命令的更多信息，请参见 https://www.cisco.com/c/en/us/support/switches/nexus-9000-series-switches/series.html["Cisco Nexus 9000 系列 NX-OS 命令参考"^]指南中的相应指南。
+有关 Cisco 命令的更多信息，请参见 link:https://www.cisco.com/c/en/us/support/switches/nexus-9000-series-switches/series.html["Cisco Nexus 9000 系列 NX-OS 命令参考"^] 中的相应指南。
 
 +
-`cs1# *copy running-config startup-config*`
+`copy running-config startup-config`
 
 +
 `[########################################] 100% Copy complete`
 
 . 使用交换机 CLI 重新启动交换机 cs1。您可以在交换机重新启动时忽略节点上报告的 "`cluster switch health monitor`" 警报和 "`cluster ports down`" 事件。
 +
-`cs1# *reload*`
+`reload`
 
 +
 `This command will reboot the system. (y/n)?  [n] *y*`
@@ -766,7 +762,7 @@ e2a       Cluster      Cluster          up   9000  auto/400000 healthy  false
 e2b       Cluster      Cluster          up   9000  auto/400000 healthy  false
 ----
 ====
-... 从集群中验证交换机的运行状况。
+... 从集群验证交换机运行状况：
 +
 [source, cli]
 ----
@@ -1085,7 +1081,7 @@ node1-04          true     true          false
 ----
 ====
 . 在交换机 cs2 上重复步骤 4 至 18。
-. 使用 ONTAP CLI，在集群 LIF 上启用自动还原。
+. 使用 ONTAP CLI，在集群 LIF 上启用自动还原：
 +
 [source, cli]
 ----
@@ -1098,7 +1094,9 @@ network interface modify -vserver Cluster -lif * -auto-revert true
 [[step-3-verify-the-cluster-network-configuration-and-cluster-health]]
 == 步骤 3：验证集群网络配置和集群健康状况
 
-. 使用交换机 CLI，验证连接到集群端口的交换机端口是否处于 *up* 状态。
+在两台交换机上升级 RCF 后，验证集群网络配置和集群运行状况。
+
+. 使用交换机 CLI，验证连接到集群端口的交换机端口是否处于 *up* 状态：
 +
 [source, cli]
 ----
@@ -1649,8 +1647,10 @@ Cluster
 如果任何集群 LIF 尚未返回到其源端口，请从本地节点手动将其还原：
 
 +
+[source, cli]
+----
 `network interface revert -vserver vserver_name -lif <lif-name>`
-
+----
 . 使用 ONTAP CLI，验证集群是否正常：
 +
 [source, cli]
@@ -1672,9 +1672,9 @@ node1-03          true    true          true
 node1-04          true    true          false
 ----
 ====
-. 使用 ONTAP CLI，验证远程集群接口的连通性：
+. 使用 ONTAP CLI，验证远程集群接口的连通性。
 +
-.. 你可以使用 `network interface check cluster-connectivity show`用于显示集群连接性可访问性检查详细信息的命令：
+** 您可以使用以下命令显示集群连接的可访问性检查的详细信息：
 +
 [source, cli]
 ----
@@ -1704,7 +1704,7 @@ node1-02
 .
 ----
 ====
-.. 或者，您可以使用 `cluster ping-cluster -node <node-name>`检查连接性的命令：
+** 或者，您可以使用以下命令来检查连接：
 +
 [source, cli]
 ----

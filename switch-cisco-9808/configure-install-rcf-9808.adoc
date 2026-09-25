@@ -18,15 +18,16 @@ summary: 在 Cisco Nexus 9808 交换机上安装 RCF，用于新的 AFX 2K 系�
 * 您必须已使用link:configure-install-nxos-9808.html["安装 NX-OS"]过程安装所需的 NX-OS 版本。
 * 您必须已阅读link:configure-install-upgrade-rcf-overview-9808.html["安装或升级 RCF 概述"]页面。
 * 如果要在交换机上安装 RCF 作为主管模块更换或交换机重置为出厂默认设置的一部分，请验证集群是否完全正常运行，即日志中没有错误或类似问题。
-+
-如果要在新的 AFX 系统安装过程中安装 RCF，则可以跳过此要求，因为在 AFX 系统安装和设置过程中，此时 AFX 系统中的控制器尚未通电。
 
 
+
+NOTE: 如果要在新的 AFX 系统安装过程中安装 RCF，则可以跳过此要求，因为在 AFX 系统安装和设置过程中，此时 AFX 系统中的控制器尚未通电。
 
 .关于此任务
 * 如果在新的 AFX 2K 系统安装过程中安装了交换机，则在第一台交换机 (cs1) 上安装参考配置文件 (RCF)，然后使用此过程对第二台交换机 (cs2) 重复上述步骤。
 * 此过程仅需要使用 Cisco Nexus 9000 系列交换机命令。
 * 本程序中的示例将第一个交换机称为 cs1，将第二个交换机称为 cs2。
+* 本程序中显示的示例适用于运行 RCF 10.1 的交换机的 AFX 2K 系统。输入和输出可能会因 RCF 版本而异。
 
 
 
@@ -52,12 +53,12 @@ NOTE: 新交换机出厂时未安装 RCF。您必须在交换机上安装 RCF。
 [[step-2-install-the-rcf]]
 == 步骤 2：安装 RCF
 
-通过将 RCF 复制并应用于引导闪存、检查横幅输出、验证 RCF 版本是否正确、记录任何自定义添加内容、保存基本配置详细信息、验证 `write_erase.cfg`文件是否已填充、擦除当前保存的配置、将之前保存的基本配置复制到启动配置中，然后重新启动交换机，从而在第一台交换机 (cs1) 上安装 RCF。如果要在新的 AFX 系统安装过程中安装 RCF，请在第二台交换机 (cs2) 上重复这些步骤。
+通过将 RCF 复制并应用于引导闪存、检查横幅输出、验证 RCF 版本是否正确、使当前运行配置持久化，然后重新启动交换机，在第一台交换机 (cs1) 上安装 RCF。如果要在新的 AFX 系统安装过程中安装 RCF，请在第二台交换机 (cs2) 上重复这些步骤。
 
 . 使用 SSH 或通过串行控制台登录到交换机 cs1。
 . 使用以下传输协议之一将 RCF 复制到交换机 cs1 的 bootflash：FTP、TFTP、SFTP 或 SCP。
 +
-有关 Cisco 命令的更多信息，请参见 https://www.cisco.com/c/en/us/support/switches/nexus-9000-series-switches/series.html["Cisco Nexus 9000 系列 NX-OS 命令参考"^]指南中的相应指南。
+有关 Cisco 命令的更多信息，请参见 link:https://www.cisco.com/c/en/us/support/switches/nexus-9000-series-switches/series.html["Cisco Nexus 9000 系列 NX-OS 命令参考"^] 中的相应指南。
 
 +
 `copy <protocol>: bootflash: vrf management`
@@ -80,7 +81,7 @@ Copy complete, now saving to disk (please wait)...
 ====
 . 应用先前复制到引导闪存的 RCF。
 +
-有关 Cisco 命令的更多信息，请参见 https://www.cisco.com/c/en/us/support/switches/nexus-9000-series-switches/series.html["Cisco Nexus 9000 系列 NX-OS 命令参考"^]指南中的相应指南。
+有关 Cisco 命令的更多信息，请参见 link:https://www.cisco.com/c/en/us/support/switches/nexus-9000-series-switches/series.html["Cisco Nexus 9000 系列 NX-OS 命令参考"^] 中的相应指南。
 
 +
 此示例显示了在交换机 cs1 上安装的 RCF 文件 `RCF-v10.1-NX9808-CL1-ST1.txt`：
@@ -132,9 +133,9 @@ cs1# show banner motd
 
 
 
-. 将当前运行配置复制到启动配置以使其持久化。
+. 将当前运行配置复制到启动配置以使其持久化：
 +
-`cs1# *copy bootflash:write_erase.cfg startup-config*`
+`cs1# *copy running-config startup-config*`
 
 . 重启交换机：
 +

@@ -23,6 +23,10 @@ NOTE: NetApp 建议您首先完成任何 ONTAP 软件升级，然后为您的交
 
 .关于此任务
 * 如果需要，您可以参见 link:https://www.cisco.com/c/en/us/td/docs/dcn/nx-os/nexus9000/101x/upgrade/cisco-nexus-9000-nx-os-software-upgrade-downgrade-guide-101x.html["Cisco Nexus 9000 系列 NX-OS 软件升级和降级指南"^] 以获取更多信息。
+* 如果需要，您可以参阅link:https://www.cisco.com/c/dam/en/us/td/docs/dcn/tools/nexus-9k3k-issu-matrix/index.html["Cisco Nexus 9000 和 3000 升级和 ISSU 矩阵"^]，其中提供了有关基于当前版本和目标版本的 Cisco Nexus 9000 系列交换机的在线软件升级 (ISSU) 的信息。
++
+在页面上，选择“中断式升级”，然后从下拉列表中选择当前版本和目标版本。
+
 * AFX 系统上运行的 ONTAP 版本决定了交换机支持的 NX-OS 版本。
 +
 ** 对于运行 ONTAP 9.19.1GA 或更高版本的 AFX 2K 系统中的交换机，支持 NX-OS 10.6 及更高版本。
@@ -51,6 +55,7 @@ NOTE: 请勿将 NX-OS 版本升级或降级到不受支持的版本。
 ** 这 `cluster1::*>`prompt 指示集群名称。
 
 
+* 本程序中显示的示例适用于运行 RCF 10.1 的交换机的 AFX 2K 系统。输入和输出可能会因 RCF 版本而异。
 
 
 
@@ -62,7 +67,7 @@ NOTE: 请勿将 NX-OS 版本升级或降级到不受支持的版本。
 
 .步骤
 . 将每台交换机连接到管理网络。
-. 使用交换机 CLI，验证与托管 NX-OS 的服务器的连接。
+. 使用交换机 CLI，验证与托管 NX-OS 的服务器的连接：
 +
 `ping <IP address>`
 
@@ -494,9 +499,9 @@ network interface modify -vserver Cluster -lif * -auto-revert false
 [[step-2-install-the-nx-os]]
 == 步骤 2：安装 NX-OS
 
-在第一台交换机（cs1）上安装 NX-OS，方法是安装并验证新版本的 NX-OS 和 EPLD，验证集群上所有端口的运行状况，然后在第二台交换机（cs2）上重复这些步骤。
+通过安装和验证新版本的 NX-OS 和 EPLD、验证集群上所有端口的运行状况，在第一台交换机 （cs1） 上安装 NX-OS，然后在第二台交换机 （cs2） 上重复这些步骤。
 
-. 使用交换机 CLI 将 NX-OS 和 EPLD 映像复制到交换机。
+. 使用交换机 CLI，将 NX-OS 和 EPLD 映像复制到交换机：
 +
 `copy <protocol>: bootflash: vrf management`
 
@@ -595,7 +600,7 @@ cs1#
 ====
 . 使用交换机 CLI 安装 NX-OS 和 EPLD 映像。
 +
-安装镜像文件后，每次交换机重启时都会加载该文件。
+安装映像文件会导致每次交换机重新启动时都会加载该映像文件：
 
 +
 `install all nxos bootflash:nxos.<version number>.bin`
@@ -1288,7 +1293,7 @@ node1-04             true    true          true
 
 使用 ONTAP CLI，通过在集群 LIF 上重新启用自动还原并验证集群 LIF 已还原到其主端口来完成 NX-OS 升级。
 
-. 在集群 LIF 上重新启用自动还原。
+. 在集群 LIF 上重新启用自动还原：
 +
 [source, cli]
 ----
