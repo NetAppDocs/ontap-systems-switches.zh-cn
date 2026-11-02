@@ -501,7 +501,7 @@ network interface modify -vserver Cluster -lif * -auto-revert false
 
 通过安装和验证新版本的 NX-OS 和 EPLD、验证集群上所有端口的运行状况，在第一台交换机 （cs1） 上安装 NX-OS，然后在第二台交换机 （cs2） 上重复这些步骤。
 
-. 使用交换机 CLI，将 NX-OS 和 EPLD 映像复制到交换机：
+. 使用交换机 CLI，将组合的 NX-OS 和 EPLD 映像复制到交换机：
 +
 `copy <protocol>: bootflash: vrf management`
 

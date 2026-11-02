@@ -80,7 +80,7 @@ Reply From 172.19.2.1: icmp_seq = 0. time= 5910 usec.
 
 通过安装和验证 NX-OS 和 EPLD 映像版本，在第一台交换机 (cs1) 上安装 NX-OS 和 EPLD 映像，然后，如果您将 NX-OS 作为新 AFX 系统安装的一部分进行安装，则在第二台交换机 (cs2) 上重复这些步骤。
 
-. 将 NX-OS 和 EPLD 映像复制到第一台交换机：
+. 将组合的 NX-OS 和 EPLD 映像复制到第一台交换机：
 +
 `copy <protocol>: bootflash: vrf management`
 
